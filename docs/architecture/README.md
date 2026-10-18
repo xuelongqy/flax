@@ -139,11 +139,11 @@ environment.
 - [WebSocket plugin](websocket.md): client options, transport observations and limits.
 
 [Top-level functions and native dialogs](functions.md) describe typed named exports and
-explicit Navigator observation for Route callback lifetime.
+ordinary callback ownership during navigation.
 
 [Proxy properties](proxy-properties.md) cover generated get/set implementations and
 native ValueListenable consumers.
 
 - [Persistent localStorage and namespaces](local-storage.md).
 
-- [Canvas 2D](canvas.md): command buffer, rAF, and generated input snapshots.
+- [Canvas 2D](canvas.md): command buffer, rAF, and native input references.

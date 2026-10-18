@@ -388,8 +388,9 @@ final class _FlaxCodegenTypeScope {
       parser._elementsByIdentity.putIfAbsent(identity(element), () => element);
       return FlaxCodegenTypeRef(name, nullable: nullable);
     }
+    if (typeOnlyPosition && element.isPrivate) return typeOnlyReference(type);
     if (typeOnlyPosition &&
-        !parser._adaptations.containsKey(identity(element)) &&
+        !parser._isPoolType(element) &&
         !(element.library.isDartCore &&
             {
               'Object',

@@ -33,10 +33,11 @@ test('generated constructors preserve omission, null, identity and immutable sna
   assert.equal(host.calls.at(-1).descriptor.ctor, 'symmetric');
 });
 
-test('required, unknown and unsupported binding arguments fail explicitly', () => {
+test('required and unknown binding arguments fail explicitly', () => {
   assert.throws(() => Text(), /Missing required/);
   assert.throws(() => Padding({}), /Missing required/);
-  assert.throws(() => Text('x', { locale: null }), /Unsupported/);
+  assert.equal(Text('x', { locale: null }).args.locale, null);
+  assert.throws(() => Text('x', { unknown: null }), /Unsupported/);
   assert.throws(() => Text('x', {}, 3), /Too many/);
   assert.throws(() => Text('x', { key: signal('a').bind }), /bind/i);
   assert.throws(() => EdgeInsets.all(signal(1).bind), /bind/i);

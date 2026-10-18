@@ -1027,7 +1027,7 @@ void main() {
         ('FutureRecordProperty', 'value', 'record'),
         ('StreamRecordProperty', 'value', 'record'),
       ]) {
-        final parser = FlaxCodegenBindingParser(repoRoot);
+        final parser = FlaxCodegenBindingParser(repoRoot, contexts: collection);
         addTearDown(parser.dispose);
         await parser.prepare([
           FlaxCodegenBindingConfig.read(

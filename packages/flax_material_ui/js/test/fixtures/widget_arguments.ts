@@ -15,7 +15,7 @@ import {
   type Widget,
 } from '@flax/flutter/widgets';
 import { ValueKey, ValueListenable } from '@flax/flutter/foundation';
-import { TextButton, TextField } from '@flax/flutter/material';
+import { TextButton, TextField } from '@flax/material-ui';
 import {
   ChildConsumer,
   TileBatch,

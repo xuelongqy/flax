@@ -1,0 +1,150 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput, type Widget } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_BottomNavigationBarItem';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_BottomNavigationBarItem';
+import type * as upstream3 from '@flax/flutter/material/_bindings/sdk_material_BottomNavigationBarType';
+import '@flax/flutter/material/_bindings/sdk_material_BottomNavigationBarType';
+import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_IconThemeData';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_IconThemeData';
+import type * as upstream6 from '@flax/flutter/painting/_bindings/flutter_TextStyle';
+import '@flax/flutter/painting/_bindings/flutter_TextStyle';
+import type * as upstream7 from '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import type * as upstream8 from '@flax/flutter/material/_bindings/sdk_material_BottomNavigationBarLandscapeLayout';
+import '@flax/flutter/material/_bindings/sdk_material_BottomNavigationBarLandscapeLayout';
+import type * as upstream9 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface BottomNavigationBar extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
+    "__flaxBound:package:flutter/src/material/bottom_navigation_bar.dart::BottomNavigationBar": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}> {
+    readonly __BottomNavigationBar: unique symbol;
+    readonly [_flaxDartTypeValue]: BottomNavigationBar;
+    readonly items: DartList<upstream2.BottomNavigationBarItem>;
+    readonly onTap: ((value: number) => void) | null;
+    readonly currentIndex: number;
+    readonly elevation: number | null;
+    readonly type: upstream3.BottomNavigationBarType | null;
+    readonly fixedColor: upstream4.Color | null;
+    readonly backgroundColor: upstream4.Color | null;
+    readonly iconSize: number;
+    readonly selectedItemColor: upstream4.Color | null;
+    readonly unselectedItemColor: upstream4.Color | null;
+    readonly selectedIconTheme: upstream5.IconThemeData | null;
+    readonly unselectedIconTheme: upstream5.IconThemeData | null;
+    readonly selectedLabelStyle: upstream6.TextStyle | null;
+    readonly unselectedLabelStyle: upstream6.TextStyle | null;
+    readonly selectedFontSize: number;
+    readonly unselectedFontSize: number;
+    readonly showUnselectedLabels: boolean | null;
+    readonly showSelectedLabels: boolean | null;
+    readonly mouseCursor: upstream7.MouseCursor | null;
+    readonly enableFeedback: boolean | null;
+    readonly landscapeLayout: upstream8.BottomNavigationBarLandscapeLayout | null;
+    readonly useLegacyColorScheme: boolean;
+    readonly key: upstream1.Key | null;
+    createState(): upstream9.State<BottomNavigationBar>;
+    createElement(): upstream10.StatefulElement;
+    toStringShort(): string;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream12.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream12.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream14.DiagnosticsTreeStyle | null | undefined;
+    }): upstream13.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream13.DiagnosticsNode>;
+}
+export declare function _BottomNavigationBarFactory(options: {
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }> | null | undefined;
+    items: DartListInput<upstream2.BottomNavigationBarItem, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/bottom_navigation_bar_item.dart::BottomNavigationBarItem": readonly [];
+    }>>;
+    onTap?: ((value: number) => void) | null | undefined;
+    currentIndex?: number | undefined;
+    elevation?: number | null | undefined;
+    type?: upstream3.BottomNavigationBarType | null | undefined;
+    fixedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    iconSize?: number | undefined;
+    selectedItemColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    unselectedItemColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectedIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    unselectedIconTheme?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/icon_theme_data.dart::IconThemeData": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    selectedFontSize?: number | undefined;
+    unselectedFontSize?: number | undefined;
+    selectedLabelStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    unselectedLabelStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    showSelectedLabels?: boolean | null | undefined;
+    showUnselectedLabels?: boolean | null | undefined;
+    mouseCursor?: (Readonly<{
+        "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    enableFeedback?: boolean | null | undefined;
+    landscapeLayout?: upstream8.BottomNavigationBarLandscapeLayout | null | undefined;
+    useLegacyColorScheme?: boolean | undefined;
+}): BottomNavigationBar;
+export declare const BottomNavigationBar: typeof _BottomNavigationBarFactory & _FlaxInstanceType<BottomNavigationBar> & _FlaxDartType<BottomNavigationBar, readonly ["class", "flax.core/sdk_material#type:BottomNavigationBar", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "items" | "onTap" | "currentIndex" | "elevation" | "type" | "fixedColor" | "backgroundColor" | "iconSize" | "selectedItemColor" | "unselectedItemColor" | "selectedIconTheme" | "unselectedIconTheme" | "selectedLabelStyle" | "unselectedLabelStyle" | "selectedFontSize" | "unselectedFontSize" | "showUnselectedLabels" | "showSelectedLabels" | "mouseCursor" | "enableFeedback" | "landscapeLayout" | "useLegacyColorScheme" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/material/bottom_navigation_bar.dart::BottomNavigationBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+export {};

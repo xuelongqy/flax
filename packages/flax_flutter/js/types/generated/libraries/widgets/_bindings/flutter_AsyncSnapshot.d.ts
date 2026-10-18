@@ -4,11 +4,12 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Connect
 import '@flax/flutter/widgets/_bindings/flutter_ConnectionState';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface AsyncSnapshot<T extends unknown | null = unknown | null> extends Readonly<{
     "__flaxBound:package:flutter/src/widgets/async.dart::AsyncSnapshot": readonly [T];
 }> {
     readonly __AsyncSnapshot: unique symbol;
+    readonly [_flaxDartTypeValue]: AsyncSnapshot<T>;
     readonly connectionState: upstream0.ConnectionState;
     readonly data: T | null;
     readonly requireData: T;

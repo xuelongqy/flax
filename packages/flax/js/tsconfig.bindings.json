@@ -11,6 +11,7 @@
     "src/dart/generated/libraries/ui/index.ts"
   ],
   "include": [
+    "src/flutter/generated/libraries/*/index.ts",
     "src/flutter/generated/libraries/*/_bindings/**/*.ts",
     "src/dart/generated/libraries/*/_bindings/**/*.ts"
   ]

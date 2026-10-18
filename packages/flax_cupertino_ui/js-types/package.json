@@ -1,0 +1,28 @@
+{
+  "name": "@flax/cupertino-ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Declaration-only public types for @flax/cupertino-ui.",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts"
+    },
+    "./*": {
+      "types": "./types/generated/libraries/cupertino/*.d.ts"
+    }
+  },
+  "files": [
+    "types/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node ../../../tool/public_types.mjs",
+    "typecheck": "node ../../../tool/public_types.mjs --check"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/flutter": "workspace:*",
+    "@flax/dart": "workspace:*"
+  }
+}

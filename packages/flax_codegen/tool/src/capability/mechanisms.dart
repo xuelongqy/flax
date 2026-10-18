@@ -724,7 +724,9 @@ Future<Map<String, Object?>> runStage2Mechanisms({
 }) async {
   final out = Directory(outDir)..createSync(recursive: true);
   final official = officialBindingConfig(workspaceRoot);
-  final collection = AnalysisContextCollection(includedPaths: [workspaceRoot]);
+  final collection = AnalysisContextCollection(
+    includedPaths: [p.join(workspaceRoot, 'pubspec.yaml')],
+  );
   final fixtureConfigs = <String, FlaxCodegenBindingConfig>{};
   FlaxCodegenBindingConfig fixtureConfig(String fixture) => fixtureConfigs
       .putIfAbsent(fixture, () => _fixtureConfig(workspaceRoot, fixture));
@@ -1030,7 +1032,10 @@ Future<Map<String, Object?>> _proposeShape({
     };
   }
   if (element is ExtensionTypeElement) {
-    final parser = FlaxCodegenBindingParser(workspaceRoot);
+    final parser = FlaxCodegenBindingParser(
+      workspaceRoot,
+      contexts: collection,
+    );
     try {
       await parser.prepare([official, fixture]);
       final proposal = await parser.proposeLibrary(fixture);
@@ -1070,7 +1075,7 @@ Future<Map<String, Object?>> _proposeShape({
       'skipCodes': const <String>['unsupported_declaration_kind'],
     };
   }
-  final parser = FlaxCodegenBindingParser(workspaceRoot);
+  final parser = FlaxCodegenBindingParser(workspaceRoot, contexts: collection);
   try {
     await parser.prepare([official, fixture]);
     final proposal = await parser.proposeSelection(element, library: fixture);
@@ -1164,6 +1169,7 @@ Future<Map<String, Object?>> _explicitParse({
     library: fixture,
     classes: {shape.type: built.selection},
     label: label,
+    collection: collection,
   );
   return {
     ...parsed.toJson(),

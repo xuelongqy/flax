@@ -1,0 +1,101 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type Widget } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_TextSelectionControls';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_TextSelectionControls';
+import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering_TextSelectionHandleType';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_TextSelectionHandleType';
+import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream5 from '@flax/flutter/rendering/_bindings/sdk_rendering_TextSelectionPoint';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_TextSelectionPoint';
+import '@flax/flutter/services/_bindings/sdk_services_TextSelectionDelegate';
+import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/sdk_widgets_ClipboardStatus';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ClipboardStatus';
+import type * as upstream9 from '@flax/dart/ui/_bindings/flutter_Size';
+import '@flax/dart/ui/_bindings/flutter_Size';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ClipboardStatusNotifier';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface TextSelectionHandleControls extends Omit<upstream0.TextSelectionControls, _flaxOwnMembers0>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionHandleControls": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionControls": readonly [];
+}> {
+    readonly __TextSelectionHandleControls: unique symbol;
+    readonly [_flaxDartTypeValue]: TextSelectionHandleControls;
+    buildHandle(context: upstream1.BuildContext, type: upstream2.TextSelectionHandleType, textLineHeight: number, onTap?: (() => void) | null): Widget;
+    getHandleAnchor(type: upstream2.TextSelectionHandleType, textLineHeight: number): upstream3.Offset;
+    buildToolbar(context: upstream1.BuildContext, globalEditableRegion: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, textLineHeight: number, selectionMidpoint: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, endpoints: DartListInput<upstream5.TextSelectionPoint, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/editable.dart::TextSelectionPoint": readonly [];
+    }>>, delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>, clipboardStatus: (Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null, lastSecondaryTapDownPosition: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null): Widget;
+    getHandleSize(textLineHeight: number): upstream9.Size;
+    canCut(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): boolean;
+    canCopy(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): boolean;
+    canPaste(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): boolean;
+    canSelectAll(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): boolean;
+    handleCut(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>, clipboardStatus?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream8.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
+    }>) | null): void;
+    handleCopy(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>, clipboardStatus?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream8.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
+    }>) | null): void;
+    handlePaste(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): Promise<void>;
+    handleSelectAll(delegate: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }>): void;
+}
+export declare const TextSelectionHandleControls: object & _FlaxInstanceType<TextSelectionHandleControls> & _FlaxDartType<TextSelectionHandleControls, readonly ["class", "flax.core/sdk_widgets#type:TextSelectionHandleControls", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "buildHandle" | "getHandleAnchor" | "buildToolbar" | "getHandleSize" | "canCut" | "canCopy" | "canPaste" | "canSelectAll" | "handleCut" | "handleCopy" | "handlePaste" | "handleSelectAll" | "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionHandleControls" | "__flaxBound:package:flutter/src/widgets/text_selection.dart::TextSelectionControls";
+export {};

@@ -20,7 +20,7 @@ import {
   TextAffinity,
 } from '@flax/flutter/services';
 import { ValueKey } from '@flax/flutter/foundation';
-import { TextField, TextInputAction } from '@flax/flutter/material';
+import { TextField, TextInputAction } from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 

@@ -33,15 +33,13 @@ Future<void> main(List<String> arguments) => command(() async {
     }
     final command = check ? 'check' : 'generate';
     for (final package in packagesWithBindings) {
-      for (final config in bindingConfigs(package)) {
-        await run('dart', [
-          'run',
-          'flax_codegen',
-          command,
-          '--config',
-          config,
-        ], directory: root);
-      }
+      await run('dart', [
+        'run',
+        'flax_codegen',
+        command,
+        '--config',
+        bindingConfigs(package).first,
+      ], directory: root);
     }
     await run('node', [
       'tool/public_types.mjs',
@@ -91,15 +89,13 @@ Future<void> _check(String root, FlaxWorkspacePackage package) async {
 
   final configs = bindingConfigs(package);
   if (configs.isNotEmpty) {
-    for (final config in configs) {
-      await run('dart', [
-        'run',
-        'flax_codegen',
-        'check',
-        '--config',
-        p.relative(config, from: package.directory.path),
-      ], directory: package.directory.path);
-    }
+    await run('dart', [
+      'run',
+      'flax_codegen',
+      'check',
+      '--config',
+      p.relative(configs.first, from: package.directory.path),
+    ], directory: package.directory.path);
   }
 
   if (File(p.join(package.js.path, 'package.json')).existsSync()) {

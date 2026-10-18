@@ -646,6 +646,7 @@ class FlaxCodegenGetterModel {
     this.encodeKind,
     this.id,
     this.cache = false,
+    this.isConst = false,
   });
   final String name;
   final FlaxCodegenTypeRef type;
@@ -656,6 +657,9 @@ class FlaxCodegenGetterModel {
 
   /// Only final primitive enum fields may be cached after a real Dart read.
   final bool cache;
+
+  /// A real Dart static const field, never a computed, final or late getter.
+  final bool isConst;
 }
 
 class FlaxCodegenMethodModel {
@@ -743,6 +747,13 @@ class FlaxCodegenClassModel {
     this.widgetMembers = const [],
     this.jsName,
   });
+  bool get isWidgetSubtype =>
+      kind == 'widget' ||
+      supertypes.contains(
+        'package:flutter/src/widgets/framework.dart::Widget',
+      ) ||
+      superTypes.any((parent) => parent.kind == 'widget');
+
   final String name;
   final String id;
   final String kind;
@@ -1441,6 +1452,16 @@ class FlaxCodegenModuleModel {
         ].any((child) => contains(child, test));
     bool uses(bool Function(FlaxCodegenTypeRef) test) =>
         valueTypes.any((type) => contains(type, test));
+    final sharedStaticReaders = classes.any(
+      (type) => type.kind != 'enum' && type.staticGetters.isNotEmpty,
+    );
+    final inheritedMembers = classes.any(
+      (type) =>
+          type.kind == 'object' &&
+          type.typeParameters.isEmpty &&
+          type.typeArguments.isEmpty &&
+          type.supertypes.isNotEmpty,
+    );
     final nativeFunctions = uses((type) => type.kind == 'function');
     final asyncObjects = classes.any(
       (type) =>
@@ -1475,7 +1496,9 @@ class FlaxCodegenModuleModel {
       'RegExp',
       'Pattern',
     ].any((name) => typeLibraries[name] == 'dart:core');
-    if (!nativeFunctions &&
+    if (!sharedStaticReaders &&
+        !inheritedMembers &&
+        !nativeFunctions &&
         !asyncObjects &&
         !lazyIterables &&
         !callbackKeys &&
@@ -1493,6 +1516,8 @@ class FlaxCodegenModuleModel {
     }
     return ({
       ..._requiredCapabilities,
+      if (sharedStaticReaders) 'shared-static-readers',
+      if (inheritedMembers) 'inherited-binding-members',
       if (nativeFunctions) 'native-functions',
       if (asyncObjects) 'native-async-objects',
       if (lazyIterables) 'lazy-js-iterables',
@@ -1736,9 +1761,7 @@ class FlaxCodegenModuleModel {
       if (type.proxy?.widgetInterface == true &&
           (category != FlaxCodegenClassCategory.object ||
               type.proxy!.kind != 'implements' ||
-              !type.supertypes.contains(
-                'package:flutter/src/widgets/framework.dart::Widget',
-              ) ||
+              !type.isWidgetSubtype ||
               type.constructors.length != 1 ||
               type.constructors.single.name.isNotEmpty)) {
         throw StateError('Invalid native Widget interface proxy: ${type.name}');
@@ -1877,6 +1900,13 @@ class FlaxCodegenModuleModel {
         ...type.staticGetters,
         ...type.staticSetters,
       ]) {
+        if (getter.isConst &&
+            (!type.staticGetters.contains(getter) ||
+                type.staticSetters.any((s) => s.name == getter.name))) {
+          throw StateError(
+            'Invalid static constant: ${type.name}.${getter.name}',
+          );
+        }
         if (getter.cache &&
             (category != FlaxCodegenClassCategory.enumeration ||
                 !type.getters.contains(getter) ||
@@ -1904,6 +1934,11 @@ class FlaxCodegenModuleModel {
         }
       }
       if (type.proxy case final proxy?) {
+        if ([...proxy.getters, ...proxy.setters].any((g) => g.isConst)) {
+          throw StateError(
+            'Proxy accessors cannot be static const: ${type.name}',
+          );
+        }
         final names = <String>{};
         final accessors = {
           for (final getter in proxy.getters) 'get:${getter.name}',

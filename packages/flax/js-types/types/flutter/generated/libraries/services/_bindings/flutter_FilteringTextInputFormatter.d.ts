@@ -6,10 +6,13 @@ import '@flax/dart/core/_bindings/flutter_Pattern';
 import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface FilteringTextInputFormatter extends Omit<upstream0.TextInputFormatter, typeof _flaxDartTypeValue | "filterPattern" | "allow" | "replacementString" | "formatEditUpdate">, Readonly<{
+export interface FilteringTextInputFormatter extends Omit<upstream0.TextInputFormatter, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/services/text_formatter.dart::FilteringTextInputFormatter": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/services/text_formatter.dart::TextInputFormatter": readonly [];
 }> {
     readonly __FilteringTextInputFormatter: unique symbol;
+    readonly [_flaxDartTypeValue]: FilteringTextInputFormatter;
     readonly filterPattern: upstream1.Pattern | string;
     readonly allow: boolean;
     readonly replacementString: string;
@@ -46,3 +49,5 @@ export declare namespace _FilteringTextInputFormatterFactory {
     const digitsOnly: upstream0.TextInputFormatter;
 }
 export declare const FilteringTextInputFormatter: typeof _FilteringTextInputFormatterFactory & _FlaxInstanceType<FilteringTextInputFormatter> & _FlaxDartType<FilteringTextInputFormatter, readonly ["class", "flax.core/flutter#type:FilteringTextInputFormatter", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "filterPattern" | "allow" | "replacementString" | "formatEditUpdate" | "__flaxBound:package:flutter/src/services/text_formatter.dart::FilteringTextInputFormatter" | "__flaxBound:package:flutter/src/services/text_formatter.dart::TextInputFormatter";
+export {};

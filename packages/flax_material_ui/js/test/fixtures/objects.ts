@@ -16,7 +16,7 @@ import {
   type Widget,
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
-import { TextButton } from '@flax/flutter/material';
+import { TextButton } from '@flax/material-ui';
 
 const hooks = {
   mount: () => runApp(PageContent('scroll')),

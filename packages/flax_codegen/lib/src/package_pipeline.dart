@@ -687,9 +687,15 @@ final class FlaxCodegenPackagePipeline {
                 '${error.message}.';
           }
         } else {
-          outputs[entry.path] = List<int>.unmodifiable(
-            utf8.encode(typescript[module]![entry.path]!),
-          );
+          var source = typescript[module]![entry.path]!;
+          if (outputs[entry.path] case final previous?) {
+            final lines = {
+              ...const LineSplitter().convert(utf8.decode(previous)),
+              ...const LineSplitter().convert(source),
+            };
+            source = '${lines.join('\n')}\n';
+          }
+          outputs[entry.path] = List<int>.unmodifiable(utf8.encode(source));
         }
       }
     } finally {
@@ -1425,23 +1431,26 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
     }
     final models = <FlaxCodegenModuleModel>[];
     final diagnostics = <FlaxCodegenDiagnostic>[];
+    final carriersByModule = [
+      for (var index = 0; index < configs.length; index++)
+        automaticTypeCarriers?[index] ?? const <String, String>{},
+    ];
+    await parser.preparePackage(configs);
     for (var index = 0; index < configs.length; index++) {
       try {
-        var carriers =
-            automaticTypeCarriers?[index] ?? const <String, String>{};
         if (configs[index].hasAutomaticSelection) {
           final proposal = await parser.proposeLibrary(
             configs[index],
             overrides: configs[index].overrides,
           );
           configs[index] = proposal.config;
-          carriers = {...proposal.typeCarriers, ...carriers};
+          carriersByModule[index] = {
+            ...proposal.typeCarriers,
+            ...carriersByModule[index],
+          };
           selectionSkips?.addAll(proposal.skips);
           selectionNotices?.addAll(proposal.notices);
         }
-        models.add(
-          await parser.parse(configs[index], automaticTypeCarriers: carriers),
-        );
       } on StateError catch (error) {
         diagnostics.add(
           _parseStateDiagnostic(configPaths[index], error.message),
@@ -1453,6 +1462,30 @@ Future<List<FlaxCodegenModuleModel>> _parseLocalModules({
     if (diagnostics.isNotEmpty) {
       throw FlaxCodegenException(diagnostics);
     }
+    try {
+      await parser.prepare(configs);
+    } on StateError catch (error) {
+      throw FlaxCodegenException([
+        _dependencyDiagnostic(workspaceRoot, error.message),
+      ]);
+    }
+    for (var index = 0; index < configs.length; index++) {
+      try {
+        models.add(
+          await parser.parse(
+            configs[index],
+            automaticTypeCarriers: carriersByModule[index],
+          ),
+        );
+      } on StateError catch (error) {
+        diagnostics.add(
+          _parseStateDiagnostic(configPaths[index], error.message),
+        );
+      } on FlaxCodegenException catch (error) {
+        diagnostics.addAll(error.diagnostics);
+      }
+    }
+    if (diagnostics.isNotEmpty) throw FlaxCodegenException(diagnostics);
     selectionSkips?.addAll(parser.automaticSkips);
     selectionNotices?.addAll(parser.automaticNotices);
     return models;
@@ -1476,6 +1509,9 @@ FlaxCodegenResolvedPackage _resolveLocalOwnership({
     configPaths: configPaths,
     parsedModels: parsedModels,
   );
+  final importedTypeIds = _ownedTypeModulesFromProjections(directDependencies)
+      .keys
+      .toSet();
   final siblings = <FlaxCodegenSiblingModuleInput>[];
   for (var index = 0; index < configs.length; index++) {
     siblings.add(
@@ -1484,6 +1520,7 @@ FlaxCodegenResolvedPackage _resolveLocalOwnership({
         source: configPaths[index],
         module: parsedModels[index],
         automaticClaims: automaticClaims[index] ?? const [],
+        importedTypeIds: importedTypeIds,
       ),
     );
   }
@@ -1694,6 +1731,7 @@ FlaxCodegenSiblingModuleInput _siblingInput({
   required String source,
   required FlaxCodegenModuleModel module,
   List<FlaxCodegenOwnerClaim> automaticClaims = const [],
+  Set<String> importedTypeIds = const {},
 }) {
   final listing = <String, FlaxCodegenSourceIdentity>{};
   void claim(String name, String rawId, FlaxCodegenDeclarationKind kind) {
@@ -1828,6 +1866,12 @@ FlaxCodegenSiblingModuleInput _siblingInput({
     listing: listing,
     claims: [...automaticClaims, ...extensionClaims],
     references: references,
+    typeReferences: {
+      for (final type in module.types)
+        if (config.types.contains(type.name) &&
+            importedTypeIds.contains(type.id))
+          type.name,
+    },
     // Parsed extension types have a public carrier, but no nominal owner.
     representationTypes: {
       for (final name in config.types)
@@ -2353,23 +2397,24 @@ List<String> _planValidationInventory({
   candidates.sort(_compareOutputCandidates);
 
   for (var index = 1; index < candidates.length; index++) {
-    final previous = candidates[index - 1];
     final current = candidates[index];
-    if (previous.path != current.path) {
-      continue;
+    for (var prior = index - 1; prior >= 0; prior--) {
+      final previous = candidates[prior];
+      if (previous.path != current.path) break;
+      if (_sharesPublicLibrary(previous, current, packageRoot)) continue;
+      diagnostics.add(
+        _outputDiagnostic(
+          current.path,
+          "Duplicate generated output path '${current.path}' "
+          '(${previous.label} and ${current.label}).',
+        ),
+      );
     }
-    diagnostics.add(
-      _outputDiagnostic(
-        current.path,
-        "Duplicate generated output path '${current.path}' "
-        '(${previous.label} and ${current.label}).',
-      ),
-    );
   }
   if (diagnostics.isNotEmpty) {
     throw FlaxCodegenException(diagnostics);
   }
-  return [for (final candidate in candidates) candidate.path];
+  return candidates.map((candidate) => candidate.path).toSet().toList()..sort();
 }
 
 FlaxCodegenDiagnostic _outputDiagnostic(String source, String message) =>
@@ -2721,6 +2766,56 @@ final class _OutputCandidate {
   final bool isDart;
 }
 
+bool _sharesPublicLibrary(
+  _OutputCandidate left,
+  _OutputCandidate right,
+  String packageRoot,
+) {
+  if (left.isDart || right.isDart) return false;
+  FlaxCodegenLibraryModel? route(_OutputCandidate candidate) => candidate
+      .module
+      .publicLibraries
+      .where(
+        (route) =>
+            _normalizePackageRelativeOutput(route.tsOutput, packageRoot) ==
+            candidate.path,
+      )
+      .firstOrNull;
+  final a = route(left);
+  final b = route(right);
+  Set<String> exports(
+    _OutputCandidate candidate,
+    FlaxCodegenLibraryModel route,
+  ) => {
+    for (final name in route.exports)
+      if (candidate.module.topLevel?.getters.any((g) => g.name == name) ==
+              true ||
+          candidate.module.topLevel?.setters.any((s) => s.name == name) ==
+              true) ...[
+        for (final getter in candidate.module.topLevel!.getters.where(
+          (g) => g.name == name,
+        ))
+          getter.exportName,
+        for (final setter in candidate.module.topLevel!.setters.where(
+          (s) => s.name == name,
+        ))
+          setter.exportName,
+      ] else ...[
+        name,
+        if (candidate.module.typedefs.any((alias) => alias.name == name))
+          '${name}Input',
+        for (final type in candidate.module.classes.where(
+          (type) => type.name == name,
+        ))
+          if (type.jsName != null) type.jsName!,
+      ],
+  };
+  return a != null &&
+      b != null &&
+      a.jsPackage == b.jsPackage &&
+      exports(left, a).intersection(exports(right, b)).isEmpty;
+}
+
 List<_PlannedOutput> _planOutputs(
   List<FlaxCodegenModuleModel> modules,
   String packageRoot,
@@ -2752,9 +2847,11 @@ List<_PlannedOutput> _planOutputs(
   candidates.sort(_compareOutputCandidates);
 
   for (var index = 1; index < candidates.length; index++) {
-    final previous = candidates[index - 1];
     final current = candidates[index];
-    if (previous.path == current.path) {
+    for (var prior = index - 1; prior >= 0; prior--) {
+      final previous = candidates[prior];
+      if (previous.path != current.path) break;
+      if (_sharesPublicLibrary(previous, current, packageRoot)) continue;
       throw StateError(
         "Duplicate generated output path '${current.path}' "
         '(${previous.label} and ${current.label}).',

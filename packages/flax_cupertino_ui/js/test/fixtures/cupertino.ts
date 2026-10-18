@@ -7,7 +7,7 @@ import {
   CupertinoPageScaffold,
   CupertinoNavigationBar,
   CupertinoThemeData,
-} from '@flax/flutter/cupertino';
+} from '@flax/cupertino-ui';
 
 const opaque = signal(true);
 const state = {

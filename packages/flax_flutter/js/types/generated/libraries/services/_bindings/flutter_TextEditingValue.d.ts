@@ -1,13 +1,14 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartMap, type DartMapInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextSelection';
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
-import type * as upstream1 from '@flax/flutter/services/_bindings/flutter_TextRange';
-import '@flax/flutter/services/_bindings/flutter_TextRange';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextRange';
+import '@flax/dart/ui/_bindings/flutter_TextRange';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextEditingValue extends Readonly<{
     "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
 }> {
     readonly __TextEditingValue: unique symbol;
+    readonly [_flaxDartTypeValue]: TextEditingValue;
     readonly text: string;
     readonly selection: upstream0.TextSelection;
     readonly composing: upstream1.TextRange;
@@ -16,9 +17,11 @@ export interface TextEditingValue extends Readonly<{
         composing?: Readonly<{
             "__flaxBound:dart:ui::TextRange": readonly [];
         }> | null | undefined;
-        selection?: Readonly<{
+        selection?: (Readonly<{
             "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
-        }> | null | undefined;
+        }> & Readonly<{
+            "__flaxBound:dart:ui::TextRange": readonly [];
+        }>) | null | undefined;
         text?: string | null | undefined;
     }): TextEditingValue;
     replaced(replacementRange: Readonly<{
@@ -29,9 +32,11 @@ export interface TextEditingValue extends Readonly<{
 }
 export declare function _TextEditingValueFactory(options?: {
     text?: string | undefined;
-    selection?: Readonly<{
+    selection?: (Readonly<{
         "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [];
-    }> | undefined;
+    }> & Readonly<{
+        "__flaxBound:dart:ui::TextRange": readonly [];
+    }>) | undefined;
     composing?: Readonly<{
         "__flaxBound:dart:ui::TextRange": readonly [];
     }> | undefined;

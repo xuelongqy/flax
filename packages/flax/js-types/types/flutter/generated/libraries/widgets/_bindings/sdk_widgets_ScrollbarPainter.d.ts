@@ -1,0 +1,240 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
+import '@flax/flutter/foundation/_bindings/flutter_Listenable';
+import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering_CustomPainter';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_CustomPainter';
+import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream4 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import type * as upstream6 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_Radius';
+import '@flax/dart/ui/_bindings/flutter_Radius';
+import type * as upstream8 from '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
+import '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
+import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollbarOrientation';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollbarOrientation';
+import type * as upstream10 from '@flax/flutter/rendering/_bindings/sdk_rendering_CustomPainterSemantics';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_CustomPainterSemantics';
+import '@flax/dart/ui/_bindings/flutter_Size';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollMetrics';
+import type * as upstream15 from '@flax/flutter/painting/_bindings/sdk_painting_AxisDirection';
+import '@flax/flutter/painting/_bindings/sdk_painting_AxisDirection';
+import type * as upstream16 from '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+export interface ScrollbarPainter extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Omit<upstream2.CustomPainter, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier | keyof upstream1.Listenable>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
+}> {
+    readonly __ScrollbarPainter: unique symbol;
+    readonly [_flaxDartTypeValue]: ScrollbarPainter;
+}
+export interface ScrollbarPainter {
+    readonly [_flaxDartTypeValue]: ScrollbarPainter;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    paint(canvas: Readonly<{
+        "__flaxBound:dart:ui::Canvas": readonly [];
+    }>, size: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    shouldRebuildSemantics(oldDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>): boolean;
+    shouldRepaint(oldDelegate: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
+    }>): boolean;
+    hitTest(position: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null): boolean | null;
+    toString(): string;
+    update(metrics: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
+    }>, axisDirection: upstream15.AxisDirection): void;
+    updateThickness(nextThickness: number, nextRadius: Readonly<{
+        "__flaxBound:dart:ui::Radius": readonly [];
+    }>): void;
+    getTrackToScroll(thumbOffsetLocal: number): number;
+    getThumbScrollOffset(): number;
+    hitTestInteractive(position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, kind: upstream16.PointerDeviceKind, options?: {
+        forHover?: boolean | undefined;
+    }): boolean;
+    hitTestOnlyThumbInteractive(position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, kind: upstream16.PointerDeviceKind): boolean;
+    get color(): upstream3.Color;
+    get trackColor(): upstream3.Color;
+    get trackBorderColor(): upstream3.Color;
+    get trackRadius(): upstream7.Radius | null;
+    get textDirection(): upstream5.TextDirection | null;
+    get thickness(): number;
+    get fadeoutOpacityAnimation(): upstream4.Animation<number>;
+    get mainAxisMargin(): number;
+    get crossAxisMargin(): number;
+    get radius(): upstream7.Radius | null;
+    get shape(): upstream8.OutlinedBorder | null;
+    get padding(): upstream6.EdgeInsetsGeometry;
+    get minLength(): number;
+    get minOverscrollLength(): number;
+    get scrollbarOrientation(): upstream9.ScrollbarOrientation | null;
+    get ignorePointer(): boolean;
+    get semanticsBuilder(): ((size: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) => DartList<upstream10.CustomPainterSemantics>) | null;
+    get hasListeners(): boolean;
+    set color(value: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>);
+    set trackColor(value: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>);
+    set trackBorderColor(value: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>);
+    set trackRadius(value: Readonly<{
+        "__flaxBound:dart:ui::Radius": readonly [];
+    }> | null);
+    set textDirection(value: upstream5.TextDirection | null);
+    set thickness(value: number);
+    set mainAxisMargin(value: number);
+    set crossAxisMargin(value: number);
+    set radius(value: Readonly<{
+        "__flaxBound:dart:ui::Radius": readonly [];
+    }> | null);
+    set shape(value: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }>) | null);
+    set padding(value: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>);
+    set minLength(value: number);
+    set minOverscrollLength(value: number);
+    set scrollbarOrientation(value: upstream9.ScrollbarOrientation | null);
+    set ignorePointer(value: boolean);
+}
+export declare abstract class ScrollbarPainter extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ScrollbarPainter>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: ScrollbarPainter;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:ScrollbarPainter", readonly [], false];
+    constructor(options: {
+        color: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        fadeoutOpacityAnimation: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>;
+        trackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | undefined;
+        trackBorderColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | undefined;
+        textDirection?: upstream5.TextDirection | null | undefined;
+        thickness?: number | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | undefined;
+        mainAxisMargin?: number | undefined;
+        crossAxisMargin?: number | undefined;
+        radius?: Readonly<{
+            "__flaxBound:dart:ui::Radius": readonly [];
+        }> | null | undefined;
+        trackRadius?: Readonly<{
+            "__flaxBound:dart:ui::Radius": readonly [];
+        }> | null | undefined;
+        shape?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }>) | null | undefined;
+        minLength?: number | undefined;
+        minOverscrollLength?: number | null | undefined;
+        scrollbarOrientation?: upstream9.ScrollbarOrientation | null | undefined;
+        ignorePointer?: boolean | undefined;
+    });
+}
+export declare namespace ScrollbarPainter {
+    function implement(args: [options: {
+        color: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        fadeoutOpacityAnimation: Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>;
+        trackColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | undefined;
+        trackBorderColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | undefined;
+        textDirection?: upstream5.TextDirection | null | undefined;
+        thickness?: number | undefined;
+        padding?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }> | undefined;
+        mainAxisMargin?: number | undefined;
+        crossAxisMargin?: number | undefined;
+        radius?: Readonly<{
+            "__flaxBound:dart:ui::Radius": readonly [];
+        }> | null | undefined;
+        trackRadius?: Readonly<{
+            "__flaxBound:dart:ui::Radius": readonly [];
+        }> | null | undefined;
+        shape?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }>) | null | undefined;
+        minLength?: number | undefined;
+        minOverscrollLength?: number | null | undefined;
+        scrollbarOrientation?: upstream9.ScrollbarOrientation | null | undefined;
+        ignorePointer?: boolean | undefined;
+    }], implementation: {}): ScrollbarPainter;
+}
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "semanticsBuilder" | "color" | "trackColor" | "trackBorderColor" | "trackRadius" | "textDirection" | "thickness" | "fadeoutOpacityAnimation" | "mainAxisMargin" | "crossAxisMargin" | "radius" | "shape" | "padding" | "minLength" | "minOverscrollLength" | "scrollbarOrientation" | "ignorePointer" | "addListener" | "removeListener" | "dispose" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "update" | "updateThickness" | "getTrackToScroll" | "getThumbScrollOffset" | "hitTestInteractive" | "hitTestOnlyThumbInteractive" | "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter";
+export {};

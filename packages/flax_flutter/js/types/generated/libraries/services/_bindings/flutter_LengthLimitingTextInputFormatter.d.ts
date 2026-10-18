@@ -8,10 +8,13 @@ import '@flax/flutter/foundation/_bindings/flutter_TargetPlatform';
 import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface LengthLimitingTextInputFormatter extends Omit<upstream0.TextInputFormatter, typeof _flaxDartTypeValue | "maxLength" | "maxLengthEnforcement" | "formatEditUpdate">, Readonly<{
+export interface LengthLimitingTextInputFormatter extends Omit<upstream0.TextInputFormatter, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/services/text_formatter.dart::LengthLimitingTextInputFormatter": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/services/text_formatter.dart::TextInputFormatter": readonly [];
 }> {
     readonly __LengthLimitingTextInputFormatter: unique symbol;
+    readonly [_flaxDartTypeValue]: LengthLimitingTextInputFormatter;
     readonly maxLength: number | null;
     readonly maxLengthEnforcement: upstream1.MaxLengthEnforcement | null;
     formatEditUpdate(oldValue: Readonly<{
@@ -27,3 +30,5 @@ export declare namespace _LengthLimitingTextInputFormatterFactory {
     function getDefaultMaxLengthEnforcement(platform?: upstream2.TargetPlatform | null): upstream1.MaxLengthEnforcement;
 }
 export declare const LengthLimitingTextInputFormatter: typeof _LengthLimitingTextInputFormatterFactory & _FlaxInstanceType<LengthLimitingTextInputFormatter> & _FlaxDartType<LengthLimitingTextInputFormatter, readonly ["class", "flax.core/flutter#type:LengthLimitingTextInputFormatter", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "maxLength" | "maxLengthEnforcement" | "formatEditUpdate" | "__flaxBound:package:flutter/src/services/text_formatter.dart::LengthLimitingTextInputFormatter" | "__flaxBound:package:flutter/src/services/text_formatter.dart::TextInputFormatter";
+export {};

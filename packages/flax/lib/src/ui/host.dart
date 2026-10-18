@@ -16,14 +16,34 @@ abstract final class Flax {
   }
 }
 
+final _defaultBindingModules = <FlaxBindingModule>[
+  flutterBindings,
+  sdk_animationBindings,
+  sdk_cupertinoBindings,
+  sdk_dart_uiBindings,
+  sdk_foundationBindings,
+  sdk_gesturesBindings,
+  sdk_materialBindings,
+  sdk_paintingBindings,
+  sdk_physicsBindings,
+  sdk_renderingBindings,
+  sdk_schedulerBindings,
+  sdk_semanticsBindings,
+  sdk_servicesBindings,
+  sdk_widget_previewsBindings,
+  sdk_widgetsBindings,
+];
+
 FlaxBindingRegistry _bindingsWithPlugins(
   FlaxBindingRegistry bindings,
   List<FlaxPlugin> plugins,
 ) {
   final modules = [...bindings.modules];
-  if (!modules.any((module) => module.moduleId == flutterBindings.moduleId)) {
-    modules.insert(0, flutterBindings);
-  }
+  modules.insertAll(0, [
+    for (final defaults in _defaultBindingModules)
+      if (!modules.any((module) => module.moduleId == defaults.moduleId))
+        defaults,
+  ]);
   for (final plugin in plugins) {
     for (final module in plugin.bindingModules) {
       final existing = modules

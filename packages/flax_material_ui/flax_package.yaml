@@ -2,8 +2,8 @@ format: 2
 dart:
   entrypoint: package:flax_material_ui/flax_material_ui.dart
 javascript:
-  package: '@flax/material-ui'
-  types: '@flax/flutter'
+  package: '@flax/material-ui-runtime'
+  types: '@flax/material-ui'
   version: same
   mode: runtime
 capabilities:

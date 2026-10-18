@@ -46,6 +46,42 @@
     },
     "./widgets/*": {
       "types": "./types/generated/libraries/widgets/*.d.ts"
+    },
+    "./physics": {
+      "types": "./types/generated/libraries/physics/index.d.ts"
+    },
+    "./physics/*": {
+      "types": "./types/generated/libraries/physics/*.d.ts"
+    },
+    "./animation": {
+      "types": "./types/generated/libraries/animation/index.d.ts"
+    },
+    "./animation/*": {
+      "types": "./types/generated/libraries/animation/*.d.ts"
+    },
+    "./semantics": {
+      "types": "./types/generated/libraries/semantics/index.d.ts"
+    },
+    "./semantics/*": {
+      "types": "./types/generated/libraries/semantics/*.d.ts"
+    },
+    "./painting": {
+      "types": "./types/generated/libraries/painting/index.d.ts"
+    },
+    "./painting/*": {
+      "types": "./types/generated/libraries/painting/*.d.ts"
+    },
+    "./rendering": {
+      "types": "./types/generated/libraries/rendering/index.d.ts"
+    },
+    "./rendering/*": {
+      "types": "./types/generated/libraries/rendering/*.d.ts"
+    },
+    "./widget_previews": {
+      "types": "./types/generated/libraries/widget_previews/index.d.ts"
+    },
+    "./widget_previews/*": {
+      "types": "./types/generated/libraries/widget_previews/*.d.ts"
     }
   },
   "files": [

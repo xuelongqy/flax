@@ -72,5 +72,6 @@ test('surface, ink and progress retain Core values, bindings and native defaults
     duration,
   );
   assert.equal(InkWell({ onDoubleTap: onTap }).args.onDoubleTap, onTap);
-  assert.throws(() => LinearProgressIndicator({ valueColor: color }), /Unsupported/);
+  assert.equal(LinearProgressIndicator({ valueColor: null }).args.valueColor, null);
+  assert.throws(() => LinearProgressIndicator({ unknown: color }), /Unsupported/);
 });

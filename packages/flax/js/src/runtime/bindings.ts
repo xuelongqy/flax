@@ -59,6 +59,8 @@ const supportedBindingCapabilities = new Set([
   'generic-call-types',
   'dart-type-tokens',
   'generic-member-views',
+  'inherited-binding-members',
+  'shared-static-readers',
   'instance-checks',
   'native-core-inputs',
   'native-bigint',
@@ -767,6 +769,20 @@ export function invokeTopLevel(id: string, args: readonly unknown[]): unknown {
   return invokeOperation('top', id, 0, 'call', '', args);
 }
 
+/** Install lazy native reads without repeating a forwarding function in each module. */
+export function defineStaticGetters(
+  target: object,
+  prefix: string,
+  names: readonly string[],
+): void {
+  for (const name of names) {
+    const id = prefix + name;
+    Object.defineProperty(target, name, {
+      get: () => invokeTopLevel(id, []),
+    });
+  }
+}
+
 export type NavigationData =
   | null
   | boolean
@@ -963,6 +979,7 @@ export function invokeInstance(
 }
 
 type ObjectDefinition = {
+  parent: string | undefined;
   collectionKind: string | undefined;
   iteratorMember: string;
   fields: readonly string[];
@@ -971,6 +988,7 @@ type ObjectDefinition = {
   removers: readonly string[];
 };
 const objectTypes = new Map<string, ObjectDefinition>();
+const objectAncestors = new Map<string, ReadonlySet<string>>();
 const objectViewTypes = new Map<string, string>();
 const references = new ReferenceCache();
 const objectHandles = references.handles;
@@ -1558,11 +1576,17 @@ export function defineObject(
   methods: ObjectDefinition['methods'],
   removers: readonly string[],
   collectionKind?: string,
+  parent?: string,
+  selectedMethods?: readonly string[],
 ): void {
   if (objectTypes.has(type)) throw new Error(`Duplicate object type: ${type}`);
   let iteratorMember = 'toArray';
   if (collectionKind !== undefined) {
-    const selected = new Set([...fields, ...setters, ...Object.keys(methods)]);
+    const selected = new Set([
+      ...fields,
+      ...setters,
+      ...(selectedMethods ?? Object.keys(methods)),
+    ]);
     const collection = collectionDefinition(type, collectionKind, selected);
     if (selected.has('toArray')) iteratorMember = '@collection:toArray';
     fields = [...collection.fields, ...fields];
@@ -1573,6 +1597,7 @@ export function defineObject(
     if (collectionKind !== 'map') iterableObjectTypes.add(type);
   }
   objectTypes.set(type, {
+    parent,
     fields,
     setters,
     methods,
@@ -2435,14 +2460,19 @@ export function defineProxyBase(
       ...definition.setters,
       ...Object.keys(definition.methods),
     ]);
-    const base = objectPrototype(definition.type);
-    for (const name of Reflect.ownKeys(base)) {
-      if (!selected.has(name as string) && !Reflect.has(prototype, name))
-        Object.defineProperty(
-          prototype,
-          name,
-          Object.getOwnPropertyDescriptor(base, name)!,
-        );
+    for (
+      let base: object | null = objectPrototype(definition.type);
+      base && base !== Object.prototype;
+      base = Object.getPrototypeOf(base) as object | null
+    ) {
+      for (const name of Reflect.ownKeys(base)) {
+        if (!selected.has(name as string) && !Reflect.has(prototype, name))
+          Object.defineProperty(
+            prototype,
+            name,
+            Object.getOwnPropertyDescriptor(base, name)!,
+          );
+      }
     }
   }
 }
@@ -2567,10 +2597,16 @@ function callObject(
       throw new Error('Deferred Dart object has not been materialized');
     throw new TypeError('Invalid or foreign Dart object');
   }
-  if (ref.type !== type && objectViewTypes.get(ref.type) !== type)
+  const actual = objectViewTypes.get(ref.type) ?? ref.type;
+  if (ref.type !== type && actual !== type && !objectAncestors.get(actual)?.has(type))
     throw new TypeError('Invalid or foreign Dart object');
   if (!ref.alive) {
-    if (operation === 'call' && objectTypes.get(type)!.removers.includes(member))
+    if (
+      operation === 'call' &&
+      objectTypes
+        .get(objectViewTypes.get(ref.type) ?? ref.type)!
+        .removers.includes(member)
+    )
       return;
     throw new Error('Disposed Dart object');
   }
@@ -2662,8 +2698,25 @@ function objectPrototype(type: string): object {
   if (cached) return cached;
   const definition = objectTypes.get(type);
   if (!definition) throw new TypeError(`Unknown object: ${type}`);
-  const value = {};
+  const parent = definition.parent && objectTypes.get(definition.parent);
+  const value = definition.parent
+    ? Object.create(objectPrototype(definition.parent))
+    : {};
+  objectAncestors.set(
+    type,
+    new Set(
+      definition.parent
+        ? [definition.parent, ...(objectAncestors.get(definition.parent) ?? [])]
+        : [],
+    ),
+  );
   for (const field of new Set([...definition.fields, ...definition.setters])) {
+    if (
+      parent &&
+      parent.fields.includes(field) === definition.fields.includes(field) &&
+      parent.setters.includes(field) === definition.setters.includes(field)
+    )
+      continue;
     Object.defineProperty(value, field, {
       enumerable: true,
       ...(definition.fields.includes(field)

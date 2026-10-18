@@ -1,0 +1,20 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/services/_bindings/sdk_services_IOSSystemContextMenuItemData';
+import '@flax/flutter/services/_bindings/sdk_services_IOSSystemContextMenuItemData';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface IOSSystemContextMenuItemDataCut extends Omit<upstream0.IOSSystemContextMenuItemData, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::IOSSystemContextMenuItemDataCut": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::IOSSystemContextMenuItemData": readonly [] }> { readonly __IOSSystemContextMenuItemDataCut: unique symbol;
+readonly [_flaxDartTypeValue]: IOSSystemContextMenuItemDataCut;
+
+readonly title: string | null;
+}
+defineObject("flax.core/sdk_services#type:IOSSystemContextMenuItemDataCut", ["title"], [], _flaxBindingMethods("flax.core/sdk_services#type:IOSSystemContextMenuItemDataCut", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:IOSSystemContextMenuItemData");
+export function _IOSSystemContextMenuItemDataCutFactory(): IOSSystemContextMenuItemDataCut {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_services#type:IOSSystemContextMenuItemDataCut", "", [], [], {}) as IOSSystemContextMenuItemDataCut;
+}
+export const IOSSystemContextMenuItemDataCut: typeof _IOSSystemContextMenuItemDataCutFactory & _FlaxInstanceType<IOSSystemContextMenuItemDataCut> & _FlaxDartType<IOSSystemContextMenuItemDataCut, readonly ["class", "flax.core/sdk_services#type:IOSSystemContextMenuItemDataCut", readonly [], false]> = _flaxBindInstanceType<IOSSystemContextMenuItemDataCut, typeof _IOSSystemContextMenuItemDataCutFactory>(_IOSSystemContextMenuItemDataCutFactory, "flax.core/sdk_services#type:IOSSystemContextMenuItemDataCut", ["flax.core/sdk_services#type:IOSSystemContextMenuItemData","dart:core::Object"]) as typeof _IOSSystemContextMenuItemDataCutFactory & _FlaxInstanceType<IOSSystemContextMenuItemDataCut> & _FlaxDartType<IOSSystemContextMenuItemDataCut, readonly ["class", "flax.core/sdk_services#type:IOSSystemContextMenuItemDataCut", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "title" | "__flaxBound:package:flutter/src/services/text_input.dart::IOSSystemContextMenuItemDataCut" | "__flaxBound:package:flutter/src/services/text_input.dart::IOSSystemContextMenuItemData";

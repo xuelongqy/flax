@@ -7,7 +7,41 @@ import {
   defineObject,
   bindingMethods,
   bindInstanceType,
+  defineStaticGetters,
+  invokeObject,
 } from '../../dist/runtime/bindings.js';
+
+test('shared static readers stay lazy, live, readonly and preserve native values', (t) => {
+  const calls = [];
+  const icon = { nativeIcon: true };
+  let value = 3;
+  const prefix = 'fixture:SharedStatics.';
+  const previous = operationHost('top', (_version, id, ...args) => {
+    calls.push([id, args]);
+    if (id === prefix + 'delayed') throw new Error('uninitialized');
+    return id === prefix + 'count' ? value : icon;
+  });
+  t.after(() => operationHost('top', previous));
+  const namespace = {};
+  defineStaticGetters(namespace, prefix, ['count', 'icon', 'alias', 'delayed']);
+  assert.equal(calls.length, 0);
+  assert.deepEqual(Object.keys(namespace), []);
+  assert.equal(namespace.count, 3);
+  value = 8;
+  assert.equal(namespace.count, 8);
+  assert.equal(namespace.icon, icon);
+  assert.equal(namespace['alias'], icon);
+  assert.throws(() => namespace.delayed, /uninitialized/);
+  assert.equal(calls.length, 5);
+  assert.ok(calls.every(([, args]) => args.length === 0));
+  assert.throws(() => {
+    namespace.count = 10;
+  }, TypeError);
+  assert.throws(
+    () => Object.defineProperty(namespace, 'count', { value: 10 }),
+    TypeError,
+  );
+});
 
 test('a Dart constructor getter does not replace internal proxy identity', () => {
   const type = 'fixture:FactoryConstructor';
@@ -198,4 +232,130 @@ test('shared methods require a real receiver and reject positional holes', (t) =
   assert.equal(calls.at(-1)[2], 4002);
   assert.throws(() => detached.call(value, undefined, 2), /trailing suffix/);
   assert.equal(detached.call(value, null), undefined);
+});
+
+test('ordinary inherited members share prototypes and use the actual receiver binding', (t) => {
+  const base = 'fixture:InheritedBase';
+  const child = 'fixture:InheritedChild';
+  const leaf = 'fixture:InheritedLeaf';
+  const other = 'fixture:Unrelated';
+  const calls = [];
+  const previous = operationHost(
+    'object',
+    (_version, type, id, operation, member, ...args) => {
+      calls.push([type, id, operation, member, ...args]);
+      return 7;
+    },
+  );
+  t.after(() => operationHost('object', previous));
+  // Registration order does not determine the eventual prototype chain.
+  defineObject(leaf, ['value'], ['value'], {}, [], undefined, child);
+  defineObject(
+    child,
+    ['value'],
+    ['value'],
+    bindingMethods(child, 'object', {
+      changed: [{ name: 'input', required: true, positional: true }],
+    }),
+    [],
+    undefined,
+    base,
+  );
+  defineObject(
+    base,
+    ['value'],
+    [],
+    bindingMethods(base, 'object', {
+      shared: [],
+      changed: [],
+    }),
+    [],
+  );
+  defineObject(other, [], [], {}, []);
+  const api = globalThis.__flaxBindings;
+  const a = api.object(base, 9801);
+  const b = api.object(child, 9802);
+  const c = api.object(leaf, 9803);
+  const foreign = api.object(other, 9804);
+  assert.equal(
+    Object.getPrototypeOf(Object.getPrototypeOf(c)),
+    Object.getPrototypeOf(b),
+  );
+  assert.equal(a.shared, b.shared);
+  assert.equal(b.shared, c.shared);
+  assert.equal(b.changed, c.changed);
+  assert.notEqual(a.changed, b.changed);
+  assert.equal(c.shared(), 7);
+  assert.throws(() => c.changed(), /Missing required/);
+  assert.equal(c.changed(4), 7);
+  c.value = 3;
+  assert.equal(c.value, 7);
+  assert.deepEqual(calls, [
+    [leaf, 9803, 'call', 'shared'],
+    [leaf, 9803, 'call', 'changed', 4],
+    [leaf, 9803, 'set', 'value', 3],
+    [leaf, 9803, 'get', 'value'],
+  ]);
+  const view = `${leaf}:closed`;
+  const siblingView = `${leaf}:other-closed`;
+  const scoped = api.objectView(view, 9805, leaf);
+  api.objectView(siblingView, 9805, leaf);
+  assert.equal(invokeObject(scoped, view, 'shared', []), 7);
+  assert.equal(scoped.shared(), 7);
+  assert.deepEqual(calls.slice(-2), [
+    [view, 9805, 'call', 'shared'],
+    [view, 9805, 'call', 'shared'],
+  ]);
+  assert.throws(() => invokeObject(scoped, siblingView, 'shared', []), /foreign/);
+  assert.throws(() => a.shared.call(foreign), /foreign/);
+  api.releaseObject(9803);
+  assert.throws(() => c.shared(), /Disposed/);
+});
+
+test('collection children retain inherited native member argument layouts', (t) => {
+  const base = 'fixture:NativeListBase';
+  const child = 'fixture:NativeListChild';
+  const calls = [];
+  const previous = operationHost(
+    'object',
+    (_version, type, id, op, member, ...args) => {
+      calls.push([type, member, ...args]);
+      return true;
+    },
+  );
+  t.after(() => operationHost('object', previous));
+  defineObject(
+    base,
+    [],
+    [],
+    bindingMethods(base, 'object', {
+      contains: [
+        { name: 'value', required: true, positional: true },
+        { name: 'strict', required: false, positional: false },
+      ],
+    }),
+    [],
+    'list',
+  );
+  defineObject(child, [], [], {}, [], 'list', base, ['contains']);
+  const a = globalThis.__flaxBindings.object(base, 9810);
+  const b = globalThis.__flaxBindings.object(child, 9811);
+  assert.equal(a.contains, b.contains);
+  assert.equal(b.contains('x', { strict: true }), true);
+  assert.deepEqual(calls, [[child, 'contains', 'x', true]]);
+  assert.throws(() => b.contains('x', { unknown: true }), /Invalid named/);
+  class CollectionProxy {}
+  defineProxyBase(CollectionProxy.prototype, {
+    type: child,
+    parameters: [],
+    methods: {},
+    getters: [],
+    setters: [],
+    superMembers: [],
+    contextMembers: [],
+  });
+  const length = Object.getOwnPropertyDescriptor(CollectionProxy.prototype, 'length');
+  assert.equal(typeof length?.get, 'function');
+  assert.equal(length.get.call(b), true);
+  assert.deepEqual(calls.at(-1), [child, 'length']);
 });

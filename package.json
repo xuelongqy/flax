@@ -11,7 +11,7 @@
   "scripts": {
     "format:check": "prettier --check .",
     "js:typecheck": "pnpm --silent --recursive --workspace-concurrency=1 run typecheck",
-    "js:build": "pnpm --silent --recursive --workspace-concurrency=1 run build",
+    "js:build": "node tool/public_types.mjs && pnpm --silent --recursive --workspace-concurrency=1 --filter='!./packages/*/js-types' --filter='!@flax/flutter' --filter='!@flax/dart' run build",
     "docs:lint": "markdownlint-cli2",
     "docs:links": "node tool/check-doc-links.mjs",
     "test:tooling": "node --test tool/check-doc-links.test.mjs",
@@ -31,6 +31,8 @@
     "@flax/fetch-runtime": "workspace:*",
     "@flax/websocket-runtime": "workspace:*",
     "@flax/local-storage-runtime": "workspace:*",
-    "@flax/canvas-runtime": "workspace:*"
+    "@flax/canvas-runtime": "workspace:*",
+    "@flax/material-ui-runtime": "workspace:*",
+    "@flax/cupertino-ui-runtime": "workspace:*"
   }
 }

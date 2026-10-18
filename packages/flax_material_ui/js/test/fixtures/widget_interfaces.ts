@@ -19,7 +19,7 @@ import {
 } from '@flax/flutter/widgets';
 import { Size } from '@flax/flutter/services';
 import { ValueKey } from '@flax/flutter/foundation';
-import { AppBar, Scaffold, TextButton, TextField } from '@flax/flutter/material';
+import { AppBar, Scaffold, TextButton, TextField } from '@flax/material-ui';
 import {
   ExtentFrame,
   ExtentTile,

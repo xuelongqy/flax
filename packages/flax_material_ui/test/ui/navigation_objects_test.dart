@@ -185,11 +185,15 @@ void main() {
       key.currentState!.pop();
       await tester.pumpAndSettle();
       h.execute(
-        'navigation.open().then(value => navigation.replacedResult = value)',
+        'navigation.open().then('
+        'value => navigation.replacedResult = value, '
+        'error => navigation.replacedError = String(error))',
       );
       await tester.pumpAndSettle();
       h.execute('navigation.replace(${_call('immediateRoute', '')})');
       await tester.pumpAndSettle();
+      expect(h.errors, isEmpty);
+      expect(h.read('navigation.replacedError ?? ""'), isEmpty);
       expect(
         h.read(_call('sameImmediateRoute', ', navigation.replacedResult')),
         true,

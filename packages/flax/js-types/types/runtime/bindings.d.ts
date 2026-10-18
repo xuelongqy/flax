@@ -222,6 +222,8 @@ export declare function contextHandle(value: unknown, type: string): number | nu
 export declare function invokeStatic(type: string, member: string, args: readonly unknown[]): unknown;
 /** Generated exports share a typed Dart function registry. */
 export declare function invokeTopLevel(id: string, args: readonly unknown[]): unknown;
+/** Install lazy native reads without repeating a forwarding function in each module. */
+export declare function defineStaticGetters(target: object, prefix: string, names: readonly string[]): void;
 export type NavigationData = null | boolean | number | string | NavigationData[] | {
     [key: string]: NavigationData;
 };
@@ -234,6 +236,7 @@ type StateMethod = (this: object, ...args: never[]) => unknown;
 export declare function defineState(type: string, fields: readonly string[], methods: Readonly<Record<string, StateMethod>>): void;
 export declare function invokeInstance(receiver: object, type: string, method: string, args: readonly unknown[]): unknown;
 type ObjectDefinition = {
+    parent: string | undefined;
     collectionKind: string | undefined;
     iteratorMember: string;
     fields: readonly string[];
@@ -275,7 +278,7 @@ export interface FlaxInstanceType<T> {
     } ? unknown extends I ? T : I : T;
 }
 export declare function bindInstanceType<T, V extends object>(value: V, type: string, parents: readonly string[]): V & FlaxInstanceType<T>;
-export declare function defineObject(type: string, fields: ObjectDefinition['fields'], setters: readonly string[], methods: ObjectDefinition['methods'], removers: readonly string[], collectionKind?: string): void;
+export declare function defineObject(type: string, fields: ObjectDefinition['fields'], setters: readonly string[], methods: ObjectDefinition['methods'], removers: readonly string[], collectionKind?: string, parent?: string, selectedMethods?: readonly string[]): void;
 export declare function defineStream(type: string, fields: readonly string[], methods: Readonly<Record<string, StateMethod>>): void;
 export declare function constructAsyncIterableStream<T>(type: string, source: AsyncIterable<T>): object;
 export declare function constructStream(_kind: 'stream', type: string, ctor: string, parameters: readonly Parameter[], positional: readonly unknown[], options: Readonly<Record<string, unknown>>): object;

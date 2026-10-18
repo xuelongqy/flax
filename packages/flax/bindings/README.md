@@ -1,15 +1,20 @@
-# flutter Binding Selection
+# Flutter Binding Selection
 
 [flax_bindings.yaml](flax_bindings.yaml) selects declaration names. Ordinary
 constructors, members, parameter types and defaults come from the existing
 analyzer-based automatic selector. Inline overrides retain adapter kinds, proxy choices,
 callback signatures and lifecycle policy. [flax_components.yaml](flax_components.yaml)
-keeps the fixed State mixin combinations. See the [rules guide](../README.md).
+keeps the fixed State mixin combinations. The `flax_sdk_*.yaml` files add all public
+Flutter libraries and `dart:ui` as automatic scopes in this same package. They reuse the
+existing Manifest source index: one implementation owns a declaration, and other public
+libraries reexport it. Config order does not decide parents or generic providers. See
+the [rules guide](../README.md).
 
 The shared `renderOnlyWidget` YAML anchor clears instance members for Widgets that keep
 reactive constructor descriptions. Constructors/static members are still inferred.
 Native Widget views and proxies retain real-object delivery. Fixed generic description
-owners, callback snapshots and State mixins remain explicit.
+owners and State mixins remain explicit. Core events, keys and offsets use ordinary Dart
+references; they do not need callback snapshots.
 
 The Context adapter exposes convertible BuildContext getters. Size, BoxConstraints,
 Directionality and the non-constructible SchedulerBinding mixin infer their supported
@@ -52,6 +57,5 @@ Top-level applyBoxFit selects BoxFit and FittedSizes source/destination referenc
 Navigator selects observers; NavigatorObserver uses ordinary object bindings and
 FlaxNavigatorObserver has a generated no-argument factory from the public Flax library.
 
-WidgetState and WidgetStateProperty use generated enum, Set and automatically inferred
-deferred generic factory support. The latter is materialized only when an exact selected
-consumer provides its concrete Dart type.
+WidgetState and WidgetStateProperty reuse generated enum, Set and checked generic
+function conversion. Their public reexports share the same Core providers.

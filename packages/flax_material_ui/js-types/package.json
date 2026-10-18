@@ -1,0 +1,28 @@
+{
+  "name": "@flax/material-ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Declaration-only public types for @flax/material-ui.",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts"
+    },
+    "./*": {
+      "types": "./types/generated/libraries/material/*.d.ts"
+    }
+  },
+  "files": [
+    "types/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node ../../../tool/public_types.mjs",
+    "typecheck": "node ../../../tool/public_types.mjs --check"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/flutter": "workspace:*",
+    "@flax/dart": "workspace:*"
+  }
+}

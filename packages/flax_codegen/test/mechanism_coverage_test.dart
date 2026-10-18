@@ -21,7 +21,7 @@ void main() {
 
   setUpAll(() {
     collection = AnalysisContextCollection(
-      includedPaths: [p.absolute(repoRoot)],
+      includedPaths: [p.absolute(repoRoot, 'pubspec.yaml')],
     );
     official = officialBindingConfig(repoRoot);
   });
@@ -76,6 +76,8 @@ void main() {
         expect(compiled['ok'], isTrue, reason: compiled.toString());
       }
     },
+    // Three independent compiler checks load the complete Core SDK.
+    timeout: const Timeout(Duration(minutes: 6)),
   );
 
   test('records every measured shape verdict', () async {

@@ -80,45 +80,13 @@ types:
 functions:
   - identical
   - applyBoxFit
-callbackSnapshots:
-  Offset:
-    fields:
-      - dx
-      - dy
-  PhysicalKeyboardKey:
-    fields:
-      - usbHidUsage
-  LogicalKeyboardKey:
-    fields:
-      - keyId
-      - keyLabel
-  PointerEvent:
-    fields:
-      - pointer
-      - device
-      - kind
-      - buttons
-      - down
-      - position
-      - localPosition
-      - delta
-      - localDelta
-      - pressure
-      - pressureMin
-      - pressureMax
-      - size
-      - synthesized
-  PointerScrollEvent:
-    extends: PointerEvent
-    fields:
-      - scrollDelta
-  KeyEvent:
-    fields:
-      - physicalKey
-      - logicalKey
-      - character
-      - synthesized
 classes:
+  - Offset
+  - PhysicalKeyboardKey
+  - LogicalKeyboardKey
+  - PointerEvent
+  - PointerScrollEvent
+  - KeyEvent
   - MapEntry
   - Runes
   - RuneIterator

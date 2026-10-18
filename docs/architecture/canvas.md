@@ -138,10 +138,13 @@ next frame. Cancelled ids do not run. Exceptions are reported independently.
 
 ## Input
 
-Use generated `Listener`, `MouseRegion` and `KeyboardListener`. `callbackSnapshots` copy
-selected Dart fields into a frozen JS object once per event. `KeyEvent.type` is
-synthesized (`keydown` / `keyup` / `repeat`). `localPosition` is Flutter view
-coordinates; applications scale to canvas pixels when display size differs.
+Use generated `Listener`, `MouseRegion` and `KeyboardListener`. Core delivers ordinary
+Dart references for pointer/key events, keys and Offset values. Read native fields such
+as `event.position.dx` and `event.logicalKey.keyLabel`; use `instanceof KeyDownEvent`,
+`KeyUpEvent` or `KeyRepeatEvent` instead of the former synthetic `KeyEvent.type`.
+`PointerScrollEvent.scrollDelta` is an ordinary Offset reference. These values share
+normal binding conversion and joint GC. `localPosition` is Flutter view coordinates;
+applications scale to canvas pixels when display size differs.
 
 ## Support matrix
 

@@ -1,0 +1,98 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream2 from '@flax/flutter/painting/_bindings/sdk_painting_InlineSpan';
+import '@flax/flutter/painting/_bindings/sdk_painting_InlineSpan';
+import type * as upstream3 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
+import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
+import type * as upstream4 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import type * as upstream5 from '@flax/flutter/painting/_bindings/flutter_Decoration';
+import '@flax/flutter/painting/_bindings/flutter_Decoration';
+import type * as upstream6 from '@flax/flutter/painting/_bindings/flutter_TextStyle';
+import '@flax/flutter/painting/_bindings/flutter_TextStyle';
+import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextAlign';
+import '@flax/dart/ui/_bindings/flutter_TextAlign';
+import type * as upstream8 from '@flax/dart/core/_bindings/flutter_Duration';
+import '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_TooltipTriggerMode';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_TooltipTriggerMode';
+import type * as upstream10 from '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import type * as upstream11 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream12 from '@flax/flutter/widgets/_bindings/sdk_widgets_TooltipPositionContext';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_TooltipPositionContext';
+import type * as upstream13 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
+const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface Tooltip extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{ "__flaxBound:package:flutter/src/material/tooltip.dart::Tooltip": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __Tooltip: unique symbol;
+readonly [_flaxDartTypeValue]: Tooltip;
+
+readonly message: string | null;
+readonly richMessage: upstream2.InlineSpan | null;
+readonly height: number | null;
+readonly constraints: upstream3.BoxConstraints | null;
+readonly padding: upstream4.EdgeInsetsGeometry | null;
+readonly margin: upstream4.EdgeInsetsGeometry | null;
+readonly verticalOffset: number | null;
+readonly preferBelow: boolean | null;
+readonly excludeFromSemantics: boolean | null;
+readonly child: Widget | null;
+readonly decoration: upstream5.Decoration | null;
+readonly textStyle: upstream6.TextStyle | null;
+readonly textAlign: upstream7.TextAlign | null;
+readonly waitDuration: upstream8.Duration | null;
+readonly showDuration: upstream8.Duration | null;
+readonly exitDuration: upstream8.Duration | null;
+readonly enableTapToDismiss: boolean;
+readonly triggerMode: upstream9.TooltipTriggerMode | null;
+readonly enableFeedback: boolean | null;
+readonly onTriggered: (() => void) | null;
+readonly mouseCursor: upstream10.MouseCursor | null;
+readonly ignorePointer: boolean | null;
+readonly positionDelegate: ((context: Readonly<{ "__flaxBound:package:flutter/src/widgets/raw_tooltip.dart::TooltipPositionContext": readonly [] }>) => upstream11.Offset) | null;
+readonly key: upstream1.Key | null;
+createState(): upstream13.State<Tooltip>;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+createElement(): upstream15.StatefulElement;
+toStringShort(): string;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream16.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {minLevel?: upstream16.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream18.DiagnosticsTreeStyle | null | undefined}): upstream17.DiagnosticsNode;
+debugDescribeChildren(): DartList<upstream17.DiagnosticsNode>;
+}
+defineObject("flax.core/sdk_material#type:Tooltip", ["message","richMessage","height","constraints","padding","margin","verticalOffset","preferBelow","excludeFromSemantics","child","decoration","textStyle","textAlign","waitDuration","showDuration","exitDuration","enableTapToDismiss","triggerMode","enableFeedback","onTriggered","mouseCursor","ignorePointer","positionDelegate","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:Tooltip", "object", {"createState":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+export function _TooltipFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; message?: string | null | undefined; richMessage?: Readonly<{ "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; height?: number | null | undefined; constraints?: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }> | null | undefined; padding?: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null | undefined; margin?: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null | undefined; verticalOffset?: number | null | undefined; preferBelow?: boolean | null | undefined; excludeFromSemantics?: boolean | null | undefined; decoration?: Readonly<{ "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; textStyle?: Readonly<{ "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; textAlign?: upstream7.TextAlign | null | undefined; waitDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream8.Duration] }> | null | undefined; showDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream8.Duration] }> | null | undefined; exitDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream8.Duration] }> | null | undefined; enableTapToDismiss?: boolean | undefined; triggerMode?: upstream9.TooltipTriggerMode | null | undefined; enableFeedback?: boolean | null | undefined; onTriggered?: (() => void) | null | undefined; mouseCursor?: Readonly<{ "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; ignorePointer?: boolean | null | undefined; positionDelegate?: ((context: upstream12.TooltipPositionContext) => Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>) | null | undefined; child?: Widget | null | undefined } = {}): Tooltip {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_material#type:Tooltip", "", [{"name":"key","required":false,"positional":false},{"name":"message","required":false,"positional":false},{"name":"richMessage","required":false,"positional":false},{"name":"height","required":false,"positional":false},{"name":"constraints","required":false,"positional":false},{"name":"padding","required":false,"positional":false},{"name":"margin","required":false,"positional":false},{"name":"verticalOffset","required":false,"positional":false},{"name":"preferBelow","required":false,"positional":false},{"name":"excludeFromSemantics","required":false,"positional":false},{"name":"decoration","required":false,"positional":false},{"name":"textStyle","required":false,"positional":false},{"name":"textAlign","required":false,"positional":false},{"name":"waitDuration","required":false,"positional":false},{"name":"showDuration","required":false,"positional":false},{"name":"exitDuration","required":false,"positional":false},{"name":"enableTapToDismiss","required":false,"positional":false},{"name":"triggerMode","required":false,"positional":false},{"name":"enableFeedback","required":false,"positional":false},{"name":"onTriggered","required":false,"positional":false},{"name":"mouseCursor","required":false,"positional":false},{"name":"ignorePointer","required":false,"positional":false},{"name":"positionDelegate","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as Tooltip;
+}
+export namespace _TooltipFactory { export function dismissAllToolTips(): boolean {
+if (arguments.length > 0) throw new TypeError('Too many method arguments');
+const _flaxResult = invokeTopLevel("flax.core/sdk_material#function:Tooltip.dismissAllToolTips", []);
+return _flaxResult as boolean;
+} }
+export const Tooltip: typeof _TooltipFactory & _FlaxInstanceType<Tooltip> & _FlaxDartType<Tooltip, readonly ["class", "flax.core/sdk_material#type:Tooltip", readonly [], false]> = _flaxBindInstanceType<Tooltip, typeof _TooltipFactory>(_TooltipFactory, "flax.core/sdk_material#type:Tooltip", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _TooltipFactory & _FlaxInstanceType<Tooltip> & _FlaxDartType<Tooltip, readonly ["class", "flax.core/sdk_material#type:Tooltip", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "message" | "richMessage" | "height" | "constraints" | "padding" | "margin" | "verticalOffset" | "preferBelow" | "excludeFromSemantics" | "child" | "decoration" | "textStyle" | "textAlign" | "waitDuration" | "showDuration" | "exitDuration" | "enableTapToDismiss" | "triggerMode" | "enableFeedback" | "onTriggered" | "mouseCursor" | "ignorePointer" | "positionDelegate" | "key" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/material/tooltip.dart::Tooltip" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

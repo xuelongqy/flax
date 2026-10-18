@@ -18,7 +18,7 @@ import {
 } from '@flax/flutter/widgets';
 import { TextDirection } from '@flax/flutter/services';
 import { ValueKey } from '@flax/flutter/foundation';
-import { TextButton } from '@flax/flutter/material';
+import { TextButton } from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 const IntKey = selectDartType(ValueKey, nativeTypes.int);

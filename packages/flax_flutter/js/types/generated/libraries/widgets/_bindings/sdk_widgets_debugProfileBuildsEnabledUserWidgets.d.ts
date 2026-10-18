@@ -1,0 +1,3 @@
+export declare function getDebugProfileBuildsEnabledUserWidgets(): boolean;
+declare function _flaxTopLevel_setDebugProfileBuildsEnabledUserWidgets(value: boolean): void;
+export { _flaxTopLevel_setDebugProfileBuildsEnabledUserWidgets as setDebugProfileBuildsEnabledUserWidgets };

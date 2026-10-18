@@ -40,7 +40,7 @@ const _parameterKeys = {
 
 const _genericKeys = {'name', 'bound', 'defaultType', 'slot'};
 
-const _getterKeys = {'name', 'type', 'encodeKind', 'cache'};
+const _getterKeys = {'name', 'type', 'encodeKind', 'cache', 'isConst'};
 
 const _constructorKeys = {
   'name',
@@ -1358,6 +1358,7 @@ Map<String, Object?> _encodeGetter(
   'type': _encodeType(getter.type, scope),
   'encodeKind': getter.encodeKind,
   'cache': getter.cache,
+  if (getter.isConst) 'isConst': true,
 };
 
 FlaxCodegenGetterModel? _decodeGetter(
@@ -1378,6 +1379,9 @@ FlaxCodegenGetterModel? _decodeGetter(
   final type = object.requiredValue('type', _decodeTypeFn(diagnostics, scope));
   final encodeKind = object.nullableString('encodeKind');
   final cache = object.requiredBool('cache');
+  final isConst = object._fields.containsKey('isConst')
+      ? object.requiredBool('isConst')
+      : false;
   if (diagnostics.items.length != start || name == null || type == null) {
     return null;
   }
@@ -1386,6 +1390,7 @@ FlaxCodegenGetterModel? _decodeGetter(
     type,
     encodeKind: encodeKind,
     cache: cache!,
+    isConst: isConst!,
   );
 }
 
@@ -1417,6 +1422,7 @@ FlaxCodegenGetterModel? _decodeStaticAccessor(
     encodeKind: getter.encodeKind,
     id: id,
     cache: getter.cache,
+    isConst: getter.isConst,
   );
 }
 
@@ -2859,8 +2865,11 @@ FlaxCodegenModuleModel? _decodeModule(
   try {
     module.validate();
     return module;
-  } on StateError {
-    diagnostics.add(pointer: pointer, message: 'Invalid module.');
+  } on StateError catch (error) {
+    diagnostics.add(
+      pointer: pointer,
+      message: 'Invalid module: ${error.message}',
+    );
     return null;
   }
 }

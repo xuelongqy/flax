@@ -1,35 +1,20 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import, unnecessary_cast, deprecated_member_use, invalid_use_of_protected_member, invalid_use_of_visible_for_overriding_member
+// ignore_for_file: type=lint, unused_import, unnecessary_cast, deprecated_member_use, invalid_use_of_protected_member, invalid_use_of_visible_for_overriding_member, invalid_use_of_visible_for_testing_member
 import 'dart:core';
 
 import 'package:flutter/widgets.dart' as api;
 import 'package:flax/bindings.dart';
-import 'package:flutter/cupertino.dart' as api1;
+import 'package:flutter/foundation.dart' as api1;
+import 'package:flutter/scheduler.dart' as api2;
+import 'package:flutter/cupertino.dart' as api3;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
 const componentsBindings = FlaxBindingModule(
   'components',
   [
-    FlaxObjectBinding(
-      "flax.core/components#type:StatefulWidget",
-      [],
-      {},
-      constructors: {},
-      create: _createStatefulWidget,
-      disposeMethod: null,
-      listenerPairs: {},
-      supertypes: [
-        "package:flutter/src/widgets/framework.dart::Widget",
-        "package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree",
-        "dart:core::Object",
-        "package:flutter/src/foundation/diagnostics.dart::Diagnosticable",
-      ],
-      setters: [],
-      matches: _isStatefulWidget,
-      methods: const {},
-    ),
+    _flaxBinding23,
     FlaxStateBinding(
       "flax.core/components#type:State",
       [],
@@ -39,12 +24,13 @@ const componentsBindings = FlaxBindingModule(
   ],
   functions: [],
   moduleId: "flax.core/components",
-  dependencyModules: ["flax.core/flutter"],
+  dependencyModules: ["flax.core/flutter", "flax.core/sdk_foundation"],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
     "dart-type-tokens",
     "engine-type-handles",
     "generic-member-views",
+    "inherited-binding-members",
     "instance-checks",
     "native-navigation-objects",
     "native-widget-proxies",
@@ -82,22 +68,19 @@ const _stateVariant_KeepAliveState = FlaxStateVariantBinding(
   methods: {
     "updateKeepAlive": FlaxInstanceMethod(
       [],
-      FlaxTypeRef("void"),
+      _flaxBinding19,
       _KeepAliveState_call_updateKeepAlive,
     ),
   },
 );
 
 abstract class _KeepAliveStateStateHostBase extends FlaxComponentStateBase
-    with api1.AutomaticKeepAliveClientMixin<api.StatefulWidget> {
+    with api3.AutomaticKeepAliveClientMixin<api.StatefulWidget> {
   _KeepAliveStateStateHostBase(Object seed) : super(seed);
   @override
-  bool get wantKeepAlive => flaxInvokeMember(
-    "get:wantKeepAlive",
-    const [],
-    const [],
-    FlaxTypeRef("bool"),
-  ) as bool;
+  bool get wantKeepAlive =>
+      flaxInvokeMember("get:wantKeepAlive", const [], const [], _flaxBinding24)
+          as bool;
   Object? _flaxCall_updateKeepAlive(Map<String, Object?> values) {
     updateKeepAlive();
     return null;
@@ -135,7 +118,7 @@ const _stateVariant_SingleTickerProviderState = FlaxStateVariantBinding(
 
 abstract class _SingleTickerProviderStateStateHostBase
     extends FlaxComponentStateBase
-    with api1.SingleTickerProviderStateMixin<api.StatefulWidget> {
+    with api3.SingleTickerProviderStateMixin<api.StatefulWidget> {
   _SingleTickerProviderStateStateHostBase(Object seed) : super(seed);
 }
 
@@ -156,7 +139,7 @@ const _stateVariant_TickerProviderState = FlaxStateVariantBinding(
 );
 
 abstract class _TickerProviderStateStateHostBase extends FlaxComponentStateBase
-    with api1.TickerProviderStateMixin<api.StatefulWidget> {
+    with api3.TickerProviderStateMixin<api.StatefulWidget> {
   _TickerProviderStateStateHostBase(Object seed) : super(seed);
 }
 
@@ -175,7 +158,7 @@ const _stateVariant_KeepAliveTickerState = FlaxStateVariantBinding(
   methods: {
     "updateKeepAlive": FlaxInstanceMethod(
       [],
-      FlaxTypeRef("void"),
+      _flaxBinding19,
       _KeepAliveTickerState_call_updateKeepAlive,
     ),
   },
@@ -183,16 +166,13 @@ const _stateVariant_KeepAliveTickerState = FlaxStateVariantBinding(
 
 abstract class _KeepAliveTickerStateStateHostBase extends FlaxComponentStateBase
     with
-        api1.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
-        api1.TickerProviderStateMixin<api.StatefulWidget> {
+        api3.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
+        api3.TickerProviderStateMixin<api.StatefulWidget> {
   _KeepAliveTickerStateStateHostBase(Object seed) : super(seed);
   @override
-  bool get wantKeepAlive => flaxInvokeMember(
-    "get:wantKeepAlive",
-    const [],
-    const [],
-    FlaxTypeRef("bool"),
-  ) as bool;
+  bool get wantKeepAlive =>
+      flaxInvokeMember("get:wantKeepAlive", const [], const [], _flaxBinding24)
+          as bool;
   Object? _flaxCall_updateKeepAlive(Map<String, Object?> values) {
     updateKeepAlive();
     return null;
@@ -227,7 +207,7 @@ const _stateVariant_KeepAliveSingleTickerState = FlaxStateVariantBinding(
   methods: {
     "updateKeepAlive": FlaxInstanceMethod(
       [],
-      FlaxTypeRef("void"),
+      _flaxBinding19,
       _KeepAliveSingleTickerState_call_updateKeepAlive,
     ),
   },
@@ -236,16 +216,13 @@ const _stateVariant_KeepAliveSingleTickerState = FlaxStateVariantBinding(
 abstract class _KeepAliveSingleTickerStateStateHostBase
     extends FlaxComponentStateBase
     with
-        api1.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
-        api1.SingleTickerProviderStateMixin<api.StatefulWidget> {
+        api3.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
+        api3.SingleTickerProviderStateMixin<api.StatefulWidget> {
   _KeepAliveSingleTickerStateStateHostBase(Object seed) : super(seed);
   @override
-  bool get wantKeepAlive => flaxInvokeMember(
-    "get:wantKeepAlive",
-    const [],
-    const [],
-    FlaxTypeRef("bool"),
-  ) as bool;
+  bool get wantKeepAlive =>
+      flaxInvokeMember("get:wantKeepAlive", const [], const [], _flaxBinding24)
+          as bool;
   Object? _flaxCall_updateKeepAlive(Map<String, Object?> values) {
     updateKeepAlive();
     return null;
@@ -272,6 +249,68 @@ Object? _KeepAliveSingleTickerState_call_updateKeepAlive(
 }
 
 bool _isStatefulWidget(Object value) => value is api.StatefulWidget;
+Object? _StatefulWidget_toStringShallow(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as api.StatefulWidget).toStringShallow(
+    joiner: values["joiner"] as String,
+    minLevel: values["minLevel"] as api1.DiagnosticLevel,
+  );
+}
+
+Object? _StatefulWidget_toStringDeep(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as api.StatefulWidget).toStringDeep(
+    minLevel: values["minLevel"] as api1.DiagnosticLevel,
+    prefixLineOne: values["prefixLineOne"] as String,
+    prefixOtherLines: values["prefixOtherLines"] as String?,
+    wrapWidth: values["wrapWidth"] as int,
+  );
+}
+
+Object? _StatefulWidget_toStringShort(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as api.StatefulWidget).toStringShort();
+}
+
+Object? _StatefulWidget_toDiagnosticsNode(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as api.StatefulWidget).toDiagnosticsNode(
+    name: values["name"] as String?,
+    style: values["style"] as api1.DiagnosticsTreeStyle?,
+  );
+}
+
+Object? _StatefulWidget_debugDescribeChildren(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  return (receiver as api.StatefulWidget).debugDescribeChildren();
+}
+
+Object? _StatefulWidget_debugFillProperties(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  (receiver as api.StatefulWidget).debugFillProperties(
+    values["properties"] as api1.DiagnosticPropertiesBuilder,
+  );
+  return null;
+}
+
+Object? _StatefulWidget_toString(Object receiver, Map<String, Object?> values) {
+  return (receiver as api.StatefulWidget).toString(
+    minLevel: values["minLevel"] as api1.DiagnosticLevel,
+  );
+}
+
 Object _createStatefulWidget(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isState(Object value) => value is api.State<api.StatefulWidget>;
@@ -295,3 +334,151 @@ Function _flaxClass_State<_Owner0 extends api.StatefulWidget>() =>
       );
     };
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
+Object _collection0Create() => <api1.DiagnosticsNode>[];
+bool _collection0Matches(Object value) => value is List<api1.DiagnosticsNode>;
+Object _collection1Create() => <api1.DiagnosticsNode>[];
+Object _collection1Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api1.DiagnosticsNode>();
+bool _collection1Matches(Object value) =>
+    value is Iterable<api1.DiagnosticsNode>;
+const _flaxBinding0 = FlaxTypeRef("String");
+const _flaxBinding1 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
+);
+const _flaxBinding2 = <FlaxParameter>[
+  FlaxParameter("joiner", _flaxBinding0, required: false, defaultValue: ', '),
+  FlaxParameter(
+    "minLevel",
+    _flaxBinding1,
+    required: false,
+    defaultValue: api1.DiagnosticLevel.debug,
+  ),
+];
+const _flaxBinding3 = FlaxInstanceMethod(
+  _flaxBinding2,
+  _flaxBinding0,
+  _StatefulWidget_toStringShallow,
+);
+const _flaxBinding4 = FlaxTypeRef("String", nullable: true);
+const _flaxBinding5 = FlaxTypeRef("int");
+const _flaxBinding6 = <FlaxParameter>[
+  FlaxParameter(
+    "minLevel",
+    _flaxBinding1,
+    required: false,
+    defaultValue: api1.DiagnosticLevel.debug,
+  ),
+  FlaxParameter(
+    "prefixLineOne",
+    _flaxBinding0,
+    required: false,
+    defaultValue: '',
+  ),
+  FlaxParameter("prefixOtherLines", _flaxBinding4, required: false),
+  FlaxParameter("wrapWidth", _flaxBinding5, required: false, defaultValue: 65),
+];
+const _flaxBinding7 = FlaxInstanceMethod(
+  _flaxBinding6,
+  _flaxBinding0,
+  _StatefulWidget_toStringDeep,
+);
+const _flaxBinding8 = <FlaxParameter>[];
+const _flaxBinding9 = FlaxInstanceMethod(
+  _flaxBinding8,
+  _flaxBinding0,
+  _StatefulWidget_toStringShort,
+);
+const _flaxBinding10 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
+  nullable: true,
+);
+const _flaxBinding11 = <FlaxParameter>[
+  FlaxParameter("name", _flaxBinding4, required: false),
+  FlaxParameter("style", _flaxBinding10, required: false),
+];
+const _flaxBinding12 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
+);
+const _flaxBinding13 = FlaxInstanceMethod(
+  _flaxBinding11,
+  _flaxBinding12,
+  _StatefulWidget_toDiagnosticsNode,
+);
+const _flaxBinding14 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding12,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
+    _collection1Create,
+    _collection1Matches,
+    restore: _collection1Restore,
+  ),
+);
+const _flaxBinding15 = FlaxTypeRef(
+  "list",
+  item: _flaxBinding12,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
+    _collection0Create,
+    _collection0Matches,
+  ),
+  iterable: _flaxBinding14,
+);
+const _flaxBinding16 = FlaxInstanceMethod(
+  _flaxBinding8,
+  _flaxBinding15,
+  _StatefulWidget_debugDescribeChildren,
+);
+const _flaxBinding17 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
+);
+const _flaxBinding18 = <FlaxParameter>[
+  FlaxParameter("properties", _flaxBinding17, required: true),
+];
+const _flaxBinding19 = FlaxTypeRef("void");
+const _flaxBinding20 = FlaxInstanceMethod(
+  _flaxBinding18,
+  _flaxBinding19,
+  _StatefulWidget_debugFillProperties,
+);
+const _flaxBinding21 = <FlaxParameter>[
+  FlaxParameter(
+    "minLevel",
+    _flaxBinding1,
+    required: false,
+    defaultValue: api1.DiagnosticLevel.info,
+  ),
+];
+const _flaxBinding22 = FlaxInstanceMethod(
+  _flaxBinding21,
+  _flaxBinding0,
+  _StatefulWidget_toString,
+);
+const _flaxBinding23 = FlaxObjectBinding(
+  "flax.core/components#type:StatefulWidget",
+  [],
+  {
+    "toStringShallow": _flaxBinding3,
+    "toStringDeep": _flaxBinding7,
+    "toStringShort": _flaxBinding9,
+    "toDiagnosticsNode": _flaxBinding13,
+    "debugDescribeChildren": _flaxBinding16,
+    "debugFillProperties": _flaxBinding20,
+    "toString": _flaxBinding22,
+  },
+  constructors: {},
+  create: _createStatefulWidget,
+  matches: _isStatefulWidget,
+  setters: [],
+  supertypes: [
+    "flax.core/sdk_widgets#type:Widget",
+    "flax.core/sdk_foundation#type:DiagnosticableTree",
+    "dart:core::Object",
+    "flax.core/sdk_foundation#type:Diagnosticable",
+  ],
+);
+const _flaxBinding24 = FlaxTypeRef("bool");

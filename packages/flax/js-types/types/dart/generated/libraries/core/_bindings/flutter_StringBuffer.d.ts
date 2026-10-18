@@ -1,11 +1,12 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput } from '@flax/core/bindings';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface StringBuffer extends Readonly<{
     "__flaxBound:dart:core::StringBuffer": readonly [];
 }>, Readonly<{
     "__flaxBound:dart:core::StringSink": readonly [];
 }> {
     readonly __StringBuffer: unique symbol;
+    readonly [_flaxDartTypeValue]: StringBuffer;
     readonly length: number;
     readonly isEmpty: boolean;
     readonly isNotEmpty: boolean;

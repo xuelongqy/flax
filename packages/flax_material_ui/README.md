@@ -5,7 +5,7 @@ TextField, Material, InkWell, progress, MaterialPageRoute, and MaterialPage APIs
 Register it alongside flutterBindings in FlaxBindingRegistry. Generated host types use
 the public flax/bindings.dart extension and preserve Flutter Element matching.
 
-The public Material library is `@flax/flutter/material`. It exports the safe primitive
+The public Material library is `@flax/material-ui`. It exports the safe primitive
 constant `kToolbarHeight` directly and exposes the Dart-backed duration through
 `getKTabScrollDuration()`, reusing Core's `Duration` object binding and identity. The
 dynamic read remains lazy through the existing session; no Dart value is captured during
@@ -17,9 +17,9 @@ Publication is disabled. See
 [UI semantics](../../docs/architecture/ui.md).
 
 Install `flax_material_ui` in the Dart host and add `materialBindings` beside
-`flutterBindings`. `@flax/material-ui` is the physical JavaScript implementation and
-module-delivery package; application source and declaration-only consumers import the
-public API from `@flax/flutter/material`:
+`flutterBindings`. `@flax/material-ui-runtime` is the physical JavaScript implementation
+and module-delivery package. Application source and declaration-only consumers import
+the public API from `@flax/material-ui`:
 
 ```yaml
 dependencies:
@@ -30,10 +30,10 @@ dependencies:
 final bindings = FlaxBindingRegistry([flutterBindings, materialBindings]);
 ```
 
-Hosts that bundle the implementation directly keep `@flax/material-ui` at the matching
-version. Applications that include it in `Flax.moduleAssets` can let business JavaScript
-install only the `@flax/flutter` declarations; add `FlaxMaterialPlugin` to each
-`FlaxView` / `FlaxSession` that should inject `@flax/flutter/material`. See
+Hosts that bundle the implementation directly keep `@flax/material-ui-runtime` at the
+matching version. Applications that include it in `Flax.moduleAssets` can let business
+JavaScript install only the `@flax/material-ui` declarations; add `FlaxMaterialPlugin`
+to each `FlaxView` / `FlaxSession` that should inject `@flax/material-ui`. See
 [package boundaries](../../docs/architecture/packaging.md#application-module-inventory-and-host-delivery).
 
 Navigation now includes explicit sessions, shared or nested Flutter Navigators, native

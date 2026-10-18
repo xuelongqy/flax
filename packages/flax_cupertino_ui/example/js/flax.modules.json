@@ -18,8 +18,8 @@
       "package": "@flax/core-runtime"
     },
     {
-      "specifier": "@flax/flutter/cupertino",
-      "package": "@flax/cupertino-ui"
+      "specifier": "@flax/cupertino-ui",
+      "package": "@flax/cupertino-ui-runtime"
     }
   ],
   "flutterProject": "..",

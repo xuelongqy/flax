@@ -75,6 +75,9 @@ classes:
       expect(dart, contains('FlaxFunctionBinding('));
       expect(ts, contains('export function setTracked(value: number): void'));
       expect(ts, contains('export declare const count: number'));
+      expect(ts, contains('_flaxDefineStaticGetters('));
+      expect(ts, isNot(contains('Object.defineProperty(StaticValues,')));
+      expect(module.requiredCapabilities, contains('shared-static-readers'));
       expect(ts, contains('invokeTopLevel('));
       expect(ts, isNot(contains('invokeObjectStatic("$uri::StaticValues"')));
     },
@@ -127,9 +130,44 @@ classes:
   test(
     'generated Dart calls and strict TypeScript preserve static semantics',
     () async {
-      final module = await parse(
-        """staticGetters: [count, tracked, delayed, optional]
-    staticSetters: [count, tracked, delayed, optional, writeOnly]""",
+      final module = await parse("""staticGetters: [count, tracked, delayed, optional, constant, frozen, values, absent, transform]
+    staticSetters: [count, tracked, delayed, optional, writeOnly]""");
+      final getters = module.classes.single.staticGetters;
+      expect(getters.where((g) => g.isConst).map((g) => g.name), [
+        'constant',
+        'values',
+        'absent',
+        'transform',
+      ]);
+      final diagnostics = FlaxCodegenManifestDiagnostics(
+        'static const roundtrip',
+      );
+      final restored = FlaxCodegenManifestCodec.decodeClass(
+        FlaxCodegenManifestCodec.encodeClass(module.classes.single),
+        diagnostics,
+        '',
+      )!;
+      diagnostics.throwIfAny();
+      final invalid = FlaxCodegenManifestDiagnostics('invalid const flag');
+      expect(
+        FlaxCodegenManifestCodec.decodeGetter(
+          {
+            ...FlaxCodegenManifestCodec.encodeGetter(getters.first),
+            'isConst': 'true',
+          },
+          invalid,
+          '',
+        ),
+        isNull,
+      );
+      expect(invalid.items, isNotEmpty);
+      expect(
+        restored.staticGetters.where((g) => g.isConst).map((g) => g.name),
+        getters.where((g) => g.isConst).map((g) => g.name),
+      );
+      expect(
+        FlaxCodegenBindingEmitter([module]).dart(module),
+        contains('FlaxFunctionBinding.constant('),
       );
       await compileFixture(
         root.path,
@@ -138,6 +176,9 @@ classes:
         consumerSource: """
 import { StaticValues } from './plugin.js';
 const current: number = StaticValues.count;
+const constant: number = StaticValues.constant;
+const length: number = StaticValues.values.length;
+const transformed: number = StaticValues.transform(4);
 StaticValues.setTracked(2.5);
 StaticValues.setOptional(null);
 // @ts-expect-error Static reads are readonly.
@@ -157,6 +198,12 @@ void main() {
     dynamic invoke(String name, [Map<String, Object?> values = const {}]) =>
       staticsBindings.functions.singleWhere((function) => function.id.endsWith('::StaticValues.\$name')).invoke(values);
     expect(() => invoke('delayed'), throwsA(isA<Error>()));
+    expect(invoke('constant'), 7);
+    expect(invoke('frozen'), 8);
+    expect(invoke('absent'), isNull);
+    expect(invoke('values'), same(api.StaticValues.values));
+    expect(invoke('transform'), same(api.StaticValues.transform));
+    expect((invoke('transform') as int Function(int))(4), 5);
     invoke('count=', {'value': 4});
     expect(invoke('count'), 4);
     expect(invoke('tracked'), 4);
@@ -181,7 +228,11 @@ void main() {
   );
 
   test('all supported static owners compile, including automatic Widget interfaces', () async {
-    final parser = FlaxCodegenBindingParser(root.path);
+    final collection = AnalysisContextCollection(
+      includedPaths: [p.join(root.path, 'pubspec.yaml')],
+    );
+    addTearDown(collection.dispose);
+    final parser = FlaxCodegenBindingParser(root.path, contexts: collection);
     addTearDown(parser.dispose);
     final coreConfig = FlaxCodegenBindingConfig.read(
       p.join(root.path, 'packages/flax/bindings/flax_bindings.yaml'),
@@ -322,7 +373,10 @@ void main() {
         ],
         typeLibraries: module.typeLibraries,
       );
-      final consumerParser = FlaxCodegenBindingParser(root.path);
+      final consumerParser = FlaxCodegenBindingParser(
+        root.path,
+        contexts: collection,
+      );
       addTearDown(consumerParser.dispose);
       consumerParser.prepareModules(
         [core, provider],

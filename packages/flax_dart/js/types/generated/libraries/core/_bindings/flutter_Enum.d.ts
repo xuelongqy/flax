@@ -1,9 +1,10 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
-import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Enum extends Readonly<{
     "__flaxBound:dart:core::Enum": readonly [];
 }> {
     readonly __Enum: unique symbol;
+    readonly [_flaxDartTypeValue]: Enum;
     readonly index: number;
 }
 export declare namespace _EnumFactory {

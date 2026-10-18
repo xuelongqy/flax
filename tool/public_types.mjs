@@ -74,38 +74,15 @@ const stagedFlutter = join(stage, 'flutter');
 for (const filename of ['widgets.d.ts', 'components.d.ts']) {
   await copy(join(emittedFlutter, filename), join(stagedFlutter, filename));
 }
-for (const library of ['foundation', 'gestures', 'scheduler', 'services', 'widgets']) {
+for (const entry of await readdir(join(emittedFlutter, 'generated', 'libraries'), {
+  withFileTypes: true,
+})) {
+  if (!entry.isDirectory() || entry.name === 'navigation') continue;
   await copy(
-    join(emittedFlutter, 'generated', 'libraries', library),
-    join(stagedFlutter, 'generated', 'libraries', library),
+    join(emittedFlutter, 'generated', 'libraries', entry.name),
+    join(stagedFlutter, 'generated', 'libraries', entry.name),
   );
 }
-await copy(
-  join(
-    build,
-    'packages',
-    'flax_material_ui',
-    'js',
-    'src',
-    'generated',
-    'libraries',
-    'material',
-  ),
-  join(stagedFlutter, 'generated', 'libraries', 'material'),
-);
-await copy(
-  join(
-    build,
-    'packages',
-    'flax_cupertino_ui',
-    'js',
-    'src',
-    'generated',
-    'libraries',
-    'cupertino',
-  ),
-  join(stagedFlutter, 'generated', 'libraries', 'cupertino'),
-);
 
 const emittedDart = join(build, 'packages', 'flax', 'js', 'src', 'dart');
 const stagedDart = join(stage, 'dart');
@@ -130,6 +107,8 @@ for (const [owner, label] of [
   ['flax_websocket', '@flax/websocket'],
   ['flax_local_storage', '@flax/local-storage'],
   ['flax_canvas', '@flax/canvas'],
+  ['flax_material_ui', '@flax/material-ui'],
+  ['flax_cupertino_ui', '@flax/cupertino-ui'],
 ]) {
   const emitted = join(build, 'packages', owner, 'js', 'src');
   targets.push([emitted, join(root, 'packages', owner, 'js-types', 'types'), label]);

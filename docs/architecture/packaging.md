@@ -17,23 +17,23 @@ Extensions depend on Dart `flax` and JS `@flax/core`. They do not depend on anot
 extension unless that dependency becomes an explicit public product decision. The core
 package has no concrete engine dependency.
 
-| Package                                              | Owned capability                                                                                         |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `flax` / `@flax/core-runtime`                        | Runtime interfaces, host base, Core binding implementations, signals, sessions, and shared C ABI/JSI     |
-| `flax_flutter` / `@flax/flutter`                     | Declaration-only public Flutter library surface (`foundation`, `widgets`, `material`, and related paths) |
-| `flax_dart` / `@flax/dart`                           | Declaration-only public Dart SDK library surface (`core`, `async`)                                       |
-| `flax_material_ui` / `@flax/material-ui`             | Material implementation delivery package and native Route/Page bindings                                  |
-| `flax_cupertino_ui` / `@flax/cupertino-ui`           | Selected Cupertino bindings, module plugin, and package-local example                                    |
-| `flax_fetch` / `@flax/fetch-runtime`                 | Fetch session plugin                                                                                     |
-| `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                 |
-| `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                   |
-| `flax_canvas` / `@flax/canvas-runtime`               | Canvas host plugin and CanvasView binding                                                                |
-| `flax_engine_hermes`                                 | Hermes adapter, locked shared SDK, and engine tests                                                      |
-| `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                             |
-| `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                     |
-| `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                     |
-| `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                            |
-| `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                              |
+| Package                                              | Owned capability                                                                                                      |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `flax` / `@flax/core-runtime`                        | Runtime interfaces, host base, supported Flutter SDK binding implementations, signals, sessions, and shared C ABI/JSI |
+| `flax_flutter` / `@flax/flutter`                     | Declaration-only public Flutter library surface (`foundation`, `widgets`, `material`, and related paths)              |
+| `flax_dart` / `@flax/dart`                           | Declaration-only public Dart SDK library surface (`core`, `async`)                                                    |
+| `flax_material_ui` / `@flax/material-ui-runtime`     | Third-party material_ui binding delivery and native Route/Page bindings                                               |
+| `flax_cupertino_ui` / `@flax/cupertino-ui-runtime`   | Third-party cupertino_ui bindings, module plugin, and package-local example                                           |
+| `flax_fetch` / `@flax/fetch-runtime`                 | Fetch session plugin                                                                                                  |
+| `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                              |
+| `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                |
+| `flax_canvas` / `@flax/canvas-runtime`               | Canvas host plugin and CanvasView binding                                                                             |
+| `flax_engine_hermes`                                 | Hermes adapter, locked shared SDK, and engine tests                                                                   |
+| `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                          |
+| `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                                  |
+| `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                  |
+| `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                                         |
+| `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                                           |
 
 `flax_test` is not a published product API. `@flax/build` is a developer-facing Node
 package with typed root, `./esbuild` and `./vite` exports and the
@@ -94,18 +94,20 @@ import type {} from '@flax/core/host';
 
 The public path is independent of the physical npm package that owns the JavaScript
 implementation. `@flax/flutter` and `@flax/dart` are declaration-only packages and are
-the authoritative TypeScript surface. Core physically delivers the selected
-`@flax/flutter/{widgets,foundation,gestures,services,scheduler}` and `@flax/dart/*`
-implementations; `@flax/material-ui` physically delivers `@flax/flutter/material`.
+the authoritative TypeScript surface. Core physically delivers the supported Flutter SDK
+bindings under `@flax/flutter/*` and Dart SDK bindings under `@flax/dart/*`. The
+independent `material_ui` and `cupertino_ui` plugins use `@flax/material-ui` and
+`@flax/cupertino-ui`; they do not replace Flutter's own Material and Cupertino modules.
 `@flax/core/navigation` remains a Core-owned public implementation entry.
 
-Every capability has separate public declarations and runtime delivery. `@flax/core`,
+Host capabilities have separate public declarations and runtime delivery. `@flax/core`,
 `@flax/fetch`, `@flax/websocket`, `@flax/local-storage`, and `@flax/canvas` contain only
 TypeScript declarations; their implementations use the corresponding `-runtime` npm
-names. Flutter and Dart declarations remain `@flax/flutter` and `@flax/dart`.
-Material/Cupertino source delivery remains `@flax/material-ui`/`@flax/cupertino-ui`.
-Public application imports do not change. `javascript.package` identifies source
-delivery; `javascript.types` identifies the declaration package in metadata format 2.
+names. Flutter and Dart declarations remain `@flax/flutter` and `@flax/dart`. The
+independent Material/Cupertino plugins follow the same split: declarations use
+`@flax/material-ui`/`@flax/cupertino-ui`, and source uses the corresponding `-runtime`
+packages. `javascript.package` identifies source delivery; `javascript.types` identifies
+the declaration package in metadata format 2.
 
 The Flutter host prepares locked source packages as application assets. Business code
 uses only plugin-injected modules; missing prepared modules fail during bundling or
@@ -116,13 +118,14 @@ inside prepared factories, and a parent module cannot satisfy a missing child en
 
 Source remains separated under `packages/flax/js/src/runtime`, `flutter`, `dart`,
 `host`, and generated directories. Optional packages import only the public subpaths
-they need. The removed `@flax/core/flutter` public entry and direct `@flax/material-ui`
-application API have no compatibility re-export layer.
+they need. The removed `@flax/core/flutter` public entry has no compatibility reexport.
 
 The pnpm workspace discovers `packages/*/js`, `packages/*/js-types`,
 `packages/*/example/js`, and `examples/*/js`. Each JavaScript package has separate npm
-and embedded-host checks. `tsconfig.npm.json` includes only public module entries.
-`tsconfig.host.json` checks `src/host/bootstrap.ts` and its private implementation
+and embedded-host checks. `tsconfig.npm.json` includes only public module entries. The
+workspace JS build projects all public declarations once, then builds source packages
+and examples. A declaration package's standalone build still runs the shared projection
+tool. `tsconfig.host.json` checks `src/host/bootstrap.ts` and its private implementation
 without emitting it into the npm archive.
 
 Source packages ship executable delivery entries and their dependency graph. Public
@@ -138,7 +141,7 @@ ordinary module type imports at shared boundaries.
 ## Binding manifests
 
 Every implemented binding package commits `bindings/manifest.json`. The writer and
-reader accept Manifest **15** only. The manifest carries the current cross-package
+reader accept Manifest **26** only. The manifest carries the current cross-package
 semantic model: declaration ownership, stable identities, JS exports, recursive types,
 generic scopes, selected members, public-library routing, State variants, conversion
 semantics, and each module's UI protocol and required capabilities. It does not copy
@@ -146,6 +149,12 @@ selection YAML into dependent packages. Unknown formats fail before generation; 
 no compatibility reader or normalization path. See
 [ADR 0037](../decisions/0037-package-scoped-binding-providers.md) and
 [External Binding Verification](external-binding-verification.md).
+
+The canonical file stores repeated recursive type descriptions once in `typeTable`, with
+backward-only `{"$type": index}` references. This is a storage encoding of the same
+semantic model. Dart expands it before strict semantic validation; JavaScript delivery
+projects declaration ownership and operation IDs directly without expanding types.
+Generated JS APIs, UI protocol 24 and native ABI 2 are independent of this file format.
 
 A configuration imports a Dart package by name:
 
@@ -181,7 +190,7 @@ Implementation delivery uses a versioned `flax_modules.json`, separate from the 
 Manifest. It records public specifiers, the physical npm package and source entry,
 delivery dependencies, and the Dart binding requirements needed if that module is
 actually injected into a session. `tool/module_delivery.mjs` derives official delivery
-metadata from Manifest 24 rather than duplicating binding ownership by hand.
+metadata from Manifest 26 rather than duplicating binding ownership by hand.
 
 An application prepares the modules it can provide, for example:
 
@@ -193,7 +202,8 @@ An application prepares the modules it can provide, for example:
     { "specifier": "@flax/core/host", "package": "@flax/core-runtime" },
     { "specifier": "@flax/core/navigation", "package": "@flax/core-runtime" },
     { "specifier": "@flax/flutter/widgets", "package": "@flax/core-runtime" },
-    { "specifier": "@flax/flutter/material", "package": "@flax/material-ui" }
+    { "specifier": "@flax/flutter/material", "package": "@flax/core-runtime" },
+    { "specifier": "@flax/material-ui", "package": "@flax/material-ui-runtime" }
   ],
   "flutterProject": "..",
   "output": "assets/flax_modules"
@@ -213,15 +223,17 @@ passes its plugin snapshot to the session, which selects only requested modules 
 in `Flax.moduleAssets`, follows their delivery dependency closure, validates the Dart
 binding requirements for that selected set, and registers only those factories. The base
 host requests Core, host declarations, navigation and the Core Flutter module
-implicitly. Material requests `@flax/flutter/material` through `FlaxMaterialPlugin`.
-Inventory modules that no plugin requests are not evaluated, registered, or
-binding-validated.
+implicitly. Prepared Flutter/Dart SDK modules are also available without a plugin.
+`FlaxMaterialPlugin` requests the independent `@flax/material-ui` module. Optional
+inventory modules outside the selected dependency closure are not registered or
+binding-validated. Registered factories, including SDK factories, are evaluated only
+when imported.
 
 Missing requested modules fail session startup before business source executes. The
 business bundler externalizes prepared imports to the session registry and rejects
 unprepared Flax implementation imports, including private implementation paths. Direct
-imports, transitive imports and reexports share one session-local instance. Unrequested
-inventory modules remain inactive. Wire IDs remain independent of npm paths.
+imports, transitive imports and reexports share one session-local instance. Unselected
+optional inventory modules remain inactive. Wire IDs remain independent of npm paths.
 
 Config paths are package-relative. `flax_codegen` locates the nearest
 `.dart_tool/package_config.json` by walking upward from the owning configuration, then

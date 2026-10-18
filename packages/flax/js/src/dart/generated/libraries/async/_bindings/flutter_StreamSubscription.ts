@@ -1,18 +1,19 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
+import '@flax/dart/core/_bindings/flutter_StackTrace';
 const _flaxMemberParameters0 = [] as const;
 const _flaxMemberParameters1 = [{"name":"handleData","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"handleError","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"handleDone","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"resumeSignal","required":false,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"futureValue","required":false,"positional":true}] as const;
-import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
-import '@flax/dart/core/_bindings/flutter_StackTrace';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamSubscription<T extends unknown | null = unknown | null> extends Readonly<{ "__flaxBound:dart:async::StreamSubscription": readonly [T] }> { readonly __StreamSubscription: unique symbol;
+readonly [_flaxDartTypeValue]: StreamSubscription<T>;
 readonly [_flaxDartMethodCases]?: {asFuture: _FlaxSignature1<T>;};
 readonly isPaused: boolean;
 cancel(): Promise<void>;

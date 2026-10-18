@@ -72,6 +72,17 @@ void main() {
           'Key': FlaxCodegenClassSelection({}, kind: 'object'),
           'BuildContext': FlaxCodegenClassSelection({}, kind: 'context'),
           'Size': FlaxCodegenClassSelection({}, kind: 'object'),
+          'DiagnosticPropertiesBuilder': FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+          ),
+          'Widget': FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+            instanceMethods: {
+              'debugFillProperties': ['properties'],
+            },
+          ),
           'Text': FlaxCodegenClassSelection({
             '': ['data'],
           }),
@@ -105,6 +116,16 @@ void main() {
       ),
     );
     final emitter = FlaxCodegenBindingEmitter([module]);
+    expect(
+      module.classes
+          .singleWhere((type) => type.name == 'PreferredSizeWidget')
+          .proxy!
+          .methods
+          .singleWhere((method) => method.name == 'debugFillProperties')
+          .mustCallSuper,
+      isTrue,
+      reason: 'The real StatelessWidget base supplies this super contract',
+    );
     expect(module.requiredCapabilities, contains('widget-interface-proxies'));
     final diagnostics = FlaxCodegenManifestDiagnostics('interface-proxy');
     final restored = FlaxCodegenManifestCodec.decodeModule(
@@ -162,6 +183,35 @@ declare const nested: NestedToolbarContract<string>;
 const genericParent: ToolbarContract<DartList<string>> = nested;
 // @ts-expect-error Missing interface getter and Widget build.
 class Missing extends PreferredSizeWidget {}
+''',
+      dartTestSource: r'''
+class _DiagnosticPeer implements FlaxProxyPeer {
+  @override
+  bool active = true;
+  bool handled = false;
+  void Function()? onCall;
+  @override
+  FlaxCallbackBinding genericSignature(int member, List<Type> types,
+      FlaxCallbackBinding Function(FlaxDartTypes) create) => throw StateError('not generic');
+  @override
+  (bool, Object?) call(int member, List<Object?> positional, Map<String, Object?> named,
+      {FlaxCallbackBinding? signature, Function? superCall}) {
+    onCall?.call();
+    return (handled, null);
+  }
+}
+void main() {
+  test('Widget interface adapters preserve their actual native super contract', () {
+    final peer = _DiagnosticPeer();
+    final value = _PreferredSizeWidgetProxy(peer);
+    final properties = api.DiagnosticPropertiesBuilder();
+    value.debugFillProperties(properties);
+    peer.handled = true;
+    expect(() => value.debugFillProperties(properties), throwsA(isA<StateError>()));
+    peer.onCall = () => value._flaxSuper_debugFillProperties(properties);
+    value.debugFillProperties(properties);
+  });
+}
 ''',
     );
   });

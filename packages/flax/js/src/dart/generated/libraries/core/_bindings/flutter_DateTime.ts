@@ -1,16 +1,17 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
-const _flaxMemberParameters0 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"duration","required":true,"positional":true}] as const;
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Comparable';
 import '@flax/dart/core/_bindings/flutter_Comparable';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
+const _flaxMemberParameters0 = [{"name":"other","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"duration","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface DateTime extends Omit<upstream0.Comparable<DateTime>, typeof _flaxDartTypeValue | "isUtc" | "millisecondsSinceEpoch" | "microsecondsSinceEpoch" | "timeZoneName" | "timeZoneOffset" | "year" | "month" | "day" | "hour" | "minute" | "second" | "millisecond" | "microsecond" | "weekday" | "compareTo" | "isBefore" | "isAfter" | "isAtSameMomentAs" | "toLocal" | "toUtc" | "toString" | "toIso8601String" | "add" | "subtract" | "difference">, Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }> { readonly __DateTime: unique symbol;
+export interface DateTime extends Omit<upstream0.Comparable<DateTime>, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>, Readonly<{ "__flaxBound:dart:core::Comparable": readonly [DateTime] }> { readonly __DateTime: unique symbol;
+readonly [_flaxDartTypeValue]: DateTime;
 
 readonly isUtc: boolean;
 readonly millisecondsSinceEpoch: number;
@@ -34,8 +35,8 @@ toLocal(): DateTime;
 toUtc(): DateTime;
 toString(): string;
 toIso8601String(): string;
-add(duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>): DateTime;
-subtract(duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }>): DateTime;
+add(duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream1.Duration] }>): DateTime;
+subtract(duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream1.Duration] }>): DateTime;
 difference(other: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): upstream1.Duration;
 }
 defineObject("flax.core/flutter#type:DateTime", ["isUtc","millisecondsSinceEpoch","microsecondsSinceEpoch","timeZoneName","timeZoneOffset","year","month","day","hour","minute","second","millisecond","microsecond","weekday"], [], _flaxBindingMethods("flax.core/flutter#type:DateTime", "object", {"compareTo":_flaxMemberParameters0,"isBefore":_flaxMemberParameters0,"isAfter":_flaxMemberParameters0,"isAtSameMomentAs":_flaxMemberParameters0,"toLocal":_flaxMemberParameters1,"toUtc":_flaxMemberParameters1,"toString":_flaxMemberParameters1,"toIso8601String":_flaxMemberParameters1,"add":_flaxMemberParameters2,"subtract":_flaxMemberParameters2,"difference":_flaxMemberParameters0}, {}), []);
@@ -92,47 +93,27 @@ return constructObject("object", "flax.core/flutter#type:DateTime", "fromMicrose
 }
 }
 export namespace _DateTimeFactory { export declare const monday: number; }
-Object.defineProperty(_DateTimeFactory, "monday", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.monday", []) });
 export namespace _DateTimeFactory { export declare const tuesday: number; }
-Object.defineProperty(_DateTimeFactory, "tuesday", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.tuesday", []) });
 export namespace _DateTimeFactory { export declare const wednesday: number; }
-Object.defineProperty(_DateTimeFactory, "wednesday", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.wednesday", []) });
 export namespace _DateTimeFactory { export declare const thursday: number; }
-Object.defineProperty(_DateTimeFactory, "thursday", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.thursday", []) });
 export namespace _DateTimeFactory { export declare const friday: number; }
-Object.defineProperty(_DateTimeFactory, "friday", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.friday", []) });
 export namespace _DateTimeFactory { export declare const saturday: number; }
-Object.defineProperty(_DateTimeFactory, "saturday", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.saturday", []) });
 export namespace _DateTimeFactory { export declare const sunday: number; }
-Object.defineProperty(_DateTimeFactory, "sunday", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.sunday", []) });
 export namespace _DateTimeFactory { export declare const daysPerWeek: number; }
-Object.defineProperty(_DateTimeFactory, "daysPerWeek", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.daysPerWeek", []) });
 export namespace _DateTimeFactory { export declare const january: number; }
-Object.defineProperty(_DateTimeFactory, "january", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.january", []) });
 export namespace _DateTimeFactory { export declare const february: number; }
-Object.defineProperty(_DateTimeFactory, "february", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.february", []) });
 export namespace _DateTimeFactory { export declare const march: number; }
-Object.defineProperty(_DateTimeFactory, "march", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.march", []) });
 export namespace _DateTimeFactory { export declare const april: number; }
-Object.defineProperty(_DateTimeFactory, "april", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.april", []) });
 export namespace _DateTimeFactory { export declare const may: number; }
-Object.defineProperty(_DateTimeFactory, "may", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.may", []) });
 export namespace _DateTimeFactory { export declare const june: number; }
-Object.defineProperty(_DateTimeFactory, "june", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.june", []) });
 export namespace _DateTimeFactory { export declare const july: number; }
-Object.defineProperty(_DateTimeFactory, "july", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.july", []) });
 export namespace _DateTimeFactory { export declare const august: number; }
-Object.defineProperty(_DateTimeFactory, "august", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.august", []) });
 export namespace _DateTimeFactory { export declare const september: number; }
-Object.defineProperty(_DateTimeFactory, "september", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.september", []) });
 export namespace _DateTimeFactory { export declare const october: number; }
-Object.defineProperty(_DateTimeFactory, "october", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.october", []) });
 export namespace _DateTimeFactory { export declare const november: number; }
-Object.defineProperty(_DateTimeFactory, "november", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.november", []) });
 export namespace _DateTimeFactory { export declare const december: number; }
-Object.defineProperty(_DateTimeFactory, "december", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.december", []) });
 export namespace _DateTimeFactory { export declare const monthsPerYear: number; }
-Object.defineProperty(_DateTimeFactory, "monthsPerYear", { get: () => invokeTopLevel("flax.core/flutter#read:DateTime.monthsPerYear", []) });
+_flaxDefineStaticGetters(_DateTimeFactory, "flax.core/flutter#read:DateTime.", ["monday","tuesday","wednesday","thursday","friday","saturday","sunday","daysPerWeek","january","february","march","april","may","june","july","august","september","october","november","december","monthsPerYear"]);
 export namespace _DateTimeFactory { export function parse(formattedString: string): DateTime {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/flutter#function:DateTime.parse", [formattedString]);
@@ -144,3 +125,4 @@ const _flaxResult = invokeTopLevel("flax.core/flutter#function:DateTime.tryParse
 return _flaxResult as DateTime | null;
 } }
 export const DateTime: typeof _DateTimeFactory & _FlaxInstanceType<DateTime> & _FlaxDartType<DateTime, readonly ["class", "flax.core/flutter#type:DateTime", readonly [], false]> = _flaxBindInstanceType<DateTime, typeof _DateTimeFactory>(_DateTimeFactory, "flax.core/flutter#type:DateTime", ["dart:core::Object","flax.core/flutter#type:Comparable"]) as typeof _DateTimeFactory & _FlaxInstanceType<DateTime> & _FlaxDartType<DateTime, readonly ["class", "flax.core/flutter#type:DateTime", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isUtc" | "millisecondsSinceEpoch" | "microsecondsSinceEpoch" | "timeZoneName" | "timeZoneOffset" | "year" | "month" | "day" | "hour" | "minute" | "second" | "millisecond" | "microsecond" | "weekday" | "compareTo" | "isBefore" | "isAfter" | "isAtSameMomentAs" | "toLocal" | "toUtc" | "toString" | "toIso8601String" | "add" | "subtract" | "difference" | "__flaxBound:dart:core::DateTime" | "__flaxBound:dart:core::Comparable";

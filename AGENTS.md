@@ -14,8 +14,9 @@ Material TextField supports generated focus and formatters. Ordinary Dart values
 real references; session close clears bridge resources without application disposal.
 Generated styles and host/local Theme bindings use real Dart values and Flutter
 dependencies. ListView.builder supports independent child results and native lazy lists.
-See [styles and themes](docs/architecture/styles.md). Other platforms, additional
-Controllers and broad API coverage are deferred. JS StatelessWidget/StatefulWidget
+See [styles and themes](docs/architecture/styles.md). Core owns generated bindings for
+the public Flutter SDK entries; unsupported selections retain their skip reasons. Other
+platforms and additional Controllers remain deferred. JS StatelessWidget/StatefulWidget
 components use real Flutter State and explicit super calls; see
 [components](docs/architecture/components.md).
 

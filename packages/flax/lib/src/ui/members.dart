@@ -341,7 +341,7 @@ extension _MemberCalls on _Session {
     if (value is! Record) throw ArgumentError('Expected a Dart Record result');
     final actualType = dartTypes.instanceType(value);
     if (type.record == null) {
-      type = dartTypes.resolve(actualType);
+      type = dartTypes.recordOutputView(actualType);
     }
     final binding = type.record!;
     final fields = runtime.dartRecordFields(value);
@@ -355,7 +355,9 @@ extension _MemberCalls on _Session {
         helper('emptyRecord').call([FlaxJsString(signature)]) as FlaxJsObject;
     try {
       _releaseJs(
-        helper('recordDartType').call([output, dartTypes.handle(actualType)]),
+        // Runtime types retain concrete Elements; the selected field view borrows Contexts.
+        helper('recordDartType')
+            .call([output, dartTypes.handle(actualType, view: input)]),
       );
       for (final (index, field) in binding.fields.indexed) {
         FlaxJsValue? encoded;

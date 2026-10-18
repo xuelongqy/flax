@@ -400,6 +400,7 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
           encodeKind: g.encodeKind,
           id: g.id,
           cache: g.cache,
+          isConst: g.isConst,
         ),
     ];
     final proxy = owner.proxy;
@@ -598,14 +599,18 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         if (type.proxy?.kind == 'extends') {
           final proxy = type.proxy!;
           for (final getter in proxy.getters.where(
-            (g) => proxy.hasSuperGetter(g.name),
+            (g) =>
+                proxy.hasSuperGetter(g.name) &&
+                _superDispatch(type, 'get:${g.name}') == null,
           )) {
             out.writeln(
               'Object? _${type.name}_super_get_${getter.name}(Object value, Map<String, Object?> values) => (value as _${type.name}Proxy$args)._flaxSuperGet_${getter.name};',
             );
           }
           for (final setter in proxy.setters.where(
-            (g) => proxy.hasSuperSetter(g.name),
+            (g) =>
+                proxy.hasSuperSetter(g.name) &&
+                _superDispatch(type, 'set:${g.name}') == null,
           )) {
             out.writeln(
               'Object? _${type.name}_super_set_${setter.name}(Object value, Map<String, Object?> values) { (value as _${type.name}Proxy$args)._flaxSuperSet_${setter.name}(${_cast("values['value']", setter.type)}); return null; }',
@@ -617,7 +622,8 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         )) {
           _writeMethod(out, type, _vmDefaultMethod(method));
           if (type.proxy?.kind == 'extends' &&
-              type.proxy!.hasSuperMethod(method.name)) {
+              type.proxy!.hasSuperMethod(method.name) &&
+              _superDispatch(type, 'call:${method.name}') == null) {
             final closed = _vmDefaultMethod(method);
             out.writeln(
               'Object? _${type.name}_super_${method.name}(Object receiver, Map<String, Object?> values) {',

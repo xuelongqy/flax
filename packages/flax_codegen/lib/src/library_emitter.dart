@@ -45,7 +45,13 @@ Map<String, String> flaxCodegenTypescriptOutputSpecifiers(
 class _LibraryLayout {
   _LibraryLayout(this.module)
     : routes = [...module.publicLibraries]
-        ..sort((a, b) => a.jsPackage.compareTo(b.jsPackage));
+        ..sort((a, b) {
+          final priority = (a.jsPackage == module.jsPackage ? 0 : 1).compareTo(
+            b.jsPackage == module.jsPackage ? 0 : 1,
+          );
+          if (priority != 0) return priority;
+          return a.jsPackage.compareTo(b.jsPackage);
+        });
 
   final FlaxCodegenModuleModel module;
   final List<FlaxCodegenLibraryModel> routes;
@@ -71,11 +77,37 @@ class _LibraryLayout {
   Set<String> get names => publicNames;
 
   FlaxCodegenLibraryModel route(String name) => routes.firstWhere(
-    (route) => route.exports.contains(name),
-    orElse: () => routes.first,
+    (route) =>
+        route.library == module.typeLibraries[name] &&
+        route.exports.contains(name),
+    orElse: () => routes.firstWhere(
+      (route) => route.exports.contains(name),
+      orElse: () => routes.first,
+    ),
   );
 
-  String filename(String name) => '${module.name}_$name';
+  late final _caseGroups = () {
+    final groups = <String, List<String>>{};
+    for (final name in allNames) {
+      groups.putIfAbsent(name.toLowerCase(), () => []).add(name);
+    }
+    return groups;
+  }();
+
+  String filename(String name) {
+    var suffix = '';
+    if ((_caseGroups[name.toLowerCase()]?.length ?? 0) > 1) {
+      var capitals = BigInt.zero;
+      for (var index = 0; index < name.length; index++) {
+        if (name[index] != name[index].toLowerCase()) {
+          capitals |= BigInt.one << index;
+        }
+      }
+      suffix = '_c${capitals.toRadixString(36)}';
+    }
+    return '${module.name}_$name$suffix';
+  }
+
   String path(String name) => p.join(
     p.dirname(route(name).tsOutput),
     '_bindings',
@@ -120,6 +152,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
       Iterable<String> names, {
       required String jsPackage,
       required String tsOutput,
+      required List<String> requiredCapabilities,
     }) {
       final selected = names.toSet();
       final snapshots = source.snapshots
@@ -141,7 +174,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
       return FlaxCodegenModuleModel(
         name: source.name,
         moduleId: source.moduleId,
-        requiredCapabilities: source.requiredCapabilities,
+        requiredCapabilities: requiredCapabilities,
         library: source.library,
         jsPackage: jsPackage,
         dartOutput: source.dartOutput,
@@ -187,6 +220,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
         continue;
       }
       final named = <String, FlaxCodegenModuleModel>{};
+      final requiredCapabilities = source.requiredCapabilities;
       chunks[source] = named;
       for (final name in layout.names.toList()..sort()) {
         final classes = source.classes
@@ -220,6 +254,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
               ? layout.route(name).jsPackage
               : layout.specifier(name),
           tsOutput: layout.path(name),
+          requiredCapabilities: requiredCapabilities,
         );
         named[name] = chunk;
         splitModules.add(chunk);
@@ -230,6 +265,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
           layout.internalNames,
           jsPackage: layout.internalSpecifier,
           tsOutput: layout.internalPath,
+          requiredCapabilities: requiredCapabilities,
         );
         internalChunks[source] = chunk;
         splitModules.add(chunk);

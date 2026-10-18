@@ -1,10 +1,11 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_Stream';
-import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamConsumer<S extends unknown | null = unknown | null> extends Readonly<{
     "__flaxBound:dart:async::StreamConsumer": readonly [S];
 }> {
     readonly __StreamConsumer: unique symbol;
+    readonly [_flaxDartTypeValue]: StreamConsumer<S>;
     addStream(stream: (upstream0.Stream<S> | upstream0.Stream<(S | DartInput<S>)>)): Promise<unknown | null>;
     close(): Promise<unknown | null>;
 }

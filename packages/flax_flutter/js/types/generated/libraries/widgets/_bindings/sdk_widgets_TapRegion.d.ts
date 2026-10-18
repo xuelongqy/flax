@@ -1,0 +1,168 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_SingleChildRenderObjectWidget';
+import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
+import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream3 from '@flax/flutter/rendering/_bindings/flutter_HitTestBehavior';
+import '@flax/flutter/rendering/_bindings/flutter_HitTestBehavior';
+import type * as upstream4 from '@flax/flutter/gestures/_bindings/sdk_gestures_PointerDownEvent';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_PointerDownEvent';
+import type * as upstream5 from '@flax/flutter/gestures/_bindings/sdk_gestures_PointerUpEvent';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_PointerUpEvent';
+import type * as upstream6 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_RenderTapRegion';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_SingleChildRenderObjectElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_SingleChildRenderObjectElement';
+import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream14 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface TapRegion extends _FlaxDartWidget, Omit<upstream0.SingleChildRenderObjectWidget, _flaxOwnMembers0>, Omit<upstream1.RenderObjectWidget, _flaxOwnMembers0 | keyof upstream0.SingleChildRenderObjectWidget>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.SingleChildRenderObjectWidget | keyof upstream1.RenderObjectWidget>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/tap_region.dart::TapRegion": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}> {
+    readonly __TapRegion: unique symbol;
+    readonly [_flaxDartTypeValue]: TapRegion;
+    readonly enabled: boolean;
+    readonly behavior: upstream3.HitTestBehavior;
+    readonly onTapOutside: ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>) => void) | null;
+    readonly onTapInside: ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>) => void) | null;
+    readonly onTapUpOutside: ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerUpEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerUpEvent": readonly [];
+    }>) => void) | null;
+    readonly onTapUpInside: ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerUpEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerUpEvent": readonly [];
+    }>) => void) | null;
+    readonly groupId: unknown | null;
+    readonly consumeOutsideTaps: boolean;
+    readonly debugLabel: string | null;
+    readonly child: Widget | null;
+    readonly key: upstream2.Key | null;
+    createRenderObject(context: upstream7.BuildContext): upstream6.RenderObject;
+    updateRenderObject(context: upstream7.BuildContext, renderObject: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/tap_region.dart::RenderTapRegion": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderProxyBoxWithHitTestBehavior": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderProxyBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin": readonly [upstream14.RenderBox];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderProxyBoxMixin": readonly [upstream14.RenderBox];
+    }>): void;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    createElement(): upstream10.SingleChildRenderObjectElement;
+    didUnmountRenderObject(renderObject: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    toStringShort(): string;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream11.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream11.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream13.DiagnosticsTreeStyle | null | undefined;
+    }): upstream12.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
+}
+export declare function _TapRegionFactory(options: {
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }> | null | undefined;
+    child: Widget | null;
+    enabled?: boolean | undefined;
+    behavior?: upstream3.HitTestBehavior | undefined;
+    onTapOutside?: ((event: upstream4.PointerDownEvent) => void) | null | undefined;
+    onTapInside?: ((event: upstream4.PointerDownEvent) => void) | null | undefined;
+    onTapUpOutside?: ((event: upstream5.PointerUpEvent) => void) | null | undefined;
+    onTapUpInside?: ((event: upstream5.PointerUpEvent) => void) | null | undefined;
+    groupId?: unknown | null | undefined;
+    consumeOutsideTaps?: boolean | undefined;
+    debugLabel?: string | null | undefined;
+}): TapRegion;
+export declare const TapRegion: typeof _TapRegionFactory & _FlaxInstanceType<TapRegion> & _FlaxDartType<TapRegion, readonly ["class", "flax.core/sdk_widgets#type:TapRegion", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "enabled" | "behavior" | "onTapOutside" | "onTapInside" | "onTapUpOutside" | "onTapUpInside" | "groupId" | "consumeOutsideTaps" | "debugLabel" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/tap_region.dart::TapRegion" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+export {};

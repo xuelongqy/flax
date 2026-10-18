@@ -1,10 +1,11 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
-import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface MapEntry<K extends unknown | null = unknown | null, V extends unknown | null = unknown | null> extends Readonly<{
     "__flaxBound:dart:core::MapEntry": readonly [K, V];
 }> {
     readonly __MapEntry: unique symbol;
+    readonly [_flaxDartTypeValue]: MapEntry<K, V>;
     readonly key: K;
     readonly value: V;
     toString(): string;

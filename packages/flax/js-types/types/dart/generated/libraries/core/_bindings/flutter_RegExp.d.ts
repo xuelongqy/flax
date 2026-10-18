@@ -6,10 +6,13 @@ import '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import type * as upstream2 from '@flax/dart/core/_bindings/flutter_Match';
 import '@flax/dart/core/_bindings/flutter_Match';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface RegExp extends Omit<upstream0.Pattern, typeof _flaxDartTypeValue | "pattern" | "isMultiLine" | "isCaseSensitive" | "isUnicode" | "isDotAll" | "allMatches" | "matchAsPrefix" | "firstMatch" | "hasMatch" | "stringMatch">, Readonly<{
+export interface RegExp extends Omit<upstream0.Pattern, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:dart:core::RegExp": readonly [];
+}>, Readonly<{
+    "__flaxBound:dart:core::Pattern": readonly [];
 }> {
     readonly __RegExp: unique symbol;
+    readonly [_flaxDartTypeValue]: RegExp;
     readonly pattern: string;
     readonly isMultiLine: boolean;
     readonly isCaseSensitive: boolean;
@@ -31,3 +34,5 @@ export declare namespace _RegExpFactory {
     function escape(text: string): string;
 }
 export declare const RegExp: typeof _RegExpFactory & _FlaxInstanceType<RegExp> & _FlaxDartType<RegExp, readonly ["class", "flax.core/flutter#type:RegExp", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "pattern" | "isMultiLine" | "isCaseSensitive" | "isUnicode" | "isDotAll" | "allMatches" | "matchAsPrefix" | "firstMatch" | "hasMatch" | "stringMatch" | "__flaxBound:dart:core::RegExp" | "__flaxBound:dart:core::Pattern";
+export {};

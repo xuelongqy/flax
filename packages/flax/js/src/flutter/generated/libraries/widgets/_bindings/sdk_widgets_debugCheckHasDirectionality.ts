@@ -1,0 +1,14 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+function _flaxTopLevel_debugCheckHasDirectionality(context: upstream0.BuildContext, options: { alternative?: string | null | undefined; hint?: string | null | undefined; why?: string | null | undefined } = {}): boolean {
+if (arguments.length > 2) throw new TypeError('Too many method arguments');
+if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["alternative","hint","why"].includes(k))) throw new TypeError('Invalid named method arguments');
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:debugCheckHasDirectionality", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.alternative, options.hint, options.why]);
+return _flaxResult as boolean;
+}
+export { _flaxTopLevel_debugCheckHasDirectionality as debugCheckHasDirectionality };

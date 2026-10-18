@@ -7,7 +7,7 @@ import * as dartCore from '@flax/dart/core';
 import * as foundation from '@flax/flutter/foundation';
 import * as services from '@flax/flutter/services';
 import * as widgets from '@flax/flutter/widgets';
-import * as material from '@flax/flutter/material';
+import * as material from '@flax/material-ui';
 
 const StringKey = selectDartType(foundation.ValueKey, nativeTypes.string);
 

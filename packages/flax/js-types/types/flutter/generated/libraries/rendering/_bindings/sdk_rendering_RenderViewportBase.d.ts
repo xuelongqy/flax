@@ -1,0 +1,1056 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartIterable, type DartIterableInput, type DartList, type DartListInput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerParentDataMixin';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerParentDataMixin';
+import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliver';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliver';
+import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import type * as upstream3 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import type * as upstream4 from '@flax/flutter/gestures/_bindings/sdk_gestures_HitTestTarget';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_HitTestTarget';
+import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTreeMixin';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTreeMixin';
+import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTree';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTree';
+import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import type * as upstream8 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderAbstractViewport';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderAbstractViewport';
+import type * as upstream9 from '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerRenderObjectMixin';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerRenderObjectMixin';
+import type * as upstream10 from '@flax/flutter/painting/_bindings/sdk_painting_AxisDirection';
+import '@flax/flutter/painting/_bindings/sdk_painting_AxisDirection';
+import type * as upstream11 from '@flax/flutter/rendering/_bindings/sdk_rendering_ViewportOffset';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_ViewportOffset';
+import type * as upstream12 from '@flax/flutter/rendering/_bindings/sdk_rendering_CacheExtentStyle';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_CacheExtentStyle';
+import type * as upstream13 from '@flax/flutter/rendering/_bindings/sdk_rendering_ScrollCacheExtent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_ScrollCacheExtent';
+import type * as upstream14 from '@flax/flutter/rendering/_bindings/sdk_rendering_SliverPaintOrder';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverPaintOrder';
+import type * as upstream15 from '@flax/dart/ui/_bindings/flutter_Clip';
+import '@flax/dart/ui/_bindings/flutter_Clip';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverPhysicalContainerParentData';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverLogicalContainerParentData';
+import type * as upstream18 from '@flax/dart/ui/_bindings/flutter_Size';
+import '@flax/dart/ui/_bindings/flutter_Size';
+import type * as upstream19 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream20 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
+import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
+import type * as upstream21 from '@flax/flutter/rendering/_bindings/sdk_rendering_ParentData';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_ParentData';
+import type * as upstream22 from '@flax/flutter/rendering/_bindings/sdk_rendering_PipelineOwner';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_PipelineOwner';
+import type * as upstream23 from '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerLayer';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerLayer';
+import type * as upstream24 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsNode';
+import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsNode';
+import type * as upstream25 from '@flax/flutter/painting/_bindings/flutter_Axis';
+import '@flax/flutter/painting/_bindings/flutter_Axis';
+import '@flax/flutter/animation/_bindings/flutter_Curve';
+import type * as upstream27 from '@flax/dart/core/_bindings/flutter_Duration';
+import '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream28 from '@flax/dart/ui/_bindings/flutter_TextBaseline';
+import '@flax/dart/ui/_bindings/flutter_TextBaseline';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_FlutterError';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_BoxHitTestResult';
+import type * as upstream31 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream32 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_BoxHitTestEntry';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_HitTestEntry';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_PaintingContext';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream38 from '@flax/flutter/rendering/_bindings/sdk_rendering_Constraints';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_Constraints';
+import type * as upstream39 from '@flax/flutter/rendering/_bindings/sdk_rendering_OffsetLayer';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_OffsetLayer';
+import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsConfiguration';
+import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsEvent';
+import type * as upstream42 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream43 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream44 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream45 from '@flax/flutter/rendering/_bindings/sdk_rendering_RevealedOffset';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RevealedOffset';
+import type * as upstream46 from '@flax/flutter/rendering/_bindings/sdk_rendering_GrowthDirection';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_GrowthDirection';
+import type * as upstream47 from '@flax/flutter/rendering/_bindings/sdk_rendering_SliverGeometry';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverGeometry';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface RenderViewportBase<ParentDataClass extends upstream0.ContainerParentDataMixin<upstream1.RenderSliver> = upstream0.ContainerParentDataMixin<upstream1.RenderSliver>> extends Omit<upstream2.RenderBox, _flaxOwnMembers0>, Omit<upstream3.RenderObject, _flaxOwnMembers0 | keyof upstream2.RenderBox>, Omit<upstream4.HitTestTarget, _flaxOwnMembers0 | keyof upstream2.RenderBox | keyof upstream3.RenderObject>, Omit<upstream5.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream2.RenderBox | keyof upstream3.RenderObject | keyof upstream4.HitTestTarget>, Omit<upstream6.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream2.RenderBox | keyof upstream3.RenderObject | keyof upstream4.HitTestTarget | keyof upstream5.DiagnosticableTreeMixin>, Omit<upstream7.Diagnosticable, _flaxOwnMembers0 | keyof upstream2.RenderBox | keyof upstream3.RenderObject | keyof upstream4.HitTestTarget | keyof upstream5.DiagnosticableTreeMixin | keyof upstream6.DiagnosticableTree>, Omit<upstream8.RenderAbstractViewport, _flaxOwnMembers0 | keyof upstream2.RenderBox | keyof upstream3.RenderObject | keyof upstream4.HitTestTarget | keyof upstream5.DiagnosticableTreeMixin | keyof upstream6.DiagnosticableTree | keyof upstream7.Diagnosticable>, Omit<upstream9.ContainerRenderObjectMixin<upstream1.RenderSliver, ParentDataClass>, _flaxOwnMembers0 | keyof upstream2.RenderBox | keyof upstream3.RenderObject | keyof upstream4.HitTestTarget | keyof upstream5.DiagnosticableTreeMixin | keyof upstream6.DiagnosticableTree | keyof upstream7.Diagnosticable | keyof upstream8.RenderAbstractViewport>, Readonly<{
+    "__flaxBound:package:flutter/src/rendering/viewport.dart::RenderViewportBase": readonly [ParentDataClass];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/rendering/viewport.dart::RenderAbstractViewport": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/rendering/object.dart::ContainerRenderObjectMixin": readonly [upstream1.RenderSliver, ParentDataClass];
+}> {
+    readonly __RenderViewportBase: unique symbol;
+    readonly [_flaxDartTypeValue]: RenderViewportBase<ParentDataClass>;
+    readonly [_flaxDartMethodCases]?: {
+        invokeLayoutCallback: _FlaxSignature1<ParentDataClass>;
+    };
+}
+export interface RenderViewportBase<ParentDataClass extends upstream0.ContainerParentDataMixin<upstream1.RenderSliver> = upstream0.ContainerParentDataMixin<upstream1.RenderSliver>> {
+    readonly [_flaxDartTypeValue]: RenderViewportBase<ParentDataClass>;
+    readonly [_flaxDartMethodCases]?: {
+        invokeLayoutCallback: _FlaxSignature2<ParentDataClass>;
+    };
+    setupParentData(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    getMinIntrinsicWidth(height: number): number;
+    computeMinIntrinsicWidth(height: number): number;
+    getMaxIntrinsicWidth(height: number): number;
+    computeMaxIntrinsicWidth(height: number): number;
+    getMinIntrinsicHeight(width: number): number;
+    computeMinIntrinsicHeight(width: number): number;
+    getMaxIntrinsicHeight(width: number): number;
+    computeMaxIntrinsicHeight(width: number): number;
+    getDryLayout(constraints: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>): upstream18.Size;
+    computeDryLayout(constraints: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>): upstream18.Size;
+    getDryBaseline(constraints: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>, baseline: upstream28.TextBaseline): number | null;
+    computeDryBaseline(constraints: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>, baseline: upstream28.TextBaseline): number | null;
+    debugCannotComputeDryLayout(options?: {
+        reason?: string | null | undefined;
+        error?: (Readonly<{
+            "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterError": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Error": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::AssertionError": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): boolean;
+    debugAdoptSize(value: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): upstream18.Size;
+    debugResetSize(): void;
+    getDistanceToBaseline(baseline: upstream28.TextBaseline, options?: {
+        onlyReal?: boolean | undefined;
+    }): number | null;
+    getDistanceToActualBaseline(baseline: upstream28.TextBaseline): number | null;
+    computeDistanceToActualBaseline(baseline: upstream28.TextBaseline): number | null;
+    debugAssertDoesMeetConstraints(): void;
+    markNeedsLayout(): void;
+    performResize(): void;
+    performLayout(): void;
+    hitTest(result: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxHitTestResult": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [];
+    }>, options: {
+        position: Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+    }): boolean;
+    hitTestSelf(position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): boolean;
+    hitTestChildren(result: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxHitTestResult": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestResult": readonly [];
+    }>, options: {
+        position: Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+    }): boolean;
+    applyPaintTransform(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>): void;
+    globalToLocal(point: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        ancestor?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream31.Offset;
+    localToGlobal(point: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        ancestor?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): upstream31.Offset;
+    handleEvent(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, entry: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestEntry": readonly [upstream4.HitTestTarget];
+    }>): void;
+    debugHandleEvent(event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, entry: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestEntry": readonly [upstream4.HitTestTarget];
+    }>): boolean;
+    debugPaint(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    debugPaintBaselines(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    debugPaintPointers(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    reassemble(): void;
+    dispose(): void;
+    redepthChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    redepthChildren(): void;
+    adoptChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    dropChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    visitChildren(visitor: ((child: upstream3.RenderObject) => void)): void;
+    attach(owner: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PipelineOwner": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    detach(): void;
+    markParentNeedsLayout(): void;
+    markNeedsLayoutForSizedByParentChange(): void;
+    scheduleInitialLayout(): void;
+    layout(constraints: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>, options?: {
+        parentUsesSize?: boolean | undefined;
+    }): void;
+    invokeLayoutCallback<T extends upstream38.Constraints = upstream38.Constraints>(callback: ((constraints: T) => void)): void;
+    debugRegisterRepaintBoundaryPaint(options?: {
+        includedParent?: boolean | undefined;
+        includedChild?: boolean | undefined;
+    }): void;
+    updateCompositedLayer(options: {
+        oldLayer: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::OffsetLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null;
+    }): upstream39.OffsetLayer;
+    markNeedsCompositingBitsUpdate(): void;
+    markNeedsPaint(): void;
+    markNeedsCompositedLayerUpdate(): void;
+    scheduleInitialPaint(rootLayer: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    replaceRootLayer(rootLayer: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::OffsetLayer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    paint(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    paintsChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    getTransformTo(target: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null): upstream32.Matrix4;
+    describeApproximatePaintClip(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): upstream19.Rect | null;
+    describeSemanticsClip(child: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null): upstream19.Rect | null;
+    scheduleInitialSemantics(): void;
+    describeSemanticsConfiguration(config: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsConfiguration": readonly [];
+    }>): void;
+    sendSemanticsEvent(semanticsEvent: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics_event.dart::SemanticsEvent": readonly [];
+    }>): void;
+    clearSemantics(): void;
+    markNeedsSemanticsUpdate(): void;
+    visitChildrenForSemantics(visitor: ((child: upstream3.RenderObject) => void)): void;
+    assembleSemanticsNode(node: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, config: Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsConfiguration": readonly [];
+    }>, children: DartIterableInput<upstream24.SemanticsNode, Readonly<{
+        "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>): void;
+    toStringShort(): string;
+    toStringDeep(options?: {
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        minLevel?: upstream42.DiagnosticLevel | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream42.DiagnosticLevel | undefined;
+    }): string;
+    debugDescribeChildren(): DartList<upstream43.DiagnosticsNode>;
+    showOnScreen(options?: {
+        descendant?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        rect?: Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }> | null | undefined;
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream27.Duration];
+        }>) | undefined;
+        curve?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>) | undefined;
+    }): void;
+    describeForError(name: string, options?: {
+        style?: upstream44.DiagnosticsTreeStyle | undefined;
+    }): upstream43.DiagnosticsNode;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream44.DiagnosticsTreeStyle | null | undefined;
+    }): upstream43.DiagnosticsNode;
+    toString(options?: {
+        minLevel?: upstream42.DiagnosticLevel | undefined;
+    }): string;
+    getOffsetToReveal(target: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, alignment: number, options?: {
+        rect?: Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }> | null | undefined;
+        axis?: upstream25.Axis | null | undefined;
+    }): upstream45.RevealedOffset;
+    debugValidateChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): boolean;
+    insert(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, options?: {
+        after?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): void;
+    add(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    addAll(children: DartListInput<upstream1.RenderSliver, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>> | null): void;
+    remove(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    removeAll(): void;
+    move(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, options?: {
+        after?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): void;
+    childBefore(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): upstream1.RenderSliver | null;
+    childAfter(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): upstream1.RenderSliver | null;
+    debugThrowIfNotCheckingIntrinsics(): boolean;
+    layoutChildSequence(options: {
+        child: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null;
+        scrollOffset: number;
+        overlap: number;
+        layoutOffset: number;
+        remainingPaintExtent: number;
+        mainAxisExtent: number;
+        crossAxisExtent: number;
+        growthDirection: upstream46.GrowthDirection;
+        advance: ((child: upstream1.RenderSliver) => (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null);
+        remainingCacheExtent: number;
+        cacheOrigin: number;
+    }): number;
+    debugPaintSize(context: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [];
+    }>, offset: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>): void;
+    computeAbsolutePaintOffset(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, layoutOffset: number, growthDirection: upstream46.GrowthDirection): upstream31.Offset;
+    get axisDirection(): upstream10.AxisDirection;
+    get crossAxisDirection(): upstream10.AxisDirection;
+    get axis(): upstream25.Axis;
+    get offset(): upstream11.ViewportOffset;
+    get cacheExtent(): number | null;
+    get scrollCacheExtent(): upstream13.ScrollCacheExtent;
+    get cacheExtentStyle(): upstream12.CacheExtentStyle;
+    get paintOrder(): upstream14.SliverPaintOrder;
+    get clipBehavior(): upstream15.Clip;
+    get isRepaintBoundary(): boolean;
+    get childrenInPaintOrder(): DartIterable<upstream1.RenderSliver>;
+    get childrenInHitTestOrder(): DartIterable<upstream1.RenderSliver>;
+    get hasSize(): boolean;
+    get size(): upstream18.Size;
+    get semanticBounds(): upstream19.Rect;
+    get constraints(): upstream20.BoxConstraints;
+    get paintBounds(): upstream19.Rect;
+    get debugDisposed(): boolean | null;
+    get parentData(): upstream21.ParentData | null;
+    get depth(): number;
+    get parent(): upstream3.RenderObject | null;
+    get debugCreator(): unknown | null;
+    get debugDoingThisResize(): boolean;
+    get debugDoingThisLayout(): boolean;
+    get debugCanParentUseSize(): boolean;
+    get debugLayoutParent(): upstream3.RenderObject | null;
+    get owner(): upstream22.PipelineOwner | null;
+    get attached(): boolean;
+    get debugNeedsLayout(): boolean;
+    get debugDoingThisLayoutWithCallback(): boolean;
+    get sizedByParent(): boolean;
+    get debugDoingThisPaint(): boolean;
+    get alwaysNeedsCompositing(): boolean;
+    get layer(): upstream23.ContainerLayer | null;
+    get debugLayer(): upstream23.ContainerLayer | null;
+    get needsCompositing(): boolean;
+    get debugNeedsPaint(): boolean;
+    get debugNeedsCompositedLayerUpdate(): boolean;
+    get debugNeedsSemanticsUpdate(): boolean;
+    get debugSemantics(): upstream24.SemanticsNode | null;
+    get childCount(): number;
+    get firstChild(): upstream1.RenderSliver | null;
+    get lastChild(): upstream1.RenderSliver | null;
+    set axisDirection(value: upstream10.AxisDirection);
+    set crossAxisDirection(value: upstream10.AxisDirection);
+    set offset(value: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>);
+    set cacheExtent(value: number | null);
+    set scrollCacheExtent(value: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/viewport.dart::ScrollCacheExtent": readonly [];
+    }> | null);
+    set cacheExtentStyle(value: upstream12.CacheExtentStyle);
+    set paintOrder(value: upstream14.SliverPaintOrder);
+    set clipBehavior(value: upstream15.Clip);
+    set size(value: Readonly<{
+        "__flaxBound:dart:ui::Size": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>);
+    set parentData(value: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::ParentData": readonly [];
+    }> | null);
+    set debugCreator(value: unknown | null);
+    set layer(value: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::ContainerLayer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/layer.dart::Layer": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null);
+}
+export declare abstract class RenderViewportBase<ParentDataClass extends upstream0.ContainerParentDataMixin<upstream1.RenderSliver> = upstream0.ContainerParentDataMixin<upstream1.RenderSliver>> extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RenderViewportBase<upstream0.ContainerParentDataMixin<upstream1.RenderSliver>>>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: RenderViewportBase<upstream0.ContainerParentDataMixin<upstream1.RenderSliver>>;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:RenderViewportBase", readonly [readonly ["class", "flax.core/sdk_rendering#type:ContainerParentDataMixin", readonly [readonly ["class", "flax.core/sdk_rendering#type:RenderSliver", readonly [], false]], false]], false];
+    static $type: _FlaxDartTypeCases<unknown>['$type'];
+    static [_flaxDartTypeCases]: _FlaxSignature3;
+    constructor(options: {
+        axisDirection?: upstream10.AxisDirection | undefined;
+        crossAxisDirection: upstream10.AxisDirection;
+        offset: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }>;
+        cacheExtent?: number | null | undefined;
+        cacheExtentStyle?: upstream12.CacheExtentStyle | undefined;
+        scrollCacheExtent?: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/viewport.dart::ScrollCacheExtent": readonly [];
+        }> | null | undefined;
+        paintOrder?: upstream14.SliverPaintOrder | undefined;
+        clipBehavior?: upstream15.Clip | undefined;
+    });
+    abstract updateOutOfBandData(growthDirection: upstream46.GrowthDirection, childLayoutGeometry: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::SliverGeometry": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    abstract updateChildLayoutOffset(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, layoutOffset: number, growthDirection: upstream46.GrowthDirection): void;
+    abstract paintOffsetOf(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): upstream31.Offset;
+    abstract scrollOffsetOf(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, scrollOffsetWithinChild: number): number;
+    abstract maxScrollObstructionExtentBefore(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): number;
+    abstract computeChildMainAxisPosition(child: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>, parentMainAxisPosition: number): number;
+    abstract labelForChild(index: number): string;
+    abstract get hasVisualOverflow(): boolean;
+    abstract get indexOfFirstChild(): number;
+}
+export declare namespace RenderViewportBase {
+    function implement<ParentDataClass extends upstream0.ContainerParentDataMixin<upstream1.RenderSliver> = upstream0.ContainerParentDataMixin<upstream1.RenderSliver>>(args: [options: {
+        axisDirection?: upstream10.AxisDirection | undefined;
+        crossAxisDirection: upstream10.AxisDirection;
+        offset: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }>;
+        cacheExtent?: number | null | undefined;
+        cacheExtentStyle?: upstream12.CacheExtentStyle | undefined;
+        scrollCacheExtent?: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/viewport.dart::ScrollCacheExtent": readonly [];
+        }> | null | undefined;
+        paintOrder?: upstream14.SliverPaintOrder | undefined;
+        clipBehavior?: upstream15.Clip | undefined;
+    }], implementation: {
+        updateOutOfBandData: ((growthDirection: upstream46.GrowthDirection, childLayoutGeometry: upstream47.SliverGeometry) => void);
+        updateChildLayoutOffset: ((child: upstream1.RenderSliver, layoutOffset: number, growthDirection: upstream46.GrowthDirection) => void);
+        paintOffsetOf: ((child: upstream1.RenderSliver) => Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>);
+        scrollOffsetOf: ((child: upstream1.RenderSliver, scrollOffsetWithinChild: number) => number);
+        maxScrollObstructionExtentBefore: ((child: upstream1.RenderSliver) => number);
+        computeChildMainAxisPosition: ((child: upstream1.RenderSliver, parentMainAxisPosition: number) => number);
+        labelForChild: ((index: number) => string);
+        get hasVisualOverflow(): boolean;
+        get indexOfFirstChild(): number;
+    }): RenderViewportBase<ParentDataClass>;
+}
+export declare namespace RenderViewportBase {
+    function showInViewport(options: {
+        curve?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
+        }>) | undefined;
+        descendant?: (Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream27.Duration];
+        }>) | undefined;
+        offset: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }>;
+        rect?: Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }> | null | undefined;
+        viewport: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/viewport.dart::RenderAbstractViewport": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+    }): upstream19.Rect | null;
+}
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasSize" | "size" | "semanticBounds" | "constraints" | "paintBounds" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "childCount" | "firstChild" | "lastChild" | "axisDirection" | "crossAxisDirection" | "axis" | "offset" | "cacheExtent" | "scrollCacheExtent" | "cacheExtentStyle" | "paintOrder" | "clipBehavior" | "hasVisualOverflow" | "indexOfFirstChild" | "childrenInPaintOrder" | "childrenInHitTestOrder" | "setupParentData" | "getMinIntrinsicWidth" | "computeMinIntrinsicWidth" | "getMaxIntrinsicWidth" | "computeMaxIntrinsicWidth" | "getMinIntrinsicHeight" | "computeMinIntrinsicHeight" | "getMaxIntrinsicHeight" | "computeMaxIntrinsicHeight" | "getDryLayout" | "computeDryLayout" | "getDryBaseline" | "computeDryBaseline" | "debugCannotComputeDryLayout" | "debugAdoptSize" | "debugResetSize" | "getDistanceToBaseline" | "getDistanceToActualBaseline" | "computeDistanceToActualBaseline" | "debugAssertDoesMeetConstraints" | "markNeedsLayout" | "performResize" | "performLayout" | "hitTest" | "hitTestSelf" | "hitTestChildren" | "applyPaintTransform" | "globalToLocal" | "localToGlobal" | "handleEvent" | "debugHandleEvent" | "debugPaint" | "debugPaintBaselines" | "debugPaintPointers" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paint" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "toString" | "getOffsetToReveal" | "debugValidateChild" | "insert" | "add" | "addAll" | "remove" | "removeAll" | "move" | "childBefore" | "childAfter" | "debugThrowIfNotCheckingIntrinsics" | "layoutChildSequence" | "debugPaintSize" | "computeAbsolutePaintOffset" | "updateOutOfBandData" | "updateChildLayoutOffset" | "paintOffsetOf" | "scrollOffsetOf" | "maxScrollObstructionExtentBefore" | "computeChildMainAxisPosition" | "labelForChild" | "__flaxBound:package:flutter/src/rendering/viewport.dart::RenderViewportBase" | "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/rendering/viewport.dart::RenderAbstractViewport" | "__flaxBound:package:flutter/src/rendering/object.dart::ContainerRenderObjectMixin";
+interface _FlaxSignature1<_OwnerType0 extends upstream0.ContainerParentDataMixin<upstream1.RenderSliver>> extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream38.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
+}
+interface _FlaxSignature2<_OwnerType0 extends upstream0.ContainerParentDataMixin<upstream1.RenderSliver>> extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream38.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
+}
+interface _FlaxSignature3 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.ContainerParentDataMixin<upstream1.RenderSliver>] ? (abstract new (options: {
+        axisDirection?: upstream10.AxisDirection | undefined;
+        crossAxisDirection: upstream10.AxisDirection;
+        offset: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }>;
+        cacheExtent?: number | null | undefined;
+        cacheExtentStyle?: upstream12.CacheExtentStyle | undefined;
+        scrollCacheExtent?: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/viewport.dart::ScrollCacheExtent": readonly [];
+        }> | null | undefined;
+        paintOrder?: upstream14.SliverPaintOrder | undefined;
+        clipBehavior?: upstream15.Clip | undefined;
+    }) => RenderViewportBase<_Selected0>) & {
+        readonly prototype: RenderViewportBase<_Selected0>;
+        implement(args: readonly [options: {
+            axisDirection?: upstream10.AxisDirection | undefined;
+            crossAxisDirection: upstream10.AxisDirection;
+            offset: Readonly<{
+                "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            }> & Readonly<{
+                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            }>;
+            cacheExtent?: number | null | undefined;
+            cacheExtentStyle?: upstream12.CacheExtentStyle | undefined;
+            scrollCacheExtent?: Readonly<{
+                "__flaxBound:package:flutter/src/rendering/viewport.dart::ScrollCacheExtent": readonly [];
+            }> | null | undefined;
+            paintOrder?: upstream14.SliverPaintOrder | undefined;
+            clipBehavior?: upstream15.Clip | undefined;
+        }], implementation: Partial<RenderViewportBase<_Selected0>>): RenderViewportBase<_Selected0>;
+    } & _FlaxInstanceType<RenderViewportBase<_Selected0>> & _FlaxDartType<RenderViewportBase<_Selected0>> : never : never;
+}
+export {};

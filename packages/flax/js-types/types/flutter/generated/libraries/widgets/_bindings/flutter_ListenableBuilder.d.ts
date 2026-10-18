@@ -4,7 +4,19 @@ import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface ListenableBuilder extends WidgetDescription {
+export interface ListenableBuilder extends WidgetDescription, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/transitions.dart::ListenableBuilder": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/transitions.dart::AnimatedWidget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>, 'type'> {
     readonly type: "flax.core/flutter#type:ListenableBuilder";
 }
 export declare function _ListenableBuilderFactory(options: {

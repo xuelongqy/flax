@@ -135,6 +135,14 @@ Prepared format-2 inventories record public `subpaths` found under each delivery
 only exact prepared entries or these recorded aliases; a parent module never supplies a
 missing child module. Older inventories without `subpaths` allow exact entries only.
 
+Prepared production modules use esbuild minification with function/class names preserved
+and without property mangling. The full binding requirements, capabilities and public
+subpaths remain in `modules.json`, where Dart validates them before module execution.
+Each JS registration carries only its specifier, owner, version, artifact hash and
+dependencies; it no longer repeats unused inventory fields. Updating prepared modules
+also updates artifact hashes and requires rebuilding consuming business bundles.
+Development transforms and the HMR protocol remain unchanged.
+
 Runtime format `flax-cjs-1` registers factories before business execution. Factories run
 once, lazily, within one runtime. Dependency cycles reuse published CommonJS exports;
 failed initializers remain failed. The artifact digest detects stale contract pairings;

@@ -1,0 +1,52 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering_TextSelectionHandleType';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_TextSelectionHandleType';
+import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface SelectionPoint extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __SelectionPoint: unique symbol;
+readonly [_flaxDartTypeValue]: SelectionPoint;
+
+}
+defineObject("flax.core/sdk_rendering#type:SelectionPoint", ["localPosition","lineHeight","handleType"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SelectionPoint", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+const _SelectionPointProxy = {type: "flax.core/sdk_rendering#type:SelectionPoint", parameters: [{"name":"localPosition","required":true,"positional":false},{"name":"lineHeight","required":true,"positional":false},{"name":"handleType","required":true,"positional":false}], constructors: {"":[{"name":"localPosition","required":true,"positional":false},{"name":"lineHeight","required":true,"positional":false},{"name":"handleType","required":true,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3}, getters: ["localPosition","lineHeight","handleType"], setters: [], contextMembers: [], superMembers: ["get:localPosition","get:lineHeight","get:handleType","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+export interface SelectionPoint {
+readonly [_flaxDartTypeValue]: SelectionPoint;
+
+toStringShort(): string;
+toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream5.DiagnosticsTreeStyle | null | undefined}): upstream4.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+get localPosition(): upstream1.Offset;
+get lineHeight(): number;
+get handleType(): upstream2.TextSelectionHandleType;
+}
+export abstract class SelectionPoint extends _FlaxProxyBase {
+static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SelectionPoint>[typeof globalThis.Symbol.hasInstance];
+static declare [_flaxDartTypeValue]: SelectionPoint;
+static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:SelectionPoint", readonly [], false];
+constructor(options: {localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; lineHeight: number; handleType: upstream2.TextSelectionHandleType}) { super(_SelectionPointProxy, Array.from(arguments)); }
+}
+_flaxDefineProxyBase(SelectionPoint.prototype, _SelectionPointProxy);
+export namespace SelectionPoint { export function implement(args: [options: {localPosition: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; lineHeight: number; handleType: upstream2.TextSelectionHandleType}], implementation: {}): SelectionPoint {
+return constructProxy(_SelectionPointProxy, args, implementation) as SelectionPoint; } }
+_flaxBindInstanceType<SelectionPoint, typeof SelectionPoint>(SelectionPoint, "flax.core/sdk_rendering#type:SelectionPoint", ["dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "localPosition" | "lineHeight" | "handleType" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionPoint" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

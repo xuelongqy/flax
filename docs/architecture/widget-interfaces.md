@@ -125,7 +125,7 @@ sizes, obstruction behavior, callback/Future/Stream identities and private senti
 subtypes are preserved. Their native members add no JS calls when Flutter reads them. A
 native setter follows Dart behavior and does not schedule a rebuild.
 
-Manifest 24 additionally records `proxy.widgetInterface`, preserving the native base
+Manifest 26 additionally records `proxy.widgetInterface`, preserving the native base
 choice through generic specialization and dependency projections. Native-only members
 record only kind, name and parameter names, without forwarding source or import fields.
 Previous formats are rejected. Regenerate providers and consumers together. Declaration

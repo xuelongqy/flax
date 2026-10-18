@@ -1,0 +1,116 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_SelectionContainerDelegate';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_SelectionContainerDelegate';
+import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionHandler';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionHandler';
+import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
+import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
+import type * as upstream3 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionGeometry';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionGeometry';
+import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
+import '@flax/flutter/foundation/_bindings/flutter_Listenable';
+import type * as upstream5 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionRegistrar';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionRegistrar';
+import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
+import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_Size';
+import '@flax/dart/ui/_bindings/flutter_Size';
+import type * as upstream8 from '@flax/flutter/rendering/_bindings/sdk_rendering_Selectable';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_Selectable';
+import type * as upstream9 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import type * as upstream10 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import type * as upstream11 from '@flax/flutter/rendering/_bindings/sdk_rendering_LayerLink';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_LayerLink';
+import type * as upstream12 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectedContent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectedContent';
+import type * as upstream13 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectedContentRange';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectedContentRange';
+import type * as upstream14 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionResult';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionResult';
+import type * as upstream15 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionEvent';
+import type * as upstream16 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectAllSelectionEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectAllSelectionEvent';
+import type * as upstream17 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectWordSelectionEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectWordSelectionEvent';
+import type * as upstream18 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectParagraphSelectionEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectParagraphSelectionEvent';
+import type * as upstream19 from '@flax/flutter/rendering/_bindings/sdk_rendering_ClearSelectionEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_ClearSelectionEvent';
+import type * as upstream20 from '@flax/flutter/rendering/_bindings/sdk_rendering_GranularlyExtendSelectionEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_GranularlyExtendSelectionEvent';
+import type * as upstream21 from '@flax/flutter/rendering/_bindings/sdk_rendering_DirectionallyExtendSelectionEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_DirectionallyExtendSelectionEvent';
+import type * as upstream22 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionEdgeUpdateEvent';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionEdgeUpdateEvent';
+const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"event","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"selectable","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"selectable","required":true,"positional":true},{"name":"event","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"child","required":true,"positional":true}] as const;
+const _flaxMemberParameters5 = [{"name":"ancestor","required":true,"positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"startHandle","required":true,"positional":true},{"name":"endHandle","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [{"name":"listener","required":true,"positional":true}] as const;
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface MultiSelectableSelectionContainerDelegate extends Omit<upstream0.SelectionContainerDelegate, _flaxOwnMembers0>, Omit<upstream1.SelectionHandler, _flaxOwnMembers0 | keyof upstream0.SelectionContainerDelegate>, Omit<upstream2.ValueListenable<upstream3.SelectionGeometry>, _flaxOwnMembers0 | keyof upstream0.SelectionContainerDelegate | keyof upstream1.SelectionHandler>, Omit<upstream4.Listenable, _flaxOwnMembers0 | keyof upstream0.SelectionContainerDelegate | keyof upstream1.SelectionHandler | keyof upstream2.ValueListenable<upstream3.SelectionGeometry>>, Omit<upstream5.SelectionRegistrar, _flaxOwnMembers0 | keyof upstream0.SelectionContainerDelegate | keyof upstream1.SelectionHandler | keyof upstream2.ValueListenable<upstream3.SelectionGeometry> | keyof upstream4.Listenable>, Omit<upstream6.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.SelectionContainerDelegate | keyof upstream1.SelectionHandler | keyof upstream2.ValueListenable<upstream3.SelectionGeometry> | keyof upstream4.Listenable | keyof upstream5.SelectionRegistrar>, Readonly<{ "__flaxBound:package:flutter/src/widgets/selectable_region.dart::MultiSelectableSelectionContainerDelegate": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/selection_container.dart::SelectionContainerDelegate": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> { readonly __MultiSelectableSelectionContainerDelegate: unique symbol;
+readonly [_flaxDartTypeValue]: MultiSelectableSelectionContainerDelegate;
+
+}
+defineObject("flax.core/sdk_widgets#type:MultiSelectableSelectionContainerDelegate", ["hasSize","containerSize","contentLength","value","hasListeners","selectables","currentSelectionEndIndex","currentSelectionStartIndex","compareOrder"], ["selectables","currentSelectionEndIndex","currentSelectionStartIndex"], _flaxBindingMethods("flax.core/sdk_widgets#type:MultiSelectableSelectionContainerDelegate", "object", {"dispose":_flaxMemberParameters0,"layoutDidChange":_flaxMemberParameters0,"didChangeSelectables":_flaxMemberParameters0,"getSelectionGeometry":_flaxMemberParameters0,"handleSelectAll":_flaxMemberParameters1,"handleSelectWord":_flaxMemberParameters1,"handleSelectParagraph":_flaxMemberParameters1,"handleClearSelection":_flaxMemberParameters1,"handleGranularlyExtendSelection":_flaxMemberParameters1,"handleDirectionallyExtendSelection":_flaxMemberParameters1,"handleSelectionEdgeUpdate":_flaxMemberParameters1,"ensureChildUpdated":_flaxMemberParameters2,"dispatchSelectionEventToChild":_flaxMemberParameters3}, {}), ["removeListener"], undefined, "flax.core/sdk_widgets#type:SelectionContainerDelegate");
+const _MultiSelectableSelectionContainerDelegateProxy = {type: "flax.core/sdk_widgets#type:MultiSelectableSelectionContainerDelegate", parameters: [], constructors: {"":[]}, methods: {"getTransformFrom":_flaxMemberParameters4,"getTransformTo":_flaxMemberParameters5,"pushHandleLayers":_flaxMemberParameters6,"getSelectedContent":_flaxMemberParameters0,"getSelection":_flaxMemberParameters0,"dispatchSelectionEvent":_flaxMemberParameters1,"addListener":_flaxMemberParameters7,"removeListener":_flaxMemberParameters7,"add":_flaxMemberParameters2,"remove":_flaxMemberParameters2,"dispose":_flaxMemberParameters0,"layoutDidChange":_flaxMemberParameters0,"didChangeSelectables":_flaxMemberParameters0,"getSelectionGeometry":_flaxMemberParameters0,"handleSelectAll":_flaxMemberParameters1,"handleSelectWord":_flaxMemberParameters1,"handleSelectParagraph":_flaxMemberParameters1,"handleClearSelection":_flaxMemberParameters1,"handleGranularlyExtendSelection":_flaxMemberParameters1,"handleDirectionallyExtendSelection":_flaxMemberParameters1,"handleSelectionEdgeUpdate":_flaxMemberParameters1,"ensureChildUpdated":_flaxMemberParameters2,"dispatchSelectionEventToChild":_flaxMemberParameters3}, getters: ["selectables","currentSelectionEndIndex","currentSelectionStartIndex","value","compareOrder","contentLength","hasSize","containerSize","hasListeners"], setters: ["selectables","currentSelectionEndIndex","currentSelectionStartIndex"], contextMembers: [], superMembers: ["get:selectables","get:currentSelectionEndIndex","get:currentSelectionStartIndex","get:value","get:compareOrder","get:contentLength","get:hasSize","get:containerSize","get:hasListeners","set:selectables","set:currentSelectionEndIndex","set:currentSelectionStartIndex","getTransformFrom","getTransformTo","pushHandleLayers","getSelectedContent","getSelection","dispatchSelectionEvent","addListener","removeListener","add","remove","dispose","layoutDidChange","didChangeSelectables","getSelectionGeometry","handleSelectAll","handleSelectWord","handleSelectParagraph","handleClearSelection","handleGranularlyExtendSelection","handleDirectionallyExtendSelection","handleSelectionEdgeUpdate","dispatchSelectionEventToChild"]} as const;
+export interface MultiSelectableSelectionContainerDelegate {
+readonly [_flaxDartTypeValue]: MultiSelectableSelectionContainerDelegate;
+
+getTransformFrom(child: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): upstream9.Matrix4;
+getTransformTo(ancestor: Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null): upstream9.Matrix4;
+pushHandleLayers(startHandle: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::LayerLink": readonly [] }> | null, endHandle: Readonly<{ "__flaxBound:package:flutter/src/rendering/layer.dart::LayerLink": readonly [] }> | null): void;
+getSelectedContent(): upstream12.SelectedContent | null;
+getSelection(): upstream13.SelectedContentRange | null;
+dispatchSelectionEvent(event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+addListener(listener: (() => void)): void;
+removeListener(listener: (() => void)): void;
+add(selectable: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): void;
+remove(selectable: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): void;
+dispose(): void;
+layoutDidChange(): void;
+didChangeSelectables(): void;
+getSelectionGeometry(): upstream3.SelectionGeometry;
+handleSelectAll(event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectAllSelectionEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+handleSelectWord(event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectWordSelectionEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+handleSelectParagraph(event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectParagraphSelectionEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+handleClearSelection(event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::ClearSelectionEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+handleGranularlyExtendSelection(event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::GranularlyExtendSelectionEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+handleDirectionallyExtendSelection(event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::DirectionallyExtendSelectionEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+handleSelectionEdgeUpdate(event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEdgeUpdateEvent": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+dispatchSelectionEventToChild(selectable: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>, event: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [] }>): upstream14.SelectionResult;
+get selectables(): DartList<upstream8.Selectable>;
+get currentSelectionEndIndex(): number;
+get currentSelectionStartIndex(): number;
+get value(): upstream3.SelectionGeometry;
+get compareOrder(): ((a: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>, b: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>) => number);
+get contentLength(): number;
+get hasSize(): boolean;
+get containerSize(): upstream7.Size;
+get hasListeners(): boolean;
+set selectables(value: DartListInput<upstream8.Selectable, Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>>);
+set currentSelectionEndIndex(value: number);
+set currentSelectionStartIndex(value: number);
+}
+export abstract class MultiSelectableSelectionContainerDelegate extends _FlaxProxyBase {
+static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MultiSelectableSelectionContainerDelegate>[typeof globalThis.Symbol.hasInstance];
+static declare [_flaxDartTypeValue]: MultiSelectableSelectionContainerDelegate;
+static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:MultiSelectableSelectionContainerDelegate", readonly [], false];
+constructor() { super(_MultiSelectableSelectionContainerDelegateProxy, Array.from(arguments)); }
+abstract ensureChildUpdated(selectable: Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): void;
+}
+_flaxDefineProxyBase(MultiSelectableSelectionContainerDelegate.prototype, _MultiSelectableSelectionContainerDelegateProxy);
+export namespace MultiSelectableSelectionContainerDelegate { export function implement(args: [], implementation: {ensureChildUpdated: ((selectable: upstream8.Selectable) => void)}): MultiSelectableSelectionContainerDelegate {
+return constructProxy(_MultiSelectableSelectionContainerDelegateProxy, args, implementation) as MultiSelectableSelectionContainerDelegate; } }
+_flaxBindInstanceType<MultiSelectableSelectionContainerDelegate, typeof MultiSelectableSelectionContainerDelegate>(MultiSelectableSelectionContainerDelegate, "flax.core/sdk_widgets#type:MultiSelectableSelectionContainerDelegate", ["flax.core/sdk_widgets#type:SelectionContainerDelegate","dart:core::Object","flax.core/sdk_rendering#type:SelectionHandler","flax.core/flutter#type:ValueListenable","flax.core/flutter#type:Listenable","flax.core/sdk_rendering#type:SelectionRegistrar","flax.core/sdk_foundation#type:ChangeNotifier"]);
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasSize" | "containerSize" | "contentLength" | "value" | "hasListeners" | "selectables" | "currentSelectionEndIndex" | "currentSelectionStartIndex" | "compareOrder" | "getTransformFrom" | "getTransformTo" | "pushHandleLayers" | "getSelectedContent" | "getSelection" | "dispatchSelectionEvent" | "addListener" | "removeListener" | "add" | "remove" | "dispose" | "layoutDidChange" | "didChangeSelectables" | "getSelectionGeometry" | "handleSelectAll" | "handleSelectWord" | "handleSelectParagraph" | "handleClearSelection" | "handleGranularlyExtendSelection" | "handleDirectionallyExtendSelection" | "handleSelectionEdgeUpdate" | "ensureChildUpdated" | "dispatchSelectionEventToChild" | "__flaxBound:package:flutter/src/widgets/selectable_region.dart::MultiSelectableSelectionContainerDelegate" | "__flaxBound:package:flutter/src/widgets/selection_container.dart::SelectionContainerDelegate" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier";

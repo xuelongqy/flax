@@ -1,0 +1,3 @@
+export declare function getDebugPrintGlobalKeyedWidgetLifecycle(): boolean;
+declare function _flaxTopLevel_setDebugPrintGlobalKeyedWidgetLifecycle(value: boolean): void;
+export { _flaxTopLevel_setDebugPrintGlobalKeyedWidgetLifecycle as setDebugPrintGlobalKeyedWidgetLifecycle };

@@ -4,10 +4,13 @@ import '@flax/dart/core/_bindings/flutter_Comparable';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface DateTime extends Omit<upstream0.Comparable<DateTime>, typeof _flaxDartTypeValue | "isUtc" | "millisecondsSinceEpoch" | "microsecondsSinceEpoch" | "timeZoneName" | "timeZoneOffset" | "year" | "month" | "day" | "hour" | "minute" | "second" | "millisecond" | "microsecond" | "weekday" | "compareTo" | "isBefore" | "isAfter" | "isAtSameMomentAs" | "toLocal" | "toUtc" | "toString" | "toIso8601String" | "add" | "subtract" | "difference">, Readonly<{
+export interface DateTime extends Omit<upstream0.Comparable<DateTime>, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:dart:core::DateTime": readonly [];
+}>, Readonly<{
+    "__flaxBound:dart:core::Comparable": readonly [DateTime];
 }> {
     readonly __DateTime: unique symbol;
+    readonly [_flaxDartTypeValue]: DateTime;
     readonly isUtc: boolean;
     readonly millisecondsSinceEpoch: number;
     readonly microsecondsSinceEpoch: number;
@@ -40,9 +43,13 @@ export interface DateTime extends Omit<upstream0.Comparable<DateTime>, typeof _f
     toIso8601String(): string;
     add(duration: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream1.Duration];
     }>): DateTime;
     subtract(duration: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream1.Duration];
     }>): DateTime;
     difference(other: DartInput<Readonly<{
         "__flaxBound:dart:core::DateTime": readonly [];
@@ -138,3 +145,5 @@ export declare namespace _DateTimeFactory {
     function tryParse(formattedString: string): DateTime | null;
 }
 export declare const DateTime: typeof _DateTimeFactory & _FlaxInstanceType<DateTime> & _FlaxDartType<DateTime, readonly ["class", "flax.core/flutter#type:DateTime", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "isUtc" | "millisecondsSinceEpoch" | "microsecondsSinceEpoch" | "timeZoneName" | "timeZoneOffset" | "year" | "month" | "day" | "hour" | "minute" | "second" | "millisecond" | "microsecond" | "weekday" | "compareTo" | "isBefore" | "isAfter" | "isAtSameMomentAs" | "toLocal" | "toUtc" | "toString" | "toIso8601String" | "add" | "subtract" | "difference" | "__flaxBound:dart:core::DateTime" | "__flaxBound:dart:core::Comparable";
+export {};

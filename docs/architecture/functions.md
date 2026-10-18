@@ -140,7 +140,7 @@ not binding roles. Remove the retired `route.context` and `route.rootNavigator` 
 from existing configurations.
 
 Handwritten bindings use `FlaxRouteCallBinding(['builder'])`, or
-`FlaxRouteCallBinding()` when admission is the only policy. Manifest 24 carries this
+`FlaxRouteCallBinding()` when admission is the only policy. Manifest 26 carries this
 reduced metadata; providers and consumers must be regenerated together.
 
 The function and its callbacks use ordinary signature validation and conversion: an

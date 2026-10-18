@@ -1,5 +1,7 @@
 export '../../../../flax/test/fixtures/native_widgets.dart';
 
+export 'package:flutter/foundation.dart' show DiagnosticPropertiesBuilder;
+
 import 'package:flutter/widgets.dart';
 
 class NamedLabel extends Text {

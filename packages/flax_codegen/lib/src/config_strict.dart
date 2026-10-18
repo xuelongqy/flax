@@ -4,6 +4,7 @@ const _configFields = {
   'format',
   'name',
   'library',
+  'automatic',
   'jsPackage',
   'dartOutput',
   'tsOutput',
@@ -96,6 +97,7 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
   }
   final name = root.requiredString('name');
   final library = root.requiredString('library');
+  final automaticLibrary = root.boolean('automatic');
   final jsPackage = root.requiredString('jsPackage');
   final dartOutput = root.requiredString('dartOutput');
   final tsOutput = root.requiredString('tsOutput');
@@ -114,6 +116,7 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
       ? const FlaxCodegenAutoOverrides()
       : _readAutoOverrides(overrideMap);
   if (overrideMap != null &&
+      !automaticLibrary &&
       ![
         root.node('classes'),
         root.node('functions'),
@@ -134,6 +137,7 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
     dartOutput!,
     tsOutput!,
     classes,
+    automaticLibrary: automaticLibrary,
     additionalLibraries: additionalLibraries,
     imports: imports,
     types: types,

@@ -23,7 +23,7 @@ import {
   Material,
   MaterialType,
   showDialog,
-} from '@flax/flutter/material';
+} from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
@@ -65,6 +65,9 @@ LinearProgressIndicator({
   borderRadius: radius,
 });
 LinearProgressIndicator({ value: undefined, color: null });
+LinearProgressIndicator({ valueColor: null });
+// @ts-expect-error valueColor requires an Animation, not a Color.
+LinearProgressIndicator({ valueColor: Color(0xff1565c0) });
 // @ts-expect-error Flex is a number, not a string.
 Spacer({ flex: '2' });
 // @ts-expect-error A Material enum cannot be replaced by another Core enum.

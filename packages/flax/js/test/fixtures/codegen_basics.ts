@@ -10,7 +10,26 @@ import {
   StringBuffer,
   RegExp as DartRegExp,
 } from '@flax/dart/core';
-import { Text, registerPage } from '@flax/flutter/widgets';
+import { Text, Color as WidgetColor, registerPage } from '@flax/flutter/widgets';
+import { Color as PaintingColor } from '@flax/flutter/painting';
+import { FrictionSimulation, Simulation } from '@flax/flutter/physics';
+
+function sdkRoundtrip() {
+  class ShiftedFriction extends FrictionSimulation {
+    #shift = 2;
+    x(time: number): number {
+      return super.x(time) + this.#shift;
+    }
+  }
+  const simulation = new ShiftedFriction(0.5, 3, 4);
+  return {
+    position: simulation.x(0),
+    velocity: simulation.dx(0),
+    subtype: simulation instanceof Simulation,
+    sharedProvider: WidgetColor === PaintingColor,
+  };
+}
+
 import type {
   CodegenOnChangedInput,
   CodegenNamesInput,
@@ -219,6 +238,7 @@ function coreInputsRoundtrip() {
 }
 
 Object.assign(globalThis, {
+  sdkRoundtrip,
   interop,
   CoreValuePeer,
   DateTime,

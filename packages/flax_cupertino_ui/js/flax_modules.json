@@ -1,10 +1,10 @@
 {
   "formatVersion": 2,
-  "package": "@flax/cupertino-ui",
+  "package": "@flax/cupertino-ui-runtime",
   "version": "0.0.0",
   "modules": [
     {
-      "specifier": "@flax/flutter/cupertino",
+      "specifier": "@flax/cupertino-ui",
       "source": "dist/generated/libraries/cupertino/index.js",
       "subpathRoot": "dist/generated/libraries/cupertino",
       "helperSubpaths": ["_bindings/cupertino.__module"],

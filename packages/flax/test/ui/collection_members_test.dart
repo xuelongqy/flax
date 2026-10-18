@@ -14,6 +14,7 @@ void main() {
       );
       try {
         await tester.pumpWidget(h.app('collectionMembers'));
+        expect(h.errors, isEmpty);
         h.execute('collectionMemberHooks.exerciseGenericViews()');
         final calls = h.runtime.hostCalls['__flaxInvokeOperation'] ?? 0;
         h.execute('genericViewReads()');

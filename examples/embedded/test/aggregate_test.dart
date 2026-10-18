@@ -21,7 +21,7 @@ void main() {
       await tester.pump();
 
       expect(errors, isNotEmpty);
-      expect(errors.single.toString(), contains('@flax/flutter/material'));
+      expect(errors.single.toString(), contains('@flax/material-ui'));
 
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump();

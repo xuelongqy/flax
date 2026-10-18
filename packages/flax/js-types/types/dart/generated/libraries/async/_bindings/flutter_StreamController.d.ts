@@ -10,10 +10,19 @@ import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import type * as upstream4 from '@flax/dart/async/_bindings/flutter_Stream';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface StreamController<T extends unknown | null = unknown | null> extends Omit<upstream0.StreamSink<T>, typeof _flaxDartTypeValue | "done" | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "close" | "add" | "addError" | "addStream">, Omit<upstream1.EventSink<T>, typeof _flaxDartTypeValue | "done" | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "close" | "add" | "addError" | "addStream">, Omit<upstream2.Sink<T>, typeof _flaxDartTypeValue | "done" | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "close" | "add" | "addError" | "addStream">, Omit<upstream3.StreamConsumer<T>, typeof _flaxDartTypeValue | "done" | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "close" | "add" | "addError" | "addStream">, Readonly<{
+export interface StreamController<T extends unknown | null = unknown | null> extends Omit<upstream0.StreamSink<T>, _flaxOwnMembers0>, Omit<upstream1.EventSink<T>, _flaxOwnMembers0 | keyof upstream0.StreamSink<T>>, Omit<upstream2.Sink<T>, _flaxOwnMembers0 | keyof upstream0.StreamSink<T> | keyof upstream1.EventSink<T>>, Omit<upstream3.StreamConsumer<T>, _flaxOwnMembers0 | keyof upstream0.StreamSink<T> | keyof upstream1.EventSink<T> | keyof upstream2.Sink<T>>, Readonly<{
     "__flaxBound:dart:async::StreamController": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:async::StreamSink": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:async::EventSink": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:core::Sink": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:async::StreamConsumer": readonly [T];
 }> {
     readonly __StreamController: unique symbol;
+    readonly [_flaxDartTypeValue]: StreamController<T>;
     readonly done: Promise<unknown | null>;
     readonly stream: upstream4.Stream<T>;
     get onListen(): (() => void) | null;
@@ -64,6 +73,7 @@ export declare namespace _StreamControllerFactory {
     }): StreamController<unknown | null>;
 }
 export declare const StreamController: typeof _StreamControllerFactory & _FlaxInstanceType<StreamController<unknown | null>> & _FlaxDartType<StreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:StreamController", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "done" | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "close" | "add" | "addError" | "addStream" | "__flaxBound:dart:async::StreamController" | "__flaxBound:dart:async::StreamSink" | "__flaxBound:dart:async::EventSink" | "__flaxBound:dart:core::Sink" | "__flaxBound:dart:async::StreamConsumer";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         (options?: {

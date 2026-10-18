@@ -5,6 +5,8 @@ import 'package:flax_codegen/flax_codegen.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
+import 'generator_test.dart' show compileFixture;
+
 void main() {
   var root = Directory.current;
   while (!Directory(p.join(root.path, 'packages/flax_codegen')).existsSync()) {
@@ -94,6 +96,156 @@ void main() {
       await parser.dispose();
     }
   }
+
+  test(
+    'case-distinct declarations keep separate implementation paths',
+    () async {
+      final module = await parse(
+        FlaxCodegenBindingConfig(
+          'cases',
+          fixture('alpha'),
+          '@example/cases',
+          'unused.dart',
+          'unused.ts',
+          {
+            'CaseValue': const FlaxCodegenClassSelection({
+              '': [],
+            }, kind: 'object'),
+            'GenericHolder': const FlaxCodegenClassSelection(
+              {
+                '': ['value'],
+              },
+              kind: 'object',
+              getters: ['value'],
+            ),
+            'SpecializedHolder': const FlaxCodegenClassSelection(
+              {
+                '': ['value'],
+              },
+              kind: 'object',
+              getters: ['value'],
+            ),
+          },
+          functions: const {
+            'acceptSpecialized': FlaxCodegenFunctionSelection(['value']),
+          },
+          topLevel: const FlaxCodegenTopLevelSelection(null, ['caseValue']),
+          publicLibraries: {
+            fixture('alpha'): const FlaxCodegenLibrarySelection(
+              jsPackage: '@example/cases',
+              tsOutput: 'src/cases/index.ts',
+            ),
+          },
+        ),
+      );
+      final files = FlaxCodegenBindingEmitter([module])
+          .typescriptOutputs(module);
+      expect(files.values.any((source) => source.contains('null.')), isFalse);
+      expect(
+        files.keys.map((path) => path.toLowerCase()).toSet(),
+        hasLength(files.length),
+      );
+      expect(
+        files.values.where((source) => source.contains('interface CaseValue ')),
+        hasLength(1),
+      );
+      expect(
+        files.values.where(
+          (source) => source.contains('function getCaseValue('),
+        ),
+        hasLength(1),
+      );
+    },
+  );
+
+  test(
+    'super signatures and enum aliases retain their actual declarations',
+    () async {
+      final module = await parse(
+        FlaxCodegenBindingConfig(
+          'declarations',
+          fixture('alpha'),
+          '@example/declarations',
+          'unused.dart',
+          'unused.ts',
+          {
+            for (final name in [
+              'WideEntry',
+              'NarrowEntry',
+              'ConcreteTarget',
+              'DerivedTarget',
+              'GenericHolder',
+              'DependentHolder',
+              'EnumHolder',
+            ])
+              name: FlaxCodegenClassSelection(
+                {
+                  '': name.endsWith('Holder') && name != 'DependentHolder'
+                      ? ['value']
+                      : [],
+                },
+                kind: 'object',
+                proxy: name == 'DerivedTarget' ? 'extends' : null,
+                instanceMethods: name.endsWith('Target')
+                    ? {
+                        'handle': ['entry'],
+                        'reorder': ['label', 'mode'],
+                      }
+                    : {},
+              ),
+            'WideTarget': const FlaxCodegenClassSelection(
+              {},
+              kind: 'object',
+              instanceMethods: {
+                'handle': ['entry'],
+                'reorder': ['label', 'mode'],
+              },
+            ),
+            'DefaultMode': const FlaxCodegenClassSelection({
+              '': ['mode'],
+            }, kind: 'object'),
+          },
+          types: ['CaseMode'],
+        ),
+      );
+      final derived = module.classes.singleWhere(
+        (type) => type.name == 'DerivedTarget',
+      );
+      expect(
+        derived.proxy!.methods
+            .singleWhere((m) => m.name == 'handle')
+            .parameters
+            .single
+            .type
+            .name,
+        'WideEntry',
+      );
+      await compileFixture(
+        root.path,
+        FlaxCodegenBindingEmitter([module]),
+        module,
+        consumerSource: """
+import { DerivedTarget, NarrowEntry, type WideTarget } from './plugin.js';
+class JsTarget extends DerivedTarget {
+  handle(entry: NarrowEntry): void { super.handle(entry); }
+}
+const base: WideTarget = {} as JsTarget;
+const accept = <T extends WideTarget>(value: T): T => value;
+accept({} as JsTarget);
+""",
+      );
+      expect(
+        module.classes
+            .singleWhere((type) => type.name == 'DefaultMode')
+            .constructors
+            .single
+            .parameters
+            .single
+            .defaultCode,
+        'CaseMode.one',
+      );
+    },
+  );
 
   test(
     'single-file consumers import public providers instead of private chunks',

@@ -1,15 +1,47 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartIterable } from '@flax/core/bindings';
-import type * as upstream0 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartIterable, type DartList } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTreeMixin';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTreeMixin';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTree';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTree';
+import type * as upstream2 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
+import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
-import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_KeyEventResult';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_KeyEventResult';
+import type * as upstream6 from '@flax/flutter/services/_bindings/sdk_services_RawKeyEvent';
+import '@flax/flutter/services/_bindings/sdk_services_RawKeyEvent';
+import type * as upstream7 from '@flax/flutter/services/_bindings/flutter_KeyEvent';
+import '@flax/flutter/services/_bindings/flutter_KeyEvent';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_Size';
-import '@flax/flutter/services/_bindings/flutter_Size';
-import type * as upstream3 from '@flax/flutter/gestures/_bindings/flutter_Offset';
-import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition';
+import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_FocusHighlightMode';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_FocusHighlightMode';
+import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_FocusScopeNode';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_FocusScopeNode';
+import type * as upstream11 from '@flax/dart/ui/_bindings/flutter_Size';
+import '@flax/dart/ui/_bindings/flutter_Size';
+import type * as upstream12 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream13 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream18 from '@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition';
 import '@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition';
+import type * as upstream19 from '@flax/flutter/widgets/_bindings/sdk_widgets_FocusAttachment';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_FocusAttachment';
+import type * as upstream20 from '@flax/flutter/widgets/_bindings/sdk_widgets_TraversalDirection';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_TraversalDirection';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface FocusNode extends Omit<upstream0.Listenable, typeof _flaxDartTypeValue | "skipTraversal" | "canRequestFocus" | "descendantsAreFocusable" | "descendantsAreTraversable" | "context" | "parent" | "children" | "traversalChildren" | "debugLabel" | "descendants" | "traversalDescendants" | "ancestors" | "hasFocus" | "hasPrimaryFocus" | "size" | "offset" | "hasListeners" | "addListener" | "removeListener" | "unfocus" | "consumeKeyboardToken" | "dispose" | "requestFocus" | "nextFocus" | "previousFocus" | "toStringShort" | "toStringShallow" | "toStringDeep">, Readonly<{
+export interface FocusNode extends Omit<upstream0.DiagnosticableTreeMixin, _flaxOwnMembers0>, Omit<upstream1.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTreeMixin>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTreeMixin | keyof upstream1.DiagnosticableTree>, Omit<upstream3.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTreeMixin | keyof upstream1.DiagnosticableTree | keyof upstream2.Diagnosticable>, Omit<upstream4.Listenable, _flaxOwnMembers0 | keyof upstream0.DiagnosticableTreeMixin | keyof upstream1.DiagnosticableTree | keyof upstream2.Diagnosticable | keyof upstream3.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
@@ -19,13 +51,51 @@ export interface FocusNode extends Omit<upstream0.Listenable, typeof _flaxDartTy
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
 }> {
     readonly __FocusNode: unique symbol;
+    readonly [_flaxDartTypeValue]: FocusNode;
+    readonly hasListeners: boolean;
     get skipTraversal(): boolean;
     get canRequestFocus(): boolean;
     get descendantsAreFocusable(): boolean;
     get descendantsAreTraversable(): boolean;
-    readonly context: upstream1.BuildContext | null;
+    readonly context: upstream8.BuildContext | null;
+    get onKey(): ((node: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>, event: Readonly<{
+        "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => upstream5.KeyEventResult) | null;
+    get onKeyEvent(): ((node: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>, event: Readonly<{
+        "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) => upstream5.KeyEventResult) | null;
     readonly parent: FocusNode | null;
     readonly children: DartIterable<FocusNode>;
     readonly traversalChildren: DartIterable<FocusNode>;
@@ -35,41 +105,78 @@ export interface FocusNode extends Omit<upstream0.Listenable, typeof _flaxDartTy
     readonly ancestors: DartIterable<FocusNode>;
     readonly hasFocus: boolean;
     readonly hasPrimaryFocus: boolean;
-    readonly size: upstream2.Size;
-    readonly offset: upstream3.Offset;
-    readonly hasListeners: boolean;
-    addListener(listener: (() => void)): void;
-    removeListener(listener: (() => void)): void;
-    unfocus(options?: {
-        disposition?: upstream4.UnfocusDisposition | undefined;
-    }): void;
-    consumeKeyboardToken(): boolean;
-    dispose(): void;
-    requestFocus(node?: Readonly<{
-        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
-    }> | null): void;
-    nextFocus(): boolean;
-    previousFocus(): boolean;
-    toStringShort(): string;
+    readonly highlightMode: upstream9.FocusHighlightMode;
+    readonly nearestScope: upstream10.FocusScopeNode | null;
+    readonly enclosingScope: upstream10.FocusScopeNode | null;
+    readonly size: upstream11.Size;
+    readonly offset: upstream12.Offset;
+    readonly rect: upstream13.Rect;
+    toString(options?: {
+        minLevel?: upstream14.DiagnosticLevel | undefined;
+    }): string;
     toStringShallow(options?: {
         joiner?: string | undefined;
+        minLevel?: upstream14.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
+        minLevel?: upstream14.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream16.DiagnosticsTreeStyle | null | undefined;
+    }): upstream15.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream15.DiagnosticsNode>;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    addListener(listener: (() => void)): void;
+    removeListener(listener: (() => void)): void;
+    dispose(): void;
+    unfocus(options?: {
+        disposition?: upstream18.UnfocusDisposition | undefined;
+    }): void;
+    consumeKeyboardToken(): boolean;
+    attach(context: upstream8.BuildContext | null, options?: {
+        onKey?: ((node: FocusNode, event: upstream6.RawKeyEvent) => upstream5.KeyEventResult) | null | undefined;
+        onKeyEvent?: ((node: FocusNode, event: upstream7.KeyEvent) => upstream5.KeyEventResult) | null | undefined;
+    }): upstream19.FocusAttachment;
+    requestFocus(node?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null): void;
+    nextFocus(): boolean;
+    previousFocus(): boolean;
+    focusInDirection(direction: upstream20.TraversalDirection): boolean;
     set skipTraversal(value: boolean);
     set canRequestFocus(value: boolean);
     set descendantsAreFocusable(value: boolean);
     set descendantsAreTraversable(value: boolean);
+    set onKey(value: ((node: FocusNode, event: upstream6.RawKeyEvent) => upstream5.KeyEventResult) | null);
+    set onKeyEvent(value: ((node: FocusNode, event: upstream7.KeyEvent) => upstream5.KeyEventResult) | null);
     set debugLabel(value: string | null);
 }
 export declare function _FocusNodeFactory(options?: {
     debugLabel?: string | null | undefined;
+    onKey?: ((node: FocusNode, event: upstream6.RawKeyEvent) => upstream5.KeyEventResult) | null | undefined;
+    onKeyEvent?: ((node: FocusNode, event: upstream7.KeyEvent) => upstream5.KeyEventResult) | null | undefined;
     skipTraversal?: boolean | undefined;
     canRequestFocus?: boolean | undefined;
     descendantsAreFocusable?: boolean | undefined;
     descendantsAreTraversable?: boolean | undefined;
 }): FocusNode;
 export declare const FocusNode: typeof _FocusNodeFactory & _FlaxInstanceType<FocusNode> & _FlaxDartType<FocusNode, readonly ["class", "flax.core/flutter#type:FocusNode", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "skipTraversal" | "canRequestFocus" | "descendantsAreFocusable" | "descendantsAreTraversable" | "context" | "onKey" | "onKeyEvent" | "parent" | "children" | "traversalChildren" | "debugLabel" | "descendants" | "traversalDescendants" | "ancestors" | "hasFocus" | "hasPrimaryFocus" | "highlightMode" | "nearestScope" | "enclosingScope" | "size" | "offset" | "rect" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "addListener" | "removeListener" | "dispose" | "unfocus" | "consumeKeyboardToken" | "attach" | "requestFocus" | "nextFocus" | "previousFocus" | "focusInDirection" | "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+export {};

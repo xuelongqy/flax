@@ -1,0 +1,242 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartIterable, type DartIterableInput, type DartList, type Widget } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_TextEditingController';
+import '@flax/flutter/widgets/_bindings/flutter_TextEditingController';
+import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import type * as upstream4 from '@flax/flutter/gestures/_bindings/sdk_gestures_PointerDownEvent';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_PointerDownEvent';
+import type * as upstream5 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
+import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
+import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream8 from '@flax/flutter/painting/_bindings/flutter_BorderSide';
+import '@flax/flutter/painting/_bindings/flutter_BorderSide';
+import type * as upstream9 from '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
+import '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
+import type * as upstream10 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import type * as upstream11 from '@flax/flutter/painting/_bindings/flutter_TextStyle';
+import '@flax/flutter/painting/_bindings/flutter_TextStyle';
+import type * as upstream12 from '@flax/flutter/services/_bindings/sdk_services_TextCapitalization';
+import '@flax/flutter/services/_bindings/sdk_services_TextCapitalization';
+import type * as upstream13 from '@flax/flutter/services/_bindings/sdk_services_TextInputAction';
+import '@flax/flutter/services/_bindings/sdk_services_TextInputAction';
+import type * as upstream14 from '@flax/flutter/services/_bindings/sdk_services_TextInputType';
+import '@flax/flutter/services/_bindings/sdk_services_TextInputType';
+import type * as upstream15 from '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
+import type * as upstream16 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream17 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableTextState';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_EditableTextState';
+import type * as upstream18 from '@flax/flutter/services/_bindings/sdk_services_SmartDashesType';
+import '@flax/flutter/services/_bindings/sdk_services_SmartDashesType';
+import type * as upstream19 from '@flax/flutter/services/_bindings/sdk_services_SmartQuotesType';
+import '@flax/flutter/services/_bindings/sdk_services_SmartQuotesType';
+import type * as upstream20 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream21 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream23 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream24 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream25 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream26 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableText';
+import type * as upstream27 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface SearchBar extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
+    "__flaxBound:package:flutter/src/material/search_anchor.dart::SearchBar": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}> {
+    readonly __SearchBar: unique symbol;
+    readonly [_flaxDartTypeValue]: SearchBar;
+    readonly controller: upstream2.TextEditingController | null;
+    readonly focusNode: upstream3.FocusNode | null;
+    readonly hintText: string | null;
+    readonly leading: Widget | null;
+    readonly trailing: DartIterable<Widget> | null;
+    readonly onTap: (() => void) | null;
+    readonly onTapOutside: ((event: Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerDownEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_PointerEventDescription": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerDownEvent": readonly [];
+    }>) => void) | null;
+    readonly onChanged: ((value: string) => void) | null;
+    readonly onSubmitted: ((value: string) => void) | null;
+    readonly constraints: upstream5.BoxConstraints | null;
+    readonly elevation: upstream6.WidgetStateProperty<number | null> | null;
+    readonly backgroundColor: upstream6.WidgetStateProperty<upstream7.Color | null> | null;
+    readonly shadowColor: upstream6.WidgetStateProperty<upstream7.Color | null> | null;
+    readonly surfaceTintColor: upstream6.WidgetStateProperty<upstream7.Color | null> | null;
+    readonly overlayColor: upstream6.WidgetStateProperty<upstream7.Color | null> | null;
+    readonly side: upstream6.WidgetStateProperty<upstream8.BorderSide | null> | null;
+    readonly shape: upstream6.WidgetStateProperty<upstream9.OutlinedBorder | null> | null;
+    readonly padding: upstream6.WidgetStateProperty<upstream10.EdgeInsetsGeometry | null> | null;
+    readonly textStyle: upstream6.WidgetStateProperty<upstream11.TextStyle | null> | null;
+    readonly hintStyle: upstream6.WidgetStateProperty<upstream11.TextStyle | null> | null;
+    readonly textCapitalization: upstream12.TextCapitalization | null;
+    readonly enabled: boolean;
+    readonly autoFocus: boolean;
+    readonly textInputAction: upstream13.TextInputAction | null;
+    readonly keyboardType: upstream14.TextInputType | null;
+    readonly scrollPadding: upstream15.EdgeInsets;
+    readonly contextMenuBuilder: ((context: upstream16.BuildContext, editableTextState: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/editable_text.dart::EditableTextState": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream26.EditableText];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/autofill.dart::AutofillClient": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream26.EditableText];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream26.EditableText];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextInputClient": readonly [];
+    }>) => Widget) | null;
+    readonly readOnly: boolean;
+    readonly smartDashesType: upstream18.SmartDashesType | null;
+    readonly smartQuotesType: upstream19.SmartQuotesType | null;
+    readonly key: upstream1.Key | null;
+    createState(): upstream20.State<SearchBar>;
+    createElement(): upstream21.StatefulElement;
+    toStringShort(): string;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream23.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream23.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream25.DiagnosticsTreeStyle | null | undefined;
+    }): upstream24.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream24.DiagnosticsNode>;
+}
+export declare function _SearchBarFactory(options?: {
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }> | null | undefined;
+    controller?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream27.TextEditingValue];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream27.TextEditingValue];
+    }>) | null | undefined;
+    focusNode?: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }>) | null | undefined;
+    hintText?: string | null | undefined;
+    leading?: Widget | null | undefined;
+    trailing?: DartIterableInput<Widget, Widget> | null | undefined;
+    onTap?: (() => void) | null | undefined;
+    onTapOutside?: ((event: upstream4.PointerDownEvent) => void) | null | undefined;
+    onChanged?: ((value: string) => void) | null | undefined;
+    onSubmitted?: ((value: string) => void) | null | undefined;
+    constraints?: (Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>) | null | undefined;
+    elevation?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [number | null];
+    }> | null | undefined;
+    backgroundColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.Color | null];
+    }> | null | undefined;
+    shadowColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.Color | null];
+    }> | null | undefined;
+    surfaceTintColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.Color | null];
+    }> | null | undefined;
+    overlayColor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream7.Color | null];
+    }> | null | undefined;
+    side?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream8.BorderSide | null];
+    }> | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream9.OutlinedBorder | null];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream10.EdgeInsetsGeometry | null];
+    }> | null | undefined;
+    textStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream11.TextStyle | null];
+    }> | null | undefined;
+    hintStyle?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream11.TextStyle | null];
+    }> | null | undefined;
+    textCapitalization?: upstream12.TextCapitalization | null | undefined;
+    enabled?: boolean | undefined;
+    autoFocus?: boolean | undefined;
+    textInputAction?: upstream13.TextInputAction | null | undefined;
+    keyboardType?: Readonly<{
+        "__flaxBound:package:flutter/src/services/text_input.dart::TextInputType": readonly [];
+    }> | null | undefined;
+    scrollPadding?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | undefined;
+    contextMenuBuilder?: ((context: upstream16.BuildContext, editableTextState: upstream17.EditableTextState) => Widget) | null | undefined;
+    readOnly?: boolean | undefined;
+    smartDashesType?: upstream18.SmartDashesType | null | undefined;
+    smartQuotesType?: upstream19.SmartQuotesType | null | undefined;
+}): SearchBar;
+export declare const SearchBar: typeof _SearchBarFactory & _FlaxInstanceType<SearchBar> & _FlaxDartType<SearchBar, readonly ["class", "flax.core/sdk_material#type:SearchBar", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "controller" | "focusNode" | "hintText" | "leading" | "trailing" | "onTap" | "onTapOutside" | "onChanged" | "onSubmitted" | "constraints" | "elevation" | "backgroundColor" | "shadowColor" | "surfaceTintColor" | "overlayColor" | "side" | "shape" | "padding" | "textStyle" | "hintStyle" | "textCapitalization" | "enabled" | "autoFocus" | "textInputAction" | "keyboardType" | "scrollPadding" | "contextMenuBuilder" | "readOnly" | "smartDashesType" | "smartQuotesType" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/material/search_anchor.dart::SearchBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+export {};

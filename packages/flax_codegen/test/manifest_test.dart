@@ -7,6 +7,7 @@ import 'package:flax_codegen/src/identity.dart';
 import 'package:flax_codegen/src/manifest.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:flax_codegen/src/manifest_projection.dart';
+import 'package:flax_codegen/src/manifest_storage.dart';
 import 'package:flax_codegen/src/model.dart';
 import 'package:flax_codegen/src/ownership.dart';
 import 'package:flax_codegen/src/package_metadata.dart';
@@ -17,32 +18,47 @@ void main() {
     'required super accessor metadata names unique concrete extends accessors',
     () {
       const getter = FlaxCodegenGetterModel('value', FlaxCodegenTypeRef('int'));
-      FlaxCodegenModuleModel model(String kind, List<String> members) =>
-          FlaxCodegenModuleModel(
-            name: 'checked',
-            library: 'package:example/checked.dart',
-            jsPackage: '@example/checked',
-            dartOutput: '',
-            tsOutput: '',
-            classes: [
-              FlaxCodegenClassModel(
-                name: 'Checked',
-                id: 'example/checked#type:Checked',
-                kind: 'object',
-                constructors: const [],
-                supertypes: const [],
-                proxy: FlaxCodegenProxyModel(
-                  kind,
-                  const [],
-                  getters: const [getter],
-                  superMethods: const ['get:value'],
-                  mustCallSuperAccessors: members,
-                ),
-              ),
-            ],
-            types: const [],
-          );
+      FlaxCodegenModuleModel model(
+        String kind,
+        List<String> members, {
+        bool constant = false,
+      }) => FlaxCodegenModuleModel(
+        name: 'checked',
+        library: 'package:example/checked.dart',
+        jsPackage: '@example/checked',
+        dartOutput: '',
+        tsOutput: '',
+        classes: [
+          FlaxCodegenClassModel(
+            name: 'Checked',
+            id: 'example/checked#type:Checked',
+            kind: 'object',
+            constructors: const [],
+            supertypes: const [],
+            proxy: FlaxCodegenProxyModel(
+              kind,
+              const [],
+              getters: [
+                constant
+                    ? const FlaxCodegenGetterModel(
+                        'value',
+                        FlaxCodegenTypeRef('int'),
+                        isConst: true,
+                      )
+                    : getter,
+              ],
+              superMethods: const ['get:value'],
+              mustCallSuperAccessors: members,
+            ),
+          ),
+        ],
+        types: const [],
+      );
       model('extends', ['get:value']).validate();
+      expect(
+        () => model('extends', ['get:value'], constant: true).validate(),
+        throwsStateError,
+      );
       for (final members in [
         ['get:missing'],
         ['get:value', 'get:value'],
@@ -1401,14 +1417,19 @@ void main() {
       fail('expected module semantic failure');
     } on FlaxCodegenException catch (error) {
       expect(result, isNull);
-      expect(_records(error), [_record('', 'Invalid module.')]);
+      expect(_records(error), [
+        _record(
+          '',
+          'Invalid module: AsyncIterable factories require a single-parameter Stream type: Gauge',
+        ),
+      ]);
     } catch (error) {
       if (error is TestFailure) rethrow;
       fail('leaked ${error.runtimeType}: $error');
     }
   });
 
-  group('Manifest 24 typeLibraries URI semantics', () {
+  group('Manifest 26 typeLibraries URI semantics', () {
     test('accepts public package URIs, cross-package names, and dart:core', () {
       final module = _typeLibrariesModule({
         'Core': 'dart:core',
@@ -1655,7 +1676,7 @@ void main() {
     );
   });
 
-  group('Manifest 24 envelope positives', () {
+  group('Manifest 26 envelope positives', () {
     test('fromResolved round-trips rich and zero-entry modules', () {
       final fixture = _envelopeFixture();
       final manifest = FlaxCodegenManifest.fromResolved(
@@ -1816,16 +1837,34 @@ void main() {
     });
   });
 
-  group('Manifest 24 envelope negatives', () {
+  group('Manifest 26 envelope negatives', () {
+    test('duplicate keys compare decoded strings within each object', () {
+      for (final json in [
+        r'{"package":"a","\u0070ackage":"b"}',
+        r'{"values":[{"a\"b":1,"a\u0022b":2}]}',
+      ]) {
+        _expectEnvelopeFailure(json, [_record('', 'Duplicate mapping key.')]);
+      }
+      final diagnostics = FlaxCodegenManifestDiagnostics('separate.json');
+      FlaxCodegenManifest.parse(
+        r'{"first":{"key":"{\"}"},"second":[{"key":"key"}]}',
+        diagnostics,
+      );
+      expect(
+        diagnostics.items.map((item) => item.message),
+        isNot(contains('Duplicate mapping key.')),
+      );
+    });
+
     test('invalid JSON and duplicate keys fail closed', () {
       _expectEnvelopeFailure('{', [_record('', 'Invalid JSON.')]);
       _expectEnvelopeFailure(
-        '{\n  "formatVersion": 24,\n  "package": "a",\n  "package": "b"\n}\n',
+        '{\n  "formatVersion": 26,\n  "package": "a",\n  "package": "b"\n}\n',
         [_record('', 'Duplicate mapping key.')],
       );
       final withModuleDup =
           '{\n'
-          '  "formatVersion": 24,\n'
+          '  "formatVersion": 26,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -1845,7 +1884,7 @@ void main() {
       ]);
       final withModelDup =
           '{\n'
-          '  "formatVersion": 24,\n'
+          '  "formatVersion": 26,\n'
           '  "package": "acme_widgets",\n'
           '  "bindingNamespace": "com.acme.widgets",\n'
           '  "imports": [],\n'
@@ -2076,7 +2115,7 @@ void main() {
     });
   });
 
-  group('Manifest 24 ownership model and fromResolved negatives', () {
+  group('Manifest 26 ownership model and fromResolved negatives', () {
     test('declaration owner rows are required at id pointers', () {
       const gauge = 'com.acme.widgets/widgets#type:Gauge';
       const axis = 'com.acme.widgets/widgets#type:Axis';
@@ -2553,7 +2592,7 @@ void main() {
     });
   });
 
-  group('Manifest 24 generic lexical slot positives', () {
+  group('Manifest 26 generic lexical slot positives', () {
     test(
       'fresh decoded tokens preserve declaration/reference identity sharing',
       () {
@@ -2735,8 +2774,14 @@ void main() {
       final directModule = slotPackage.model;
       final projectedModule =
           slotPackage.projection.modulesByModuleId[slotPackage.moduleId.value]!;
-      final directEmitter = FlaxCodegenBindingEmitter([directModule]);
-      final projectedEmitter = FlaxCodegenBindingEmitter([projectedModule]);
+      final directEmitter = FlaxCodegenBindingEmitter([
+        directModule,
+        _coreWidgetProvider,
+      ]);
+      final projectedEmitter = FlaxCodegenBindingEmitter([
+        projectedModule,
+        _coreWidgetProvider,
+      ]);
       expect(
         directEmitter.dart(directModule),
         projectedEmitter.dart(projectedModule),
@@ -2796,8 +2841,14 @@ void main() {
           projectedMethod.typeParameters.single.genericIdentity,
           same(projectedMethod.parameters.single.type.genericIdentity),
         );
-        final directEmitter = FlaxCodegenBindingEmitter([module]);
-        final projectedEmitter = FlaxCodegenBindingEmitter([projected]);
+        final directEmitter = FlaxCodegenBindingEmitter([
+          module,
+          _coreWidgetProvider,
+        ]);
+        final projectedEmitter = FlaxCodegenBindingEmitter([
+          projected,
+          _coreWidgetProvider,
+        ]);
         expect(directEmitter.dart(module), projectedEmitter.dart(projected));
         expect(
           directEmitter.typescript(module),
@@ -2851,7 +2902,7 @@ void main() {
     });
   });
 
-  group('Manifest 24 generic lexical slot negatives', () {
+  group('Manifest 26 generic lexical slot negatives', () {
     test('missing declaration slot fails closed', () {
       final json = _cloneJsonMap(
         _slotCallbackJson(_slotSharingCallback(Object())),
@@ -3062,7 +3113,7 @@ void main() {
     });
   });
 
-  group('Manifest 24 Quality P1 maximal projection', () {
+  group('Manifest 26 Quality P1 maximal projection', () {
     test('independently constructed maximal module survives fromResolved encode parse projection and input mutation', () {
       final inIntType = FlaxCodegenTypeRef('int');
       final inStringType = FlaxCodegenTypeRef('String', nullable: true);
@@ -4665,7 +4716,7 @@ void main() {
     });
   });
 
-  group('Manifest 24 direct dependency projection positives', () {
+  group('Manifest 26 direct dependency projection positives', () {
     test('A→B→C flattens packages owners modules and importedPackages', () {
       final chain = _projectionChain();
       final a = chain.aProjection;
@@ -4935,8 +4986,14 @@ bindingNamespace: com.example.local
           projected[chain.bModuleId.value]!,
           projected[chain.cModuleId.value]!,
         ];
-        final directEmitter = FlaxCodegenBindingEmitter(directModules);
-        final projectedEmitter = FlaxCodegenBindingEmitter(projectedModules);
+        final directEmitter = FlaxCodegenBindingEmitter([
+          ...directModules,
+          _coreWidgetProvider,
+        ]);
+        final projectedEmitter = FlaxCodegenBindingEmitter([
+          ...projectedModules,
+          _coreWidgetProvider,
+        ]);
 
         for (final pair in [
           (chain.aModel, chain.aModuleId.value),
@@ -4989,7 +5046,7 @@ bindingNamespace: com.example.local
     );
   });
 
-  group('Manifest 24 direct dependency projection negatives', () {
+  group('Manifest 26 direct dependency projection negatives', () {
     test('missing direct import fails closed', () {
       final b = _packageB(_packageC());
       final a = _packageA(b);
@@ -7451,11 +7508,11 @@ void _expectEnvelopeShape(
   expect(manifest.package, 'acme_widgets');
   expect(manifest.bindingNamespace.value, 'com.acme.widgets');
   expect(manifest.imports, ['flax', 'flax_material']);
-  expect(FlaxCodegenManifest.formatVersion, 24);
+  expect(FlaxCodegenManifest.formatVersion, 26);
   expect(FlaxCodegenManifest.uiProtocol, 24);
   final encoded = manifest.toJson();
   _expectExactKeys(encoded, _envelopeKeys);
-  expect(encoded['formatVersion'], 24);
+  expect(encoded['formatVersion'], 26);
   expect(encoded['modules'], isA<List<Object?>>());
   final modules = encoded['modules']! as List<Object?>;
   expect(modules, hasLength(2));
@@ -7531,7 +7588,13 @@ void _expectEnvelopeShape(
 
 Map<String, dynamic> _envelopeBaseline() {
   final fixture = _envelopeFixture();
-  return jsonDecode(fixture.canonicalBytes) as Map<String, dynamic>;
+  final diagnostics = FlaxCodegenManifestDiagnostics('fixture.json');
+  final expanded = FlaxCodegenManifestStorage.expand(
+    jsonDecode(fixture.canonicalBytes),
+    diagnostics,
+  );
+  diagnostics.throwIfAny();
+  return Map<String, dynamic>.from(expanded! as Map);
 }
 
 Map<String, dynamic> _cloneEnvelopeJson(Map<String, dynamic> json) =>
@@ -7711,6 +7774,26 @@ void _expectImmutable(String Function() encode, void Function() mutate) {
     reason: 'mutation must not alter subsequent encoded bytes',
   );
 }
+
+// Isolated codec models reference Core's Widget token without loading the SDK.
+const _coreWidgetProvider = FlaxCodegenModuleModel(
+  name: 'flutter',
+  moduleId: 'flax.core/flutter',
+  library: 'package:flutter/widgets.dart',
+  jsPackage: '@flax/flutter/widgets',
+  dartOutput: 'core.dart',
+  tsOutput: 'core.ts',
+  classes: [
+    FlaxCodegenClassModel(
+      name: 'Widget',
+      id: 'flax.core/flutter#type:Widget',
+      kind: 'object',
+      constructors: [],
+      supertypes: [],
+    ),
+  ],
+  types: [],
+);
 
 const _slotWidgetType = FlaxCodegenTypeRef(
   'object',

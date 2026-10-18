@@ -1,9 +1,10 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RouteSettings extends Readonly<{
     "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
 }> {
     readonly __RouteSettings: unique symbol;
+    readonly [_flaxDartTypeValue]: RouteSettings;
     readonly name: string | null;
     readonly arguments: unknown | null;
     toString(): string;

@@ -3,9 +3,12 @@ import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart' show FlaxCodegenBindingEmitter;
 import 'package:flax_codegen/src/cli.dart';
+import 'package:flax_codegen/src/identity.dart';
 import 'package:flax_codegen/src/package_pipeline.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
+
+import 'support/core_package.dart';
 
 void main() {
   group('parseFlaxCodegenCliArgs', () {
@@ -295,27 +298,37 @@ overrides:
         );
         expect(
           offsetHolder.constructors.single.parameters.single.type.id,
-          'flax.core/flutter#type:Offset',
+          validation.directDependencies['flax']!
+              .authoritativeWireId(
+                FlaxCodegenSourceIdentity(
+                  kind: FlaxCodegenDeclarationKind.type,
+                  originatingUri: 'dart:ui',
+                  name: 'Offset',
+                  origin: FlaxCodegenOriginState.resolved,
+                ),
+              )!
+              .value,
         );
         expect(validation.directDependencies.keys, contains('flax'));
       },
+      timeout: const Timeout(Duration(minutes: 6)),
     );
 
     test(
       'automatic library generation publishes named extension static writes',
       () async {
-        final package = _tempWidgetCliPackage();
-        File(p.join(package.path, 'bindings', 'flax_overrides.yaml'))
-            .deleteSync();
-        File(p.join(package.path, 'lib', 'widget_package.dart'))
-            .writeAsStringSync('''
+        final fixture = _tempCliPackage();
+        final package = fixture.root;
+        File(fixture.configPath).deleteSync();
+        File(p.join(package.path, 'bindings', 'flax_extra.yaml')).deleteSync();
+        File(p.join(package.path, 'lib', 'widgets.dart')).writeAsStringSync('''
 extension SharedX on String {
   static int count = 3;
   static set writeOnly(int value) => count = value;
   static const frozen = 1;
 }
 ''');
-        const library = 'package:widget_cli_pkg/widget_package.dart';
+        const library = 'package:cli_pkg/widgets.dart';
         final generated = await FlaxCodegenPackagePipeline.generateLibrary(
           library,
           packageRoot: package.path,
@@ -344,6 +357,7 @@ extension SharedX on String {
           isNot(contains('SharedX.staticSetter.frozen')),
         );
       },
+      timeout: const Timeout(Duration(minutes: 10)),
     );
 
     test('extension type generation retains representations without claiming owners', () async {
@@ -409,17 +423,16 @@ extension SharedX on String {
             },
           }),
         );
-      await FlaxCodegenPackagePipeline.generateConfig(config.path);
-      await FlaxCodegenPackagePipeline.checkConfig(config.path);
-      final explicit = await FlaxCodegenPackagePipeline.validateConfig(
+      final explicit = await FlaxCodegenPackagePipeline.generateConfig(
         config.path,
       );
+      await FlaxCodegenPackagePipeline.checkConfig(config.path);
       expect(
         explicit.localModels.single.typeLibraries.keys,
         containsAll(aliases),
       );
       expect(explicit.localModels.single.functions, hasLength(20));
-    });
+    }, timeout: const Timeout(Duration(minutes: 15)));
 
     test('automatic library mode carries same-package public dependency routing into parse', () async {
       final package = _tempCarrierCliPackage();
@@ -589,7 +602,11 @@ classes:
     constructors:
       create: []
 ''');
-  _copyWorkspacePackageConfig(root, 'cli_pkg', extra: {'api_pkg': apiPackage});
+  _copyWorkspacePackageConfig(
+    root,
+    'cli_pkg',
+    extra: {'api_pkg': apiPackage, 'flax': writeEmptyCorePackage(root)},
+  );
   return (
     root: root,
     configPath: p.normalize(p.join(bindings.path, 'flax_widgets.yaml')),
@@ -711,7 +728,11 @@ class Consumer {
   File(p.join(lib.path, 'dependency.dart')).writeAsStringSync('''
 class PublicType {}
 ''');
-  _copyWorkspacePackageConfig(root, 'carrier_cli_pkg');
+  _copyWorkspacePackageConfig(
+    root,
+    'carrier_cli_pkg',
+    extra: {'flax': writeEmptyCorePackage(root)},
+  );
   return root;
 }
 

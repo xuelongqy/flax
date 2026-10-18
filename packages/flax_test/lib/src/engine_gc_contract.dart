@@ -55,6 +55,25 @@ WeakReference<_Owner> _cycle(FlaxNativeJsRuntime runtime, bool jsRoot) {
 @pragma('vm:never-inline')
 bool _dartAlive(WeakReference<_Owner> owner) => owner.target != null;
 
+@pragma('vm:never-inline')
+(WeakReference<_Owner>, WeakReference<_Owner>) _separateOrigin(
+  FlaxNativeJsRuntime runtime,
+) {
+  final origin = _Owner();
+  final target = _Owner();
+  final wrapper = runtime.evaluate('''
+    globalThis.wrapper = {};
+    globalThis.weak = new WeakRef(wrapper);
+    wrapper;
+  ''') as FlaxJsObject;
+  try {
+    runtime.bindDartPeer(wrapper, target, origin: origin);
+  } finally {
+    wrapper.release();
+  }
+  return (WeakReference(origin), WeakReference(target));
+}
+
 bool _jsAlive(FlaxNativeJsRuntime runtime) {
   final alive = runtime.evaluate('weak.deref() !== undefined') as FlaxJsBoolean;
   runtime.drainMicrotasks();
@@ -360,6 +379,34 @@ void flaxEngineGcContract({
       expect(_jsAlive(runtime), isFalse);
       expect(runtime.bridgeCellCount, 0);
       expect(owner.value, 7);
+    } finally {
+      runtime.dispose();
+    }
+  });
+
+  test('active JS collection tolerates expired Dart origins', () async {
+    final runtime = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+    try {
+      final (origin, target) = _separateOrigin(runtime);
+      for (var i = 0; i < 8 && _dartAlive(origin); i++) {
+        await flaxTestCollectDartGarbage();
+      }
+      expect(_dartAlive(origin), isFalse);
+      expect(_dartAlive(target), isTrue);
+      runtime.registerHostFunction('collect', (_, _) {
+        // Collect during the JS job, before queued native pruning can run.
+        final window = <Uint8List>[];
+        for (var i = 0; i < 2000; i++) {
+          window.add(Uint8List(256 * 1024)..[0] = i & 255);
+          if (window.length > 100) window.removeAt(0);
+        }
+        return FlaxJsNumber(window.last[0].toDouble());
+      });
+      expect((runtime.evaluate('collect()') as FlaxJsNumber).value, 207);
+      expect(_dartAlive(origin), isFalse);
+      expect(_dartAlive(target), isTrue);
+      runtime.evaluate('delete globalThis.wrapper; delete globalThis.collect');
+      await _reclaimed(runtime, target);
     } finally {
       runtime.dispose();
     }

@@ -2,6 +2,7 @@ import {
   dartType as selectDartType,
   dartTypes as nativeTypes,
   type DartMap,
+  type DartMapInput,
 } from '@flax/core/bindings';
 import type {} from '@flax/local-storage/globals';
 import type {} from '@flax/fetch/globals';
@@ -31,7 +32,7 @@ import {
   TextField,
   ThemeData,
   ThemeMode,
-} from '@flax/flutter/material';
+} from '@flax/material-ui';
 import { Color } from '@flax/flutter/services';
 import { CanvasView } from '@flax/canvas';
 
@@ -191,7 +192,10 @@ class DetailsPage extends StatelessWidget {
           Text(this.message),
           TextButton({
             onPressed: () =>
-              Navigator.of(context).pop({ accepted: true, values: [1, 'JS'] }),
+              Navigator.of(context).pop<DartMapInput<string, unknown>>({
+                accepted: true,
+                values: [1, 'JS'],
+              }),
             child: Text('Accept and return'),
           }),
           TextButton({

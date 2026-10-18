@@ -1,0 +1,14 @@
+format: 2
+name: sdk_widgets
+library: package:flutter/widgets.dart
+automatic: true
+jsPackage: '@flax/flutter/widgets'
+dartOutput: lib/src/generated/sdk_widgets_bindings.g.dart
+tsOutput: js/src/flutter/generated/libraries/widgets/index.ts
+publicLibraries:
+  package:flutter/widgets.dart:
+    jsPackage: '@flax/flutter/widgets'
+    tsOutput: js/src/flutter/generated/libraries/widgets/index.ts
+# The host owns runApp; SDK bindings must not replace the embedded root.
+overrides:
+  exclude: [runApp]

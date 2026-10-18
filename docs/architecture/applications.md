@@ -10,7 +10,8 @@ MaterialApp can be that root; it is not an additional native window or a second 
 MaterialApp selects key, title, home, theme, darkTheme, themeMode and
 debugShowCheckedModeBanner. All except key accept ordinary property bindings. ThemeMode
 uses the real Material enum. Defaults and nullable values are forwarded to Flutter; this
-subset uses home, not route tables, builder or MaterialApp.router.
+example uses home. Other supported parameters and constructors come from automatic
+selection rather than an application-specific API list.
 
 MaterialApp establishes the actual application Theme, Directionality and Navigator.
 Contexts used for those services must be below it. The Dart host does not preinstall
@@ -41,13 +42,13 @@ Source consumers copy Dart packages with relative path dependencies, but their F
 engine remains an explicit prerequisite. The engine application gate is
 `dart run tool/check_engine_application.dart debug|profile|release`.
 
-`@flax/core` and the example's npm extensions (`@flax/material-ui`, `@flax/fetch`,
-`@flax/websocket`, `@flax/local-storage`, and `@flax/canvas`) are packed locally and
-installed as tarballs. The temporary consumer explicitly maps transitive Flax
-dependencies to those tarballs because none are published. It checks normal exports and
-a single runtime installation, then performs its own TypeScript check and bundle build.
-No root bundler aliases, source entrypoints, node_modules or build caches are copied.
-Local Flutter SDK and package caches are allowed.
+The public declaration packages and corresponding `-runtime` source packages for Core
+and the example's extensions are packed locally and installed as tarballs. The temporary
+consumer explicitly maps transitive Flax dependencies to those tarballs because none are
+published. It checks normal exports and a single runtime installation, then performs its
+own TypeScript check and bundle build. No root bundler aliases, source entrypoints,
+node_modules or build caches are copied. Local Flutter SDK and package caches are
+allowed.
 
 The same source application runs macOS integration tests outside the repository. Its
 normal entrypoint produces build/standalone/flax_standalone.app at the repository root.

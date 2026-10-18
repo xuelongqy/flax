@@ -24,7 +24,7 @@ import {
   MaxLengthEnforcement,
 } from '@flax/flutter/services';
 import { RegExp } from '@flax/dart/core';
-import { TextField } from '@flax/flutter/material';
+import { TextField } from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 

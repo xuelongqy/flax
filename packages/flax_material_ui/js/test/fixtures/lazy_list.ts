@@ -17,7 +17,7 @@ import {
 } from '@flax/flutter/widgets';
 import { type Key, ValueKey } from '@flax/flutter/foundation';
 import { TextDirection } from '@flax/flutter/services';
-import { RefreshIndicator, TextButton } from '@flax/flutter/material';
+import { RefreshIndicator, TextButton } from '@flax/material-ui';
 import { RetainedTile } from '../../../.dart_tool/flax/ui/material_repeated_bindings.js';
 
 const IntKey = selectDartType(ValueKey, nativeTypes.int);

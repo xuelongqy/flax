@@ -217,6 +217,22 @@ test('prepared assets contain the selected module and exclude unrelated code', a
   assert.ok(
     !Object.values(fixture.assets).join('').includes('UNSELECTED_MODULE_MUST_NOT_SHIP'),
   );
+  for (const entry of fixture.manifest.modules) {
+    const source = fixture.assets[entry.asset];
+    const prefix = 'globalThis.__flaxModules.define(';
+    const metadata = JSON.parse(
+      source.slice(prefix.length, source.indexOf(', function(')),
+    );
+    assert.deepEqual(metadata, {
+      specifier: entry.specifier,
+      owner: entry.owner,
+      version: entry.version,
+      artifact: entry.artifact,
+      dependencies: entry.dependencies,
+    });
+    assert.ok(Array.isArray(entry.bindings));
+    assert.ok(Array.isArray(entry.subpaths));
+  }
   const checked = await prepareModules({ configPath: fixture.configPath, check: true });
   assert.deepEqual(checked.manifest, fixture.manifest);
 });
@@ -464,11 +480,19 @@ test('real delivery metadata preserves public library binding topology', async (
   const widgets = entry(core, '@flax/flutter/widgets');
   assert.equal(widgets.source, 'dist/flutter/widgets.js');
   assert.equal(widgets.subpathRoot, 'dist/flutter/generated/libraries/widgets');
-  assert.deepEqual(widgets.helperSubpaths, ['_bindings/components.__module']);
-  assert.deepEqual(
-    widgets.bindings.map((binding) => binding.moduleId),
-    ['flax.core/components', 'flax.core/flutter'],
-  );
+  const helpers = core.modules.flatMap((module) => module.helperSubpaths ?? []);
+  assert.equal(helpers.length, 16);
+  assert.equal(new Set(helpers).size, helpers.length);
+  assert.ok(helpers.includes('_bindings/components.__module'));
+  assert.ok(helpers.includes('_bindings/sdk_widgets.__module'));
+  for (const id of [
+    'flax.core/components',
+    'flax.core/flutter',
+    'flax.core/sdk_widgets',
+    'flax.core/sdk_rendering',
+  ]) {
+    assert.ok(widgets.bindings.some((binding) => binding.moduleId === id));
+  }
   const widgetComponents = widgets.bindings.find(
     (binding) => binding.moduleId === 'flax.core/components',
   );
@@ -487,7 +511,7 @@ test('real delivery metadata preserves public library binding topology', async (
     navigationFlutter.types.includes('flax.core/flutter#type:FlaxNavigatorObserver'),
   );
   assert.ok(navigationFlutter.types.includes('flax.core/flutter#type:TargetPlatform'));
-  for (const referenceOnly of [
+  for (const nativeReference of [
     'KeyEvent',
     'LogicalKeyboardKey',
     'Offset',
@@ -496,8 +520,8 @@ test('real delivery metadata preserves public library binding topology', async (
     'PointerScrollEvent',
   ]) {
     assert.ok(
-      !navigationFlutter.types.includes(`flax.core/flutter#type:${referenceOnly}`),
-      `${referenceOnly} must not be projected as a registered Dart binding`,
+      navigationFlutter.types.includes(`flax.core/flutter#type:${nativeReference}`),
+      `${nativeReference} uses an ordinary registered Dart binding`,
     );
   }
 
@@ -510,7 +534,7 @@ test('real delivery metadata preserves public library binding topology', async (
     foundationFunctions.includes('flax.core/flutter#read:defaultTargetPlatform'),
   );
 
-  const materialEntry = entry(material, '@flax/flutter/material');
+  const materialEntry = entry(material, '@flax/material-ui');
   assert.deepEqual(materialEntry.helperSubpaths, ['_bindings/material.__module']);
   const materialFunctions = materialEntry.bindings.flatMap(
     (binding) => binding.functions,
@@ -522,6 +546,22 @@ test('real delivery metadata preserves public library binding topology', async (
 });
 
 test('declaration packages expose every delivered Flutter and Dart public subpath', async () => {
+  for (const [owner, name] of [
+    ['flax_material_ui', '@flax/material-ui'],
+    ['flax_cupertino_ui', '@flax/cupertino-ui'],
+  ]) {
+    const directory = join(repository, 'packages', owner);
+    const source = JSON.parse(
+      await readFile(join(directory, 'js/package.json'), 'utf8'),
+    );
+    const types = JSON.parse(
+      await readFile(join(directory, 'js-types/package.json'), 'utf8'),
+    );
+    assert.equal(source.name, `${name}-runtime`);
+    assert.equal(types.name, name);
+    assert.equal(types.exports['.'].import, undefined);
+    await access(join(directory, 'js-types', types.exports['.'].types));
+  }
   const core = JSON.parse(
     await readFile(join(repository, 'packages/flax/js/flax_modules.json'), 'utf8'),
   );

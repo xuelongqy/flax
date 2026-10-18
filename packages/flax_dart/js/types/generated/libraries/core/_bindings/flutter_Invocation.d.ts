@@ -3,11 +3,12 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Symbol';
 import '@flax/dart/core/_bindings/flutter_Symbol';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Type';
 import '@flax/dart/core/_bindings/flutter_Type';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Invocation extends Readonly<{
     "__flaxBound:dart:core::Invocation": readonly [];
 }> {
     readonly __Invocation: unique symbol;
+    readonly [_flaxDartTypeValue]: Invocation;
     readonly memberName: upstream0.Symbol;
     readonly typeArguments: DartList<upstream1.Type>;
     readonly positionalArguments: DartList<unknown | null>;

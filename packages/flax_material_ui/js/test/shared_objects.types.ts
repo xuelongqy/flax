@@ -1,7 +1,7 @@
 import * as dartCore from '@flax/dart/core';
 import * as services from '@flax/flutter/services';
 import * as widgets from '@flax/flutter/widgets';
-import * as material from '@flax/flutter/material';
+import * as material from '@flax/material-ui';
 
 const curve: widgets.Curve = widgets.Cubic(0.42, 0, 1, 1);
 const transformed: number = curve.transform(0.5);
@@ -88,8 +88,8 @@ services.SystemMouseCursor();
 // @ts-expect-error Static cursor constants have no instance constructor.
 services.SystemMouseCursors();
 const transformedInternal: number = curve.transformInternal(0.5);
-// @ts-expect-error Cursor lifecycle APIs are outside the selected surface.
-cursor.createSession(1);
+const cursorSession: services.MouseCursorSession = cursor.createSession(1);
+void cursorSession;
 const appliedPhysics: widgets.ScrollPhysics = physics.applyTo(parent);
 // @ts-expect-error Border is a ShapeBorder, but not an OutlinedBorder.
 const wrongOutline: widgets.OutlinedBorder = border;

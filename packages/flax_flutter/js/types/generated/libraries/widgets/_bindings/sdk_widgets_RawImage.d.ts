@@ -1,0 +1,160 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_LeafRenderObjectWidget';
+import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
+import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
+import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream5 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_BlendMode';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_BlendMode';
+import type * as upstream7 from '@flax/flutter/painting/_bindings/flutter_BoxFit';
+import '@flax/flutter/painting/_bindings/flutter_BoxFit';
+import type * as upstream8 from '@flax/flutter/painting/_bindings/flutter_AlignmentGeometry';
+import '@flax/flutter/painting/_bindings/flutter_AlignmentGeometry';
+import type * as upstream9 from '@flax/flutter/painting/_bindings/sdk_painting_ImageRepeat';
+import '@flax/flutter/painting/_bindings/sdk_painting_ImageRepeat';
+import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_FilterQuality';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_FilterQuality';
+import type * as upstream12 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderImage';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderImage';
+import type * as upstream13 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_LeafRenderObjectElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_LeafRenderObjectElement';
+import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface RawImage extends _FlaxDartWidget, Omit<upstream0.LeafRenderObjectWidget, _flaxOwnMembers0>, Omit<upstream1.RenderObjectWidget, _flaxOwnMembers0 | keyof upstream0.LeafRenderObjectWidget>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.LeafRenderObjectWidget | keyof upstream1.RenderObjectWidget>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/basic.dart::RawImage": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}> {
+    readonly __RawImage: unique symbol;
+    readonly [_flaxDartTypeValue]: RawImage;
+    readonly image: upstream3.Image | null;
+    readonly debugImageLabel: string | null;
+    readonly width: number | null;
+    readonly height: number | null;
+    readonly scale: number;
+    readonly color: upstream4.Color | null;
+    readonly opacity: upstream5.Animation<number> | null;
+    readonly filterQuality: upstream11.FilterQuality;
+    readonly colorBlendMode: upstream6.BlendMode | null;
+    readonly fit: upstream7.BoxFit | null;
+    readonly alignment: upstream8.AlignmentGeometry;
+    readonly repeat: upstream9.ImageRepeat;
+    readonly centerSlice: upstream10.Rect | null;
+    readonly matchTextDirection: boolean;
+    readonly invertColors: boolean;
+    readonly isAntiAlias: boolean;
+    readonly key: upstream2.Key | null;
+    createRenderObject(context: upstream13.BuildContext): upstream12.RenderImage;
+    updateRenderObject(context: upstream13.BuildContext, renderObject: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/image.dart::RenderImage": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    didUnmountRenderObject(renderObject: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/image.dart::RenderImage": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): void;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    createElement(): upstream15.LeafRenderObjectElement;
+    toStringShort(): string;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream16.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream16.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream18.DiagnosticsTreeStyle | null | undefined;
+    }): upstream17.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream17.DiagnosticsNode>;
+}
+export declare function _RawImageFactory(options?: {
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }> | null | undefined;
+    image?: Readonly<{
+        "__flaxBound:dart:ui::Image": readonly [];
+    }> | null | undefined;
+    debugImageLabel?: string | null | undefined;
+    width?: number | null | undefined;
+    height?: number | null | undefined;
+    scale?: number | undefined;
+    color?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    opacity?: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>) | null | undefined;
+    colorBlendMode?: upstream6.BlendMode | null | undefined;
+    fit?: upstream7.BoxFit | null | undefined;
+    alignment?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+    }> | undefined;
+    repeat?: upstream9.ImageRepeat | undefined;
+    centerSlice?: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }> | null | undefined;
+    matchTextDirection?: boolean | undefined;
+    invertColors?: boolean | undefined;
+    filterQuality?: upstream11.FilterQuality | undefined;
+    isAntiAlias?: boolean | undefined;
+}): RawImage;
+export declare const RawImage: typeof _RawImageFactory & _FlaxInstanceType<RawImage> & _FlaxDartType<RawImage, readonly ["class", "flax.core/sdk_widgets#type:RawImage", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "image" | "debugImageLabel" | "width" | "height" | "scale" | "color" | "opacity" | "filterQuality" | "colorBlendMode" | "fit" | "alignment" | "repeat" | "centerSlice" | "matchTextDirection" | "invertColors" | "isAntiAlias" | "key" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::RawImage" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+export {};

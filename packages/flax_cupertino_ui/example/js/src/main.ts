@@ -4,7 +4,7 @@ import {
   CupertinoButton,
   CupertinoPageScaffold,
   CupertinoThemeData,
-} from '@flax/flutter/cupertino';
+} from '@flax/cupertino-ui';
 
 runApp(
   CupertinoApp({

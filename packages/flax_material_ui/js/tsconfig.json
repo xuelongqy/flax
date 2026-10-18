@@ -2,6 +2,10 @@
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@flax/material-ui": ["./src/index.ts"],
+      "@flax/material-ui/*": ["./src/generated/libraries/material/*"]
+    }
   }
 }

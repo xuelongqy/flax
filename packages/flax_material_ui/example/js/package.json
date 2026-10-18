@@ -11,6 +11,7 @@
     "@flax/core": "workspace:*",
     "@flax/flutter": "workspace:*",
     "@flax/material-ui": "workspace:*",
-    "@flax/core-runtime": "workspace:*"
+    "@flax/core-runtime": "workspace:*",
+    "@flax/material-ui-runtime": "workspace:*"
   }
 }

@@ -1,0 +1,11 @@
+format: 2
+name: sdk_scheduler
+library: package:flutter/scheduler.dart
+automatic: true
+jsPackage: '@flax/flutter/scheduler'
+dartOutput: lib/src/generated/sdk_scheduler_bindings.g.dart
+tsOutput: js/src/flutter/generated/libraries/scheduler/index.ts
+publicLibraries:
+  package:flutter/scheduler.dart:
+    jsPackage: '@flax/flutter/scheduler'
+    tsOutput: js/src/flutter/generated/libraries/scheduler/index.ts

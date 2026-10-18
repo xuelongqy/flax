@@ -1,9 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
-const _flaxMemberParameters0 = [{"name":"stream","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_Stream';
@@ -11,9 +9,12 @@ import type * as upstream2 from '@flax/dart/async/_bindings/flutter_EventSink';
 import '@flax/dart/async/_bindings/flutter_EventSink';
 import type * as upstream3 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
+const _flaxMemberParameters0 = [{"name":"stream","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamTransformer<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [S, T] }> { readonly __StreamTransformer: unique symbol;
+readonly [_flaxDartTypeValue]: StreamTransformer<S, T>;
 readonly [_flaxDartMethodCases]?: {cast: _FlaxSignature2<S, T>;};
 bind(stream: (upstream1.Stream<S> | upstream1.Stream<(S | DartInput<S>)>)): upstream1.Stream<T>;
 cast<RS extends unknown | null = unknown | null, RT extends unknown | null = unknown | null>(): StreamTransformer<_FlaxDartOutput<RS>, _FlaxDartOutput<RT>>;

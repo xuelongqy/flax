@@ -28,7 +28,7 @@ import {
   TextButton,
   TextField,
   showDialog,
-} from '@flax/flutter/material';
+} from '@flax/material-ui';
 import { signal } from '@flax/core';
 import * as functions from '../../../.dart_tool/flax/ui/functions_bindings.js';
 

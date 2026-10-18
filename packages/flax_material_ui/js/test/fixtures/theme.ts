@@ -22,7 +22,7 @@ import {
   TextTheme,
   Theme,
   ThemeData,
-} from '@flax/flutter/material';
+} from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 

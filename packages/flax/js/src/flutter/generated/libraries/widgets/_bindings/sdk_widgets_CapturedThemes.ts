@@ -1,0 +1,13 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+const _flaxMemberParameters0 = [{"name":"child","required":true,"positional":true}] as const;
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface CapturedThemes extends Readonly<{ "__flaxBound:package:flutter/src/widgets/inherited_theme.dart::CapturedThemes": readonly [] }> { readonly __CapturedThemes: unique symbol;
+readonly [_flaxDartTypeValue]: CapturedThemes;
+
+wrap(child: Widget): Widget;
+}
+defineObject("flax.core/sdk_widgets#type:CapturedThemes", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:CapturedThemes", "object", {"wrap":_flaxMemberParameters0}, {}), []);
+export const CapturedThemes: object & _FlaxInstanceType<CapturedThemes> & _FlaxDartType<CapturedThemes, readonly ["class", "flax.core/sdk_widgets#type:CapturedThemes", readonly [], false]> = _flaxBindInstanceType<CapturedThemes, object>({}, "flax.core/sdk_widgets#type:CapturedThemes", ["dart:core::Object"]) as object & _FlaxInstanceType<CapturedThemes> & _FlaxDartType<CapturedThemes, readonly ["class", "flax.core/sdk_widgets#type:CapturedThemes", readonly [], false]>;

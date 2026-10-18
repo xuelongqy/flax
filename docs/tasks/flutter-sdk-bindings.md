@@ -1,19 +1,227 @@
 # Task: Flutter SDK Binding Verification
 
-Status: shared fixes validated; complete SDK matrix awaits revalidation after the
-curated configuration migration
+Status: Local acceptance complete for the shared binding optimization baseline
 
 ## Scope
 
-Verify all 13 public `package:flutter/*.dart` entries and complete `dart:ui` using Flax
-`7d17c920` on `feat/flutter-sdk-bindings` and maintained Flutter `092069ad26e` on
-`flax/main`. The locked `material_ui` and `cupertino_ui` packages are comparison
-targets, not substitutes for the SDK libraries. `vector_math` is an auxiliary provider.
+Generate all 13 public `package:flutter/*.dart` entries and complete `dart:ui` in
+`packages/flax` on `feat/flutter-sdk-bindings`, using the maintained Flutter fork.
+`flax_sdk_*.yaml` declares automatic library scopes. Existing Core selections keep
+necessary semantic overrides and stable binding IDs; all scopes share one package
+transaction, declaration-identity plan and Manifest. Public declarations remain in
+`packages/flax_flutter` and `packages/flax_dart`.
 
-Keep temporary SDK experiment outputs separate from production bindings. The curated
-configuration follow-up below migrates the production selections and workspace links;
-external dependency versions and engine binaries remain locked. CI, SDK rebuilds and
-publication are outside this verification task.
+The locked `material_ui` and `cupertino_ui` libraries remain independent plugins under
+`@flax/material-ui` and `@flax/cupertino-ui`. Flutter's own Material and Cupertino
+bindings belong to Core. Their declaration-only `@flax/material-ui` and
+`@flax/cupertino-ui` packages remain separate from `-runtime` source packages and use
+the same public-type projection and plugin injection as other optional packages. Earlier
+per-package probes below are diagnostic baselines, not the final package layout. Engine
+binaries and dependency versions remain locked; CI, SDK rebuilds, commits and
+publication are outside this task.
+
+## Core integration
+
+- Reuse Manifest source identities for dependency and sibling lookup. Explicit scopes
+  take precedence; automatic reexports choose the nearest public carrier, with a stable
+  module-name tie break. Bare `types` selections reuse unique imported owners, including
+  enums, and canonical wire IDs determine emission regardless of module order. Prepare
+  the whole type pool and infer every scope before parsing signatures, so parents and
+  generic defaults do not depend on config order.
+- Compose disjoint contributions to one public-library facade. Runtime requirements
+  already support multiple binding modules per public entry. Other output collisions and
+  conflicting declarations remain errors.
+- Resolve native carrier declarations through analyzer rather than guessing an identity
+  from a reexport URI. Keep each provider's authoritative named-type model. Preserve
+  semantic Widget ancestry after source identities become wire IDs.
+- Core callback values use ordinary native objects instead of the retired selected
+  Offset/key/pointer snapshot projections. Explicit snapshot generation remains
+  available to independently configured adapters.
+- Automatic proxies inherit non-virtual native methods without generating overrides.
+  Opaque private generic ancestors retain only source-identity metadata; their private
+  constructors and methods are not exposed. Widget static generic methods use the
+  ordinary checked call path rather than ordinary-object deferred factories.
+- Preserve complete nominal ancestry and descriptor generic arguments, including input
+  markers required by Dart covariant callbacks. Existing native input adapters also
+  accept the direct declaration brand. Use the public override signature and the actual
+  concrete method signature for proxy `super` calls; named parameters are matched by
+  name, positional parameters by position. Cross-module deferred factories reuse the
+  session's function registry. Ordinary classes and enhanced enums share
+  inherited-member conflict handling. Runtime subtype selection normalizes generic
+  specialization IDs to declaration identities while keeping independent package
+  namespaces isolated.
+- Retain enum constant identity when a public constant aliases an enum value. Separate
+  case-colliding private filenames without renaming public declarations. Report dynamic
+  constructors with `@mustBeConst` arguments as unsupported, keeping const getters.
+- Calculate module capability requirements once per split plan, rather than once per
+  declaration chunk. SDK callback values and Canvas fixtures use ordinary event/key/
+  Offset references, `instanceof`, and the existing joint collector.
+
+The formal Core Manifest has 16 modules: the two curated modules and 14 automatic SDK
+scopes. Its source-index audit records 14,481 owner rows and 1,443 references, with no
+duplicate owner or unresolved reference. Owner rows include static operations and are
+not a class count. The models contain 2,263 classes, 125 top-level functions, five
+extensions and 335 typedefs. Ordinary supported members are inferred; unsupported
+selections still retain their skip reasons.
+
+Before the shared-generation optimization below, uncompressed generated outputs occupied
+130,036,843 Dart bytes and 38,198,346 TypeScript bytes; the pretty-printed Manifest is
+295,851,237 bytes. Complete SDK signatures and ancestor metadata materially increase
+cold compiler and analysis costs. These sizes are source/metadata measurements, not
+application binary sizes. Shared public-type projection runs once per workspace JS
+build. Capability probes share the analyzer environment while keeping independent parser
+selections; fixture modules normalize their dependency Manifest only once.
+
+Manifest 24 storage remains unchanged in this task. A shared type-table storage
+experiment is deferred to the next round; the current 296 MB Manifest cannot be pushed
+as an ordinary GitHub file. No commit or push is part of this validation.
+
+Validation receipts are stored in `.local/sdk-core-unification-20261017/`:
+
+- Formal workspace regeneration consistency, strict Dart/TypeScript, JS builds,
+  public-type projection and module delivery pass. The final formal package check takes
+  822 seconds; the shared capability matrix takes 34 seconds.
+- Generator coverage combines the full run's 619 passes with successful focused repairs
+  of all 17 failures, covering 636 logical cases. This is combined evidence, not a fresh
+  passing run of the entire generator suite. The final JS suite passes 194 tests; other
+  package units pass 54, tooling passes 91 with one Windows-only CDB self-test
+  inapplicable on macOS, and engine tooling passes eight.
+- The final V8 framework run passes all 615 cases without failures or skips, including a
+  real Physics import using the default binding registry. Its runner takes 1,669
+  seconds. All seven owner example Widget tests and six native example integrations
+  pass; Cupertino has no separate native example integration fixture. Both aggregate
+  Widget tests and the native aggregate application also pass.
+- The signed, relocated macOS release/AOT application passes 240 cases with V8 JIT
+  proof; two Flutter debug-hook checks are inapplicable. The signed, relocated iOS arm64
+  simulator debug application passes all 242 cases with one embedded Hermes interpreter
+  closure. Final regeneration leaves runtime Dart unchanged; a semantic audit confirms
+  the only fixture JS difference is whitespace and its delivery metadata differs only in
+  the lock digest. The Hermes result therefore remains applicable. Runtime gates cover
+  inheritance, overrides, `super`, callbacks, provider selection and actual joint GC.
+- Independent Dart/npm archive consumers pass in 751 seconds. Final host
+  reproducibility, workspace analysis, formatting, documentation and diff checks pass.
+  No CI, engine rebuild, commit or push is part of this acceptance.
+
+V8 UI acceptance combines the successful framework and owner-example stages with the
+corrected formal aggregate replay. The first full UI command and an unchanged verbose
+aggregate control failed during DDS startup, before the driver could negotiate
+`getVersion`. The same application, driver and assertions pass with a direct VM
+connection. The aggregate entry now uses `--no-dds`, matching the existing maintained
+engine application gates; no Dart/JS runtime or GC change is needed for this correction.
+The corrected formal aggregate command passes in 198 seconds. The original failed
+invocations remain recorded rather than being described as successful full commands.
+Hashes confirm all 518 runtime/test program and prepared-module files remain identical
+to final regeneration throughout acceptance.
+
+Superseded failures, resource-contention failures and a stopped unit command that
+accidentally included UI tests remain in local evidence. Only the corrected unit file
+selection and successful final gates are counted as passes. Full SDK entry generation
+does not certify every source API; unsupported selections keep their actual skip
+reasons.
+
+## Shared Dart generation
+
+The `RenderObject` → `RenderBox` → `RenderProxyBox` probe uses the formal Rendering
+Manifest and the production emitter. Equivalent ordinary member adapters now reuse a
+selected ancestor within the same module. Dart retains virtual dispatch. Lexical `super`
+entries, narrowed signatures, operators and generic owner/method factories keep their
+own adapters. Complete conversion metadata, including omitted parameters and callback
+policy, participates in the sharing key.
+
+Closed callback adapters are interned by their full structural signature. Immutable
+runtime type, callback and member descriptors are emitted once as module constants. This
+shares code and immutable metadata, never callback instances or business roots. The
+existing object registry, proxy peer, callback ownership and joint collector remain
+unchanged. Generic callbacks retain the selected owner scope when their local type
+parameters are defaulted; rebuilding metadata from an unspecialized declaration could
+otherwise reintroduce an out-of-scope owner type parameter.
+
+The formatted three-class probe shrinks from 1,033,572 to 596,157 bytes (42.3%); its
+callback adapter factories fall from 321 to 68, with 186 ordinary member aliases.
+Applying the same emitter to Core shrinks generated Dart from 130,036,843 to 76,292,133
+bytes (41.3%). Rendering falls from 53,389,386 to 26,966,218 bytes (49.5%). Core
+callback factory counts fall from 32,561 to 4,692; Rendering falls from 15,662 to 961.
+These are source measurements, not AOT binary reductions. All 6,371 recorded JS and
+Manifest files remain byte-identical at this measurement. Manifest 24 storage, protocol
+24 and native ABI 2 are unchanged.
+
+The macOS arm64 release comparison uses identical application/test sources and the same
+maintained engine. The signed `App.framework/Versions/A/App` AOT binary falls from
+152,504,992 to 98,939,584 bytes (35.1%, saving 53,565,408 bytes). Its code and read-only
+constant sections both shrink:
+
+| Mach-O section | Before (bytes) | After (bytes) |
+| -------------- | -------------: | ------------: |
+| `__text`       |     81,152,384 |    54,779,136 |
+| `__const`      |     71,005,856 |    43,915,728 |
+
+The snapshot includes Flutter, the test application and all referenced bindings; these
+are controlled whole-application differences, not isolated binding-only binary sizes.
+All 70 executable fixture JS files and the prepared module inventory are byte-identical.
+The fixture asset also embeds generated Dart source, so its separate size reduction is
+not counted in the AOT figure; fresh TLS fixtures and the delivery lock digest are
+accounted for separately. The two benchmark applications freeze the same test source.
+Subsequent fixture lint fixes only spell out `Map<dynamic, dynamic>`, add braces around
+a conditional `break`, and apply Dart formatting; local evidence records their
+normalized equivalence.
+
+Reproduce generation with `dart run tool/package.dart bindings`. The focused native
+fixture is `packages/flax/test/ui/render_bindings_test.dart`; it is also included in
+`examples/standalone/integration_test/engine_gc_test.dart` for V8 release/AOT and Hermes
+simulator acceptance. It covers private JS fields, inherited calls, method overrides,
+explicit `super`, `mustCallSuper`, child callback identity, and a real Dart→JS→Dart
+callback cycle with each side independently rooted and then both roots removed. Its
+benchmark reports warmed batches of 200 rounds, five samples per path and checked
+results; each round performs several calls. It has no timing assertion.
+
+The accepted ABBA comparison completes four application launches, each passing all 242
+named cases. Each variant contributes two launches and ten batches per path, with 200
+rounds per batch. One round performs several layout/intrinsic/size calls. Median
+microseconds per round are:
+
+| Path                              | Before (µs/round) | After (µs/round) | Change |
+| --------------------------------- | ----------------: | ---------------: | -----: |
+| JS inherited calls                |           1846.07 |          1838.31 |  -0.4% |
+| JS override + super               |           1567.76 |          1589.17 |  +1.4% |
+| Dart parent → JS override + super |           1936.18 |          1950.87 |  +0.8% |
+
+The before/after sample ranges overlap substantially. These observations show no
+persistent call-cost regression in the measured paths and do not establish a universal
+speedup. No timing assertion is added. An attempted after-run stopped advancing in a
+frame-dependent case until its window was reactivated; that interrupted run is retained
+and excluded. The successful initial baseline is reused; the remaining accepted launches
+keep the test window active. Workspace compilation, other task tests and the simulator
+are stopped during sampling. Per-launch medians, ranges, checksums and foreground policy
+are recorded in `performance-summary.json` and `performance-runs.json` under the local
+evidence directory.
+
+Validation for shared emission:
+
+- The final focused generator file passes all six cases, including separate business
+  callbacks, reversed class order, narrowed signatures, omitted override defaults,
+  cross-module isolation and nested callback-local/owner generic scopes. Three earlier
+  timeout cases pass their serial replay with their original timeouts. The existing main
+  generator group passed 43 cases before the final callback-metadata refinement; this is
+  combined evidence, not a fresh passing run of the entire generator suite.
+- Formal workspace regeneration and final Core regeneration pass. All three optional
+  generated plugin modules reproduce byte-for-byte with the final emitter. Final
+  generator/Core output/test-entry analysis reports no issues. Original concurrent
+  timeouts and the stopped broader suite remain in local evidence.
+- The signed, relocated V8 release/AOT application passes the same 242 named cases on
+  both sides. Two Flutter debug-hook checks remain inapplicable. New Render cases cover
+  actual virtual dispatch, JS private fields, mandatory `super`, independently rooted
+  peers and collection of a rootless callback cycle before Session closure. Final review
+  finds no new descriptor ownership or callback capture problem.
+- The final signed, relocated iOS arm64 simulator debug application passes all 244 cases
+  with embedded Hermes. Both new Render cases pass, including rootless collection before
+  Session closure. The task-booted simulator is shut down after acceptance.
+
+Disposable sources, baseline hashes, logs and measurements live in
+`.local/binding-sharing-20261018/`. Both AOT applications use the same test sources and
+engine binaries. Whole application AOT size includes Flutter, test code and all
+bindings; it is not a measurement of bindings in isolation. Timings collected during
+concurrent compilation are retained as diagnostic data and excluded from performance
+conclusions.
 
 ## Initial evidence
 
@@ -67,40 +275,52 @@ and native acceptance are recorded separately. A generated provider that fails
 compilation may unblock further diagnosis but is not accepted. Unsupported selection
 skips retain their actual codes and reasons.
 
-Current source tests, strict checks and V8 regressions are recorded under
-`.local/flutter-sdk-fixes-20261017/`. The complete dependency matrix is
+Earlier source tests, strict checks and V8 regressions are recorded under
+`.local/flutter-sdk-fixes-20261017/`. That round's dependency matrix is
 `graph-results.json`; logs retain failed controls separately. Initial census and runtime
 receipts remain under `.local/flutter-sdk-bindings-20261017/`.
 
-## Remaining acceptance
+## Previous per-package SDK verification
 
-The previous layered SDK run exposed two separate blockers. Rendering generated Dart and
-TS, but TS generic bounds assume complete structural parent views: for example,
-`RenderBox.constraints` returns Core's deliberately smaller `BoxConstraints` view,
-whereas `RenderObject.constraints` expects the separately generated full `Constraints`
-view. Covariant `handleEvent` parameters have a related nominal/structural mismatch.
-These are view-contract issues, not evidence that the Dart classes are unrelated. That
-run also stopped on an unbound `InheritedWidget` runtime type argument in Widgets.
-Material, Cupertino, Widget previews and both comparison packages were consequently
-unexecuted in that matrix. No `any` widening or API exclusions have been used to claim
-those entries passed.
+The review rerun covers every one of the 13 public Flutter `lib/*.dart` entries,
+complete `dart:ui`, one `vector_math` provider and two locked UI package comparisons.
+Fresh owner packages use the production automatic pipeline and declared dependency
+providers. Receipts, complete skips, logs and generated outputs live in
+`.local/flutter-sdk-review-20261017/`; `matrix-audit.json` separates all five static
+stages and records blocked targets without treating them as executed successes.
 
-Production bindings have been regenerated through the official command. The full
-generator suite passed 620 tests; 59 focused regressions passed after the final enum and
-fixture corrections. Maintained V8 passed 614 owner UI tests, all package examples and
-the embedded aggregate application. Maintained Hermes passed 242 runtime/UI cases in the
-debug arm64 simulator. Final Services regeneration also passed strict Dart/TS checks.
+Nine of the 14 SDK entries pass generation, strict Dart analysis, strict TypeScript,
+bundling and reproducibility: `dart:ui`, Foundation, Physics, Scheduler, Animation,
+Semantics, Services, Gestures and Painting. The auxiliary vector-math provider also
+passes all five stages. Automatic selection still reports unsupported declarations and
+members as skips; a successful entry is not a claim that every source API is bound.
 
-The initial workspace check stopped on three fixture-only analyzer diagnostics. After
-correction, the remaining and affected stages passed in scoped reruns: analysis,
-binding/FFI reproducibility, formatting, TypeScript, docs, archive consumers and native
-configuration. These are composed results, not a claim that the initial command exited
-successfully. `verification-receipt.json` and the individual logs retain the boundaries.
+| Target                                           | Current result                                              | Remaining cause                                                     |
+| ------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------- |
+| Rendering                                        | Generation, Dart, bundle and reproducibility pass; TS fails | 143 diagnostics in three shared type-view families, described below |
+| Widgets                                          | Generation fails                                            | `Unbound runtime type argument: InheritedWidget`                    |
+| Material, Cupertino, Widget previews             | Blocked, not executed                                       | Widgets has no generated provider                                   |
+| Locked Material/Cupertino UI package comparisons | Blocked, not executed                                       | Widgets has no generated provider                                   |
 
-Complete the SDK compile matrix. Bundle and reproduce successful SDK outputs before
-calling their static pipeline accepted. Representative native tests do not certify every
-SDK API or another platform. Keep raw Function, dynamic mixin composition and structural
-type-token deferrals unchanged.
+Rendering's 143 TypeScript diagnostics are 141 `TS2344` and two `TS2741` errors. They
+reduce to three related contracts:
+
+- Core's `BoxConstraints` view lacks the full Constraints view's brand and type-token
+  witness, so valid RenderBox/RenderSliver subtype bounds fail structural checking.
+- Dart's covariant `handleEvent` entry parameters narrow to BoxHitTestEntry or
+  SliverHitTestEntry. The generated callable views then fail HitTestTarget
+  assignability.
+- AppKitViewController and UiKitViewController return views lack the type-token witness
+  required by DarwinPlatformViewController's generated type.
+
+These need a shared nominal-bound/view solution. The current rerun retains each actual
+TS failure without changing the generated types to `any` or excluding those APIs.
+Widgets separately needs its generic default type resolution reconciled with abstract
+Widget bindings. Rendering's failed provider is usable for diagnosis, not acceptance;
+Widgets fails before its own compile, bundle or reproducibility stages can run.
+
+Full native runtime/UI suites were not rerun for this review. The prior maintained V8
+and Hermes results below cover the curated production bindings, not every SDK API.
 
 ## Curated configuration migration
 
@@ -118,8 +338,8 @@ module delivery reproduce through the official commands. Verification receipts a
 logs for this follow-up live under `.local/binding-config-migration-20261017/`. This
 configuration migration does not certify the complete Flutter SDK matrix above.
 
-Follow-up validation passes 629 generator tests, 194 JS tests, 91 tool tests and eight
-engine-tool tests; the Windows-only CDB self-test is skipped on macOS. Analysis,
+That migration was validated with 629 generator tests, 194 JS tests, 91 tool tests and
+eight engine-tool tests; the Windows-only CDB self-test is skipped on macOS. Analysis,
 formatting, strict TypeScript, documentation, archive consumers and native configuration
 also pass. Workspace verification combines the successful preparation stages and scoped
 reruns after correcting outdated fixture expectations.
@@ -133,3 +353,378 @@ focused rerun. No GC behavior or timing assertion is changed. Maintained Hermes 
 zero failures and one embedded Hermes closure. Signals business subscriptions use the
 existing signals-core instance and pass their four new behavior tests and public type
 checks.
+
+## Configuration and signals review
+
+Two paths rejected valid partial overrides after reusing an adequate provider: scoped
+classes and top-level functions. The shared selector now checks the requested override
+before reuse, keeps the imported API intact, falls back to a local binding for an
+insufficient non-Core provider, and rejects incompatible Core overrides. Function data
+conversion and route-builder policy participate in compatibility checks. Regression
+coverage includes narrow provider views, unknown members, ordinary object references,
+Future data copying and Core ownership. Signals keep the existing signals-core instance
+and subscription lifecycle; the review found no additional signals defect.
+
+Final frozen-source verification passes all 630 generator tests, 65 focused
+configuration and provider tests, and 73 Core JS tests. Generator Dart analysis,
+workspace TypeScript, all five production configuration reproducibility checks, public
+type projection and module delivery also pass. The earlier full run loaded the selector
+before the final function fix and is retained as a failed control;
+`codegen-full-final.log` is the fresh passing run. `verification-receipt.json`
+identifies the final checks and source hashes. Review corrections remain local, with no
+new commit, push, CI run or engine rebuild.
+
+## Inherited metadata and JS compaction
+
+Readable operation IDs are retained. Ordinary non-generic bindings now store a selected
+parent and changed members; Dart caches the effective immutable table once and JS uses
+private prototype inheritance. Complete effective signatures still govern adapter
+sharing. Restricted selections cannot gain extra APIs, and lexical proxy `super`,
+generic scopes and narrowed signatures remain explicit. The omitted-JS fallback reuses
+the checked super helper. Collection proxies also copy inherited synthetic collection
+accessors; traversing only the immediate prototype would lose APIs such as `length`.
+Selected parents register before children within each generated module, because
+collection proxy initialization reads those prototypes eagerly. Exact closed generic
+views retain their operation identity without allowing sibling views to substitute.
+
+Closed parameter lists and proxy rows are shared. TypeScript uses common type aliases
+for repeated omitted-member key sets. Static readers share an installer and operation
+prefix while retaining every selected name. These mechanisms retain metadata, not
+business receivers or callback instances; joint-GC ownership is unchanged.
+
+The comparison starts from the preceding sharing implementation, using the same Core
+generated file paths (decimal bytes):
+
+| Output                        | Before (bytes) | After (bytes) |
+| ----------------------------- | -------------: | ------------: |
+| Core Dart, 17 generated files |     76,292,133 |    62,665,877 |
+| Rendering Dart                |     26,966,218 |    20,325,018 |
+| Core TypeScript, 3,011 files  |     38,198,346 |    31,258,293 |
+| Material Icons emitted JS     |      1,324,609 |       190,655 |
+| Cupertino Icons emitted JS    |        218,167 |        26,246 |
+
+The Icon JS comparison uses the same esbuild TypeScript transform before and after,
+without minification; it excludes the shared runtime implementation. All 8,824 selected
+Material reads and 1,322 Cupertino reads retain exactly the same readable operation IDs.
+Aliases, dynamic names and adaptive icons remain available. A maintained-frontend AOT
+experiment confirmed that constructing `IconData` from runtime code points produces a
+non-constant location rejected by Flutter's release font tree shaker. The shared-reader
+implementation therefore preserves native Dart constants rather than requiring
+`--no-tree-shake-icons` or removing dynamic access.
+
+The relocated macOS release acceptance app uses the same embedded V8 library, selected
+type/function identities and test cases. Both ordinary example assets and the separate
+UI fixture inventory were rebuilt with the official commands and matched against the
+packaged files; updating only the runtime bundle leaves stale fixture dependencies. The
+measured application sizes are:
+
+| Packaged output               | Before (bytes) | After (bytes) | Reduction |
+| ----------------------------- | -------------: | ------------: | --------: |
+| Dart AOT application binary   |     98,939,584 |    98,168,032 |     0.78% |
+| Ordinary module JS, 23 files  |     10,382,949 |     9,484,444 |     8.65% |
+| Test-only module JS inventory |     15,917,134 |    13,639,144 |    14.31% |
+| Complete test fixture JSON    |     46,447,398 |    41,411,806 |    10.84% |
+
+These are different scopes, not additive savings. The acceptance app includes full SDK
+bindings and test fixtures; it is not a minimal business application. Source reduction
+does not imply the same reduction in compiled AOT code or live heap usage.
+
+Final maintained-engine acceptance passes 242 V8 macOS release/AOT cases and 244 Hermes
+iOS simulator debug cases. The two additional Hermes cases use Flutter debug rebuild
+hooks unavailable in release. Both runs verify source-independent application delivery;
+the simulator was restored to its original shutdown state. The generator suite has
+passing evidence for all 642 cases: three stale generated-output assertions were updated
+and two timeouts passed isolated reruns without increased limits. The last parent-order
+change additionally passed six shared-emission, 18 capability-emission and one
+cross-module-order regression. All 76 Core JS tests, Core TypeScript checks and
+generated Dart analysis pass. Full native runs include inheritance, overrides, lexical
+`super`, exact generic views, callbacks and cross-heap cycle collection.
+
+The same-device release comparison ran baseline/after/after/baseline, with every launch
+passing all 242 cases. Each path used two warm-up batches and five measured batches of
+200 composite Render operations per launch. Pooling the ten samples per variant gives:
+
+| Composite path                        | Before median (ms) | After median (ms) | Change |
+| ------------------------------------- | -----------------: | ----------------: | -----: |
+| JS inherited calls                    |            356.892 |           355.419 | -0.41% |
+| JS override and lexical `super`       |            315.730 |           316.293 | +0.18% |
+| Dart parent into override and `super` |            391.919 |           392.981 | +0.27% |
+
+Checksums match in every batch. The observed hot-path cost is effectively unchanged;
+these are composite batches, not individual bridge-call latency. Two launches per
+variant are insufficient for a general speedup claim. First-frame samples were
+548.968/739.493 ms before and 489.599/652.757 ms after; their spread and the
+instrumented test harness do not establish production startup improvement. Raw samples,
+per-launch medians and ranges are in `performance-runs.json` and
+`performance-summary.json` under the evidence directory.
+
+The remaining Rendering source contains 8.15 MB of typed proxy classes and 3.70 MB of
+lexical super adapters. Readable ID literals occupy 0.36 MB. A Dart proxy for
+`RenderProxyBox` must remain a real `RenderProxyBox`; making it extend the proxy for
+`RenderBox` would change its native behavior. Further reductions in these typed entries
+need a separately measured compiler/runtime design, not an erased receiver or a smaller
+supported API set. Raw evidence is in `.local/binding-inheritance-20261018/`.
+
+## Shared closed proxy dispatch
+
+Equivalent closed proxy overrides now call module-local typed functions. Each proxy
+keeps its native superclass, Widget mixin, constructor defaults and lexical-super
+helpers. Small overrides pass their actual member index directly. Private interfaces
+supply the peer, native-super helpers and existing super guards; no extra base class,
+slot table, callback instance or joint-GC root is introduced. Full signatures and
+conversion policies must match. Open generic scopes and the existing special proxy paths
+stay local. Selection ranks repeated bodies and caps each proxy at three interface
+groups.
+
+A shared-mixin prototype passed 642 generator tests and the 242-case V8 release suite,
+but increased the same application's Dart AOT binary from 98,168,032 to 98,726,176 bytes
+(+0.57%). Both code and constants grew. It was rejected despite reducing the Rendering
+source further. The final shared-function application, rebuilt after refreshing all UI
+fixtures, reduced Dart AOT to 94,178,944 bytes (-4.06%). Executable JS fixtures, public
+module/type/function identities and the embedded V8 libraries match the baseline.
+
+| Measurement                        | Before       | Shared functions |
+| ---------------------------------- | ------------ | ---------------- |
+| Native Rendering source (49 files) | 1,948,820 B  | 1,948,820 B      |
+| Rendering generated Dart           | 20,325,018 B | 18,582,566 B     |
+| Core generated Dart (17 files)     | 62,665,877 B | 60,267,647 B     |
+| Delivered JavaScript               | 9,484,444 B  | 9,484,444 B      |
+| Release application Dart AOT       | 98,168,032 B | 94,178,944 B     |
+
+Rendering uses 144 shared functions and 30 private interfaces across 191 proxies; there
+are no shared-dispatch mixin applications or slot tables. Constructor and lexical-super
+code remains class-specific. IDs, Manifest 24 storage, JS APIs, UI protocol 24 and
+native ABI 2 are unchanged. The original generated registrations, provider associations
+and inherited member sharing remain in place.
+
+The focused shared-binding regression covers reordered member indices, covariant
+arguments, native virtual dispatch, inherited defaults, getters/setters, operators,
+nested super guards and synchronous/asynchronous missing-super failures. The real
+Rendering fixture covers JS private fields, overrides, explicit super, native parent
+calls and joint collection with either side rooted and with neither side rooted. Source
+hashes, rejected prototypes, application receipts and raw performance samples are
+retained in `.local/binding-mixins-20261018/`. The final implementation passed all 642
+generator tests, 242 V8 macOS release/AOT cases (two debug-only checks are not
+applicable), and 244 Hermes iOS Simulator debug cases. All four formal package
+regeneration checks and public types/module delivery checks pass. Final source and
+relevant generated fixtures analyze cleanly. The full generator suite took 41 minutes 3
+seconds; the four performance launches took 14 minutes 26 seconds in total.
+
+Release/AOT call measurements use baseline/shared/shared/baseline launch order on the
+same device and engine. Each path runs two warmup batches and five measured batches per
+launch, giving ten measured samples per version. Each batch performs 200 composite
+render operations, not 200 isolated bridge calls. Every launch also passes all 242
+acceptance cases, and all measured checksums match.
+
+| Call path                              | Baseline median | Shared median | Change |
+| -------------------------------------- | --------------- | ------------- | ------ |
+| JS inherited calls                     | 362.57 ms       | 369.04 ms     | +1.78% |
+| JS override and super                  | 322.30 ms       | 323.67 ms     | +0.43% |
+| Native parent to JS override and super | 396.05 ms       | 405.05 ms     | +2.27% |
+
+All three medians were slightly higher. The observed baseline/shared ranges overlap:
+345.64–387.20 / 356.26–394.63 ms for inherited calls, 295.30–337.97 / 295.80–339.94 ms
+for JS overrides, and 391.87–405.53 / 393.50–418.93 ms for native parent calls. Two
+launches per version do not establish statistical significance or latency neutrality.
+This is a measured size improvement with a small observed call-cost increase, not a
+performance speedup. No timing assertion was added. Independent joint-GC pause profiling
+and other target platforms were not rerun in this change.
+
+## Validated extraction candidates (not applied)
+
+The isolated follow-up validates two additional extractions for the base package:
+
+- Separate ordinary proxy parameter/result signatures from standalone function adapters.
+  Real callbacks and generic method `super` contexts keep their callable adapters.
+  Signature-only entries fail loudly if accidentally used as function adapters.
+- Share zero-, one- and two-required-positional callback families, with separate void
+  handling, using generic base-package functions. Resolved owner types reuse those same
+  functions. Named/optional inputs, snapshots, extension representations,
+  Future/FutureOr results and special Widget-list casts retain the existing path. No
+  callback instances, business roots, extra bridge calls or ownership caches are
+  introduced.
+
+The prototype adds 2,854 bytes of base support and references shared factories in 2,288
+places across the 16 measured modules. Readable IDs, JS APIs, Manifest 24 storage, UI
+protocol 24 and ABI 2 remain unchanged. Formal generator/runtime sources have not been
+changed for these two candidates.
+
+| Output                   | Current      | Signature separation | Plus shared factories |
+| ------------------------ | ------------ | -------------------- | --------------------- |
+| Core generated Dart      | 60,267,647 B | 55,639,449 B         | 54,500,057 B          |
+| Rendering generated Dart | 18,582,566 B | 17,684,280 B         | 17,280,908 B          |
+| Same acceptance app AOT  | 94,178,944 B | 85,248,640 B         | 81,571,456 B          |
+
+The small shared implementation is outside generated-source totals. Whole-application
+AOT includes Flutter and the same acceptance fixtures; its 13.39% reduction is not a
+promise for other applications. The code section shrinks by 6,710,816 bytes and
+constants by 5,887,968 bytes. Existing parameter pooling already shares 181 lists among
+9,006 Rendering super entries and ordinary methods; another builder layer is not
+justified for that portion.
+
+All three V8 macOS release/AOT variants pass the same 245 cases, including three
+isolated adapter checks; two debug-only checks are inapplicable. The combined Hermes iOS
+arm64 Simulator debug prototype passes 247 cases. Covered behavior includes JS
+inheritance, private fields, overrides, generic `super`, either-side roots and rootless
+cycle collection. All 14 fixture TypeScript outputs remain identical after isolated path
+normalization. Source analysis passes; engine binaries are unchanged.
+
+Final performance sampling runs the baseline and combined release apps sequentially,
+once each, after the simulator is shut down. Each path has two warm-up batches and five
+measured batches of 200 composite operations. Median changes are -0.41%, +2.21% and
++0.63% for inherited, JS override/super and native-parent override/super calls. Ranges
+overlap; this small sample does not establish a speedup or latency neutrality. Full
+workspace checks, the full generator suite and independent GC pause profiling were not
+rerun for this prototype. Local macOS copies use ad-hoc signing with library validation
+disabled; production distribution signing is outside this comparison.
+
+Evidence is in `.local/binding-extraction-20261018/`: `result.json`, `README.md`, native
+receipts, exact source and AOT sizes, and raw timing samples. Formal rollout should
+apply signature separation first, then common callback factories, preserving
+special-case conversion and ownership rules and running the normal regeneration and
+acceptance gates. No commit, push, CI run or engine rebuild is part of this follow-up.
+
+### Remaining candidates after extraction
+
+A second AST census uses the combined isolated prototype above, not the older formal
+output, so these candidates do not count the two validated extractions again. Source
+sizes use decimal bytes and include formatting. Estimates below are not measured AOT
+reductions and are not additive with the already-validated results.
+
+| Candidate                                                         | Current evidence                                                                                                                                                                                                                                  | Boundary and priority                                                                                                                                                                                                                                           |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Share outer `super` adapters through existing dispatch interfaces | 13,712 wrappers form 973 matching groups across Core. Removing duplicates has a source upper estimate of 3,016,812 bytes before new helper overhead; Rendering contributes 2,065,894 bytes across 8,619 wrappers.                                 | Highest priority for the next prototype. Keep native lexical-super helpers per class, receiver checks, complete conversion policies, covariant signatures and super guards.                                                                                     |
+| Use shared readers for actual Dart constants                      | 10,145 selected `Icons`/`CupertinoIcons` constant readers occupy 1,125,681 source bytes. This is the affected code, not a saving estimate.                                                                                                        | Keep native constant references and validate release font tree shaking. `Icons.adaptive` is a getter and is excluded. Writable, lazy and computed properties remain live reads.                                                                                 |
+| Reduce production JS delivery overhead                            | The current standalone app has 23 JS assets totalling 9,484,444 bytes. In-memory esbuild minification with names preserved produces 6,198,208 bytes. Identical binding requirement entries repeat 984,981 bytes before shared-reference overhead. | Independent of Dart AOT. Shared requirement tables must preserve capability/version checks and standalone loading. Minification needs production bundle, inheritance/super and HMR regression checks; development output can retain readable formatting.        |
+| Share owner-independent members of generic proxies                | 935 method/getter/setter bodies contain no owner-type token or generic-signature request and occupy 316,162 bytes, including 154,130 bytes in Rendering.                                                                                          | Lower priority. This is only a textual filter; prove lexical type identity, covariance and conversion equivalence first. It does not justify removing all generic-owner restrictions or claim the whole generic factory size as savings.                        |
+| Select an application binding capability set                      | The default host references all SDK registration modules, so reducing JS imports alone does not remove Dart registration roots.                                                                                                                   | Potentially larger binary impact, but changes which future JS updates can run. Keep the default full SDK; any optional application subset must explicitly cover later updates, not infer support from today's imports alone. No size benefit has been measured. |
+
+For example, `RenderBox` and `RenderProxyBox` each repeat the same conversion of an
+`attach(owner)` argument before calling their `_flaxSuper_attach` helper. An existing
+shared dispatch interface can potentially carry that outer call. The helper that calls
+Dart `super.attach(owner)` must remain on the concrete proxy, since its native
+superclass is different. This does not make the `RenderProxyBox` proxy inherit the
+`RenderBox` proxy, add a business-object cache, or change ownership.
+
+Immutable descriptor constants still occupy 12,602,138 bytes across the 16 measured
+modules, but many are already pooled. Replacing their constructors with another builder
+only makes source shorter unless it also removes runtime objects or compiled functions;
+it can instead add allocations and indirection. Ordinary parameter metadata and callback
+metadata have different omission, positional, scoped and encode semantics. Do not erase
+those distinctions merely to share a constructor. Readable IDs stay unchanged.
+
+The JS requirement-table opportunity is separate from the deferred generator Manifest
+storage-format change. Its duplicate-byte count and the minified-byte count describe
+overlapping delivery data, so they must not be added as independent reductions. The
+minification probe retains names and legal comments, does not mangle property names, and
+leaves original assets byte-identical. A real build must also refresh artifact hashes
+and the module inventory. No new runtime, GC, AOT or hot-reload validation is claimed
+here.
+
+Raw follow-up evidence and scripts are in
+`.local/binding-extraction-20261018/followup/`: `remaining.json`, `candidates.json`,
+`icons.json`, `js-delivery.json`, `js-binding-requirements.json` and `analysis.json`.
+The next bounded experiment is outer-super sharing on the same Rendering hierarchy,
+followed by source/AOT/call-cost comparison and the existing dual-engine ownership
+cases.
+
+## Shared binding implementation after the extraction experiments
+
+The earlier extraction and candidate sections above are historical measurements. The
+formal rollout now combines signature-only proxy metadata, shared positional callback
+factories, outer-super sharing, closed generic-owner members, actual static constants
+and smaller prepared JavaScript modules. Readable IDs and the full SDK surface remain.
+
+| Candidate                        | Decision and measured evidence                                                                                                                                                                                                            |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Outer-super wrappers             | Adopt existing typed dispatch interfaces. The isolated application AOT fell from 81,571,456 to 75,481,120 bytes; each proxy retains its native lexical-super body and the bridge validates its concrete owner.                            |
+| Closed members in generic owners | Adopt only when the complete proxy and callable signatures contain no open type variables. The next isolated AOT was 75,021,472 bytes. Owner-dependent members and generic methods keep their typed factories.                            |
+| Actual static constants          | Adopt native constant values with one shared reader. The Icons-only prototype reached 73,035,136 AOT bytes; the formal generator recognizes all selected static const fields. Computed, final, late and writable values remain live.      |
+| Production JS delivery           | Adopt minification with names preserved and remove unused duplicated JS registration fields. The complete module inventory remains available to Dart validation. The 23-file standalone prototype fell from 9,484,444 to 5,088,536 bytes. |
+| Application-specific SDK subset  | Do not make this the default. The isolated AOT fell to 54,288,064 bytes, but existing modules immediately failed because Cupertino bindings were absent. A smaller surface cannot promise compatibility with later JS updates.            |
+
+The formal Core Dart output is 49,886,303 bytes across 17 files, compared with
+60,267,647 bytes before these extractions. Rendering is 15,167,003 bytes, compared with
+18,582,566 bytes. These are generated source sizes, not installed application sizes. The
+formal output has 4,497 signature-only proxy descriptors, 2,288 shared callback-factory
+uses and 11,676 static constant bindings. The shared functions retain full parameter,
+type and ownership metadata.
+
+The formal macOS release/AOT application has a 72,673,984-byte application binary,
+compared with 94,178,944 bytes in the immutable baseline (22.83% smaller). Its V8
+libraries and Material Icons font have identical hashes. The standalone JS module files
+total 5,088,536 bytes, compared with 9,484,444 bytes (46.35% smaller); this does not
+include the full `modules.json` inventory. These measurements use the same complete SDK
+surface, without the incompatible application-specific subset.
+
+`FlaxFunctionBinding.constant` uses the existing top-level invocation and conversion
+path. The generator records actual static const fields as `isConst: true`. Manifest 26
+stores repeated complete type descriptions in a shared postorder table; providers and
+consumers regenerate together. JS APIs, UI protocol 24 and native ABI 2 are unchanged.
+Shared helpers retain no callback instances or business receivers and introduce no new
+GC roots.
+
+The super and Icons-constant prototypes each passed 245 macOS V8 release/AOT cases,
+including inheritance, overrides, lexical super and joint collection. Two debug-only
+checks were inapplicable. Native application audits confirm one unchanged V8 dependency
+closure and the expected local ad-hoc signing/JIT settings. These prototype results do
+not replace final acceptance of formally regenerated output and compact JS assets.
+
+Formal output reproducibility passes for all four binding packages and the author
+template. The optimized macOS V8 release application passes 245 cases in 203.907
+seconds; the iOS Simulator Hermes application passes 247 cases, and hot reload passes
+three cases. The focused checks pass 22 generator cases, 53 build-package Node tests and
+91 tool tests; one Windows-only tool case is inapplicable on macOS. Initial failures and
+interrupted checks remain recorded in `.local/binding-optimization-20261018/`.
+
+A subsequent immutable-baseline run exposed an existing engine GC assertion. A Dart
+origin can expire while its JS peer retains a different Dart target; collection during
+an active JS job then tried to mark the finalized origin. A minimal allocation-pressure
+regression reproduces the assertion before the fix and passes after it. The shared VM
+marker now ignores finalized registered handles, preserves the unregistered-handle check
+and never resurrects the origin. The regression also verifies target retention and
+eventual reclamation. The rebuilt macOS V8 runtime/GC gate passes 45 cases, and the
+release/AOT application passes 246 cases in 219.411 seconds. The iOS Hermes application
+passes 248 cases, and its integration binding reports all three HMR cases successful.
+The task-booted Simulator is restored to Shutdown. V8 and Hermes SDK inputs remain
+unchanged.
+
+The VM correction is maintained in Flutter commit
+[`49e4666a853`](https://github.com/xuelongqy/flutter/commit/49e4666a853).
+
+The shared type table reduces the formal Core Manifest from 296,236,543 to 34,416,060
+bytes, with 9,968 complete type entries. All five manifests retain byte-equivalent
+expanded semantic metadata after updating the format version; 10,609 generated files
+retain identical SHA-256 hashes. The reader rejects invalid references, forward/cyclic
+edges, duplicate and unused entries, and excessive expansion. Generic lexical scopes are
+resolved independently after expansion. Strict duplicate-key checks scan validated JSON
+directly, avoiding the previous second parse through YAML. JavaScript delivery reads
+ownership and operation IDs without expanding type metadata.
+
+Final local acceptance covers:
+
+- All 645 generator cases: the full run passed 644 and exposed one stale version-25
+  expectation; correcting that expectation passes all seven cases in its file. The
+  current Manifest contract separately passes 79 cases, including reserved `$type`
+  names, generic scopes and expansion limits.
+- All 618 named framework UI cases, all nine package examples, the embedded aggregate
+  and two standalone Widget cases. The standalone example now explicitly selects
+  `DartMapInput<string, unknown>` when popping its typed map route, using ordinary
+  generic conversion rather than a navigation-specific rule.
+- The maintained runtime/GC, V8 release/AOT, Hermes and mobile HMR gates above. The
+  controlled baseline with the same fixed engine passes 245 cases; the optimized app
+  passes the same cases plus the new GC regression, for 246 cases.
+- The 197 JS workspace cases and 91 tool cases, with one Windows CDB case inapplicable
+  on macOS. Workspace analysis, formatting, documentation, archive consumers, all four
+  official binding reproducibility checks and the author template pass.
+
+The sequential controlled pair retains identical V8 closure hashes, AOT inputs apart
+from generated bindings and the added GC test, and matching benchmark checksums.
+Inherited JS calls, JS override/super and native-parent override/super have median
+synthetic costs 1.53%, 1.97% and 3.90% higher, respectively. The shared callback
+microbenchmark median is 25.42% lower. These are single-pair observations, not stable
+frame-time guarantees. The AOT size remains 72,673,984 versus 94,178,944 bytes (22.83%
+smaller); readable IDs and the complete selected SDK surface remain available.
+
+No new binding backend or CI run is part of this baseline. SDK archives and toolchain
+locks remain unchanged; the next backend experiment starts from the accepted baseline.

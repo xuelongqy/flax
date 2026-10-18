@@ -2,8 +2,19 @@ import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget,
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import type * as upstream2 from '@flax/flutter/services/_bindings/flutter_KeyEvent';
+import '@flax/flutter/services/_bindings/flutter_KeyEvent';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface KeyboardListener extends WidgetDescription {
+export interface KeyboardListener extends WidgetDescription, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/keyboard_listener.dart::KeyboardListener": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>, 'type'> {
     readonly type: "flax.core/flutter#type:KeyboardListener";
 }
 export declare function _KeyboardListenerFactory(options: {
@@ -12,6 +23,16 @@ export declare function _KeyboardListenerFactory(options: {
     }> | null | undefined;
     focusNode: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }>>;
     autofocus?: Bindable<boolean> | undefined;
     includeSemantics?: Bindable<boolean> | undefined;

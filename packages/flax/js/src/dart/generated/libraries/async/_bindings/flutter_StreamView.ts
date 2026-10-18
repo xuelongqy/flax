@@ -1,7 +1,20 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/async/_bindings/flutter_Stream';
+import type * as upstream1 from '@flax/dart/async/_bindings/flutter_StreamSubscription';
+import '@flax/dart/async/_bindings/flutter_StreamSubscription';
+import type * as upstream2 from '@flax/dart/core/_bindings/flutter_StackTrace';
+import '@flax/dart/core/_bindings/flutter_StackTrace';
+import type * as upstream3 from '@flax/dart/async/_bindings/flutter_StreamConsumer';
+import '@flax/dart/async/_bindings/flutter_StreamConsumer';
+import type * as upstream4 from '@flax/dart/async/_bindings/flutter_StreamTransformer';
+import '@flax/dart/async/_bindings/flutter_StreamTransformer';
+import type * as upstream5 from '@flax/dart/core/_bindings/flutter_Duration';
+import '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream6 from '@flax/dart/async/_bindings/flutter_EventSink';
+import '@flax/dart/async/_bindings/flutter_EventSink';
 const _flaxMemberParameters0 = [{"name":"onCancel","required":false,"positional":false},{"name":"onListen","required":false,"positional":false}] as const;
 const _flaxMemberParameters1 = [{"name":"onData","required":true,"positional":true},{"name":"cancelOnError","required":false,"positional":false},{"name":"onDone","required":false,"positional":false},{"name":"onError","required":false,"positional":false}] as const;
 const _flaxMemberParameters2 = [{"name":"test","required":true,"positional":true}] as const;
@@ -21,22 +34,10 @@ const _flaxMemberParameters15 = [{"name":"equals","required":false,"positional":
 const _flaxMemberParameters16 = [{"name":"test","required":true,"positional":true},{"name":"orElse","required":false,"positional":false}] as const;
 const _flaxMemberParameters17 = [{"name":"index","required":true,"positional":true}] as const;
 const _flaxMemberParameters18 = [{"name":"timeLimit","required":true,"positional":true},{"name":"onTimeout","required":false,"positional":false}] as const;
-import type * as upstream0 from '@flax/dart/async/_bindings/flutter_Stream';
-import type * as upstream1 from '@flax/dart/async/_bindings/flutter_StreamSubscription';
-import '@flax/dart/async/_bindings/flutter_StreamSubscription';
-import type * as upstream2 from '@flax/dart/core/_bindings/flutter_StackTrace';
-import '@flax/dart/core/_bindings/flutter_StackTrace';
-import type * as upstream3 from '@flax/dart/async/_bindings/flutter_StreamConsumer';
-import '@flax/dart/async/_bindings/flutter_StreamConsumer';
-import type * as upstream4 from '@flax/dart/async/_bindings/flutter_StreamTransformer';
-import '@flax/dart/async/_bindings/flutter_StreamTransformer';
-import type * as upstream5 from '@flax/dart/core/_bindings/flutter_Duration';
-import '@flax/dart/core/_bindings/flutter_Duration';
-import type * as upstream6 from '@flax/dart/async/_bindings/flutter_EventSink';
-import '@flax/dart/async/_bindings/flutter_EventSink';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamView<T extends unknown | null = unknown | null> extends AsyncIterable<T> { readonly __StreamView: unique symbol;
+readonly [_flaxDartTypeValue]: StreamView<T>;
 readonly [_flaxDartMethodCases]?: {map: _FlaxSignature1<T>;asyncMap: _FlaxSignature2<T>;asyncExpand: _FlaxSignature3<T>;expand: _FlaxSignature4<T>;transform: _FlaxSignature5<T>;fold: _FlaxSignature6<T>;cast: _FlaxSignature7<T>;drain: _FlaxSignature8<T>;};
 readonly isBroadcast: boolean;
 readonly length: Promise<number>;

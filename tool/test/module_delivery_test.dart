@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flax_codegen/src/manifest_codec.dart';
+import 'package:flax_codegen/src/manifest_storage.dart';
+import 'package:flax_codegen/src/model.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -13,12 +16,12 @@ const _targets = [
   (
     directory: 'flax_material_ui',
     package: '@flax/material-ui',
-    specifier: '@flax/flutter/material',
+    specifier: '@flax/material-ui',
   ),
   (
     directory: 'flax_cupertino_ui',
     package: '@flax/cupertino-ui',
-    specifier: '@flax/flutter/cupertino',
+    specifier: '@flax/cupertino-ui',
   ),
 ];
 
@@ -48,7 +51,7 @@ void main() {
     }
     _writeJson(
       p.join(temporary.path, 'packages/flax_canvas/bindings/manifest.json'),
-      {'formatVersion': 24, 'modules': <Map<String, Object?>>[]},
+      {'formatVersion': 26, 'modules': <Map<String, Object?>>[]},
     );
     for (final target in _targets) {
       final directory = p.join(temporary.path, 'packages', target.directory);
@@ -57,32 +60,41 @@ void main() {
         'name': target.package,
         'version': '0.0.0',
       });
-      _writeJson(p.join(directory, 'bindings/manifest.json'), {
-        'formatVersion': 24,
-        'modules': [
-          {
-            'name': target.directory,
-            'moduleId': moduleId,
-            'uiProtocol': 24,
-            'requiredCapabilities': ['generic-call-types'],
-            'model': {
-              'publicLibraries': [
-                {'jsPackage': target.specifier},
-              ],
-              'topLevel': {
-                'setters': [
-                  {'id': '$moduleId#function:z%3D', 'isReference': false},
-                  {
-                    'id': 'flax.provider/values#function:ref%3D',
-                    'isReference': true,
-                  },
-                  {'id': '$moduleId#function:a%3D'},
+      _writeJson(
+        p.join(directory, 'bindings/manifest.json'),
+        FlaxCodegenManifestStorage.compact({
+          'formatVersion': 26,
+          'modules': [
+            {
+              'name': target.directory,
+              'moduleId': moduleId,
+              'uiProtocol': 24,
+              'requiredCapabilities': ['generic-call-types'],
+              'model': {
+                'publicLibraries': [
+                  {'jsPackage': target.specifier},
                 ],
+                'topLevel': {
+                  'setters': [
+                    {
+                      'id': '$moduleId#function:z%3D',
+                      'isReference': false,
+                      'type': FlaxCodegenManifestCodec.encodeTypeRef(
+                        const FlaxCodegenTypeRef('String'),
+                      ),
+                    },
+                    {
+                      'id': 'flax.provider/values#function:ref%3D',
+                      'isReference': true,
+                    },
+                    {'id': '$moduleId#function:a%3D'},
+                  ],
+                },
               },
             },
-          },
-        ],
-      });
+          ],
+        }),
+      );
     }
   });
 
@@ -91,7 +103,7 @@ void main() {
   ], workingDirectory: temporary.path);
 
   test(
-    'Manifest 24 delivery includes owned setters and excludes references',
+    'Manifest 26 delivery includes owned setters and excludes references',
     () async {
       final result = await run();
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
@@ -205,19 +217,22 @@ void main() {
   });
 
   test('delivery rejects an unknown manifest version', () async {
-    _writeJson(p.join(temporary.path, 'packages/flax/bindings/manifest.json'), {
-      'formatVersion': 999,
-      'modules': <Map<String, Object?>>[],
-    });
-    final result = await run();
-    expect(result.exitCode, isNot(0));
-    expect(result.stderr, contains('Expected Binding Manifest'));
-    expect(result.stderr, contains('packages/flax/bindings/manifest.json'));
-    expect(
-      File(p.join(temporary.path, 'packages/flax/js/flax_modules.json'))
-          .existsSync(),
-      isFalse,
-    );
+    for (final owner in ['flax_canvas', 'flax']) {
+      final path = 'packages/$owner/bindings/manifest.json';
+      final file = File(p.join(temporary.path, path));
+      final original = file.readAsStringSync();
+      _writeJson(file.path, {'formatVersion': 25, 'modules': <Object?>[]});
+      final result = await run();
+      expect(result.exitCode, isNot(0));
+      expect(result.stderr, contains('Expected Binding Manifest'));
+      expect(result.stderr, contains(path));
+      expect(
+        File(p.join(temporary.path, 'packages/flax/js/flax_modules.json'))
+            .existsSync(),
+        isFalse,
+      );
+      file.writeAsStringSync(original);
+    }
   });
 }
 

@@ -2,7 +2,8 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/manifest_codec.dart';
+
+import '../../flax_codegen/tool/src/fixture_emitter.dart';
 
 import '../test/fixtures/functions_selection.dart';
 import '../test/fixtures/repeated_selection.dart';
@@ -18,91 +19,91 @@ Future<void> main() async {
   );
   if (flaxLibrary == null) throw StateError('Cannot resolve package:flax');
   final flaxRoot = File.fromUri(flaxLibrary).parent.parent;
-  final (core, rawToWire) = _loadCoreManifest(
+  final emitter = FlaxCodegenFixtureEmitter(
+    package.path,
     File('${flaxRoot.path}/bindings/manifest.json'),
   );
-  await _generate(
-    package,
-    output,
-    'functions',
-    functionClasses,
-    core,
-    rawToWire,
-    functions: functionSelections,
-    topLevel: const FlaxCodegenTopLevelSelection(
-      'ContextValues',
-      ['selectedContextMounted'],
-      setters: ['selectedContext', 'selectedContextListener'],
-    ),
-  );
-  await _generate(
-    package,
-    output,
-    'material_repeated',
-    repeatedSelection,
-    core,
-    rawToWire,
-    libraryName: 'repeated',
-  );
-  await _generate(
-    package,
-    output,
-    'widget_interfaces',
-    widgetInterfacesSelection,
-    core,
-    rawToWire,
-    functions: const {
-      'interfaceStream': FlaxCodegenFunctionSelection(['value']),
-      'openInterfacePanel': FlaxCodegenFunctionSelection(
-        ['origin', 'content', 'root'],
-        dataResult: true,
-        route: FlaxCodegenRouteCallModel(['content']),
+  try {
+    await _generate(
+      package,
+      output,
+      'functions',
+      functionClasses,
+      emitter,
+      functions: functionSelections,
+      topLevel: const FlaxCodegenTopLevelSelection(
+        'ContextValues',
+        ['selectedContextMounted'],
+        setters: ['selectedContext', 'selectedContextListener'],
       ),
-    },
-  );
-  await _generate(
-    package,
-    output,
-    'state_variant',
-    stateVariantSelection,
-    core,
-    rawToWire,
-  );
-  await _generate(
-    package,
-    output,
-    'readonly_values',
-    const {
-      'ReadonlyProbe': FlaxCodegenClassSelection(
-        {},
-        kind: 'object',
-        getters: ['value', 'disposed'],
-        setters: ['value'],
-        instanceMethods: {'dispose': []},
-      ),
-    },
-    core,
-    rawToWire,
-    typedefs: const ['ReadonlyTransform', 'ReadonlyIdentity'],
-    topLevel: const FlaxCodegenTopLevelSelection('FixtureValues', [
-      'answer',
-      'changing',
-      'initialized',
-      'lazy',
-      'assigned',
-      'optional',
-      'probe',
-      'numbers',
-      'groups',
-      'transform',
-      'identity',
-      'later',
-      'laterFailure',
-      'pending',
-      'failing',
-      'sideEffect',
-    ]),
-  );
+    );
+    await _generate(
+      package,
+      output,
+      'material_repeated',
+      repeatedSelection,
+      emitter,
+      libraryName: 'repeated',
+    );
+    await _generate(
+      package,
+      output,
+      'widget_interfaces',
+      widgetInterfacesSelection,
+      emitter,
+      functions: const {
+        'interfaceStream': FlaxCodegenFunctionSelection(['value']),
+        'openInterfacePanel': FlaxCodegenFunctionSelection(
+          ['origin', 'content', 'root'],
+          dataResult: true,
+          route: FlaxCodegenRouteCallModel(['content']),
+        ),
+      },
+    );
+    await _generate(
+      package,
+      output,
+      'state_variant',
+      stateVariantSelection,
+      emitter,
+    );
+    await _generate(
+      package,
+      output,
+      'readonly_values',
+      const {
+        'ReadonlyProbe': FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          getters: ['value', 'disposed'],
+          setters: ['value'],
+          instanceMethods: {'dispose': []},
+        ),
+      },
+      emitter,
+      typedefs: const ['ReadonlyTransform', 'ReadonlyIdentity'],
+      topLevel: const FlaxCodegenTopLevelSelection('FixtureValues', [
+        'answer',
+        'changing',
+        'initialized',
+        'lazy',
+        'assigned',
+        'optional',
+        'probe',
+        'numbers',
+        'groups',
+        'transform',
+        'identity',
+        'later',
+        'laterFailure',
+        'pending',
+        'failing',
+        'sideEffect',
+      ]),
+    );
+  } finally {
+    await emitter.dispose();
+  }
 }
 
 Future<void> _generate(
@@ -110,132 +111,22 @@ Future<void> _generate(
   Directory output,
   String name,
   Map<String, FlaxCodegenClassSelection> classes,
-  List<FlaxCodegenModuleModel> dependencies,
-  Map<String, String> rawToWire, {
+  FlaxCodegenFixtureEmitter emitter, {
   Map<String, FlaxCodegenFunctionSelection> functions = const {},
   List<String> typedefs = const [],
   FlaxCodegenTopLevelSelection? topLevel,
   String? libraryName,
 }) async {
-  final parser = FlaxCodegenBindingParser(package.path);
-  try {
-    final selected = Map.fromEntries(
-      classes.entries.where(
-        (entry) => !{'Key', 'BuildContext'}.contains(entry.key),
-      ),
-    );
-    final config = FlaxCodegenBindingConfig(
-      name,
-      package.uri
-          .resolve('test/fixtures/${libraryName ?? name}.dart')
-          .toString(),
-      '@test/$name',
-      'unused.dart',
-      'unused.ts',
-      selected,
-      functions: functions,
-      typedefs: typedefs,
-      topLevel: topLevel,
-    );
-    await parser.prepare([config]);
-    final wireToRaw = {
-      for (final entry in rawToWire.entries) entry.value: entry.key,
-    };
-    parser.prepareModules([
-      for (final dependency in dependencies)
-        _rewriteModuleIds(dependency, wireToRaw),
-    ]);
-    final module = _rewriteModuleIds(await parser.parse(config), rawToWire);
-    final emitter = FlaxCodegenBindingEmitter([...dependencies, module]);
-    File('${output.path}/${name}_bindings.dart')
-        .writeAsStringSync(emitter.dart(module));
-    File('${output.path}/${name}_bindings.ts')
-        .writeAsStringSync(emitter.typescript(module));
-  } finally {
-    parser.dispose();
-  }
-}
-
-(List<FlaxCodegenModuleModel>, Map<String, String>) _loadCoreManifest(
-  File file,
-) {
-  final diagnostics = FlaxCodegenManifestDiagnostics(file.path);
-  final manifest = FlaxCodegenManifest.parse(
-    file.readAsStringSync(),
-    diagnostics,
+  final config = FlaxCodegenBindingConfig(
+    name,
+    package.uri.resolve('test/fixtures/${libraryName ?? name}.dart').toString(),
+    '@test/$name',
+    'unused.dart',
+    'unused.ts',
+    classes,
+    functions: functions,
+    typedefs: typedefs,
+    topLevel: topLevel,
   );
-  diagnostics.throwIfAny();
-  final rawToWire = <String, String>{};
-  for (final module in manifest!.modules) {
-    for (final identity in module.model.identities) {
-      rawToWire['${identity.sourceIdentity.originatingUri}::'
-              '${identity.sourceIdentity.name}'] =
-          identity.wireId.value;
-    }
-  }
-  return (
-    [for (final module in manifest.modules) module.model.module],
-    rawToWire,
-  );
-}
-
-FlaxCodegenModuleModel _rewriteModuleIds(
-  FlaxCodegenModuleModel module,
-  Map<String, String> idMap,
-) {
-  Object? walk(Object? value) {
-    if (value is Map) {
-      final out = <String, Object?>{};
-      for (final entry in value.entries) {
-        final key = entry.key as String;
-        final child = entry.value;
-        if (key == 'id' && child is String && idMap.containsKey(child)) {
-          out[key] = idMap[child];
-        } else if (key == 'supertypes' && child is List) {
-          out[key] = [
-            for (final item in child)
-              item is String && idMap.containsKey(item) ? idMap[item]! : item,
-          ];
-        } else {
-          out[key] = walk(child);
-        }
-      }
-      return out;
-    }
-    if (value is List) {
-      return [for (final item in value) walk(item)];
-    }
-    return value;
-  }
-
-  final diagnostics = FlaxCodegenManifestDiagnostics('');
-  // Local fixtures use file: imports and are never published. Preserve those
-  // emitter-only paths outside the manifest's public-library validation.
-  final encoded = FlaxCodegenManifestCodec.encodeModule(module)
-    ..['typeLibraries'] = <String, Object?>{};
-  final decoded = FlaxCodegenManifestCodec.decodeModule(
-    walk(encoded),
-    diagnostics,
-    '',
-    module.name,
-  );
-  diagnostics.throwIfAny();
-  final rewritten = decoded!;
-  return FlaxCodegenModuleModel(
-    name: rewritten.name,
-    library: rewritten.library,
-    jsPackage: rewritten.jsPackage,
-    dartOutput: module.dartOutput,
-    tsOutput: module.tsOutput,
-    classes: rewritten.classes,
-    types: rewritten.types,
-    typeLibraries: module.typeLibraries,
-    functions: rewritten.functions,
-    snapshots: rewritten.snapshots,
-    typedefs: rewritten.typedefs,
-    topLevel: rewritten.topLevel,
-    stateVariants: rewritten.stateVariants,
-    moduleId: module.moduleId,
-    requiredCapabilities: module.requiredCapabilities,
-  );
+  await emitter.generate(config, output);
 }

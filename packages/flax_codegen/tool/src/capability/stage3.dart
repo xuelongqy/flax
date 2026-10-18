@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:path/path.dart' as p;
 
@@ -685,8 +686,9 @@ Future<Stage3ParseResult> parseClassSelectionSet({
   required FlaxCodegenBindingConfig library,
   required Map<String, FlaxCodegenClassSelection> classes,
   required String label,
+  AnalysisContextCollection? collection,
 }) async {
-  final parser = FlaxCodegenBindingParser(workspaceRoot);
+  final parser = FlaxCodegenBindingParser(workspaceRoot, contexts: collection);
   final stopwatch = Stopwatch()..start();
   try {
     await parser.prepare([official]);

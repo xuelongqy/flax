@@ -22,6 +22,8 @@ const identifier =
 const bundleOptions = {
   bundle: true,
   write: false,
+  minify: true,
+  keepNames: true,
   platform: 'neutral',
   mainFields: ['module', 'main'],
   target: 'es2019',
@@ -779,9 +781,18 @@ export async function prepareModules({ configPath, check = false }) {
       bindings: entry.bindings,
       subpaths: await publicSubpaths(entry),
     };
+    // Dart validates the full binding inventory before any module executes.
+    // The JS registry needs only module identity and dependency checks.
+    const registration = {
+      specifier: metadata.specifier,
+      owner: metadata.owner,
+      version: metadata.version,
+      artifact: metadata.artifact,
+      dependencies: metadata.dependencies,
+    };
     files.set(
       filename,
-      `globalThis.__flaxModules.define(${JSON.stringify(metadata)}, function(module, exports, require) {\n${body}\n});\n`,
+      `globalThis.__flaxModules.define(${JSON.stringify(registration)}, function(module, exports, require) {\n${body}\n});\n`,
     );
     completed.set(entry.specifier, metadata);
   }

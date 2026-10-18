@@ -12,10 +12,21 @@ import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import type * as upstream5 from '@flax/dart/async/_bindings/flutter_Stream';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface SynchronousStreamController<T extends unknown | null = unknown | null> extends Omit<upstream0.StreamController<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream1.StreamSink<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream2.EventSink<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream3.Sink<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Omit<upstream4.StreamConsumer<T>, typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream">, Readonly<{
+export interface SynchronousStreamController<T extends unknown | null = unknown | null> extends Omit<upstream0.StreamController<T>, _flaxOwnMembers0>, Omit<upstream1.StreamSink<T>, _flaxOwnMembers0 | keyof upstream0.StreamController<T>>, Omit<upstream2.EventSink<T>, _flaxOwnMembers0 | keyof upstream0.StreamController<T> | keyof upstream1.StreamSink<T>>, Omit<upstream3.Sink<T>, _flaxOwnMembers0 | keyof upstream0.StreamController<T> | keyof upstream1.StreamSink<T> | keyof upstream2.EventSink<T>>, Omit<upstream4.StreamConsumer<T>, _flaxOwnMembers0 | keyof upstream0.StreamController<T> | keyof upstream1.StreamSink<T> | keyof upstream2.EventSink<T> | keyof upstream3.Sink<T>>, Readonly<{
     "__flaxBound:dart:async::SynchronousStreamController": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:async::StreamController": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:async::StreamSink": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:async::EventSink": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:core::Sink": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:async::StreamConsumer": readonly [T];
 }> {
     readonly __SynchronousStreamController: unique symbol;
+    readonly [_flaxDartTypeValue]: SynchronousStreamController<T>;
     readonly stream: upstream5.Stream<T>;
     get onListen(): (() => void) | null;
     get onPause(): (() => void) | null;
@@ -40,6 +51,7 @@ export interface SynchronousStreamController<T extends unknown | null = unknown 
     set onCancel(value: (() => void | Promise<void>) | null);
 }
 export declare const SynchronousStreamController: object & _FlaxInstanceType<SynchronousStreamController<unknown | null>> & _FlaxDartType<SynchronousStreamController<unknown | null>, readonly ["class", "flax.core/flutter#type:SynchronousStreamController", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "stream" | "onListen" | "onPause" | "onResume" | "onCancel" | "sink" | "isClosed" | "isPaused" | "hasListener" | "done" | "add" | "addError" | "close" | "addStream" | "__flaxBound:dart:async::SynchronousStreamController" | "__flaxBound:dart:async::StreamController" | "__flaxBound:dart:async::StreamSink" | "__flaxBound:dart:async::EventSink" | "__flaxBound:dart:core::Sink" | "__flaxBound:dart:async::StreamConsumer";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         readonly prototype: SynchronousStreamController<_Selected0>;

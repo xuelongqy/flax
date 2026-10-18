@@ -7,6 +7,7 @@ import {
   Column,
   State,
   BuildContext,
+  Element,
   Navigator,
   NavigatorState,
   Axis,
@@ -39,7 +40,7 @@ let latestNative: ReturnType<NativeCounter['createState']>;
 let borrowedContext: BuildContext;
 let borrowedNavigator: NavigatorState;
 let borrowedStateView: native.NativeCounterState;
-let borrowedElementView: native.Element;
+let borrowedElementView: Element;
 let contextCursor: ReturnType<typeof calls.contextCursor>;
 let stateCursor: ReturnType<typeof calls.stateCursor>;
 class Counter extends native.NativeCounter {
@@ -210,7 +211,7 @@ Object.assign(globalThis, {
     referenceType: (value: unknown) => getDartType(value),
     references() {
       borrowedContext = latest.context;
-      borrowedElementView = asDart(borrowedContext, native.Element);
+      borrowedElementView = asDart(borrowedContext, Element);
       borrowedNavigator = Navigator.of(borrowedContext);
       const state = (borrowedStateView = asDart(
         latestNative,

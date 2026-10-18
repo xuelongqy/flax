@@ -21,7 +21,7 @@ import {
   LinearProgressIndicator,
   Material,
   MaterialType,
-} from '@flax/flutter/material';
+} from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 

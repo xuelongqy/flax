@@ -1,11 +1,12 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Pattern';
 import '@flax/dart/core/_bindings/flutter_Pattern';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Match extends Readonly<{
     "__flaxBound:dart:core::Match": readonly [];
 }> {
     readonly __Match: unique symbol;
+    readonly [_flaxDartTypeValue]: Match;
     readonly start: number;
     readonly end: number;
     readonly groupCount: number;

@@ -25,7 +25,7 @@ import {
   TextField,
   MaterialPageRoute,
   Theme,
-} from '@flax/flutter/material';
+} from '@flax/material-ui';
 import { Builder } from '@flax/flutter/widgets';
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 

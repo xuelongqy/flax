@@ -137,6 +137,14 @@ List<FlaxCodegenSkip> _providerSurfaceSkips({
     available.listenerPairs,
     'listenerPairs',
   );
+  Map<String, Object?> variants(FlaxCodegenClassSelection selection) => {
+    for (final entry in selection.proxyVariants.entries)
+      entry.key: [
+        for (final mixin in entry.value.mixins)
+          {'name': mixin.name, 'library': mixin.library},
+      ],
+  };
+  requireMetadata(variants(requested), variants(available), 'proxyVariants');
   requireMetadata(
     requested.data.constructors,
     available.data.constructors,
@@ -187,6 +195,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   bool expandOwned = false,
   bool inferProxy = true,
   FlaxCodegenClassSelection? inferred,
+  FlaxCodegenClassOverride? selectionOverride,
 }) async {
   final name = element.name!;
   final id = identity(element);
@@ -215,6 +224,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   FlaxCodegenClassSelection providerSelection(
     FlaxCodegenClassSelection selection,
   ) {
+    if (selectionOverride != null) {
+      selection = parser._applyClassOverride(selection, selectionOverride);
+    }
     // Compare normalized views without changing an independent fallback selection.
     if (selection.kind == 'widgetInterface' &&
         parser._adaptations[id] == 'object') {
@@ -230,7 +242,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     );
     final core = (owner.moduleId ?? '').startsWith('flax.core/');
     if (core) {
-      final requested = inferred ?? base;
+      final requested = inferred ?? base ?? selectionOverride?.selection;
       if (requested != null) {
         skips.addAll(
           _providerSurfaceSkips(
@@ -286,7 +298,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
 
   if (!ignoreProvider && parser._dependencyTypeOwners[id] != null) {
     final owner = parser._dependencyTypeOwners[id]!;
-    if (element is EnumElement || inferred != null) {
+    if (element is EnumElement ||
+        inferred != null ||
+        selectionOverride != null) {
       final requested = await _proposeSelection(
         parser,
         element,
@@ -444,6 +458,15 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
         continue;
       }
       final ctorName = constructor.name == 'new' ? '' : constructor.name!;
+      if (constructor.formalParameters.any((p) => p.metadata.hasMustBeConst)) {
+        skip(
+          '$name.$ctorName',
+          'Constructor requires compile-time constant arguments',
+          code: 'const_required_constructor',
+        );
+        continue;
+      }
+
       if (element is EnumElement && ctorName.isEmpty) {
         skip(
           '$name.new',
@@ -919,6 +942,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     blockedConstructors ? const {} : selectedConstructors,
     kind: kind,
     proxy: proxy,
+    inferredProxy: explicitProxy == null && proxy != null,
     typeArguments: typeArguments,
     getters: selectedGetters,
     setters: blockedSetters ? const [] : selectedSetters,

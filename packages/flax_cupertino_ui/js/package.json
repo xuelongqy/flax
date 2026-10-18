@@ -1,5 +1,5 @@
 {
-  "name": "@flax/cupertino-ui",
+  "name": "@flax/cupertino-ui-runtime",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./flax_modules.json": "./flax_modules.json"
+    "./flax_modules.json": "./flax_modules.json",
+    "./*": {
+      "types": "./dist/generated/libraries/cupertino/*.d.ts"
+    }
   },
   "files": [
     "dist/index.*",
@@ -26,5 +29,8 @@
     "@flax/dart": "workspace:*",
     "@flax/flutter": "workspace:*",
     "@flax/core-runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@flax/cupertino-ui": "workspace:*"
   }
 }

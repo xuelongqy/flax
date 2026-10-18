@@ -17,6 +17,10 @@ void main() {
       );
       try {
         await t.pumpWidget(h.app('codegen-basics'));
+        expect(
+          h.string('JSON.stringify(sdkRoundtrip())'),
+          '{"position":5,"velocity":4,"subtype":true,"sharedProvider":true}',
+        );
         h.execute('''
 var sdkDate = DateTime.parse('2000-02-29T12:34:56.123456Z');
 var sdkShift = sdkDate.add(Duration({days: 1, microseconds: 1}));

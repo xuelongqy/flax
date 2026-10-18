@@ -3,12 +3,12 @@ import {
   mountRoot,
   type Bindable,
   type NavigationData,
-  type Widget,
+  type Widget as _FlaxWidget,
 } from '@flax/core/bindings';
-import type { ValueKey } from './generated/libraries/foundation/_bindings/flutter_ValueKey.js';
+import { Widget as _DartWidget } from './generated/libraries/widgets/index.js';
+import type { ValueKey } from '@flax/flutter/foundation';
 
 export type {
-  Widget,
   DartWidget,
   DartList,
   DartMap,
@@ -16,6 +16,8 @@ export type {
   DartInput,
   ComponentConstructor,
 } from '@flax/core/bindings';
+export type Widget = _FlaxWidget;
+export const Widget = _DartWidget;
 export * from './generated/libraries/widgets/index.js';
 
 /** Supply one root to the current embedded Flutter host. */

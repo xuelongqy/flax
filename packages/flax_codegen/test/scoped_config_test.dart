@@ -255,4 +255,68 @@ overrides:
       }
     }
   });
+
+  test(
+    'scoped provider overrides reuse subsets and keep Core fail-closed',
+    () async {
+      final owner = FlaxCodegenBindingParser(root);
+      addTearDown(owner.dispose);
+      final provider = await owner.parse(
+        FlaxCodegenBindingConfig.parseStrict('''
+${header}classes:
+  Duration: {kind: object, getters: [inSeconds]}
+functions:
+  identical: {parameters: [a, b]}
+'''),
+      );
+      for (final core in [false, true]) {
+        Future<FlaxCodegenModuleModel> parse(String getter) async {
+          final parser = FlaxCodegenBindingParser(root);
+          addTearDown(parser.dispose);
+          parser.prepareModules([
+            FlaxCodegenModuleModel(
+              name: provider.name,
+              moduleId: '${core ? 'flax.core' : 'example.provider'}/duration',
+              library: provider.library,
+              jsPackage: provider.jsPackage,
+              dartOutput: provider.dartOutput,
+              tsOutput: provider.tsOutput,
+              classes: provider.classes,
+              types: provider.types,
+              functions: provider.functions,
+            ),
+          ]);
+          return parser.parse(
+            FlaxCodegenBindingConfig.parseStrict('''
+${header}classes: [Duration]
+functions: [identical]
+overrides:
+  classes:
+    Duration:
+      constructors: {}
+      getters: [$getter]
+      staticGetters: []
+      instanceMethods: {}
+      operators: {}
+  functions:
+    identical: {data: {result: false}}
+'''),
+          );
+        }
+
+        final reused = await parse('inSeconds');
+        expect(reused.classes, isEmpty);
+        expect(reused.functions, isEmpty);
+        if (core) {
+          await expectLater(parse('inMilliseconds'), throwsStateError);
+        } else {
+          expect(
+            (await parse('inMilliseconds')).classes.single.getters.single.name,
+            'inMilliseconds',
+          );
+        }
+        await expectLater(parse('missing'), throwsStateError);
+      }
+    },
+  );
 }

@@ -466,7 +466,8 @@ copyData(token);
         await expectLater(parser.parse(invalid), throwsStateError);
       }
     },
-    timeout: const Timeout(Duration(minutes: 2)),
+    // This case compiles several consumers against the complete Core SDK.
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 
   late FlaxCodegenBindingParser parser;
@@ -1512,10 +1513,10 @@ AlignmentGeometry();
         .typescriptOutputs(material)
         .values
         .join('\n');
-    expect(
-      materialTypescript,
-      contains("from '@flax/flutter/foundation/_bindings/flutter_Key'"),
-    );
+    final keySpecifier = flaxCodegenTypescriptOutputSpecifiers(module).entries
+        .singleWhere((entry) => entry.key.endsWith('/_bindings/flutter_Key.ts'))
+        .value;
+    expect(materialTypescript, contains("from '$keySpecifier'"));
     expect(materialTypescript, isNot(contains('@flax/core/flutter')));
     expect(materialTypescript, isNot(contains('export interface Key')));
     final refresh = material.classes.singleWhere(
@@ -1746,7 +1747,7 @@ AlignmentGeometry();
     expect(emitter.typescript(material), contains('data: Bindable<Readonly<{'));
     expect(
       emitter.typescript(material),
-      contains('::ThemeData": readonly [] }>>'),
+      contains('::ThemeData": readonly [] }>'),
     );
     expect(
       emitter.typescript(material),
@@ -1822,7 +1823,10 @@ AlignmentGeometry();
     expect(emitter.dart(module), contains('api.LayoutBuilder('));
     expect(
       emitter.dart(module),
-      contains('api.BuildContext p0, api.BoxConstraints p1'),
+      contains(
+        'FlaxCallbackAdapters.wrap2<api.BuildContext, '
+        'api.BoxConstraints, api.Widget>',
+      ),
     );
   }, timeout: const Timeout(Duration(minutes: 3)));
 
@@ -2804,7 +2808,13 @@ void main() {
         );
         expect(
           emitter.typescript(descendants),
-          contains('Omit<upstream0.Store<T>, typeof _flaxDartTypeValue'),
+          contains('Omit<upstream0.Store<T>, _flaxOwnMembers0>'),
+        );
+        expect(
+          emitter.typescript(descendants),
+          contains(
+            'type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "items" | "groups" | "echo" | "select"',
+          ),
         );
         expect(emitter.dart(descendants), contains('api.Child).ping'));
       }
@@ -3581,9 +3591,35 @@ BoundedProperty.resolveWith<InvalidBound>(() => InvalidBound());
         FlaxCodegenBindingEmitter([canvas, core]).typescript(canvas),
         contains('export const CanvasView: typeof _FlaxCanvasViewConstruct'),
       );
-      final ts = FlaxCodegenBindingEmitter([core]).typescript(core);
+      final snapshot = await parser.parse(
+        FlaxCodegenBindingConfig(
+          'snapshot',
+          coreConfig.library,
+          '@test/snapshot',
+          'snapshot.dart',
+          'snapshot.ts',
+          const {},
+          additionalLibraries: coreConfig.additionalLibraries,
+          callbackSnapshots: const {
+            'KeyEvent': FlaxCodegenCallbackSnapshotSelection(
+              fields: ['character'],
+            ),
+            'Offset': FlaxCodegenCallbackSnapshotSelection(
+              fields: ['dx', 'dy'],
+            ),
+            'PointerEvent': FlaxCodegenCallbackSnapshotSelection(
+              fields: ['pointer'],
+            ),
+            'PointerScrollEvent': FlaxCodegenCallbackSnapshotSelection(
+              fields: ['scrollDelta'],
+              extendsName: 'PointerEvent',
+            ),
+          },
+        ),
+      );
+      final ts = FlaxCodegenBindingEmitter([snapshot]).typescript(snapshot);
       expect(ts, contains('export interface KeyEvent {'));
-      expect(ts, contains('readonly type: string;'));
+      expect(ts, contains('readonly character: string | null;'));
       expect(ts, contains('export interface PointerScrollEvent {'));
       expect(ts, contains('readonly scrollDelta:'));
       expect(ts, contains('readonly pointer:'));

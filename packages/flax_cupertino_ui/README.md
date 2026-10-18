@@ -2,7 +2,7 @@
 
 Generated bindings for the supported standalone Cupertino UI subset.
 
-The public JavaScript module is `@flax/flutter/cupertino`. The Dart package owns the
+The public JavaScript module is `@flax/cupertino-ui`. The Dart package owns the
 corresponding binding registration and `FlaxCupertinoPlugin` opts the module into a
 `FlaxView` host. Flutter/Core-owned values keep their existing provider identity.
 

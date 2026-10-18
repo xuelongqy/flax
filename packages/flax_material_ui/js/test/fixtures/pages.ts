@@ -17,7 +17,7 @@ import {
   type NavigatorState,
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
-import { MaterialPage, MaterialPageRoute, TextButton } from '@flax/flutter/material';
+import { MaterialPage, MaterialPageRoute, TextButton } from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 

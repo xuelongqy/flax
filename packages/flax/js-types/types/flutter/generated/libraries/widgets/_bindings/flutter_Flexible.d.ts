@@ -1,9 +1,23 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/rendering/_bindings/sdk_rendering_FlexParentData';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_FlexParentData';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
-import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_FlexFit';
-import '@flax/flutter/widgets/_bindings/flutter_FlexFit';
+import type * as upstream2 from '@flax/flutter/rendering/_bindings/flutter_FlexFit';
+import '@flax/flutter/rendering/_bindings/flutter_FlexFit';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface Flexible extends WidgetDescription {
+export interface Flexible extends WidgetDescription, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/basic.dart::Flexible": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::ParentDataWidget": readonly [upstream0.FlexParentData];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyWidget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>, 'type'> {
     readonly type: "flax.core/flutter#type:Flexible";
 }
 export declare function _FlexibleFactory(options: {
@@ -11,7 +25,7 @@ export declare function _FlexibleFactory(options: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     flex?: Bindable<number> | undefined;
-    fit?: Bindable<upstream1.FlexFit> | undefined;
+    fit?: Bindable<upstream2.FlexFit> | undefined;
     child: Bindable<Widget>;
 }): Flexible;
 export declare const Flexible: typeof _FlexibleFactory & _FlaxInstanceType<Flexible> & _FlaxDartType<Flexible, readonly ["class", "flax.core/flutter#type:Flexible", readonly [], false]>;

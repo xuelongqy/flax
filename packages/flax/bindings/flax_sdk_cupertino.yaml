@@ -1,0 +1,11 @@
+format: 2
+name: sdk_cupertino
+library: package:flutter/cupertino.dart
+automatic: true
+jsPackage: '@flax/flutter/cupertino'
+dartOutput: lib/src/generated/sdk_cupertino_bindings.g.dart
+tsOutput: js/src/flutter/generated/libraries/cupertino/index.ts
+publicLibraries:
+  package:flutter/cupertino.dart:
+    jsPackage: '@flax/flutter/cupertino'
+    tsOutput: js/src/flutter/generated/libraries/cupertino/index.ts

@@ -16,12 +16,7 @@ import {
 } from '@flax/flutter/widgets';
 import { Color, FontWeight } from '@flax/flutter/services';
 import { ValueKey } from '@flax/flutter/foundation';
-import {
-  ButtonStyle,
-  InputDecoration,
-  TextButton,
-  TextField,
-} from '@flax/flutter/material';
+import { ButtonStyle, InputDecoration, TextButton, TextField } from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 

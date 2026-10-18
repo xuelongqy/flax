@@ -1,0 +1,79 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream2 from '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
+import '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
+import type * as upstream3 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import type * as upstream4 from '@flax/flutter/painting/_bindings/flutter_TextStyle';
+import '@flax/flutter/painting/_bindings/flutter_TextStyle';
+import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import type * as upstream6 from '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import type * as upstream7 from '@flax/flutter/material/_bindings/sdk_material_PopupMenuPosition';
+import '@flax/flutter/material/_bindings/sdk_material_PopupMenuPosition';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+const _flaxMemberParameters0 = [{"name":"color","required":false,"positional":false},{"name":"elevation","required":false,"positional":false},{"name":"enableFeedback","required":false,"positional":false},{"name":"iconColor","required":false,"positional":false},{"name":"iconSize","required":false,"positional":false},{"name":"labelTextStyle","required":false,"positional":false},{"name":"menuPadding","required":false,"positional":false},{"name":"mouseCursor","required":false,"positional":false},{"name":"position","required":false,"positional":false},{"name":"shadowColor","required":false,"positional":false},{"name":"shape","required":false,"positional":false},{"name":"surfaceTintColor","required":false,"positional":false},{"name":"textStyle","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface PopupMenuThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __PopupMenuThemeData: unique symbol;
+readonly [_flaxDartTypeValue]: PopupMenuThemeData;
+
+}
+defineObject("flax.core/sdk_material#type:PopupMenuThemeData", ["color","shape","menuPadding","elevation","shadowColor","surfaceTintColor","textStyle","labelTextStyle","enableFeedback","mouseCursor","position","iconColor","iconSize"], [], _flaxBindingMethods("flax.core/sdk_material#type:PopupMenuThemeData", "object", {"copyWith":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+const _PopupMenuThemeDataProxy = {type: "flax.core/sdk_material#type:PopupMenuThemeData", parameters: [{"name":"color","required":false,"positional":false},{"name":"shape","required":false,"positional":false},{"name":"menuPadding","required":false,"positional":false},{"name":"elevation","required":false,"positional":false},{"name":"shadowColor","required":false,"positional":false},{"name":"surfaceTintColor","required":false,"positional":false},{"name":"textStyle","required":false,"positional":false},{"name":"labelTextStyle","required":false,"positional":false},{"name":"enableFeedback","required":false,"positional":false},{"name":"mouseCursor","required":false,"positional":false},{"name":"position","required":false,"positional":false},{"name":"iconColor","required":false,"positional":false},{"name":"iconSize","required":false,"positional":false}], constructors: {"":[{"name":"color","required":false,"positional":false},{"name":"shape","required":false,"positional":false},{"name":"menuPadding","required":false,"positional":false},{"name":"elevation","required":false,"positional":false},{"name":"shadowColor","required":false,"positional":false},{"name":"surfaceTintColor","required":false,"positional":false},{"name":"textStyle","required":false,"positional":false},{"name":"labelTextStyle","required":false,"positional":false},{"name":"enableFeedback","required":false,"positional":false},{"name":"mouseCursor","required":false,"positional":false},{"name":"position","required":false,"positional":false},{"name":"iconColor","required":false,"positional":false},{"name":"iconSize","required":false,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"copyWith":_flaxMemberParameters0}, getters: ["color","shape","menuPadding","elevation","shadowColor","surfaceTintColor","textStyle","labelTextStyle","enableFeedback","mouseCursor","position","iconColor","iconSize"], setters: [], contextMembers: [], superMembers: ["get:color","get:shape","get:menuPadding","get:elevation","get:shadowColor","get:surfaceTintColor","get:textStyle","get:labelTextStyle","get:enableFeedback","get:mouseCursor","get:position","get:iconColor","get:iconSize","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
+export interface PopupMenuThemeData {
+readonly [_flaxDartTypeValue]: PopupMenuThemeData;
+
+toStringShort(): string;
+toString(options?: {minLevel?: upstream8.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream10.DiagnosticsTreeStyle | null | undefined}): upstream9.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+copyWith(options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; shape?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null | undefined; menuPadding?: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null | undefined; elevation?: number | null | undefined; shadowColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; surfaceTintColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; textStyle?: Readonly<{ "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; labelTextStyle?: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.TextStyle | null] }> | null | undefined; enableFeedback?: boolean | null | undefined; mouseCursor?: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.MouseCursor | null] }> | null | undefined; position?: upstream7.PopupMenuPosition | null | undefined; iconColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; iconSize?: number | null | undefined}): PopupMenuThemeData;
+get color(): upstream1.Color | null;
+get shape(): upstream2.ShapeBorder | null;
+get menuPadding(): upstream3.EdgeInsetsGeometry | null;
+get elevation(): number | null;
+get shadowColor(): upstream1.Color | null;
+get surfaceTintColor(): upstream1.Color | null;
+get textStyle(): upstream4.TextStyle | null;
+get labelTextStyle(): upstream5.WidgetStateProperty<upstream4.TextStyle | null> | null;
+get enableFeedback(): boolean | null;
+get mouseCursor(): upstream5.WidgetStateProperty<upstream6.MouseCursor | null> | null;
+get position(): upstream7.PopupMenuPosition | null;
+get iconColor(): upstream1.Color | null;
+get iconSize(): number | null;
+}
+export abstract class PopupMenuThemeData extends _FlaxProxyBase {
+static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<PopupMenuThemeData>[typeof globalThis.Symbol.hasInstance];
+static declare [_flaxDartTypeValue]: PopupMenuThemeData;
+static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:PopupMenuThemeData", readonly [], false];
+constructor(options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; shape?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null | undefined; menuPadding?: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null | undefined; elevation?: number | null | undefined; shadowColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; surfaceTintColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; textStyle?: Readonly<{ "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; labelTextStyle?: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.TextStyle | null] }> | null | undefined; enableFeedback?: boolean | null | undefined; mouseCursor?: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.MouseCursor | null] }> | null | undefined; position?: upstream7.PopupMenuPosition | null | undefined; iconColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; iconSize?: number | null | undefined}) { super(_PopupMenuThemeDataProxy, Array.from(arguments)); }
+}
+_flaxDefineProxyBase(PopupMenuThemeData.prototype, _PopupMenuThemeDataProxy);
+export namespace PopupMenuThemeData { export function implement(args: [options?: {color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; shape?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null | undefined; menuPadding?: Readonly<{ "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [] }> | null | undefined; elevation?: number | null | undefined; shadowColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; surfaceTintColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; textStyle?: Readonly<{ "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; labelTextStyle?: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream4.TextStyle | null] }> | null | undefined; enableFeedback?: boolean | null | undefined; mouseCursor?: Readonly<{ "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream6.MouseCursor | null] }> | null | undefined; position?: upstream7.PopupMenuPosition | null | undefined; iconColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; iconSize?: number | null | undefined}], implementation: {}): PopupMenuThemeData {
+return constructProxy(_PopupMenuThemeDataProxy, args, implementation) as PopupMenuThemeData; } }
+export namespace PopupMenuThemeData { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null, t: number): PopupMenuThemeData | null {
+if (arguments.length > 3) throw new TypeError('Too many method arguments');
+const _flaxResult = invokeTopLevel("flax.core/sdk_material#function:PopupMenuThemeData.lerp", [a, b, t]);
+return _flaxResult as PopupMenuThemeData | null;
+} }
+_flaxBindInstanceType<PopupMenuThemeData, typeof PopupMenuThemeData>(PopupMenuThemeData, "flax.core/sdk_material#type:PopupMenuThemeData", ["dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]);
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "color" | "shape" | "menuPadding" | "elevation" | "shadowColor" | "surfaceTintColor" | "textStyle" | "labelTextStyle" | "enableFeedback" | "mouseCursor" | "position" | "iconColor" | "iconSize" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:flutter/src/material/popup_menu_theme.dart::PopupMenuThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

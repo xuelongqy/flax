@@ -33,6 +33,7 @@ class FlaxCodegenBindingConfig {
     this.typedefs = const [],
     this.topLevel,
     this.publicLibraries = const {},
+    this.automaticLibrary = false,
     this.automaticClasses = const [],
     this.automaticFunctions = const [],
     this.automaticExtensions = const [],
@@ -54,12 +55,16 @@ class FlaxCodegenBindingConfig {
   final FlaxCodegenTopLevelSelection? topLevel;
   final Map<String, FlaxCodegenLibrarySelection> publicLibraries;
 
+  /// Infer the public library surface, rather than an explicit declaration list.
+  final bool automaticLibrary;
+
   final List<String> automaticClasses;
   final List<String> automaticFunctions;
   final List<String> automaticExtensions;
   final FlaxCodegenAutoOverrides overrides;
 
   bool get hasAutomaticSelection =>
+      automaticLibrary ||
       automaticClasses.isNotEmpty ||
       automaticFunctions.isNotEmpty ||
       automaticExtensions.isNotEmpty;
@@ -209,6 +214,7 @@ class FlaxCodegenBindingConfig {
         ),
       ),
       automaticClasses: automaticClasses,
+      automaticLibrary: data['automatic'] as bool? ?? false,
       automaticFunctions: automaticFunctions,
       automaticExtensions: automaticExtensions,
       overrides: data['overrides'] == null
@@ -425,6 +431,7 @@ class FlaxCodegenClassSelection {
     this.startsRoute = const [],
     this.kind,
     this.proxy,
+    this.inferredProxy = false,
     this.proxyVariants = const {},
     this.staticGetters = const [],
     this.staticSetters = const [],
@@ -459,6 +466,7 @@ class FlaxCodegenClassSelection {
   /// not assign application ownership or automatic disposal.
   final String? kind;
   final String? proxy;
+  final bool inferredProxy;
   final Map<String, FlaxCodegenProxyVariantSelection> proxyVariants;
   final List<String> staticGetters;
   final List<String> staticSetters;

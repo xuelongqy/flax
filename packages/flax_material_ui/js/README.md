@@ -1,23 +1,23 @@
-# @flax/material-ui
+# @flax/material-ui-runtime
 
 Physical implementation and delivery package for generated TextButton, TextField,
 MaterialPageRoute, MaterialPage and the selected Material surface. Application source
-imports the authoritative public API from `@flax/flutter/material`; shared Flutter types
+imports the authoritative public API from `@flax/material-ui`; shared Flutter types
 retain their identity through the corresponding `@flax/flutter/*` libraries. The
 delivery package does not substitute legacy SDK Material constructors.
 
 Keep this package at the same version as Dart `flax_material_ui` when the application
 physically carries the Material implementation. It contains generated runtime modules
 and `flax_modules.json`; authoritative application declarations are staged into the
-separate `@flax/flutter` package. Dart registration remains explicit through
+separate `@flax/material-ui` package. Dart registration remains explicit through
 `materialBindings`.
 
 Publication is disabled. See
 [generation and supported parameters](../../../docs/architecture/bindings.md) and
 [UI semantics](../../../docs/architecture/ui.md).
 
-Navigation now includes explicit sessions, shared or nested Flutter Navigators,
-Route-owned callbacks, copied data, and UI Future delivery. See the
+Navigation now includes explicit sessions, shared or nested Flutter Navigators, ordinary
+callback ownership, Dart reference results, and UI Future delivery. See the
 [navigation contract](../../../docs/architecture/navigation.md) for the selected subset
 and lifecycle rules.
 
@@ -39,9 +39,9 @@ Scaffold accepts a typed, bindable appBar. AppBar itself uses fixed configuratio
 update Scaffold.appBar to replace it while keeping descendant signals local. See
 [page shells](../../../docs/architecture/widget-interfaces.md).
 
-showDialog is a named function export using a configured FlaxNavigatorObserver and the
-existing Future-to-Promise contract. AlertDialog accepts bound child properties; dialog
-function arguments are ordinary values. See
+showDialog is a named function export using ordinary callback ownership and the existing
+Future-to-Promise contract. FlaxNavigatorObserver is optional. AlertDialog accepts bound
+child properties; dialog function arguments are ordinary values. See
 [dialogs](../../../docs/architecture/functions.md).
 
 RefreshIndicator accepts a Promise-returning `onRefresh`. The generated binding converts

@@ -1,0 +1,23 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import "@flax/flutter/physics/_bindings/sdk_physics_BoundedFrictionSimulation";
+import "@flax/flutter/physics/_bindings/sdk_physics_ClampedSimulation";
+import "@flax/flutter/physics/_bindings/sdk_physics_FrictionSimulation";
+import "@flax/flutter/physics/_bindings/sdk_physics_GravitySimulation";
+import "@flax/flutter/physics/_bindings/sdk_physics_ScrollSpringSimulation";
+import "@flax/flutter/physics/_bindings/sdk_physics_Simulation";
+import "@flax/flutter/physics/_bindings/sdk_physics_SpringDescription";
+import "@flax/flutter/physics/_bindings/sdk_physics_SpringSimulation";
+import "@flax/flutter/physics/_bindings/sdk_physics_Tolerance";
+export { BoundedFrictionSimulation } from "@flax/flutter/physics/_bindings/sdk_physics_BoundedFrictionSimulation";
+export { ClampedSimulation } from "@flax/flutter/physics/_bindings/sdk_physics_ClampedSimulation";
+export { FrictionSimulation } from "@flax/flutter/physics/_bindings/sdk_physics_FrictionSimulation";
+export { GravitySimulation } from "@flax/flutter/physics/_bindings/sdk_physics_GravitySimulation";
+export { ScrollSpringSimulation } from "@flax/flutter/physics/_bindings/sdk_physics_ScrollSpringSimulation";
+export { Simulation } from "@flax/flutter/physics/_bindings/sdk_physics_Simulation";
+export { SpringDescription } from "@flax/flutter/physics/_bindings/sdk_physics_SpringDescription";
+export { SpringSimulation } from "@flax/flutter/physics/_bindings/sdk_physics_SpringSimulation";
+export { SpringType } from "@flax/flutter/physics/_bindings/sdk_physics_SpringType";
+export { Tolerance } from "@flax/flutter/physics/_bindings/sdk_physics_Tolerance";
+export { nearEqual } from "@flax/flutter/physics/_bindings/sdk_physics_nearEqual";
+export { nearZero } from "@flax/flutter/physics/_bindings/sdk_physics_nearZero";

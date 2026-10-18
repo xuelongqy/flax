@@ -137,6 +137,39 @@ $source
     },
   );
 
+  testWidgets('prepared SDK modules use the default binding registry', (
+    tester,
+  ) async {
+    final fixture = _Fixture();
+    final physics = fixture.module('@flax/flutter/physics');
+    final request = jsonEncode([
+      physics['specifier'],
+      physics['version'],
+      physics['artifact'],
+    ]);
+    Flax.moduleAssets = await fixture.load();
+    final runtime = RuntimeTracker();
+    final errors = <Object>[];
+    await tester.pumpWidget(
+      MaterialApp(
+        home: FlaxView(
+          createRuntime: () => runtime,
+          bindings: FlaxBindingRegistry([]),
+          source:
+              '$source\nglobalThis.sdkValue = '
+              'globalThis.__flaxModules.require(...$request).nearEqual(1, 1.05, 0.1);',
+          onError: (error, _) => errors.add(error),
+        ),
+      ),
+    );
+    expect(errors, isEmpty);
+    expect(_boolean(runtime, 'sdkValue'), isTrue);
+    await flaxTestUnmount(tester);
+    await flaxTestWaitForRuntimeDisposal(tester, runtime);
+    expect(runtime.handlesAtDispose, 0);
+    expect(errors, isEmpty);
+  });
+
   testWidgets('preloaded assets are reusable without sharing session instances', (
     tester,
   ) async {

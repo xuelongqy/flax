@@ -51,9 +51,12 @@ class FlaxDartTypes {
   final _ids = <(String, _BindingContext?, Type), String>{};
   final _typeKeys = <Type, int>{};
   final _projections = <(String, Type), Type?>{};
-  final _handles = <(Type, _BindingContext?, String?), FlaxJsObject>{};
+  final _handles =
+      <(Type, _BindingContext?, String?, FlaxTypeRef?), FlaxJsObject>{};
   final _handleTypes = <String, Type>{};
   final _handleProviders = <String, Map<Type, String>>{};
+  // Conversion metadata only: no Record or field values are retained.
+  final _handleViews = <String, Map<Type, FlaxTypeRef>>{};
   final _selectionContexts = <String, _BindingContext>{};
   final _calls = <String, String>{};
   final _pendingClasses = <String, (FlaxDartClassTemplate, Type)>{};
@@ -121,6 +124,14 @@ class FlaxDartTypes {
           _session.registry._bindingOwners[t.id]?.moduleId == context.moduleId,
     );
     if (own.isNotEmpty) return own.single;
+    final siblings = candidates.where(
+      (template) =>
+          _session.registry._bindingOwners[template.id]?.moduleId.startsWith(
+            '${context.namespace}/',
+          ) ==
+          true,
+    );
+    if (siblings.isNotEmpty) return siblings.single;
     final dependencies = candidates.where(
       (t) => context.dependencies.contains(
         _session.registry._bindingOwners[t.id]?.moduleId,
@@ -133,7 +144,7 @@ class FlaxDartTypes {
 
   String _id(String owner, Type type) {
     final context =
-        _bindingContext?.dartProviders.isNotEmpty == true ||
+        _bindingContext?.hasDartSelection == true ||
             !_classes.containsKey(owner)
         ? _bindingContext
         : _session._contextForBinding(owner);
@@ -189,6 +200,10 @@ class FlaxDartTypes {
     final key = (_bindingContext, type, withinCallback, binding);
     final existing = _refs[key];
     if (existing != null) return existing;
+    final selectedView = binding == null
+        ? _bindingContext?.dartViews[type]
+        : null;
+    if (selectedView != null) return _refs[key] = selectedView;
     final info = parts(type);
     final nullable = info[1] as bool;
     final name = info[3] as String;
@@ -594,6 +609,7 @@ class FlaxDartTypes {
   }
 
   FlaxTypeRef recordInputView(FlaxTypeRef view, Type actual) {
+    if (identical(_bindingContext?.dartViews[actual], view)) return view;
     final binding = view.record!;
     return _refs.putIfAbsent((_bindingContext, actual, false, binding), () {
       final fields = (parts(actual)[4] as List).cast<Type>();
@@ -617,6 +633,28 @@ class FlaxDartTypes {
           ],
           () => actual,
           signature: 'record:${_session._componentSessionId}:${_serial++}',
+        ),
+      );
+    });
+  }
+
+  FlaxTypeRef recordOutputView(Type type) {
+    final selected = _bindingContext?.dartViews[type];
+    if (selected != null) return selected;
+    return _refs.putIfAbsent((_bindingContext, type, false, #recordOutput), () {
+      final layout = resolve(type).record!;
+      return FlaxTypeRef(
+        'record',
+        record: FlaxRecordBinding(
+          [
+            for (final field in layout.fields)
+              FlaxRecordFieldBinding(
+                field.name,
+                const FlaxTypeRef('any', nullable: true),
+              ),
+          ],
+          () => type,
+          signature: '${layout.signature}:output',
         ),
       );
     });
@@ -772,8 +810,8 @@ class FlaxDartTypes {
     );
   }
 
-  FlaxJsObject handle(Type type, {String? binding}) =>
-      _handles.putIfAbsent((type, _bindingContext, binding), () {
+  FlaxJsObject handle(Type type, {String? binding, FlaxTypeRef? view}) =>
+      _handles.putIfAbsent((type, _bindingContext, binding, view), () {
         _index();
         final id = '${_session._componentSessionId}:${_serial++}';
         final value = _session.helper('dartType').call([
@@ -789,10 +827,15 @@ class FlaxDartTypes {
           if (projection != null) providers[projection] = owner;
         }
         _handleProviders[id] = providers;
+        _handleViews[id] = {...?_bindingContext?.dartViews, type: ?view};
         return value;
       });
 
-  Type description(Object? input, {Map<Type, String>? providers}) {
+  Type description(
+    Object? input, {
+    Map<Type, String>? providers,
+    Map<Type, FlaxTypeRef>? views,
+  }) {
     if (input is! List ||
         input.length != 4 ||
         input[0] is! String ||
@@ -802,7 +845,7 @@ class FlaxDartTypes {
     }
     final arguments = [
       for (final child in input[2] as List)
-        description(child, providers: providers),
+        description(child, providers: providers, views: views),
     ];
     final id = input[1];
     if (input[0] != 'class' && input[0] != 'native' && id != null) {
@@ -835,6 +878,15 @@ class FlaxDartTypes {
         type = _handleTypes[id]!;
         for (final entry in _handleProviders[id]!.entries) {
           _prefer(providers, entry.key, entry.value);
+        }
+        if (views != null) {
+          for (final entry in _handleViews[id]!.entries) {
+            final previous = views[entry.key];
+            if (previous != null && !identical(previous, entry.value)) {
+              throw ArgumentError('Conflicting Dart Record conversion views');
+            }
+            views[entry.key] = entry.value;
+          }
         }
       case 'class':
         if (id is! String) throw ArgumentError('Invalid Dart class identity');
@@ -884,6 +936,10 @@ class FlaxDartTypes {
     if (provider != null && result != type) {
       _prefer(providers, result, provider);
     }
+    if (result != type) {
+      final view = views?[type];
+      if (view != null) views![result] = _nullableRef(view, true);
+    }
     return result;
   }
 
@@ -898,38 +954,51 @@ class FlaxDartTypes {
     providers[type] = id;
   }
 
-  T selection<T>(Map<Type, String> providers, T Function() action) {
-    if (providers.isEmpty) return action();
-    final base = _bindingContext!;
+  T selection<T>(
+    Map<Type, String> providers,
+    Map<Type, FlaxTypeRef> views,
+    T Function() action,
+  ) {
+    if (providers.isEmpty && views.isEmpty) return action();
+    final base = _bindingContext ?? _BindingContext('', const []);
     final selected = {...base.dartProviders};
     for (final entry in providers.entries) {
       _prefer(selected, entry.key, entry.value);
     }
     final entries = selected.entries.toList()
       ..sort((a, b) => typeKey(a.key).compareTo(typeKey(b.key)));
+    final selectedViews = {...base.dartViews, ...views};
+    final viewKey = _viewKey(selectedViews);
     final key =
-        '${base.moduleId}:${entries.map((e) => '${typeKey(e.key)}:${e.value}').join('|')}';
+        '${base.moduleId}:${entries.map((e) => '${typeKey(e.key)}:${e.value}').join('|')}:$viewKey';
     final context = _selectionContexts.putIfAbsent(
       key,
       () => _BindingContext(
         base.moduleId,
         base.dependencies,
         dartProviders: Map.unmodifiable(selected),
+        dartViews: Map.unmodifiable(selectedViews),
       ),
     );
     return context.run(action);
   }
 
+  String _viewKey(Map<Type, FlaxTypeRef> views) {
+    final entries = views.entries.toList()
+      ..sort((a, b) => typeKey(a.key).compareTo(typeKey(b.key)));
+    return jsonEncode([
+      for (final entry in entries)
+        [typeKey(entry.key), entry.value.record!.signature],
+    ]);
+  }
+
   String get _providerKey =>
-      '${_bindingContext?.moduleId}:${_bindingContext?.dartProviders.entries.map((e) => '${typeKey(e.key)}:${e.value}').join('|')}';
+      '${_bindingContext?.moduleId}:${_bindingContext?.dartProviders.entries.map((e) => '${typeKey(e.key)}:${e.value}').join('|')}:${_viewKey(_bindingContext?.dartViews ?? const {})}';
 
   String selectFunction(String id, List<Type> types) => _calls.putIfAbsent(
     'function:$id:${types.map(typeKey).join(',')}:$_providerKey',
     () {
-      final base =
-          _session._functionBindings[id] ??
-          (throw ArgumentError('Unknown generic function'));
-      final selected = function(base, types);
+      final selected = functionById(id, types);
       final target = '$id@call:${_session._componentSessionId}:${_serial++}';
       _session._specializedOwners[target] = id;
       _session._specializedContexts[target] =
@@ -993,6 +1062,12 @@ class FlaxDartTypes {
     return Function.apply(adapter, [this]) as FlaxFunctionBinding;
   }
 
+  FlaxFunctionBinding functionById(String id, List<Type> types) => function(
+    _session._functionBindings[id] ??
+        (throw ArgumentError('Unknown generic function: $id')),
+    types,
+  );
+
   FlaxInstanceMethod method(FlaxInstanceMethod base, List<Type> types) {
     if (types.isEmpty) return base;
     final factory = base.genericFactory;
@@ -1012,6 +1087,7 @@ class FlaxDartTypes {
     _handles.clear();
     _handleTypes.clear();
     _handleProviders.clear();
+    _handleViews.clear();
     _selectionContexts.clear();
     _calls.clear();
     _pendingClasses.clear();
@@ -1065,9 +1141,16 @@ extension _DartTypeOperations on _Session {
           if (args.length != 3) {
             throw ArgumentError('Invalid Dart type description');
           }
-          return holdHostResult(
-            dartTypes.handle(dartTypes.description(jsonDecode(id))).retain(),
+          final providers = <Type, String>{};
+          final views = <Type, FlaxTypeRef>{};
+          final type = dartTypes.description(
+            jsonDecode(id),
+            providers: providers,
+            views: views,
           );
+          return dartTypes.selection(providers, views, () {
+            return holdHostResult(dartTypes.handle(type).retain());
+          });
         }
         if (args.length < 4 || args[3] is! FlaxJsString) {
           throw ArgumentError('Invalid Dart type arguments');
@@ -1075,9 +1158,10 @@ extension _DartTypeOperations on _Session {
         final input = jsonDecode((args[3] as FlaxJsString).value);
         if (input is! List) throw ArgumentError('Expected Dart type arguments');
         final providers = <Type, String>{};
+        final views = <Type, FlaxTypeRef>{};
         final types = [
           for (final item in input)
-            dartTypes.description(item, providers: providers),
+            dartTypes.description(item, providers: providers, views: views),
         ];
         if (operation == 'callback') {
           if (args.length != 5 || args[4] is! FlaxJsNumber) {
@@ -1103,7 +1187,7 @@ extension _DartTypeOperations on _Session {
           if (source != null && !source.active) {
             throw StateError('Retired JS callback');
           }
-          FlaxJsValue select() => dartTypes.selection(providers, () {
+          FlaxJsValue select() => dartTypes.selection(providers, views, () {
             final signature = dartTypes.instantiate(factory, types, [
               dartTypes,
             ]) as FlaxCallbackBinding;
@@ -1115,7 +1199,7 @@ extension _DartTypeOperations on _Session {
               : reference.context!.run(select);
         }
         return _inBindingContext(id, () {
-          return dartTypes.selection(providers, () {
+          return dartTypes.selection(providers, views, () {
             if (operation == 'class' && args.length == 4) {
               return FlaxJsString(dartTypes.selectClass(id, types));
             }

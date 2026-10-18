@@ -8,9 +8,10 @@ import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/async/_bindings/flutter_EventSink';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamView<T extends unknown | null = unknown | null> extends AsyncIterable<T> {
     readonly __StreamView: unique symbol;
+    readonly [_flaxDartTypeValue]: StreamView<T>;
     readonly [_flaxDartMethodCases]?: {
         map: _FlaxSignature1<T>;
         asyncMap: _FlaxSignature2<T>;

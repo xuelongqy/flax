@@ -18,8 +18,8 @@
       "package": "@flax/core-runtime"
     },
     {
-      "specifier": "@flax/flutter/material",
-      "package": "@flax/material-ui"
+      "specifier": "@flax/material-ui",
+      "package": "@flax/material-ui-runtime"
     }
   ],
   "flutterProject": "..",

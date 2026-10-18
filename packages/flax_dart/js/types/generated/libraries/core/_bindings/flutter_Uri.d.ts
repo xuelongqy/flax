@@ -1,11 +1,12 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_UriData';
 import '@flax/dart/core/_bindings/flutter_UriData';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Uri extends Readonly<{
     "__flaxBound:dart:core::Uri": readonly [];
 }> {
     readonly __Uri: unique symbol;
+    readonly [_flaxDartTypeValue]: Uri;
     readonly scheme: string;
     readonly authority: string;
     readonly userInfo: string;

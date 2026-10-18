@@ -1,0 +1,156 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_StringAttribute';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_StringAttribute';
+import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsFlags';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsFlags';
+import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsHitTestBehavior';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsHitTestBehavior';
+import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsInputType';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsInputType';
+import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
+import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsRole';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsRole';
+import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsValidationResult';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsValidationResult';
+import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdate';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdate';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface SemanticsUpdateBuilder extends Readonly<{
+    "__flaxBound:dart:ui::SemanticsUpdateBuilder": readonly [];
+}> {
+    readonly __SemanticsUpdateBuilder: unique symbol;
+    readonly [_flaxDartTypeValue]: SemanticsUpdateBuilder;
+    updateNode(options: {
+        actions: number;
+        additionalActions: globalThis.Int32Array;
+        childrenInHitTestOrder: globalThis.Int32Array;
+        childrenInTraversalOrder: globalThis.Int32Array;
+        controlsNodes: DartListInput<string, string> | null;
+        currentValueLength: number;
+        decreasedValue: string;
+        decreasedValueAttributes: DartListInput<upstream0.StringAttribute, Readonly<{
+            "__flaxBound:dart:ui::StringAttribute": readonly [];
+        }>>;
+        flags: Readonly<{
+            "__flaxBound:dart:ui::SemanticsFlags": readonly [];
+        }>;
+        headingLevel?: number | undefined;
+        hint: string;
+        hintAttributes: DartListInput<upstream0.StringAttribute, Readonly<{
+            "__flaxBound:dart:ui::StringAttribute": readonly [];
+        }>>;
+        hitTestBehavior?: upstream2.SemanticsHitTestBehavior | undefined;
+        hitTestTransform: globalThis.Float64Array;
+        id: number;
+        identifier: string;
+        increasedValue: string;
+        increasedValueAttributes: DartListInput<upstream0.StringAttribute, Readonly<{
+            "__flaxBound:dart:ui::StringAttribute": readonly [];
+        }>>;
+        inputType: upstream3.SemanticsInputType;
+        label: string;
+        labelAttributes: DartListInput<upstream0.StringAttribute, Readonly<{
+            "__flaxBound:dart:ui::StringAttribute": readonly [];
+        }>>;
+        linkUrl?: string | undefined;
+        locale: Readonly<{
+            "__flaxBound:dart:ui::Locale": readonly [];
+        }> | null;
+        maxValue: string;
+        maxValueLength: number;
+        minValue: string;
+        platformViewId: number;
+        rect: Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }>;
+        role?: upstream6.SemanticsRole | undefined;
+        scrollChildren: number;
+        scrollExtentMax: number;
+        scrollExtentMin: number;
+        scrollIndex: number;
+        scrollPosition: number;
+        textDirection: upstream7.TextDirection | null;
+        textSelectionBase: number;
+        textSelectionExtent: number;
+        tooltip: string;
+        transform: globalThis.Float64Array;
+        traversalParent: number;
+        validationResult?: upstream8.SemanticsValidationResult | undefined;
+        value: string;
+        valueAttributes: DartListInput<upstream0.StringAttribute, Readonly<{
+            "__flaxBound:dart:ui::StringAttribute": readonly [];
+        }>>;
+    }): void;
+    updateCustomAction(options: {
+        hint?: string | null | undefined;
+        id: number;
+        label?: string | null | undefined;
+        overrideId?: number | undefined;
+    }): void;
+    build(): upstream9.SemanticsUpdate;
+}
+export declare function _SemanticsUpdateBuilderFactory(): SemanticsUpdateBuilder;
+export declare namespace _SemanticsUpdateBuilderFactory {
+    function implement(args: [], implementation: {
+        updateNode: ((options: {
+            id: number;
+            flags: upstream1.SemanticsFlags;
+            actions: number;
+            maxValueLength: number;
+            currentValueLength: number;
+            textSelectionBase: number;
+            textSelectionExtent: number;
+            platformViewId: number;
+            scrollChildren: number;
+            scrollIndex: number;
+            traversalParent: number;
+            scrollPosition: number;
+            scrollExtentMax: number;
+            scrollExtentMin: number;
+            rect: upstream5.Rect;
+            identifier: string;
+            label: string;
+            labelAttributes: DartList<upstream0.StringAttribute>;
+            value: string;
+            valueAttributes: DartList<upstream0.StringAttribute>;
+            increasedValue: string;
+            increasedValueAttributes: DartList<upstream0.StringAttribute>;
+            decreasedValue: string;
+            decreasedValueAttributes: DartList<upstream0.StringAttribute>;
+            hint: string;
+            hintAttributes: DartList<upstream0.StringAttribute>;
+            tooltip: string;
+            textDirection: upstream7.TextDirection | null;
+            transform: globalThis.Float64Array;
+            hitTestTransform: globalThis.Float64Array;
+            childrenInTraversalOrder: globalThis.Int32Array;
+            childrenInHitTestOrder: globalThis.Int32Array;
+            additionalActions: globalThis.Int32Array;
+            headingLevel?: number | undefined;
+            linkUrl?: string | undefined;
+            role?: upstream6.SemanticsRole | undefined;
+            controlsNodes: DartList<string> | null;
+            validationResult?: upstream8.SemanticsValidationResult | undefined;
+            hitTestBehavior?: upstream2.SemanticsHitTestBehavior | undefined;
+            inputType: upstream3.SemanticsInputType;
+            locale: upstream4.Locale | null;
+            minValue: string;
+            maxValue: string;
+        }) => void);
+        updateCustomAction: ((options: {
+            id: number;
+            label?: string | null | undefined;
+            hint?: string | null | undefined;
+            overrideId?: number | undefined;
+        }) => void);
+        build: (() => Readonly<{
+            "__flaxBound:dart:ui::SemanticsUpdate": readonly [];
+        }>);
+    }): SemanticsUpdateBuilder;
+}
+export declare const SemanticsUpdateBuilder: typeof _SemanticsUpdateBuilderFactory & _FlaxInstanceType<SemanticsUpdateBuilder> & _FlaxDartType<SemanticsUpdateBuilder, readonly ["class", "flax.core/sdk_dart_ui#type:SemanticsUpdateBuilder", readonly [], false]>;

@@ -40,6 +40,8 @@ Future<void> main(List<String> arguments) => command(() async {
     await run('flutter', [
       'drive',
       '--no-pub',
+      // Match the direct VM connection used by maintained-engine application gates.
+      '--no-dds',
       '-d',
       currentCheckDevice(),
       '--driver',

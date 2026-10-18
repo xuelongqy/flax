@@ -15,7 +15,8 @@
     "@flax/fetch-runtime": "workspace:*",
     "@flax/websocket-runtime": "workspace:*",
     "@flax/local-storage-runtime": "workspace:*",
-    "@flax/canvas-runtime": "workspace:*"
+    "@flax/canvas-runtime": "workspace:*",
+    "@flax/material-ui-runtime": "workspace:*"
   },
   "devDependencies": {
     "@flax/build": "workspace:*",

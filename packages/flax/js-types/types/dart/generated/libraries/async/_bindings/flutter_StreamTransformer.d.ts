@@ -6,11 +6,12 @@ import type * as upstream2 from '@flax/dart/async/_bindings/flutter_EventSink';
 import '@flax/dart/async/_bindings/flutter_EventSink';
 import type * as upstream3 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamTransformer<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends Readonly<{
     "__flaxBound:dart:async::StreamTransformer": readonly [S, T];
 }> {
     readonly __StreamTransformer: unique symbol;
+    readonly [_flaxDartTypeValue]: StreamTransformer<S, T>;
     readonly [_flaxDartMethodCases]?: {
         cast: _FlaxSignature2<S, T>;
     };

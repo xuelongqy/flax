@@ -1,7 +1,9 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-import { defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/core/_bindings/flutter_RuneIterator';
+import '@flax/dart/core/_bindings/flutter_RuneIterator';
 const _flaxMemberParameters0 = [] as const;
 const _flaxMemberParameters1 = [{"name":"other","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"toElement","required":true,"positional":true}] as const;
@@ -16,11 +18,10 @@ const _flaxMemberParameters10 = [{"name":"growable","required":false,"positional
 const _flaxMemberParameters11 = [{"name":"count","required":true,"positional":true}] as const;
 const _flaxMemberParameters12 = [{"name":"test","required":true,"positional":true},{"name":"orElse","required":false,"positional":false}] as const;
 const _flaxMemberParameters13 = [{"name":"index","required":true,"positional":true}] as const;
-import type * as upstream0 from '@flax/dart/core/_bindings/flutter_RuneIterator';
-import '@flax/dart/core/_bindings/flutter_RuneIterator';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface Runes extends Readonly<{ "__flaxBound:dart:core::Runes": readonly [] }>, Omit<DartIterable<number>, typeof _flaxDartTypeValue | "string" | "iterator" | "last" | "length" | "isEmpty" | "isNotEmpty" | "first" | "single" | "cast" | "followedBy" | "map" | "where" | "whereType" | "expand" | "contains" | "forEach" | "reduce" | "fold" | "every" | "join" | "any" | "toList" | "toSet" | "take" | "takeWhile" | "skip" | "skipWhile" | "firstWhere" | "lastWhere" | "singleWhere" | "elementAt"> { readonly __Runes: unique symbol;
+export interface Runes extends Omit<DartIterable<number>, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:core::Runes": readonly [] }>, Readonly<{ "__flaxBound:dart:core::Iterable": readonly [number] }> { readonly __Runes: unique symbol;
+readonly [_flaxDartTypeValue]: Runes;
 readonly [_flaxDartMethodCases]?: {cast: _FlaxSignature0;map: _FlaxSignature1;whereType: _FlaxSignature2;expand: _FlaxSignature3;fold: _FlaxSignature4;};
 readonly string: string;
 readonly iterator: upstream0.RuneIterator;
@@ -61,6 +62,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:Runes", "", [{"name":"string","required":true,"positional":true}], [string], {}) as Runes;
 }
 export const Runes: typeof _RunesFactory & _FlaxInstanceType<Runes> & _FlaxDartType<Runes, readonly ["class", "flax.core/flutter#type:Runes", readonly [], false]> = _flaxBindInstanceType<Runes, typeof _RunesFactory>(_RunesFactory, "flax.core/flutter#type:Runes", ["dart:core::Iterable","dart:core::Object"]) as typeof _RunesFactory & _FlaxInstanceType<Runes> & _FlaxDartType<Runes, readonly ["class", "flax.core/flutter#type:Runes", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "string" | "iterator" | "last" | "length" | "isEmpty" | "isNotEmpty" | "first" | "single" | "cast" | "followedBy" | "map" | "where" | "whereType" | "expand" | "contains" | "forEach" | "reduce" | "fold" | "every" | "join" | "any" | "toList" | "toSet" | "take" | "takeWhile" | "skip" | "skipWhile" | "firstWhere" | "lastWhere" | "singleWhere" | "elementAt" | "__flaxBound:dart:core::Runes" | "__flaxBound:dart:core::Iterable";
 interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? () => DartIterable<_Selected0> : never : never; }
 interface _FlaxSignature1 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (toElement: ((e: number) => (_Selected0 | DartInput<_Selected0>))) => DartIterable<_Selected0> : never : never; }
 interface _FlaxSignature2 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? () => DartIterable<_Selected0> : never : never; }

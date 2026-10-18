@@ -2,11 +2,12 @@ import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@fla
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamSubscription<T extends unknown | null = unknown | null> extends Readonly<{
     "__flaxBound:dart:async::StreamSubscription": readonly [T];
 }> {
     readonly __StreamSubscription: unique symbol;
+    readonly [_flaxDartTypeValue]: StreamSubscription<T>;
     readonly [_flaxDartMethodCases]?: {
         asFuture: _FlaxSignature1<T>;
     };

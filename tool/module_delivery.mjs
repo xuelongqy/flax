@@ -15,6 +15,14 @@ async function json(path) {
   return JSON.parse(await readFile(path, 'utf8'));
 }
 
+async function bindingManifest(path) {
+  const manifest = await json(join(root, path));
+  if (manifest.formatVersion !== 26) {
+    throw new Error(`Expected Binding Manifest 26: ${path}`);
+  }
+  return manifest;
+}
+
 function uniqueSorted(values) {
   return [...new Set(values)].sort();
 }
@@ -170,7 +178,7 @@ function coreSource(specifier) {
 }
 
 function materialSource(specifier) {
-  if (specifier !== '@flax/flutter/material') {
+  if (specifier !== '@flax/material-ui') {
     throw new Error(`No @flax/material-ui delivery source for ${specifier}`);
   }
   return {
@@ -180,7 +188,7 @@ function materialSource(specifier) {
 }
 
 function cupertinoSource(specifier) {
-  if (specifier !== '@flax/flutter/cupertino') {
+  if (specifier !== '@flax/cupertino-ui') {
     throw new Error('Unexpected Cupertino module specifier');
   }
   return {
@@ -196,12 +204,8 @@ async function delivery({
   extraModules = [],
 }) {
   const npm = await json(join(root, packageDirectory, 'package.json'));
-  const manifest = manifestPath
-    ? await json(join(root, manifestPath))
-    : { formatVersion: 24, modules: [] };
-  if (manifest.formatVersion !== 24) {
-    throw new Error(`Expected Binding Manifest 24: ${manifestPath}`);
-  }
+  const manifest = manifestPath ? await bindingManifest(manifestPath) : { modules: [] };
+  // Delivery projects ownership and operation IDs; shared type references stay encoded.
   const requirements = publicRequirements(manifest);
   const modules = [
     ...extraModules.map((entry) => ({ bindings: [], ...entry })),
@@ -277,7 +281,7 @@ for (const [owner, publicName] of [
 ]) {
   const canvas =
     owner === 'flax_canvas'
-      ? await json(join(root, 'packages/flax_canvas/bindings/manifest.json'))
+      ? await bindingManifest('packages/flax_canvas/bindings/manifest.json')
       : null;
   targets.push({
     packageDirectory: `packages/${owner}/js`,

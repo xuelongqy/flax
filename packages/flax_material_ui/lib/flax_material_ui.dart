@@ -18,7 +18,7 @@ class FlaxMaterialPlugin extends FlaxPlugin {
   Set<String> get globals => const {};
 
   @override
-  Set<String> get jsModules => const {'@flax/flutter/material'};
+  Set<String> get jsModules => const {'@flax/material-ui'};
 
   @override
   List<FlaxBindingModule> get bindingModules => const [materialBindings];

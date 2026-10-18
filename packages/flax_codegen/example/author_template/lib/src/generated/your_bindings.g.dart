@@ -1,6 +1,6 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
-// ignore_for_file: type=lint, unused_import, unnecessary_cast
+// ignore_for_file: type=lint, unused_import, unnecessary_cast, deprecated_member_use, invalid_use_of_protected_member, invalid_use_of_visible_for_overriding_member, invalid_use_of_visible_for_testing_member
 import 'dart:core';
 
 import 'package:your_package/api.dart' as api;
@@ -10,52 +10,14 @@ import 'package:flax/bindings.dart';
 const _flaxOmitted = Object();
 const exampleBindings = FlaxBindingModule(
   'example',
-  [
-    FlaxObjectBinding(
-      "vendor.example/example#type:Gauge",
-      [FlaxGetter("value", FlaxTypeRef("int"), _Gauge_value)],
-      {
-        "increment": FlaxInstanceMethod(
-          [
-            FlaxParameter(
-              "by",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 1,
-              omitWhenAbsent: false,
-            ),
-          ],
-          FlaxTypeRef("void"),
-          _Gauge_increment,
-          startsRoute: false,
-        ),
-      },
-      constructors: {
-        "": [
-          FlaxParameter(
-            "value",
-            FlaxTypeRef("int"),
-            required: false,
-            defaultValue: 0,
-            omitWhenAbsent: false,
-          ),
-        ],
-      },
-      create: _createGauge,
-      disposeMethod: null,
-      listenerPairs: {},
-      supertypes: ["dart:core::Object"],
-      setters: [FlaxSetter("value", FlaxTypeRef("int"), _Gauge_set_value)],
-      matches: _isGauge,
-      methods: const {},
-    ),
-  ],
+  [_flaxBinding7],
   functions: [],
   moduleId: "vendor.example/example",
   dependencyModules: [],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
     "generic-member-views",
+    "inherited-binding-members",
     "instance-checks",
     "native-navigation-objects",
     "native-widget-proxies",
@@ -91,3 +53,28 @@ Object _createGauge(String ctor, Map<String, Object?> values) {
 }
 
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
+const _flaxBinding0 = FlaxTypeRef("int");
+const _flaxBinding1 = FlaxGetter("value", _flaxBinding0, _Gauge_value);
+const _flaxBinding2 = FlaxSetter("value", _flaxBinding0, _Gauge_set_value);
+const _flaxBinding3 = <FlaxParameter>[
+  FlaxParameter("by", _flaxBinding0, required: false, defaultValue: 1),
+];
+const _flaxBinding4 = FlaxTypeRef("void");
+const _flaxBinding5 = FlaxInstanceMethod(
+  _flaxBinding3,
+  _flaxBinding4,
+  _Gauge_increment,
+);
+const _flaxBinding6 = <FlaxParameter>[
+  FlaxParameter("value", _flaxBinding0, required: false, defaultValue: 0),
+];
+const _flaxBinding7 = FlaxObjectBinding(
+  "vendor.example/example#type:Gauge",
+  [_flaxBinding1],
+  {"increment": _flaxBinding5},
+  constructors: {"": _flaxBinding6},
+  create: _createGauge,
+  matches: _isGauge,
+  setters: [_flaxBinding2],
+  supertypes: ["dart:core::Object"],
+);

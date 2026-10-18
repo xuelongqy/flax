@@ -1,0 +1,77 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream2 from '@flax/flutter/cupertino/_bindings/sdk_cupertino_CupertinoDatePickerMode';
+import '@flax/flutter/cupertino/_bindings/sdk_cupertino_CupertinoDatePickerMode';
+import type * as upstream3 from '@flax/dart/core/_bindings/flutter_DateTime';
+import '@flax/dart/core/_bindings/flutter_DateTime';
+import type * as upstream4 from '@flax/flutter/cupertino/_bindings/sdk_cupertino_DatePickerDateOrder';
+import '@flax/flutter/cupertino/_bindings/sdk_cupertino_DatePickerDateOrder';
+import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/sdk_widgets_ChangeReportingBehavior';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ChangeReportingBehavior';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
+const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/cupertino/_bindings/sdk_cupertino.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface CupertinoDatePicker extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{ "__flaxBound:package:flutter/src/cupertino/date_picker.dart::CupertinoDatePicker": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __CupertinoDatePicker: unique symbol;
+readonly [_flaxDartTypeValue]: CupertinoDatePicker;
+
+readonly mode: upstream2.CupertinoDatePickerMode;
+readonly initialDateTime: upstream3.DateTime;
+readonly minimumDate: upstream3.DateTime | null;
+readonly maximumDate: upstream3.DateTime | null;
+readonly minimumYear: number;
+readonly maximumYear: number | null;
+readonly minuteInterval: number;
+readonly use24hFormat: boolean;
+readonly dateOrder: upstream4.DatePickerDateOrder | null;
+readonly onDateTimeChanged: ((value: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>) => void);
+readonly backgroundColor: upstream5.Color | null;
+readonly showDayOfWeek: boolean;
+readonly showTimeSeparator: boolean;
+readonly selectableDayPredicate: ((day: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>) => boolean) | null;
+readonly itemExtent: number;
+readonly selectionOverlayBuilder: ((context: upstream6.BuildContext, options: { columnCount: number; selectedIndex: number }) => Widget | null) | null;
+readonly changeReportingBehavior: upstream7.ChangeReportingBehavior;
+readonly key: upstream1.Key | null;
+createState(): upstream8.State<upstream0.StatefulWidget>;
+createElement(): upstream9.StatefulElement;
+toStringShort(): string;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream11.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {minLevel?: upstream11.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream13.DiagnosticsTreeStyle | null | undefined}): upstream12.DiagnosticsNode;
+debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
+}
+defineObject("flax.core/sdk_cupertino#type:CupertinoDatePicker", ["mode","initialDateTime","minimumDate","maximumDate","minimumYear","maximumYear","minuteInterval","use24hFormat","dateOrder","onDateTimeChanged","backgroundColor","showDayOfWeek","showTimeSeparator","selectableDayPredicate","itemExtent","selectionOverlayBuilder","changeReportingBehavior","key"], [], _flaxBindingMethods("flax.core/sdk_cupertino#type:CupertinoDatePicker", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+export function _CupertinoDatePickerFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; mode?: upstream2.CupertinoDatePickerMode | undefined; onDateTimeChanged: ((value: upstream3.DateTime) => void); initialDateTime?: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>> | null | undefined; minimumDate?: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>> | null | undefined; maximumDate?: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>> | null | undefined; minimumYear?: number | undefined; maximumYear?: number | null | undefined; minuteInterval?: number | undefined; use24hFormat?: boolean | undefined; dateOrder?: upstream4.DatePickerDateOrder | null | undefined; backgroundColor?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined; showDayOfWeek?: boolean | undefined; showTimeSeparator?: boolean | undefined; itemExtent?: number | undefined; selectionOverlayBuilder?: ((context: upstream6.BuildContext, options: { columnCount: number; selectedIndex: number }) => Widget | null) | null | undefined; selectableDayPredicate?: ((day: upstream3.DateTime) => boolean) | null | undefined; changeReportingBehavior?: upstream7.ChangeReportingBehavior | undefined }): CupertinoDatePicker {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoDatePicker", "", [{"name":"key","required":false,"positional":false},{"name":"mode","required":false,"positional":false},{"name":"onDateTimeChanged","required":true,"positional":false},{"name":"initialDateTime","required":false,"positional":false},{"name":"minimumDate","required":false,"positional":false},{"name":"maximumDate","required":false,"positional":false},{"name":"minimumYear","required":false,"positional":false},{"name":"maximumYear","required":false,"positional":false},{"name":"minuteInterval","required":false,"positional":false},{"name":"use24hFormat","required":false,"positional":false},{"name":"dateOrder","required":false,"positional":false},{"name":"backgroundColor","required":false,"positional":false},{"name":"showDayOfWeek","required":false,"positional":false},{"name":"showTimeSeparator","required":false,"positional":false},{"name":"itemExtent","required":false,"positional":false},{"name":"selectionOverlayBuilder","required":false,"positional":false},{"name":"selectableDayPredicate","required":false,"positional":false},{"name":"changeReportingBehavior","required":false,"positional":false}], [], options) as CupertinoDatePicker;
+}
+export const CupertinoDatePicker: typeof _CupertinoDatePickerFactory & _FlaxInstanceType<CupertinoDatePicker> & _FlaxDartType<CupertinoDatePicker, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoDatePicker", readonly [], false]> = _flaxBindInstanceType<CupertinoDatePicker, typeof _CupertinoDatePickerFactory>(_CupertinoDatePickerFactory, "flax.core/sdk_cupertino#type:CupertinoDatePicker", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _CupertinoDatePickerFactory & _FlaxInstanceType<CupertinoDatePicker> & _FlaxDartType<CupertinoDatePicker, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoDatePicker", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "mode" | "initialDateTime" | "minimumDate" | "maximumDate" | "minimumYear" | "maximumYear" | "minuteInterval" | "use24hFormat" | "dateOrder" | "onDateTimeChanged" | "backgroundColor" | "showDayOfWeek" | "showTimeSeparator" | "selectableDayPredicate" | "itemExtent" | "selectionOverlayBuilder" | "changeReportingBehavior" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/cupertino/date_picker.dart::CupertinoDatePicker" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

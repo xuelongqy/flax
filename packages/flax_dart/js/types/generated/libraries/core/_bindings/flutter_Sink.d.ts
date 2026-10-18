@@ -1,9 +1,10 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
-import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Sink<T extends unknown | null = unknown | null> extends Readonly<{
     "__flaxBound:dart:core::Sink": readonly [T];
 }> {
     readonly __Sink: unique symbol;
+    readonly [_flaxDartTypeValue]: Sink<T>;
     add(data: (T | DartInput<T>)): void;
     close(): void;
 }

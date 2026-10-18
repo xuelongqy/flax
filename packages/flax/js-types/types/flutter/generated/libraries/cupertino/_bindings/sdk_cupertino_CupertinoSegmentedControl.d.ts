@@ -1,0 +1,168 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type DartInput, type Widget } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream3 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import type * as upstream4 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface CupertinoSegmentedControl<T extends {} = {}> extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
+    "__flaxBound:package:flutter/src/cupertino/segmented_control.dart::CupertinoSegmentedControl": readonly [T];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}> {
+    readonly __CupertinoSegmentedControl: unique symbol;
+    readonly [_flaxDartTypeValue]: CupertinoSegmentedControl<T>;
+    readonly children: DartMap<T, Widget>;
+    readonly groupValue: T | null;
+    readonly onValueChanged: ((value: (T | DartInput<T>)) => void);
+    readonly unselectedColor: upstream2.Color | null;
+    readonly selectedColor: upstream2.Color | null;
+    readonly borderColor: upstream2.Color | null;
+    readonly pressedColor: upstream2.Color | null;
+    readonly disabledColor: upstream2.Color | null;
+    readonly disabledTextColor: upstream2.Color | null;
+    readonly padding: upstream3.EdgeInsetsGeometry | null;
+    readonly disabledChildren: DartSet<T>;
+    readonly key: upstream1.Key | null;
+    createState(): upstream4.State<CupertinoSegmentedControl<T>>;
+    createElement(): upstream5.StatefulElement;
+    toStringShort(): string;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream7.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream7.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
+    }): upstream8.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream8.DiagnosticsNode>;
+}
+export declare function _CupertinoSegmentedControlFactory<T extends {} = {}>(options: {
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }> | null | undefined;
+    children: DartMapInput<_FlaxDartOutput<T>, Widget, (T | _FlaxDartOutput<T>), Widget>;
+    onValueChanged: ((value: _FlaxDartOutput<T>) => void);
+    groupValue?: (T | _FlaxDartOutput<T>) | null | undefined;
+    unselectedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    borderColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    pressedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledTextColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    disabledChildren?: DartSetInput<_FlaxDartOutput<T>, (T | _FlaxDartOutput<T>)> | undefined;
+}): CupertinoSegmentedControl<T>;
+export declare function _CupertinoSegmentedControlFactory(options: {
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }> | null | undefined;
+    children: DartMapInput<{}, Widget, {}, Widget>;
+    onValueChanged: ((value: {}) => void);
+    groupValue?: unknown | null | undefined;
+    unselectedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    selectedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    borderColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    pressedColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    disabledTextColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    disabledChildren?: DartSetInput<{}, {}> | undefined;
+}): CupertinoSegmentedControl<{}>;
+export declare const CupertinoSegmentedControl: typeof _CupertinoSegmentedControlFactory & _FlaxInstanceType<CupertinoSegmentedControl<{}>> & _FlaxDartType<CupertinoSegmentedControl<{}>, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoSegmentedControl", readonly [readonly ["any", null, readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "children" | "groupValue" | "onValueChanged" | "unselectedColor" | "selectedColor" | "borderColor" | "pressedColor" | "disabledColor" | "disabledTextColor" | "padding" | "disabledChildren" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/cupertino/segmented_control.dart::CupertinoSegmentedControl" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? {
+        (options: {
+            key?: Readonly<{
+                "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+            }> | null | undefined;
+            children: DartMapInput<_Selected0, Widget, (_Selected0 | DartInput<_Selected0>), Widget>;
+            onValueChanged: ((value: _Selected0) => void);
+            groupValue?: (_Selected0 | DartInput<_Selected0>) | null | undefined;
+            unselectedColor?: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }> | null | undefined;
+            selectedColor?: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }> | null | undefined;
+            borderColor?: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }> | null | undefined;
+            pressedColor?: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }> | null | undefined;
+            disabledColor?: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }> | null | undefined;
+            disabledTextColor?: Readonly<{
+                "__flaxBound:dart:ui::Color": readonly [];
+            }> | null | undefined;
+            padding?: Readonly<{
+                "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+            }> | null | undefined;
+            disabledChildren?: DartSetInput<_Selected0, (_Selected0 | DartInput<_Selected0>)> | undefined;
+        }): CupertinoSegmentedControl<_Selected0>;
+        readonly prototype: CupertinoSegmentedControl<_Selected0>;
+    } & _FlaxInstanceType<CupertinoSegmentedControl<_Selected0>> & _FlaxDartType<CupertinoSegmentedControl<_Selected0>> : never : never;
+}
+export {};

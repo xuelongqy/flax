@@ -5,6 +5,11 @@ engine and macOS arm64 (macOS 15 or newer). main.dart initializes Flutter, loads
 assets/app.js, registers core/Material bindings, and mounts an owning FlaxView. It adds
 no MaterialApp, Theme, Navigator or Scaffold around the JS root.
 
+The details route returns `Map<String, Object?>`. Its JS pop call selects
+`DartMapInput<string, unknown>` so a plain object becomes that Dart map type; the push
+result is read as `DartMap<string, unknown>`. This follows ordinary function conversion:
+the separate pop call cannot infer a route's result type from its Navigator.
+
 The sibling JS project supplies the generated asset. From that project, run
 `pnpm run bundle`; then use `dart run melos run standalone:run` from the repository root
 after building the local Flax engine. See the [complete setup](../README.md).

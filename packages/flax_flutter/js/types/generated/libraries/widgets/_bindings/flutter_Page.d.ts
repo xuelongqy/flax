@@ -8,10 +8,13 @@ import '@flax/flutter/widgets/_bindings/flutter_Route';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface Page<T extends unknown | null = unknown | null> extends Omit<upstream0.RouteSettings, typeof _flaxDartTypeValue | "name" | "arguments" | "key" | "restorationId" | "onPopInvoked" | "canPop" | "toString" | "canUpdate" | "createRoute">, Readonly<{
+export interface Page<T extends unknown | null = unknown | null> extends Omit<upstream0.RouteSettings, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/navigator.dart::Page": readonly [T];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
 }> {
     readonly __Page: unique symbol;
+    readonly [_flaxDartTypeValue]: Page<T>;
     readonly name: string | null;
     readonly arguments: unknown | null;
     readonly key: upstream1.LocalKey | null;
@@ -21,10 +24,13 @@ export interface Page<T extends unknown | null = unknown | null> extends Omit<up
     toString(): string;
     canUpdate(other: Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::Page": readonly [unknown | null];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
     }>): boolean;
     createRoute(context: upstream3.BuildContext): upstream2.Route<T>;
 }
 export declare const Page: object & _FlaxInstanceType<Page<unknown | null>> & _FlaxDartType<Page<unknown | null>, readonly ["class", "flax.core/flutter#type:Page", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "name" | "arguments" | "key" | "restorationId" | "onPopInvoked" | "canPop" | "toString" | "canUpdate" | "createRoute" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Page" | "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         readonly prototype: Page<_Selected0>;

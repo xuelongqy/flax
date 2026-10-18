@@ -1,9 +1,10 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput } from '@flax/core/bindings';
-import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Listenable extends Readonly<{
     "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
 }> {
     readonly __Listenable: unique symbol;
+    readonly [_flaxDartTypeValue]: Listenable;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
 }

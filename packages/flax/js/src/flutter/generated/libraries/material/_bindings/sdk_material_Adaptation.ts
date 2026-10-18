@@ -1,0 +1,38 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Type';
+import '@flax/dart/core/_bindings/flutter_Type';
+import type * as upstream1 from '@flax/flutter/material/_bindings/sdk_material_ThemeData';
+import '@flax/flutter/material/_bindings/sdk_material_ThemeData';
+const _flaxMemberParameters0 = [{"name":"theme","required":true,"positional":true},{"name":"defaultValue","required":true,"positional":true}] as const;
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface Adaptation<T extends unknown | null = unknown | null> extends Readonly<{ "__flaxBound:package:flutter/src/material/theme_data.dart::Adaptation": readonly [T] }> { readonly __Adaptation: unique symbol;
+readonly [_flaxDartTypeValue]: Adaptation<T>;
+
+}
+defineObject("flax.core/sdk_material#type:Adaptation", ["type"], [], _flaxBindingMethods("flax.core/sdk_material#type:Adaptation", "object", {"adapt":_flaxMemberParameters0}, {}), []);
+const _AdaptationProxy = {type: "flax.core/sdk_material#type:Adaptation", parameters: [], constructors: {"":[]}, methods: {"adapt":_flaxMemberParameters0}, getters: ["type"], setters: [], contextMembers: [], superMembers: ["get:type","adapt"]} as const;
+export interface Adaptation<T extends unknown | null = unknown | null> {
+readonly [_flaxDartTypeValue]: Adaptation<T>;
+
+adapt(theme: Readonly<{ "__flaxBound:package:flutter/src/material/theme_data.dart::ThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, defaultValue: (T | DartInput<T>)): T;
+get type(): upstream0.Type;
+}
+export abstract class Adaptation<T extends unknown | null = unknown | null> extends _FlaxProxyBase {
+static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<Adaptation<unknown | null>>[typeof globalThis.Symbol.hasInstance];
+static declare [_flaxDartTypeValue]: Adaptation<unknown | null>;
+static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_material#type:Adaptation", readonly [readonly ["any", null, readonly [], true]], false];
+static declare $type: _FlaxDartTypeCases<unknown>['$type'];
+static declare [_flaxDartTypeCases]: _FlaxSignature1;
+constructor() { super(_AdaptationProxy, Array.from(arguments)); }
+}
+_flaxDefineProxyBase(Adaptation.prototype, _AdaptationProxy);
+export namespace Adaptation { export function implement<T extends unknown | null = unknown | null>(args: [], implementation: {}): Adaptation<T> {
+return constructProxy(_AdaptationProxy, args, implementation) as Adaptation<T>; } }
+_flaxBindInstanceType<Adaptation<unknown | null>, typeof Adaptation>(Adaptation, "flax.core/sdk_material#type:Adaptation", ["dart:core::Object"]);
+_flaxDefineDartTypes(Adaptation, "flax.core/sdk_material#type:Adaptation", {...{"category":"object","constructors":{}}, proxy: _AdaptationProxy});
+interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => Adaptation<_Selected0>) & {readonly prototype: Adaptation<_Selected0>;implement(args: readonly [], implementation: Partial<Adaptation<_Selected0>>): Adaptation<_Selected0>;} & _FlaxInstanceType<Adaptation<_Selected0>> & _FlaxDartType<Adaptation<_Selected0>> : never : never; }
+interface _FlaxSignature1 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => Adaptation<_Selected0>) & {readonly prototype: Adaptation<_Selected0>;implement(args: readonly [], implementation: Partial<Adaptation<_Selected0>>): Adaptation<_Selected0>;} & _FlaxInstanceType<Adaptation<_Selected0>> & _FlaxDartType<Adaptation<_Selected0>> : never : never; }

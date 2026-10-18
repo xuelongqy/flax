@@ -4,10 +4,13 @@ import '@flax/dart/core/_bindings/flutter_Sink';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface EventSink<T extends unknown | null = unknown | null> extends Omit<upstream0.Sink<T>, typeof _flaxDartTypeValue | "add" | "close" | "addError">, Readonly<{
+export interface EventSink<T extends unknown | null = unknown | null> extends Omit<upstream0.Sink<T>, typeof _flaxDartTypeValue | "add" | "close" | "addError" | "__flaxBound:dart:async::EventSink" | "__flaxBound:dart:core::Sink">, Readonly<{
     "__flaxBound:dart:async::EventSink": readonly [T];
+}>, Readonly<{
+    "__flaxBound:dart:core::Sink": readonly [T];
 }> {
     readonly __EventSink: unique symbol;
+    readonly [_flaxDartTypeValue]: EventSink<T>;
     add(event: (T | DartInput<T>)): void;
     close(): void;
     addError(error: {}, stackTrace?: Readonly<{

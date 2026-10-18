@@ -3,10 +3,13 @@ import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_RuneIterator';
 import '@flax/dart/core/_bindings/flutter_RuneIterator';
 import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface Runes extends Readonly<{
+export interface Runes extends Omit<DartIterable<number>, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:dart:core::Runes": readonly [];
-}>, Omit<DartIterable<number>, typeof _flaxDartTypeValue | "string" | "iterator" | "last" | "length" | "isEmpty" | "isNotEmpty" | "first" | "single" | "cast" | "followedBy" | "map" | "where" | "whereType" | "expand" | "contains" | "forEach" | "reduce" | "fold" | "every" | "join" | "any" | "toList" | "toSet" | "take" | "takeWhile" | "skip" | "skipWhile" | "firstWhere" | "lastWhere" | "singleWhere" | "elementAt"> {
+}>, Readonly<{
+    "__flaxBound:dart:core::Iterable": readonly [number];
+}> {
     readonly __Runes: unique symbol;
+    readonly [_flaxDartTypeValue]: Runes;
     readonly [_flaxDartMethodCases]?: {
         cast: _FlaxSignature0;
         map: _FlaxSignature1;
@@ -56,6 +59,7 @@ export interface Runes extends Readonly<{
 }
 export declare function _RunesFactory(string: string): Runes;
 export declare const Runes: typeof _RunesFactory & _FlaxInstanceType<Runes> & _FlaxDartType<Runes, readonly ["class", "flax.core/flutter#type:Runes", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "string" | "iterator" | "last" | "length" | "isEmpty" | "isNotEmpty" | "first" | "single" | "cast" | "followedBy" | "map" | "where" | "whereType" | "expand" | "contains" | "forEach" | "reduce" | "fold" | "every" | "join" | "any" | "toList" | "toSet" | "take" | "takeWhile" | "skip" | "skipWhile" | "firstWhere" | "lastWhere" | "singleWhere" | "elementAt" | "__flaxBound:dart:core::Runes" | "__flaxBound:dart:core::Iterable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? () => DartIterable<_Selected0> : never : never;
 }

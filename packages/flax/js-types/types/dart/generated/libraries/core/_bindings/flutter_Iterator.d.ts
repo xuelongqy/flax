@@ -1,9 +1,10 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
-import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Iterator<E extends unknown | null = unknown | null> extends Readonly<{
     "__flaxBound:dart:core::Iterator": readonly [E];
 }> {
     readonly __Iterator: unique symbol;
+    readonly [_flaxDartTypeValue]: Iterator<E>;
     readonly current: E;
     moveNext(): boolean;
 }

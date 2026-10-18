@@ -1,14 +1,17 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartInput } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
-import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_Stream';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends Omit<upstream0.StreamTransformer<S, T>, typeof _flaxDartTypeValue | "bind" | "cast">, Readonly<{
+export interface StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends Omit<upstream0.StreamTransformer<S, T>, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:dart:async::StreamTransformerBase": readonly [S, T];
+}>, Readonly<{
+    "__flaxBound:dart:async::StreamTransformer": readonly [S, T];
 }> {
     readonly __StreamTransformerBase: unique symbol;
+    readonly [_flaxDartTypeValue]: StreamTransformerBase<S, T>;
     readonly [_flaxDartMethodCases]?: {
         cast: _FlaxSignature1<S, T>;
     };
@@ -34,6 +37,7 @@ export declare namespace StreamTransformerBase {
         bind: ((stream: upstream1.Stream<S>) => (upstream1.Stream<T> | upstream1.Stream<(T | DartInput<T>)>));
     }): StreamTransformerBase<S, T>;
 }
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "bind" | "cast" | "__flaxBound:dart:async::StreamTransformerBase" | "__flaxBound:dart:async::StreamTransformer";
 interface _FlaxSignature1<_OwnerType0 extends unknown | null, _OwnerType1 extends unknown | null> extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0, infer _Selected1] ? [_Selected0] extends [unknown | null] ? [_Selected1] extends [unknown | null] ? () => upstream0.StreamTransformer<_Selected0, _Selected1> : never : never : never;
 }

@@ -13,3 +13,17 @@ bindingNamespace: flax.core
 registration:
   bindings:
     - flutterBindings
+    - sdk_animationBindings
+    - sdk_cupertinoBindings
+    - sdk_dart_uiBindings
+    - sdk_foundationBindings
+    - sdk_gesturesBindings
+    - sdk_materialBindings
+    - sdk_paintingBindings
+    - sdk_physicsBindings
+    - sdk_renderingBindings
+    - sdk_schedulerBindings
+    - sdk_semanticsBindings
+    - sdk_servicesBindings
+    - sdk_widget_previewsBindings
+    - sdk_widgetsBindings

@@ -2,10 +2,13 @@ import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings'
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Comparable';
 import '@flax/dart/core/_bindings/flutter_Comparable';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface Duration extends Omit<upstream0.Comparable<Duration>, typeof _flaxDartTypeValue | "inMicroseconds" | "inDays" | "inHours" | "inMinutes" | "inSeconds" | "inMilliseconds" | "isNegative" | "compareTo" | "toString" | "abs" | "operatorAdd" | "operatorSubtract" | "operatorMultiply" | "operatorTruncateDivide" | "operatorLessThan" | "operatorGreaterThan" | "operatorLessThanOrEqual" | "operatorGreaterThanOrEqual" | "operatorNegate">, Readonly<{
+export interface Duration extends Omit<upstream0.Comparable<Duration>, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:dart:core::Duration": readonly [];
+}>, Readonly<{
+    "__flaxBound:dart:core::Comparable": readonly [Duration];
 }> {
     readonly __Duration: unique symbol;
+    readonly [_flaxDartTypeValue]: Duration;
     readonly inMicroseconds: number;
     readonly inDays: number;
     readonly inHours: number;
@@ -15,28 +18,42 @@ export interface Duration extends Omit<upstream0.Comparable<Duration>, typeof _f
     readonly isNegative: boolean;
     compareTo(other: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [Duration];
     }>): number;
     toString(): string;
     abs(): Duration;
     operatorAdd(other: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [Duration];
     }>): Duration;
     operatorSubtract(other: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [Duration];
     }>): Duration;
     operatorMultiply(factor: number): Duration;
     operatorTruncateDivide(quotient: number): Duration;
     operatorLessThan(other: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [Duration];
     }>): boolean;
     operatorGreaterThan(other: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [Duration];
     }>): boolean;
     operatorLessThanOrEqual(other: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [Duration];
     }>): boolean;
     operatorGreaterThanOrEqual(other: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [Duration];
     }>): boolean;
     operatorNegate(): Duration;
 }
@@ -97,3 +114,5 @@ export declare namespace _DurationFactory {
     const zero: Duration;
 }
 export declare const Duration: typeof _DurationFactory & _FlaxInstanceType<Duration> & _FlaxDartType<Duration, readonly ["class", "flax.core/flutter#type:Duration", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "inMicroseconds" | "inDays" | "inHours" | "inMinutes" | "inSeconds" | "inMilliseconds" | "isNegative" | "compareTo" | "toString" | "abs" | "operatorAdd" | "operatorSubtract" | "operatorMultiply" | "operatorTruncateDivide" | "operatorLessThan" | "operatorGreaterThan" | "operatorLessThanOrEqual" | "operatorGreaterThanOrEqual" | "operatorNegate" | "__flaxBound:dart:core::Duration" | "__flaxBound:dart:core::Comparable";
+export {};

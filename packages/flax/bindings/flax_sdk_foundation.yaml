@@ -1,0 +1,11 @@
+format: 2
+name: sdk_foundation
+library: package:flutter/foundation.dart
+automatic: true
+jsPackage: '@flax/flutter/foundation'
+dartOutput: lib/src/generated/sdk_foundation_bindings.g.dart
+tsOutput: js/src/flutter/generated/libraries/foundation/index.ts
+publicLibraries:
+  package:flutter/foundation.dart:
+    jsPackage: '@flax/flutter/foundation'
+    tsOutput: js/src/flutter/generated/libraries/foundation/index.ts

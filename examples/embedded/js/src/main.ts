@@ -4,7 +4,7 @@ import {
 } from '@flax/core/bindings';
 import { computed, signal } from '@flax/core';
 import { Column, Text, ValueKey, runApp } from '@flax/flutter/widgets';
-import { TextButton } from '@flax/flutter/material';
+import { TextButton } from '@flax/material-ui';
 
 import { materialTextButton } from './shared_material';
 

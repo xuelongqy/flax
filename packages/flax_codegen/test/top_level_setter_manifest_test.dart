@@ -11,11 +11,11 @@ import 'package:flax_codegen/src/ownership.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('Manifest 12 preserves getter identity and distinct setter function identity', () {
+  test('Current Manifest preserves getter identity and distinct setter function identity', () {
     final original = _manifest();
     final decoded = _decode(original.toJson());
     expect(decoded.encode(), original.encode());
-    expect(decoded.toJson()['formatVersion'], 24);
+    expect(decoded.toJson()['formatVersion'], 26);
     final values = decoded.modules.single.model.module.topLevel!;
     expect(values.getters.single.id, 'example.values/values#read:answer');
     expect(
@@ -43,23 +43,19 @@ void main() {
     );
   });
 
-  test(
-    'Manifest 12 rejects missing setter field, bad identity and extra fields',
-    () {
-      for (final mutate in <void Function(Map<String, Object?>)>[
-        (model) =>
-            (model['topLevel'] as Map<String, Object?>).remove('setters'),
-        (model) => _setter(model)['id'] = 'example.values/values#read:answer',
-        (model) => _setter(model)['name'] = 'other',
-        (model) => _setter(model)['literal'] = '1',
-        (model) => (model['identities'] as List).removeAt(0),
-      ]) {
-        final json = _manifest().toJson();
-        mutate(_model(json));
-        _reject(json);
-      }
-    },
-  );
+  test('Current Manifest rejects missing setter field, bad identity and extra fields', () {
+    for (final mutate in <void Function(Map<String, Object?>)>[
+      (model) => (model['topLevel'] as Map<String, Object?>).remove('setters'),
+      (model) => _setter(model)['id'] = 'example.values/values#read:answer',
+      (model) => _setter(model)['name'] = 'other',
+      (model) => _setter(model)['literal'] = '1',
+      (model) => (model['identities'] as List).removeAt(0),
+    ]) {
+      final json = _manifest().toJson();
+      mutate(_model(json));
+      _reject(json);
+    }
+  });
 
   test('setter and getter identity rows require canonical kind ordering', () {
     final json = _manifest().toJson();

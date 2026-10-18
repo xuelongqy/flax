@@ -12,6 +12,8 @@ const _supportedCapabilities = <String>{
   'proxy-super-constructors',
   'bottom-types',
   'generic-member-views',
+  'inherited-binding-members',
+  'shared-static-readers',
   'dart-type-tokens',
   'generic-call-types',
   'engine-type-handles',
@@ -164,6 +166,26 @@ class FlaxCallbackParameter {
 }
 
 class FlaxCallbackBinding {
+  const FlaxCallbackBinding.signature(
+    this.parameters,
+    this.result, {
+    required this.id,
+  }) : wrap = _signatureWrap,
+       invoke = _signatureInvoke,
+       matches = _signatureMatches,
+       independentWidgetResult = false,
+       requiresTypeArguments = false,
+       genericFactory = null;
+
+  static Never _signatureWrap(FlaxCallback callback) =>
+      throw StateError('Proxy signature used as a function wrapper');
+  static Never _signatureInvoke(
+    Object value,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) => throw StateError('Proxy signature used as a function invocation');
+  static Never _signatureMatches(Object value) =>
+      throw StateError('Proxy signature used as a function type check');
   const FlaxCallbackBinding(
     this.parameters,
     this.result,
@@ -208,8 +230,8 @@ class FlaxSetter {
 class FlaxObjectBinding extends FlaxTypeBinding {
   const FlaxObjectBinding(
     super.id,
-    this.getters,
-    this.instanceMethods, {
+    List<FlaxGetter> getters,
+    Map<String, FlaxInstanceMethod> instanceMethods, {
     required this.constructors,
     required this.create,
     this.disposeMethod,
@@ -217,7 +239,9 @@ class FlaxObjectBinding extends FlaxTypeBinding {
     this.nativeInput,
     this.staticGetters = const {},
     super.methods,
-    this.setters = const [],
+    // Named public argument cannot use a private initializing formal.
+    List<FlaxSetter> setters = const [],
+    this.parent,
     this.listenerPairs = const {},
     this.supertypes = const [],
     this.proxy,
@@ -225,12 +249,56 @@ class FlaxObjectBinding extends FlaxTypeBinding {
     this.memberViewOperations = const {},
     this.collectionView,
     this.aliasOf,
-  });
+  }) : _getters = getters,
+       // ignore: prefer_initializing_formals
+       _setters = setters,
+       _instanceMethods = instanceMethods;
   final Map<String, List<FlaxParameter>> constructors;
   final Object Function(String, Map<String, Object?>) create;
-  final List<FlaxGetter> getters;
-  final List<FlaxSetter> setters;
-  final Map<String, FlaxInstanceMethod> instanceMethods;
+
+  /// Shared ordinary members; proxy slots and lexical super entries stay local.
+  final FlaxObjectBinding? parent;
+  final List<FlaxGetter> _getters;
+  final List<FlaxSetter> _setters;
+  final Map<String, FlaxInstanceMethod> _instanceMethods;
+  List<FlaxGetter> get getters => parent == null ? _getters : _members.getters;
+  List<FlaxSetter> get setters => parent == null ? _setters : _members.setters;
+  Map<String, FlaxInstanceMethod> get instanceMethods =>
+      parent == null ? _instanceMethods : _members.methods;
+
+  static final _inherited =
+      Expando<
+        ({
+          List<FlaxGetter> getters,
+          List<FlaxSetter> setters,
+          Map<String, FlaxInstanceMethod> methods,
+        })
+      >();
+
+  ({
+    List<FlaxGetter> getters,
+    List<FlaxSetter> setters,
+    Map<String, FlaxInstanceMethod> methods,
+  })
+  get _members => _inherited[this] ??= (
+    getters: List.unmodifiable(
+      {
+        for (final member in parent!.getters) member.name: member,
+        for (final member in _getters) member.name: member,
+      }.values,
+    ),
+    setters: List.unmodifiable(
+      {
+        for (final member in parent!.setters) member.name: member,
+        for (final member in _setters) member.name: member,
+      }.values,
+    ),
+    methods: Map.unmodifiable({
+      for (final entry in parent!.instanceMethods.entries)
+        if (!entry.key.startsWith('@super:')) entry.key: entry.value,
+      ..._instanceMethods,
+    }),
+  );
   final String? disposeMethod;
   final bool Function(Object)? matches;
 
@@ -346,6 +414,11 @@ class FlaxStaticMethod {
 
 /// A selected public top-level Dart function, called through one shared entry.
 class FlaxFunctionBinding extends FlaxStaticMethod {
+  const factory FlaxFunctionBinding.constant(
+    String id,
+    FlaxTypeRef result,
+    Object? value,
+  ) = _FlaxConstantFunctionBinding;
   const FlaxFunctionBinding(
     this.id,
     super.parameters,
@@ -359,6 +432,17 @@ class FlaxFunctionBinding extends FlaxStaticMethod {
   final bool requiresTypeArguments;
   final String id;
   final FlaxRouteCallBinding? route;
+}
+
+class _FlaxConstantFunctionBinding extends FlaxFunctionBinding {
+  const _FlaxConstantFunctionBinding(String id, FlaxTypeRef result, this.value)
+    : super(id, const [], result, _unusedConstantInvoke);
+  final Object? value;
+  @override
+  Object? Function(Map<String, Object?>) get invoke => _read;
+  Object? _read(Map<String, Object?> values) => value;
+  static Never _unusedConstantInvoke(Map<String, Object?> values) =>
+      throw StateError('Invalid constant invocation');
 }
 
 /// Navigation admission and UI callback roles for selected function bindings.
@@ -577,4 +661,85 @@ class FlaxBindingRegistry {
       other is FlaxBindingRegistry && listEquals(modules, other.modules);
   @override
   int get hashCode => Object.hashAll(modules);
+}
+
+/// Shared typed factories; conversion policies and ownership stay in the bridge.
+abstract final class FlaxCallbackAdapters {
+  static Object wrap0<R>(FlaxCallback callback) => () {
+    return callback.call([], {}) as R;
+  };
+  static bool matches0<R>(Object value) => value is R Function();
+  static Object? invoke0<R>(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as R Function())();
+  }
+
+  static Object wrapVoid0(FlaxCallback callback) => () {
+    callback.call([], {});
+  };
+  static bool matchesVoid0(Object value) => value is void Function();
+  static Object? invokeVoid0(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function())();
+    return null;
+  }
+
+  static Object wrap1<A, R>(FlaxCallback callback) => (A p0) {
+    return callback.call([p0], {}) as R;
+  };
+  static bool matches1<A, R>(Object value) => value is R Function(A);
+  static Object? invoke1<A, R>(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as R Function(A))(positional[0] as A);
+  }
+
+  static Object wrapVoid1<A>(FlaxCallback callback) => (A p0) {
+    callback.call([p0], {});
+  };
+  static bool matchesVoid1<A>(Object value) => value is void Function(A);
+  static Object? invokeVoid1<A>(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function(A))(positional[0] as A);
+    return null;
+  }
+
+  static Object wrap2<A, B, R>(FlaxCallback callback) => (A p0, B p1) {
+    return callback.call([p0, p1], {}) as R;
+  };
+  static bool matches2<A, B, R>(Object value) => value is R Function(A, B);
+  static Object? invoke2<A, B, R>(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as R Function(A, B))(
+      positional[0] as A,
+      positional[1] as B,
+    );
+  }
+
+  static Object wrapVoid2<A, B>(FlaxCallback callback) => (A p0, B p1) {
+    callback.call([p0, p1], {});
+  };
+  static bool matchesVoid2<A, B>(Object value) => value is void Function(A, B);
+  static Object? invokeVoid2<A, B>(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    (function as void Function(A, B))(positional[0] as A, positional[1] as B);
+    return null;
+  }
 }

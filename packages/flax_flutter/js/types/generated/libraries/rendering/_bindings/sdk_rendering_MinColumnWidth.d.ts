@@ -1,0 +1,79 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/rendering/_bindings/sdk_rendering_TableColumnWidth';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_TableColumnWidth';
+import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+export interface MinColumnWidth extends Omit<upstream0.TableColumnWidth, _flaxOwnMembers0>, Readonly<{
+    "__flaxBound:package:flutter/src/rendering/table.dart::MinColumnWidth": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/rendering/table.dart::TableColumnWidth": readonly [];
+}> {
+    readonly __MinColumnWidth: unique symbol;
+    readonly [_flaxDartTypeValue]: MinColumnWidth;
+}
+export interface MinColumnWidth {
+    readonly [_flaxDartTypeValue]: MinColumnWidth;
+    minIntrinsicWidth(cells: DartIterableInput<upstream1.RenderBox, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>, containerWidth: number): number;
+    maxIntrinsicWidth(cells: DartIterableInput<upstream1.RenderBox, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>, containerWidth: number): number;
+    flex(cells: DartIterableInput<upstream1.RenderBox, Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>): number | null;
+    toString(): string;
+    get a(): upstream0.TableColumnWidth;
+    get b(): upstream0.TableColumnWidth;
+}
+export declare abstract class MinColumnWidth extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MinColumnWidth>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: MinColumnWidth;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:MinColumnWidth", readonly [], false];
+    constructor(a: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/table.dart::TableColumnWidth": readonly [];
+    }>, b: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/table.dart::TableColumnWidth": readonly [];
+    }>);
+}
+export declare namespace MinColumnWidth {
+    function implement(args: [a: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/table.dart::TableColumnWidth": readonly [];
+    }>, b: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/table.dart::TableColumnWidth": readonly [];
+    }>], implementation: {}): MinColumnWidth;
+}
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "a" | "b" | "minIntrinsicWidth" | "maxIntrinsicWidth" | "flex" | "toString" | "__flaxBound:package:flutter/src/rendering/table.dart::MinColumnWidth" | "__flaxBound:package:flutter/src/rendering/table.dart::TableColumnWidth";
+export {};

@@ -16,11 +16,13 @@ import 'package:path/path.dart' as p;
 
 import 'bindability.dart';
 import 'config.dart';
+import 'identity.dart';
 import 'model.dart';
 import 'manifest_codec.dart';
 
 part 'bindability_impl.dart';
 part 'auto_binding.dart';
+part 'package_scope.dart';
 part 'type_scope.dart';
 part 'widget_interface.dart';
 
@@ -256,6 +258,10 @@ bool _isInferredDeferredFactory(
   }
   final result = method.returnType;
   if (result is! InterfaceType || result.element != owner) return false;
+  final resultView = scope.tryTypeRef(result, allowRecursiveErasure: true).type;
+  if (resultView?.kind != 'object' || resultView?.id != identity(owner)) {
+    return false;
+  }
 
   final parameters = method.typeParameters.toSet();
   final inferred = <TypeParameterElement>{};
@@ -550,17 +556,26 @@ FlaxCodegenGenericParameter _dataGeneric(
 );
 
 class FlaxCodegenBindingParser {
-  FlaxCodegenBindingParser(String root)
+  /// A supplied [contexts] must use [root]'s package environment and remains
+  /// caller-owned. Only analysis is shared; binding selections stay per parser.
+  FlaxCodegenBindingParser(String root, {AnalysisContextCollection? contexts})
     // Resolve requested libraries in the root's package environment without
     // rediscovering every unrelated project in the workspace for each parser.
-    : _contexts = AnalysisContextCollection(
-        includedPaths: [p.absolute(root, 'pubspec.yaml')],
-      );
+    : _ownsContexts = contexts == null,
+      _contexts =
+          contexts ??
+          AnalysisContextCollection(
+            includedPaths: [p.absolute(root, 'pubspec.yaml')],
+          );
   final AnalysisContextCollection _contexts;
+  final bool _ownsContexts;
   final _adaptations = <String, String>{};
   final _argumentsByType = <String, List<String>>{};
   final _selections = <String, FlaxCodegenClassSelection>{};
   final _localSelections = <String>{};
+  final _localDeclarationOwners = <FlaxCodegenSourceIdentity, String>{};
+  final _packagePublicLibraries = <String, FlaxCodegenLibrarySelection>{};
+  final _packagePublicCarriers = <FlaxCodegenSourceIdentity, String>{};
   final _snapshots = <String, FlaxCodegenSnapshotModel>{};
 
   /// Dependency Manifest `typeLibraries` name → URI, filled by [prepareModules].
@@ -796,6 +811,17 @@ class FlaxCodegenBindingParser {
   Future<void> prepare(List<FlaxCodegenBindingConfig> configs) async {
     for (final config in configs) {
       final (exports, libraries) = await _resolutionExports(config);
+      for (final name in config.types) {
+        final element = exports[name];
+        if (element is InterfaceElement) {
+          final id = identity(element);
+          _elementsByIdentity[id] = element;
+          _libraryByIdentity.putIfAbsent(
+            id,
+            () => libraries[name] ?? config.library,
+          );
+        }
+      }
       for (final entry in config.classes.entries) {
         if ({'route', 'page'}.contains(entry.value.kind) ||
             entry.value.pageAdapter != null) {
@@ -1225,6 +1251,7 @@ class FlaxCodegenBindingParser {
       },
       typeArguments: own.typeArguments,
       proxy: own.proxy,
+      inferredProxy: own.inferredProxy,
       proxyVariants: own.proxyVariants,
       pageAdapter: own.pageAdapter,
       staticGetters: own.staticGetters,
@@ -2284,7 +2311,12 @@ class FlaxCodegenBindingParser {
         final method = operatorName != null
             ? _classOperator(actualType, operatorName)
             : instance
-            ? actualType.lookUpMethod(chosen.key, element.library)
+            ? (actualType.lookUpMethod(
+                    chosen.key,
+                    element.library,
+                    concrete: selection.proxy == 'extends',
+                  ) ??
+                  actualType.lookUpMethod(chosen.key, element.library))
             : element.getMethod(chosen.key);
         if (method == null ||
             method.isStatic == instance ||
@@ -2321,7 +2353,12 @@ class FlaxCodegenBindingParser {
         final originalMethod = operatorName != null
             ? _classOperator(element.thisType, operatorName)!
             : instance
-            ? element.thisType.lookUpMethod(chosen.key, element.library)!
+            ? (element.thisType.lookUpMethod(
+                    chosen.key,
+                    element.library,
+                    concrete: selection.proxy == 'extends',
+                  ) ??
+                  element.thisType.lookUpMethod(chosen.key, element.library))!
             : method;
         final deferredFactory = effectiveDeferredFactories.contains(chosen.key);
         final explicitTypeArgs =
@@ -2466,11 +2503,7 @@ class FlaxCodegenBindingParser {
                                         .library
                                         .typeProvider
                                         .objectQuestionType
-                              : _runtimeType(
-                                  typeArgs[i],
-                                  exports,
-                                  element.library,
-                                ),
+                              : runtimeMethodArguments[i],
                           erasing: deferredFactory
                               ? {originalMethod.typeParameters[i]}
                               : null,
@@ -2561,7 +2594,9 @@ class FlaxCodegenBindingParser {
         final type = typeRef(
           _publicStaticGetterType(actualType, getter.returnType),
         );
-        staticGetters.add(FlaxCodegenGetterModel(name, type));
+        staticGetters.add(
+          FlaxCodegenGetterModel(name, type, isConst: getter.variable.isConst),
+        );
       }
       final staticSetters = <FlaxCodegenGetterModel>[];
       if (genericParameters.isNotEmpty &&
@@ -2641,6 +2676,13 @@ class FlaxCodegenBindingParser {
                 !constructor.isFactory &&
                 selection.proxy != 'extends')) {
           throw StateError('Unknown constructor: ${entry.key}.${chosen.key}');
+        }
+        if (constructor.formalParameters.any(
+          (p) => p.metadata.hasMustBeConst,
+        )) {
+          throw StateError(
+            'Constructor requires compile-time constant arguments: ${entry.key}.${chosen.key}',
+          );
         }
         List<FlaxCodegenParameterModel> constructorParametersFor(
           ConstructorElement candidate, {
@@ -2867,6 +2909,21 @@ class FlaxCodegenBindingParser {
             ? nativeWidgetMembers._members(actualType).keys.toSet()
             : null;
         final proxySuperMembers = <String>[];
+        var proxySuperBase = element;
+        if (widgetInterfaceProxy) {
+          final framework = await session.getLibraryByUri(
+            'package:flutter/widgets.dart',
+          );
+          proxySuperBase =
+              (framework as LibraryElementResult).element.exportNamespace.get2(
+                'StatelessWidget',
+              ) as ClassElement;
+          scope.nativeTypes['StatelessWidget'] = 'package:flutter/widgets.dart';
+          nativeWidgetMembers.validateProxyBase(
+            element.thisType,
+            proxySuperBase.thisType,
+          );
+        }
         final mustCallSuperAccessors = <String>[];
         final proxyGetters = <FlaxCodegenGetterModel>[];
         final proxySetters = <FlaxCodegenGetterModel>[];
@@ -2897,6 +2954,7 @@ class FlaxCodegenBindingParser {
                 !accessor.isAbstract &&
                 selected &&
                 accessor.metadata.hasNonVirtual) {
+              if (selection.inferredProxy) continue;
               throw StateError(
                 'Non-virtual proxy property cannot be overridden: ${entry.key}.$name',
               );
@@ -2935,7 +2993,7 @@ class FlaxCodegenBindingParser {
               if (!proxySuperMembers.contains(member)) {
                 proxySuperMembers.add(member);
               }
-              if (_requiresSuper(element, member)) {
+              if (_requiresSuper(proxySuperBase, member)) {
                 mustCallSuperAccessors.add(member);
               }
             }
@@ -2981,19 +3039,26 @@ class FlaxCodegenBindingParser {
           final selectedConcrete = methods.any(
             (candidate) => candidate.instance && candidate.name == alias,
           );
+          final implementation = operatorName == null
+              ? actualType.lookUpMethod(name, element.library, concrete: true)
+              : method.isAbstract
+              ? null
+              : method;
           if (selection.proxy == 'extends' &&
-              !method.isAbstract &&
+              implementation != null &&
               selectedConcrete &&
-              method.metadata.hasNonVirtual) {
+              implementation.metadata.hasNonVirtual) {
+            if (selection.inferredProxy) continue;
             throw StateError(
               'Non-virtual proxy method cannot be overridden: ${entry.key}.$name',
             );
           }
           final concreteOverride =
-              selection.proxy == 'extends' &&
-              !method.isAbstract &&
+              (selection.proxy == 'extends' || widgetInterfaceProxy) &&
+              (implementation != null ||
+                  widgetInterfaceProxy && !method.isAbstract) &&
               selectedConcrete &&
-              !method.metadata.hasNonVirtual;
+              !(implementation ?? method).metadata.hasNonVirtual;
           if (selection.proxy != 'implements' &&
               !method.isAbstract &&
               !concreteOverride) {
@@ -3037,7 +3102,7 @@ class FlaxCodegenBindingParser {
             if (selection.data.results.contains(name)) {
               result = _dataType(result, '${entry.key}.$name result');
             }
-            final mustCallSuper = _requiresSuper(element, name);
+            final mustCallSuper = _requiresSuper(proxySuperBase, name);
             proxyMethods.add(
               FlaxCodegenMethodModel(
                 alias,
@@ -3094,18 +3159,7 @@ class FlaxCodegenBindingParser {
           );
         }
         if (widgetInterfaceProxy) {
-          final framework = await session.getLibraryByUri(
-            'package:flutter/widgets.dart',
-          );
-          final stateless =
-              (framework as LibraryElementResult).element.exportNamespace.get2(
-                'StatelessWidget',
-              ) as ClassElement;
-          scope.nativeTypes['StatelessWidget'] = 'package:flutter/widgets.dart';
-          nativeWidgetMembers.validateProxyBase(
-            element.thisType,
-            stateless.thisType,
-          );
+          final stateless = proxySuperBase;
           constructors.add(
             FlaxCodegenConstructorModel(
               '',
@@ -3142,6 +3196,22 @@ class FlaxCodegenBindingParser {
           setters: proxySetters,
         );
       }
+      bool containsPrivateType(DartType type) => switch (type) {
+        InterfaceType() =>
+          type.element.isPrivate || type.typeArguments.any(containsPrivateType),
+        FunctionType() =>
+          containsPrivateType(type.returnType) ||
+              type.formalParameters.any((p) => containsPrivateType(p.type)),
+        RecordType() =>
+          type.positionalFields.any((p) => containsPrivateType(p.type)) ||
+              type.namedFields.any((p) => containsPrivateType(p.type)),
+        _ => false,
+      };
+      FlaxCodegenTypeRef parentView(InterfaceType parent) =>
+          containsPrivateType(parent)
+          ? scope.typeOnlyReference(parent)
+          : typeRef(parent).declaredAs(typeRef(parent, forTypescript: true));
+
       final dataParameters = _dataParameters([
         for (final ctor in constructors) ...ctor.parameters.map((p) => p.type),
         for (final getter in getters) getter.type,
@@ -3198,6 +3268,8 @@ class FlaxCodegenBindingParser {
               .map((type) => identity(type.element))
               .toList(),
           superTypes: [
+            if (isWidget && selection.kind == 'object')
+              const FlaxCodegenTypeRef('widget'),
             if (isWidget &&
                 selection.kind == null &&
                 selection.proxy == null &&
@@ -3213,8 +3285,7 @@ class FlaxCodegenBindingParser {
                                 (selected.getters.isNotEmpty ||
                                     selected.setters.isNotEmpty ||
                                     selected.instanceMethods.isNotEmpty)))
-                  typeRef(parent)
-                      .declaredAs(typeRef(parent, forTypescript: true)),
+                  parentView(parent),
             if (selection.kind == 'widgetInterface' ||
                 isWidget && selection.kind == 'object')
               for (final parent in element.thisType.allSupertypes)
@@ -3222,30 +3293,38 @@ class FlaxCodegenBindingParser {
                         'widgetInterface' ||
                     _adaptations[identity(parent.element)] == 'object' &&
                         _isFlutterWidget(parent.element))
-                  typeRef(parent)
-                      .declaredAs(typeRef(parent, forTypescript: true)),
-            if (!isWidget &&
-                !{'context', 'state', 'members'}.contains(selection.kind))
+                  parentView(parent),
+            if (!isWidget && selection.kind != 'members')
               for (final parent in element.thisType.allSupertypes)
                 if (!parent.isDartCoreObject &&
-                    exports[parent.element.name] == parent.element &&
-                    _adaptations.containsKey(identity(parent.element)) &&
+                    (_isPoolType(parent.element) &&
+                            _adaptations.containsKey(
+                              identity(parent.element),
+                            ) ||
+                        parent.element.library.isDartCore &&
+                            {
+                              'Iterable',
+                              'List',
+                              'Map',
+                              'Set',
+                            }.contains(parent.element.name) ||
+                        parent.element.library.uri.toString() == 'dart:async' &&
+                            {
+                              'Future',
+                              'Stream',
+                            }.contains(parent.element.name)) &&
                     (!{'route', 'page'}.contains(selection.kind) ||
                         _adaptations[identity(parent.element)] ==
                             selection.kind))
-                  typeRef(parent)
-                      .declaredAs(typeRef(parent, forTypescript: true)),
-            if (!isWidget &&
-                !{'context', 'state', 'members'}.contains(selection.kind))
+                  parentView(parent),
+            if (selection.kind != 'members')
               scope.typeOnlyReference(element.thisType),
-            if (!isWidget &&
-                !{'context', 'state', 'members'}.contains(selection.kind))
+            if (selection.kind != 'members')
               for (final parent in element.thisType.allSupertypes)
                 if (!parent.isDartCoreObject &&
                     !(element is EnumElement &&
-                        parent.element.library.isDartCore) &&
-                    !_adaptations.containsKey(identity(parent.element)))
-                  typeRef(parent, forTypescript: true, typeOnlyPosition: true),
+                        parent.element.library.isDartCore))
+                  scope.typeOnlyReference(parent),
           ],
           asyncIterableFactory: selection.asyncIterableFactory,
           widgetInterfaces: widgetInterfaces,
@@ -3808,7 +3887,7 @@ class FlaxCodegenBindingParser {
         throw StateError('Unsupported typedef $name: ${error.message}');
       }
     }
-    _validateTypeLibraryIdentityNames(scope, typeCarriers);
+    await _validateTypeLibraryIdentityNames(scope, typeCarriers);
     final module = FlaxCodegenModuleModel(
       name: config.name,
       library: config.library,
@@ -3849,14 +3928,22 @@ class FlaxCodegenBindingParser {
     return module;
   }
 
-  void _validateTypeLibraryIdentityNames(
+  Future<void> _validateTypeLibraryIdentityNames(
     _FlaxCodegenTypeScope scope,
     Map<String, String> automaticTypeCarriers,
-  ) {
+  ) async {
     final identitiesByName = <String, Map<String, String>>{};
     for (final entry in scope.nativeTypes.entries) {
       final name = entry.key;
-      identitiesByName[name] = {'${entry.value}::$name': entry.value};
+      final result = await _contexts.contexts.first.currentSession
+          .getLibraryByUri(entry.value);
+      final declaration = result is LibraryElementResult
+          ? result.element.exportNamespace.get2(name)
+          : null;
+      if (declaration is! InterfaceElement) {
+        throw StateError('Unknown native type: $name in ${entry.value}');
+      }
+      identitiesByName[name] = {identity(declaration): entry.value};
       final selected = scope.exports[name];
       if (scope.config.classes.containsKey(name) &&
           selected is InterfaceElement) {
@@ -3866,6 +3953,11 @@ class FlaxCodegenBindingParser {
     }
     for (final type in scope.types.values) {
       if (_dependencyTypeOwners.containsKey(type.id)) continue;
+      final element = _elementsByIdentity[type.id];
+      final owner = element == null
+          ? null
+          : _localDeclarationOwners[_declarationSource(element)];
+      if (owner != null && owner != scope.config.name) continue;
       final split = type.id.lastIndexOf('::');
       final declarationUri = split < 0 ? type.id : type.id.substring(0, split);
       final carrier =
@@ -3908,8 +4000,10 @@ class FlaxCodegenBindingParser {
       ...?config.topLevel?.setters,
     };
     final routes = <FlaxCodegenLibraryModel>[];
-    final libraries = config.publicLibraries.entries.toList()
-      ..sort((a, b) => a.value.jsPackage.compareTo(b.value.jsPackage));
+    final libraries =
+        {..._packagePublicLibraries, ...config.publicLibraries}.entries.toList()
+          ..sort((a, b) => a.value.jsPackage.compareTo(b.value.jsPackage));
+    final (declarations, _) = await _publicExports(config);
     final visible = <String>{};
     for (final entry in libraries) {
       final result = await _contexts.contexts.first.currentSession
@@ -3921,22 +4015,40 @@ class FlaxCodegenBindingParser {
           selected
               .where(
                 (name) =>
-                    result.element.exportNamespace.definedNames2.containsKey(
-                      name,
-                    ) ||
+                    declarations[name] != null &&
+                        result.element.exportNamespace.definedNames2[name] ==
+                            declarations[name] ||
                     (config.topLevel?.setters.contains(name) == true &&
-                        result.element.exportNamespace.definedNames2
-                            .containsKey('$name=')),
+                        declarations['$name='] != null &&
+                        result
+                                .element
+                                .exportNamespace
+                                .definedNames2['$name='] ==
+                            declarations['$name=']),
               )
               .toList()
             ..sort();
       visible.addAll(exports);
+      if (exports.isEmpty && !config.publicLibraries.containsKey(entry.key)) {
+        continue;
+      }
+      final previous = routes
+          .where((route) => route.jsPackage == entry.value.jsPackage)
+          .firstOrNull;
+      if (previous != null) {
+        if (previous.tsOutput != entry.value.tsOutput ||
+            config.publicLibraries.containsKey(previous.library) &&
+                config.publicLibraries.containsKey(entry.key)) {
+          throw StateError('Conflicting public library: ${entry.key}');
+        }
+        routes.remove(previous);
+      }
       routes.add(
         FlaxCodegenLibraryModel(
-          library: entry.key,
+          library: previous?.library ?? entry.key,
           jsPackage: entry.value.jsPackage,
           tsOutput: entry.value.tsOutput,
-          exports: exports,
+          exports: {...?previous?.exports, ...exports}.toList()..sort(),
         ),
       );
     }
@@ -3952,6 +4064,10 @@ class FlaxCodegenBindingParser {
   String _typeLibraryUri(String name, _FlaxCodegenTypeScope scope) {
     if (scope.usesStream && name == 'Stream') return 'dart:async';
     final selected = scope.exports[name];
+    final carrier = selected == null
+        ? null
+        : _packagePublicCarriers[_declarationSource(selected)];
+    if (carrier != null) return carrier;
     final config = scope.config;
     if (selected != null &&
         (config.classes.containsKey(name) ||
@@ -4018,9 +4134,7 @@ class FlaxCodegenBindingParser {
         );
       }
       final native = _nativeJsValueType(element) != null;
-      if (builtin == null &&
-          !native &&
-          !_adaptations.containsKey(identity(element))) {
+      if (builtin == null && !native && !_isPoolType(element)) {
         throw StateError('Unbound runtime type argument: $source');
       }
       _checkBounds(element.typeParameters, arguments, element.library, false);
@@ -4122,8 +4236,11 @@ class FlaxCodegenBindingParser {
     if (type.kind == 'enum') {
       final element = (value.type as InterfaceType).element as EnumElement;
       final index = value.getField('index')?.toIntValue();
+      final variable = value.variable;
       final name =
-          value.variable?.name ??
+          (variable is FieldElement && variable.isEnumConstant
+              ? variable.name
+              : null) ??
           (index == null
               ? null
               : element.fields
@@ -4175,7 +4292,9 @@ class FlaxCodegenBindingParser {
     _publicInputs.clear();
   }
 
-  Future<void> dispose() => _contexts.dispose();
+  Future<void> dispose() async {
+    if (_ownsContexts) await _contexts.dispose();
+  }
 }
 
 /// Mutable parser tables captured by [FlaxCodegenBindingParser.checkpoint].

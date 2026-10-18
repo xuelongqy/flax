@@ -9,11 +9,14 @@ class _BindingContext {
     this.moduleId,
     Iterable<String> dependencies, {
     this.dartProviders = const {},
+    this.dartViews = const {},
   }) : dependencies = Set<String>.unmodifiable(dependencies);
   final String moduleId;
   String get namespace => moduleId.split('/').first;
   final Set<String> dependencies;
   final Map<Type, String> dartProviders;
+  final Map<Type, FlaxTypeRef> dartViews;
+  bool get hasDartSelection => dartProviders.isNotEmpty || dartViews.isNotEmpty;
   T run<T>(T Function() action) => identical(_bindingContext, this)
       ? action()
       : runZoned(action, zoneValues: {_bindingContextKey: this});
@@ -154,7 +157,7 @@ class _Session {
       }
       final (category, context, invoke) = _operations[id];
       final receiver = (args[1] as FlaxJsNumber).value.toInt();
-      final origin = context?.dartProviders.isNotEmpty == true
+      final origin = context?.hasDartSelection == true
           ? context
           : category == 'stream'
           ? _streamReferences[receiver]?.context ?? context

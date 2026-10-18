@@ -2,6 +2,10 @@
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@flax/cupertino-ui": ["./src/index.ts"],
+      "@flax/cupertino-ui/*": ["./src/generated/libraries/cupertino/*"]
+    }
   }
 }

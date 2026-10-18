@@ -1,0 +1,11 @@
+format: 2
+name: sdk_physics
+library: package:flutter/physics.dart
+automatic: true
+jsPackage: '@flax/flutter/physics'
+dartOutput: lib/src/generated/sdk_physics_bindings.g.dart
+tsOutput: js/src/flutter/generated/libraries/physics/index.ts
+publicLibraries:
+  package:flutter/physics.dart:
+    jsPackage: '@flax/flutter/physics'
+    tsOutput: js/src/flutter/generated/libraries/physics/index.ts

@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:flax_codegen/flax_codegen.dart';
-import 'package:flax_codegen/src/manifest_codec.dart';
+
+import '../../flax_codegen/tool/src/fixture_emitter.dart';
 
 import '../test/fixtures/interop_selection.dart';
 import '../test/fixtures/enums_selection.dart';
@@ -19,156 +20,141 @@ Future<void> main() async {
   final package = Directory.current.absolute;
   final output = Directory('${package.path}/.dart_tool/flax/ui')
     ..createSync(recursive: true);
-  final (core, rawToWire) = _loadCoreManifest(
+  final emitter = FlaxCodegenFixtureEmitter(
+    package.path,
     File('${package.path}/bindings/manifest.json'),
   );
-  await _generate(
-    package,
-    output,
-    'binding_completion',
-    bindingCompletionSelection,
-    core,
-    rawToWire,
-    functions: bindingCompletionFunctions,
-    extensions: bindingCompletionExtensions,
-  );
-  await _generate(
-    package,
-    output,
-    'dart_types',
-    dartTypesSelection,
-    core,
-    rawToWire,
-  );
-  await _generate(
-    package,
-    output,
-    'binding_parity',
-    const {},
-    core,
-    rawToWire,
-    automatic: true,
-  );
-  await _generate(
-    package,
-    output,
-    'complex_bounds',
-    const {},
-    core,
-    rawToWire,
-    automatic: true,
-  );
-  await _generate(
-    package,
-    output,
-    'collection_members',
-    const {},
-    core,
-    rawToWire,
-    automatic: true,
-  );
-  await _generate(
-    package,
-    output,
-    'widget_members',
-    const {},
-    core,
-    rawToWire,
-    automatic: true,
-  );
-  await _generate(
-    package,
-    output,
-    'extensions',
-    extensionClasses(
-      package.uri.resolve('test/fixtures/extensions.dart').toString(),
-    ),
-    core,
-    rawToWire,
-    functions: extensionFunctions,
-    topLevel: extensionTopLevel,
-    extensions: extensionSelection,
-  );
-  await _generate(
-    package,
-    output,
-    'context_streams',
-    contextStreamsSelection,
-    core,
-    rawToWire,
-  );
-  await _generate(
-    package,
-    output,
-    'native_widgets',
-    nativeWidgetsSelection,
-    core,
-    rawToWire,
-  );
-  await _generate(
-    package,
-    output,
-    'interop',
-    interopSelection,
-    core,
-    rawToWire,
-    functions: {
-      ...enumFunctions,
-      'codegenWrapTop': const FlaxCodegenFunctionSelection(['value']),
-    },
-    typedefs: [
-      'CodegenOnChanged',
-      'CodegenNames',
-      'CodegenAttributes',
-      'CodegenTransform',
-      'CodegenMapper',
-      'CodegenItems',
-      'CodegenGenericMapper',
-      'CodegenConverter',
-      'CodegenAsyncMapper',
-      'CodegenAsyncGenericMapper',
-      'CodegenNullableMapper',
-      'NestedAsyncMapper',
-    ],
-  );
-  await _generate(
-    package,
-    output,
-    'default_omission',
-    defaultOmissionSelection,
-    core,
-    rawToWire,
-    functions: const {
-      'omissionTotal': FlaxCodegenFunctionSelection(omissionParameters),
-    },
-  );
-  await _generate(
-    package,
-    output,
-    'static_accessors',
-    staticAccessorsSelection,
-    core,
-    rawToWire,
-  );
-  await _generate(
-    package,
-    output,
-    'proxy_operators',
-    proxyOperatorsSelection,
-    core,
-    rawToWire,
-  );
-  await _generate(
-    package,
-    output,
-    'repeated',
-    repeatedSelection,
-    core,
-    rawToWire,
-    functions: const {
-      'echoWidgetContext': FlaxCodegenFunctionSelection(['value']),
-    },
-  );
+  try {
+    await _generate(
+      package,
+      output,
+      'binding_completion',
+      bindingCompletionSelection,
+      emitter,
+      functions: bindingCompletionFunctions,
+      extensions: bindingCompletionExtensions,
+    );
+    await _generate(package, output, 'dart_types', dartTypesSelection, emitter);
+    await _generate(
+      package,
+      output,
+      'binding_parity',
+      const {},
+      emitter,
+      automatic: true,
+    );
+    await _generate(
+      package,
+      output,
+      'complex_bounds',
+      const {},
+      emitter,
+      automatic: true,
+    );
+    await _generate(
+      package,
+      output,
+      'collection_members',
+      const {},
+      emitter,
+      automatic: true,
+    );
+    await _generate(
+      package,
+      output,
+      'widget_members',
+      const {},
+      emitter,
+      automatic: true,
+    );
+    await _generate(
+      package,
+      output,
+      'extensions',
+      extensionClasses(
+        package.uri.resolve('test/fixtures/extensions.dart').toString(),
+      ),
+      emitter,
+      functions: extensionFunctions,
+      topLevel: extensionTopLevel,
+      extensions: extensionSelection,
+    );
+    await _generate(
+      package,
+      output,
+      'context_streams',
+      contextStreamsSelection,
+      emitter,
+    );
+    await _generate(
+      package,
+      output,
+      'native_widgets',
+      nativeWidgetsSelection,
+      emitter,
+    );
+    await _generate(
+      package,
+      output,
+      'interop',
+      interopSelection,
+      emitter,
+      functions: {
+        ...enumFunctions,
+        'codegenWrapTop': const FlaxCodegenFunctionSelection(['value']),
+      },
+      typedefs: [
+        'CodegenOnChanged',
+        'CodegenNames',
+        'CodegenAttributes',
+        'CodegenTransform',
+        'CodegenMapper',
+        'CodegenItems',
+        'CodegenGenericMapper',
+        'CodegenConverter',
+        'CodegenAsyncMapper',
+        'CodegenAsyncGenericMapper',
+        'CodegenNullableMapper',
+        'NestedAsyncMapper',
+      ],
+    );
+    await _generate(
+      package,
+      output,
+      'default_omission',
+      defaultOmissionSelection,
+      emitter,
+      functions: const {
+        'omissionTotal': FlaxCodegenFunctionSelection(omissionParameters),
+      },
+    );
+    await _generate(
+      package,
+      output,
+      'static_accessors',
+      staticAccessorsSelection,
+      emitter,
+    );
+    await _generate(
+      package,
+      output,
+      'proxy_operators',
+      proxyOperatorsSelection,
+      emitter,
+    );
+    await _generate(
+      package,
+      output,
+      'repeated',
+      repeatedSelection,
+      emitter,
+      functions: const {
+        'echoWidgetContext': FlaxCodegenFunctionSelection(['value']),
+      },
+    );
+  } finally {
+    await emitter.dispose();
+  }
 }
 
 Future<void> _generate(
@@ -176,140 +162,24 @@ Future<void> _generate(
   Directory output,
   String name,
   Map<String, FlaxCodegenClassSelection> classes,
-  List<FlaxCodegenModuleModel> dependencies,
-  Map<String, String> rawToWire, {
+  FlaxCodegenFixtureEmitter emitter, {
   List<String> typedefs = const [],
   Map<String, FlaxCodegenFunctionSelection> functions = const {},
   Map<String, FlaxCodegenExtensionSelection> extensions = const {},
   FlaxCodegenTopLevelSelection? topLevel,
   bool automatic = false,
 }) async {
-  final parser = FlaxCodegenBindingParser(package.path);
-  try {
-    final selected = dependencies.isEmpty
-        ? classes
-        : Map.fromEntries(
-            classes.entries.where(
-              (entry) => !{'Key', 'BuildContext'}.contains(entry.key),
-            ),
-          );
-    final config = FlaxCodegenBindingConfig(
-      name,
-      package.uri.resolve('test/fixtures/$name.dart').toString(),
-      '@test/$name',
-      'unused.dart',
-      'unused.ts',
-      selected,
-      typedefs: typedefs,
-      functions: functions,
-      extensions: extensions,
-      topLevel: topLevel,
-    );
-    await parser.prepare([config]);
-    final wireToRaw = {
-      for (final entry in rawToWire.entries) entry.value: entry.key,
-    };
-    parser.prepareModules([
-      for (final dependency in dependencies)
-        _rewriteModuleIds(dependency, wireToRaw),
-    ]);
-    final selectedConfig = automatic
-        ? (await parser.proposeLibrary(config)).config
-        : config;
-    final module = _rewriteModuleIds(
-      await parser.parse(selectedConfig),
-      rawToWire,
-    );
-    final emitter = FlaxCodegenBindingEmitter([...dependencies, module]);
-    File('${output.path}/${name}_bindings.dart')
-        .writeAsStringSync(emitter.dart(module));
-    File('${output.path}/${name}_bindings.ts')
-        .writeAsStringSync(emitter.typescript(module));
-  } finally {
-    parser.dispose();
-  }
-}
-
-(List<FlaxCodegenModuleModel>, Map<String, String>) _loadCoreManifest(
-  File file,
-) {
-  final diagnostics = FlaxCodegenManifestDiagnostics(file.path);
-  final manifest = FlaxCodegenManifest.parse(
-    file.readAsStringSync(),
-    diagnostics,
+  final config = FlaxCodegenBindingConfig(
+    name,
+    package.uri.resolve('test/fixtures/$name.dart').toString(),
+    '@test/$name',
+    'unused.dart',
+    'unused.ts',
+    classes,
+    typedefs: typedefs,
+    functions: functions,
+    extensions: extensions,
+    topLevel: topLevel,
   );
-  diagnostics.throwIfAny();
-  final rawToWire = <String, String>{};
-  for (final module in manifest!.modules) {
-    for (final identity in module.model.identities) {
-      rawToWire['${identity.sourceIdentity.originatingUri}::'
-              '${identity.sourceIdentity.name}'] =
-          identity.wireId.value;
-    }
-  }
-  return (
-    [for (final module in manifest.modules) module.model.module],
-    rawToWire,
-  );
-}
-
-FlaxCodegenModuleModel _rewriteModuleIds(
-  FlaxCodegenModuleModel module,
-  Map<String, String> idMap,
-) {
-  Object? walk(Object? value) {
-    if (value is Map) {
-      final out = <String, Object?>{};
-      for (final entry in value.entries) {
-        final key = entry.key as String;
-        final child = entry.value;
-        if (key == 'id' && child is String && idMap.containsKey(child)) {
-          out[key] = idMap[child];
-        } else if (key == 'supertypes' && child is List) {
-          out[key] = [
-            for (final item in child)
-              item is String && idMap.containsKey(item) ? idMap[item]! : item,
-          ];
-        } else {
-          out[key] = walk(child);
-        }
-      }
-      return out;
-    }
-    if (value is List) {
-      return [for (final item in value) walk(item)];
-    }
-    return value;
-  }
-
-  final diagnostics = FlaxCodegenManifestDiagnostics('');
-  // Local fixtures use file: imports and are never published. Preserve those
-  // emitter-only paths outside the manifest's public-library validation.
-  final encoded = FlaxCodegenManifestCodec.encodeModule(module)
-    ..['typeLibraries'] = <String, Object?>{};
-  final decoded = FlaxCodegenManifestCodec.decodeModule(
-    walk(encoded),
-    diagnostics,
-    '',
-    module.name,
-  );
-  diagnostics.throwIfAny();
-  final rewritten = decoded!;
-  return FlaxCodegenModuleModel(
-    name: rewritten.name,
-    library: rewritten.library,
-    jsPackage: rewritten.jsPackage,
-    dartOutput: module.dartOutput,
-    tsOutput: module.tsOutput,
-    classes: rewritten.classes,
-    types: rewritten.types,
-    typeLibraries: module.typeLibraries,
-    functions: rewritten.functions,
-    extensions: rewritten.extensions,
-    snapshots: rewritten.snapshots,
-    typedefs: rewritten.typedefs,
-    topLevel: rewritten.topLevel,
-    moduleId: module.moduleId,
-    requiredCapabilities: module.requiredCapabilities,
-  );
+  await emitter.generate(config, output, automatic: automatic);
 }

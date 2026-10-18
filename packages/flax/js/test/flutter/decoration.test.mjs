@@ -39,7 +39,8 @@ test('decoration descriptors preserve omissions, bindings and selected API bound
   );
   assert.throws(() => DecoratedBox({}), /Missing required/);
   assert.throws(() => Container({ key: signal(null).bind }), /bind/i);
-  assert.throws(() => Container({ transform: null }), /Unsupported/);
+  assert.equal(Container({ transform: null }).args.transform, null);
+  assert.throws(() => Container({ unknown: null }), /Unsupported/);
   assert.throws(() => BoxDecoration({ color: signal(null).bind }), /bind/i);
   assert.equal(BoxDecoration({}).dispose, undefined);
 });

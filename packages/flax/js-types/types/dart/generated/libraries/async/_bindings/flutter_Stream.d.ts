@@ -4,6 +4,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_MultiStreamController';
 import '@flax/dart/async/_bindings/flutter_MultiStreamController';
+import type * as upstream2 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import type * as upstream3 from '@flax/dart/async/_bindings/flutter_EventSink';
 import '@flax/dart/async/_bindings/flutter_EventSink';
@@ -11,9 +12,10 @@ import type * as upstream4 from '@flax/dart/async/_bindings/flutter_StreamSubscr
 import '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Stream<T extends unknown | null = unknown | null> extends AsyncIterable<T> {
     readonly __Stream: unique symbol;
+    readonly [_flaxDartTypeValue]: Stream<T>;
     readonly [_flaxDartMethodCases]?: {
         map: _FlaxSignature2<T>;
         asyncMap: _FlaxSignature3<T>;
@@ -81,6 +83,8 @@ export interface Stream<T extends unknown | null = unknown | null> extends Async
     elementAt(index: number): Promise<T>;
     timeout(timeLimit: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
     }>, options?: {
         onTimeout?: ((sink: upstream3.EventSink<T>) => void) | null | undefined;
     }): Stream<T>;
@@ -118,11 +122,15 @@ export declare namespace _StreamFactory {
 export declare namespace _StreamFactory {
     function periodic<T extends unknown | null = unknown | null>(period: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
     }>, computation?: ((computationCount: number) => (T | DartInput<T>)) | null): Stream<T>;
 }
 export declare namespace _StreamFactory {
     function eventTransformed<T extends unknown | null = unknown | null>(source: Stream<unknown | null>, mapSink: ((sink: upstream3.EventSink<T>) => Readonly<{
         "__flaxBound:dart:async::EventSink": readonly [unknown | null];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Sink": readonly [unknown | null];
     }>)): Stream<T>;
 }
 export declare namespace _StreamFactory {
@@ -148,9 +156,13 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
         }) => Stream<_Selected0>;
         periodic: (period: Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration];
         }>, computation?: ((computationCount: number) => (_Selected0 | DartInput<_Selected0>)) | null) => Stream<_Selected0>;
         eventTransformed: (source: Stream<unknown | null>, mapSink: ((sink: upstream3.EventSink<_Selected0>) => Readonly<{
             "__flaxBound:dart:async::EventSink": readonly [unknown | null];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Sink": readonly [unknown | null];
         }>)) => Stream<_Selected0>;
         readonly prototype: Stream<_Selected0>;
     } & _FlaxInstanceType<Stream<_Selected0>> & _FlaxDartType<Stream<_Selected0>> : never : never;

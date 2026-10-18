@@ -671,10 +671,7 @@ extension _Collections on _Session {
     }
 
     if (value is Record) {
-      return recordResult(
-        value,
-        dartTypes.resolve(dartTypes.instanceType(value)),
-      );
+      return recordResult(value, const FlaxTypeRef('record'));
     }
     final enums = <FlaxEnumBinding>[
       if (value is Enum)
@@ -703,11 +700,7 @@ extension _Collections on _Session {
       final lessSpecific = selected
           .where(
             (candidate) => selected.any(
-              (other) =>
-                  (other is FlaxObjectBinding &&
-                      other.supertypes.contains(candidate.id)) ||
-                  (other is FlaxEnumBinding &&
-                      other.supertypes.contains(candidate.id)),
+              (other) => _isMoreSpecificBinding(other, candidate),
             ),
           )
           .toSet();

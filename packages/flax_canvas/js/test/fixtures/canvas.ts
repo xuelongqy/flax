@@ -15,6 +15,8 @@ import {
   runApp,
 } from '@flax/flutter/widgets';
 import { ValueKey } from '@flax/flutter/foundation';
+import { KeyDownEvent, KeyRepeatEvent, KeyUpEvent } from '@flax/flutter/services';
+import { PointerScrollEvent } from '@flax/flutter/gestures';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
 
@@ -39,7 +41,15 @@ runApp(
     focusNode: focus,
     autofocus: true,
     onKeyEvent: (event) => {
-      hooks.keys.push(`${event.type}:${event.logicalKey.keyLabel}`);
+      const type =
+        event instanceof KeyDownEvent
+          ? 'keydown'
+          : event instanceof KeyRepeatEvent
+            ? 'keyrepeat'
+            : event instanceof KeyUpEvent
+              ? 'keyup'
+              : 'unknown';
+      hooks.keys.push(`${type}:${event.logicalKey.keyLabel}`);
     },
     child: Column({
       children: [
@@ -50,7 +60,11 @@ runApp(
             hooks.events.push(`down:${event.pointer}`);
           },
           onPointerSignal: (event) => {
-            if ('scrollDelta' in event) hooks.events.push('scroll');
+            if (event instanceof PointerScrollEvent) {
+              if (event.scrollDelta.dy !== 20)
+                throw new Error('Wrong native scroll offset');
+              hooks.events.push('scroll');
+            }
           },
           child: MouseRegion({
             onEnter: () => {

@@ -35,7 +35,7 @@ void main() {
     }
   });
 
-  testWidgets('rAF flush, shared views, resize reset and input snapshots', (
+  testWidgets('rAF flush, shared views, resize reset and input references', (
     tester,
   ) async {
     final h = Harness();

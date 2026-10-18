@@ -3,12 +3,12 @@ name: cupertino
 imports:
   - flax
 library: package:cupertino_ui/cupertino_ui.dart
-jsPackage: '@flax/flutter/cupertino'
+jsPackage: '@flax/cupertino-ui'
 dartOutput: lib/src/generated/cupertino_bindings.g.dart
 tsOutput: js/src/generated/bindings.ts
 publicLibraries:
   package:cupertino_ui/cupertino_ui.dart:
-    jsPackage: '@flax/flutter/cupertino'
+    jsPackage: '@flax/cupertino-ui'
     tsOutput: js/src/generated/libraries/cupertino/index.ts
 classes:
   - CupertinoApp

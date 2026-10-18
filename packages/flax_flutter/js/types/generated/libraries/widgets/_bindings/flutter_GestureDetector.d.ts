@@ -1,12 +1,54 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartSetInput, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
-import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
-import '@flax/flutter/widgets/_bindings/flutter_HitTestBehavior';
-import type * as upstream2 from '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
+import type * as upstream1 from '@flax/flutter/gestures/_bindings/sdk_gestures_TapDownDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_TapDownDetails';
+import type * as upstream2 from '@flax/flutter/gestures/_bindings/sdk_gestures_TapUpDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_TapUpDetails';
+import type * as upstream3 from '@flax/flutter/gestures/_bindings/sdk_gestures_TapMoveDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_TapMoveDetails';
+import type * as upstream4 from '@flax/flutter/gestures/_bindings/sdk_gestures_LongPressDownDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_LongPressDownDetails';
+import type * as upstream5 from '@flax/flutter/gestures/_bindings/sdk_gestures_LongPressStartDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_LongPressStartDetails';
+import type * as upstream6 from '@flax/flutter/gestures/_bindings/sdk_gestures_LongPressMoveUpdateDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_LongPressMoveUpdateDetails';
+import type * as upstream7 from '@flax/flutter/gestures/_bindings/sdk_gestures_LongPressEndDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_LongPressEndDetails';
+import type * as upstream8 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragDownDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_DragDownDetails';
+import type * as upstream9 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragStartDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_DragStartDetails';
+import type * as upstream10 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
+import type * as upstream11 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragEndDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_DragEndDetails';
+import type * as upstream12 from '@flax/flutter/gestures/_bindings/sdk_gestures_ForcePressDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_ForcePressDetails';
+import type * as upstream13 from '@flax/flutter/gestures/_bindings/sdk_gestures_ScaleStartDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_ScaleStartDetails';
+import type * as upstream14 from '@flax/flutter/gestures/_bindings/sdk_gestures_ScaleUpdateDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_ScaleUpdateDetails';
+import type * as upstream15 from '@flax/flutter/gestures/_bindings/sdk_gestures_ScaleEndDetails';
+import '@flax/flutter/gestures/_bindings/sdk_gestures_ScaleEndDetails';
+import type * as upstream16 from '@flax/flutter/rendering/_bindings/flutter_HitTestBehavior';
+import '@flax/flutter/rendering/_bindings/flutter_HitTestBehavior';
+import type * as upstream17 from '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
 import '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
-import type * as upstream3 from '@flax/flutter/gestures/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream19 from '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface GestureDetector extends WidgetDescription {
+export interface GestureDetector extends WidgetDescription, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/gesture_detector.dart::GestureDetector": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatelessWidget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, 'type'>, Omit<Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>, 'type'> {
     readonly type: "flax.core/flutter#type:GestureDetector";
 }
 export declare function _GestureDetectorFactory(options?: {
@@ -14,29 +56,73 @@ export declare function _GestureDetectorFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     child?: Bindable<Widget | null> | undefined;
+    onTapDown?: Bindable<((details: upstream1.TapDownDetails) => void) | null> | undefined;
+    onTapUp?: Bindable<((details: upstream2.TapUpDetails) => void) | null> | undefined;
     onTap?: Bindable<(() => void) | null> | undefined;
+    onTapMove?: Bindable<((details: upstream3.TapMoveDetails) => void) | null> | undefined;
     onTapCancel?: Bindable<(() => void) | null> | undefined;
     onSecondaryTap?: Bindable<(() => void) | null> | undefined;
+    onSecondaryTapDown?: Bindable<((details: upstream1.TapDownDetails) => void) | null> | undefined;
+    onSecondaryTapUp?: Bindable<((details: upstream2.TapUpDetails) => void) | null> | undefined;
     onSecondaryTapCancel?: Bindable<(() => void) | null> | undefined;
+    onTertiaryTapDown?: Bindable<((details: upstream1.TapDownDetails) => void) | null> | undefined;
+    onTertiaryTapUp?: Bindable<((details: upstream2.TapUpDetails) => void) | null> | undefined;
     onTertiaryTapCancel?: Bindable<(() => void) | null> | undefined;
+    onDoubleTapDown?: Bindable<((details: upstream1.TapDownDetails) => void) | null> | undefined;
     onDoubleTap?: Bindable<(() => void) | null> | undefined;
     onDoubleTapCancel?: Bindable<(() => void) | null> | undefined;
+    onLongPressDown?: Bindable<((details: upstream4.LongPressDownDetails) => void) | null> | undefined;
     onLongPressCancel?: Bindable<(() => void) | null> | undefined;
     onLongPress?: Bindable<(() => void) | null> | undefined;
+    onLongPressStart?: Bindable<((details: upstream5.LongPressStartDetails) => void) | null> | undefined;
+    onLongPressMoveUpdate?: Bindable<((details: upstream6.LongPressMoveUpdateDetails) => void) | null> | undefined;
     onLongPressUp?: Bindable<(() => void) | null> | undefined;
+    onLongPressEnd?: Bindable<((details: upstream7.LongPressEndDetails) => void) | null> | undefined;
+    onSecondaryLongPressDown?: Bindable<((details: upstream4.LongPressDownDetails) => void) | null> | undefined;
     onSecondaryLongPressCancel?: Bindable<(() => void) | null> | undefined;
     onSecondaryLongPress?: Bindable<(() => void) | null> | undefined;
+    onSecondaryLongPressStart?: Bindable<((details: upstream5.LongPressStartDetails) => void) | null> | undefined;
+    onSecondaryLongPressMoveUpdate?: Bindable<((details: upstream6.LongPressMoveUpdateDetails) => void) | null> | undefined;
     onSecondaryLongPressUp?: Bindable<(() => void) | null> | undefined;
+    onSecondaryLongPressEnd?: Bindable<((details: upstream7.LongPressEndDetails) => void) | null> | undefined;
+    onTertiaryLongPressDown?: Bindable<((details: upstream4.LongPressDownDetails) => void) | null> | undefined;
     onTertiaryLongPressCancel?: Bindable<(() => void) | null> | undefined;
     onTertiaryLongPress?: Bindable<(() => void) | null> | undefined;
+    onTertiaryLongPressStart?: Bindable<((details: upstream5.LongPressStartDetails) => void) | null> | undefined;
+    onTertiaryLongPressMoveUpdate?: Bindable<((details: upstream6.LongPressMoveUpdateDetails) => void) | null> | undefined;
     onTertiaryLongPressUp?: Bindable<(() => void) | null> | undefined;
+    onTertiaryLongPressEnd?: Bindable<((details: upstream7.LongPressEndDetails) => void) | null> | undefined;
+    onVerticalDragDown?: Bindable<((details: upstream8.DragDownDetails) => void) | null> | undefined;
+    onVerticalDragStart?: Bindable<((details: upstream9.DragStartDetails) => void) | null> | undefined;
+    onVerticalDragUpdate?: Bindable<((details: upstream10.DragUpdateDetails) => void) | null> | undefined;
+    onVerticalDragEnd?: Bindable<((details: upstream11.DragEndDetails) => void) | null> | undefined;
     onVerticalDragCancel?: Bindable<(() => void) | null> | undefined;
+    onHorizontalDragDown?: Bindable<((details: upstream8.DragDownDetails) => void) | null> | undefined;
+    onHorizontalDragStart?: Bindable<((details: upstream9.DragStartDetails) => void) | null> | undefined;
+    onHorizontalDragUpdate?: Bindable<((details: upstream10.DragUpdateDetails) => void) | null> | undefined;
+    onHorizontalDragEnd?: Bindable<((details: upstream11.DragEndDetails) => void) | null> | undefined;
     onHorizontalDragCancel?: Bindable<(() => void) | null> | undefined;
+    onForcePressStart?: Bindable<((details: upstream12.ForcePressDetails) => void) | null> | undefined;
+    onForcePressPeak?: Bindable<((details: upstream12.ForcePressDetails) => void) | null> | undefined;
+    onForcePressUpdate?: Bindable<((details: upstream12.ForcePressDetails) => void) | null> | undefined;
+    onForcePressEnd?: Bindable<((details: upstream12.ForcePressDetails) => void) | null> | undefined;
+    onPanDown?: Bindable<((details: upstream8.DragDownDetails) => void) | null> | undefined;
+    onPanStart?: Bindable<((details: upstream9.DragStartDetails) => void) | null> | undefined;
+    onPanUpdate?: Bindable<((details: upstream10.DragUpdateDetails) => void) | null> | undefined;
+    onPanEnd?: Bindable<((details: upstream11.DragEndDetails) => void) | null> | undefined;
     onPanCancel?: Bindable<(() => void) | null> | undefined;
-    behavior?: Bindable<upstream1.HitTestBehavior | null> | undefined;
+    onScaleStart?: Bindable<((details: upstream13.ScaleStartDetails) => void) | null> | undefined;
+    onScaleUpdate?: Bindable<((details: upstream14.ScaleUpdateDetails) => void) | null> | undefined;
+    onScaleEnd?: Bindable<((details: upstream15.ScaleEndDetails) => void) | null> | undefined;
+    behavior?: Bindable<upstream16.HitTestBehavior | null> | undefined;
     excludeFromSemantics?: Bindable<boolean> | undefined;
-    dragStartBehavior?: Bindable<upstream2.DragStartBehavior> | undefined;
+    dragStartBehavior?: Bindable<upstream17.DragStartBehavior> | undefined;
     trackpadScrollCausesScale?: Bindable<boolean> | undefined;
-    trackpadScrollToScaleFactor?: Bindable<upstream3.Offset> | undefined;
+    trackpadScrollToScaleFactor?: Bindable<Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>> | undefined;
+    supportedDevices?: Bindable<DartSetInput<upstream19.PointerDeviceKind, upstream19.PointerDeviceKind> | null> | undefined;
 }): GestureDetector;
 export declare const GestureDetector: typeof _GestureDetectorFactory & _FlaxInstanceType<GestureDetector> & _FlaxDartType<GestureDetector, readonly ["class", "flax.core/flutter#type:GestureDetector", readonly [], false]>;

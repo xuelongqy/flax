@@ -1,0 +1,67 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_FormFieldState';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_FormFieldState';
+import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_AutovalidateMode';
+import '@flax/flutter/widgets/_bindings/flutter_AutovalidateMode';
+import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
+const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface FormField<T extends unknown | null = unknown | null> extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{ "__flaxBound:package:flutter/src/widgets/form.dart::FormField": readonly [T] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __FormField: unique symbol;
+readonly [_flaxDartTypeValue]: FormField<T>;
+
+readonly builder: ((field: Readonly<{ "__flaxBound:package:flutter/src/widgets/form.dart::FormFieldState": readonly [T] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [FormField<T>] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorationMixin": readonly [FormField<T>] }>) => Widget);
+readonly onSaved: ((newValue: (T | DartInput<T>) | null) => void) | null;
+readonly onReset: (() => void) | null;
+readonly forceErrorText: string | null;
+readonly validator: ((value: (T | DartInput<T>) | null) => string | null) | null;
+readonly errorBuilder: ((context: upstream3.BuildContext, errorText: string) => Widget) | null;
+readonly initialValue: T | null;
+readonly enabled: boolean;
+readonly autovalidateMode: upstream4.AutovalidateMode;
+readonly restorationId: string | null;
+readonly key: upstream1.Key | null;
+createState(): upstream2.FormFieldState<T>;
+createElement(): upstream5.StatefulElement;
+toStringShort(): string;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream7.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {minLevel?: upstream7.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream9.DiagnosticsTreeStyle | null | undefined}): upstream8.DiagnosticsNode;
+debugDescribeChildren(): DartList<upstream8.DiagnosticsNode>;
+}
+defineObject("flax.core/sdk_widgets#type:FormField", ["builder","onSaved","onReset","forceErrorText","validator","errorBuilder","initialValue","enabled","autovalidateMode","restorationId","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:FormField", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+export function _FormFieldFactory<T extends unknown | null = unknown | null>(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; builder: ((field: upstream2.FormFieldState<_FlaxDartOutput<T>>) => Widget); onSaved?: ((newValue: _FlaxDartOutput<T> | null) => void) | null | undefined; onReset?: (() => void) | null | undefined; forceErrorText?: string | null | undefined; validator?: ((value: _FlaxDartOutput<T> | null) => string | null) | null | undefined; errorBuilder?: ((context: upstream3.BuildContext, errorText: string) => Widget) | null | undefined; initialValue?: (T | _FlaxDartOutput<T>) | null | undefined; enabled?: boolean | undefined; autovalidateMode?: upstream4.AutovalidateMode | null | undefined; restorationId?: string | null | undefined }): FormField<T>;
+export function _FormFieldFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; builder: ((field: upstream2.FormFieldState<unknown | null>) => Widget); onSaved?: ((newValue: unknown | null) => void) | null | undefined; onReset?: (() => void) | null | undefined; forceErrorText?: string | null | undefined; validator?: ((value: unknown | null) => string | null) | null | undefined; errorBuilder?: ((context: upstream3.BuildContext, errorText: string) => Widget) | null | undefined; initialValue?: unknown | null | undefined; enabled?: boolean | undefined; autovalidateMode?: upstream4.AutovalidateMode | null | undefined; restorationId?: string | null | undefined }): FormField<unknown | null>;
+export function _FormFieldFactory(options: Record<string, unknown>): unknown {
+if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
+if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/sdk_widgets#type:FormField", "", [{"name":"key","required":false,"positional":false},{"name":"builder","required":true,"positional":false},{"name":"onSaved","required":false,"positional":false},{"name":"onReset","required":false,"positional":false},{"name":"forceErrorText","required":false,"positional":false},{"name":"validator","required":false,"positional":false},{"name":"errorBuilder","required":false,"positional":false},{"name":"initialValue","required":false,"positional":false},{"name":"enabled","required":false,"positional":false},{"name":"autovalidateMode","required":false,"positional":false},{"name":"restorationId","required":false,"positional":false}], [], options) as FormField<unknown | null>;
+}
+export const FormField: typeof _FormFieldFactory & _FlaxInstanceType<FormField<unknown | null>> & _FlaxDartType<FormField<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:FormField", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<FormField<unknown | null>, typeof _FormFieldFactory>(_FormFieldFactory, "flax.core/sdk_widgets#type:FormField", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _FormFieldFactory & _FlaxInstanceType<FormField<unknown | null>> & _FlaxDartType<FormField<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:FormField", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+_flaxDefineDartTypes(FormField, "flax.core/sdk_widgets#type:FormField", {"category":"object","constructors":{"":[{"name":"key","required":false,"positional":false},{"name":"builder","required":true,"positional":false},{"name":"onSaved","required":false,"positional":false},{"name":"onReset","required":false,"positional":false},{"name":"forceErrorText","required":false,"positional":false},{"name":"validator","required":false,"positional":false},{"name":"errorBuilder","required":false,"positional":false},{"name":"initialValue","required":false,"positional":false},{"name":"enabled","required":false,"positional":false},{"name":"autovalidateMode","required":false,"positional":false},{"name":"restorationId","required":false,"positional":false}]}});
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "builder" | "onSaved" | "onReset" | "forceErrorText" | "validator" | "errorBuilder" | "initialValue" | "enabled" | "autovalidateMode" | "restorationId" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/form.dart::FormField" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {(options: {key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined;builder: ((field: upstream2.FormFieldState<_Selected0>) => Widget);onSaved?: ((newValue: _Selected0 | null) => void) | null | undefined;onReset?: (() => void) | null | undefined;forceErrorText?: string | null | undefined;validator?: ((value: _Selected0 | null) => string | null) | null | undefined;errorBuilder?: ((context: upstream3.BuildContext, errorText: string) => Widget) | null | undefined;initialValue?: (_Selected0 | DartInput<_Selected0>) | null | undefined;enabled?: boolean | undefined;autovalidateMode?: upstream4.AutovalidateMode | null | undefined;restorationId?: string | null | undefined}): FormField<_Selected0>;readonly prototype: FormField<_Selected0>;} & _FlaxInstanceType<FormField<_Selected0>> & _FlaxDartType<FormField<_Selected0>> : never : never; }

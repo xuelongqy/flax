@@ -4,7 +4,7 @@ import {
   TargetPlatform,
 } from '@flax/flutter/foundation';
 import { SizedBox, registerPage, runApp } from '@flax/flutter/widgets';
-import { getKTabScrollDuration, kToolbarHeight } from '@flax/flutter/material';
+import { getKTabScrollDuration, kToolbarHeight } from '@flax/material-ui';
 import { FixtureValues } from '../../../.dart_tool/flax/ui/readonly_values_bindings.js';
 
 registerPage('readonly', () => SizedBox({}));

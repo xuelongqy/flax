@@ -71,6 +71,7 @@ final class FlaxCodegenSiblingModuleInput {
     Set<String> readonlyReferences = const {},
     Set<String> setterReferences = const {},
     Set<String> representationTypes = const {},
+    Set<String> typeReferences = const {},
   }) {
     final types = List<String>.unmodifiable(List<String>.of(config.types));
     final classNames = List<String>.unmodifiable([
@@ -140,7 +141,8 @@ final class FlaxCodegenSiblingModuleInput {
               ]),
             ),
         for (var index = 0; index < types.length; index++)
-          if (!representationTypes.contains(types[index]))
+          if (!representationTypes.contains(types[index]) &&
+              !typeReferences.contains(types[index]))
             _ClaimSpec(
               types[index],
               FlaxCodegenDeclarationKind.type,

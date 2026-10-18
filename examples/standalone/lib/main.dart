@@ -5,8 +5,8 @@ import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flax_canvas/flax_canvas.dart';
 import 'package:flax_standalone/engine.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 final bindings = FlaxBindingRegistry([flutterBindings, materialBindings]);
 FlaxJsRuntime createRuntime() => createExampleRuntime();
@@ -27,6 +27,7 @@ Future<void> startApplication({
       manifest: 'assets/flax_modules/modules.json',
     );
     await FlaxLocalStoragePlugin.initialize(directory: storageDirectory);
+    Icons.add;
     runApp(
       FlaxView(
         createRuntime: createRuntime,

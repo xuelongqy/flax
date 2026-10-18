@@ -4,10 +4,13 @@ import '@flax/dart/core/_bindings/flutter_Match';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_RegExp';
 import '@flax/dart/core/_bindings/flutter_RegExp';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
-export interface RegExpMatch extends Omit<upstream0.Match, typeof _flaxDartTypeValue | "start" | "end" | "groupCount" | "input" | "pattern" | "groupNames" | "group" | "groups" | "namedGroup" | "operatorGetIndex">, Readonly<{
+export interface RegExpMatch extends Omit<upstream0.Match, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:dart:core::RegExpMatch": readonly [];
+}>, Readonly<{
+    "__flaxBound:dart:core::Match": readonly [];
 }> {
     readonly __RegExpMatch: unique symbol;
+    readonly [_flaxDartTypeValue]: RegExpMatch;
     readonly start: number;
     readonly end: number;
     readonly groupCount: number;
@@ -20,3 +23,5 @@ export interface RegExpMatch extends Omit<upstream0.Match, typeof _flaxDartTypeV
     operatorGetIndex(group: number): string | null;
 }
 export declare const RegExpMatch: object & _FlaxInstanceType<RegExpMatch> & _FlaxDartType<RegExpMatch, readonly ["class", "flax.core/flutter#type:RegExpMatch", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "start" | "end" | "groupCount" | "input" | "pattern" | "groupNames" | "group" | "groups" | "namedGroup" | "operatorGetIndex" | "__flaxBound:dart:core::RegExpMatch" | "__flaxBound:dart:core::Match";
+export {};

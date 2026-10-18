@@ -1,6 +1,6 @@
 import { Builder, Text, registerPage, type BuildContext } from '@flax/flutter/widgets';
 import { Stream, StreamController } from '@flax/dart/async';
-import { invokeTopLevel } from '@flax/core/bindings';
+import { dartType, dartTypes, getDartType, invokeTopLevel } from '@flax/core/bindings';
 import { ContextStreams } from '../../../.dart_tool/flax/ui/context_streams_bindings.js';
 
 const store = ContextStreams();
@@ -81,6 +81,17 @@ const hooks = {
       .records(source)
       .map((value) => value)
       .toList();
+    const recordType = dartTypes.of(values.get(0));
+    const selected = await dartType(
+      store.records(source),
+      'map',
+      recordType,
+    )((value) => value).first;
+    const nested = await dartType(
+      store.records(source),
+      'map',
+      dartTypes.list(recordType),
+    )((value) => [value]).first;
     const pair = await store.pairs(() =>
       Stream.fromIterable([
         {
@@ -98,6 +109,9 @@ const hooks = {
       ['collection copy', values.toArray()[0].context === saved],
       ['first', first.context === saved],
       ['map().toList().get()', mapped.get(0).context === saved],
+      ['authenticated Record type', selected.context === saved],
+      ['nested Record type token', nested.get(0).context === saved],
+      ['actual Record type', getDartType(selected) === getDartType(values.get(0))],
       ['positional null', pair.$1 === null],
       ['nested Record Context', pair.nested.context === saved],
       ['nested Record List', pair.nested.siblings.get(1) === null],

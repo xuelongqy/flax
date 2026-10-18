@@ -27,7 +27,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       ...seed.automaticFunctions,
       ...seed.automaticExtensions,
     };
-    final scoped = seed.hasAutomaticSelection;
+    final scoped = seed.hasAutomaticSelection && !seed.automaticLibrary;
     for (final name in requested) {
       final element = exports[name];
       if (element == null ||
@@ -72,6 +72,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final elements = <String, InterfaceElement>{};
     final excluded = overrides.exclude.toSet();
     final seenOverrides = <String>{};
+    final reusedDeclarations = <String>{};
     final hiddenTypes = <String>{};
 
     final names =
@@ -84,6 +85,23 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       if (scoped && !requested.contains(name)) continue;
       final element = exports[name] ?? exports['$name='];
       if (element == null || element.isPrivate) continue;
+      final localOwner = _localDeclarationOwners[_declarationSource(element)];
+      if (seed.automaticLibrary &&
+          localOwner != null &&
+          localOwner != seed.name &&
+          element is! GetterElement &&
+          element is! SetterElement &&
+          element is! TopLevelVariableElement) {
+        reusedDeclarations.add(name);
+        skips.add(
+          FlaxCodegenSkip(
+            target: name,
+            reason: 'Reuses sibling module $localOwner',
+            code: 'existing_sibling',
+          ),
+        );
+        continue;
+      }
       if (excluded.contains(name)) {
         if (element is InterfaceElement) hiddenTypes.add(identity(element));
         seenOverrides.add(name);
@@ -151,35 +169,51 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         continue;
       }
       if (element is TopLevelFunctionElement) {
-        if (overrides.functions.containsKey(name)) seenOverrides.add(name);
+        final functionOverride = overrides.functions[name];
+        if (functionOverride != null) seenOverrides.add(name);
         if (functions.containsKey(name)) continue;
         // Exact parameter overrides are validated by the fail-closed parser.
         if (overrides.functions[name]?.fields.contains('parameters') == true) {
           functions[name] = overrides.functions[name]!.selection;
           continue;
         }
-        final selection = _autoFunctionSelection(
+        var selection = _autoFunctionSelection(
           scope: scope,
           function: element,
           name: name,
           skips: skips,
         );
+        if (selection != null && functionOverride != null) {
+          selection = _applyFunctionOverride(selection, functionOverride);
+        }
         final provider =
             _dependencyFunctions['${element.library.uri}::${element.name}'];
+        final coreProvider =
+            provider?.$1.moduleId?.startsWith('flax.core/') == true;
+        final compatible =
+            selection != null &&
+            provider != null &&
+            selection.dataResult == _containsData(provider.$2.call.result) &&
+            selection.typeArguments.join(',') ==
+                provider.$2.call.typeArguments.join(',') &&
+            selection.parameters.every(
+              (name) => provider.$2.call.parameters.any(
+                (p) =>
+                    p.name == name &&
+                    selection!.dataParameters.contains(name) ==
+                        _containsData(p.type),
+              ),
+            ) &&
+            (selection.route?.builders ?? const <String>[]).every(
+              (name) => provider.$2.route?.builders.contains(name) == true,
+            );
+        if (coreProvider && functionOverride != null && !compatible) {
+          throw StateError('Core function override is incompatible: $name');
+        }
         if (selection != null &&
             provider != null &&
-            (provider.$1.moduleId?.startsWith('flax.core/') == true ||
-                !_containsData(provider.$2.call.result) &&
-                    !provider.$2.call.parameters.any(
-                      (p) => _containsData(p.type),
-                    ) &&
-                    selection.typeArguments.join(',') ==
-                        provider.$2.call.typeArguments.join(',') &&
-                    selection.parameters.every(
-                      (name) => provider.$2.call.parameters.any(
-                        (p) => p.name == name,
-                      ),
-                    ))) {
+            (compatible || coreProvider && functionOverride == null)) {
+          reusedDeclarations.add(name);
           skips.add(
             FlaxCodegenSkip(
               target: name,
@@ -225,12 +259,21 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
         automaticTypeCarriers: typeCarriers,
         automaticNotices: notices,
         inferred: inferred,
-        expandOwned: seed.automaticClasses.contains(name),
+        expandOwned:
+            seed.automaticLibrary || seed.automaticClasses.contains(name),
         inferProxy: !scoped,
+        selectionOverride: classOverride,
       );
       skips.addAll(proposed.skips);
       final selection = proposed.selection;
       if (proposed.provider != null && selection == null) {
+        if (classOverride != null &&
+            proposed.skips.any((skip) => skip.code.startsWith('provider_'))) {
+          throw StateError(
+            proposed.skips.map((skip) => skip.reason).join('\n'),
+          );
+        }
+        reusedDeclarations.add(name);
         skips.add(
           FlaxCodegenSkip(
             target: name,
@@ -447,6 +490,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     );
 
     for (final entry in overrides.classes.entries) {
+      if (reusedDeclarations.contains(entry.key)) continue;
       final selection = classes[entry.key];
       if (selection == null) {
         throw StateError(
@@ -456,6 +500,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       classes[entry.key] = _applyClassOverride(selection, entry.value);
     }
     for (final entry in overrides.functions.entries) {
+      if (reusedDeclarations.contains(entry.key)) continue;
       final selection = functions[entry.key];
       if (selection == null) {
         throw StateError(
@@ -1370,7 +1415,12 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       TopLevelVariableElement() => element.getter,
       _ => null,
     };
-    if (getter != null && !_autoHidden(getter)) {
+    bool owned(Element value) =>
+        !scope.config.automaticLibrary ||
+        (_localDeclarationOwners[_declarationSource(value)] ??
+                scope.config.name) ==
+            scope.config.name;
+    if (getter != null && !_autoHidden(getter) && owned(getter)) {
       try {
         scope.typeRef(getter.returnType).validateResult('$name getter');
         getters.add(name);
@@ -1391,7 +1441,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       GetterElement() => setterElement.correspondingSetter,
       _ => null,
     };
-    if (setter == null || _autoHidden(setter)) return;
+    if (setter == null || _autoHidden(setter) || !owned(setter)) return;
     final variable = setter.variable;
     if (variable is TopLevelVariableElement &&
         (variable.isConst || variable.isFinal)) {
@@ -1544,6 +1594,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       startsRoute: has('startsRoute') ? value.startsRoute : source.startsRoute,
       kind: has('kind') ? value.kind : source.kind,
       proxy: has('proxy') ? value.proxy : source.proxy,
+      inferredProxy: !has('proxy') && source.inferredProxy,
       proxyVariants: has('proxyVariants')
           ? value.proxyVariants
           : source.proxyVariants,
@@ -1617,6 +1668,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     startsRoute: source.startsRoute,
     kind: source.kind,
     proxy: source.proxy,
+    inferredProxy: source.inferredProxy,
     proxyVariants: source.proxyVariants,
     staticGetters: staticGetters ?? source.staticGetters,
     staticSetters: staticSetters ?? source.staticSetters,

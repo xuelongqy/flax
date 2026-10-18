@@ -238,6 +238,20 @@ extension _ObjectCalls on _Session {
     }
   }
 
+  bool _isMoreSpecificBinding(FlaxTypeBinding child, FlaxTypeBinding parent) {
+    if (child.id == parent.id) return false;
+    final ancestors = switch (child) {
+      FlaxObjectBinding() => child.supertypes,
+      FlaxEnumBinding() => child.supertypes,
+      _ => const <String>[],
+    };
+    final childFamily = _specializedOwners[child.id] ?? child.id;
+    final parentFamily = _specializedOwners[parent.id] ?? parent.id;
+    // Ancestry names declarations; generic instances have session-local IDs.
+    return ancestors.contains(parent.id) ||
+        childFamily != parentFamily && ancestors.contains(parentFamily);
+  }
+
   FlaxObjectBinding _objectBinding(Object value, String type) {
     final expected = _objectView(_typeBinding(type));
     if (expected is! FlaxObjectBinding ||
@@ -253,14 +267,20 @@ extension _ObjectCalls on _Session {
     // Preserve concrete identity within the signature's provider, without
     // exposing a subtype view registered by another provider.
     final owner = _bindingOwner(type);
+    final providerPrefix = owner != null && owner.moduleId.contains('/')
+        ? '${owner.moduleId.split('/').first}/'
+        : null;
     for (final binding in _typeBindings.values) {
       if (binding is FlaxObjectBinding &&
           binding.aliasOf == null &&
-          _bindingOwner(binding.id) == owner &&
-          binding.id != type &&
-          binding.supertypes.contains(type) &&
+          (_bindingOwner(binding.id) == owner ||
+              providerPrefix != null &&
+                  _bindingOwner(binding.id)?.moduleId
+                          .startsWith(providerPrefix) ==
+                      true) &&
+          _isMoreSpecificBinding(binding, expected) &&
           binding.matches?.call(value) == true &&
-          (selected.id == type || binding.supertypes.contains(selected.id))) {
+          (selected.id == type || _isMoreSpecificBinding(binding, selected))) {
         selected = binding;
       }
     }
@@ -845,10 +865,22 @@ extension _ObjectCalls on _Session {
     final specialize =
         binding.memberViewOperations.contains('$operation:$name') ||
         dartTypes.hasGenericClass(binding.id);
+    // Shared super adapters dispatch on the actual proxy, never an ancestor slot.
+    final proxyType = name.startsWith('@super:')
+        ? (_genericObjectBindings.containsKey(binding.id)
+              ? binding.supertypes.first
+              : binding.id)
+        : null;
+    final proxyOwner = _specializedOwners[proxyType] ?? proxyType;
     return (id, args) {
       final object = _objects[id];
       if (object == null || !object.accepts(type)) {
         throw ArgumentError('Foreign or disposed Dart object');
+      }
+      if (proxyOwner != null &&
+          proxyOwner !=
+              (_specializedOwners[object.binding.id] ?? object.binding.id)) {
+        throw ArgumentError('Foreign Dart proxy super receiver');
       }
       final receiver = object.value;
       var getter = baseGetter;

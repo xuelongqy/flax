@@ -1,0 +1,78 @@
+import 'package:flutter/foundation.dart' show mustCallSuper;
+
+typedef ClosedCallback = num Function(num value);
+
+class SharedBase {
+  @override
+  bool operator ==(covariant SharedBase other) => identical(this, other);
+  @override
+  int get hashCode => identityHashCode(this);
+  num value = 1;
+  num get narrowed => value;
+  set narrowed(covariant num value) => this.value = value;
+  @mustCallSuper
+  num scale(num input) => input + value;
+  num narrow(covariant num input) => input;
+  int defaulted([int amount = 1]) => amount;
+  int omitted({int amount = 1}) => amount;
+  @mustCallSuper
+  num guarded(num input) => scale(input);
+  @mustCallSuper
+  Future<num> guardedAsync(num input) async => scale(input);
+  num operator +(num input) => scale(input);
+}
+
+class SharedChild extends SharedBase {
+  @override
+  num get value => super.value + 1;
+  @override
+  set value(num value) => super.value = value * 2;
+  @override
+  double get narrowed => value.toDouble();
+  @override
+  set narrowed(double value) => this.value = value;
+  @override
+  num scale(num input) => super.scale(input) + 10;
+  @override
+  double narrow(double input) => input + 0.5;
+  @override
+  int defaulted([int amount = 2]) => amount;
+  @override
+  int omitted({int amount = 2}) => amount;
+}
+
+mixin SharedScale on SharedChild {
+  @override
+  num scale(num input) => super.scale(input) + 100;
+}
+
+class SharedLeaf extends SharedChild with SharedScale {}
+
+class CallbackFirst {
+  ClosedCallback get callback =>
+      (value) => value + 1;
+}
+
+class CallbackSecond {
+  ClosedCallback get callback =>
+      (value) => value + 2;
+}
+
+class Captured<T> {
+  T Function(T value) get callback =>
+      (value) => value;
+  List<T> Function<R>(R value, T context) get nested =>
+      <R>(R value, T context) => [context];
+}
+
+class OtherCaptured<T> {
+  T Function(T value) get callback =>
+      (value) => value;
+}
+
+class SharedRestricted extends SharedBase {}
+
+class SharedGeneric<T> extends SharedBase {
+  T? held;
+  T echo(T value) => value;
+}

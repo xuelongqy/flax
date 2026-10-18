@@ -15,7 +15,8 @@ publication disabled.
 
 Applications install `flax` from Pub and the physical `@flax/core` runtime package at
 the same exact version when Core is carried by that application. Public Flutter and Dart
-SDK declarations are exposed separately through `@flax/flutter/*` and `@flax/dart/*`;
+Flutter SDK implementations are generated in this package from `flax_sdk_*.yaml`. SDK
+declarations are exposed separately through `@flax/flutter/*` and `@flax/dart/*`;
 applications that provide those modules through `Flax.moduleAssets` can depend on the
 declaration packages without bundling a second implementation. The Pub package contains
 Dart, generated bindings, the base host bootstrap, and the public native ABI header. The

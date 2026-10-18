@@ -1,5 +1,5 @@
 {
-  "name": "@flax/material-ui",
+  "name": "@flax/material-ui-runtime",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./flax_modules.json": "./flax_modules.json"
+    "./flax_modules.json": "./flax_modules.json",
+    "./*": {
+      "types": "./dist/generated/libraries/material/*.d.ts"
+    }
   },
   "files": [
     "dist/index.*",
@@ -29,6 +32,7 @@
     "@flax/core-runtime": "workspace:*"
   },
   "devDependencies": {
-    "@flax/build": "workspace:*"
+    "@flax/build": "workspace:*",
+    "@flax/material-ui": "workspace:*"
   }
 }

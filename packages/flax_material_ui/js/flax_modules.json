@@ -1,10 +1,10 @@
 {
   "formatVersion": 2,
-  "package": "@flax/material-ui",
+  "package": "@flax/material-ui-runtime",
   "version": "0.0.0",
   "modules": [
     {
-      "specifier": "@flax/flutter/material",
+      "specifier": "@flax/material-ui",
       "source": "dist/generated/libraries/material/index.js",
       "subpathRoot": "dist/generated/libraries/material",
       "helperSubpaths": ["_bindings/material.__module"],
@@ -21,7 +21,6 @@
           "types": [
             "flax.material/material#type:AlertDialog",
             "flax.material/material#type:AppBar",
-            "flax.material/material#type:Brightness",
             "flax.material/material#type:ButtonStyle",
             "flax.material/material#type:Card",
             "flax.material/material#type:Checkbox",
@@ -52,7 +51,6 @@
             "flax.material/material#type:Switch",
             "flax.material/material#type:TextButton",
             "flax.material/material#type:TextField",
-            "flax.material/material#type:TextInputAction",
             "flax.material/material#type:TextTheme",
             "flax.material/material#type:Theme",
             "flax.material/material#type:ThemeData",

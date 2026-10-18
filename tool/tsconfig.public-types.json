@@ -17,20 +17,17 @@
         "../packages/flax/js/src/flutter/generated/libraries/navigation/*"
       ],
       "@flax/core/*": ["../packages/flax/js/src/*"],
-      "@flax/flutter/material": [
-        "../packages/flax_material_ui/js/src/generated/libraries/material/index.ts"
-      ],
-      "@flax/flutter/material/*": [
+      "@flax/flutter/*": ["../packages/flax/js/src/flutter/generated/libraries/*"],
+      "@flax/dart/*": ["../packages/flax/js/src/dart/generated/libraries/*"],
+      "@flax/material-ui": ["../packages/flax_material_ui/js/src/index.ts"],
+      "@flax/material-ui/*": [
         "../packages/flax_material_ui/js/src/generated/libraries/material/*"
       ],
-      "@flax/flutter/cupertino": [
-        "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/index.ts"
-      ],
-      "@flax/flutter/cupertino/*": [
+      "@flax/cupertino-ui": ["../packages/flax_cupertino_ui/js/src/index.ts"],
+      "@flax/cupertino-ui/*": [
         "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/*"
       ],
-      "@flax/flutter/*": ["../packages/flax/js/src/flutter/generated/libraries/*"],
-      "@flax/dart/*": ["../packages/flax/js/src/dart/generated/libraries/*"]
+      "@flax/flutter/widgets": ["../packages/flax/js/src/flutter/widgets.ts"]
     }
   },
   "files": [
@@ -42,8 +39,8 @@
     "../packages/flax/js/src/dart/generated/libraries/async/index.ts",
     "../packages/flax/js/src/dart/generated/libraries/core/index.ts",
     "../packages/flax/js/src/dart/generated/libraries/ui/index.ts",
-    "../packages/flax_material_ui/js/src/generated/libraries/material/index.ts",
-    "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/index.ts",
+    "../packages/flax_material_ui/js/src/index.ts",
+    "../packages/flax_cupertino_ui/js/src/index.ts",
     "../packages/flax/js/src/runtime/index.ts",
     "../packages/flax/js/src/runtime/bindings.ts",
     "../packages/flax/js/src/host/index.ts",
@@ -57,5 +54,6 @@
     "../packages/flax_local_storage/js/src/globals.ts",
     "../packages/flax_canvas/js/src/index.ts",
     "../packages/flax_canvas/js/src/globals.ts"
-  ]
+  ],
+  "include": ["../packages/flax/js/src/flutter/generated/libraries/*/index.ts"]
 }

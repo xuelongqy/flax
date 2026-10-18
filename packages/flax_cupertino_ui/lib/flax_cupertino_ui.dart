@@ -18,7 +18,7 @@ class FlaxCupertinoPlugin extends FlaxPlugin {
   Set<String> get globals => const {};
 
   @override
-  Set<String> get jsModules => const {'@flax/flutter/cupertino'};
+  Set<String> get jsModules => const {'@flax/cupertino-ui'};
 
   @override
   List<FlaxBindingModule> get bindingModules => const [cupertinoBindings];

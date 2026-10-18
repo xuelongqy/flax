@@ -8,9 +8,69 @@ Public generator types use the `FlaxCodegen` prefix, including
 `FlaxCodegenTypeRef`. Generator models remain separate from runtime binding metadata
 such as `FlaxTypeRef`; the public entry is still `flax_codegen.dart`.
 
+Dart emission shares identical closed callback adapters, parameter lists and immutable
+conversion descriptors within each module. Non-generic ordinary classes also reuse
+selected ancestor getter, setter and method adapters when their complete effective
+signatures and conversion policies match. The ancestor call still dispatches virtually
+to the actual receiver. A child stores only changed ordinary member descriptors and a
+parent reference; the runtime resolves the effective table once. A restricted selected
+surface never inherits additional members. Narrowed signatures, generic scopes and
+lexical proxy `super` calls keep their own implementations; the missing-JS fallback
+reuses the same checked lexical-super body. Widget-interface adapters use their actual
+`StatelessWidget` base when resolving `mustCallSuper`, so inherited diagnostic overrides
+cannot bypass the check.
+
+Equivalent closed proxy overrides share module-local typed dispatch functions. Each
+proxy keeps its original native superclass, constructors and lexical-super bodies; small
+overrides pass the peer member index to the shared function. Private interfaces provide
+the native-super and guard contracts without an extra object or mixin layer. Complete
+signatures, defaults, conversion policy and super requirements must match. Generic
+members whose signatures depend on owner types, interface adapters, Widget `createState`
+and covariant Object overrides remain local. A closed member in a generic owner can
+share the same dispatch function as a non-generic member. Sharing is capped at three
+interface groups per proxy; unshared members keep their typed local bodies. There is
+still one peer per object, with no receiver cache or new joint-GC ownership. See
+[`proxy_dispatch_emitter.dart`](lib/src/proxy_dispatch_emitter.dart) and the
+[shared binding regression](test/shared_binding_test.dart).
+
+Outer proxy `super` adapters reuse those same typed interfaces; each concrete proxy
+still owns the body that calls its actual Dart superclass. The bridge checks the
+receiver's proxy owner before shared dispatch, including specialized generic views.
+Ordinary proxy signatures omit unused standalone callback wrappers. Callable callbacks
+with zero, one or two required positional arguments reuse typed base-package factories;
+named/optional arguments, snapshots, extension representations, Future/FutureOr results
+and special Widget-list casts keep their existing adapters. Method-generic super
+contexts keep their callable adapters. No callback instances or business objects are
+cached by these shared functions.
+
+Actual static Dart `const` fields use `FlaxFunctionBinding.constant`, preserving their
+native values and normal result conversion without a generated reader function per
+field. Manifest 26 records `isConst` on those getters and rejects older manifests;
+regenerate providers and consumers together. Computed getters, final/late fields and
+setters retain live access. Canonical Manifest files use compact JSON and a shared
+`typeTable` with backward-only `{"$type": index}` references. The semantic projection
+and generic lexical scopes remain complete; invalid, duplicate, unused or cyclic table
+entries fail before generation. UI protocol 24/native ABI 2 are unchanged, and the full
+SDK remains the default registration surface.
+
+Ordinary JS object views inherit a private parent prototype and emit only changed method
+layouts. Native dispatch still uses the actual receiver's binding, with receiver checks,
+selected collection signatures and accessor halves preserved. Public JS proxy classes
+keep their own lexical-super identity; they do not inherit a different Dart constructor.
+TypeScript shares repeated omitted-member key sets as type aliases, without runtime
+code. Shared tables retain metadata only, never callback instances or business
+receivers. Static readers share one installer and readable operation prefix per group,
+instead of repeating a forwarding function for every field. Reads remain lazy and live,
+preserve Dart exceptions and reference identity, and keep the existing readonly property
+descriptors. This includes Material/Cupertino Icons and dynamic name access; icon data
+stays in Dart constants so release font tree shaking remains supported. Generated
+modules require the additive `inherited-binding-members` and `shared-static-readers`
+capabilities when applicable; older runtimes reject them. The current Manifest format is
+25; UI protocol 24 and native ABI 2 remain unchanged.
+
 - `lib/src/config.dart`: selection input, public libraries and explicit runtime types.
 - `lib/src/parser.dart` and `model.dart`: declarations, identities, types and defaults.
-- `lib/src/emitter.dart`: direct calls, callback adapters, Widget hosts and TS output.
+- `lib/src/emitter.dart` and its parts: direct calls, shared proxies, adapters and TS.
 - `bin/flax_codegen.dart`: package-atomic `validate` / `check` / `generate` CLI.
 - `test/fixtures/plugin`: independent declarations exercising the same generator.
 
@@ -43,9 +103,33 @@ The default name is `flax_bindings.yaml`; additional scopes can use names such a
 `flax_components.yaml`. Discovery includes only `flax_*.yaml` and `flax_*.yml`,
 excluding the reserved `flax_overrides` file. A custom filename still works when
 explicitly passed to `--config`, and unrelated YAML files are ignored. The CLI resolves
-current-only Manifest 24 dependency projections through the package config, and (for
+current-only Manifest 26 dependency projections through the package config, and (for
 `generate`) writes `lib/...`, `js/...`, and `bindings/manifest.json` below the owning
 package. The old `dart run flax_codegen [--check] <config>` form is not supported.
+
+A package can infer complete public libraries alongside its explicit scopes:
+
+```yaml
+format: 2
+name: rendering
+library: package:flutter/rendering.dart
+automatic: true
+jsPackage: '@flax/flutter/rendering'
+dartOutput: lib/src/generated/rendering_bindings.g.dart
+tsOutput: js/src/flutter/generated/libraries/rendering/index.ts
+publicLibraries:
+  package:flutter/rendering.dart:
+    jsPackage: '@flax/flutter/rendering'
+    tsOutput: js/src/flutter/generated/libraries/rendering/index.ts
+```
+
+All sibling scopes are planned together using the Manifest declaration identity (`kind`,
+originating library URI and declaration name). Explicit scopes win over inferred
+reexports; otherwise the nearest exporting public library owns the binding. Config
+filenames do not decide ownership. Parents, generic defaults and member references
+resolve against the complete pool before generation. Disjoint scopes may contribute to
+the same public facade without repeating implementations. One `generate --config` or
+`check --config` invocation processes the entire package.
 
 `--library` is the low-configuration path. It accepts one public `package:` library,
 uses that library's export namespace as the public API, reuses compatible provider
@@ -260,13 +344,14 @@ Lists define the declaration scope; they do not select every export of the libra
 selected, sibling or dependency-provided runtime types can appear in inferred members.
 Unsupported members are reported as skips. Ordinary objects keep their factory API; a
 proxy is generated only when explicitly requested in an override. Reused dependencies
-keep their published API. Proxy overrides need a complete convertible Dart signature.
-Overrides replace only their named fields; keep adapter kinds, proxy/mixin choices,
-callback signatures and lifecycle policy there. Unknown scoped names and invalid
-overrides fail. Mapping forms remain precise member allowlists, and can be mixed with
-list forms in other sections. Inline overrides require at least one nonempty declaration
-list. Output routes, module IDs, selection format 2, Manifest 24 and UI protocol 24 are
-unchanged.
+keep their published API; compatible overrides are checked before reuse and do not
+generate another local binding. Core rejects overrides its provider cannot satisfy.
+Proxy overrides need a complete convertible Dart signature. Overrides replace only their
+named fields; keep adapter kinds, proxy/mixin choices, callback signatures and lifecycle
+policy there. Unknown scoped names and invalid overrides fail. Mapping forms remain
+precise member allowlists, and can be mixed with list forms in other sections. Inline
+overrides require at least one nonempty declaration list. Output routes, module IDs,
+selection format 2, Manifest 26 and UI protocol 24 are unchanged.
 
 Rendering-only Widgets retain reactive constructor descriptions by overriding
 `getters: []`, `setters: []` and `instanceMethods: {}`. Production configs share this
@@ -428,7 +513,7 @@ generic arguments are checked by Dart for both `instanceof` and `asDart`.
 
 Ordinary member access still uses one cached operation invocation. No JS class or
 additional heap scanner is generated per signature, and no new GC ownership is added.
-The additive `generic-member-views` capability rejects older runtimes. Manifest 24, UI
+The additive `generic-member-views` capability rejects older runtimes. Manifest 26, UI
 protocol 24 and native ABI 2 stay unchanged; conversion metadata is derived from the
 existing model. Dart type checks validate values without scanning collection elements.
 
@@ -448,7 +533,7 @@ frozen value objects: `Status.ready.label`, `Status.ready.format('hello')` and
 `Status.fromCode(200)`. There is no `new Status`, subclass or proxy. One shared
 prototype serves all values; final primitive fields cache their first real Dart read.
 Other members retain normal typed dispatch and GC. Generic constants preserve their
-concrete arguments, including across Manifest 24 and dependency providers. Generic named
+concrete arguments, including across Manifest 26 and dependency providers. Generic named
 factories use the existing constructor specialization rules; `values` preserves each
 constant's type independently of factory configuration. `types: [Status]` remains a
 constants-only selection. Private constants remain in `values` and results with their
@@ -516,7 +601,7 @@ constructor or additional wire identity. Explicit TS type arguments are supporte
 matching all Dart inference is not required. Generic callbacks reuse bound defaults
 where legal and actual invocation types otherwise. Returned generic callbacks support
 `dartType(callback, ...types)`. Unsupported conversions and export-name collisions fail
-explicitly. Manifest 24 preserves alias origins, parameters and targets across packages.
+explicitly. Manifest 26 preserves alias origins, parameters and targets across packages.
 See [ADR 0035](../../docs/decisions/0035-generic-state-variants-and-protocol-21.md).
 Complete Dart type-system coverage remains separate work.
 
@@ -524,7 +609,7 @@ Records are structural values with no wire ID or session identity. Generated Typ
 uses readonly object fields (`$1`, `$2`, ... for positional fields plus named fields),
 while Dart conversion reconstructs real Records and recursively reuses the existing
 conversion rules for nested callbacks, collections, Futures and provider-owned objects.
-Manifest 24 encodes Record fields and all current recursive type metadata.
+Manifest 26 encodes Record fields and all current recursive type metadata.
 
 Style and Theme selections reuse object, static-member and Widget generation. Optional
 named TS inputs explicitly include undefined for exactOptionalPropertyTypes. An
@@ -634,7 +719,7 @@ keep private types and constant defaults, and `configuration`/`node` member name
 no special conflict. Explicit JS members use the normal converters. Selected
 `proxy: extends` classes retain JS inheritance, private fields, overrides and direct
 `super`. Fixed constructor inputs reject bindings; child Widgets retain their own
-subscriptions. Manifest 24 keeps native member names and parameters without forwarding
+subscriptions. Manifest 26 keeps native member names and parameters without forwarding
 source/imports. See
 [interface generation](../../docs/architecture/widget-interfaces.md).
 
@@ -645,7 +730,7 @@ and implements the selected interface. JS supplies the public interface members 
 contracts use the existing checked types and shared peer ownership. Native-only
 interfaces retain value-only bindings when their signatures cannot be converted.
 Automatic selection includes this constructor when its full conversion is available.
-Manifest 24 records the proxy's native base choice through dependency projection.
+Manifest 26 records the proxy's native base choice through dependency projection.
 
 Top-level `functions` selections generate named JS exports and `FlaxFunctionBinding`
 registrations. Function-only modules, public re-exports, typed callbacks and Future
@@ -667,7 +752,7 @@ navigation-close rules still apply. `route: {}` adds navigation admission, and o
 uses ordinary function/callback conversion, including async functions, nullable and
 named/indexed callbacks, and APIs without Context or root-Navigator parameters. The
 retired `route.context` and `route.rootNavigator` configuration fields are rejected.
-Manifest 24 stores only the optional builder roles and rejects older formats; UI
+Manifest 26 stores only the optional builder roles and rejects older formats; UI
 protocol 24, selection format 2, binding extension 8 and native ABI 2 are unchanged. See
 [top-level functions](../../docs/architecture/functions.md).
 
@@ -689,7 +774,7 @@ reference; they do not keep it mounted. Reads are lazy, invalid writes fail befo
 invoking Dart, and nullable setters accept `null` but reject `undefined`. Static/global
 values belong to the Dart application; closing a session does not reset them or keep a
 stored Context/State mounted. Provider-owned declarations reuse the provider's public
-module without registering twice. Manifest 24 records source identity, read/write
+module without registering twice. Manifest 26 records source identity, read/write
 operations and public-library routing. See
 [readonly generation](../../docs/architecture/bindings.md#public-libraries-and-top-level-readonly-declarations)
 and [ADR 0027](../../docs/decisions/0027-public-library-module-delivery.md).
@@ -702,7 +787,7 @@ writes use the same function channel as top-level declarations; module import do
 read state. Const/final/late-final writes, inherited statics, unsupported conversions
 and generated `setX` export collisions are rejected. Automatic selection skips
 conflicting writes and reports the reason. Static state belongs to the application;
-closing a session does not reset it. Manifest 24 records class-qualified read/write
+closing a session does not reset it. Manifest 26 records class-qualified read/write
 operation IDs and provider capabilities. See
 [static properties](../../docs/architecture/bindings.md#class-static-properties).
 
@@ -721,7 +806,7 @@ Widget results, native fallback and explicit super calls; Dart can retain and mo
 result later without an additional host or lease. Selected concrete extends
 getters/setters enforce inherited `@mustCallSuper`, with separate read/write and nested
 invocation checks. Async getters require super before returning their Promise; nullable
-results and existing rejections retain the same rules. Manifest 24 preserves
+results and existing rejections retain the same rules. Manifest 26 preserves
 `proxy.mustCallSuperAccessors` through providers. Regenerate all providers and consumers
 together; previous formats are rejected. See
 [proxy properties](../../docs/architecture/proxy-properties.md).
@@ -828,7 +913,7 @@ supported, including concurrent invocations with different types. Direct JS call
 ordinary `super` behavior. Omitting the context in a reified override does not preserve
 typed allocation automatically, and `mustCallSuper` checks remain active. See the
 [generic call contract](../../docs/architecture/bindings.md#generic-call-selectors-and-js-super).
-Manifest 24 records call targets and `generic-call-types` gates older frameworks; the UI
+Manifest 26 records call targets and `generic-call-types` gates older frameworks; the UI
 protocol, native ABI and selection formats remain unchanged.
 
 Generic outputs describe the existing bridge conversion: `echo(['a'])` returns a
@@ -886,12 +971,12 @@ static methods/getters. Creating a view does not call Dart or allocate a Dart ob
 views share their methods. Context, Widget and other supported receiver, argument and
 result types reuse ordinary binding conversion and lifetime checks. Generic
 declarations/members and legal Dart operators use the same function call channel. Dart
-always invokes the explicit named extension override. Manifest 24 and operation IDs are
+always invokes the explicit named extension override. Manifest 26 and operation IDs are
 unchanged; regenerate provider and consumer packages together when replacing the
 previous receiver-first API. See the
 [extension binding contract](../../docs/architecture/bindings.md#extension-declarations).
 
-Generic bounds can refer to unbound interfaces through Manifest 24 type-only references.
+Generic bounds can refer to unbound interfaces through Manifest 26 type-only references.
 Recursive/dependent class and method templates keep Dart subtype checks; TS retains
 nominal source identity and generic arguments without exposing bound members. Generic
 aliases need no runtime erasure when their bounds are type-only. Ordinary values still
@@ -940,7 +1025,7 @@ each mount must return a fresh JS State. Unoverridden factories preserve native 
 State variants still require a compatible Dart State type; a variant composed for
 `State<StatefulWidget>` cannot impersonate `State<ConcreteWidget>`.
 
-Manifest 24 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
+Manifest 26 requires `native-widget-proxies`; selection format 2 and native ABI 2 remain
 unchanged. UI protocol 24 requires regeneration of older generated modules. Generated
 proxies share member metadata and retain one actual JS receiver peer per Dart instance.
 Current lookup preserves private/arrow fields, inheritance and later member replacement.

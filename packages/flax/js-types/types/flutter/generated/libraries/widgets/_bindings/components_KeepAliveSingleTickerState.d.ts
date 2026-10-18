@@ -1,8 +1,9 @@
 import { type Widget, type ComponentContext } from '@flax/core/bindings';
-import { State as _FlaxComponentState, StatefulWidget as _FlaxComponentStatefulWidget } from '../../../../components.js';
 import type * as upstream0 from '@flax/flutter/scheduler/_bindings/flutter_TickerProvider';
 import '@flax/flutter/scheduler/_bindings/flutter_TickerProvider';
-export interface KeepAliveSingleTickerState<T extends _FlaxComponentStatefulWidget = _FlaxComponentStatefulWidget> extends upstream0.TickerProvider {
+import { State as _FlaxComponentState, StatefulWidget as _FlaxComponentStatefulWidget } from '../../../../components.js';
+import { flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+export interface KeepAliveSingleTickerState<T extends _FlaxComponentStatefulWidget = _FlaxComponentStatefulWidget> extends Omit<upstream0.TickerProvider, typeof _flaxDartTypeValue> {
 }
 export interface KeepAliveSingleTickerState<T extends _FlaxComponentStatefulWidget = _FlaxComponentStatefulWidget> {
     updateKeepAlive(): void;

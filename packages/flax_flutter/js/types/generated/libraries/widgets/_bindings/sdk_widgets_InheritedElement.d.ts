@@ -1,0 +1,352 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput, type DartSetInput, type Widget } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyElement';
+import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_ComponentElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ComponentElement';
+import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_Element';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Element';
+import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTree';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTree';
+import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_InheritedWidget';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/sdk_widgets_BuildOwner';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_BuildOwner';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/sdk_widgets_BuildScope';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_BuildScope';
+import type * as upstream9 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import type * as upstream10 from '@flax/dart/ui/_bindings/flutter_Size';
+import '@flax/dart/ui/_bindings/flutter_Size';
+import type * as upstream11 from '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyWidget';
+import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/dart/core/_bindings/flutter_Type';
+import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream16 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Notification';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream19 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface InheritedElement extends Omit<upstream0.ProxyElement, _flaxOwnMembers0>, Omit<upstream1.ComponentElement, _flaxOwnMembers0 | keyof upstream0.ProxyElement>, Omit<upstream2.Element, _flaxOwnMembers0 | keyof upstream0.ProxyElement | keyof upstream1.ComponentElement>, Omit<upstream3.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.ProxyElement | keyof upstream1.ComponentElement | keyof upstream2.Element>, Omit<upstream4.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.ProxyElement | keyof upstream1.ComponentElement | keyof upstream2.Element | keyof upstream3.DiagnosticableTree>, Omit<upstream5.BuildContext, _flaxOwnMembers0 | keyof upstream0.ProxyElement | keyof upstream1.ComponentElement | keyof upstream2.Element | keyof upstream3.DiagnosticableTree | keyof upstream4.Diagnosticable>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::InheritedElement": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyElement": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::ComponentElement": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+}> {
+    readonly __InheritedElement: unique symbol;
+    readonly [_flaxDartTypeValue]: InheritedElement;
+    readonly [_flaxDartMethodCases]?: {
+        dependOnInheritedWidgetOfExactType: _FlaxSignature0;
+        getInheritedWidgetOfExactType: _FlaxSignature1;
+        getElementForInheritedWidgetOfExactType: _FlaxSignature2;
+        findAncestorWidgetOfExactType: _FlaxSignature3;
+        findAncestorStateOfType: _FlaxSignature4;
+        findRootAncestorStateOfType: _FlaxSignature5;
+        findAncestorRenderObjectOfType: _FlaxSignature6;
+    };
+    readonly debugDoingBuild: boolean;
+    readonly renderObjectAttachingChild: upstream2.Element | null;
+    readonly slot: unknown | null;
+    readonly depth: number;
+    readonly widget: Widget;
+    readonly mounted: boolean;
+    readonly debugIsDefunct: boolean;
+    readonly debugIsActive: boolean;
+    readonly owner: upstream7.BuildOwner | null;
+    readonly buildScope: upstream8.BuildScope;
+    readonly renderObject: upstream9.RenderObject | null;
+    readonly size: upstream10.Size | null;
+    readonly dirty: boolean;
+    build(): Widget;
+    update(newWidget: upstream11.ProxyWidget): void;
+    updated(oldWidget: upstream6.InheritedWidget): void;
+    notifyClients(oldWidget: upstream6.InheritedWidget): void;
+    mount(parent: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>) | null, newSlot: unknown | null): void;
+    performRebuild(): void;
+    visitChildren(visitor: ((element: upstream2.Element) => void)): void;
+    forgetChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>): void;
+    reassemble(): void;
+    describeMissingAncestor(options: {
+        expectedAncestorType: Readonly<{
+            "__flaxBound:dart:core::Type": readonly [];
+        }>;
+    }): DartList<upstream12.DiagnosticsNode>;
+    describeElement(name: string, options?: {
+        style?: upstream14.DiagnosticsTreeStyle | undefined;
+    }): upstream12.DiagnosticsNode;
+    describeWidget(name: string, options?: {
+        style?: upstream14.DiagnosticsTreeStyle | undefined;
+    }): upstream12.DiagnosticsNode;
+    describeOwnershipChain(name: string): upstream12.DiagnosticsNode;
+    debugVisitOnstageChildren(visitor: ((element: upstream2.Element) => void)): void;
+    visitChildElements(visitor: ((element: upstream2.Element) => void)): void;
+    updateChild(child: (Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>) | null, newWidget: Widget | null, newSlot: unknown | null): upstream2.Element | null;
+    updateChildren(oldChildren: DartListInput<upstream2.Element, Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>>, newWidgets: DartListInput<Widget, Widget>, options?: {
+        forgottenChildren?: DartSetInput<upstream2.Element, Readonly<{
+            "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+        }>> | null | undefined;
+        slots?: DartListInput<unknown | null, unknown | null> | null | undefined;
+    }): DartList<upstream2.Element>;
+    updateSlotForChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>, newSlot: unknown | null): void;
+    updateSlot(newSlot: unknown | null): void;
+    detachRenderObject(): void;
+    attachRenderObject(newSlot: unknown | null): void;
+    inflateWidget(newWidget: Widget, newSlot: unknown | null): upstream2.Element;
+    deactivateChild(child: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>): void;
+    activate(): void;
+    deactivate(): void;
+    debugDeactivated(): void;
+    unmount(): void;
+    debugExpectsRenderObjectForSlot(slot: unknown | null): boolean;
+    findRenderObject(): upstream9.RenderObject | null;
+    doesDependOnInheritedElement(ancestor: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::InheritedElement": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyElement": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::ComponentElement": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>): boolean;
+    dependOnInheritedElement(ancestor: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::InheritedElement": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyElement": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::ComponentElement": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>, options?: {
+        aspect?: unknown | null | undefined;
+    }): upstream6.InheritedWidget;
+    dependOnInheritedWidgetOfExactType<T extends upstream6.InheritedWidget = upstream6.InheritedWidget>(options?: {
+        aspect?: unknown | null | undefined;
+    }): T | null;
+    getInheritedWidgetOfExactType<T extends upstream6.InheritedWidget = upstream6.InheritedWidget>(): T | null;
+    getElementForInheritedWidgetOfExactType<T extends upstream6.InheritedWidget = upstream6.InheritedWidget>(): InheritedElement | null;
+    attachNotificationTree(): void;
+    findAncestorWidgetOfExactType<T extends Widget = Widget>(): T | null;
+    findAncestorStateOfType<T extends upstream15.State<Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>> = upstream15.State<upstream16.StatefulWidget>>(): T | null;
+    findRootAncestorStateOfType<T extends upstream15.State<Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>> = upstream15.State<upstream16.StatefulWidget>>(): T | null;
+    findAncestorRenderObjectOfType<T extends upstream9.RenderObject = upstream9.RenderObject>(): T | null;
+    visitAncestorElements(visitor: ((element: upstream2.Element) => boolean)): void;
+    didChangeDependencies(): void;
+    debugGetCreatorChain(limit: number): string;
+    debugGetDiagnosticChain(): DartList<upstream2.Element>;
+    dispatchNotification(notification: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/notification_listener.dart::Notification": readonly [];
+    }>): void;
+    toStringShort(): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream14.DiagnosticsTreeStyle | null | undefined;
+    }): upstream12.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
+    markNeedsBuild(): void;
+    rebuild(options?: {
+        force?: boolean | undefined;
+    }): void;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream19.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream19.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toString(options?: {
+        minLevel?: upstream19.DiagnosticLevel | undefined;
+    }): string;
+    getDependencies(dependent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>): unknown | null;
+    setDependencies(dependent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>, value: unknown | null): void;
+    updateDependencies(dependent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>, aspect: unknown | null): void;
+    notifyDependent(oldWidget: upstream6.InheritedWidget, dependent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>): void;
+    removeDependent(dependent: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Element": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext": readonly [];
+    }>): void;
+}
+export declare function _InheritedElementFactory(widget: upstream6.InheritedWidget): InheritedElement;
+export declare const InheritedElement: typeof _InheritedElementFactory & _FlaxInstanceType<InheritedElement> & _FlaxDartType<InheritedElement, readonly ["class", "flax.core/sdk_widgets#type:InheritedElement", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "debugDoingBuild" | "renderObjectAttachingChild" | "slot" | "depth" | "widget" | "mounted" | "debugIsDefunct" | "debugIsActive" | "owner" | "buildScope" | "renderObject" | "size" | "dirty" | "build" | "update" | "updated" | "notifyClients" | "mount" | "performRebuild" | "visitChildren" | "forgetChild" | "reassemble" | "describeMissingAncestor" | "describeElement" | "describeWidget" | "describeOwnershipChain" | "debugVisitOnstageChildren" | "visitChildElements" | "updateChild" | "updateChildren" | "updateSlotForChild" | "updateSlot" | "detachRenderObject" | "attachRenderObject" | "inflateWidget" | "deactivateChild" | "activate" | "deactivate" | "debugDeactivated" | "unmount" | "debugExpectsRenderObjectForSlot" | "findRenderObject" | "doesDependOnInheritedElement" | "dependOnInheritedElement" | "dependOnInheritedWidgetOfExactType" | "getInheritedWidgetOfExactType" | "getElementForInheritedWidgetOfExactType" | "attachNotificationTree" | "findAncestorWidgetOfExactType" | "findAncestorStateOfType" | "findRootAncestorStateOfType" | "findAncestorRenderObjectOfType" | "visitAncestorElements" | "didChangeDependencies" | "debugGetCreatorChain" | "debugGetDiagnosticChain" | "dispatchNotification" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "debugDescribeChildren" | "markNeedsBuild" | "rebuild" | "toStringShallow" | "toStringDeep" | "toString" | "getDependencies" | "setDependencies" | "updateDependencies" | "notifyDependent" | "removeDependent" | "__flaxBound:package:flutter/src/widgets/framework.dart::InheritedElement" | "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyElement" | "__flaxBound:package:flutter/src/widgets/framework.dart::ComponentElement" | "__flaxBound:package:flutter/src/widgets/framework.dart::Element" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/framework.dart::BuildContext";
+interface _FlaxSignature0 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream6.InheritedWidget] ? (options?: {
+        aspect?: unknown | null | undefined;
+    }) => _Selected0 | null : never : never;
+}
+interface _FlaxSignature1 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream6.InheritedWidget] ? () => _Selected0 | null : never : never;
+}
+interface _FlaxSignature2 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream6.InheritedWidget] ? () => InheritedElement | null : never : never;
+}
+interface _FlaxSignature3 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [Widget] ? () => _Selected0 | null : never : never;
+}
+interface _FlaxSignature4 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream15.State<Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>] ? () => _Selected0 | null : never : never;
+}
+interface _FlaxSignature5 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream15.State<Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>>] ? () => _Selected0 | null : never : never;
+}
+interface _FlaxSignature6 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream9.RenderObject] ? () => _Selected0 | null : never : never;
+}
+export {};

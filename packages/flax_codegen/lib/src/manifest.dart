@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:yaml/yaml.dart';
-
 import 'identity.dart';
 import 'manifest_codec.dart';
+import 'manifest_storage.dart';
 import 'model.dart';
 import 'ownership.dart';
 
@@ -64,7 +63,7 @@ final class FlaxCodegenManifest {
   }) : imports = List.unmodifiable(imports),
        modules = List.unmodifiable(modules);
 
-  static const formatVersion = 24;
+  static const formatVersion = 26;
   static const uiProtocol = 24;
 
   final String package;
@@ -72,10 +71,11 @@ final class FlaxCodegenManifest {
   final List<String> imports;
   final List<FlaxCodegenManifestModule> modules;
 
-  /// Canonical JSON with fixed key order and sorted collections.
+  /// Canonical file JSON with a shared, postorder type table.
   String encode() =>
-      '${const JsonEncoder.withIndent('  ').convert(toJson())}\n';
+      '${jsonEncode(FlaxCodegenManifestStorage.compact(toJson()))}\n';
 
+  /// Expanded semantic JSON, independent of the compact file representation.
   Map<String, Object?> toJson() => {
     'formatVersion': formatVersion,
     'package': package,
@@ -89,7 +89,6 @@ final class FlaxCodegenManifest {
     String contents,
     FlaxCodegenManifestDiagnostics diagnostics,
   ) {
-    _detectDuplicateKeys(contents, diagnostics);
     final Object? decoded;
     try {
       decoded = jsonDecode(contents);
@@ -97,8 +96,11 @@ final class FlaxCodegenManifest {
       diagnostics.add(pointer: '', message: 'Invalid JSON.');
       return null;
     }
+    _detectDuplicateKeys(contents, diagnostics);
     if (diagnostics.items.isNotEmpty) return null;
-    return _decodePackage(decoded, diagnostics);
+    final expanded = FlaxCodegenManifestStorage.expand(decoded, diagnostics);
+    if (diagnostics.items.isNotEmpty) return null;
+    return _decodePackage(expanded, diagnostics);
   }
 
   /// Builds a canonical envelope from a resolved local package.
@@ -186,11 +188,38 @@ void _detectDuplicateKeys(
   String contents,
   FlaxCodegenManifestDiagnostics diagnostics,
 ) {
-  try {
-    loadYamlNode(contents, sourceUrl: Uri(path: diagnostics.source));
-  } on YamlException catch (error) {
-    if (error.message == 'Duplicate mapping key.') {
-      diagnostics.add(pointer: '', message: 'Duplicate mapping key.');
+  // JSON syntax was already validated; retain only each open object's key set.
+  final containers = <Set<String>?>[];
+  for (var i = 0; i < contents.length; i++) {
+    final character = contents.codeUnitAt(i);
+    if (character == 123) {
+      containers.add(<String>{});
+    } else if (character == 91) {
+      containers.add(null);
+    } else if (character == 125 || character == 93) {
+      containers.removeLast();
+    } else if (character == 34) {
+      final start = i;
+      var escaped = false;
+      while (contents.codeUnitAt(++i) != 34) {
+        if (contents.codeUnitAt(i) == 92) {
+          escaped = true;
+          i++;
+        }
+      }
+      var next = i + 1;
+      while (next < contents.length &&
+          const {9, 10, 13, 32}.contains(contents.codeUnitAt(next))) {
+        next++;
+      }
+      if (next == contents.length || contents.codeUnitAt(next) != 58) continue;
+      final key = escaped
+          ? jsonDecode(contents.substring(start, i + 1)) as String
+          : contents.substring(start + 1, i);
+      if (!containers.last!.add(key)) {
+        diagnostics.add(pointer: '', message: 'Duplicate mapping key.');
+        return;
+      }
     }
   }
 }
@@ -351,6 +380,8 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
       'instance-checks',
       'native-core-inputs',
       'generic-member-views',
+      'inherited-binding-members',
+      'shared-static-readers',
       'dart-type-tokens',
       'generic-call-types',
       'engine-type-handles',

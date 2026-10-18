@@ -13,8 +13,267 @@ import 'package:flax_codegen/src/package_pipeline.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
+import 'support/core_package.dart';
+
 void main() {
   group('FlaxCodegenPackagePipeline.validateConfig', () {
+    test(
+      'shared public facades reject nonadjacent export collisions',
+      () async {
+        final package = _tempPackage(
+          name: 'scope_pkg',
+          libraries: {
+            'a.dart': 'class Shared { Shared(); }',
+            'b.dart': 'class Other { Other(); }',
+            'c.dart': 'class Shared { Shared(); }',
+          },
+          configs: {
+            for (final name in ['a', 'b', 'c'])
+              'flax_$name.yaml':
+                  '''
+format: 2
+name: $name
+library: package:scope_pkg/$name.dart
+jsPackage: '@example/$name'
+dartOutput: lib/$name.g.dart
+tsOutput: js/$name.ts
+publicLibraries:
+  package:scope_pkg/$name.dart:
+    jsPackage: '@example/shared'
+    tsOutput: js/shared/index.ts
+classes:
+  ${name == 'b' ? 'Other' : 'Shared'}:
+    kind: object
+    constructors: {'': []}
+''',
+          },
+        );
+        await expectLater(
+          FlaxCodegenPackagePipeline.validateConfig(
+            package.configPath('flax_a.yaml'),
+          ),
+          throwsA(
+            isA<FlaxCodegenException>().having(
+              (error) => error.diagnostics.any(
+                (diagnostic) =>
+                    diagnostic.code == FlaxCodegenDiagnosticCode.output &&
+                    diagnostic.message.contains('js/shared/index.ts'),
+              ),
+              'shared export collision',
+              isTrue,
+            ),
+          ),
+        );
+      },
+    );
+
+    test('sibling modules compose one public library facade', () async {
+      final package = _tempPackage(
+        name: 'scope_pkg',
+        libraries: {'api.dart': 'class A { A(); } class B { B(); }'},
+        configs: {
+          for (final name in ['a', 'b'])
+            'flax_$name.yaml':
+                '''
+format: 2
+name: $name
+library: package:scope_pkg/api.dart
+jsPackage: '@example/api'
+dartOutput: lib/$name.g.dart
+tsOutput: js/$name.ts
+publicLibraries:
+  package:scope_pkg/api.dart:
+    jsPackage: '@example/api'
+    tsOutput: js/index.ts
+classes:
+  ${name.toUpperCase()}:
+    kind: object
+    constructors: {'': []}
+''',
+        },
+      );
+      final result = await FlaxCodegenPackagePipeline.generateConfig(
+        package.configPath('flax_a.yaml'),
+      );
+      expect(
+        result.outputInventory.where((path) => path == 'js/index.ts'),
+        hasLength(1),
+      );
+      final source = File(p.join(package.root.path, 'js/index.ts'))
+          .readAsStringSync();
+      expect(source, contains('a_A'));
+      expect(source, contains('b_B'));
+      expect(source.split('// GENERATED CODE.').length, 2);
+      await FlaxCodegenPackagePipeline.checkConfig(
+        package.configPath('flax_b.yaml'),
+      );
+    });
+
+    test(
+      'automatic scope keeps independent getter and setter owners',
+      () async {
+        final package = _tempPackage(
+          name: 'scope_pkg',
+          libraries: {'api.dart': 'int sharedValue = 3;'},
+          configs: {
+            'flax_read.yaml': """
+format: 2
+name: read
+library: package:scope_pkg/api.dart
+jsPackage: '@example/values'
+dartOutput: lib/read.g.dart
+tsOutput: js/read.ts
+publicLibraries:
+  package:scope_pkg/api.dart:
+    jsPackage: '@example/values'
+    tsOutput: js/index.ts
+topLevel:
+  getters: [sharedValue]
+""",
+            'flax_write.yaml': """
+format: 2
+name: write
+library: package:scope_pkg/api.dart
+automatic: true
+jsPackage: '@example/values'
+dartOutput: lib/write.g.dart
+tsOutput: js/write.ts
+publicLibraries:
+  package:scope_pkg/api.dart:
+    jsPackage: '@example/values'
+    tsOutput: js/index.ts
+""",
+          },
+        );
+        final result = await FlaxCodegenPackagePipeline.generateConfig(
+          package.configPath('flax_write.yaml'),
+        );
+        final read = result.localModels.singleWhere(
+          (module) => module.name == 'read',
+        );
+        final write = result.localModels.singleWhere(
+          (module) => module.name == 'write',
+        );
+        expect(read.topLevel!.getters.map((g) => g.name), ['sharedValue']);
+        expect(write.topLevel!.getters, isEmpty);
+        expect(write.topLevel!.setters.map((s) => s.name), ['sharedValue']);
+        final source = File(p.join(package.root.path, 'js/index.ts'))
+            .readAsStringSync();
+        expect(source, contains('getSharedValue'));
+        expect(source, contains('setSharedValue'));
+        await FlaxCodegenPackagePipeline.checkConfig(
+          package.configPath('flax_read.yaml'),
+        );
+      },
+    );
+
+    test(
+      'automatic sibling libraries share source owners and generic parents',
+      () async {
+        final package = _tempPackage(
+          name: 'scope_pkg',
+          configs: {
+            'flax_a_facade.yaml': '''
+format: 2
+name: facade
+library: package:scope_pkg/facade.dart
+automatic: true
+jsPackage: '@example/facade'
+dartOutput: lib/facade.g.dart
+tsOutput: js/facade.ts
+publicLibraries:
+  package:scope_pkg/facade.dart:
+    jsPackage: '@example/facade'
+    tsOutput: js/facade/index.ts
+''',
+            'flax_z_base.yaml': '''
+format: 2
+name: base
+library: package:scope_pkg/base.dart
+automatic: true
+jsPackage: '@example/base'
+dartOutput: lib/base.g.dart
+tsOutput: js/base.ts
+publicLibraries:
+  package:scope_pkg/base.dart:
+    jsPackage: '@example/base'
+    tsOutput: js/base/index.ts
+''',
+          },
+          libraries: {
+            'values.dart': '''
+class Base { Base(); int get value => 3; }
+class Child extends Base { Child(); }
+class Bag<T extends Base> { Bag(this.item); final T item; }
+T echo<T extends Base>(T value) => value;
+''',
+            'base.dart': "export 'values.dart';",
+            'facade.dart': '''
+import 'base.dart';
+export 'base.dart';
+class Derived extends Child { Derived(); }
+Bag<Child> wrap(Child value) => Bag(value);
+''',
+          },
+        );
+        final result = await FlaxCodegenPackagePipeline.validateConfig(
+          package.configPath('flax_a_facade.yaml'),
+        );
+        final base = result.localModels.singleWhere((m) => m.name == 'base');
+        final facade = result.localModels.singleWhere(
+          (m) => m.name == 'facade',
+        );
+        expect(
+          base.classes.map((type) => type.name),
+          containsAll(['Base', 'Child', 'Bag']),
+        );
+        expect(facade.classes.map((type) => type.name), ['Derived']);
+        expect(base.functions.map((f) => f.call.name), ['echo']);
+        expect(
+          base.publicLibraries
+              .singleWhere((route) => route.jsPackage == '@example/facade')
+              .exports,
+          containsAll(['Base', 'Child', 'Bag', 'echo']),
+        );
+        final generated = await FlaxCodegenPackagePipeline.generateConfig(
+          package.configPath('flax_a_facade.yaml'),
+        );
+        expect(
+          generated.outputInventory.where((p) => p == 'js/facade/index.ts'),
+          hasLength(1),
+        );
+        final facadeSource = File(
+          p.join(package.root.path, 'js/facade/index.ts'),
+        ).readAsStringSync();
+        expect(facadeSource, contains('base_Base'));
+        expect(facadeSource, contains('facade_Derived'));
+
+        expect(facade.functions.map((f) => f.call.name), ['wrap']);
+        final child = base.classes.singleWhere((type) => type.name == 'Child');
+        expect(
+          facade.classes.single.superTypes.any((type) => type.id == child.id),
+          isTrue,
+        );
+        final owners = result.manifest.modules
+            .expand((m) => m.model.identities)
+            .where((row) => row.owner)
+            .toList();
+        expect(
+          owners.map((row) => row.sourceIdentity).toSet(),
+          hasLength(owners.length),
+        );
+        expect(
+          base.classes
+              .singleWhere((type) => type.name == 'Bag')
+              .typeParameters
+              .single
+              .defaultType!
+              .id,
+          base.classes.singleWhere((type) => type.name == 'Base').id,
+        );
+      },
+    );
+
     test(
       'discovers prefixed siblings and honors an explicit custom filename',
       () async {
@@ -199,6 +458,34 @@ functions: [describe, identify]
             .where((skip) => skip.code == 'existing_provider')
             .map((skip) => skip.target),
         containsAll(['Value', 'describe', 'identify']),
+      );
+      final config = File(host.configPath('flax_bindings.yaml'));
+      final selected = config.readAsStringSync().replaceFirst(
+        'functions: [describe, identify]',
+        'functions: [describe, identify, copyData]',
+      );
+      config.writeAsStringSync('''
+${selected}overrides:
+  classes:
+    Value: {getters: [available]}
+  functions:
+    describe: {data: {result: false}}
+    copyData: {data: {parameters: [value], result: true}}
+''');
+      final overridden = await FlaxCodegenPackagePipeline.validateConfig(
+        config.path,
+      );
+      expect(overridden.localModels.single.classes, isEmpty);
+      expect(
+        overridden.localModels.single.functions.map((value) => value.call.name),
+        isEmpty,
+      );
+      config.writeAsStringSync(
+        config.readAsStringSync().replaceFirst('[available]', '[missing]'),
+      );
+      await expectLater(
+        FlaxCodegenPackagePipeline.validateConfig(config.path),
+        throwsA(isA<FlaxCodegenException>()),
       );
     });
 
@@ -1268,7 +1555,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 24);
+      expect(validated.manifest.toJson()['formatVersion'], 26);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,
@@ -1369,19 +1656,22 @@ extensions:
       );
     });
 
-    test('public library consumers reuse a manifest-only provider and named reads', () async {
-      final workspace = _tempWorkspace();
-      final base = _writeHostPackage(
-        workspace: workspace,
-        name: 'base_pkg',
-        libraries: {
-          'base.dart':
-              'class Item { Item(this.value); final int value; }\n'
-              'const answer = 42;\nfinal token = Item(7);\n',
-          'alias.dart': "export 'base.dart';\n",
-        },
-        configs: {
-          'flax_base.yaml': '''
+    test(
+      'public library consumers reuse a manifest-only provider and named reads',
+      () async {
+        final workspace = _tempWorkspace();
+        final base = _writeHostPackage(
+          workspace: workspace,
+          name: 'base_pkg',
+          libraries: {
+            'base.dart':
+                'class Item { Item(this.value); final int value; }\n'
+                'enum Mode { on, off }\n'
+                'const answer = 42;\nfinal token = Item(7);\n',
+            'alias.dart': "export 'base.dart';\n",
+          },
+          configs: {
+            'flax_base.yaml': '''
 format: 2
 name: base
 library: package:base_pkg/base.dart
@@ -1395,6 +1685,7 @@ publicLibraries:
   package:base_pkg/alias.dart:
     jsPackage: '@base/values/alias'
     tsOutput: js/alias/index.ts
+types: [Mode]
 topLevel:
   getters: [answer, token]
 classes:
@@ -1404,19 +1695,21 @@ classes:
       '': [value]
     getters: [value]
 ''',
-        },
-      );
-      File(p.join(base.root.path, 'flax_package.yaml')).writeAsStringSync('''
+          },
+        );
+        File(p.join(base.root.path, 'flax_package.yaml')).writeAsStringSync('''
 format: 2
 capabilities: [bindings]
 bindingNamespace: example.base
 ''');
-      final host = _writeHostPackage(
-        workspace: workspace,
-        name: 'host_pkg',
-        libraries: {'consumer.dart': "export 'package:base_pkg/alias.dart';\n"},
-        configs: {
-          'flax_consumer.yaml': '''
+        final host = _writeHostPackage(
+          workspace: workspace,
+          name: 'host_pkg',
+          libraries: {
+            'consumer.dart': "export 'package:base_pkg/alias.dart';\n",
+          },
+          configs: {
+            'flax_consumer.yaml': '''
 format: 2
 name: consumer
 library: package:host_pkg/consumer.dart
@@ -1428,54 +1721,68 @@ publicLibraries:
   package:host_pkg/consumer.dart:
     jsPackage: '@host/consumer/api'
     tsOutput: js/api/index.ts
+types: [Mode, Item]
 topLevel:
   getters: [token, answer]
 ''',
-        },
-      );
-      _writePackageConfig(workspace, {
-        'base_pkg': base.root,
-        'host_pkg': host.root,
-      });
-      final owner = await FlaxCodegenPackagePipeline.validateConfig(
-        base.configPath('flax_base.yaml'),
-      );
-      File(p.join(base.root.path, 'bindings/manifest.json'))
-          .writeAsStringSync(owner.manifest.encode());
-      File(base.configPath('flax_base.yaml')).deleteSync();
-      final before = _packageFilesystemSnapshot(base.root);
-      final result = await FlaxCodegenPackagePipeline.validateConfig(
-        host.configPath('flax_consumer.yaml'),
-      );
-      final provider = result
-          .directDependencies['base_pkg']!
-          .modulesByModuleId
-          .values
-          .single;
-      final module = result.localModels.single;
-      final emitter = FlaxCodegenBindingEmitter([provider, module]);
-      final files = emitter.typescriptOutputs(module);
-      expect(module.classes, isEmpty);
-      expect(
-        files['js/api/index.ts'],
-        contains(
-          'export { answer } from "@base/values/alias/_bindings/base_answer"',
-        ),
-      );
-      expect(
-        files['js/api/index.ts'],
-        contains(
-          'export { getToken } from "@base/values/alias/_bindings/base_token"',
-        ),
-      );
-      expect(files.values.join(), isNot(contains('invokeTopLevel("')));
-      expect(emitter.dart(module), isNot(contains('_read_token')));
-      expect(
-        FlaxCodegenBindingEmitter([module, provider]).typescriptOutputs(module),
-        files,
-      );
-      _expectPackageFilesystemUnchanged(base.root, before: before);
-    });
+          },
+        );
+        _writePackageConfig(workspace, {
+          'base_pkg': base.root,
+          'host_pkg': host.root,
+        });
+        final owner = await FlaxCodegenPackagePipeline.validateConfig(
+          base.configPath('flax_base.yaml'),
+        );
+        File(p.join(base.root.path, 'bindings/manifest.json'))
+            .writeAsStringSync(owner.manifest.encode());
+        File(base.configPath('flax_base.yaml')).deleteSync();
+        final before = _packageFilesystemSnapshot(base.root);
+        final result = await FlaxCodegenPackagePipeline.validateConfig(
+          host.configPath('flax_consumer.yaml'),
+        );
+        final provider = result
+            .directDependencies['base_pkg']!
+            .modulesByModuleId
+            .values
+            .single;
+        final module = result.localModels.single;
+        final emitter = FlaxCodegenBindingEmitter([provider, module]);
+        final files = emitter.typescriptOutputs(module);
+        expect(module.classes, isEmpty);
+        expect(
+          module.types.singleWhere((type) => type.name == 'Mode').id,
+          'example.base/base#type:Mode',
+        );
+        expect(
+          result.manifest.modules.single.model.identities.where(
+            (identity) => identity.owner,
+          ),
+          isEmpty,
+        );
+        expect(files.values.join(), isNot(contains('defineEnum(')));
+        expect(
+          files['js/api/index.ts'],
+          contains(
+            'export { answer } from "@base/values/base/_bindings/base_answer"',
+          ),
+        );
+        expect(
+          files['js/api/index.ts'],
+          contains(
+            'export { getToken } from "@base/values/base/_bindings/base_token"',
+          ),
+        );
+        expect(files.values.join(), isNot(contains('invokeTopLevel("')));
+        expect(emitter.dart(module), isNot(contains('_read_token')));
+        expect(
+          FlaxCodegenBindingEmitter([module, provider])
+              .typescriptOutputs(module),
+          files,
+        );
+        _expectPackageFilesystemUnchanged(base.root, before: before);
+      },
+    );
 
     test(
       'readonly reexports reuse a manifest-only provider namespace',
@@ -1933,7 +2240,7 @@ classes: {}
           'lib/widgets.g.dart',
         ]);
         expect(
-          () => viaWidgets.configPaths.add('/flax_extrflax_a.yaml'),
+          () => viaWidgets.configPaths.add('/flax_extra.yaml'),
           throwsUnsupportedError,
         );
         expect(
@@ -3959,12 +4266,21 @@ classes:
       ];
       expect(dependencyModules, isNotEmpty);
       final contextModules = [...validation.localModels, ...dependencyModules];
-      final localOnlyTs = FlaxCodegenBindingEmitter(validation.localModels)
-          .typescript(validation.localModels.single);
+      expect(
+        () =>
+            FlaxCodegenBindingEmitter(validation.localModels)
+                .typescript(validation.localModels.single),
+        throwsA(
+          isA<StateError>().having(
+            (error) => error.message,
+            'missing dependency',
+            'Missing provider for Base',
+          ),
+        ),
+      );
       final withDepsTs = FlaxCodegenBindingEmitter(contextModules)
           .typescript(validation.localModels.single);
       expect(withDepsTs, contains('upstream0.StackTrace'));
-      expect(localOnlyTs, isNot(equals(withDepsTs)));
 
       Future<ProcessResult> runner(
         String executable,
@@ -4482,7 +4798,7 @@ classes:
         final oldFiles = initial.outputInventory
             .where((f) => f.startsWith('js/a/'))
             .toList();
-        expect(oldFiles, hasLength(4));
+        expect(oldFiles, ['js/a/_bindings/api.__module.ts', 'js/a/index.ts']);
         expect(
           File(p.join(package.root.path, 'js/aggregate.ts')).existsSync(),
           isFalse,
@@ -4809,7 +5125,7 @@ class Extra {
 ''',
     },
     configs: {
-      'flax_extrflax_a.yaml': '''
+      'flax_extra.yaml': '''
 format: 2
 name: extra
 library: package:generate_pkg/extra.dart
@@ -4944,7 +5260,7 @@ class Extra {
 ''',
     },
     configs: {
-      'flax_extrflax_a.yaml': '''
+      'flax_extra.yaml': '''
 format: 2
 name: extra
 library: package:check_pkg/extra.dart
@@ -5780,24 +6096,7 @@ String _packageConfigJson(
 }) {
   packages = Map.of(packages);
   if (!packages.containsKey('flax')) {
-    // These isolated pipeline fixtures do not consume Flutter's Core API.
-    final core = Directory(p.join(packageConfigDir.parent.path, 'core_fixture'))
-      ..createSync(recursive: true);
-    File(p.join(core.path, 'pubspec.yaml')).writeAsStringSync('name: flax\n');
-    Directory(p.join(core.path, 'lib')).createSync();
-    final bindings = Directory(p.join(core.path, 'bindings'))..createSync();
-    final manifest = FlaxCodegenManifest.fromResolved(
-      package: FlaxCodegenResolvedPackage(
-        dartPackage: 'flax',
-        namespace: FlaxCodegenBindingNamespace.parse('flax.core'),
-        modules: const [],
-      ),
-      modules: const {},
-      importPackageNames: const [],
-    );
-    File(p.join(bindings.path, 'manifest.json'))
-        .writeAsStringSync(manifest.encode());
-    packages['flax'] = core;
+    packages['flax'] = writeEmptyCorePackage(packageConfigDir.parent);
   }
   final entries = [
     for (final name in packages.keys.toList()..sort())

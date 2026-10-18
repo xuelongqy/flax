@@ -4,6 +4,10 @@ class StaticValues<T> {
   static int? optional;
   static late int delayed;
   static const int constant = 7;
+  static const List<int> values = [1, 2];
+  static const String? absent = null;
+  static const int Function(int) transform = _increment;
+  static int _increment(int value) => value + 1;
   static final int frozen = 8;
   static late final int once;
   static int reads = 0;
