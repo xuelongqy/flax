@@ -7,8 +7,7 @@ import type * as upstream1 from '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import type * as upstream2 from '@flax/dart/core/_bindings/flutter_Match';
 import '@flax/dart/core/_bindings/flutter_Match';
-const _flaxMemberParameters0 = [{"name":"input","required":true,"positional":true},{"name":"start","positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"input","required":true,"positional":true}] as const;
+import { _flaxMemberParameters104, _flaxMemberParameters105 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface RegExp extends Omit<upstream0.Pattern, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:core::RegExp": readonly [] }>, Readonly<{ "__flaxBound:dart:core::Pattern": readonly [] }> { readonly __RegExp: unique symbol;
@@ -25,7 +24,7 @@ firstMatch(input: string): upstream1.RegExpMatch | null;
 hasMatch(input: string): boolean;
 stringMatch(input: string): string | null;
 }
-defineObject("flax.core/flutter#type:RegExp", ["pattern","isMultiLine","isCaseSensitive","isUnicode","isDotAll"], [], _flaxBindingMethods("flax.core/flutter#type:RegExp", "object", {"allMatches":_flaxMemberParameters0,"firstMatch":_flaxMemberParameters1,"hasMatch":_flaxMemberParameters1,"stringMatch":_flaxMemberParameters1}, {}), [], undefined, "flax.core/flutter#type:Pattern");
+defineObject("flax.core/flutter#type:RegExp", ["pattern","isMultiLine","isCaseSensitive","isUnicode","isDotAll"], [], _flaxBindingMethods("flax.core/flutter#type:RegExp", "object", {"allMatches":_flaxMemberParameters104,"firstMatch":_flaxMemberParameters105,"hasMatch":_flaxMemberParameters105,"stringMatch":_flaxMemberParameters105}, {}), [], undefined, "flax.core/flutter#type:Pattern");
 export function _RegExpFactory(source: string, options: { multiLine?: boolean | undefined; caseSensitive?: boolean | undefined; unicode?: boolean | undefined; dotAll?: boolean | undefined } = {}): RegExp {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');

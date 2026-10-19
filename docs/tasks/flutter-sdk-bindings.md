@@ -1,6 +1,88 @@
 # Task: Flutter SDK Binding Verification
 
-Status: Generic factory fixed-description sharing implemented and reviewed
+Status: Shared JS parameter layouts implemented and reviewed
+
+## Shared JS parameter layouts
+
+Split JS binding declarations now reuse complete parameter layouts from their existing
+module helper. No additional runtime registry, public API or configuration is
+introduced. The key preserves ordered names, required/positional flags and Context
+conversion IDs. Existing runtime readers freeze the rows and share argument parsers
+through their WeakMap; receiver-specific calls, generic contexts, native super targets
+and callback ownership stay on their existing paths. Factory-only layouts retain lazy
+allocation. Unused shared constants remain removable by the existing bundler.
+
+Measurements compare this task's starting worktree, including the preceding uncommitted
+Dart optimizations, with the final official four-package generation. Complete SDK
+delivery includes all 25 Core module entries and their registry, using the existing
+production preparation command and unchanged minification options.
+
+| Measurement                          | Before bytes | After bytes | Change |
+| ------------------------------------ | -----------: | ----------: | -----: |
+| Complete prepared SDK JS             |    6,118,308 |   5,608,230 | -8.34% |
+| Core generated TS                    |   30,565,124 |  30,177,686 | -1.27% |
+| Core generated JS before bundling    |   13,068,202 |  12,609,965 | -3.51% |
+| Core declarations, including helpers |   20,599,191 |  20,787,445 | +0.91% |
+
+Rendering delivery shrinks from 1,464,397 to 1,205,237 bytes (17.70%), Widgets from
+1,561,234 to 1,440,748 (7.72%), and Material from 1,285,795 to 1,237,113 (3.79%). The
+declaration increase is confined to 17 private module helpers; all 3,055 other public
+declaration files are byte-identical. Private exports use the existing `MemberParameter`
+interface instead of repeating full literal tuple types.
+
+All 3,119 generated TS files are token-equivalent after resolving parameter aliases and
+removing only their private layout declarations/imports. This includes generic types,
+signatures, inheritance and lexical-super code. The former 11,501 local layout constants
+become 2,389 module constants and five unchanged single-file constants. Thirty-five
+generated Dart, Manifest and runtime files remain byte-identical, including the
+preceding Dart optimizations. Manifest 27, UI protocol 24 and native ABI 2 are
+unchanged. The implementation acceptance recorded matching hashes for all 3,149 runtime
+inputs; its final private type annotation changes only declarations.
+
+All 653 generator cases have passing evidence: the full run passes 651 and records two
+three-minute timeouts; the unmodified cases pass individually in 70 and 55 seconds under
+their original limits. All 203 workspace JS cases, strict Core TypeScript, generator
+analysis, formatting, Markdown lint and local links pass. The unused-layout regression
+confirms tree shaking, while the shared-runtime regression checks frozen rows and
+independent receivers. Official four-package generation, reproducibility, public-type
+projection and module-delivery checks pass.
+
+The initial V8 release/AOT run passes 245 of 246 applicable cases but records one
+pending host callback after the eight-second cleanup window in
+`active JS collection tolerates expired Dart origins`. Review reproduces this
+independently of generated JS bindings in two of 20 release/AOT trials. Both business
+objects and all native cells are already gone; a weak reference still observes the Dart
+callback. In both misses, the first additional ordinary Dart collection releases the
+callback and its trampoline. Native pruning and Dart-only finalization need not finish
+in the same collection, and an idle empty bridge need not trigger another Dart GC. This
+is a test assumption about finalizer scheduling, not a retained cross-heap business
+cycle.
+
+The shared test helper still requires idle joint GC to release the Dart owner, JS
+wrapper and native cells before adding any pressure. Only a remaining Dart-only callback
+triggers the existing Dart collection helper. All four zero-count assertions, the 80
+polling attempts and application timeouts remain; production dispatch, ownership and
+engine code are unchanged. The earlier interrupted desktop rerun remains excluded from
+acceptance.
+
+After correction, a fresh macOS V8 release/AOT application passes all 246 applicable
+named cases, and the same exact application passes 20 consecutive repetitions of the
+original failing case. Two debug-only rebuild checks remain inapplicable in release. A
+fresh iOS Simulator Hermes debug application passes all 248 named cases. Both complete
+case maps match the preceding acceptance; all five unsigned V8 library hashes, the
+normalized Hermes engine hash and Hermes static libraries are unchanged. Signing, V8 JIT
+entitlement and single-engine-closure checks pass. These cases exercise generic
+contexts, JS inheritance, overrides, async super, independent Sessions and bidirectional
+business roots followed by collection. Review also reruns all eight split-module tests,
+ten shared-call tests and 203 workspace JS cases; scoped analysis has no issues.
+
+Implementation evidence is in `.local/js-parameter-layouts-20261019/`; diagnosis and
+fresh acceptance are in `.local/js-layout-review-20261019/`. Test-owned application
+copies, fixture snapshots and Xcode DerivedData are removed after recording their hashes
+and results; the test-booted Simulator returns to shutdown. Runtime throughput, other
+platforms, compact super-member lists and delivery-JSON sharing remain outside this
+change. The preceding Dart description optimizations are preserved separately. No push,
+CI run or engine/SDK rebuild is performed.
 
 ## Fixed descriptions in generic factories
 

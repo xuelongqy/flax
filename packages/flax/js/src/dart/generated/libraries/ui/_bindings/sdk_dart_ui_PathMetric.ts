@@ -5,9 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Tangent';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Tangent';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
-const _flaxMemberParameters0 = [{"name":"distance","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"start","required":true,"positional":true},{"name":"end","required":true,"positional":true},{"name":"startWithMoveTo"}] as const;
-const _flaxMemberParameters2 = [] as const;
+import { _flaxMemberParameters100, _flaxMemberParameters101, _flaxMemberParameters0 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface PathMetric extends Readonly<{ "__flaxBound:dart:ui::PathMetric": readonly [] }> { readonly __PathMetric: unique symbol;
@@ -20,5 +18,5 @@ getTangentForOffset(distance: number): upstream0.Tangent | null;
 extractPath(start: number, end: number, options?: {startWithMoveTo?: boolean | undefined}): upstream1.Path;
 toString(): string;
 }
-defineObject("flax.core/sdk_dart_ui#type:PathMetric", ["length","isClosed","contourIndex"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:PathMetric", "object", {"getTangentForOffset":_flaxMemberParameters0,"extractPath":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/sdk_dart_ui#type:PathMetric", ["length","isClosed","contourIndex"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:PathMetric", "object", {"getTangentForOffset":_flaxMemberParameters100,"extractPath":_flaxMemberParameters101,"toString":_flaxMemberParameters0}, {}), []);
 export const PathMetric: object & _FlaxInstanceType<PathMetric> & _FlaxDartType<PathMetric, readonly ["class", "flax.core/sdk_dart_ui#type:PathMetric", readonly [], false]> = _flaxBindInstanceType<PathMetric, object>({}, "flax.core/sdk_dart_ui#type:PathMetric", ["dart:core::Object"]) as object & _FlaxInstanceType<PathMetric> & _FlaxDartType<PathMetric, readonly ["class", "flax.core/sdk_dart_ui#type:PathMetric", readonly [], false]>;

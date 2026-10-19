@@ -7,8 +7,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream2 from '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_TextTreeConfiguration';
-const _flaxMemberParameters0 = [{"name":"node","required":true,"positional":true},{"name":"parentConfiguration"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"}] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel"},{"name":"wrapWidth"},{"name":"wrapWidthProperties"},{"name":"maxDescendentsTruncatableNode"}] as const;
+import { _flaxMemberParameters88, _flaxMemberParameters89 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,8 +15,8 @@ export interface TextTreeRenderer extends Readonly<{ "__flaxBound:package:flutte
 readonly [_flaxDartTypeValue]: TextTreeRenderer;
 
 }
-defineObject("flax.core/sdk_foundation#type:TextTreeRenderer", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:TextTreeRenderer", "object", {"render":_flaxMemberParameters0}, {}), []);
-const _TextTreeRendererProxy = {type: "flax.core/sdk_foundation#type:TextTreeRenderer", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"render":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["render"]} as const;
+defineObject("flax.core/sdk_foundation#type:TextTreeRenderer", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:TextTreeRenderer", "object", {"render":_flaxMemberParameters88}, {}), []);
+const _TextTreeRendererProxy = {type: "flax.core/sdk_foundation#type:TextTreeRenderer", parameters: _flaxMemberParameters89, constructors: {"": _flaxMemberParameters89}, methods: {"render":_flaxMemberParameters88}, getters: [], setters: [], contextMembers: [], superMembers: ["render"]} as const;
 export interface TextTreeRenderer {
 readonly [_flaxDartTypeValue]: TextTreeRenderer;
 

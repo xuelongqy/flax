@@ -7,8 +7,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"listener","required":true,"positional":true}] as const;
+import { _flaxMemberParameters2, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,8 +15,8 @@ export interface ExpansibleController extends Omit<upstream0.ChangeNotifier, _fl
 readonly [_flaxDartTypeValue]: ExpansibleController;
 
 }
-defineObject("flax.core/sdk_widgets#type:ExpansibleController", ["hasListeners","isExpanded"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ExpansibleController", "object", {"expand":_flaxMemberParameters0,"collapse":_flaxMemberParameters0,"toggle":_flaxMemberParameters0}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _ExpansibleControllerProxy = {type: "flax.core/sdk_widgets#type:ExpansibleController", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"addListener":_flaxMemberParameters1,"removeListener":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"expand":_flaxMemberParameters0,"collapse":_flaxMemberParameters0,"toggle":_flaxMemberParameters0}, getters: ["isExpanded","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:isExpanded","get:hasListeners","addListener","removeListener","dispose","expand","collapse","toggle"]} as const;
+defineObject("flax.core/sdk_widgets#type:ExpansibleController", ["hasListeners","isExpanded"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ExpansibleController", "object", {"expand":_flaxMemberParameters2,"collapse":_flaxMemberParameters2,"toggle":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+const _ExpansibleControllerProxy = {type: "flax.core/sdk_widgets#type:ExpansibleController", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"expand":_flaxMemberParameters2,"collapse":_flaxMemberParameters2,"toggle":_flaxMemberParameters2}, getters: ["isExpanded","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:isExpanded","get:hasListeners","addListener","removeListener","dispose","expand","collapse","toggle"]} as const;
 export interface ExpansibleController {
 readonly [_flaxDartTypeValue]: ExpansibleController;
 

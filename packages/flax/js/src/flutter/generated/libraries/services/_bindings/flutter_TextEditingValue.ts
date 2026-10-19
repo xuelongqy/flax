@@ -5,9 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextSe
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextRange';
 import '@flax/dart/ui/_bindings/flutter_TextRange';
-const _flaxMemberParameters0 = [{"name":"composing"},{"name":"selection"},{"name":"text"}] as const;
-const _flaxMemberParameters1 = [{"name":"replacementRange","required":true,"positional":true},{"name":"replacementString","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+import { _flaxMemberParameters175, _flaxMemberParameters176, _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface TextEditingValue extends Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }> { readonly __TextEditingValue: unique symbol;
@@ -22,7 +20,7 @@ replaced(replacementRange: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly
 toJSON(): DartMap<string, unknown | null>;
 toString(): string;
 }
-defineObject("flax.core/flutter#type:TextEditingValue", ["text","selection","composing","isComposingRangeValid"], [], _flaxBindingMethods("flax.core/flutter#type:TextEditingValue", "object", {"copyWith":_flaxMemberParameters0,"replaced":_flaxMemberParameters1,"toJSON":_flaxMemberParameters2,"toString":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/flutter#type:TextEditingValue", ["text","selection","composing","isComposingRangeValid"], [], _flaxBindingMethods("flax.core/flutter#type:TextEditingValue", "object", {"copyWith":_flaxMemberParameters175,"replaced":_flaxMemberParameters176,"toJSON":_flaxMemberParameters3,"toString":_flaxMemberParameters3}, {}), []);
 export function _TextEditingValueFactory(options: { text?: string | undefined; selection?: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }> | undefined; composing?: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }> | undefined } = {}): TextEditingValue {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

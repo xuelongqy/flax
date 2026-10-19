@@ -9,11 +9,7 @@ import type * as upstream2 from '@flax/dart/async/_bindings/flutter_EventSink';
 import '@flax/dart/async/_bindings/flutter_EventSink';
 import type * as upstream3 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-const _flaxMemberParameters0 = [{"name":"stream","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"onListen","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"handleData"},{"name":"handleError"},{"name":"handleDone"}] as const;
-const _flaxMemberParameters4 = [{"name":"bind","required":true,"positional":true}] as const;
+import { _flaxMemberParameters161, _flaxMemberParameters3, _flaxMemberParameters166, _flaxMemberParameters167, _flaxMemberParameters168 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface StreamTransformer<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> extends Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [S, T] }> { readonly __StreamTransformer: unique symbol;
@@ -22,7 +18,7 @@ readonly [_flaxDartMethodCases]?: {cast: _FlaxSignature2<S, T>;};
 bind(stream: (upstream1.Stream<S> | upstream1.Stream<(S | DartInput<S>)>)): upstream1.Stream<T>;
 cast<RS extends unknown | null = unknown | null, RT extends unknown | null = unknown | null>(): StreamTransformer<_FlaxDartOutput<RS>, _FlaxDartOutput<RT>>;
 }
-defineObject("flax.core/flutter#type:StreamTransformer", [], [], _flaxBindingMethods("flax.core/flutter#type:StreamTransformer", "object", {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, {"cast":{"id":"cast","parameters":[]}}), []);
+defineObject("flax.core/flutter#type:StreamTransformer", [], [], _flaxBindingMethods("flax.core/flutter#type:StreamTransformer", "object", {"bind":_flaxMemberParameters161,"cast":_flaxMemberParameters3}, {"cast":{"id":"cast","parameters":[]}}), []);
 export function _StreamTransformerFactory<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(onListen: ((stream: upstream1.Stream<_FlaxDartOutput<S>>, cancelOnError: boolean) => Readonly<{ "__flaxBound:dart:async::StreamSubscription": readonly [_FlaxDartOutput<T>] }>)): StreamTransformer<S, T>;
 export function _StreamTransformerFactory(onListen: ((stream: upstream1.Stream<unknown | null>, cancelOnError: boolean) => Readonly<{ "__flaxBound:dart:async::StreamSubscription": readonly [unknown | null] }>)): StreamTransformer<unknown | null, unknown | null>;
 export function _StreamTransformerFactory(onListen: unknown): unknown {
@@ -48,7 +44,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:StreamTransformer", "fromBind", [{"name":"bind","required":true,"positional":true}], [bind], {}) as StreamTransformer<unknown | null, unknown | null>;
 }
 }
-const _StreamTransformerProxy = {type: "flax.core/flutter#type:StreamTransformer", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters2,"fromHandlers": _flaxMemberParameters3,"fromBind": _flaxMemberParameters4}, methods: {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
+const _StreamTransformerProxy = {type: "flax.core/flutter#type:StreamTransformer", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters166,"fromHandlers": _flaxMemberParameters167,"fromBind": _flaxMemberParameters168}, methods: {"bind":_flaxMemberParameters161,"cast":_flaxMemberParameters3}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _StreamTransformerFactory { export function implement<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null>(args: [], implementation: {bind: ((stream: upstream1.Stream<S>) => (upstream1.Stream<T> | upstream1.Stream<(T | DartInput<T>)>)); cast: (<RS extends unknown | null, RT extends unknown | null>() => Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [_FlaxDartOutput<RS>, _FlaxDartOutput<RT>] }>)}): StreamTransformer<S, T> {
 return constructProxy(_StreamTransformerProxy, args, implementation) as StreamTransformer<S, T>; } }
 export namespace _StreamTransformerFactory { function _flaxDefault_castFrom<SS extends unknown | null = unknown | null, ST extends unknown | null = unknown | null, TS extends unknown | null = unknown | null, TT extends unknown | null = unknown | null>(source: Readonly<{ "__flaxBound:dart:async::StreamTransformer": readonly [_FlaxDartOutput<SS>, _FlaxDartOutput<ST>] }>): StreamTransformer<_FlaxDartOutput<TS>, _FlaxDartOutput<TT>> {

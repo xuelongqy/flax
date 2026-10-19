@@ -19,12 +19,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"joiner"},{"name":"minLevel"}] as const;
-const _flaxMemberParameters4 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
-const _flaxMemberParameters5 = [{"name":"name"},{"name":"style"}] as const;
+import { _flaxMemberParameters9, _flaxMemberParameters2, _flaxMemberParameters5, _flaxMemberParameters10, _flaxMemberParameters11, _flaxMemberParameters4 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -46,7 +41,7 @@ toStringDeep(options?: {minLevel?: upstream6.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream8.DiagnosticsTreeStyle | null | undefined}): upstream7.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream7.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_material#type:DropdownMenuItem", ["onTap","value","enabled","child","alignment","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:DropdownMenuItem", "object", {"build":_flaxMemberParameters0,"createElement":_flaxMemberParameters1,"toStringShort":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters2,"toStringShallow":_flaxMemberParameters3,"toStringDeep":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugDescribeChildren":_flaxMemberParameters1}, {}), []);
+defineObject("flax.core/sdk_material#type:DropdownMenuItem", ["onTap","value","enabled","child","alignment","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:DropdownMenuItem", "object", {"build":_flaxMemberParameters9,"createElement":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters5,"toStringShallow":_flaxMemberParameters10,"toStringDeep":_flaxMemberParameters11,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters2}, {}), []);
 export function _DropdownMenuItemFactory<T extends unknown | null = unknown | null>(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; onTap?: (() => void) | null | undefined; value?: (T | _FlaxDartOutput<T>) | null | undefined; enabled?: boolean | undefined; alignment?: Readonly<{ "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [] }> | undefined; child: Widget }): DropdownMenuItem<T>;
 export function _DropdownMenuItemFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; onTap?: (() => void) | null | undefined; value?: unknown | null | undefined; enabled?: boolean | undefined; alignment?: Readonly<{ "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [] }> | undefined; child: Widget }): DropdownMenuItem<unknown | null>;
 export function _DropdownMenuItemFactory(options: Record<string, unknown>): unknown {

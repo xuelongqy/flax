@@ -3,9 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"layoutDirection","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"id","required":true,"positional":true},{"name":"layoutDirection","required":true,"positional":true}] as const;
+import { _flaxMemberParameters8, _flaxMemberParameters0, _flaxMemberParameters27 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -13,8 +11,8 @@ export interface DarwinPlatformViewController extends Readonly<{ "__flaxBound:pa
 readonly [_flaxDartTypeValue]: DarwinPlatformViewController;
 
 }
-defineObject("flax.core/sdk_services#type:DarwinPlatformViewController", ["id"], [], _flaxBindingMethods("flax.core/sdk_services#type:DarwinPlatformViewController", "object", {"setLayoutDirection":_flaxMemberParameters0,"acceptGesture":_flaxMemberParameters1,"rejectGesture":_flaxMemberParameters1,"dispose":_flaxMemberParameters1}, {}), []);
-const _DarwinPlatformViewControllerProxy = {type: "flax.core/sdk_services#type:DarwinPlatformViewController", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"setLayoutDirection":_flaxMemberParameters0,"acceptGesture":_flaxMemberParameters1,"rejectGesture":_flaxMemberParameters1,"dispose":_flaxMemberParameters1}, getters: ["id"], setters: [], contextMembers: [], superMembers: ["get:id","setLayoutDirection","acceptGesture","rejectGesture","dispose"]} as const;
+defineObject("flax.core/sdk_services#type:DarwinPlatformViewController", ["id"], [], _flaxBindingMethods("flax.core/sdk_services#type:DarwinPlatformViewController", "object", {"setLayoutDirection":_flaxMemberParameters8,"acceptGesture":_flaxMemberParameters0,"rejectGesture":_flaxMemberParameters0,"dispose":_flaxMemberParameters0}, {}), []);
+const _DarwinPlatformViewControllerProxy = {type: "flax.core/sdk_services#type:DarwinPlatformViewController", parameters: _flaxMemberParameters27, constructors: {"": _flaxMemberParameters27}, methods: {"setLayoutDirection":_flaxMemberParameters8,"acceptGesture":_flaxMemberParameters0,"rejectGesture":_flaxMemberParameters0,"dispose":_flaxMemberParameters0}, getters: ["id"], setters: [], contextMembers: [], superMembers: ["get:id","setLayoutDirection","acceptGesture","rejectGesture","dispose"]} as const;
 export interface DarwinPlatformViewController {
 readonly [_flaxDartTypeValue]: DarwinPlatformViewController;
 

@@ -9,9 +9,7 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_ScrollP
 import '@flax/flutter/widgets/_bindings/flutter_ScrollPhysics';
 import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Clip';
 import '@flax/dart/ui/_bindings/flutter_Clip';
-const _flaxMemberParameters0 = [{"name":"controller"},{"name":"decorationClipBehavior"},{"name":"direction"},{"name":"physics"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"direction","required":true},{"name":"controller"},{"name":"physics"},{"name":"clipBehavior"},{"name":"decorationClipBehavior"}] as const;
+import { _flaxMemberParameters381, _flaxMemberParameters2, _flaxMemberParameters382 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,8 +17,8 @@ export interface ScrollableDetails extends Readonly<{ "__flaxBound:package:flutt
 readonly [_flaxDartTypeValue]: ScrollableDetails;
 
 }
-defineObject("flax.core/sdk_widgets#type:ScrollableDetails", ["direction","controller","physics","decorationClipBehavior","clipBehavior"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ScrollableDetails", "object", {"copyWith":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), []);
-const _ScrollableDetailsProxy = {type: "flax.core/sdk_widgets#type:ScrollableDetails", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"copyWith":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: ["direction","controller","physics","decorationClipBehavior","clipBehavior"], setters: [], contextMembers: [], superMembers: ["get:direction","get:controller","get:physics","get:decorationClipBehavior","get:clipBehavior","copyWith","toString"]} as const;
+defineObject("flax.core/sdk_widgets#type:ScrollableDetails", ["direction","controller","physics","decorationClipBehavior","clipBehavior"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ScrollableDetails", "object", {"copyWith":_flaxMemberParameters381,"toString":_flaxMemberParameters2}, {}), []);
+const _ScrollableDetailsProxy = {type: "flax.core/sdk_widgets#type:ScrollableDetails", parameters: _flaxMemberParameters382, constructors: {"": _flaxMemberParameters382}, methods: {"copyWith":_flaxMemberParameters381,"toString":_flaxMemberParameters2}, getters: ["direction","controller","physics","decorationClipBehavior","clipBehavior"], setters: [], contextMembers: [], superMembers: ["get:direction","get:controller","get:physics","get:decorationClipBehavior","get:clipBehavior","copyWith","toString"]} as const;
 export interface ScrollableDetails {
 readonly [_flaxDartTypeValue]: ScrollableDetails;
 

@@ -4,8 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/dart/convert/_bindings/sdk_dependencies_Encoding';
 import '@flax/dart/convert/_bindings/sdk_dependencies_Encoding';
 import type * as upstream1 from '@flax/dart/async/_bindings/flutter_Stream';
-const _flaxMemberParameters0 = [{"name":"source","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"bytes","required":true,"positional":true},{"name":"allowInvalid"}] as const;
+import { _flaxMemberParameters0, _flaxMemberParameters1 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Latin1Codec extends Omit<upstream0.Encoding, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:convert::Latin1Codec": readonly [] }>, Readonly<{ "__flaxBound:dart:convert::Encoding": readonly [] }>, Readonly<{ "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>] }> { readonly __Latin1Codec: unique symbol;

@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Scr
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollIncrementType';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollMetrics';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollMetrics';
-const _flaxMemberParameters0 = [{"name":"type","required":true},{"name":"metrics","required":true}] as const;
+import { _flaxMemberParameters361 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: ScrollIncrementDetails;
 
 }
 defineObject("flax.core/sdk_widgets#type:ScrollIncrementDetails", ["type","metrics"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ScrollIncrementDetails", "object", {}, {}), []);
-const _ScrollIncrementDetailsProxy = {type: "flax.core/sdk_widgets#type:ScrollIncrementDetails", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["type","metrics"], setters: [], contextMembers: [], superMembers: ["get:type","get:metrics"]} as const;
+const _ScrollIncrementDetailsProxy = {type: "flax.core/sdk_widgets#type:ScrollIncrementDetails", parameters: _flaxMemberParameters361, constructors: {"": _flaxMemberParameters361}, methods: {}, getters: ["type","metrics"], setters: [], contextMembers: [], superMembers: ["get:type","get:metrics"]} as const;
 export interface ScrollIncrementDetails {
 readonly [_flaxDartTypeValue]: ScrollIncrementDetails;
 

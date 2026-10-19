@@ -7,9 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream2 from '@flax/flutter/painting/_bindings/sdk_painting_ImageConfiguration';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageConfiguration';
-const _flaxMemberParameters0 = [{"name":"canvas","required":true,"positional":true},{"name":"offset","required":true,"positional":true},{"name":"configuration","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"onChanged","positional":true}] as const;
+import { _flaxMemberParameters22, _flaxMemberParameters2, _flaxMemberParameters23 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,8 +15,8 @@ export interface BoxPainter extends Readonly<{ "__flaxBound:package:flutter/src/
 readonly [_flaxDartTypeValue]: BoxPainter;
 
 }
-defineObject("flax.core/sdk_painting#type:BoxPainter", ["onChanged"], [], _flaxBindingMethods("flax.core/sdk_painting#type:BoxPainter", "object", {"paint":_flaxMemberParameters0,"dispose":_flaxMemberParameters1}, {}), []);
-const _BoxPainterProxy = {type: "flax.core/sdk_painting#type:BoxPainter", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"paint":_flaxMemberParameters0,"dispose":_flaxMemberParameters1}, getters: ["onChanged"], setters: [], contextMembers: [], superMembers: ["get:onChanged","dispose"]} as const;
+defineObject("flax.core/sdk_painting#type:BoxPainter", ["onChanged"], [], _flaxBindingMethods("flax.core/sdk_painting#type:BoxPainter", "object", {"paint":_flaxMemberParameters22,"dispose":_flaxMemberParameters2}, {}), []);
+const _BoxPainterProxy = {type: "flax.core/sdk_painting#type:BoxPainter", parameters: _flaxMemberParameters23, constructors: {"": _flaxMemberParameters23}, methods: {"paint":_flaxMemberParameters22,"dispose":_flaxMemberParameters2}, getters: ["onChanged"], setters: [], contextMembers: [], superMembers: ["get:onChanged","dispose"]} as const;
 export interface BoxPainter {
 readonly [_flaxDartTypeValue]: BoxPainter;
 

@@ -13,8 +13,7 @@ import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream5 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"transform","required":true,"positional":true}] as const;
+import { _flaxMemberParameters1, _flaxMemberParameters25 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +22,7 @@ readonly [_flaxDartTypeValue]: SliverPhysicalContainerParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:SliverPhysicalContainerParentData", ["paintOffset","crossAxisFlex","previousSibling","nextSibling"], ["paintOffset","crossAxisFlex","previousSibling","nextSibling"], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverPhysicalContainerParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:SliverPhysicalParentData");
-const _SliverPhysicalContainerParentDataProxy = {type: "flax.core/sdk_rendering#type:SliverPhysicalContainerParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"applyPaintTransform":_flaxMemberParameters1,"toString":_flaxMemberParameters0,"detach":_flaxMemberParameters0}, getters: ["paintOffset","crossAxisFlex","previousSibling","nextSibling"], setters: ["paintOffset","crossAxisFlex","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:paintOffset","get:crossAxisFlex","get:previousSibling","get:nextSibling","set:paintOffset","set:crossAxisFlex","set:previousSibling","set:nextSibling","applyPaintTransform","toString","detach"]} as const;
+const _SliverPhysicalContainerParentDataProxy = {type: "flax.core/sdk_rendering#type:SliverPhysicalContainerParentData", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"applyPaintTransform":_flaxMemberParameters25,"toString":_flaxMemberParameters1,"detach":_flaxMemberParameters1}, getters: ["paintOffset","crossAxisFlex","previousSibling","nextSibling"], setters: ["paintOffset","crossAxisFlex","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:paintOffset","get:crossAxisFlex","get:previousSibling","get:nextSibling","set:paintOffset","set:crossAxisFlex","set:previousSibling","set:nextSibling","applyPaintTransform","toString","detach"]} as const;
 export interface SliverPhysicalContainerParentData {
 readonly [_flaxDartTypeValue]: SliverPhysicalContainerParentData;
 

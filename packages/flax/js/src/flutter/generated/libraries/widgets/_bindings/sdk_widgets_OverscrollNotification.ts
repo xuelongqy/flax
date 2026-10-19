@@ -15,10 +15,7 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream6 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
-const _flaxMemberParameters0 = [{"name":"metrics","required":true},{"name":"context","required":true},{"name":"dragDetails"},{"name":"overscroll","required":true},{"name":"velocity"}] as const;
-const _flaxMemberParameters1 = [{"name":"description","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"target","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters3 = [] as const;
+import { _flaxMemberParameters264, _flaxMemberParameters119, _flaxMemberParameters118, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,7 +24,7 @@ readonly [_flaxDartTypeValue]: OverscrollNotification;
 
 }
 defineObject("flax.core/sdk_widgets#type:OverscrollNotification", ["metrics","context","depth","dragDetails","overscroll","velocity"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:OverscrollNotification", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:ScrollNotification");
-const _OverscrollNotificationProxy = {type: "flax.core/sdk_widgets#type:OverscrollNotification", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"debugFillDescription":_flaxMemberParameters1,"dispatch":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, getters: ["dragDetails","overscroll","velocity","metrics","context","depth"], setters: [], contextMembers: [], superMembers: ["get:dragDetails","get:overscroll","get:velocity","get:metrics","get:context","get:depth","debugFillDescription","dispatch","toString"]} as const;
+const _OverscrollNotificationProxy = {type: "flax.core/sdk_widgets#type:OverscrollNotification", parameters: _flaxMemberParameters264, constructors: {"": _flaxMemberParameters264}, methods: {"debugFillDescription":_flaxMemberParameters119,"dispatch":_flaxMemberParameters118,"toString":_flaxMemberParameters2}, getters: ["dragDetails","overscroll","velocity","metrics","context","depth"], setters: [], contextMembers: [], superMembers: ["get:dragDetails","get:overscroll","get:velocity","get:metrics","get:context","get:depth","debugFillDescription","dispatch","toString"]} as const;
 export interface OverscrollNotification {
 readonly [_flaxDartTypeValue]: OverscrollNotification;
 

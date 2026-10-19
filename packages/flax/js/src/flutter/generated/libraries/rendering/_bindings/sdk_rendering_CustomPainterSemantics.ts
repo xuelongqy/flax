@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import type * as upstream4 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsTag';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsTag';
-const _flaxMemberParameters0 = [{"name":"key"},{"name":"rect","required":true},{"name":"properties","required":true},{"name":"transform"},{"name":"tags"}] as const;
+import { _flaxMemberParameters56 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +20,7 @@ readonly [_flaxDartTypeValue]: CustomPainterSemantics;
 
 }
 defineObject("flax.core/sdk_rendering#type:CustomPainterSemantics", ["key","rect","transform","properties","tags"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:CustomPainterSemantics", "object", {}, {}), []);
-const _CustomPainterSemanticsProxy = {type: "flax.core/sdk_rendering#type:CustomPainterSemantics", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["key","rect","transform","properties","tags"], setters: [], contextMembers: [], superMembers: ["get:key","get:rect","get:transform","get:properties","get:tags"]} as const;
+const _CustomPainterSemanticsProxy = {type: "flax.core/sdk_rendering#type:CustomPainterSemantics", parameters: _flaxMemberParameters56, constructors: {"": _flaxMemberParameters56}, methods: {}, getters: ["key","rect","transform","properties","tags"], setters: [], contextMembers: [], superMembers: ["get:key","get:rect","get:transform","get:properties","get:tags"]} as const;
 export interface CustomPainterSemantics {
 readonly [_flaxDartTypeValue]: CustomPainterSemantics;
 

@@ -15,12 +15,7 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"color"},{"name":"endIndent"},{"name":"indent"},{"name":"radius"},{"name":"space"},{"name":"thickness"}] as const;
-const _flaxMemberParameters1 = [{"name":"color"},{"name":"space"},{"name":"thickness"},{"name":"indent"},{"name":"endIndent"},{"name":"radius"}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel"}] as const;
-const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
+import { _flaxMemberParameters118, _flaxMemberParameters119, _flaxMemberParameters2, _flaxMemberParameters3, _flaxMemberParameters4, _flaxMemberParameters5 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -28,8 +23,8 @@ export interface DividerThemeData extends Omit<upstream0.Diagnosticable, _flaxOw
 readonly [_flaxDartTypeValue]: DividerThemeData;
 
 }
-defineObject("flax.core/sdk_material#type:DividerThemeData", ["color","space","thickness","indent","endIndent","radius"], [], _flaxBindingMethods("flax.core/sdk_material#type:DividerThemeData", "object", {"copyWith":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _DividerThemeDataProxy = {type: "flax.core/sdk_material#type:DividerThemeData", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"copyWith":_flaxMemberParameters0}, getters: ["color","space","thickness","indent","endIndent","radius"], setters: [], contextMembers: [], superMembers: ["get:color","get:space","get:thickness","get:indent","get:endIndent","get:radius","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
+defineObject("flax.core/sdk_material#type:DividerThemeData", ["color","space","thickness","indent","endIndent","radius"], [], _flaxBindingMethods("flax.core/sdk_material#type:DividerThemeData", "object", {"copyWith":_flaxMemberParameters118}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+const _DividerThemeDataProxy = {type: "flax.core/sdk_material#type:DividerThemeData", parameters: _flaxMemberParameters119, constructors: {"": _flaxMemberParameters119}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"copyWith":_flaxMemberParameters118}, getters: ["color","space","thickness","indent","endIndent","radius"], setters: [], contextMembers: [], superMembers: ["get:color","get:space","get:thickness","get:indent","get:endIndent","get:radius","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
 export interface DividerThemeData {
 readonly [_flaxDartTypeValue]: DividerThemeData;
 

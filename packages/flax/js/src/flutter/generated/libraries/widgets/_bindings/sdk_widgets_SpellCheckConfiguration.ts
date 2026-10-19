@@ -12,9 +12,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableTextState';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_EditableTextState';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableText';
-const _flaxMemberParameters0 = [{"name":"misspelledSelectionColor"},{"name":"misspelledTextStyle"},{"name":"spellCheckService"},{"name":"spellCheckSuggestionsToolbarBuilder"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"spellCheckService"},{"name":"misspelledSelectionColor"},{"name":"misspelledTextStyle"},{"name":"spellCheckSuggestionsToolbarBuilder"}] as const;
+import { _flaxMemberParameters410, _flaxMemberParameters2, _flaxMemberParameters411 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,8 +20,8 @@ export interface SpellCheckConfiguration extends Readonly<{ "__flaxBound:package
 readonly [_flaxDartTypeValue]: SpellCheckConfiguration;
 
 }
-defineObject("flax.core/sdk_widgets#type:SpellCheckConfiguration", ["spellCheckService","misspelledSelectionColor","misspelledTextStyle","spellCheckSuggestionsToolbarBuilder","spellCheckEnabled"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SpellCheckConfiguration", "object", {"copyWith":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), []);
-const _SpellCheckConfigurationProxy = {type: "flax.core/sdk_widgets#type:SpellCheckConfiguration", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"copyWith":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: ["spellCheckService","misspelledSelectionColor","misspelledTextStyle","spellCheckSuggestionsToolbarBuilder","spellCheckEnabled"], setters: [], contextMembers: [], superMembers: ["get:spellCheckService","get:misspelledSelectionColor","get:misspelledTextStyle","get:spellCheckSuggestionsToolbarBuilder","get:spellCheckEnabled","copyWith","toString"]} as const;
+defineObject("flax.core/sdk_widgets#type:SpellCheckConfiguration", ["spellCheckService","misspelledSelectionColor","misspelledTextStyle","spellCheckSuggestionsToolbarBuilder","spellCheckEnabled"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SpellCheckConfiguration", "object", {"copyWith":_flaxMemberParameters410,"toString":_flaxMemberParameters2}, {}), []);
+const _SpellCheckConfigurationProxy = {type: "flax.core/sdk_widgets#type:SpellCheckConfiguration", parameters: _flaxMemberParameters411, constructors: {"": _flaxMemberParameters411}, methods: {"copyWith":_flaxMemberParameters410,"toString":_flaxMemberParameters2}, getters: ["spellCheckService","misspelledSelectionColor","misspelledTextStyle","spellCheckSuggestionsToolbarBuilder","spellCheckEnabled"], setters: [], contextMembers: [], superMembers: ["get:spellCheckService","get:misspelledSelectionColor","get:misspelledTextStyle","get:spellCheckSuggestionsToolbarBuilder","get:spellCheckEnabled","copyWith","toString"]} as const;
 export interface SpellCheckConfiguration {
 readonly [_flaxDartTypeValue]: SpellCheckConfiguration;
 

@@ -11,9 +11,7 @@ import type * as upstream3 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_PersistentHeaderShowOnScreenConfiguration';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"shrinkOffset","required":true,"positional":true},{"name":"overlapsContent","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+import { _flaxMemberParameters405, _flaxMemberParameters38, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -21,8 +19,8 @@ export interface SliverPersistentHeaderDelegate extends Readonly<{ "__flaxBound:
 readonly [_flaxDartTypeValue]: SliverPersistentHeaderDelegate;
 
 }
-defineObject("flax.core/sdk_widgets#type:SliverPersistentHeaderDelegate", ["minExtent","maxExtent","vsync","snapConfiguration","stretchConfiguration","showOnScreenConfiguration"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverPersistentHeaderDelegate", "object", {"build":_flaxMemberParameters0,"shouldRebuild":_flaxMemberParameters1}, {}), []);
-const _SliverPersistentHeaderDelegateProxy = {type: "flax.core/sdk_widgets#type:SliverPersistentHeaderDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"build":_flaxMemberParameters0,"shouldRebuild":_flaxMemberParameters1}, getters: ["minExtent","maxExtent","vsync","snapConfiguration","stretchConfiguration","showOnScreenConfiguration"], setters: [], contextMembers: [], superMembers: ["get:vsync","get:snapConfiguration","get:stretchConfiguration","get:showOnScreenConfiguration"]} as const;
+defineObject("flax.core/sdk_widgets#type:SliverPersistentHeaderDelegate", ["minExtent","maxExtent","vsync","snapConfiguration","stretchConfiguration","showOnScreenConfiguration"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverPersistentHeaderDelegate", "object", {"build":_flaxMemberParameters405,"shouldRebuild":_flaxMemberParameters38}, {}), []);
+const _SliverPersistentHeaderDelegateProxy = {type: "flax.core/sdk_widgets#type:SliverPersistentHeaderDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"build":_flaxMemberParameters405,"shouldRebuild":_flaxMemberParameters38}, getters: ["minExtent","maxExtent","vsync","snapConfiguration","stretchConfiguration","showOnScreenConfiguration"], setters: [], contextMembers: [], superMembers: ["get:vsync","get:snapConfiguration","get:stretchConfiguration","get:showOnScreenConfiguration"]} as const;
 export interface SliverPersistentHeaderDelegate {
 readonly [_flaxDartTypeValue]: SliverPersistentHeaderDelegate;
 

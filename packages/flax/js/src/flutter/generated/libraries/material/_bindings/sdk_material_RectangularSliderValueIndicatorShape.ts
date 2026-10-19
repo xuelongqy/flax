@@ -19,9 +19,7 @@ import type * as upstream7 from '@flax/flutter/material/_bindings/sdk_material_S
 import '@flax/flutter/material/_bindings/sdk_material_SliderThemeData';
 import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"isEnabled","required":true,"positional":true},{"name":"isDiscrete","required":true,"positional":true},{"name":"labelPainter"},{"name":"textScaleFactor"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true},{"name":"center","required":true,"positional":true},{"name":"activationAnimation","required":true},{"name":"enableAnimation","required":true},{"name":"isDiscrete","required":true},{"name":"labelPainter","required":true},{"name":"parentBox","required":true},{"name":"sizeWithOverflow","required":true},{"name":"sliderTheme","required":true},{"name":"textDirection","required":true},{"name":"textScaleFactor","required":true},{"name":"value","required":true}] as const;
+import { _flaxMemberParameters122, _flaxMemberParameters2, _flaxMemberParameters125 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -29,8 +27,8 @@ export interface RectangularSliderValueIndicatorShape extends Omit<upstream0.Sli
 readonly [_flaxDartTypeValue]: RectangularSliderValueIndicatorShape;
 
 }
-defineObject("flax.core/sdk_material#type:RectangularSliderValueIndicatorShape", [], [], _flaxBindingMethods("flax.core/sdk_material#type:RectangularSliderValueIndicatorShape", "object", {"getPreferredSize":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_material#type:SliderComponentShape");
-const _RectangularSliderValueIndicatorShapeProxy = {type: "flax.core/sdk_material#type:RectangularSliderValueIndicatorShape", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"getPreferredSize":_flaxMemberParameters0,"paint":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["getPreferredSize","paint"]} as const;
+defineObject("flax.core/sdk_material#type:RectangularSliderValueIndicatorShape", [], [], _flaxBindingMethods("flax.core/sdk_material#type:RectangularSliderValueIndicatorShape", "object", {"getPreferredSize":_flaxMemberParameters122}, {}), [], undefined, "flax.core/sdk_material#type:SliderComponentShape");
+const _RectangularSliderValueIndicatorShapeProxy = {type: "flax.core/sdk_material#type:RectangularSliderValueIndicatorShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredSize":_flaxMemberParameters122,"paint":_flaxMemberParameters125}, getters: [], setters: [], contextMembers: [], superMembers: ["getPreferredSize","paint"]} as const;
 export interface RectangularSliderValueIndicatorShape {
 readonly [_flaxDartTypeValue]: RectangularSliderValueIndicatorShape;
 

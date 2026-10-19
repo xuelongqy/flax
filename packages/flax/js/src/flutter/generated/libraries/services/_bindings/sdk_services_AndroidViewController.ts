@@ -13,11 +13,7 @@ import type * as upstream4 from '@flax/flutter/services/_bindings/sdk_services_A
 import '@flax/flutter/services/_bindings/sdk_services_AndroidMotionEvent';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"size","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"off","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"event","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"listener","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"layoutDirection","required":true,"positional":true}] as const;
+import { _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface AndroidViewController extends Omit<upstream0.PlatformViewController, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController": readonly [] }> { readonly __AndroidViewController: unique symbol;
@@ -41,7 +37,7 @@ removeOnPlatformViewCreatedListener(listener: ((id: number) => void)): void;
 setLayoutDirection(layoutDirection: upstream5.TextDirection): Promise<void>;
 set pointTransformer(value: ((position: upstream1.Offset) => Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>));
 }
-defineObject("flax.core/sdk_services#type:AndroidViewController", ["viewId","awaitingCreation","textureId","requiresViewComposition","pointTransformer","isCreated"], ["pointTransformer"], _flaxBindingMethods("flax.core/sdk_services#type:AndroidViewController", "object", {"setSize":_flaxMemberParameters0,"setOffset":_flaxMemberParameters1,"sendMotionEvent":_flaxMemberParameters2,"addOnPlatformViewCreatedListener":_flaxMemberParameters3,"removeOnPlatformViewCreatedListener":_flaxMemberParameters3,"setLayoutDirection":_flaxMemberParameters4}, {}), [], undefined, "flax.core/sdk_services#type:PlatformViewController");
+defineObject("flax.core/sdk_services#type:AndroidViewController", ["viewId","awaitingCreation","textureId","requiresViewComposition","pointTransformer","isCreated"], ["pointTransformer"], _flaxBindingMethods("flax.core/sdk_services#type:AndroidViewController", "object", {"setSize":_flaxMemberParameters4,"setOffset":_flaxMemberParameters5,"sendMotionEvent":_flaxMemberParameters6,"addOnPlatformViewCreatedListener":_flaxMemberParameters7,"removeOnPlatformViewCreatedListener":_flaxMemberParameters7,"setLayoutDirection":_flaxMemberParameters8}, {}), [], undefined, "flax.core/sdk_services#type:PlatformViewController");
 export namespace _AndroidViewControllerFactory { export declare const kActionDown: number; }
 export namespace _AndroidViewControllerFactory { export declare const kActionUp: number; }
 export namespace _AndroidViewControllerFactory { export declare const kActionMove: number; }

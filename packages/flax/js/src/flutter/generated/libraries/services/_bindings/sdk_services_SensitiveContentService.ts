@@ -5,8 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/sdk_services_M
 import '@flax/flutter/services/_bindings/sdk_services_MethodChannel';
 import type * as upstream1 from '@flax/flutter/services/_bindings/sdk_services_ContentSensitivity';
 import '@flax/flutter/services/_bindings/sdk_services_ContentSensitivity';
-const _flaxMemberParameters0 = [{"name":"contentSensitivity","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
+import { _flaxMemberParameters88, _flaxMemberParameters0 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,8 +13,8 @@ export interface SensitiveContentService extends Readonly<{ "__flaxBound:package
 readonly [_flaxDartTypeValue]: SensitiveContentService;
 
 }
-defineObject("flax.core/sdk_services#type:SensitiveContentService", ["sensitiveContentChannel"], ["sensitiveContentChannel"], _flaxBindingMethods("flax.core/sdk_services#type:SensitiveContentService", "object", {"setContentSensitivity":_flaxMemberParameters0,"getContentSensitivity":_flaxMemberParameters1,"isSupported":_flaxMemberParameters1}, {}), []);
-const _SensitiveContentServiceProxy = {type: "flax.core/sdk_services#type:SensitiveContentService", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"setContentSensitivity":_flaxMemberParameters0,"getContentSensitivity":_flaxMemberParameters1,"isSupported":_flaxMemberParameters1}, getters: ["sensitiveContentChannel"], setters: ["sensitiveContentChannel"], contextMembers: [], superMembers: ["get:sensitiveContentChannel","set:sensitiveContentChannel","setContentSensitivity","getContentSensitivity","isSupported"]} as const;
+defineObject("flax.core/sdk_services#type:SensitiveContentService", ["sensitiveContentChannel"], ["sensitiveContentChannel"], _flaxBindingMethods("flax.core/sdk_services#type:SensitiveContentService", "object", {"setContentSensitivity":_flaxMemberParameters88,"getContentSensitivity":_flaxMemberParameters0,"isSupported":_flaxMemberParameters0}, {}), []);
+const _SensitiveContentServiceProxy = {type: "flax.core/sdk_services#type:SensitiveContentService", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"setContentSensitivity":_flaxMemberParameters88,"getContentSensitivity":_flaxMemberParameters0,"isSupported":_flaxMemberParameters0}, getters: ["sensitiveContentChannel"], setters: ["sensitiveContentChannel"], contextMembers: [], superMembers: ["get:sensitiveContentChannel","set:sensitiveContentChannel","setContentSensitivity","getContentSensitivity","isSupported"]} as const;
 export interface SensitiveContentService {
 readonly [_flaxDartTypeValue]: SensitiveContentService;
 

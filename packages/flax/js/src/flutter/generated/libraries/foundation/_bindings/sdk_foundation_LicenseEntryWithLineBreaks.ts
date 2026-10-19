@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_LicenseEntry';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundation_LicenseParagraph';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_LicenseParagraph';
-const _flaxMemberParameters0 = [{"name":"packages","required":true,"positional":true},{"name":"text","required":true,"positional":true}] as const;
+import { _flaxMemberParameters66 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: LicenseEntryWithLineBreaks;
 
 }
 defineObject("flax.core/sdk_foundation#type:LicenseEntryWithLineBreaks", ["packages","paragraphs","text"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:LicenseEntryWithLineBreaks", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:LicenseEntry");
-const _LicenseEntryWithLineBreaksProxy = {type: "flax.core/sdk_foundation#type:LicenseEntryWithLineBreaks", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["packages","text","paragraphs"], setters: [], contextMembers: [], superMembers: ["get:packages","get:text","get:paragraphs"]} as const;
+const _LicenseEntryWithLineBreaksProxy = {type: "flax.core/sdk_foundation#type:LicenseEntryWithLineBreaks", parameters: _flaxMemberParameters66, constructors: {"": _flaxMemberParameters66}, methods: {}, getters: ["packages","text","paragraphs"], setters: [], contextMembers: [], superMembers: ["get:packages","get:text","get:paragraphs"]} as const;
 export interface LicenseEntryWithLineBreaks {
 readonly [_flaxDartTypeValue]: LicenseEntryWithLineBreaks;
 

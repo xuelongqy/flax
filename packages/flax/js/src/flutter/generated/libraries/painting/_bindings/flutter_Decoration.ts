@@ -25,12 +25,7 @@ import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"size","required":true,"positional":true},{"name":"position","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters4 = [{"name":"onChanged","positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection","required":true,"positional":true}] as const;
+import { _flaxMemberParameters3, _flaxMemberParameters23, _flaxMemberParameters24, _flaxMemberParameters42, _flaxMemberParameters25, _flaxMemberParameters43 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Decoration extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __Decoration: unique symbol;
@@ -49,7 +44,7 @@ hitTest(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<
 createBoxPainter(onChanged?: (() => void)): upstream9.BoxPainter;
 getClipPath(rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, textDirection: upstream8.TextDirection): upstream10.Path;
 }
-defineObject("flax.core/flutter#type:Decoration", ["padding","isComplex"], [], _flaxBindingMethods("flax.core/flutter#type:Decoration", "object", {"debugAssertIsValid":_flaxMemberParameters0,"lerpFrom":_flaxMemberParameters1,"lerpTo":_flaxMemberParameters2,"hitTest":_flaxMemberParameters3,"createBoxPainter":_flaxMemberParameters4,"getClipPath":_flaxMemberParameters5}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+defineObject("flax.core/flutter#type:Decoration", ["padding","isComplex"], [], _flaxBindingMethods("flax.core/flutter#type:Decoration", "object", {"debugAssertIsValid":_flaxMemberParameters3,"lerpFrom":_flaxMemberParameters23,"lerpTo":_flaxMemberParameters24,"hitTest":_flaxMemberParameters42,"createBoxPainter":_flaxMemberParameters25,"getClipPath":_flaxMemberParameters43}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
 export namespace _DecorationFactory { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null, t: number): Decoration | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/flutter#function:Decoration.lerp", [a, b, t]);

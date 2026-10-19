@@ -5,10 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Lis
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ListWheelChildDelegate';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-const _flaxMemberParameters0 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"builder","required":true},{"name":"childCount"}] as const;
-const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"index","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"index","required":true,"positional":true}] as const;
+import { _flaxMemberParameters38, _flaxMemberParameters218, _flaxMemberParameters219, _flaxMemberParameters77 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,8 +13,8 @@ export interface ListWheelChildBuilderDelegate extends Omit<upstream0.ListWheelC
 readonly [_flaxDartTypeValue]: ListWheelChildBuilderDelegate;
 
 }
-defineObject("flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", ["estimatedChildCount","builder","childCount"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", "object", {"shouldRebuild":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:ListWheelChildDelegate");
-const _ListWheelChildBuilderDelegateProxy = {type: "flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"build":_flaxMemberParameters2,"trueIndexOf":_flaxMemberParameters3,"shouldRebuild":_flaxMemberParameters0}, getters: ["builder","childCount","estimatedChildCount"], setters: [], contextMembers: [], superMembers: ["get:builder","get:childCount","get:estimatedChildCount","build","trueIndexOf","shouldRebuild"]} as const;
+defineObject("flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", ["estimatedChildCount","builder","childCount"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", "object", {"shouldRebuild":_flaxMemberParameters38}, {}), [], undefined, "flax.core/sdk_widgets#type:ListWheelChildDelegate");
+const _ListWheelChildBuilderDelegateProxy = {type: "flax.core/sdk_widgets#type:ListWheelChildBuilderDelegate", parameters: _flaxMemberParameters218, constructors: {"": _flaxMemberParameters218}, methods: {"build":_flaxMemberParameters219,"trueIndexOf":_flaxMemberParameters77,"shouldRebuild":_flaxMemberParameters38}, getters: ["builder","childCount","estimatedChildCount"], setters: [], contextMembers: [], superMembers: ["get:builder","get:childCount","get:estimatedChildCount","build","trueIndexOf","shouldRebuild"]} as const;
 export interface ListWheelChildBuilderDelegate {
 readonly [_flaxDartTypeValue]: ListWheelChildBuilderDelegate;
 

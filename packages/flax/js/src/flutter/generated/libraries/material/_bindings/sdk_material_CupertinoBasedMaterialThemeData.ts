@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/cupertino/_bindings/sdk_cupertino
 import '@flax/flutter/cupertino/_bindings/sdk_cupertino_CupertinoThemeData';
 import type * as upstream1 from '@flax/flutter/material/_bindings/sdk_material_ThemeData';
 import '@flax/flutter/material/_bindings/sdk_material_ThemeData';
-const _flaxMemberParameters0 = [{"name":"themeData","required":true}] as const;
+import { _flaxMemberParameters72 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: CupertinoBasedMaterialThemeData;
 
 }
 defineObject("flax.core/sdk_material#type:CupertinoBasedMaterialThemeData", ["materialTheme"], [], _flaxBindingMethods("flax.core/sdk_material#type:CupertinoBasedMaterialThemeData", "object", {}, {}), []);
-const _CupertinoBasedMaterialThemeDataProxy = {type: "flax.core/sdk_material#type:CupertinoBasedMaterialThemeData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["materialTheme"], setters: [], contextMembers: [], superMembers: ["get:materialTheme"]} as const;
+const _CupertinoBasedMaterialThemeDataProxy = {type: "flax.core/sdk_material#type:CupertinoBasedMaterialThemeData", parameters: _flaxMemberParameters72, constructors: {"": _flaxMemberParameters72}, methods: {}, getters: ["materialTheme"], setters: [], contextMembers: [], superMembers: ["get:materialTheme"]} as const;
 export interface CupertinoBasedMaterialThemeData {
 readonly [_flaxDartTypeValue]: CupertinoBasedMaterialThemeData;
 

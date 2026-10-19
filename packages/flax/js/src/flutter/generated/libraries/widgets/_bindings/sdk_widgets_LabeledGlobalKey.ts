@@ -11,8 +11,7 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"_debugLabel","required":true,"positional":true}] as const;
+import { _flaxMemberParameters2, _flaxMemberParameters216 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,8 +19,8 @@ export interface LabeledGlobalKey<T extends upstream0.State<Readonly<{ "__flaxBo
 readonly [_flaxDartTypeValue]: LabeledGlobalKey<T>;
 
 }
-defineObject("flax.core/sdk_widgets#type:LabeledGlobalKey", ["currentContext","currentWidget","currentState"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:LabeledGlobalKey", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _LabeledGlobalKeyProxy = {type: "flax.core/sdk_widgets#type:LabeledGlobalKey", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: ["currentContext","currentWidget","currentState"], setters: [], contextMembers: [], superMembers: ["get:currentContext","get:currentWidget","get:currentState","toString"]} as const;
+defineObject("flax.core/sdk_widgets#type:LabeledGlobalKey", ["currentContext","currentWidget","currentState"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:LabeledGlobalKey", "object", {"toString":_flaxMemberParameters2}, {}), []);
+const _LabeledGlobalKeyProxy = {type: "flax.core/sdk_widgets#type:LabeledGlobalKey", parameters: _flaxMemberParameters216, constructors: {"": _flaxMemberParameters216}, methods: {"toString":_flaxMemberParameters2}, getters: ["currentContext","currentWidget","currentState"], setters: [], contextMembers: [], superMembers: ["get:currentContext","get:currentWidget","get:currentState","toString"]} as const;
 export interface LabeledGlobalKey<T extends upstream0.State<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>> = upstream0.State<upstream1.StatefulWidget>> {
 readonly [_flaxDartTypeValue]: LabeledGlobalKey<T>;
 

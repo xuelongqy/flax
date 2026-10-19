@@ -13,10 +13,7 @@ import type * as upstream4 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderEditable';
 import type * as upstream5 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 import type * as upstream6 from '@flax/flutter/rendering/_bindings/sdk_rendering_TextParentData';
-const _flaxMemberParameters0 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"canvas","required":true,"positional":true},{"name":"size","required":true,"positional":true},{"name":"renderEditable","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"listener","required":true,"positional":true}] as const;
+import { _flaxMemberParameters53, _flaxMemberParameters209, _flaxMemberParameters1, _flaxMemberParameters48 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,8 +21,8 @@ export interface RenderEditablePainter extends Omit<upstream0.ChangeNotifier, _f
 readonly [_flaxDartTypeValue]: RenderEditablePainter;
 
 }
-defineObject("flax.core/sdk_rendering#type:RenderEditablePainter", ["hasListeners"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:RenderEditablePainter", "object", {"shouldRepaint":_flaxMemberParameters0,"paint":_flaxMemberParameters1}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _RenderEditablePainterProxy = {type: "flax.core/sdk_rendering#type:RenderEditablePainter", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"addListener":_flaxMemberParameters3,"removeListener":_flaxMemberParameters3,"dispose":_flaxMemberParameters2,"shouldRepaint":_flaxMemberParameters0,"paint":_flaxMemberParameters1}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
+defineObject("flax.core/sdk_rendering#type:RenderEditablePainter", ["hasListeners"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:RenderEditablePainter", "object", {"shouldRepaint":_flaxMemberParameters53,"paint":_flaxMemberParameters209}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+const _RenderEditablePainterProxy = {type: "flax.core/sdk_rendering#type:RenderEditablePainter", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"addListener":_flaxMemberParameters48,"removeListener":_flaxMemberParameters48,"dispose":_flaxMemberParameters1,"shouldRepaint":_flaxMemberParameters53,"paint":_flaxMemberParameters209}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
 export interface RenderEditablePainter {
 readonly [_flaxDartTypeValue]: RenderEditablePainter;
 

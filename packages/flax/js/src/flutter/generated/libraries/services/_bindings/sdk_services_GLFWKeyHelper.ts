@@ -9,10 +9,7 @@ import type * as upstream2 from '@flax/flutter/services/_bindings/sdk_services_M
 import '@flax/flutter/services/_bindings/sdk_services_ModifierKey';
 import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_LogicalKeyboardKey';
 import '@flax/flutter/services/_bindings/flutter_LogicalKeyboardKey';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"key","required":true,"positional":true},{"name":"modifiers","required":true,"positional":true},{"name":"isDown","required":true},{"name":"keyCode","required":true},{"name":"side"}] as const;
-const _flaxMemberParameters3 = [{"name":"keyCode","required":true,"positional":true}] as const;
+import { _flaxMemberParameters0, _flaxMemberParameters10, _flaxMemberParameters35, _flaxMemberParameters36 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -21,7 +18,7 @@ readonly [_flaxDartTypeValue]: GLFWKeyHelper;
 
 }
 defineObject("flax.core/sdk_services#type:GLFWKeyHelper", ["debugToolkit","platformPlane"], [], _flaxBindingMethods("flax.core/sdk_services#type:GLFWKeyHelper", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:KeyHelper");
-const _GLFWKeyHelperProxy = {type: "flax.core/sdk_services#type:GLFWKeyHelper", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"getModifierSide":_flaxMemberParameters1,"isModifierPressed":_flaxMemberParameters2,"numpadKey":_flaxMemberParameters3,"logicalKey":_flaxMemberParameters3}, getters: ["debugToolkit","platformPlane"], setters: [], contextMembers: [], superMembers: ["get:debugToolkit","get:platformPlane","getModifierSide","isModifierPressed","numpadKey","logicalKey"]} as const;
+const _GLFWKeyHelperProxy = {type: "flax.core/sdk_services#type:GLFWKeyHelper", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"getModifierSide":_flaxMemberParameters10,"isModifierPressed":_flaxMemberParameters35,"numpadKey":_flaxMemberParameters36,"logicalKey":_flaxMemberParameters36}, getters: ["debugToolkit","platformPlane"], setters: [], contextMembers: [], superMembers: ["get:debugToolkit","get:platformPlane","getModifierSide","isModifierPressed","numpadKey","logicalKey"]} as const;
 export interface GLFWKeyHelper {
 readonly [_flaxDartTypeValue]: GLFWKeyHelper;
 

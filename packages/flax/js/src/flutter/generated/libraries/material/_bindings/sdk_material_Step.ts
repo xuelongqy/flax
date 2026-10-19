@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/material/_bindings/sdk_material_S
 import '@flax/flutter/material/_bindings/sdk_material_StepState';
 import type * as upstream1 from '@flax/flutter/material/_bindings/sdk_material_StepStyle';
 import '@flax/flutter/material/_bindings/sdk_material_StepStyle';
-const _flaxMemberParameters0 = [{"name":"title","required":true},{"name":"subtitle"},{"name":"content","required":true},{"name":"state"},{"name":"isActive"},{"name":"label"},{"name":"stepStyle"}] as const;
+import { _flaxMemberParameters292 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: Step;
 
 }
 defineObject("flax.core/sdk_material#type:Step", ["title","subtitle","content","state","isActive","label","stepStyle"], [], _flaxBindingMethods("flax.core/sdk_material#type:Step", "object", {}, {}), []);
-const _StepProxy = {type: "flax.core/sdk_material#type:Step", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["title","subtitle","content","state","isActive","label","stepStyle"], setters: [], contextMembers: [], superMembers: ["get:title","get:subtitle","get:content","get:state","get:isActive","get:label","get:stepStyle"]} as const;
+const _StepProxy = {type: "flax.core/sdk_material#type:Step", parameters: _flaxMemberParameters292, constructors: {"": _flaxMemberParameters292}, methods: {}, getters: ["title","subtitle","content","state","isActive","label","stepStyle"], setters: [], contextMembers: [], superMembers: ["get:title","get:subtitle","get:content","get:state","get:isActive","get:label","get:stepStyle"]} as const;
 export interface Step {
 readonly [_flaxDartTypeValue]: Step;
 

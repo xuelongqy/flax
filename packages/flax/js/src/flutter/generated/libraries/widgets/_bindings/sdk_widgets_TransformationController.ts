@@ -13,10 +13,7 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_Valu
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"viewportPoint","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"value","positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"listener","required":true,"positional":true}] as const;
+import { _flaxMemberParameters2, _flaxMemberParameters435, _flaxMemberParameters436, _flaxMemberParameters12 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,8 +21,8 @@ export interface TransformationController extends Omit<upstream0.ValueNotifier<u
 readonly [_flaxDartTypeValue]: TransformationController;
 
 }
-defineObject("flax.core/sdk_widgets#type:TransformationController", ["value","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:TransformationController", "object", {"toString":_flaxMemberParameters0,"toScene":_flaxMemberParameters1}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _TransformationControllerProxy = {type: "flax.core/sdk_widgets#type:TransformationController", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toString":_flaxMemberParameters0,"addListener":_flaxMemberParameters3,"removeListener":_flaxMemberParameters3,"dispose":_flaxMemberParameters0,"toScene":_flaxMemberParameters1}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","toScene"]} as const;
+defineObject("flax.core/sdk_widgets#type:TransformationController", ["value","hasListeners"], ["value"], _flaxBindingMethods("flax.core/sdk_widgets#type:TransformationController", "object", {"toString":_flaxMemberParameters2,"toScene":_flaxMemberParameters435}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+const _TransformationControllerProxy = {type: "flax.core/sdk_widgets#type:TransformationController", parameters: _flaxMemberParameters436, constructors: {"": _flaxMemberParameters436}, methods: {"toString":_flaxMemberParameters2,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2,"toScene":_flaxMemberParameters435}, getters: ["value","hasListeners"], setters: ["value"], contextMembers: [], superMembers: ["get:value","get:hasListeners","set:value","toString","addListener","removeListener","dispose","toScene"]} as const;
 export interface TransformationController {
 readonly [_flaxDartTypeValue]: TransformationController;
 

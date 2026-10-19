@@ -21,17 +21,7 @@ import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-const _flaxMemberParameters0 = [{"name":"borderRadius"},{"name":"side"}] as const;
-const _flaxMemberParameters1 = [{"name":"side"},{"name":"borderRadius"}] as const;
-const _flaxMemberParameters2 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"other","required":true,"positional":true},{"name":"reversed"}] as const;
-const _flaxMemberParameters6 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters7 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"paint","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters8 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters9 = [] as const;
-const _flaxMemberParameters10 = [{"name":"other","required":true,"positional":true}] as const;
+import { _flaxMemberParameters12, _flaxMemberParameters13, _flaxMemberParameters14, _flaxMemberParameters15, _flaxMemberParameters16, _flaxMemberParameters17, _flaxMemberParameters18, _flaxMemberParameters19, _flaxMemberParameters20, _flaxMemberParameters2, _flaxMemberParameters21 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -39,8 +29,8 @@ export interface BeveledRectangleBorder extends Omit<upstream0.OutlinedBorder, _
 readonly [_flaxDartTypeValue]: BeveledRectangleBorder;
 
 }
-defineObject("flax.core/sdk_painting#type:BeveledRectangleBorder", ["dimensions","side","preferPaintInterior","borderRadius"], [], _flaxBindingMethods("flax.core/sdk_painting#type:BeveledRectangleBorder", "object", {"copyWith":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:OutlinedBorder");
-const _BeveledRectangleBorderProxy = {type: "flax.core/sdk_painting#type:BeveledRectangleBorder", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"copyWith":_flaxMemberParameters0,"scale":_flaxMemberParameters2,"lerpFrom":_flaxMemberParameters3,"lerpTo":_flaxMemberParameters4,"add":_flaxMemberParameters5,"getOuterPath":_flaxMemberParameters6,"getInnerPath":_flaxMemberParameters6,"paintInterior":_flaxMemberParameters7,"paint":_flaxMemberParameters8,"toString":_flaxMemberParameters9,"operatorAdd":_flaxMemberParameters10}, getters: ["borderRadius","dimensions","side","preferPaintInterior"], setters: [], contextMembers: [], superMembers: ["get:borderRadius","get:dimensions","get:side","get:preferPaintInterior","copyWith","scale","lerpFrom","lerpTo","add","getOuterPath","getInnerPath","paintInterior","paint","toString","operatorAdd"]} as const;
+defineObject("flax.core/sdk_painting#type:BeveledRectangleBorder", ["dimensions","side","preferPaintInterior","borderRadius"], [], _flaxBindingMethods("flax.core/sdk_painting#type:BeveledRectangleBorder", "object", {"copyWith":_flaxMemberParameters12}, {}), [], undefined, "flax.core/flutter#type:OutlinedBorder");
+const _BeveledRectangleBorderProxy = {type: "flax.core/sdk_painting#type:BeveledRectangleBorder", parameters: _flaxMemberParameters13, constructors: {"": _flaxMemberParameters13}, methods: {"copyWith":_flaxMemberParameters12,"scale":_flaxMemberParameters14,"lerpFrom":_flaxMemberParameters15,"lerpTo":_flaxMemberParameters16,"add":_flaxMemberParameters17,"getOuterPath":_flaxMemberParameters18,"getInnerPath":_flaxMemberParameters18,"paintInterior":_flaxMemberParameters19,"paint":_flaxMemberParameters20,"toString":_flaxMemberParameters2,"operatorAdd":_flaxMemberParameters21}, getters: ["borderRadius","dimensions","side","preferPaintInterior"], setters: [], contextMembers: [], superMembers: ["get:borderRadius","get:dimensions","get:side","get:preferPaintInterior","copyWith","scale","lerpFrom","lerpTo","add","getOuterPath","getInnerPath","paintInterior","paint","toString","operatorAdd"]} as const;
 export interface BeveledRectangleBorder {
 readonly [_flaxDartTypeValue]: BeveledRectangleBorder;
 

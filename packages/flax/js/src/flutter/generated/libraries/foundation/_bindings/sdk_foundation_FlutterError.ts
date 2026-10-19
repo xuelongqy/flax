@@ -23,13 +23,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"diagnostics","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner"},{"name":"minLevel"}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
-const _flaxMemberParameters4 = [] as const;
-const _flaxMemberParameters5 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters6 = [{"name":"properties","required":true,"positional":true}] as const;
+import { _flaxMemberParameters57, _flaxMemberParameters30, _flaxMemberParameters39, _flaxMemberParameters40, _flaxMemberParameters1, _flaxMemberParameters31, _flaxMemberParameters32 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -38,7 +32,7 @@ readonly [_flaxDartTypeValue]: FlutterError;
 
 }
 defineObject("flax.core/sdk_foundation#type:FlutterError", ["stackTrace","diagnostics","message"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:FlutterError", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:DiagnosticableTreeMixin");
-const _FlutterErrorProxy = {type: "flax.core/sdk_foundation#type:FlutterError", parameters: _flaxMemberParameters0, constructors: {"fromParts": _flaxMemberParameters0}, methods: {"toString":_flaxMemberParameters1,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toStringShort":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugDescribeChildren":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters6}, getters: ["diagnostics","message","stackTrace"], setters: [], contextMembers: [], superMembers: ["get:diagnostics","get:message","get:stackTrace","toString","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties"]} as const;
+const _FlutterErrorProxy = {type: "flax.core/sdk_foundation#type:FlutterError", parameters: _flaxMemberParameters57, constructors: {"fromParts": _flaxMemberParameters57}, methods: {"toString":_flaxMemberParameters30,"toStringShallow":_flaxMemberParameters39,"toStringDeep":_flaxMemberParameters40,"toStringShort":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters31,"debugDescribeChildren":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters32}, getters: ["diagnostics","message","stackTrace"], setters: [], contextMembers: [], superMembers: ["get:diagnostics","get:message","get:stackTrace","toString","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties"]} as const;
 export interface FlutterError {
 readonly [_flaxDartTypeValue]: FlutterError;
 

@@ -9,10 +9,7 @@ import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
-const _flaxMemberParameters0 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"animation","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"parent","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [] as const;
+import { _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters2 } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,8 +17,8 @@ export interface Animatable<T extends unknown | null = unknown | null> extends R
 readonly [_flaxDartTypeValue]: Animatable<T>;
 
 }
-defineObject("flax.core/sdk_animation#type:Animatable", [], [], _flaxBindingMethods("flax.core/sdk_animation#type:Animatable", "object", {"transform":_flaxMemberParameters0,"evaluate":_flaxMemberParameters1,"animate":_flaxMemberParameters2,"chain":_flaxMemberParameters2}, {}), []);
-const _AnimatableProxy = {type: "flax.core/sdk_animation#type:Animatable", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"transform":_flaxMemberParameters0,"evaluate":_flaxMemberParameters1,"animate":_flaxMemberParameters2,"chain":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["evaluate","animate","chain"]} as const;
+defineObject("flax.core/sdk_animation#type:Animatable", [], [], _flaxBindingMethods("flax.core/sdk_animation#type:Animatable", "object", {"transform":_flaxMemberParameters4,"evaluate":_flaxMemberParameters5,"animate":_flaxMemberParameters6,"chain":_flaxMemberParameters6}, {}), []);
+const _AnimatableProxy = {type: "flax.core/sdk_animation#type:Animatable", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"transform":_flaxMemberParameters4,"evaluate":_flaxMemberParameters5,"animate":_flaxMemberParameters6,"chain":_flaxMemberParameters6}, getters: [], setters: [], contextMembers: [], superMembers: ["evaluate","animate","chain"]} as const;
 export interface Animatable<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: Animatable<T>;
 

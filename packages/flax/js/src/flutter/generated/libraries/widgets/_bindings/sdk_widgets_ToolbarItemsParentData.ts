@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerParentDataMixin';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-const _flaxMemberParameters0 = [] as const;
+import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +22,7 @@ readonly [_flaxDartTypeValue]: ToolbarItemsParentData;
 
 }
 defineObject("flax.core/sdk_widgets#type:ToolbarItemsParentData", ["offset","previousSibling","nextSibling","shouldPaint"], ["offset","previousSibling","nextSibling","shouldPaint"], _flaxBindingMethods("flax.core/sdk_widgets#type:ToolbarItemsParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
-const _ToolbarItemsParentDataProxy = {type: "flax.core/sdk_widgets#type:ToolbarItemsParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["shouldPaint","offset","previousSibling","nextSibling"], setters: ["shouldPaint","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:shouldPaint","get:offset","get:previousSibling","get:nextSibling","set:shouldPaint","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _ToolbarItemsParentDataProxy = {type: "flax.core/sdk_widgets#type:ToolbarItemsParentData", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"detach":_flaxMemberParameters2,"toString":_flaxMemberParameters2}, getters: ["shouldPaint","offset","previousSibling","nextSibling"], setters: ["shouldPaint","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:shouldPaint","get:offset","get:previousSibling","get:nextSibling","set:shouldPaint","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface ToolbarItemsParentData {
 readonly [_flaxDartTypeValue]: ToolbarItemsParentData;
 

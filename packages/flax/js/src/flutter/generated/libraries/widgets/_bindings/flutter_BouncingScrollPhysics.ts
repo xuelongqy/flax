@@ -15,8 +15,7 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream6 from '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
-const _flaxMemberParameters0 = [{"name":"ancestor","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"overscrollFraction","required":true,"positional":true}] as const;
+import { _flaxMemberParameters5, _flaxMemberParameters11 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface BouncingScrollPhysics extends Omit<upstream0.ScrollPhysics, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::BouncingScrollPhysics": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> { readonly __BouncingScrollPhysics: unique symbol;
@@ -45,7 +44,7 @@ carriedMomentum(existingVelocity: number): number;
 toString(): string;
 frictionFactor(overscrollFraction: number): number;
 }
-defineObject("flax.core/flutter#type:BouncingScrollPhysics", ["parent","spring","tolerance","minFlingDistance","minFlingVelocity","maxFlingVelocity","dragStartDistanceMotionThreshold","allowImplicitScrolling","allowUserScrolling","decelerationRate"], [], _flaxBindingMethods("flax.core/flutter#type:BouncingScrollPhysics", "object", {"applyTo":_flaxMemberParameters0,"frictionFactor":_flaxMemberParameters1}, {}), [], undefined, "flax.core/flutter#type:ScrollPhysics");
+defineObject("flax.core/flutter#type:BouncingScrollPhysics", ["parent","spring","tolerance","minFlingDistance","minFlingVelocity","maxFlingVelocity","dragStartDistanceMotionThreshold","allowImplicitScrolling","allowUserScrolling","decelerationRate"], [], _flaxBindingMethods("flax.core/flutter#type:BouncingScrollPhysics", "object", {"applyTo":_flaxMemberParameters5,"frictionFactor":_flaxMemberParameters11}, {}), [], undefined, "flax.core/flutter#type:ScrollPhysics");
 export function _BouncingScrollPhysicsFactory(options: { decelerationRate?: upstream1.ScrollDecelerationRate | undefined; parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): BouncingScrollPhysics {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

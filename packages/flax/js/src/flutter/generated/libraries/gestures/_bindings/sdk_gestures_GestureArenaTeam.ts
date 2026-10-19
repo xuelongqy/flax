@@ -5,8 +5,7 @@ import type * as upstream0 from '@flax/flutter/gestures/_bindings/sdk_gestures_G
 import '@flax/flutter/gestures/_bindings/sdk_gestures_GestureArenaMember';
 import type * as upstream1 from '@flax/flutter/gestures/_bindings/sdk_gestures_GestureArenaEntry';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_GestureArenaEntry';
-const _flaxMemberParameters0 = [{"name":"pointer","required":true,"positional":true},{"name":"member","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
+import { _flaxMemberParameters33, _flaxMemberParameters7 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,8 +13,8 @@ export interface GestureArenaTeam extends Readonly<{ "__flaxBound:package:flutte
 readonly [_flaxDartTypeValue]: GestureArenaTeam;
 
 }
-defineObject("flax.core/sdk_gestures#type:GestureArenaTeam", ["captain"], ["captain"], _flaxBindingMethods("flax.core/sdk_gestures#type:GestureArenaTeam", "object", {"add":_flaxMemberParameters0}, {}), []);
-const _GestureArenaTeamProxy = {type: "flax.core/sdk_gestures#type:GestureArenaTeam", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"add":_flaxMemberParameters0}, getters: ["captain"], setters: ["captain"], contextMembers: [], superMembers: ["get:captain","set:captain","add"]} as const;
+defineObject("flax.core/sdk_gestures#type:GestureArenaTeam", ["captain"], ["captain"], _flaxBindingMethods("flax.core/sdk_gestures#type:GestureArenaTeam", "object", {"add":_flaxMemberParameters33}, {}), []);
+const _GestureArenaTeamProxy = {type: "flax.core/sdk_gestures#type:GestureArenaTeam", parameters: _flaxMemberParameters7, constructors: {"": _flaxMemberParameters7}, methods: {"add":_flaxMemberParameters33}, getters: ["captain"], setters: ["captain"], contextMembers: [], superMembers: ["get:captain","set:captain","add"]} as const;
 export interface GestureArenaTeam {
 readonly [_flaxDartTypeValue]: GestureArenaTeam;
 

@@ -5,12 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Foc
 import '@flax/flutter/widgets/_bindings/sdk_widgets_FocusManager';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_Element';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Element';
-const _flaxMemberParameters0 = [{"name":"element","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"callback","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true},{"name":"callback","positional":true}] as const;
-const _flaxMemberParameters3 = [] as const;
-const _flaxMemberParameters4 = [{"name":"root","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"onBuildScheduled"},{"name":"focusManager"}] as const;
+import { _flaxMemberParameters49, _flaxMemberParameters32, _flaxMemberParameters50, _flaxMemberParameters2, _flaxMemberParameters51, _flaxMemberParameters52 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -18,8 +13,8 @@ export interface BuildOwner extends Readonly<{ "__flaxBound:package:flutter/src/
 readonly [_flaxDartTypeValue]: BuildOwner;
 
 }
-defineObject("flax.core/sdk_widgets#type:BuildOwner", ["onBuildScheduled","focusManager","debugBuilding","globalKeyCount"], ["onBuildScheduled","focusManager"], _flaxBindingMethods("flax.core/sdk_widgets#type:BuildOwner", "object", {"scheduleBuildFor":_flaxMemberParameters0,"lockState":_flaxMemberParameters1,"buildScope":_flaxMemberParameters2,"finalizeTree":_flaxMemberParameters3,"reassemble":_flaxMemberParameters4}, {}), []);
-const _BuildOwnerProxy = {type: "flax.core/sdk_widgets#type:BuildOwner", parameters: _flaxMemberParameters5, constructors: {"": _flaxMemberParameters5}, methods: {"scheduleBuildFor":_flaxMemberParameters0,"lockState":_flaxMemberParameters1,"buildScope":_flaxMemberParameters2,"finalizeTree":_flaxMemberParameters3,"reassemble":_flaxMemberParameters4}, getters: ["onBuildScheduled","focusManager","debugBuilding","globalKeyCount"], setters: ["onBuildScheduled","focusManager"], contextMembers: [], superMembers: ["get:onBuildScheduled","get:focusManager","get:debugBuilding","get:globalKeyCount","set:onBuildScheduled","set:focusManager","scheduleBuildFor","lockState","buildScope","finalizeTree","reassemble"]} as const;
+defineObject("flax.core/sdk_widgets#type:BuildOwner", ["onBuildScheduled","focusManager","debugBuilding","globalKeyCount"], ["onBuildScheduled","focusManager"], _flaxBindingMethods("flax.core/sdk_widgets#type:BuildOwner", "object", {"scheduleBuildFor":_flaxMemberParameters49,"lockState":_flaxMemberParameters32,"buildScope":_flaxMemberParameters50,"finalizeTree":_flaxMemberParameters2,"reassemble":_flaxMemberParameters51}, {}), []);
+const _BuildOwnerProxy = {type: "flax.core/sdk_widgets#type:BuildOwner", parameters: _flaxMemberParameters52, constructors: {"": _flaxMemberParameters52}, methods: {"scheduleBuildFor":_flaxMemberParameters49,"lockState":_flaxMemberParameters32,"buildScope":_flaxMemberParameters50,"finalizeTree":_flaxMemberParameters2,"reassemble":_flaxMemberParameters51}, getters: ["onBuildScheduled","focusManager","debugBuilding","globalKeyCount"], setters: ["onBuildScheduled","focusManager"], contextMembers: [], superMembers: ["get:onBuildScheduled","get:focusManager","get:debugBuilding","get:globalKeyCount","set:onBuildScheduled","set:focusManager","scheduleBuildFor","lockState","buildScope","finalizeTree","reassemble"]} as const;
 export interface BuildOwner {
 readonly [_flaxDartTypeValue]: BuildOwner;
 

@@ -9,11 +9,7 @@ import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Curve2DSample';
 import '@flax/flutter/animation/_bindings/sdk_animation_Curve2DSample';
-const _flaxMemberParameters0 = [{"name":"controlPoints","required":true,"positional":true},{"name":"tension"},{"name":"startHandle"},{"name":"endHandle"}] as const;
-const _flaxMemberParameters1 = [{"name":"end"},{"name":"start"},{"name":"tolerance"}] as const;
-const _flaxMemberParameters2 = [{"name":"x","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [] as const;
+import { _flaxMemberParameters24, _flaxMemberParameters25, _flaxMemberParameters26, _flaxMemberParameters4, _flaxMemberParameters2 } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +18,7 @@ readonly [_flaxDartTypeValue]: CatmullRomSpline;
 
 }
 defineObject("flax.core/sdk_animation#type:CatmullRomSpline", ["samplingSeed"], [], _flaxBindingMethods("flax.core/sdk_animation#type:CatmullRomSpline", "object", {}, {}), [], undefined, "flax.core/sdk_animation#type:Curve2D");
-const _CatmullRomSplineProxy = {type: "flax.core/sdk_animation#type:CatmullRomSpline", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"generateSamples":_flaxMemberParameters1,"findInverse":_flaxMemberParameters2,"transform":_flaxMemberParameters3,"transformInternal":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, getters: ["samplingSeed"], setters: [], contextMembers: [], superMembers: ["get:samplingSeed","generateSamples","findInverse","transform","transformInternal","toString"]} as const;
+const _CatmullRomSplineProxy = {type: "flax.core/sdk_animation#type:CatmullRomSpline", parameters: _flaxMemberParameters24, constructors: {"": _flaxMemberParameters24}, methods: {"generateSamples":_flaxMemberParameters25,"findInverse":_flaxMemberParameters26,"transform":_flaxMemberParameters4,"transformInternal":_flaxMemberParameters4,"toString":_flaxMemberParameters2}, getters: ["samplingSeed"], setters: [], contextMembers: [], superMembers: ["get:samplingSeed","generateSamples","findInverse","transform","transformInternal","toString"]} as const;
 export interface CatmullRomSpline {
 readonly [_flaxDartTypeValue]: CatmullRomSpline;
 

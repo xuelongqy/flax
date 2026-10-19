@@ -6,8 +6,7 @@ import '@flax/flutter/services/_bindings/sdk_services_MethodCodec';
 import type * as upstream1 from '@flax/flutter/services/_bindings/sdk_services_BinaryMessenger';
 import '@flax/flutter/services/_bindings/sdk_services_BinaryMessenger';
 import type * as upstream2 from '@flax/dart/async/_bindings/flutter_Stream';
-const _flaxMemberParameters0 = [{"name":"arguments","positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"name","required":true,"positional":true},{"name":"codec","positional":true},{"name":"binaryMessenger","positional":true}] as const;
+import { _flaxMemberParameters31, _flaxMemberParameters32 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,8 +14,8 @@ export interface EventChannel extends Readonly<{ "__flaxBound:package:flutter/sr
 readonly [_flaxDartTypeValue]: EventChannel;
 
 }
-defineObject("flax.core/sdk_services#type:EventChannel", ["name","codec","binaryMessenger"], [], _flaxBindingMethods("flax.core/sdk_services#type:EventChannel", "object", {"receiveBroadcastStream":_flaxMemberParameters0}, {}), []);
-const _EventChannelProxy = {type: "flax.core/sdk_services#type:EventChannel", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"receiveBroadcastStream":_flaxMemberParameters0}, getters: ["name","codec","binaryMessenger"], setters: [], contextMembers: [], superMembers: ["get:name","get:codec","get:binaryMessenger","receiveBroadcastStream"]} as const;
+defineObject("flax.core/sdk_services#type:EventChannel", ["name","codec","binaryMessenger"], [], _flaxBindingMethods("flax.core/sdk_services#type:EventChannel", "object", {"receiveBroadcastStream":_flaxMemberParameters31}, {}), []);
+const _EventChannelProxy = {type: "flax.core/sdk_services#type:EventChannel", parameters: _flaxMemberParameters32, constructors: {"": _flaxMemberParameters32}, methods: {"receiveBroadcastStream":_flaxMemberParameters31}, getters: ["name","codec","binaryMessenger"], setters: [], contextMembers: [], superMembers: ["get:name","get:codec","get:binaryMessenger","receiveBroadcastStream"]} as const;
 export interface EventChannel {
 readonly [_flaxDartTypeValue]: EventChannel;
 

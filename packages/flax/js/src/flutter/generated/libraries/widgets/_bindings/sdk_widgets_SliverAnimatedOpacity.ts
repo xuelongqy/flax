@@ -23,7 +23,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-const _flaxMemberParameters0 = [] as const;
+import { _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -46,7 +46,7 @@ toStringDeep(options?: {minLevel?: upstream8.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream10.DiagnosticsTreeStyle | null | undefined}): upstream9.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream9.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:SliverAnimatedOpacity", ["sliver","opacity","alwaysIncludeSemantics","curve","duration","onEnd","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverAnimatedOpacity", "object", {"createState":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:ImplicitlyAnimatedWidget");
+defineObject("flax.core/sdk_widgets#type:SliverAnimatedOpacity", ["sliver","opacity","alwaysIncludeSemantics","curve","duration","onEnd","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverAnimatedOpacity", "object", {"createState":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_widgets#type:ImplicitlyAnimatedWidget");
 export function _SliverAnimatedOpacityFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; sliver?: Widget | null | undefined; opacity: number; curve?: Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number] }> | undefined; duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream4.Duration] }>; onEnd?: (() => void) | null | undefined; alwaysIncludeSemantics?: boolean | undefined }): SliverAnimatedOpacity {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

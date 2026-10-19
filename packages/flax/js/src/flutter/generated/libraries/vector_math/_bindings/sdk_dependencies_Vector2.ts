@@ -7,20 +7,7 @@ import type * as upstream1 from '@flax/flutter/vector_math/_bindings/sdk_depende
 import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Vector4';
 import type * as upstream2 from '@flax/flutter/vector_math/_bindings/sdk_dependencies_Matrix2';
 import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Matrix2';
-const _flaxMemberParameters0 = [{"name":"x_","required":true,"positional":true},{"name":"y_","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"arg","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"out","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"scale","required":true,"positional":true},{"name":"out","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"normal","required":true,"positional":true}] as const;
-const _flaxMemberParameters7 = [{"name":"correct","required":true,"positional":true}] as const;
-const _flaxMemberParameters8 = [{"name":"arg","required":true,"positional":true},{"name":"factor","required":true,"positional":true}] as const;
-const _flaxMemberParameters9 = [{"name":"min","required":true,"positional":true},{"name":"max","required":true,"positional":true}] as const;
-const _flaxMemberParameters10 = [{"name":"array","required":true,"positional":true},{"name":"offset","positional":true}] as const;
-const _flaxMemberParameters11 = [{"name":"i","required":true,"positional":true}] as const;
-const _flaxMemberParameters12 = [{"name":"i","required":true,"positional":true},{"name":"v","required":true,"positional":true}] as const;
-const _flaxMemberParameters13 = [{"name":"scale","required":true,"positional":true}] as const;
+import { _flaxMemberParameters105, _flaxMemberParameters2, _flaxMemberParameters75, _flaxMemberParameters58, _flaxMemberParameters106, _flaxMemberParameters107, _flaxMemberParameters76, _flaxMemberParameters66, _flaxMemberParameters108, _flaxMemberParameters109, _flaxMemberParameters71, _flaxMemberParameters72, _flaxMemberParameters64, _flaxMemberParameters68 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Vector2 extends Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [] }>, Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }> { readonly __Vector2: unique symbol;
@@ -182,7 +169,7 @@ set gr(value: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::V
 set st(value: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>);
 set ts(value: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>);
 }
-defineObject("flax.core/sdk_dependencies#type:Vector2", ["storage","length","length2","isInfinite","isNaN","xx","xy","yx","yy","xxx","xxy","xyx","xyy","yxx","yxy","yyx","yyy","xxxx","xxxy","xxyx","xxyy","xyxx","xyxy","xyyx","xyyy","yxxx","yxxy","yxyx","yxyy","yyxx","yyxy","yyyx","yyyy","r","g","s","t","x","y","rr","rg","gr","gg","rrr","rrg","rgr","rgg","grr","grg","ggr","ggg","rrrr","rrrg","rrgr","rrgg","rgrr","rgrg","rggr","rggg","grrr","grrg","grgr","grgg","ggrr","ggrg","gggr","gggg","ss","st","ts","tt","sss","sst","sts","stt","tss","tst","tts","ttt","ssss","ssst","ssts","sstt","stss","stst","stts","sttt","tsss","tsst","tsts","tstt","ttss","ttst","ttts","tttt"], ["length","xy","yx","r","g","s","t","x","y","rg","gr","st","ts"], _flaxBindingMethods("flax.core/sdk_dependencies#type:Vector2", "object", {"setValues":_flaxMemberParameters0,"setZero":_flaxMemberParameters1,"setFrom":_flaxMemberParameters2,"splat":_flaxMemberParameters3,"toString":_flaxMemberParameters1,"normalize":_flaxMemberParameters1,"normalizeLength":_flaxMemberParameters1,"normalized":_flaxMemberParameters1,"normalizeInto":_flaxMemberParameters4,"distanceTo":_flaxMemberParameters3,"distanceToSquared":_flaxMemberParameters3,"angleTo":_flaxMemberParameters2,"angleToSigned":_flaxMemberParameters2,"dot":_flaxMemberParameters2,"postmultiply":_flaxMemberParameters3,"cross":_flaxMemberParameters2,"scaleOrthogonalInto":_flaxMemberParameters5,"reflect":_flaxMemberParameters6,"reflected":_flaxMemberParameters6,"relativeError":_flaxMemberParameters7,"absoluteError":_flaxMemberParameters7,"add":_flaxMemberParameters3,"addScaled":_flaxMemberParameters8,"sub":_flaxMemberParameters3,"multiply":_flaxMemberParameters3,"divide":_flaxMemberParameters3,"scale":_flaxMemberParameters3,"scaled":_flaxMemberParameters3,"negate":_flaxMemberParameters1,"absolute":_flaxMemberParameters1,"clamp":_flaxMemberParameters9,"clampScalar":_flaxMemberParameters9,"floor":_flaxMemberParameters1,"ceil":_flaxMemberParameters1,"round":_flaxMemberParameters1,"roundToZero":_flaxMemberParameters1,"clone":_flaxMemberParameters1,"copyInto":_flaxMemberParameters3,"copyIntoArray":_flaxMemberParameters10,"copyFromArray":_flaxMemberParameters10,"operatorGetIndex":_flaxMemberParameters11,"operatorSetIndex":_flaxMemberParameters12,"operatorAdd":_flaxMemberParameters2,"operatorSubtract":_flaxMemberParameters2,"operatorMultiply":_flaxMemberParameters13,"operatorDivide":_flaxMemberParameters13,"operatorNegate":_flaxMemberParameters1}, {}), []);
+defineObject("flax.core/sdk_dependencies#type:Vector2", ["storage","length","length2","isInfinite","isNaN","xx","xy","yx","yy","xxx","xxy","xyx","xyy","yxx","yxy","yyx","yyy","xxxx","xxxy","xxyx","xxyy","xyxx","xyxy","xyyx","xyyy","yxxx","yxxy","yxyx","yxyy","yyxx","yyxy","yyyx","yyyy","r","g","s","t","x","y","rr","rg","gr","gg","rrr","rrg","rgr","rgg","grr","grg","ggr","ggg","rrrr","rrrg","rrgr","rrgg","rgrr","rgrg","rggr","rggg","grrr","grrg","grgr","grgg","ggrr","ggrg","gggr","gggg","ss","st","ts","tt","sss","sst","sts","stt","tss","tst","tts","ttt","ssss","ssst","ssts","sstt","stss","stst","stts","sttt","tsss","tsst","tsts","tstt","ttss","ttst","ttts","tttt"], ["length","xy","yx","r","g","s","t","x","y","rg","gr","st","ts"], _flaxBindingMethods("flax.core/sdk_dependencies#type:Vector2", "object", {"setValues":_flaxMemberParameters105,"setZero":_flaxMemberParameters2,"setFrom":_flaxMemberParameters75,"splat":_flaxMemberParameters58,"toString":_flaxMemberParameters2,"normalize":_flaxMemberParameters2,"normalizeLength":_flaxMemberParameters2,"normalized":_flaxMemberParameters2,"normalizeInto":_flaxMemberParameters106,"distanceTo":_flaxMemberParameters58,"distanceToSquared":_flaxMemberParameters58,"angleTo":_flaxMemberParameters75,"angleToSigned":_flaxMemberParameters75,"dot":_flaxMemberParameters75,"postmultiply":_flaxMemberParameters58,"cross":_flaxMemberParameters75,"scaleOrthogonalInto":_flaxMemberParameters107,"reflect":_flaxMemberParameters76,"reflected":_flaxMemberParameters76,"relativeError":_flaxMemberParameters66,"absoluteError":_flaxMemberParameters66,"add":_flaxMemberParameters58,"addScaled":_flaxMemberParameters108,"sub":_flaxMemberParameters58,"multiply":_flaxMemberParameters58,"divide":_flaxMemberParameters58,"scale":_flaxMemberParameters58,"scaled":_flaxMemberParameters58,"negate":_flaxMemberParameters2,"absolute":_flaxMemberParameters2,"clamp":_flaxMemberParameters109,"clampScalar":_flaxMemberParameters109,"floor":_flaxMemberParameters2,"ceil":_flaxMemberParameters2,"round":_flaxMemberParameters2,"roundToZero":_flaxMemberParameters2,"clone":_flaxMemberParameters2,"copyInto":_flaxMemberParameters58,"copyIntoArray":_flaxMemberParameters71,"copyFromArray":_flaxMemberParameters71,"operatorGetIndex":_flaxMemberParameters72,"operatorSetIndex":_flaxMemberParameters64,"operatorAdd":_flaxMemberParameters75,"operatorSubtract":_flaxMemberParameters75,"operatorMultiply":_flaxMemberParameters68,"operatorDivide":_flaxMemberParameters68,"operatorNegate":_flaxMemberParameters2}, {}), []);
 export function _Vector2Factory(x: number, y: number): Vector2 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
@@ -192,14 +179,14 @@ export namespace _Vector2Factory {
 export function array(array: DartListInput<number, number>, offset?: number): Vector2 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dependencies#type:Vector2", "array", _flaxMemberParameters10, [array, offset], {}) as Vector2;
+return constructObject("object", "flax.core/sdk_dependencies#type:Vector2", "array", _flaxMemberParameters71, [array, offset], {}) as Vector2;
 }
 }
 export namespace _Vector2Factory {
 export function zero(): Vector2 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dependencies#type:Vector2", "zero", _flaxMemberParameters1, [], {}) as Vector2;
+return constructObject("object", "flax.core/sdk_dependencies#type:Vector2", "zero", _flaxMemberParameters2, [], {}) as Vector2;
 }
 }
 export namespace _Vector2Factory {
@@ -213,7 +200,7 @@ export namespace _Vector2Factory {
 export function copy(other: Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [] }> & Readonly<{ "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [] }>): Vector2 {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dependencies#type:Vector2", "copy", _flaxMemberParameters2, [other], {}) as Vector2;
+return constructObject("object", "flax.core/sdk_dependencies#type:Vector2", "copy", _flaxMemberParameters75, [other], {}) as Vector2;
 }
 }
 export namespace _Vector2Factory {

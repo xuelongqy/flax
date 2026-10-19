@@ -6,9 +6,7 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollableState';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_Scrollable';
-const _flaxMemberParameters0 = [{"name":"dragTarget","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"scrollable","required":true,"positional":true},{"name":"onScrollViewScrolled"},{"name":"velocityScalar","required":true}] as const;
+import { _flaxMemberParameters121, _flaxMemberParameters2, _flaxMemberParameters122 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,8 +14,8 @@ export interface EdgeDraggingAutoScroller extends Readonly<{ "__flaxBound:packag
 readonly [_flaxDartTypeValue]: EdgeDraggingAutoScroller;
 
 }
-defineObject("flax.core/sdk_widgets#type:EdgeDraggingAutoScroller", ["scrollable","onScrollViewScrolled","velocityScalar","scrolling"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:EdgeDraggingAutoScroller", "object", {"startAutoScrollIfNecessary":_flaxMemberParameters0,"stopAutoScroll":_flaxMemberParameters1}, {}), []);
-const _EdgeDraggingAutoScrollerProxy = {type: "flax.core/sdk_widgets#type:EdgeDraggingAutoScroller", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"startAutoScrollIfNecessary":_flaxMemberParameters0,"stopAutoScroll":_flaxMemberParameters1}, getters: ["scrollable","onScrollViewScrolled","velocityScalar","scrolling"], setters: [], contextMembers: [], superMembers: ["get:scrollable","get:onScrollViewScrolled","get:velocityScalar","get:scrolling","startAutoScrollIfNecessary","stopAutoScroll"]} as const;
+defineObject("flax.core/sdk_widgets#type:EdgeDraggingAutoScroller", ["scrollable","onScrollViewScrolled","velocityScalar","scrolling"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:EdgeDraggingAutoScroller", "object", {"startAutoScrollIfNecessary":_flaxMemberParameters121,"stopAutoScroll":_flaxMemberParameters2}, {}), []);
+const _EdgeDraggingAutoScrollerProxy = {type: "flax.core/sdk_widgets#type:EdgeDraggingAutoScroller", parameters: _flaxMemberParameters122, constructors: {"": _flaxMemberParameters122}, methods: {"startAutoScrollIfNecessary":_flaxMemberParameters121,"stopAutoScroll":_flaxMemberParameters2}, getters: ["scrollable","onScrollViewScrolled","velocityScalar","scrolling"], setters: [], contextMembers: [], superMembers: ["get:scrollable","get:onScrollViewScrolled","get:velocityScalar","get:scrolling","startAutoScrollIfNecessary","stopAutoScroll"]} as const;
 export interface EdgeDraggingAutoScroller {
 readonly [_flaxDartTypeValue]: EdgeDraggingAutoScroller;
 

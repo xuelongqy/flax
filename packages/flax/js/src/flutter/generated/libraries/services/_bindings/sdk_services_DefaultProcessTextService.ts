@@ -5,8 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/sdk_services_P
 import '@flax/flutter/services/_bindings/sdk_services_ProcessTextService';
 import type * as upstream1 from '@flax/flutter/services/_bindings/sdk_services_ProcessTextAction';
 import '@flax/flutter/services/_bindings/sdk_services_ProcessTextAction';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"id","required":true,"positional":true},{"name":"text","required":true,"positional":true},{"name":"readOnly","required":true,"positional":true}] as const;
+import { _flaxMemberParameters0, _flaxMemberParameters28 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,7 +14,7 @@ readonly [_flaxDartTypeValue]: DefaultProcessTextService;
 
 }
 defineObject("flax.core/sdk_services#type:DefaultProcessTextService", [], [], _flaxBindingMethods("flax.core/sdk_services#type:DefaultProcessTextService", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:ProcessTextService");
-const _DefaultProcessTextServiceProxy = {type: "flax.core/sdk_services#type:DefaultProcessTextService", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"queryTextActions":_flaxMemberParameters0,"processTextAction":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["queryTextActions","processTextAction"]} as const;
+const _DefaultProcessTextServiceProxy = {type: "flax.core/sdk_services#type:DefaultProcessTextService", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"queryTextActions":_flaxMemberParameters0,"processTextAction":_flaxMemberParameters28}, getters: [], setters: [], contextMembers: [], superMembers: ["queryTextActions","processTextAction"]} as const;
 export interface DefaultProcessTextService {
 readonly [_flaxDartTypeValue]: DefaultProcessTextService;
 

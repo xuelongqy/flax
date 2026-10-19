@@ -56,9 +56,13 @@ void main() {
                 : name == 'Child'
                 ? ['value']
                 : ['value', 'peer'],
-            instanceMethods: name == 'Alpha'
-                ? const {'concreteResult': []}
-                : const {},
+            instanceMethods: switch (name) {
+              'Alpha' => const {'concreteResult': []},
+              'Unused' => const {
+                'unusedLayout': ['unusedLayoutOnly'],
+              },
+              _ => const {},
+            },
           ),
       },
       typedefs: ['Identity'],
@@ -96,6 +100,92 @@ void main() {
       await parser.dispose();
     }
   }
+
+  test(
+    'split members share complete layouts and retain generic and super types',
+    () async {
+      final module = await parse(
+        FlaxCodegenBindingConfig(
+          'layouts',
+          fixture('alpha'),
+          '@example/layouts',
+          'unused.dart',
+          'unused.ts',
+          {
+            for (final name in ['WideEntry', 'NarrowEntry', 'GenericHolder'])
+              name: FlaxCodegenClassSelection(
+                {
+                  '': name == 'GenericHolder' ? ['value'] : [],
+                },
+                kind: 'object',
+                getters: name == 'GenericHolder' ? ['value'] : [],
+              ),
+            for (final name in [
+              'WideTarget',
+              'ConcreteTarget',
+              'DerivedTarget',
+            ])
+              name: FlaxCodegenClassSelection(
+                name == 'WideTarget' ? const {} : const {'': []},
+                kind: 'object',
+                proxy: name == 'DerivedTarget' ? 'extends' : null,
+                instanceMethods: {
+                  'handle': ['entry'],
+                  'reorder': name == 'WideTarget'
+                      ? ['label']
+                      : ['label', 'mode'],
+                },
+              ),
+          },
+          types: ['CaseMode'],
+          publicLibraries: {
+            fixture('alpha'): const FlaxCodegenLibrarySelection(
+              jsPackage: '@example/layouts',
+              tsOutput: 'src/index.ts',
+            ),
+          },
+        ),
+      );
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      final files = emitter.typescriptOutputs(module);
+      final install = files['src/_bindings/layouts.__module.ts']!;
+      final rows = RegExp(
+        r'export const (_flaxMemberParameters\d+): readonly _FlaxMemberParameter\[\] = (.+) as const;',
+      ).allMatches(install).toList();
+      final required = rows.singleWhere(
+        (row) =>
+            row.group(2) ==
+            '[{"name":"entry","required":true,"positional":true}]',
+      );
+      for (final name in ['WideTarget', 'ConcreteTarget', 'DerivedTarget']) {
+        final source = files['src/_bindings/layouts_$name.ts']!;
+        expect(source, contains('"handle":${required.group(1)}'));
+        expect(source, isNot(contains('const _flaxMemberParameters')));
+      }
+      final named = rows
+          .map((row) => jsonDecode(row.group(2)!) as List)
+          .where((parameters) => parameters.any((p) => p['name'] == 'label'));
+      expect(
+        named.map((parameters) => parameters.map((p) => p['name']).join(',')),
+        containsAll(['label', 'label,mode']),
+        reason: 'Different selected named surfaces retain separate layouts',
+      );
+      expect(emitter.typescriptOutputs(module), files);
+      await compileFixture(
+        root.path,
+        emitter,
+        module,
+        consumerSource: '''
+import { DerivedTarget, GenericHolder, NarrowEntry } from './plugin.js';
+class Custom extends DerivedTarget {
+  override handle(entry: NarrowEntry): void { super.handle(entry); }
+}
+const item: GenericHolder<string> = GenericHolder('value');
+const result: string = item.value;
+''',
+      );
+    },
+  );
 
   test(
     'case-distinct declarations keep separate implementation paths',
@@ -418,11 +508,13 @@ export { Alpha, Again, Beta, Child, answer, getChanging, getBuildFlag, getFailin
         final runner = File(p.join(temporary.path, 'run.mjs'))
           ..writeAsStringSync('''
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { build } from ${jsonEncode(Uri.file(p.join(root.path, 'node_modules/esbuild/lib/main.js')).toString())};
 const output = ${jsonEncode(p.join(temporary.path, 'bundle.mjs'))};
 const built = await build({entryPoints: [${jsonEncode(consumer.path)}], outfile: output,
   tsconfig: ${jsonEncode(tsconfig.path)}, bundle: true, format: 'esm', platform: 'neutral', metafile: true});
 assert.ok(!Object.keys(built.metafile.inputs).some(path => path.includes('libraries_Unused')));
+assert.ok(!readFileSync(output, 'utf8').includes('unusedLayoutOnly'));
 assert.ok(Object.keys(built.metafile.inputs).some(path => path.includes('libraries_ConcreteResult')));
 let reads = 0;
 const operations = [];

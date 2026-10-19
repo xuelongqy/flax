@@ -5,9 +5,7 @@ import type * as upstream0 from '@flax/flutter/rendering/_bindings/flutter_BoxCo
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_SliverConstraints';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverConstraints';
-const _flaxMemberParameters0 = [{"name":"constraints","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"scrollOffset","required":true},{"name":"crossAxisOffset","required":true},{"name":"mainAxisExtent","required":true},{"name":"crossAxisExtent","required":true}] as const;
+import { _flaxMemberParameters70, _flaxMemberParameters1, _flaxMemberParameters344 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,8 +13,8 @@ export interface SliverGridGeometry extends Readonly<{ "__flaxBound:package:flut
 readonly [_flaxDartTypeValue]: SliverGridGeometry;
 
 }
-defineObject("flax.core/sdk_rendering#type:SliverGridGeometry", ["scrollOffset","crossAxisOffset","mainAxisExtent","crossAxisExtent","trailingScrollOffset"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverGridGeometry", "object", {"getBoxConstraints":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), []);
-const _SliverGridGeometryProxy = {type: "flax.core/sdk_rendering#type:SliverGridGeometry", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getBoxConstraints":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: ["scrollOffset","crossAxisOffset","mainAxisExtent","crossAxisExtent","trailingScrollOffset"], setters: [], contextMembers: [], superMembers: ["get:scrollOffset","get:crossAxisOffset","get:mainAxisExtent","get:crossAxisExtent","get:trailingScrollOffset","getBoxConstraints","toString"]} as const;
+defineObject("flax.core/sdk_rendering#type:SliverGridGeometry", ["scrollOffset","crossAxisOffset","mainAxisExtent","crossAxisExtent","trailingScrollOffset"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverGridGeometry", "object", {"getBoxConstraints":_flaxMemberParameters70,"toString":_flaxMemberParameters1}, {}), []);
+const _SliverGridGeometryProxy = {type: "flax.core/sdk_rendering#type:SliverGridGeometry", parameters: _flaxMemberParameters344, constructors: {"": _flaxMemberParameters344}, methods: {"getBoxConstraints":_flaxMemberParameters70,"toString":_flaxMemberParameters1}, getters: ["scrollOffset","crossAxisOffset","mainAxisExtent","crossAxisExtent","trailingScrollOffset"], setters: [], contextMembers: [], superMembers: ["get:scrollOffset","get:crossAxisOffset","get:mainAxisExtent","get:crossAxisExtent","get:trailingScrollOffset","getBoxConstraints","toString"]} as const;
 export interface SliverGridGeometry {
 readonly [_flaxDartTypeValue]: SliverGridGeometry;
 

@@ -27,9 +27,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream13 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
-const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters1 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"renderObject","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"renderObject","required":true,"positional":true}] as const;
+import { _flaxMemberParameters0, _flaxMemberParameters1, _flaxMemberParameters4 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -51,7 +49,7 @@ toStringDeep(options?: {minLevel?: upstream10.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream12.DiagnosticsTreeStyle | null | undefined}): upstream11.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream11.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:ClipOval", ["clipper","clipBehavior","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ClipOval", "object", {"createRenderObject":_flaxMemberParameters0,"updateRenderObject":_flaxMemberParameters1,"didUnmountRenderObject":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_widgets#type:SingleChildRenderObjectWidget");
+defineObject("flax.core/sdk_widgets#type:ClipOval", ["clipper","clipBehavior","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ClipOval", "object", {"createRenderObject":_flaxMemberParameters0,"updateRenderObject":_flaxMemberParameters1,"didUnmountRenderObject":_flaxMemberParameters4}, {}), [], undefined, "flax.core/sdk_widgets#type:SingleChildRenderObjectWidget");
 export function _ClipOvalFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; clipper?: Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream4.Rect] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> | null | undefined; clipBehavior?: upstream5.Clip | undefined; child?: Widget | null | undefined } = {}): ClipOval {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

@@ -1,11 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
-const _flaxMemberParameters0 = [{"name":"maximum"},{"name":"minimum"}] as const;
-const _flaxMemberParameters1 = [{"name":"maximumX"},{"name":"maximumY"},{"name":"minimumX"},{"name":"minimumY"}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"operand","required":true,"positional":true}] as const;
+import { _flaxMemberParameters102, _flaxMemberParameters103, _flaxMemberParameters3, _flaxMemberParameters0, _flaxMemberParameters92 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Radius extends Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> { readonly __Radius: unique symbol;
@@ -24,7 +20,7 @@ operatorTruncateDivide(operand: number): Radius;
 operatorModulo(operand: number): Radius;
 operatorNegate(): Radius;
 }
-defineObject("flax.core/flutter#type:Radius", ["x","y"], [], _flaxBindingMethods("flax.core/flutter#type:Radius", "object", {"clamp":_flaxMemberParameters0,"clampValues":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"operatorAdd":_flaxMemberParameters3,"operatorSubtract":_flaxMemberParameters3,"operatorMultiply":_flaxMemberParameters4,"operatorDivide":_flaxMemberParameters4,"operatorTruncateDivide":_flaxMemberParameters4,"operatorModulo":_flaxMemberParameters4,"operatorNegate":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/flutter#type:Radius", ["x","y"], [], _flaxBindingMethods("flax.core/flutter#type:Radius", "object", {"clamp":_flaxMemberParameters102,"clampValues":_flaxMemberParameters103,"toString":_flaxMemberParameters3,"operatorAdd":_flaxMemberParameters0,"operatorSubtract":_flaxMemberParameters0,"operatorMultiply":_flaxMemberParameters92,"operatorDivide":_flaxMemberParameters92,"operatorTruncateDivide":_flaxMemberParameters92,"operatorModulo":_flaxMemberParameters92,"operatorNegate":_flaxMemberParameters3}, {}), []);
 export namespace _RadiusFactory {
 export function circular(radius: number): Radius {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');

@@ -284,7 +284,8 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
       ..writeln(_typescriptHostImport);
     _writeTypescriptModuleInstall(install, module);
     install.writeln('export { $_moduleHelpers };');
-    files[layout.installPath] = install.toString();
+    // Value-only layouts share the existing helper; unused exports still tree-shake.
+    final memberLayouts = <String, String>{};
 
     String localSpecifier(String name) => layout.internalNames.contains(name)
         ? layout.internalSpecifier
@@ -330,6 +331,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
       var source = split.typescript(
         internalChunk,
         moduleInstallImport: layout.installSpecifier,
+        sharedMemberLayouts: memberLayouts,
       );
       source = addSnapshotImports(source, internalChunk, layout.internalNames);
       source = source.replaceFirst(
@@ -369,6 +371,7 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
       var source = split.typescript(
         chunk,
         moduleInstallImport: layout.installSpecifier,
+        sharedMemberLayouts: memberLayouts,
       );
       // Snapshot fields are structural references, outside ordinary TypeRefs.
       source = addSnapshotImports(source, chunk, {name});
@@ -399,6 +402,17 @@ extension FlaxCodegenLibraryEmission on FlaxCodegenBindingEmitter {
       if (exports.isEmpty) out.writeln('export {};');
       files[route.tsOutput] = out.toString();
     }
+    if (memberLayouts.isNotEmpty) {
+      install.writeln(
+        "import type { MemberParameter as _FlaxMemberParameter } from '@flax/core/bindings';",
+      );
+    }
+    for (final entry in memberLayouts.entries) {
+      install.writeln(
+        'export const ${entry.value}: readonly _FlaxMemberParameter[] = ${entry.key} as const;',
+      );
+    }
+    files[layout.installPath] = install.toString();
     return files;
   }
 

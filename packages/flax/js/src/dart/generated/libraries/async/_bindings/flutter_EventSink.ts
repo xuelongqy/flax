@@ -5,9 +5,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Sink';
 import '@flax/dart/core/_bindings/flutter_Sink';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
-const _flaxMemberParameters0 = [{"name":"event","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"error","required":true,"positional":true},{"name":"stackTrace","positional":true}] as const;
+import { _flaxMemberParameters49, _flaxMemberParameters3, _flaxMemberParameters50 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface EventSink<T extends unknown | null = unknown | null> extends Omit<upstream0.Sink<T>, typeof _flaxDartTypeValue | "add" | "close" | "addError" | "__flaxBound:dart:async::EventSink" | "__flaxBound:dart:core::Sink">, Readonly<{ "__flaxBound:dart:async::EventSink": readonly [T] }>, Readonly<{ "__flaxBound:dart:core::Sink": readonly [T] }> { readonly __EventSink: unique symbol;
@@ -17,8 +15,8 @@ add(event: (T | DartInput<T>)): void;
 close(): void;
 addError(error: {}, stackTrace?: Readonly<{ "__flaxBound:dart:core::StackTrace": readonly [] }> | null): void;
 }
-defineObject("flax.core/flutter#type:EventSink", [], [], _flaxBindingMethods("flax.core/flutter#type:EventSink", "object", {"add":_flaxMemberParameters0,"close":_flaxMemberParameters1,"addError":_flaxMemberParameters2}, {}), []);
-const _EventSinkProxy = {type: "flax.core/flutter#type:EventSink", parameters: _flaxMemberParameters1, constructors: {}, methods: {"add":_flaxMemberParameters0,"close":_flaxMemberParameters1,"addError":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
+defineObject("flax.core/flutter#type:EventSink", [], [], _flaxBindingMethods("flax.core/flutter#type:EventSink", "object", {"add":_flaxMemberParameters49,"close":_flaxMemberParameters3,"addError":_flaxMemberParameters50}, {}), []);
+const _EventSinkProxy = {type: "flax.core/flutter#type:EventSink", parameters: _flaxMemberParameters3, constructors: {}, methods: {"add":_flaxMemberParameters49,"close":_flaxMemberParameters3,"addError":_flaxMemberParameters50}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _EventSinkFactory { export function implement<T extends unknown | null = unknown | null>(args: [], implementation: {add: ((event: T) => void); close: (() => void); addError: ((error: {}, stackTrace?: upstream1.StackTrace | null) => void)}): EventSink<T> {
 return constructProxy(_EventSinkProxy, args, implementation) as EventSink<T>; } }
 export const EventSink: typeof _EventSinkFactory & _FlaxInstanceType<EventSink<unknown | null>> & _FlaxDartType<EventSink<unknown | null>, readonly ["class", "flax.core/flutter#type:EventSink", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<EventSink<unknown | null>, typeof _EventSinkFactory>(_EventSinkFactory, "flax.core/flutter#type:EventSink", ["dart:core::Object","flax.core/flutter#type:Sink"]) as typeof _EventSinkFactory & _FlaxInstanceType<EventSink<unknown | null>> & _FlaxDartType<EventSink<unknown | null>, readonly ["class", "flax.core/flutter#type:EventSink", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;

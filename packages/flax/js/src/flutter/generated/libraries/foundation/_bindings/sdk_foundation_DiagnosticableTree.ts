@@ -11,12 +11,7 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"joiner"},{"name":"minLevel"}] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel"}] as const;
-const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
+import { _flaxMemberParameters39, _flaxMemberParameters40, _flaxMemberParameters1, _flaxMemberParameters30, _flaxMemberParameters31, _flaxMemberParameters32 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,8 +19,8 @@ export interface DiagnosticableTree extends Omit<upstream0.Diagnosticable, _flax
 readonly [_flaxDartTypeValue]: DiagnosticableTree;
 
 }
-defineObject("flax.core/sdk_foundation#type:DiagnosticableTree", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:DiagnosticableTree", "object", {"toStringShallow":_flaxMemberParameters0,"toStringDeep":_flaxMemberParameters1,"debugDescribeChildren":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _DiagnosticableTreeProxy = {type: "flax.core/sdk_foundation#type:DiagnosticableTree", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"toStringShallow":_flaxMemberParameters0,"toStringDeep":_flaxMemberParameters1,"debugDescribeChildren":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties","toStringShallow","toStringDeep","debugDescribeChildren"]} as const;
+defineObject("flax.core/sdk_foundation#type:DiagnosticableTree", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:DiagnosticableTree", "object", {"toStringShallow":_flaxMemberParameters39,"toStringDeep":_flaxMemberParameters40,"debugDescribeChildren":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+const _DiagnosticableTreeProxy = {type: "flax.core/sdk_foundation#type:DiagnosticableTree", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters30,"toDiagnosticsNode":_flaxMemberParameters31,"debugFillProperties":_flaxMemberParameters32,"toStringShallow":_flaxMemberParameters39,"toStringDeep":_flaxMemberParameters40,"debugDescribeChildren":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties","toStringShallow","toStringDeep","debugDescribeChildren"]} as const;
 export interface DiagnosticableTree {
 readonly [_flaxDartTypeValue]: DiagnosticableTree;
 

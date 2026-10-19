@@ -17,11 +17,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-const _flaxMemberParameters0 = [{"name":"direction","required":true},{"name":"type"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"minLevel"}] as const;
+import { _flaxMemberParameters362, _flaxMemberParameters2, _flaxMemberParameters8, _flaxMemberParameters5, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -30,7 +26,7 @@ readonly [_flaxDartTypeValue]: ScrollIntent;
 
 }
 defineObject("flax.core/sdk_widgets#type:ScrollIntent", ["direction","type"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ScrollIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
-const _ScrollIntentProxy = {type: "flax.core/sdk_widgets#type:ScrollIntent", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShort":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, getters: ["direction","type"], setters: [], contextMembers: [], superMembers: ["get:direction","get:type","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+const _ScrollIntentProxy = {type: "flax.core/sdk_widgets#type:ScrollIntent", parameters: _flaxMemberParameters362, constructors: {"": _flaxMemberParameters362}, methods: {"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters9}, getters: ["direction","type"], setters: [], contextMembers: [], superMembers: ["get:direction","get:type","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
 export interface ScrollIntent {
 readonly [_flaxDartTypeValue]: ScrollIntent;
 

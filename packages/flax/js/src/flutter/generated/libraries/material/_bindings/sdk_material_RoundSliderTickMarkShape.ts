@@ -17,9 +17,7 @@ import type * as upstream6 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"tickMarkRadius"}] as const;
-const _flaxMemberParameters1 = [{"name":"isEnabled","required":true},{"name":"sliderTheme","required":true}] as const;
-const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true},{"name":"center","required":true,"positional":true},{"name":"enableAnimation","required":true},{"name":"isEnabled","required":true},{"name":"parentBox","required":true},{"name":"sliderTheme","required":true},{"name":"textDirection","required":true},{"name":"thumbCenter","required":true}] as const;
+import { _flaxMemberParameters246, _flaxMemberParameters248, _flaxMemberParameters249 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -28,7 +26,7 @@ readonly [_flaxDartTypeValue]: RoundSliderTickMarkShape;
 
 }
 defineObject("flax.core/sdk_material#type:RoundSliderTickMarkShape", ["tickMarkRadius"], [], _flaxBindingMethods("flax.core/sdk_material#type:RoundSliderTickMarkShape", "object", {}, {}), [], undefined, "flax.core/sdk_material#type:SliderTickMarkShape");
-const _RoundSliderTickMarkShapeProxy = {type: "flax.core/sdk_material#type:RoundSliderTickMarkShape", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"getPreferredSize":_flaxMemberParameters1,"paint":_flaxMemberParameters2}, getters: ["tickMarkRadius"], setters: [], contextMembers: [], superMembers: ["get:tickMarkRadius","getPreferredSize","paint"]} as const;
+const _RoundSliderTickMarkShapeProxy = {type: "flax.core/sdk_material#type:RoundSliderTickMarkShape", parameters: _flaxMemberParameters246, constructors: {"": _flaxMemberParameters246}, methods: {"getPreferredSize":_flaxMemberParameters248,"paint":_flaxMemberParameters249}, getters: ["tickMarkRadius"], setters: [], contextMembers: [], superMembers: ["get:tickMarkRadius","getPreferredSize","paint"]} as const;
 export interface RoundSliderTickMarkShape {
 readonly [_flaxDartTypeValue]: RoundSliderTickMarkShape;
 

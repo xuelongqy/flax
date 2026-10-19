@@ -17,9 +17,7 @@ import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import type * as upstream7 from '@flax/flutter/material/_bindings/sdk_material_Thumb';
 import '@flax/flutter/material/_bindings/sdk_material_Thumb';
-const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true},{"name":"center","required":true,"positional":true},{"name":"activationAnimation","required":true},{"name":"enableAnimation","required":true},{"name":"isDiscrete"},{"name":"isEnabled"},{"name":"isOnTop"},{"name":"isPressed"},{"name":"sliderTheme","required":true},{"name":"textDirection"},{"name":"thumb"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"isEnabled","required":true,"positional":true},{"name":"isDiscrete","required":true,"positional":true}] as const;
+import { _flaxMemberParameters144, _flaxMemberParameters2, _flaxMemberParameters145 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,8 +25,8 @@ export interface HandleRangeSliderThumbShape extends Omit<upstream0.RangeSliderT
 readonly [_flaxDartTypeValue]: HandleRangeSliderThumbShape;
 
 }
-defineObject("flax.core/sdk_material#type:HandleRangeSliderThumbShape", [], [], _flaxBindingMethods("flax.core/sdk_material#type:HandleRangeSliderThumbShape", "object", {"paint":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_material#type:RangeSliderThumbShape");
-const _HandleRangeSliderThumbShapeProxy = {type: "flax.core/sdk_material#type:HandleRangeSliderThumbShape", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"getPreferredSize":_flaxMemberParameters2,"paint":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["getPreferredSize","paint"]} as const;
+defineObject("flax.core/sdk_material#type:HandleRangeSliderThumbShape", [], [], _flaxBindingMethods("flax.core/sdk_material#type:HandleRangeSliderThumbShape", "object", {"paint":_flaxMemberParameters144}, {}), [], undefined, "flax.core/sdk_material#type:RangeSliderThumbShape");
+const _HandleRangeSliderThumbShapeProxy = {type: "flax.core/sdk_material#type:HandleRangeSliderThumbShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredSize":_flaxMemberParameters145,"paint":_flaxMemberParameters144}, getters: [], setters: [], contextMembers: [], superMembers: ["getPreferredSize","paint"]} as const;
 export interface HandleRangeSliderThumbShape {
 readonly [_flaxDartTypeValue]: HandleRangeSliderThumbShape;
 

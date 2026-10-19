@@ -7,11 +7,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_WriteBuffer';
 import type * as upstream2 from '@flax/flutter/foundation/_bindings/sdk_foundation_ReadBuffer';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_ReadBuffer';
-const _flaxMemberParameters0 = [{"name":"message","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"buffer","required":true,"positional":true},{"name":"value","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"buffer","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"type","required":true,"positional":true},{"name":"buffer","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [] as const;
+import { _flaxMemberParameters18, _flaxMemberParameters95, _flaxMemberParameters96, _flaxMemberParameters97, _flaxMemberParameters0 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,8 +15,8 @@ export interface StandardMessageCodec extends Omit<upstream0.MessageCodec<unknow
 readonly [_flaxDartTypeValue]: StandardMessageCodec;
 
 }
-defineObject("flax.core/sdk_services#type:StandardMessageCodec", [], [], _flaxBindingMethods("flax.core/sdk_services#type:StandardMessageCodec", "object", {"encodeMessage":_flaxMemberParameters0,"decodeMessage":_flaxMemberParameters0,"writeValue":_flaxMemberParameters1,"readValue":_flaxMemberParameters2,"readValueOfType":_flaxMemberParameters3,"writeSize":_flaxMemberParameters1,"readSize":_flaxMemberParameters2}, {}), []);
-const _StandardMessageCodecProxy = {type: "flax.core/sdk_services#type:StandardMessageCodec", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"encodeMessage":_flaxMemberParameters0,"decodeMessage":_flaxMemberParameters0,"writeValue":_flaxMemberParameters1,"readValue":_flaxMemberParameters2,"readValueOfType":_flaxMemberParameters3,"writeSize":_flaxMemberParameters1,"readSize":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["encodeMessage","decodeMessage","writeValue","readValue","readValueOfType","writeSize","readSize"]} as const;
+defineObject("flax.core/sdk_services#type:StandardMessageCodec", [], [], _flaxBindingMethods("flax.core/sdk_services#type:StandardMessageCodec", "object", {"encodeMessage":_flaxMemberParameters18,"decodeMessage":_flaxMemberParameters18,"writeValue":_flaxMemberParameters95,"readValue":_flaxMemberParameters96,"readValueOfType":_flaxMemberParameters97,"writeSize":_flaxMemberParameters95,"readSize":_flaxMemberParameters96}, {}), []);
+const _StandardMessageCodecProxy = {type: "flax.core/sdk_services#type:StandardMessageCodec", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"encodeMessage":_flaxMemberParameters18,"decodeMessage":_flaxMemberParameters18,"writeValue":_flaxMemberParameters95,"readValue":_flaxMemberParameters96,"readValueOfType":_flaxMemberParameters97,"writeSize":_flaxMemberParameters95,"readSize":_flaxMemberParameters96}, getters: [], setters: [], contextMembers: [], superMembers: ["encodeMessage","decodeMessage","writeValue","readValue","readValueOfType","writeSize","readSize"]} as const;
 export interface StandardMessageCodec {
 readonly [_flaxDartTypeValue]: StandardMessageCodec;
 

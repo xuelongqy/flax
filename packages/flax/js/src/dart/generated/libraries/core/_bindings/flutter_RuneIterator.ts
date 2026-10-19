@@ -3,8 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Iterator';
 import '@flax/dart/core/_bindings/flutter_Iterator';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"rawIndex","positional":true}] as const;
+import { _flaxMemberParameters3, _flaxMemberParameters113 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface RuneIterator extends Omit<upstream0.Iterator<number>, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:core::RuneIterator": readonly [] }>, Readonly<{ "__flaxBound:dart:core::Iterator": readonly [number] }> { readonly __RuneIterator: unique symbol;
@@ -20,7 +19,7 @@ reset(rawIndex?: number): void;
 movePrevious(): boolean;
 set rawIndex(value: number);
 }
-defineObject("flax.core/flutter#type:RuneIterator", ["current","string","rawIndex","currentSize","currentAsString"], ["rawIndex"], _flaxBindingMethods("flax.core/flutter#type:RuneIterator", "object", {"moveNext":_flaxMemberParameters0,"reset":_flaxMemberParameters1,"movePrevious":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/flutter#type:RuneIterator", ["current","string","rawIndex","currentSize","currentAsString"], ["rawIndex"], _flaxBindingMethods("flax.core/flutter#type:RuneIterator", "object", {"moveNext":_flaxMemberParameters3,"reset":_flaxMemberParameters113,"movePrevious":_flaxMemberParameters3}, {}), []);
 export function _RuneIteratorFactory(string: string): RuneIterator {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

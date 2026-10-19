@@ -9,9 +9,7 @@ import type * as upstream2 from '@flax/dart/io/_bindings/sdk_dependencies_FileSy
 import '@flax/dart/io/_bindings/sdk_dependencies_FileSystemEntityType';
 import type * as upstream3 from '@flax/dart/io/_bindings/sdk_dependencies_FileStat';
 import '@flax/dart/io/_bindings/sdk_dependencies_FileStat';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"newPath","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"recursive"}] as const;
+import { _flaxMemberParameters2, _flaxMemberParameters3, _flaxMemberParameters4 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface FileSystemEntity extends Readonly<{ "__flaxBound:dart:io::FileSystemEntity": readonly [] }> { readonly __FileSystemEntity: unique symbol;
@@ -33,7 +31,7 @@ statSync(): upstream3.FileStat;
 delete(options?: {recursive?: boolean | undefined}): Promise<FileSystemEntity>;
 deleteSync(options?: {recursive?: boolean | undefined}): void;
 }
-defineObject("flax.core/sdk_dependencies#type:FileSystemEntity", ["path","uri","isAbsolute","absolute","parent"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:FileSystemEntity", "object", {"exists":_flaxMemberParameters0,"existsSync":_flaxMemberParameters0,"rename":_flaxMemberParameters1,"renameSync":_flaxMemberParameters1,"resolveSymbolicLinks":_flaxMemberParameters0,"resolveSymbolicLinksSync":_flaxMemberParameters0,"stat":_flaxMemberParameters0,"statSync":_flaxMemberParameters0,"delete":_flaxMemberParameters2,"deleteSync":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/sdk_dependencies#type:FileSystemEntity", ["path","uri","isAbsolute","absolute","parent"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:FileSystemEntity", "object", {"exists":_flaxMemberParameters2,"existsSync":_flaxMemberParameters2,"rename":_flaxMemberParameters3,"renameSync":_flaxMemberParameters3,"resolveSymbolicLinks":_flaxMemberParameters2,"resolveSymbolicLinksSync":_flaxMemberParameters2,"stat":_flaxMemberParameters2,"statSync":_flaxMemberParameters2,"delete":_flaxMemberParameters4,"deleteSync":_flaxMemberParameters4}, {}), []);
 export namespace _FileSystemEntityFactory { export declare const isWatchSupported: boolean; }
 _flaxDefineStaticGetters(_FileSystemEntityFactory, "flax.core/sdk_dependencies#read:FileSystemEntity.", ["isWatchSupported"]);
 export namespace _FileSystemEntityFactory { export function identical(path1: string, path2: string): Promise<boolean> {

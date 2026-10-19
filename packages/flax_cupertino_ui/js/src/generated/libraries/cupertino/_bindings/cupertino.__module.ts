@@ -4,3 +4,13 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 export const cupertinoBindingModule = _flaxInstallBindingModule("flax.cupertino/cupertino", 24, Object.freeze(["generic-member-views","inherited-binding-members","instance-checks","lazy-js-iterables","native-navigation-objects","native-widget-proxies","widget-interface-proxies"]) as readonly string[]);
 const { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, defineDartTypes: _flaxDefineDartTypes, bindInstanceType: _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } = cupertinoBindingModule;
 export { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel };
+import type { MemberParameter as _FlaxMemberParameter } from '@flax/core/bindings';
+export const _flaxMemberParameters0: readonly _FlaxMemberParameter[] = [] as const;
+export const _flaxMemberParameters1: readonly _FlaxMemberParameter[] = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
+export const _flaxMemberParameters2: readonly _FlaxMemberParameter[] = [{"name":"applyThemeToAll"},{"name":"barBackgroundColor"},{"name":"brightness"},{"name":"primaryColor"},{"name":"primaryContrastingColor"},{"name":"scaffoldBackgroundColor"},{"name":"selectionHandleColor"}] as const;
+export const _flaxMemberParameters3: readonly _FlaxMemberParameter[] = [{"name":"key"}] as const;
+export const _flaxMemberParameters4: readonly _FlaxMemberParameter[] = [{"name":"joiner"},{"name":"minLevel"}] as const;
+export const _flaxMemberParameters5: readonly _FlaxMemberParameter[] = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+export const _flaxMemberParameters6: readonly _FlaxMemberParameter[] = [{"name":"name"},{"name":"style"}] as const;
+export const _flaxMemberParameters7: readonly _FlaxMemberParameter[] = [{"name":"properties","required":true,"positional":true}] as const;
+export const _flaxMemberParameters8: readonly _FlaxMemberParameter[] = [{"name":"minLevel"}] as const;

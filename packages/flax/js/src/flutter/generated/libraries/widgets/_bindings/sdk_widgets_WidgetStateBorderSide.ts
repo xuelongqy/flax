@@ -23,13 +23,7 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
-const _flaxMemberParameters0 = [{"name":"states","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"color"},{"name":"strokeAlign"},{"name":"style"},{"name":"width"}] as const;
-const _flaxMemberParameters3 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters6 = [{"name":"minLevel"}] as const;
+import { _flaxMemberParameters468, _flaxMemberParameters2, _flaxMemberParameters469, _flaxMemberParameters42, _flaxMemberParameters5, _flaxMemberParameters8, _flaxMemberParameters9 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -37,8 +31,8 @@ export interface WidgetStateBorderSide extends Omit<upstream0.BorderSide, _flaxO
 readonly [_flaxDartTypeValue]: WidgetStateBorderSide;
 
 }
-defineObject("flax.core/sdk_widgets#type:WidgetStateBorderSide", ["color","width","style","strokeAlign","strokeInset","strokeOutset","strokeOffset"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStateBorderSide", "object", {"resolve":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:BorderSide");
-const _WidgetStateBorderSideProxy = {type: "flax.core/sdk_widgets#type:WidgetStateBorderSide", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"copyWith":_flaxMemberParameters2,"scale":_flaxMemberParameters3,"toPaint":_flaxMemberParameters1,"toStringShort":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"toString":_flaxMemberParameters6,"resolve":_flaxMemberParameters0}, getters: ["color","width","style","strokeAlign","strokeInset","strokeOutset","strokeOffset"], setters: [], contextMembers: [], superMembers: ["get:color","get:width","get:style","get:strokeAlign","get:strokeInset","get:strokeOutset","get:strokeOffset","copyWith","scale","toPaint","toStringShort","debugFillProperties","toDiagnosticsNode","toString"]} as const;
+defineObject("flax.core/sdk_widgets#type:WidgetStateBorderSide", ["color","width","style","strokeAlign","strokeInset","strokeOutset","strokeOffset"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStateBorderSide", "object", {"resolve":_flaxMemberParameters468}, {}), [], undefined, "flax.core/flutter#type:BorderSide");
+const _WidgetStateBorderSideProxy = {type: "flax.core/sdk_widgets#type:WidgetStateBorderSide", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"copyWith":_flaxMemberParameters469,"scale":_flaxMemberParameters42,"toPaint":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters5,"toDiagnosticsNode":_flaxMemberParameters8,"toString":_flaxMemberParameters9,"resolve":_flaxMemberParameters468}, getters: ["color","width","style","strokeAlign","strokeInset","strokeOutset","strokeOffset"], setters: [], contextMembers: [], superMembers: ["get:color","get:width","get:style","get:strokeAlign","get:strokeInset","get:strokeOutset","get:strokeOffset","copyWith","scale","toPaint","toStringShort","debugFillProperties","toDiagnosticsNode","toString"]} as const;
 export interface WidgetStateBorderSide {
 readonly [_flaxDartTypeValue]: WidgetStateBorderSide;
 

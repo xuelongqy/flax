@@ -11,10 +11,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_BlurStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_BlurStyle';
 import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-const _flaxMemberParameters0 = [{"name":"factor","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"blurRadius"},{"name":"blurStyle"},{"name":"color"},{"name":"offset"},{"name":"spreadRadius"}] as const;
-const _flaxMemberParameters2 = [{"name":"color"},{"name":"offset"},{"name":"blurRadius"},{"name":"spreadRadius"},{"name":"blurStyle"}] as const;
-const _flaxMemberParameters3 = [] as const;
+import { _flaxMemberParameters24, _flaxMemberParameters25, _flaxMemberParameters26, _flaxMemberParameters2 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,8 +19,8 @@ export interface BoxShadow extends Omit<upstream0.Shadow, _flaxOwnMembers0>, Rea
 readonly [_flaxDartTypeValue]: BoxShadow;
 
 }
-defineObject("flax.core/sdk_painting#type:BoxShadow", ["color","offset","blurRadius","blurSigma","spreadRadius","blurStyle"], [], _flaxBindingMethods("flax.core/sdk_painting#type:BoxShadow", "object", {"scale":_flaxMemberParameters0,"copyWith":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_dart_ui#type:Shadow");
-const _BoxShadowProxy = {type: "flax.core/sdk_painting#type:BoxShadow", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toPaint":_flaxMemberParameters3,"scale":_flaxMemberParameters0,"toString":_flaxMemberParameters3,"copyWith":_flaxMemberParameters1}, getters: ["spreadRadius","blurStyle","color","offset","blurRadius","blurSigma"], setters: [], contextMembers: [], superMembers: ["get:spreadRadius","get:blurStyle","get:color","get:offset","get:blurRadius","get:blurSigma","toPaint","scale","toString","copyWith"]} as const;
+defineObject("flax.core/sdk_painting#type:BoxShadow", ["color","offset","blurRadius","blurSigma","spreadRadius","blurStyle"], [], _flaxBindingMethods("flax.core/sdk_painting#type:BoxShadow", "object", {"scale":_flaxMemberParameters24,"copyWith":_flaxMemberParameters25}, {}), [], undefined, "flax.core/sdk_dart_ui#type:Shadow");
+const _BoxShadowProxy = {type: "flax.core/sdk_painting#type:BoxShadow", parameters: _flaxMemberParameters26, constructors: {"": _flaxMemberParameters26}, methods: {"toPaint":_flaxMemberParameters2,"scale":_flaxMemberParameters24,"toString":_flaxMemberParameters2,"copyWith":_flaxMemberParameters25}, getters: ["spreadRadius","blurStyle","color","offset","blurRadius","blurSigma"], setters: [], contextMembers: [], superMembers: ["get:spreadRadius","get:blurStyle","get:color","get:offset","get:blurRadius","get:blurSigma","toPaint","scale","toString","copyWith"]} as const;
 export interface BoxShadow {
 readonly [_flaxDartTypeValue]: BoxShadow;
 

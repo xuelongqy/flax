@@ -11,11 +11,7 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/sdk_widgets_ChildVicinity';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ChildVicinity';
-const _flaxMemberParameters0 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"addRepaintBoundaries"},{"name":"addAutomaticKeepAlives"},{"name":"children","required":true}] as const;
-const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"vicinity","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"listener","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [] as const;
+import { _flaxMemberParameters38, _flaxMemberParameters441, _flaxMemberParameters440, _flaxMemberParameters12, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,8 +19,8 @@ export interface TwoDimensionalChildListDelegate extends Omit<upstream0.TwoDimen
 readonly [_flaxDartTypeValue]: TwoDimensionalChildListDelegate;
 
 }
-defineObject("flax.core/sdk_widgets#type:TwoDimensionalChildListDelegate", ["hasListeners","children","addRepaintBoundaries","addAutomaticKeepAlives"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:TwoDimensionalChildListDelegate", "object", {"shouldRebuild":_flaxMemberParameters0}, {}), ["removeListener"], undefined, "flax.core/sdk_widgets#type:TwoDimensionalChildDelegate");
-const _TwoDimensionalChildListDelegateProxy = {type: "flax.core/sdk_widgets#type:TwoDimensionalChildListDelegate", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"build":_flaxMemberParameters2,"shouldRebuild":_flaxMemberParameters0,"addListener":_flaxMemberParameters3,"removeListener":_flaxMemberParameters3,"dispose":_flaxMemberParameters4}, getters: ["children","addRepaintBoundaries","addAutomaticKeepAlives","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:children","get:addRepaintBoundaries","get:addAutomaticKeepAlives","get:hasListeners","build","shouldRebuild","addListener","removeListener","dispose"]} as const;
+defineObject("flax.core/sdk_widgets#type:TwoDimensionalChildListDelegate", ["hasListeners","children","addRepaintBoundaries","addAutomaticKeepAlives"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:TwoDimensionalChildListDelegate", "object", {"shouldRebuild":_flaxMemberParameters38}, {}), ["removeListener"], undefined, "flax.core/sdk_widgets#type:TwoDimensionalChildDelegate");
+const _TwoDimensionalChildListDelegateProxy = {type: "flax.core/sdk_widgets#type:TwoDimensionalChildListDelegate", parameters: _flaxMemberParameters441, constructors: {"": _flaxMemberParameters441}, methods: {"build":_flaxMemberParameters440,"shouldRebuild":_flaxMemberParameters38,"addListener":_flaxMemberParameters12,"removeListener":_flaxMemberParameters12,"dispose":_flaxMemberParameters2}, getters: ["children","addRepaintBoundaries","addAutomaticKeepAlives","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:children","get:addRepaintBoundaries","get:addAutomaticKeepAlives","get:hasListeners","build","shouldRebuild","addListener","removeListener","dispose"]} as const;
 export interface TwoDimensionalChildListDelegate {
 readonly [_flaxDartTypeValue]: TwoDimensionalChildListDelegate;
 

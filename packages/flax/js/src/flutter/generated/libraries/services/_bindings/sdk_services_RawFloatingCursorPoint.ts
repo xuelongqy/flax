@@ -8,7 +8,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextPositio
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 import type * as upstream2 from '@flax/flutter/services/_bindings/sdk_services_FloatingCursorDragState';
 import '@flax/flutter/services/_bindings/sdk_services_FloatingCursorDragState';
-const _flaxMemberParameters0 = [{"name":"offset"},{"name":"startLocation"},{"name":"state","required":true}] as const;
+import { _flaxMemberParameters67 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,7 +17,7 @@ readonly [_flaxDartTypeValue]: RawFloatingCursorPoint;
 
 }
 defineObject("flax.core/sdk_services#type:RawFloatingCursorPoint", ["offset","startLocation","state"], [], _flaxBindingMethods("flax.core/sdk_services#type:RawFloatingCursorPoint", "object", {}, {}), []);
-const _RawFloatingCursorPointProxy = {type: "flax.core/sdk_services#type:RawFloatingCursorPoint", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["offset","startLocation","state"], setters: [], contextMembers: [], superMembers: ["get:offset","get:startLocation","get:state"]} as const;
+const _RawFloatingCursorPointProxy = {type: "flax.core/sdk_services#type:RawFloatingCursorPoint", parameters: _flaxMemberParameters67, constructors: {"": _flaxMemberParameters67}, methods: {}, getters: ["offset","startLocation","state"], setters: [], contextMembers: [], superMembers: ["get:offset","get:startLocation","get:state"]} as const;
 export interface RawFloatingCursorPoint {
 readonly [_flaxDartTypeValue]: RawFloatingCursorPoint;
 

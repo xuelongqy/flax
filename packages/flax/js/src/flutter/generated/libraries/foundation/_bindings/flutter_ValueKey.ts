@@ -8,7 +8,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key'
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_StandardComponentType';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StandardComponentType';
-const _flaxMemberParameters0 = [] as const;
+import { _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ValueKey<T extends unknown | null = unknown | null> extends Omit<upstream0.LocalKey, _flaxOwnMembers0>, Omit<upstream1.Key, _flaxOwnMembers0 | keyof upstream0.LocalKey>, Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::ValueKey": readonly [T] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::LocalKey": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> { readonly __ValueKey: unique symbol;
@@ -17,7 +17,7 @@ readonly [_flaxDartTypeValue]: ValueKey<T>;
 readonly value: T;
 toString(): string;
 }
-defineObject("flax.core/flutter#type:ValueKey", ["value"], [], _flaxBindingMethods("flax.core/flutter#type:ValueKey", "object", {"toString":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/flutter#type:ValueKey", ["value"], [], _flaxBindingMethods("flax.core/flutter#type:ValueKey", "object", {"toString":_flaxMemberParameters3}, {}), []);
 export function _ValueKeyFactory<T extends unknown | null = unknown | null>(value: (T | _FlaxDartOutput<T>)): ValueKey<T>;
 export function _ValueKeyFactory(value: unknown | null): ValueKey<unknown | null>;
 export function _ValueKeyFactory(value: unknown): unknown {

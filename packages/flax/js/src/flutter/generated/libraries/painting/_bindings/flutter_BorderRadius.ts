@@ -13,10 +13,7 @@ import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_RSuperellipse';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_RSuperellipse';
-const _flaxMemberParameters0 = [{"name":"bottomLeft"},{"name":"bottomRight"},{"name":"topLeft"},{"name":"topRight"}] as const;
-const _flaxMemberParameters1 = [{"name":"rect","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [] as const;
+import { _flaxMemberParameters9, _flaxMemberParameters1, _flaxMemberParameters0, _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface BorderRadius extends Omit<upstream0.BorderRadiusGeometry, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }> { readonly __BorderRadius: unique symbol;
@@ -41,7 +38,7 @@ operatorNegate(): BorderRadius;
 operatorAdd(other: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }>): BorderRadius;
 operatorSubtract(other: Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }>): BorderRadius;
 }
-defineObject("flax.core/flutter#type:BorderRadius", ["topLeft","topRight","bottomLeft","bottomRight"], [], _flaxBindingMethods("flax.core/flutter#type:BorderRadius", "object", {"copyWith":_flaxMemberParameters0,"toRRect":_flaxMemberParameters1,"toRSuperellipse":_flaxMemberParameters1,"operatorMultiply":_flaxMemberParameters2,"operatorDivide":_flaxMemberParameters2,"operatorTruncateDivide":_flaxMemberParameters2,"operatorModulo":_flaxMemberParameters2,"operatorNegate":_flaxMemberParameters3,"operatorAdd":_flaxMemberParameters2,"operatorSubtract":_flaxMemberParameters2}, {}), [], undefined, "flax.core/flutter#type:BorderRadiusGeometry");
+defineObject("flax.core/flutter#type:BorderRadius", ["topLeft","topRight","bottomLeft","bottomRight"], [], _flaxBindingMethods("flax.core/flutter#type:BorderRadius", "object", {"copyWith":_flaxMemberParameters9,"toRRect":_flaxMemberParameters1,"toRSuperellipse":_flaxMemberParameters1,"operatorMultiply":_flaxMemberParameters0,"operatorDivide":_flaxMemberParameters0,"operatorTruncateDivide":_flaxMemberParameters0,"operatorModulo":_flaxMemberParameters0,"operatorNegate":_flaxMemberParameters3,"operatorAdd":_flaxMemberParameters0,"operatorSubtract":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:BorderRadiusGeometry");
 export namespace _BorderRadiusFactory {
 export function all(radius: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }>): BorderRadius {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');

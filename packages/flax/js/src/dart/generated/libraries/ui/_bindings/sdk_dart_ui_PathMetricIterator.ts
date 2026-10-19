@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Iterator';
 import '@flax/dart/core/_bindings/flutter_Iterator';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_PathMetric';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PathMetric';
-const _flaxMemberParameters0 = [] as const;
+import { _flaxMemberParameters0 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface PathMetricIterator extends Omit<upstream0.Iterator<upstream1.PathMetric>, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:ui::PathMetricIterator": readonly [] }>, Readonly<{ "__flaxBound:dart:core::Iterator": readonly [upstream1.PathMetric] }> { readonly __PathMetricIterator: unique symbol;

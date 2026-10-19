@@ -7,8 +7,7 @@ import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionExtendDirection';
 import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionEventType';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionEventType';
-const _flaxMemberParameters0 = [{"name":"direction"},{"name":"dx"},{"name":"isEnd"}] as const;
-const _flaxMemberParameters1 = [{"name":"dx","required":true},{"name":"isEnd","required":true},{"name":"direction","required":true}] as const;
+import { _flaxMemberParameters64, _flaxMemberParameters65 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,8 +15,8 @@ export interface DirectionallyExtendSelectionEvent extends Omit<upstream0.Select
 readonly [_flaxDartTypeValue]: DirectionallyExtendSelectionEvent;
 
 }
-defineObject("flax.core/sdk_rendering#type:DirectionallyExtendSelectionEvent", ["type","dx","isEnd","direction"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:DirectionallyExtendSelectionEvent", "object", {"copyWith":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_rendering#type:SelectionEvent");
-const _DirectionallyExtendSelectionEventProxy = {type: "flax.core/sdk_rendering#type:DirectionallyExtendSelectionEvent", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"copyWith":_flaxMemberParameters0}, getters: ["dx","isEnd","direction","type"], setters: [], contextMembers: [], superMembers: ["get:dx","get:isEnd","get:direction","get:type","copyWith"]} as const;
+defineObject("flax.core/sdk_rendering#type:DirectionallyExtendSelectionEvent", ["type","dx","isEnd","direction"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:DirectionallyExtendSelectionEvent", "object", {"copyWith":_flaxMemberParameters64}, {}), [], undefined, "flax.core/sdk_rendering#type:SelectionEvent");
+const _DirectionallyExtendSelectionEventProxy = {type: "flax.core/sdk_rendering#type:DirectionallyExtendSelectionEvent", parameters: _flaxMemberParameters65, constructors: {"": _flaxMemberParameters65}, methods: {"copyWith":_flaxMemberParameters64}, getters: ["dx","isEnd","direction","type"], setters: [], contextMembers: [], superMembers: ["get:dx","get:isEnd","get:direction","get:type","copyWith"]} as const;
 export interface DirectionallyExtendSelectionEvent {
 readonly [_flaxDartTypeValue]: DirectionallyExtendSelectionEvent;
 

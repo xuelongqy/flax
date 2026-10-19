@@ -3987,6 +3987,7 @@ import 'package:flax/bindings.dart';
   String typescript(
     FlaxCodegenModuleModel module, {
     String? moduleInstallImport,
+    Map<String, String>? sharedMemberLayouts,
   }) {
     if (module.publicLibraries.isEmpty &&
         modules.any((source) => source.publicLibraries.isNotEmpty)) {
@@ -5077,7 +5078,12 @@ $_typescriptHostImport
       final layout = jsonEncode(parameters);
       return memberLayouts.putIfAbsent(
         layout,
-        () => '_flaxMemberParameters${memberLayouts.length}',
+        () => sharedMemberLayouts == null
+            ? '_flaxMemberParameters${memberLayouts.length}'
+            : sharedMemberLayouts.putIfAbsent(
+                layout,
+                () => '_flaxMemberParameters${sharedMemberLayouts.length}',
+              ),
       );
     }
 
@@ -6387,9 +6393,13 @@ $_typescriptHostImport
     for (final entry in omittedKeys.entries) {
       out.writeln('type ${entry.value} = ${entry.key};');
     }
-    final layouts = memberLayouts.entries
-        .map((entry) => 'const ${entry.value} = ${entry.key} as const;\n')
-        .join();
+    final layouts = sharedMemberLayouts == null
+        ? memberLayouts.entries
+              .map((entry) => 'const ${entry.value} = ${entry.key} as const;\n')
+              .join()
+        : memberLayouts.isEmpty
+        ? ''
+        : 'import { ${memberLayouts.values.join(', ')} } from ${jsonEncode(moduleInstallImport!)};\n';
     out.write(vmSignatures);
     return out.toString().replaceFirst(
       '$_typescriptHostImport\n',

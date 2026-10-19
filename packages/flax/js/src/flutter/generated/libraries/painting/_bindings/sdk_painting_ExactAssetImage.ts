@@ -27,13 +27,7 @@ import type * as upstream11 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import type * as upstream12 from '@flax/flutter/painting/_bindings/sdk_painting_ImageCache_cx';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageCache_cx';
-const _flaxMemberParameters0 = [{"name":"assetName","required":true,"positional":true},{"name":"scale"},{"name":"bundle"},{"name":"package"}] as const;
-const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true},{"name":"decode","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"configuration","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"configuration","required":true},{"name":"handleError"}] as const;
-const _flaxMemberParameters4 = [{"name":"configuration","required":true,"positional":true},{"name":"stream","required":true,"positional":true},{"name":"key","required":true,"positional":true},{"name":"handleError","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"cache"},{"name":"configuration"}] as const;
-const _flaxMemberParameters6 = [] as const;
+import { _flaxMemberParameters50, _flaxMemberParameters8, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters2 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -42,7 +36,7 @@ readonly [_flaxDartTypeValue]: ExactAssetImage;
 
 }
 defineObject("flax.core/sdk_painting#type:ExactAssetImage", ["assetName","keyName","scale","bundle","package"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ExactAssetImage", "object", {}, {}), [], undefined, "flax.core/sdk_painting#type:AssetBundleImageProvider");
-const _ExactAssetImageProxy = {type: "flax.core/sdk_painting#type:ExactAssetImage", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"loadImage":_flaxMemberParameters1,"loadBuffer":_flaxMemberParameters1,"createStream":_flaxMemberParameters2,"obtainCacheStatus":_flaxMemberParameters3,"resolveStreamForKey":_flaxMemberParameters4,"evict":_flaxMemberParameters5,"obtainKey":_flaxMemberParameters2,"toString":_flaxMemberParameters6}, getters: ["assetName","keyName","scale","bundle","package"], setters: [], contextMembers: [], superMembers: ["get:assetName","get:keyName","get:scale","get:bundle","get:package","loadImage","loadBuffer","createStream","obtainCacheStatus","resolveStreamForKey","evict","obtainKey","toString"]} as const;
+const _ExactAssetImageProxy = {type: "flax.core/sdk_painting#type:ExactAssetImage", parameters: _flaxMemberParameters50, constructors: {"": _flaxMemberParameters50}, methods: {"loadImage":_flaxMemberParameters8,"loadBuffer":_flaxMemberParameters8,"createStream":_flaxMemberParameters4,"obtainCacheStatus":_flaxMemberParameters5,"resolveStreamForKey":_flaxMemberParameters6,"evict":_flaxMemberParameters7,"obtainKey":_flaxMemberParameters4,"toString":_flaxMemberParameters2}, getters: ["assetName","keyName","scale","bundle","package"], setters: [], contextMembers: [], superMembers: ["get:assetName","get:keyName","get:scale","get:bundle","get:package","loadImage","loadBuffer","createStream","obtainCacheStatus","resolveStreamForKey","evict","obtainKey","toString"]} as const;
 export interface ExactAssetImage {
 readonly [_flaxDartTypeValue]: ExactAssetImage;
 resolve(configuration: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [] }>): upstream8.ImageStream;

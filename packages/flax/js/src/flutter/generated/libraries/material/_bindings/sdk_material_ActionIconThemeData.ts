@@ -13,11 +13,7 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"backButtonIconBuilder"},{"name":"closeButtonIconBuilder"},{"name":"drawerButtonIconBuilder"},{"name":"endDrawerButtonIconBuilder"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"minLevel"}] as const;
-const _flaxMemberParameters3 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
+import { _flaxMemberParameters1, _flaxMemberParameters2, _flaxMemberParameters3, _flaxMemberParameters4, _flaxMemberParameters5 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,8 +21,8 @@ export interface ActionIconThemeData extends Omit<upstream0.Diagnosticable, _fla
 readonly [_flaxDartTypeValue]: ActionIconThemeData;
 
 }
-defineObject("flax.core/sdk_material#type:ActionIconThemeData", ["backButtonIconBuilder","closeButtonIconBuilder","drawerButtonIconBuilder","endDrawerButtonIconBuilder"], [], _flaxBindingMethods("flax.core/sdk_material#type:ActionIconThemeData", "object", {"copyWith":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _ActionIconThemeDataProxy = {type: "flax.core/sdk_material#type:ActionIconThemeData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"copyWith":_flaxMemberParameters0}, getters: ["backButtonIconBuilder","closeButtonIconBuilder","drawerButtonIconBuilder","endDrawerButtonIconBuilder"], setters: [], contextMembers: [], superMembers: ["get:backButtonIconBuilder","get:closeButtonIconBuilder","get:drawerButtonIconBuilder","get:endDrawerButtonIconBuilder","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
+defineObject("flax.core/sdk_material#type:ActionIconThemeData", ["backButtonIconBuilder","closeButtonIconBuilder","drawerButtonIconBuilder","endDrawerButtonIconBuilder"], [], _flaxBindingMethods("flax.core/sdk_material#type:ActionIconThemeData", "object", {"copyWith":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+const _ActionIconThemeDataProxy = {type: "flax.core/sdk_material#type:ActionIconThemeData", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"copyWith":_flaxMemberParameters1}, getters: ["backButtonIconBuilder","closeButtonIconBuilder","drawerButtonIconBuilder","endDrawerButtonIconBuilder"], setters: [], contextMembers: [], superMembers: ["get:backButtonIconBuilder","get:closeButtonIconBuilder","get:drawerButtonIconBuilder","get:endDrawerButtonIconBuilder","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
 export interface ActionIconThemeData {
 readonly [_flaxDartTypeValue]: ActionIconThemeData;
 

@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/sdk_services_I
 import '@flax/flutter/services/_bindings/sdk_services_IOSSystemContextMenuItemData';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetsLocalizations';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetsLocalizations';
-const _flaxMemberParameters0 = [{"name":"localizations","required":true,"positional":true}] as const;
+import { _flaxMemberParameters201 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface IOSSystemContextMenuItem extends Readonly<{ "__flaxBound:package:flutter/src/widgets/system_context_menu.dart::IOSSystemContextMenuItem": readonly [] }> { readonly __IOSSystemContextMenuItem: unique symbol;
@@ -14,5 +14,5 @@ readonly [_flaxDartTypeValue]: IOSSystemContextMenuItem;
 readonly title: string | null;
 getData(localizations: Readonly<{ "__flaxBound:package:flutter/src/widgets/localizations.dart::WidgetsLocalizations": readonly [] }>): upstream0.IOSSystemContextMenuItemData;
 }
-defineObject("flax.core/sdk_widgets#type:IOSSystemContextMenuItem", ["title"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:IOSSystemContextMenuItem", "object", {"getData":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_widgets#type:IOSSystemContextMenuItem", ["title"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:IOSSystemContextMenuItem", "object", {"getData":_flaxMemberParameters201}, {}), []);
 export const IOSSystemContextMenuItem: object & _FlaxInstanceType<IOSSystemContextMenuItem> & _FlaxDartType<IOSSystemContextMenuItem, readonly ["class", "flax.core/sdk_widgets#type:IOSSystemContextMenuItem", readonly [], false]> = _flaxBindInstanceType<IOSSystemContextMenuItem, object>({}, "flax.core/sdk_widgets#type:IOSSystemContextMenuItem", ["dart:core::Object"]) as object & _FlaxInstanceType<IOSSystemContextMenuItem> & _FlaxDartType<IOSSystemContextMenuItem, readonly ["class", "flax.core/sdk_widgets#type:IOSSystemContextMenuItem", readonly [], false]>;

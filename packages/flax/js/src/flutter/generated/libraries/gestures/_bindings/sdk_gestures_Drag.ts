@@ -5,8 +5,7 @@ import type * as upstream0 from '@flax/flutter/gestures/_bindings/sdk_gestures_D
 import '@flax/flutter/gestures/_bindings/sdk_gestures_DragUpdateDetails';
 import type * as upstream1 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragEndDetails';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_DragEndDetails';
-const _flaxMemberParameters0 = [{"name":"details","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
+import { _flaxMemberParameters21, _flaxMemberParameters7 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,8 +13,8 @@ export interface Drag extends Readonly<{ "__flaxBound:package:flutter/src/gestur
 readonly [_flaxDartTypeValue]: Drag;
 
 }
-defineObject("flax.core/sdk_gestures#type:Drag", [], [], _flaxBindingMethods("flax.core/sdk_gestures#type:Drag", "object", {"update":_flaxMemberParameters0,"end":_flaxMemberParameters0,"cancel":_flaxMemberParameters1}, {}), []);
-const _DragProxy = {type: "flax.core/sdk_gestures#type:Drag", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"update":_flaxMemberParameters0,"end":_flaxMemberParameters0,"cancel":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["update","end","cancel"]} as const;
+defineObject("flax.core/sdk_gestures#type:Drag", [], [], _flaxBindingMethods("flax.core/sdk_gestures#type:Drag", "object", {"update":_flaxMemberParameters21,"end":_flaxMemberParameters21,"cancel":_flaxMemberParameters7}, {}), []);
+const _DragProxy = {type: "flax.core/sdk_gestures#type:Drag", parameters: _flaxMemberParameters7, constructors: {"": _flaxMemberParameters7}, methods: {"update":_flaxMemberParameters21,"end":_flaxMemberParameters21,"cancel":_flaxMemberParameters7}, getters: [], setters: [], contextMembers: [], superMembers: ["update","end","cancel"]} as const;
 export interface Drag {
 readonly [_flaxDartTypeValue]: Drag;
 

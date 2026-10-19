@@ -11,10 +11,7 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollUpdateNotification';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollUpdateNotification';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"metrics","required":true},{"name":"context","required":true}] as const;
-const _flaxMemberParameters2 = [{"name":"target","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters3 = [{"name":"description","required":true,"positional":true}] as const;
+import { _flaxMemberParameters2, _flaxMemberParameters363, _flaxMemberParameters118, _flaxMemberParameters119 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,8 +19,8 @@ export interface ScrollMetricsNotification extends Omit<upstream0.Notification, 
 readonly [_flaxDartTypeValue]: ScrollMetricsNotification;
 
 }
-defineObject("flax.core/sdk_widgets#type:ScrollMetricsNotification", ["depth","metrics","context"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ScrollMetricsNotification", "object", {"asScrollUpdate":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:Notification");
-const _ScrollMetricsNotificationProxy = {type: "flax.core/sdk_widgets#type:ScrollMetricsNotification", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"dispatch":_flaxMemberParameters2,"toString":_flaxMemberParameters0,"debugFillDescription":_flaxMemberParameters3,"asScrollUpdate":_flaxMemberParameters0}, getters: ["metrics","context","depth"], setters: [], contextMembers: [], superMembers: ["get:metrics","get:context","get:depth","dispatch","toString","debugFillDescription","asScrollUpdate"]} as const;
+defineObject("flax.core/sdk_widgets#type:ScrollMetricsNotification", ["depth","metrics","context"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ScrollMetricsNotification", "object", {"asScrollUpdate":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_widgets#type:Notification");
+const _ScrollMetricsNotificationProxy = {type: "flax.core/sdk_widgets#type:ScrollMetricsNotification", parameters: _flaxMemberParameters363, constructors: {"": _flaxMemberParameters363}, methods: {"dispatch":_flaxMemberParameters118,"toString":_flaxMemberParameters2,"debugFillDescription":_flaxMemberParameters119,"asScrollUpdate":_flaxMemberParameters2}, getters: ["metrics","context","depth"], setters: [], contextMembers: [], superMembers: ["get:metrics","get:context","get:depth","dispatch","toString","debugFillDescription","asScrollUpdate"]} as const;
 export interface ScrollMetricsNotification {
 readonly [_flaxDartTypeValue]: ScrollMetricsNotification;
 

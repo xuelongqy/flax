@@ -92,10 +92,16 @@ older runtimes reject them. The current Manifest format is 27; UI protocol 24 an
 ABI 2 remain unchanged.
 
 Proxy constructors, named constructors and ordinary methods reuse complete matching JS
-parameter layouts within each emitted file. Factories reuse an existing layout when its
-readonly/fixed/default/Context policy also matches; otherwise their layout stays local
-to the call. Factory-only layouts are not allocated during module import. These tables
-contain declaration metadata, not callback instances or native objects.
+parameter layouts. Split declaration files import those constants from their existing
+module helper; single-file output keeps its local pool. Sharing compares the complete
+ordered metadata, including Context conversion and all parameter flags. Existing runtime
+readers freeze the layouts and reuse their argument parsers. The private exports use the
+existing `MemberParameter` interface so declarations do not repeat each literal's type.
+Unused constants remain tree-shakeable. Factories reuse an existing local layout only
+when Context, readonly, fixed and default-value policies also match; otherwise their
+layout stays in the call. Factory-only layouts are not allocated during module import.
+No callback instance, native object, generic type context or business receiver is stored
+in this pool.
 
 Ordinary callable selection is independent of proxy override eligibility. Public
 `@nonVirtual` members remain callable on native wrappers and JS-created proxies; the

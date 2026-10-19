@@ -5,9 +5,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Comparable';
 import '@flax/dart/core/_bindings/flutter_Comparable';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
-const _flaxMemberParameters0 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"duration","required":true,"positional":true}] as const;
+import { _flaxMemberParameters0, _flaxMemberParameters3, _flaxMemberParameters41 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface DateTime extends Omit<upstream0.Comparable<DateTime>, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>, Readonly<{ "__flaxBound:dart:core::Comparable": readonly [DateTime] }> { readonly __DateTime: unique symbol;
@@ -39,7 +37,7 @@ add(duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Rea
 subtract(duration: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream1.Duration] }>): DateTime;
 difference(other: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>>): upstream1.Duration;
 }
-defineObject("flax.core/flutter#type:DateTime", ["isUtc","millisecondsSinceEpoch","microsecondsSinceEpoch","timeZoneName","timeZoneOffset","year","month","day","hour","minute","second","millisecond","microsecond","weekday"], [], _flaxBindingMethods("flax.core/flutter#type:DateTime", "object", {"compareTo":_flaxMemberParameters0,"isBefore":_flaxMemberParameters0,"isAfter":_flaxMemberParameters0,"isAtSameMomentAs":_flaxMemberParameters0,"toLocal":_flaxMemberParameters1,"toUtc":_flaxMemberParameters1,"toString":_flaxMemberParameters1,"toIso8601String":_flaxMemberParameters1,"add":_flaxMemberParameters2,"subtract":_flaxMemberParameters2,"difference":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/flutter#type:DateTime", ["isUtc","millisecondsSinceEpoch","microsecondsSinceEpoch","timeZoneName","timeZoneOffset","year","month","day","hour","minute","second","millisecond","microsecond","weekday"], [], _flaxBindingMethods("flax.core/flutter#type:DateTime", "object", {"compareTo":_flaxMemberParameters0,"isBefore":_flaxMemberParameters0,"isAfter":_flaxMemberParameters0,"isAtSameMomentAs":_flaxMemberParameters0,"toLocal":_flaxMemberParameters3,"toUtc":_flaxMemberParameters3,"toString":_flaxMemberParameters3,"toIso8601String":_flaxMemberParameters3,"add":_flaxMemberParameters41,"subtract":_flaxMemberParameters41,"difference":_flaxMemberParameters0}, {}), []);
 export function _DateTimeFactory(year: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, millisecond?: number, microsecond?: number): DateTime {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 8) throw new TypeError('Too many constructor arguments');
@@ -68,14 +66,14 @@ export namespace _DateTimeFactory {
 export function now(): DateTime {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:DateTime", "now", _flaxMemberParameters1, [], {}) as DateTime;
+return constructObject("object", "flax.core/flutter#type:DateTime", "now", _flaxMemberParameters3, [], {}) as DateTime;
 }
 }
 export namespace _DateTimeFactory {
 export function timestamp(): DateTime {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:DateTime", "timestamp", _flaxMemberParameters1, [], {}) as DateTime;
+return constructObject("object", "flax.core/flutter#type:DateTime", "timestamp", _flaxMemberParameters3, [], {}) as DateTime;
 }
 }
 export namespace _DateTimeFactory {

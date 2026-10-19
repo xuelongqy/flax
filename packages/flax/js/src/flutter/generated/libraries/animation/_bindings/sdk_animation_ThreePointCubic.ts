@@ -7,9 +7,7 @@ import type * as upstream1 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_ParametricCurve';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-const _flaxMemberParameters0 = [{"name":"a1","required":true,"positional":true},{"name":"b1","required":true,"positional":true},{"name":"midpoint","required":true,"positional":true},{"name":"a2","required":true,"positional":true},{"name":"b2","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+import { _flaxMemberParameters39, _flaxMemberParameters4, _flaxMemberParameters2 } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -18,7 +16,7 @@ readonly [_flaxDartTypeValue]: ThreePointCubic;
 
 }
 defineObject("flax.core/sdk_animation#type:ThreePointCubic", ["flipped","a1","b1","midpoint","a2","b2"], [], _flaxBindingMethods("flax.core/sdk_animation#type:ThreePointCubic", "object", {}, {}), [], undefined, "flax.core/flutter#type:Curve");
-const _ThreePointCubicProxy = {type: "flax.core/sdk_animation#type:ThreePointCubic", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"transform":_flaxMemberParameters1,"transformInternal":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["a1","b1","midpoint","a2","b2","flipped"], setters: [], contextMembers: [], superMembers: ["get:a1","get:b1","get:midpoint","get:a2","get:b2","get:flipped","transform","transformInternal","toString"]} as const;
+const _ThreePointCubicProxy = {type: "flax.core/sdk_animation#type:ThreePointCubic", parameters: _flaxMemberParameters39, constructors: {"": _flaxMemberParameters39}, methods: {"transform":_flaxMemberParameters4,"transformInternal":_flaxMemberParameters4,"toString":_flaxMemberParameters2}, getters: ["a1","b1","midpoint","a2","b2","flipped"], setters: [], contextMembers: [], superMembers: ["get:a1","get:b1","get:midpoint","get:a2","get:b2","get:flipped","transform","transformInternal","toString"]} as const;
 export interface ThreePointCubic {
 readonly [_flaxDartTypeValue]: ThreePointCubic;
 

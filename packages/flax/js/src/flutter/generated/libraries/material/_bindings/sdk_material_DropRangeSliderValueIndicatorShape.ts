@@ -21,10 +21,7 @@ import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import type * as upstream9 from '@flax/flutter/material/_bindings/sdk_material_Thumb';
 import '@flax/flutter/material/_bindings/sdk_material_Thumb';
-const _flaxMemberParameters0 = [{"name":"isEnabled","required":true,"positional":true},{"name":"isDiscrete","required":true,"positional":true},{"name":"labelPainter"},{"name":"textScaleFactor"}] as const;
-const _flaxMemberParameters1 = [{"name":"context","required":true,"positional":true},{"name":"center","required":true,"positional":true},{"name":"activationAnimation","required":true},{"name":"enableAnimation","required":true},{"name":"isDiscrete"},{"name":"isOnTop"},{"name":"labelPainter","required":true},{"name":"parentBox","required":true},{"name":"sizeWithOverflow"},{"name":"sliderTheme","required":true},{"name":"textDirection"},{"name":"textScaleFactor"},{"name":"thumb"},{"name":"value"}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"activationAnimation"},{"name":"center"},{"name":"labelPainter"},{"name":"parentBox"},{"name":"sizeWithOverflow"},{"name":"textScaleFactor"}] as const;
+import { _flaxMemberParameters122, _flaxMemberParameters123, _flaxMemberParameters2, _flaxMemberParameters124 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -32,8 +29,8 @@ export interface DropRangeSliderValueIndicatorShape extends Omit<upstream0.Range
 readonly [_flaxDartTypeValue]: DropRangeSliderValueIndicatorShape;
 
 }
-defineObject("flax.core/sdk_material#type:DropRangeSliderValueIndicatorShape", [], [], _flaxBindingMethods("flax.core/sdk_material#type:DropRangeSliderValueIndicatorShape", "object", {"getPreferredSize":_flaxMemberParameters0,"paint":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_material#type:RangeSliderValueIndicatorShape");
-const _DropRangeSliderValueIndicatorShapeProxy = {type: "flax.core/sdk_material#type:DropRangeSliderValueIndicatorShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredSize":_flaxMemberParameters0,"getHorizontalShift":_flaxMemberParameters3,"paint":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["getPreferredSize","getHorizontalShift","paint"]} as const;
+defineObject("flax.core/sdk_material#type:DropRangeSliderValueIndicatorShape", [], [], _flaxBindingMethods("flax.core/sdk_material#type:DropRangeSliderValueIndicatorShape", "object", {"getPreferredSize":_flaxMemberParameters122,"paint":_flaxMemberParameters123}, {}), [], undefined, "flax.core/sdk_material#type:RangeSliderValueIndicatorShape");
+const _DropRangeSliderValueIndicatorShapeProxy = {type: "flax.core/sdk_material#type:DropRangeSliderValueIndicatorShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredSize":_flaxMemberParameters122,"getHorizontalShift":_flaxMemberParameters124,"paint":_flaxMemberParameters123}, getters: [], setters: [], contextMembers: [], superMembers: ["getPreferredSize","getHorizontalShift","paint"]} as const;
 export interface DropRangeSliderValueIndicatorShape {
 readonly [_flaxDartTypeValue]: DropRangeSliderValueIndicatorShape;
 

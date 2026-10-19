@@ -7,8 +7,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_PartialStackFrame';
 import type * as upstream2 from '@flax/flutter/foundation/_bindings/sdk_foundation_StackFrame';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_StackFrame';
-const _flaxMemberParameters0 = [{"name":"frames","required":true},{"name":"replacement","required":true}] as const;
-const _flaxMemberParameters1 = [{"name":"stackFrames","required":true,"positional":true},{"name":"reasons","required":true,"positional":true}] as const;
+import { _flaxMemberParameters78, _flaxMemberParameters79 } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,7 +16,7 @@ readonly [_flaxDartTypeValue]: RepetitiveStackFrameFilter;
 
 }
 defineObject("flax.core/sdk_foundation#type:RepetitiveStackFrameFilter", ["frames","numFrames","replacement"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:RepetitiveStackFrameFilter", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:StackFilter");
-const _RepetitiveStackFrameFilterProxy = {type: "flax.core/sdk_foundation#type:RepetitiveStackFrameFilter", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"filter":_flaxMemberParameters1}, getters: ["frames","numFrames","replacement"], setters: [], contextMembers: [], superMembers: ["get:frames","get:numFrames","get:replacement","filter"]} as const;
+const _RepetitiveStackFrameFilterProxy = {type: "flax.core/sdk_foundation#type:RepetitiveStackFrameFilter", parameters: _flaxMemberParameters78, constructors: {"": _flaxMemberParameters78}, methods: {"filter":_flaxMemberParameters79}, getters: ["frames","numFrames","replacement"], setters: [], contextMembers: [], superMembers: ["get:frames","get:numFrames","get:replacement","filter"]} as const;
 export interface RepetitiveStackFrameFilter {
 readonly [_flaxDartTypeValue]: RepetitiveStackFrameFilter;
 

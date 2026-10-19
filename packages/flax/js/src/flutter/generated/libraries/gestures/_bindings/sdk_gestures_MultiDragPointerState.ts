@@ -11,10 +11,7 @@ import type * as upstream3 from '@flax/flutter/gestures/_bindings/sdk_gestures_G
 import '@flax/flutter/gestures/_bindings/sdk_gestures_GestureDisposition';
 import type * as upstream4 from '@flax/flutter/gestures/_bindings/sdk_gestures_Drag';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_Drag';
-const _flaxMemberParameters0 = [{"name":"disposition","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"starter","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"initialPosition","required":true,"positional":true},{"name":"kind","required":true,"positional":true},{"name":"gestureSettings","required":true,"positional":true}] as const;
+import { _flaxMemberParameters10, _flaxMemberParameters7, _flaxMemberParameters52, _flaxMemberParameters53 } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,8 +19,8 @@ export interface MultiDragPointerState extends Readonly<{ "__flaxBound:package:f
 readonly [_flaxDartTypeValue]: MultiDragPointerState;
 
 }
-defineObject("flax.core/sdk_gestures#type:MultiDragPointerState", ["gestureSettings","initialPosition","kind","pendingDelta"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:MultiDragPointerState", "object", {"resolve":_flaxMemberParameters0,"checkForResolutionAfterMove":_flaxMemberParameters1,"accepted":_flaxMemberParameters2,"rejected":_flaxMemberParameters1,"dispose":_flaxMemberParameters1}, {}), []);
-const _MultiDragPointerStateProxy = {type: "flax.core/sdk_gestures#type:MultiDragPointerState", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"resolve":_flaxMemberParameters0,"checkForResolutionAfterMove":_flaxMemberParameters1,"accepted":_flaxMemberParameters2,"rejected":_flaxMemberParameters1,"dispose":_flaxMemberParameters1}, getters: ["gestureSettings","initialPosition","kind","pendingDelta"], setters: [], contextMembers: [], superMembers: ["get:gestureSettings","get:initialPosition","get:kind","get:pendingDelta","resolve","checkForResolutionAfterMove","rejected","dispose"]} as const;
+defineObject("flax.core/sdk_gestures#type:MultiDragPointerState", ["gestureSettings","initialPosition","kind","pendingDelta"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:MultiDragPointerState", "object", {"resolve":_flaxMemberParameters10,"checkForResolutionAfterMove":_flaxMemberParameters7,"accepted":_flaxMemberParameters52,"rejected":_flaxMemberParameters7,"dispose":_flaxMemberParameters7}, {}), []);
+const _MultiDragPointerStateProxy = {type: "flax.core/sdk_gestures#type:MultiDragPointerState", parameters: _flaxMemberParameters53, constructors: {"": _flaxMemberParameters53}, methods: {"resolve":_flaxMemberParameters10,"checkForResolutionAfterMove":_flaxMemberParameters7,"accepted":_flaxMemberParameters52,"rejected":_flaxMemberParameters7,"dispose":_flaxMemberParameters7}, getters: ["gestureSettings","initialPosition","kind","pendingDelta"], setters: [], contextMembers: [], superMembers: ["get:gestureSettings","get:initialPosition","get:kind","get:pendingDelta","resolve","checkForResolutionAfterMove","rejected","dispose"]} as const;
 export interface MultiDragPointerState {
 readonly [_flaxDartTypeValue]: MultiDragPointerState;
 

@@ -7,9 +7,7 @@ import type * as upstream1 from '@flax/flutter/painting/_bindings/flutter_Border
 import '@flax/flutter/painting/_bindings/flutter_BorderRadius';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"direction","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+import { _flaxMemberParameters0, _flaxMemberParameters4, _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface BorderRadiusGeometry extends Readonly<{ "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [] }> { readonly __BorderRadiusGeometry: unique symbol;
@@ -25,7 +23,7 @@ operatorTruncateDivide(other: number): BorderRadiusGeometry;
 operatorModulo(other: number): BorderRadiusGeometry;
 operatorNegate(): BorderRadiusGeometry;
 }
-defineObject("flax.core/flutter#type:BorderRadiusGeometry", [], [], _flaxBindingMethods("flax.core/flutter#type:BorderRadiusGeometry", "object", {"subtract":_flaxMemberParameters0,"add":_flaxMemberParameters0,"resolve":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"operatorMultiply":_flaxMemberParameters0,"operatorDivide":_flaxMemberParameters0,"operatorTruncateDivide":_flaxMemberParameters0,"operatorModulo":_flaxMemberParameters0,"operatorNegate":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/flutter#type:BorderRadiusGeometry", [], [], _flaxBindingMethods("flax.core/flutter#type:BorderRadiusGeometry", "object", {"subtract":_flaxMemberParameters0,"add":_flaxMemberParameters0,"resolve":_flaxMemberParameters4,"toString":_flaxMemberParameters3,"operatorMultiply":_flaxMemberParameters0,"operatorDivide":_flaxMemberParameters0,"operatorTruncateDivide":_flaxMemberParameters0,"operatorModulo":_flaxMemberParameters0,"operatorNegate":_flaxMemberParameters3}, {}), []);
 export namespace _BorderRadiusGeometryFactory {
 export function all(radius: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }>): BorderRadiusGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');

@@ -8,11 +8,7 @@ import '@flax/dart/core/_bindings/flutter_Uri';
 import type * as upstream2 from '@flax/dart/io/_bindings/sdk_dependencies_FileStat';
 import '@flax/dart/io/_bindings/sdk_dependencies_FileStat';
 import type * as upstream3 from '@flax/dart/async/_bindings/flutter_Stream';
-const _flaxMemberParameters0 = [{"name":"newPath","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"recursive"}] as const;
-const _flaxMemberParameters2 = [{"name":"prefix","positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"followLinks"},{"name":"recursive"}] as const;
-const _flaxMemberParameters4 = [] as const;
+import { _flaxMemberParameters3, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters6, _flaxMemberParameters2 } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Directory extends Omit<upstream0.FileSystemEntity, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:io::Directory": readonly [] }>, Readonly<{ "__flaxBound:dart:io::FileSystemEntity": readonly [] }> { readonly __Directory: unique symbol;
@@ -41,7 +37,7 @@ list(options?: {followLinks?: boolean | undefined; recursive?: boolean | undefin
 listSync(options?: {followLinks?: boolean | undefined; recursive?: boolean | undefined}): DartList<upstream0.FileSystemEntity>;
 toString(): string;
 }
-defineObject("flax.core/sdk_dependencies#type:Directory", ["path","uri","isAbsolute","absolute","parent"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:Directory", "object", {"rename":_flaxMemberParameters0,"renameSync":_flaxMemberParameters0,"create":_flaxMemberParameters1,"createSync":_flaxMemberParameters1,"createTemp":_flaxMemberParameters2,"createTempSync":_flaxMemberParameters2,"list":_flaxMemberParameters3,"listSync":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, {}), [], undefined, "flax.core/sdk_dependencies#type:FileSystemEntity");
+defineObject("flax.core/sdk_dependencies#type:Directory", ["path","uri","isAbsolute","absolute","parent"], [], _flaxBindingMethods("flax.core/sdk_dependencies#type:Directory", "object", {"rename":_flaxMemberParameters3,"renameSync":_flaxMemberParameters3,"create":_flaxMemberParameters4,"createSync":_flaxMemberParameters4,"createTemp":_flaxMemberParameters5,"createTempSync":_flaxMemberParameters5,"list":_flaxMemberParameters6,"listSync":_flaxMemberParameters6,"toString":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_dependencies#type:FileSystemEntity");
 export function _DirectoryFactory(path: string): Directory {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

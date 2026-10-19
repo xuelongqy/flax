@@ -161,12 +161,13 @@ Future<void> _reclaimed(
 ) async {
   for (var i = 0; i < 80; i++) {
     await Future<void>.delayed(const Duration(milliseconds: 100));
-    // Weak targets clear before Dart runs the queued callable finalizers.
+    // Idle joint GC must release both business heaps without test pressure.
     if (!_dartAlive(owner) &&
         !_jsAlive(runtime) &&
-        runtime.bridgeCellCount == 0 &&
-        runtime.bridgeCallbackCount == 0) {
-      return;
+        runtime.bridgeCellCount == 0) {
+      if (runtime.bridgeCallbackCount == 0) return;
+      // Native pruning can leave a Dart-only callback awaiting the next Dart GC.
+      await flaxTestCollectDartGarbage();
     }
   }
   expect(_dartAlive(owner), isFalse, reason: 'Dart business cycle retained');

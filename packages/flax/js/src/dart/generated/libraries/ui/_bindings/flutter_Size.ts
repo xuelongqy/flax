@@ -5,10 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_OffsetBase'
 import '@flax/dart/ui/_bindings/sdk_dart_ui_OffsetBase';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-const _flaxMemberParameters0 = [{"name":"origin","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"offset","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"operand","required":true,"positional":true}] as const;
+import { _flaxMemberParameters149, _flaxMemberParameters150, _flaxMemberParameters0, _flaxMemberParameters92 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Size extends Omit<upstream0.OffsetBase, _flaxOwnMembers0>, Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }>, Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> { readonly __Size: unique symbol;
@@ -45,7 +42,7 @@ operatorDivide(operand: number): Size;
 operatorTruncateDivide(operand: number): Size;
 operatorModulo(operand: number): Size;
 }
-defineObject("flax.core/flutter#type:Size", ["isInfinite","isFinite","width","height","aspectRatio","isEmpty","shortestSide","longestSide","flipped"], [], _flaxBindingMethods("flax.core/flutter#type:Size", "object", {"topLeft":_flaxMemberParameters0,"topCenter":_flaxMemberParameters0,"topRight":_flaxMemberParameters0,"centerLeft":_flaxMemberParameters0,"center":_flaxMemberParameters0,"centerRight":_flaxMemberParameters0,"bottomLeft":_flaxMemberParameters0,"bottomCenter":_flaxMemberParameters0,"bottomRight":_flaxMemberParameters0,"contains":_flaxMemberParameters1,"operatorAdd":_flaxMemberParameters2,"operatorSubtract":_flaxMemberParameters2,"operatorMultiply":_flaxMemberParameters3,"operatorDivide":_flaxMemberParameters3,"operatorTruncateDivide":_flaxMemberParameters3,"operatorModulo":_flaxMemberParameters3}, {}), [], undefined, "flax.core/sdk_dart_ui#type:OffsetBase");
+defineObject("flax.core/flutter#type:Size", ["isInfinite","isFinite","width","height","aspectRatio","isEmpty","shortestSide","longestSide","flipped"], [], _flaxBindingMethods("flax.core/flutter#type:Size", "object", {"topLeft":_flaxMemberParameters149,"topCenter":_flaxMemberParameters149,"topRight":_flaxMemberParameters149,"centerLeft":_flaxMemberParameters149,"center":_flaxMemberParameters149,"centerRight":_flaxMemberParameters149,"bottomLeft":_flaxMemberParameters149,"bottomCenter":_flaxMemberParameters149,"bottomRight":_flaxMemberParameters149,"contains":_flaxMemberParameters150,"operatorAdd":_flaxMemberParameters0,"operatorSubtract":_flaxMemberParameters0,"operatorMultiply":_flaxMemberParameters92,"operatorDivide":_flaxMemberParameters92,"operatorTruncateDivide":_flaxMemberParameters92,"operatorModulo":_flaxMemberParameters92}, {}), [], undefined, "flax.core/sdk_dart_ui#type:OffsetBase");
 export function _SizeFactory(width: number, height: number): Size {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');

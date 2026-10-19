@@ -11,16 +11,7 @@ import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream4 from '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
-const _flaxMemberParameters0 = [{"name":"ancestor","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"position","required":true,"positional":true},{"name":"offset","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"position","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"velocity","required":true,"positional":true},{"name":"metrics","required":true,"positional":true},{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters4 = [{"name":"position","required":true,"positional":true},{"name":"value","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"isScrolling","required":true},{"name":"newPosition","required":true},{"name":"oldPosition","required":true},{"name":"velocity","required":true}] as const;
-const _flaxMemberParameters6 = [{"name":"position","required":true,"positional":true},{"name":"velocity","required":true,"positional":true}] as const;
-const _flaxMemberParameters7 = [{"name":"metrics","required":true,"positional":true}] as const;
-const _flaxMemberParameters8 = [{"name":"existingVelocity","required":true,"positional":true}] as const;
-const _flaxMemberParameters9 = [] as const;
+import { _flaxMemberParameters5, _flaxMemberParameters138, _flaxMemberParameters135, _flaxMemberParameters139, _flaxMemberParameters140, _flaxMemberParameters141, _flaxMemberParameters142, _flaxMemberParameters143, _flaxMemberParameters144, _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ScrollPhysics extends Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> { readonly __ScrollPhysics: unique symbol;
@@ -47,7 +38,7 @@ toleranceFor(metrics: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll
 carriedMomentum(existingVelocity: number): number;
 toString(): string;
 }
-defineObject("flax.core/flutter#type:ScrollPhysics", ["parent","spring","tolerance","minFlingDistance","minFlingVelocity","maxFlingVelocity","dragStartDistanceMotionThreshold","allowImplicitScrolling","allowUserScrolling"], [], _flaxBindingMethods("flax.core/flutter#type:ScrollPhysics", "object", {"buildParent":_flaxMemberParameters0,"applyTo":_flaxMemberParameters0,"applyPhysicsToUserOffset":_flaxMemberParameters1,"shouldAcceptUserOffset":_flaxMemberParameters2,"recommendDeferredLoading":_flaxMemberParameters3,"applyBoundaryConditions":_flaxMemberParameters4,"adjustPositionForNewDimensions":_flaxMemberParameters5,"createBallisticSimulation":_flaxMemberParameters6,"toleranceFor":_flaxMemberParameters7,"carriedMomentum":_flaxMemberParameters8,"toString":_flaxMemberParameters9}, {}), []);
+defineObject("flax.core/flutter#type:ScrollPhysics", ["parent","spring","tolerance","minFlingDistance","minFlingVelocity","maxFlingVelocity","dragStartDistanceMotionThreshold","allowImplicitScrolling","allowUserScrolling"], [], _flaxBindingMethods("flax.core/flutter#type:ScrollPhysics", "object", {"buildParent":_flaxMemberParameters5,"applyTo":_flaxMemberParameters5,"applyPhysicsToUserOffset":_flaxMemberParameters138,"shouldAcceptUserOffset":_flaxMemberParameters135,"recommendDeferredLoading":_flaxMemberParameters139,"applyBoundaryConditions":_flaxMemberParameters140,"adjustPositionForNewDimensions":_flaxMemberParameters141,"createBallisticSimulation":_flaxMemberParameters142,"toleranceFor":_flaxMemberParameters143,"carriedMomentum":_flaxMemberParameters144,"toString":_flaxMemberParameters3}, {}), []);
 export function _ScrollPhysicsFactory(options: { parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): ScrollPhysics {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

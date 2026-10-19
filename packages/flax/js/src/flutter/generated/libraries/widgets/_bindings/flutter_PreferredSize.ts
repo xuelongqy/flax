@@ -20,8 +20,7 @@ import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessElement';
-const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters1 = [] as const;
+import { _flaxMemberParameters83, _flaxMemberParameters3 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -41,7 +40,7 @@ toString(options?: {minLevel?: upstream4.DiagnosticLevel | undefined}): string;
 build(context: upstream8.BuildContext): Widget;
 createElement(): upstream9.StatelessElement;
 }
-defineObject("flax.core/flutter#type:PreferredSize", ["preferredSize","child","key"], [], _flaxBindingMethods("flax.core/flutter#type:PreferredSize", "object", {"build":_flaxMemberParameters0,"createElement":_flaxMemberParameters1}, {}), [], undefined, "flax.core/flutter#type:PreferredSizeWidget");
+defineObject("flax.core/flutter#type:PreferredSize", ["preferredSize","child","key"], [], _flaxBindingMethods("flax.core/flutter#type:PreferredSize", "object", {"build":_flaxMemberParameters83,"createElement":_flaxMemberParameters3}, {}), [], undefined, "flax.core/flutter#type:PreferredSizeWidget");
 export function _PreferredSizeFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; preferredSize: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; child: Widget }): PreferredSize {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

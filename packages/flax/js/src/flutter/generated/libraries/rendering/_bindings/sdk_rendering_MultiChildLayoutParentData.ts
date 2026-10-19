@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerParentDataMixin';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-const _flaxMemberParameters0 = [] as const;
+import { _flaxMemberParameters1 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +22,7 @@ readonly [_flaxDartTypeValue]: MultiChildLayoutParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:MultiChildLayoutParentData", ["offset","previousSibling","nextSibling","id"], ["offset","previousSibling","nextSibling","id"], _flaxBindingMethods("flax.core/sdk_rendering#type:MultiChildLayoutParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
-const _MultiChildLayoutParentDataProxy = {type: "flax.core/sdk_rendering#type:MultiChildLayoutParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["id","offset","previousSibling","nextSibling"], setters: ["id","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:id","get:offset","get:previousSibling","get:nextSibling","set:id","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _MultiChildLayoutParentDataProxy = {type: "flax.core/sdk_rendering#type:MultiChildLayoutParentData", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"detach":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, getters: ["id","offset","previousSibling","nextSibling"], setters: ["id","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:id","get:offset","get:previousSibling","get:nextSibling","set:id","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface MultiChildLayoutParentData {
 readonly [_flaxDartTypeValue]: MultiChildLayoutParentData;
 

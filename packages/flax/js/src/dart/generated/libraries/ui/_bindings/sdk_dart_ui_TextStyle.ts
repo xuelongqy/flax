@@ -25,8 +25,7 @@ import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_FontFeatur
 import '@flax/dart/ui/_bindings/sdk_dart_ui_FontFeature';
 import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_FontVariation';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_FontVariation';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"color"},{"name":"decoration"},{"name":"decorationColor"},{"name":"decorationStyle"},{"name":"decorationThickness"},{"name":"fontWeight"},{"name":"fontStyle"},{"name":"textBaseline"},{"name":"fontFamily"},{"name":"fontFamilyFallback"},{"name":"fontSize"},{"name":"letterSpacing"},{"name":"wordSpacing"},{"name":"height"},{"name":"leadingDistribution"},{"name":"locale"},{"name":"background"},{"name":"foreground"},{"name":"shadows"},{"name":"fontFeatures"},{"name":"fontVariations"}] as const;
+import { _flaxMemberParameters0, _flaxMemberParameters166 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -35,7 +34,7 @@ readonly [_flaxDartTypeValue]: TextStyle;
 
 }
 defineObject("flax.core/sdk_dart_ui#type:TextStyle", [], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:TextStyle", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _TextStyleProxy = {type: "flax.core/sdk_dart_ui#type:TextStyle", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
+const _TextStyleProxy = {type: "flax.core/sdk_dart_ui#type:TextStyle", parameters: _flaxMemberParameters166, constructors: {"": _flaxMemberParameters166}, methods: {"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
 export interface TextStyle {
 readonly [_flaxDartTypeValue]: TextStyle;
 

@@ -13,11 +13,7 @@ import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_RSuperellip
 import '@flax/dart/ui/_bindings/sdk_dart_ui_RSuperellipse';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
-const _flaxMemberParameters0 = [{"name":"listener","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"size","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"oldClipper","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [] as const;
-const _flaxMemberParameters4 = [{"name":"reclip"}] as const;
+import { _flaxMemberParameters48, _flaxMemberParameters49, _flaxMemberParameters50, _flaxMemberParameters1, _flaxMemberParameters51 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,8 +21,8 @@ export interface CustomClipper<T extends unknown | null = unknown | null> extend
 readonly [_flaxDartTypeValue]: CustomClipper<T>;
 
 }
-defineObject("flax.core/sdk_rendering#type:CustomClipper", [], [], _flaxBindingMethods("flax.core/sdk_rendering#type:CustomClipper", "object", {"addListener":_flaxMemberParameters0,"removeListener":_flaxMemberParameters0,"getClip":_flaxMemberParameters1,"getApproximateClipRect":_flaxMemberParameters1,"shouldReclip":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, {}), ["removeListener"]);
-const _CustomClipperProxy = {type: "flax.core/sdk_rendering#type:CustomClipper", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"addListener":_flaxMemberParameters0,"removeListener":_flaxMemberParameters0,"getClip":_flaxMemberParameters1,"getApproximateClipRect":_flaxMemberParameters1,"shouldReclip":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, getters: [], setters: [], contextMembers: [], superMembers: ["addListener","removeListener","getApproximateClipRect","toString"]} as const;
+defineObject("flax.core/sdk_rendering#type:CustomClipper", [], [], _flaxBindingMethods("flax.core/sdk_rendering#type:CustomClipper", "object", {"addListener":_flaxMemberParameters48,"removeListener":_flaxMemberParameters48,"getClip":_flaxMemberParameters49,"getApproximateClipRect":_flaxMemberParameters49,"shouldReclip":_flaxMemberParameters50,"toString":_flaxMemberParameters1}, {}), ["removeListener"]);
+const _CustomClipperProxy = {type: "flax.core/sdk_rendering#type:CustomClipper", parameters: _flaxMemberParameters51, constructors: {"": _flaxMemberParameters51}, methods: {"addListener":_flaxMemberParameters48,"removeListener":_flaxMemberParameters48,"getClip":_flaxMemberParameters49,"getApproximateClipRect":_flaxMemberParameters49,"shouldReclip":_flaxMemberParameters50,"toString":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["addListener","removeListener","getApproximateClipRect","toString"]} as const;
 export interface CustomClipper<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: CustomClipper<T>;
 

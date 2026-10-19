@@ -19,9 +19,7 @@ import type * as upstream7 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true},{"name":"offset","required":true,"positional":true},{"name":"additionalActiveTrackHeight"},{"name":"enableAnimation","required":true},{"name":"isDiscrete"},{"name":"isEnabled"},{"name":"parentBox","required":true},{"name":"secondaryOffset"},{"name":"sliderTheme","required":true},{"name":"textDirection","required":true},{"name":"thumbCenter","required":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"isDiscrete"},{"name":"isEnabled"},{"name":"offset"},{"name":"parentBox","required":true},{"name":"sliderTheme","required":true}] as const;
+import { _flaxMemberParameters143, _flaxMemberParameters2, _flaxMemberParameters14 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -29,8 +27,8 @@ export interface GappedSliderTrackShape extends Omit<upstream0.SliderTrackShape,
 readonly [_flaxDartTypeValue]: GappedSliderTrackShape;
 
 }
-defineObject("flax.core/sdk_material#type:GappedSliderTrackShape", ["isRounded"], [], _flaxBindingMethods("flax.core/sdk_material#type:GappedSliderTrackShape", "object", {"paint":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_material#type:BaseSliderTrackShape");
-const _GappedSliderTrackShapeProxy = {type: "flax.core/sdk_material#type:GappedSliderTrackShape", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"getPreferredRect":_flaxMemberParameters2,"paint":_flaxMemberParameters0}, getters: ["isRounded"], setters: [], contextMembers: [], superMembers: ["get:isRounded","getPreferredRect","paint"]} as const;
+defineObject("flax.core/sdk_material#type:GappedSliderTrackShape", ["isRounded"], [], _flaxBindingMethods("flax.core/sdk_material#type:GappedSliderTrackShape", "object", {"paint":_flaxMemberParameters143}, {}), [], undefined, "flax.core/sdk_material#type:BaseSliderTrackShape");
+const _GappedSliderTrackShapeProxy = {type: "flax.core/sdk_material#type:GappedSliderTrackShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredRect":_flaxMemberParameters14,"paint":_flaxMemberParameters143}, getters: ["isRounded"], setters: [], contextMembers: [], superMembers: ["get:isRounded","getPreferredRect","paint"]} as const;
 export interface GappedSliderTrackShape {
 readonly [_flaxDartTypeValue]: GappedSliderTrackShape;
 

@@ -11,10 +11,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-const _flaxMemberParameters0 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"columns","required":true},{"name":"rows","required":true}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"top"},{"name":"right"},{"name":"bottom"},{"name":"left"},{"name":"horizontalInside"},{"name":"verticalInside"},{"name":"borderRadius"}] as const;
+import { _flaxMemberParameters0, _flaxMemberParameters351, _flaxMemberParameters1, _flaxMemberParameters352 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,8 +19,8 @@ export interface TableBorder extends Readonly<{ "__flaxBound:package:flutter/src
 readonly [_flaxDartTypeValue]: TableBorder;
 
 }
-defineObject("flax.core/sdk_rendering#type:TableBorder", ["top","right","bottom","left","horizontalInside","verticalInside","borderRadius","dimensions","isUniform"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:TableBorder", "object", {"scale":_flaxMemberParameters0,"paint":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, {}), []);
-const _TableBorderProxy = {type: "flax.core/sdk_rendering#type:TableBorder", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"scale":_flaxMemberParameters0,"paint":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["top","right","bottom","left","horizontalInside","verticalInside","borderRadius","dimensions","isUniform"], setters: [], contextMembers: [], superMembers: ["get:top","get:right","get:bottom","get:left","get:horizontalInside","get:verticalInside","get:borderRadius","get:dimensions","get:isUniform","scale","paint","toString"]} as const;
+defineObject("flax.core/sdk_rendering#type:TableBorder", ["top","right","bottom","left","horizontalInside","verticalInside","borderRadius","dimensions","isUniform"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:TableBorder", "object", {"scale":_flaxMemberParameters0,"paint":_flaxMemberParameters351,"toString":_flaxMemberParameters1}, {}), []);
+const _TableBorderProxy = {type: "flax.core/sdk_rendering#type:TableBorder", parameters: _flaxMemberParameters352, constructors: {"": _flaxMemberParameters352}, methods: {"scale":_flaxMemberParameters0,"paint":_flaxMemberParameters351,"toString":_flaxMemberParameters1}, getters: ["top","right","bottom","left","horizontalInside","verticalInside","borderRadius","dimensions","isUniform"], setters: [], contextMembers: [], superMembers: ["get:top","get:right","get:bottom","get:left","get:horizontalInside","get:verticalInside","get:borderRadius","get:dimensions","get:isUniform","scale","paint","toString"]} as const;
 export interface TableBorder {
 readonly [_flaxDartTypeValue]: TableBorder;
 

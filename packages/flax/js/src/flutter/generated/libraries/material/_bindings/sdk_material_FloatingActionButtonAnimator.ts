@@ -5,10 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream1 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
-const _flaxMemberParameters0 = [{"name":"begin","required":true},{"name":"end","required":true},{"name":"progress","required":true}] as const;
-const _flaxMemberParameters1 = [{"name":"parent","required":true}] as const;
-const _flaxMemberParameters2 = [{"name":"previousValue","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [] as const;
+import { _flaxMemberParameters136, _flaxMemberParameters137, _flaxMemberParameters138, _flaxMemberParameters2 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,8 +13,8 @@ export interface FloatingActionButtonAnimator extends Readonly<{ "__flaxBound:pa
 readonly [_flaxDartTypeValue]: FloatingActionButtonAnimator;
 
 }
-defineObject("flax.core/sdk_material#type:FloatingActionButtonAnimator", [], [], _flaxBindingMethods("flax.core/sdk_material#type:FloatingActionButtonAnimator", "object", {"getOffset":_flaxMemberParameters0,"getScaleAnimation":_flaxMemberParameters1,"getRotationAnimation":_flaxMemberParameters1,"getAnimationRestart":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, {}), []);
-const _FloatingActionButtonAnimatorProxy = {type: "flax.core/sdk_material#type:FloatingActionButtonAnimator", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"getOffset":_flaxMemberParameters0,"getScaleAnimation":_flaxMemberParameters1,"getRotationAnimation":_flaxMemberParameters1,"getAnimationRestart":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, getters: [], setters: [], contextMembers: [], superMembers: ["getAnimationRestart","toString"]} as const;
+defineObject("flax.core/sdk_material#type:FloatingActionButtonAnimator", [], [], _flaxBindingMethods("flax.core/sdk_material#type:FloatingActionButtonAnimator", "object", {"getOffset":_flaxMemberParameters136,"getScaleAnimation":_flaxMemberParameters137,"getRotationAnimation":_flaxMemberParameters137,"getAnimationRestart":_flaxMemberParameters138,"toString":_flaxMemberParameters2}, {}), []);
+const _FloatingActionButtonAnimatorProxy = {type: "flax.core/sdk_material#type:FloatingActionButtonAnimator", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getOffset":_flaxMemberParameters136,"getScaleAnimation":_flaxMemberParameters137,"getRotationAnimation":_flaxMemberParameters137,"getAnimationRestart":_flaxMemberParameters138,"toString":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["getAnimationRestart","toString"]} as const;
 export interface FloatingActionButtonAnimator {
 readonly [_flaxDartTypeValue]: FloatingActionButtonAnimator;
 

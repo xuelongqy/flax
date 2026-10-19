@@ -21,7 +21,7 @@ import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_ColorFilter
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ColorFilter';
 import type * as upstream9 from '@flax/dart/ui/_bindings/flutter_ImageFilter';
 import '@flax/dart/ui/_bindings/flutter_ImageFilter';
-const _flaxMemberParameters0 = [] as const;
+import { _flaxMemberParameters0 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface Paint extends Readonly<{ "__flaxBound:dart:ui::Paint": readonly [] }> { readonly __Paint: unique symbol;

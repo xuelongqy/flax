@@ -37,14 +37,7 @@ import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-const _flaxMemberParameters0 = [{"name":"oldWidget","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"oldWidget","required":true,"positional":true},{"name":"dependencies","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"aspect","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [] as const;
-const _flaxMemberParameters5 = [{"name":"joiner"},{"name":"minLevel"}] as const;
-const _flaxMemberParameters6 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
-const _flaxMemberParameters7 = [{"name":"name"},{"name":"style"}] as const;
+import { _flaxMemberParameters3, _flaxMemberParameters5, _flaxMemberParameters211, _flaxMemberParameters212, _flaxMemberParameters2, _flaxMemberParameters6, _flaxMemberParameters7, _flaxMemberParameters8 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -64,7 +57,7 @@ toStringDeep(options?: {minLevel?: upstream16.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream18.DiagnosticsTreeStyle | null | undefined}): upstream17.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream17.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:MediaQuery", ["data","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:MediaQuery", "object", {"updateShouldNotify":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"updateShouldNotifyDependent":_flaxMemberParameters2,"isSupportedAspect":_flaxMemberParameters3,"toStringShort":_flaxMemberParameters4,"toStringShallow":_flaxMemberParameters5,"toStringDeep":_flaxMemberParameters6,"toDiagnosticsNode":_flaxMemberParameters7,"debugDescribeChildren":_flaxMemberParameters4}, {}), []);
+defineObject("flax.core/sdk_widgets#type:MediaQuery", ["data","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:MediaQuery", "object", {"updateShouldNotify":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters5,"updateShouldNotifyDependent":_flaxMemberParameters211,"isSupportedAspect":_flaxMemberParameters212,"toStringShort":_flaxMemberParameters2,"toStringShallow":_flaxMemberParameters6,"toStringDeep":_flaxMemberParameters7,"toDiagnosticsNode":_flaxMemberParameters8,"debugDescribeChildren":_flaxMemberParameters2}, {}), []);
 export function _MediaQueryFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; data: Readonly<{ "__flaxBound:package:flutter/src/widgets/media_query.dart::MediaQueryData": readonly [] }>; child: Widget }): MediaQuery {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');

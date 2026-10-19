@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_MouseC
 import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import type * as upstream4 from '@flax/flutter/material/_bindings/sdk_material_DataCell';
 import '@flax/flutter/material/_bindings/sdk_material_DataCell';
-const _flaxMemberParameters0 = [{"name":"key"},{"name":"selected"},{"name":"onSelectChanged"},{"name":"onLongPress"},{"name":"onHover"},{"name":"color"},{"name":"mouseCursor"},{"name":"cells","required":true}] as const;
+import { _flaxMemberParameters75 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +20,7 @@ readonly [_flaxDartTypeValue]: DataRow;
 
 }
 defineObject("flax.core/sdk_material#type:DataRow", ["key","onSelectChanged","onLongPress","onHover","selected","cells","color","mouseCursor"], [], _flaxBindingMethods("flax.core/sdk_material#type:DataRow", "object", {}, {}), []);
-const _DataRowProxy = {type: "flax.core/sdk_material#type:DataRow", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["key","onSelectChanged","onLongPress","onHover","selected","cells","color","mouseCursor"], setters: [], contextMembers: [], superMembers: ["get:key","get:onSelectChanged","get:onLongPress","get:onHover","get:selected","get:cells","get:color","get:mouseCursor"]} as const;
+const _DataRowProxy = {type: "flax.core/sdk_material#type:DataRow", parameters: _flaxMemberParameters75, constructors: {"": _flaxMemberParameters75}, methods: {}, getters: ["key","onSelectChanged","onLongPress","onHover","selected","cells","color","mouseCursor"], setters: [], contextMembers: [], superMembers: ["get:key","get:onSelectChanged","get:onLongPress","get:onHover","get:selected","get:cells","get:color","get:mouseCursor"]} as const;
 export interface DataRow {
 readonly [_flaxDartTypeValue]: DataRow;
 

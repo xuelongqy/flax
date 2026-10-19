@@ -15,11 +15,7 @@ import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
 import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-const _flaxMemberParameters0 = [{"name":"size","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"oldClipper","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"shape","required":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters4 = [{"name":"listener","required":true,"positional":true}] as const;
+import { _flaxMemberParameters49, _flaxMemberParameters50, _flaxMemberParameters1, _flaxMemberParameters334, _flaxMemberParameters48 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,8 +23,8 @@ export interface ShapeBorderClipper extends Omit<upstream0.CustomClipper<upstrea
 readonly [_flaxDartTypeValue]: ShapeBorderClipper;
 
 }
-defineObject("flax.core/sdk_rendering#type:ShapeBorderClipper", ["shape","textDirection"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:ShapeBorderClipper", "object", {"getClip":_flaxMemberParameters0,"getApproximateClipRect":_flaxMemberParameters0,"shouldReclip":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/flutter#type:Listenable");
-const _ShapeBorderClipperProxy = {type: "flax.core/sdk_rendering#type:ShapeBorderClipper", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"addListener":_flaxMemberParameters4,"removeListener":_flaxMemberParameters4,"getClip":_flaxMemberParameters0,"getApproximateClipRect":_flaxMemberParameters0,"shouldReclip":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["shape","textDirection"], setters: [], contextMembers: [], superMembers: ["get:shape","get:textDirection","addListener","removeListener","getClip","getApproximateClipRect","shouldReclip","toString"]} as const;
+defineObject("flax.core/sdk_rendering#type:ShapeBorderClipper", ["shape","textDirection"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:ShapeBorderClipper", "object", {"getClip":_flaxMemberParameters49,"getApproximateClipRect":_flaxMemberParameters49,"shouldReclip":_flaxMemberParameters50,"toString":_flaxMemberParameters1}, {}), ["removeListener"], undefined, "flax.core/flutter#type:Listenable");
+const _ShapeBorderClipperProxy = {type: "flax.core/sdk_rendering#type:ShapeBorderClipper", parameters: _flaxMemberParameters334, constructors: {"": _flaxMemberParameters334}, methods: {"addListener":_flaxMemberParameters48,"removeListener":_flaxMemberParameters48,"getClip":_flaxMemberParameters49,"getApproximateClipRect":_flaxMemberParameters49,"shouldReclip":_flaxMemberParameters50,"toString":_flaxMemberParameters1}, getters: ["shape","textDirection"], setters: [], contextMembers: [], superMembers: ["get:shape","get:textDirection","addListener","removeListener","getClip","getApproximateClipRect","shouldReclip","toString"]} as const;
 export interface ShapeBorderClipper {
 readonly [_flaxDartTypeValue]: ShapeBorderClipper;
 

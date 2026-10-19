@@ -17,12 +17,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"endSelectionPoint"},{"name":"hasContent"},{"name":"selectionRects"},{"name":"startSelectionPoint"},{"name":"status"}] as const;
-const _flaxMemberParameters1 = [{"name":"startSelectionPoint"},{"name":"endSelectionPoint"},{"name":"selectionRects"},{"name":"status","required":true},{"name":"hasContent","required":true}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel"}] as const;
-const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
+import { _flaxMemberParameters329, _flaxMemberParameters330, _flaxMemberParameters1, _flaxMemberParameters16, _flaxMemberParameters15, _flaxMemberParameters12 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -30,8 +25,8 @@ export interface SelectionGeometry extends Omit<upstream0.Diagnosticable, _flaxO
 readonly [_flaxDartTypeValue]: SelectionGeometry;
 
 }
-defineObject("flax.core/sdk_rendering#type:SelectionGeometry", ["startSelectionPoint","endSelectionPoint","status","selectionRects","hasContent","hasSelection"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SelectionGeometry", "object", {"copyWith":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _SelectionGeometryProxy = {type: "flax.core/sdk_rendering#type:SelectionGeometry", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"copyWith":_flaxMemberParameters0}, getters: ["startSelectionPoint","endSelectionPoint","status","selectionRects","hasContent","hasSelection"], setters: [], contextMembers: [], superMembers: ["get:startSelectionPoint","get:endSelectionPoint","get:status","get:selectionRects","get:hasContent","get:hasSelection","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
+defineObject("flax.core/sdk_rendering#type:SelectionGeometry", ["startSelectionPoint","endSelectionPoint","status","selectionRects","hasContent","hasSelection"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SelectionGeometry", "object", {"copyWith":_flaxMemberParameters329}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
+const _SelectionGeometryProxy = {type: "flax.core/sdk_rendering#type:SelectionGeometry", parameters: _flaxMemberParameters330, constructors: {"": _flaxMemberParameters330}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters16,"toDiagnosticsNode":_flaxMemberParameters15,"debugFillProperties":_flaxMemberParameters12,"copyWith":_flaxMemberParameters329}, getters: ["startSelectionPoint","endSelectionPoint","status","selectionRects","hasContent","hasSelection"], setters: [], contextMembers: [], superMembers: ["get:startSelectionPoint","get:endSelectionPoint","get:status","get:selectionRects","get:hasContent","get:hasSelection","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
 export interface SelectionGeometry {
 readonly [_flaxDartTypeValue]: SelectionGeometry;
 

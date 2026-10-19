@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream4 from '@flax/flutter/painting/_bindings/sdk_painting_PlaceholderSpan';
 import '@flax/flutter/painting/_bindings/sdk_painting_PlaceholderSpan';
-const _flaxMemberParameters0 = [] as const;
+import { _flaxMemberParameters1 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +20,7 @@ readonly [_flaxDartTypeValue]: TextParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:TextParentData", ["previousSibling","nextSibling","offset","span"], ["previousSibling","nextSibling","span"], _flaxBindingMethods("flax.core/sdk_rendering#type:TextParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:ParentData");
-const _TextParentDataProxy = {type: "flax.core/sdk_rendering#type:TextParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["offset","span","previousSibling","nextSibling"], setters: ["span","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:offset","get:span","get:previousSibling","get:nextSibling","set:span","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _TextParentDataProxy = {type: "flax.core/sdk_rendering#type:TextParentData", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"detach":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, getters: ["offset","span","previousSibling","nextSibling"], setters: ["span","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:offset","get:span","get:previousSibling","get:nextSibling","set:span","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface TextParentData {
 readonly [_flaxDartTypeValue]: TextParentData;
 

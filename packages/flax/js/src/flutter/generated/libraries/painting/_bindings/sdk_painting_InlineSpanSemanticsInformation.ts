@@ -5,8 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_StringAttri
 import '@flax/dart/ui/_bindings/sdk_dart_ui_StringAttribute';
 import type * as upstream1 from '@flax/flutter/gestures/_bindings/sdk_gestures_GestureRecognizer';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_GestureRecognizer';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"text","required":true,"positional":true},{"name":"isPlaceholder"},{"name":"semanticsLabel"},{"name":"semanticsIdentifier"},{"name":"stringAttributes"},{"name":"recognizer"}] as const;
+import { _flaxMemberParameters2, _flaxMemberParameters97 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,8 +13,8 @@ export interface InlineSpanSemanticsInformation extends Readonly<{ "__flaxBound:
 readonly [_flaxDartTypeValue]: InlineSpanSemanticsInformation;
 
 }
-defineObject("flax.core/sdk_painting#type:InlineSpanSemanticsInformation", ["text","semanticsLabel","semanticsIdentifier","recognizer","isPlaceholder","requiresOwnNode","stringAttributes"], [], _flaxBindingMethods("flax.core/sdk_painting#type:InlineSpanSemanticsInformation", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _InlineSpanSemanticsInformationProxy = {type: "flax.core/sdk_painting#type:InlineSpanSemanticsInformation", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: ["text","semanticsLabel","semanticsIdentifier","recognizer","isPlaceholder","requiresOwnNode","stringAttributes"], setters: [], contextMembers: [], superMembers: ["get:text","get:semanticsLabel","get:semanticsIdentifier","get:recognizer","get:isPlaceholder","get:requiresOwnNode","get:stringAttributes","toString"]} as const;
+defineObject("flax.core/sdk_painting#type:InlineSpanSemanticsInformation", ["text","semanticsLabel","semanticsIdentifier","recognizer","isPlaceholder","requiresOwnNode","stringAttributes"], [], _flaxBindingMethods("flax.core/sdk_painting#type:InlineSpanSemanticsInformation", "object", {"toString":_flaxMemberParameters2}, {}), []);
+const _InlineSpanSemanticsInformationProxy = {type: "flax.core/sdk_painting#type:InlineSpanSemanticsInformation", parameters: _flaxMemberParameters97, constructors: {"": _flaxMemberParameters97}, methods: {"toString":_flaxMemberParameters2}, getters: ["text","semanticsLabel","semanticsIdentifier","recognizer","isPlaceholder","requiresOwnNode","stringAttributes"], setters: [], contextMembers: [], superMembers: ["get:text","get:semanticsLabel","get:semanticsIdentifier","get:recognizer","get:isPlaceholder","get:requiresOwnNode","get:stringAttributes","toString"]} as const;
 export interface InlineSpanSemanticsInformation {
 readonly [_flaxDartTypeValue]: InlineSpanSemanticsInformation;
 

@@ -11,13 +11,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters1 = [{"name":"factor","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"opacity","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"color","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"colors","required":true},{"name":"stops"},{"name":"transform"}] as const;
+import { _flaxMemberParameters18, _flaxMemberParameters24, _flaxMemberParameters41, _flaxMemberParameters58, _flaxMemberParameters15, _flaxMemberParameters16, _flaxMemberParameters59 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,8 +19,8 @@ export interface Gradient extends Readonly<{ "__flaxBound:package:flutter/src/pa
 readonly [_flaxDartTypeValue]: Gradient;
 
 }
-defineObject("flax.core/sdk_painting#type:Gradient", ["colors","stops","transform"], [], _flaxBindingMethods("flax.core/sdk_painting#type:Gradient", "object", {"createShader":_flaxMemberParameters0,"scale":_flaxMemberParameters1,"withOpacity":_flaxMemberParameters2,"fromColor":_flaxMemberParameters3,"lerpFrom":_flaxMemberParameters4,"lerpTo":_flaxMemberParameters5}, {}), []);
-const _GradientProxy = {type: "flax.core/sdk_painting#type:Gradient", parameters: _flaxMemberParameters6, constructors: {"": _flaxMemberParameters6}, methods: {"createShader":_flaxMemberParameters0,"scale":_flaxMemberParameters1,"withOpacity":_flaxMemberParameters2,"fromColor":_flaxMemberParameters3,"lerpFrom":_flaxMemberParameters4,"lerpTo":_flaxMemberParameters5}, getters: ["colors","stops","transform"], setters: [], contextMembers: [], superMembers: ["get:colors","get:stops","get:transform","fromColor","lerpFrom","lerpTo"]} as const;
+defineObject("flax.core/sdk_painting#type:Gradient", ["colors","stops","transform"], [], _flaxBindingMethods("flax.core/sdk_painting#type:Gradient", "object", {"createShader":_flaxMemberParameters18,"scale":_flaxMemberParameters24,"withOpacity":_flaxMemberParameters41,"fromColor":_flaxMemberParameters58,"lerpFrom":_flaxMemberParameters15,"lerpTo":_flaxMemberParameters16}, {}), []);
+const _GradientProxy = {type: "flax.core/sdk_painting#type:Gradient", parameters: _flaxMemberParameters59, constructors: {"": _flaxMemberParameters59}, methods: {"createShader":_flaxMemberParameters18,"scale":_flaxMemberParameters24,"withOpacity":_flaxMemberParameters41,"fromColor":_flaxMemberParameters58,"lerpFrom":_flaxMemberParameters15,"lerpTo":_flaxMemberParameters16}, getters: ["colors","stops","transform"], setters: [], contextMembers: [], superMembers: ["get:colors","get:stops","get:transform","fromColor","lerpFrom","lerpTo"]} as const;
 export interface Gradient {
 readonly [_flaxDartTypeValue]: Gradient;
 

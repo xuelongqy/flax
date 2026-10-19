@@ -7,9 +7,7 @@ import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Type';
 import '@flax/dart/core/_bindings/flutter_Type';
 import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
-const _flaxMemberParameters0 = [{"name":"locale","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"old","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+import { _flaxMemberParameters232, _flaxMemberParameters233, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,8 +15,8 @@ export interface LocalizationsDelegate<T extends unknown | null = unknown | null
 readonly [_flaxDartTypeValue]: LocalizationsDelegate<T>;
 
 }
-defineObject("flax.core/sdk_widgets#type:LocalizationsDelegate", ["type"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:LocalizationsDelegate", "object", {"isSupported":_flaxMemberParameters0,"load":_flaxMemberParameters0,"shouldReload":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, {}), []);
-const _LocalizationsDelegateProxy = {type: "flax.core/sdk_widgets#type:LocalizationsDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"isSupported":_flaxMemberParameters0,"load":_flaxMemberParameters0,"shouldReload":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["type"], setters: [], contextMembers: [], superMembers: ["get:type","toString"]} as const;
+defineObject("flax.core/sdk_widgets#type:LocalizationsDelegate", ["type"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:LocalizationsDelegate", "object", {"isSupported":_flaxMemberParameters232,"load":_flaxMemberParameters232,"shouldReload":_flaxMemberParameters233,"toString":_flaxMemberParameters2}, {}), []);
+const _LocalizationsDelegateProxy = {type: "flax.core/sdk_widgets#type:LocalizationsDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"isSupported":_flaxMemberParameters232,"load":_flaxMemberParameters232,"shouldReload":_flaxMemberParameters233,"toString":_flaxMemberParameters2}, getters: ["type"], setters: [], contextMembers: [], superMembers: ["get:type","toString"]} as const;
 export interface LocalizationsDelegate<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: LocalizationsDelegate<T>;
 

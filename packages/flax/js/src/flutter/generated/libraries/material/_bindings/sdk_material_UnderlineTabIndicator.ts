@@ -31,16 +31,7 @@ import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-const _flaxMemberParameters0 = [{"name":"onChanged","positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"borderRadius"},{"name":"borderSide"},{"name":"insets"}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"size","required":true,"positional":true},{"name":"position","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters6 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection","required":true,"positional":true}] as const;
-const _flaxMemberParameters7 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters8 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters9 = [{"name":"minLevel"}] as const;
+import { _flaxMemberParameters325, _flaxMemberParameters326, _flaxMemberParameters2, _flaxMemberParameters159, _flaxMemberParameters160, _flaxMemberParameters327, _flaxMemberParameters328, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters3 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -48,8 +39,8 @@ export interface UnderlineTabIndicator extends Omit<upstream0.Decoration, _flaxO
 readonly [_flaxDartTypeValue]: UnderlineTabIndicator;
 
 }
-defineObject("flax.core/sdk_material#type:UnderlineTabIndicator", ["padding","isComplex","borderRadius","borderSide","insets"], [], _flaxBindingMethods("flax.core/sdk_material#type:UnderlineTabIndicator", "object", {"createBoxPainter":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:Decoration");
-const _UnderlineTabIndicatorProxy = {type: "flax.core/sdk_material#type:UnderlineTabIndicator", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShort":_flaxMemberParameters2,"debugAssertIsValid":_flaxMemberParameters2,"lerpFrom":_flaxMemberParameters3,"lerpTo":_flaxMemberParameters4,"hitTest":_flaxMemberParameters5,"createBoxPainter":_flaxMemberParameters0,"getClipPath":_flaxMemberParameters6,"toDiagnosticsNode":_flaxMemberParameters7,"debugFillProperties":_flaxMemberParameters8,"toString":_flaxMemberParameters9}, getters: ["borderRadius","borderSide","insets","padding","isComplex"], setters: [], contextMembers: [], superMembers: ["get:borderRadius","get:borderSide","get:insets","get:padding","get:isComplex","toStringShort","debugAssertIsValid","lerpFrom","lerpTo","hitTest","createBoxPainter","getClipPath","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+defineObject("flax.core/sdk_material#type:UnderlineTabIndicator", ["padding","isComplex","borderRadius","borderSide","insets"], [], _flaxBindingMethods("flax.core/sdk_material#type:UnderlineTabIndicator", "object", {"createBoxPainter":_flaxMemberParameters325}, {}), [], undefined, "flax.core/flutter#type:Decoration");
+const _UnderlineTabIndicatorProxy = {type: "flax.core/sdk_material#type:UnderlineTabIndicator", parameters: _flaxMemberParameters326, constructors: {"": _flaxMemberParameters326}, methods: {"toStringShort":_flaxMemberParameters2,"debugAssertIsValid":_flaxMemberParameters2,"lerpFrom":_flaxMemberParameters159,"lerpTo":_flaxMemberParameters160,"hitTest":_flaxMemberParameters327,"createBoxPainter":_flaxMemberParameters325,"getClipPath":_flaxMemberParameters328,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters3}, getters: ["borderRadius","borderSide","insets","padding","isComplex"], setters: [], contextMembers: [], superMembers: ["get:borderRadius","get:borderSide","get:insets","get:padding","get:isComplex","toStringShort","debugAssertIsValid","lerpFrom","lerpTo","hitTest","createBoxPainter","getClipPath","toDiagnosticsNode","debugFillProperties","toString"]} as const;
 export interface UnderlineTabIndicator {
 readonly [_flaxDartTypeValue]: UnderlineTabIndicator;
 

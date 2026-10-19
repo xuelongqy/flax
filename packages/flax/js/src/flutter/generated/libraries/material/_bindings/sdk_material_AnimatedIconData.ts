@@ -1,7 +1,7 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
-const _flaxMemberParameters0 = [] as const;
+import { _flaxMemberParameters2 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface AnimatedIconData extends Readonly<{ "__flaxBound:package:flutter/src/material/animated_icons.dart::AnimatedIconData": readonly [] }> { readonly __AnimatedIconData: unique symbol;
@@ -10,7 +10,7 @@ readonly [_flaxDartTypeValue]: AnimatedIconData;
 readonly matchTextDirection: boolean;
 }
 defineObject("flax.core/sdk_material#type:AnimatedIconData", ["matchTextDirection"], [], _flaxBindingMethods("flax.core/sdk_material#type:AnimatedIconData", "object", {}, {}), []);
-const _AnimatedIconDataProxy = {type: "flax.core/sdk_material#type:AnimatedIconData", parameters: _flaxMemberParameters0, constructors: {}, methods: {}, getters: ["matchTextDirection"], setters: [], contextMembers: [], superMembers: []} as const;
+const _AnimatedIconDataProxy = {type: "flax.core/sdk_material#type:AnimatedIconData", parameters: _flaxMemberParameters2, constructors: {}, methods: {}, getters: ["matchTextDirection"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _AnimatedIconDataFactory { export function implement(args: [], implementation: {get matchTextDirection(): boolean}): AnimatedIconData {
 return constructProxy(_AnimatedIconDataProxy, args, implementation) as AnimatedIconData; } }
 export const AnimatedIconData: typeof _AnimatedIconDataFactory & _FlaxInstanceType<AnimatedIconData> & _FlaxDartType<AnimatedIconData, readonly ["class", "flax.core/sdk_material#type:AnimatedIconData", readonly [], false]> = _flaxBindInstanceType<AnimatedIconData, typeof _AnimatedIconDataFactory>(_AnimatedIconDataFactory, "flax.core/sdk_material#type:AnimatedIconData", ["dart:core::Object"]) as typeof _AnimatedIconDataFactory & _FlaxInstanceType<AnimatedIconData> & _FlaxDartType<AnimatedIconData, readonly ["class", "flax.core/sdk_material#type:AnimatedIconData", readonly [], false]>;

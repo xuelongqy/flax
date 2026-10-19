@@ -21,17 +21,7 @@ import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-const _flaxMemberParameters0 = [{"name":"eccentricity"},{"name":"side"}] as const;
-const _flaxMemberParameters1 = [{"name":"side"},{"name":"eccentricity"}] as const;
-const _flaxMemberParameters2 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters6 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"paint","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters7 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"textDirection"}] as const;
-const _flaxMemberParameters8 = [] as const;
-const _flaxMemberParameters9 = [{"name":"other","required":true,"positional":true},{"name":"reversed"}] as const;
-const _flaxMemberParameters10 = [{"name":"other","required":true,"positional":true}] as const;
+import { _flaxMemberParameters106, _flaxMemberParameters107, _flaxMemberParameters14, _flaxMemberParameters15, _flaxMemberParameters16, _flaxMemberParameters18, _flaxMemberParameters19, _flaxMemberParameters20, _flaxMemberParameters2, _flaxMemberParameters17, _flaxMemberParameters21 } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -39,8 +29,8 @@ export interface OvalBorder extends Omit<upstream0.CircleBorder, _flaxOwnMembers
 readonly [_flaxDartTypeValue]: OvalBorder;
 
 }
-defineObject("flax.core/sdk_painting#type:OvalBorder", ["eccentricity","preferPaintInterior","dimensions","side"], [], _flaxBindingMethods("flax.core/sdk_painting#type:OvalBorder", "object", {"copyWith":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:CircleBorder");
-const _OvalBorderProxy = {type: "flax.core/sdk_painting#type:OvalBorder", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"scale":_flaxMemberParameters2,"lerpFrom":_flaxMemberParameters3,"lerpTo":_flaxMemberParameters4,"getInnerPath":_flaxMemberParameters5,"getOuterPath":_flaxMemberParameters5,"paintInterior":_flaxMemberParameters6,"copyWith":_flaxMemberParameters0,"paint":_flaxMemberParameters7,"toString":_flaxMemberParameters8,"add":_flaxMemberParameters9,"operatorAdd":_flaxMemberParameters10}, getters: ["eccentricity","preferPaintInterior","dimensions","side"], setters: [], contextMembers: [], superMembers: ["get:eccentricity","get:preferPaintInterior","get:dimensions","get:side","scale","lerpFrom","lerpTo","getInnerPath","getOuterPath","paintInterior","copyWith","paint","toString","add","operatorAdd"]} as const;
+defineObject("flax.core/sdk_painting#type:OvalBorder", ["eccentricity","preferPaintInterior","dimensions","side"], [], _flaxBindingMethods("flax.core/sdk_painting#type:OvalBorder", "object", {"copyWith":_flaxMemberParameters106}, {}), [], undefined, "flax.core/flutter#type:CircleBorder");
+const _OvalBorderProxy = {type: "flax.core/sdk_painting#type:OvalBorder", parameters: _flaxMemberParameters107, constructors: {"": _flaxMemberParameters107}, methods: {"scale":_flaxMemberParameters14,"lerpFrom":_flaxMemberParameters15,"lerpTo":_flaxMemberParameters16,"getInnerPath":_flaxMemberParameters18,"getOuterPath":_flaxMemberParameters18,"paintInterior":_flaxMemberParameters19,"copyWith":_flaxMemberParameters106,"paint":_flaxMemberParameters20,"toString":_flaxMemberParameters2,"add":_flaxMemberParameters17,"operatorAdd":_flaxMemberParameters21}, getters: ["eccentricity","preferPaintInterior","dimensions","side"], setters: [], contextMembers: [], superMembers: ["get:eccentricity","get:preferPaintInterior","get:dimensions","get:side","scale","lerpFrom","lerpTo","getInnerPath","getOuterPath","paintInterior","copyWith","paint","toString","add","operatorAdd"]} as const;
 export interface OvalBorder {
 readonly [_flaxDartTypeValue]: OvalBorder;
 

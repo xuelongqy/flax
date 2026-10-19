@@ -3,7 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Element';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Element';
-const _flaxMemberParameters0 = [{"name":"index","required":true,"positional":true},{"name":"value","required":true,"positional":true}] as const;
+import { _flaxMemberParameters206 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -12,7 +12,7 @@ readonly [_flaxDartTypeValue]: IndexedSlot<T>;
 
 }
 defineObject("flax.core/sdk_widgets#type:IndexedSlot", ["value","index"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:IndexedSlot", "object", {}, {}), []);
-const _IndexedSlotProxy = {type: "flax.core/sdk_widgets#type:IndexedSlot", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["value","index"], setters: [], contextMembers: [], superMembers: ["get:value","get:index"]} as const;
+const _IndexedSlotProxy = {type: "flax.core/sdk_widgets#type:IndexedSlot", parameters: _flaxMemberParameters206, constructors: {"": _flaxMemberParameters206}, methods: {}, getters: ["value","index"], setters: [], contextMembers: [], superMembers: ["get:value","get:index"]} as const;
 export interface IndexedSlot<T extends upstream0.Element | null = upstream0.Element | null> {
 readonly [_flaxDartTypeValue]: IndexedSlot<T>;
 

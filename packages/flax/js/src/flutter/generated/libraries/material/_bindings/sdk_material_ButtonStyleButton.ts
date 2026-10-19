@@ -38,8 +38,7 @@ import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream17 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters1 = [] as const;
+import { _flaxMemberParameters9, _flaxMemberParameters2 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -72,7 +71,7 @@ toStringDeep(options?: {minLevel?: upstream14.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream16.DiagnosticsTreeStyle | null | undefined}): upstream15.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream15.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_material#type:ButtonStyleButton", ["onPressed","onLongPress","onHover","onFocusChange","style","clipBehavior","focusNode","autofocus","statesController","isSemanticButton","iconAlignment","tooltip","child","enabled","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:ButtonStyleButton", "object", {"defaultStyleOf":_flaxMemberParameters0,"themeStyleOf":_flaxMemberParameters0,"createState":_flaxMemberParameters1,"createElement":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_widgets#type:Widget");
+defineObject("flax.core/sdk_material#type:ButtonStyleButton", ["onPressed","onLongPress","onHover","onFocusChange","style","clipBehavior","focusNode","autofocus","statesController","isSemanticButton","iconAlignment","tooltip","child","enabled","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:ButtonStyleButton", "object", {"defaultStyleOf":_flaxMemberParameters9,"themeStyleOf":_flaxMemberParameters9,"createState":_flaxMemberParameters2,"createElement":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_widgets#type:Widget");
 export namespace _ButtonStyleButtonFactory { function _flaxDefault_allOrNull<T extends unknown | null = unknown | null>(value: (T | _FlaxDartOutput<T>) | null): upstream7.WidgetStateProperty<_FlaxDartOutput<T>> | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_material#function:ButtonStyleButton.allOrNull", [value]);

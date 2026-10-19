@@ -11,17 +11,7 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream4 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
-const _flaxMemberParameters0 = [{"name":"maxHeight"},{"name":"maxWidth"},{"name":"minHeight"},{"name":"minWidth"}] as const;
-const _flaxMemberParameters1 = [{"name":"edges","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"constraints","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"height"},{"name":"width"}] as const;
-const _flaxMemberParameters5 = [{"name":"width","positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"height","positional":true}] as const;
-const _flaxMemberParameters7 = [{"name":"size","required":true,"positional":true}] as const;
-const _flaxMemberParameters8 = [{"name":"width","required":true,"positional":true},{"name":"height","required":true,"positional":true}] as const;
-const _flaxMemberParameters9 = [{"name":"factor","required":true,"positional":true}] as const;
-const _flaxMemberParameters10 = [{"name":"value","required":true,"positional":true}] as const;
+import { _flaxMemberParameters13, _flaxMemberParameters14, _flaxMemberParameters3, _flaxMemberParameters15, _flaxMemberParameters16, _flaxMemberParameters17, _flaxMemberParameters18, _flaxMemberParameters19, _flaxMemberParameters20, _flaxMemberParameters21, _flaxMemberParameters22 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface BoxConstraints extends Omit<upstream0.Constraints, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }> { readonly __BoxConstraints: unique symbol;
@@ -63,7 +53,7 @@ operatorDivide(factor: number): BoxConstraints;
 operatorTruncateDivide(factor: number): BoxConstraints;
 operatorModulo(value: number): BoxConstraints;
 }
-defineObject("flax.core/flutter#type:BoxConstraints", ["isTight","isNormalized","minWidth","maxWidth","minHeight","maxHeight","flipped","biggest","smallest","hasTightWidth","hasTightHeight","hasBoundedWidth","hasBoundedHeight","hasInfiniteWidth","hasInfiniteHeight"], [], _flaxBindingMethods("flax.core/flutter#type:BoxConstraints", "object", {"copyWith":_flaxMemberParameters0,"deflate":_flaxMemberParameters1,"loosen":_flaxMemberParameters2,"enforce":_flaxMemberParameters3,"tighten":_flaxMemberParameters4,"widthConstraints":_flaxMemberParameters2,"heightConstraints":_flaxMemberParameters2,"constrainWidth":_flaxMemberParameters5,"constrainHeight":_flaxMemberParameters6,"constrain":_flaxMemberParameters7,"constrainDimensions":_flaxMemberParameters8,"constrainSizeAndAttemptToPreserveAspectRatio":_flaxMemberParameters7,"isSatisfiedBy":_flaxMemberParameters7,"normalize":_flaxMemberParameters2,"toString":_flaxMemberParameters2,"operatorMultiply":_flaxMemberParameters9,"operatorDivide":_flaxMemberParameters9,"operatorTruncateDivide":_flaxMemberParameters9,"operatorModulo":_flaxMemberParameters10}, {}), [], undefined, "flax.core/sdk_rendering#type:Constraints");
+defineObject("flax.core/flutter#type:BoxConstraints", ["isTight","isNormalized","minWidth","maxWidth","minHeight","maxHeight","flipped","biggest","smallest","hasTightWidth","hasTightHeight","hasBoundedWidth","hasBoundedHeight","hasInfiniteWidth","hasInfiniteHeight"], [], _flaxBindingMethods("flax.core/flutter#type:BoxConstraints", "object", {"copyWith":_flaxMemberParameters13,"deflate":_flaxMemberParameters14,"loosen":_flaxMemberParameters3,"enforce":_flaxMemberParameters15,"tighten":_flaxMemberParameters16,"widthConstraints":_flaxMemberParameters3,"heightConstraints":_flaxMemberParameters3,"constrainWidth":_flaxMemberParameters17,"constrainHeight":_flaxMemberParameters18,"constrain":_flaxMemberParameters19,"constrainDimensions":_flaxMemberParameters20,"constrainSizeAndAttemptToPreserveAspectRatio":_flaxMemberParameters19,"isSatisfiedBy":_flaxMemberParameters19,"normalize":_flaxMemberParameters3,"toString":_flaxMemberParameters3,"operatorMultiply":_flaxMemberParameters21,"operatorDivide":_flaxMemberParameters21,"operatorTruncateDivide":_flaxMemberParameters21,"operatorModulo":_flaxMemberParameters22}, {}), [], undefined, "flax.core/sdk_rendering#type:Constraints");
 export function _BoxConstraintsFactory(options: { minWidth?: number | undefined; maxWidth?: number | undefined; minHeight?: number | undefined; maxHeight?: number | undefined } = {}): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
@@ -73,7 +63,7 @@ export namespace _BoxConstraintsFactory {
 export function tight(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "tight", _flaxMemberParameters7, [size], {}) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "tight", _flaxMemberParameters19, [size], {}) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory {
@@ -94,7 +84,7 @@ export namespace _BoxConstraintsFactory {
 export function loose(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "loose", _flaxMemberParameters7, [size], {}) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "loose", _flaxMemberParameters19, [size], {}) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory {
@@ -108,7 +98,7 @@ export namespace _BoxConstraintsFactory {
 export function fromViewConstraints(constraints: Readonly<{ "__flaxBound:dart:ui::ViewConstraints": readonly [] }>): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "fromViewConstraints", _flaxMemberParameters3, [constraints], {}) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "fromViewConstraints", _flaxMemberParameters15, [constraints], {}) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }> | null, t: number): BoxConstraints | null {

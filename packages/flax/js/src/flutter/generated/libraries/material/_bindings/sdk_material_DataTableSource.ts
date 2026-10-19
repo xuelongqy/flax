@@ -7,9 +7,7 @@ import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_List
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream2 from '@flax/flutter/material/_bindings/sdk_material_DataRow';
 import '@flax/flutter/material/_bindings/sdk_material_DataRow';
-const _flaxMemberParameters0 = [{"name":"index","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"listener","required":true,"positional":true}] as const;
+import { _flaxMemberParameters76, _flaxMemberParameters2, _flaxMemberParameters52 } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,8 +15,8 @@ export interface DataTableSource extends Omit<upstream0.ChangeNotifier, _flaxOwn
 readonly [_flaxDartTypeValue]: DataTableSource;
 
 }
-defineObject("flax.core/sdk_material#type:DataTableSource", ["hasListeners","rowCount","isRowCountApproximate","selectedRowCount"], [], _flaxBindingMethods("flax.core/sdk_material#type:DataTableSource", "object", {"getRow":_flaxMemberParameters0}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _DataTableSourceProxy = {type: "flax.core/sdk_material#type:DataTableSource", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"addListener":_flaxMemberParameters2,"removeListener":_flaxMemberParameters2,"dispose":_flaxMemberParameters1,"getRow":_flaxMemberParameters0}, getters: ["rowCount","isRowCountApproximate","selectedRowCount","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
+defineObject("flax.core/sdk_material#type:DataTableSource", ["hasListeners","rowCount","isRowCountApproximate","selectedRowCount"], [], _flaxBindingMethods("flax.core/sdk_material#type:DataTableSource", "object", {"getRow":_flaxMemberParameters76}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
+const _DataTableSourceProxy = {type: "flax.core/sdk_material#type:DataTableSource", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"addListener":_flaxMemberParameters52,"removeListener":_flaxMemberParameters52,"dispose":_flaxMemberParameters2,"getRow":_flaxMemberParameters76}, getters: ["rowCount","isRowCountApproximate","selectedRowCount","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
 export interface DataTableSource {
 readonly [_flaxDartTypeValue]: DataTableSource;
 

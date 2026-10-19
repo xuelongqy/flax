@@ -9,14 +9,7 @@ import type * as upstream2 from '@flax/flutter/rendering/_bindings/flutter_BoxCo
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-const _flaxMemberParameters0 = [{"name":"childId","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"childId","required":true,"positional":true},{"name":"constraints","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"childId","required":true,"positional":true},{"name":"offset","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"constraints","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"size","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [] as const;
-const _flaxMemberParameters7 = [{"name":"relayout"}] as const;
+import { _flaxMemberParameters124, _flaxMemberParameters125, _flaxMemberParameters126, _flaxMemberParameters70, _flaxMemberParameters49, _flaxMemberParameters53, _flaxMemberParameters1, _flaxMemberParameters127 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,8 +17,8 @@ export interface MultiChildLayoutDelegate extends Readonly<{ "__flaxBound:packag
 readonly [_flaxDartTypeValue]: MultiChildLayoutDelegate;
 
 }
-defineObject("flax.core/sdk_rendering#type:MultiChildLayoutDelegate", [], [], _flaxBindingMethods("flax.core/sdk_rendering#type:MultiChildLayoutDelegate", "object", {"hasChild":_flaxMemberParameters0,"layoutChild":_flaxMemberParameters1,"positionChild":_flaxMemberParameters2,"getSize":_flaxMemberParameters3,"performLayout":_flaxMemberParameters4,"shouldRelayout":_flaxMemberParameters5,"toString":_flaxMemberParameters6}, {}), []);
-const _MultiChildLayoutDelegateProxy = {type: "flax.core/sdk_rendering#type:MultiChildLayoutDelegate", parameters: _flaxMemberParameters7, constructors: {"": _flaxMemberParameters7}, methods: {"hasChild":_flaxMemberParameters0,"layoutChild":_flaxMemberParameters1,"positionChild":_flaxMemberParameters2,"getSize":_flaxMemberParameters3,"performLayout":_flaxMemberParameters4,"shouldRelayout":_flaxMemberParameters5,"toString":_flaxMemberParameters6}, getters: [], setters: [], contextMembers: [], superMembers: ["hasChild","layoutChild","positionChild","getSize","toString"]} as const;
+defineObject("flax.core/sdk_rendering#type:MultiChildLayoutDelegate", [], [], _flaxBindingMethods("flax.core/sdk_rendering#type:MultiChildLayoutDelegate", "object", {"hasChild":_flaxMemberParameters124,"layoutChild":_flaxMemberParameters125,"positionChild":_flaxMemberParameters126,"getSize":_flaxMemberParameters70,"performLayout":_flaxMemberParameters49,"shouldRelayout":_flaxMemberParameters53,"toString":_flaxMemberParameters1}, {}), []);
+const _MultiChildLayoutDelegateProxy = {type: "flax.core/sdk_rendering#type:MultiChildLayoutDelegate", parameters: _flaxMemberParameters127, constructors: {"": _flaxMemberParameters127}, methods: {"hasChild":_flaxMemberParameters124,"layoutChild":_flaxMemberParameters125,"positionChild":_flaxMemberParameters126,"getSize":_flaxMemberParameters70,"performLayout":_flaxMemberParameters49,"shouldRelayout":_flaxMemberParameters53,"toString":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["hasChild","layoutChild","positionChild","getSize","toString"]} as const;
 export interface MultiChildLayoutDelegate {
 readonly [_flaxDartTypeValue]: MultiChildLayoutDelegate;
 

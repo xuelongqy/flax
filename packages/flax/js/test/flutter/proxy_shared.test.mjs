@@ -223,6 +223,21 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
     }
   }
   assert.ok(Object.isFrozen(parameters));
+  assert.throws(() => {
+    parameters[0].name = 'changed';
+  }, TypeError);
+  const ordinaryType = 'fixture:SharedLayoutOwner';
+  defineObject(
+    ordinaryType,
+    [],
+    [],
+    bindingMethods(ordinaryType, 'object', { echo: parameters }),
+    [],
+  );
+  const ordinary = globalThis.__flaxBindings.object(ordinaryType, 4002);
+  assert.equal(ordinary.echo(9), 9);
+  assert.equal(calls.at(-1)[1], ordinaryType);
+  assert.equal(parameters[0].name, 'value');
   assert.throws(() => new Custom(), /Missing required/);
   const instance = new Custom(5);
   assert.deepEqual(peers, [instance]);

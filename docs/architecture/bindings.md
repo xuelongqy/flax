@@ -85,11 +85,17 @@ proxy prototypes. Collection adapters use the full selected method list, includi
 inherited methods, so they cannot replace a native signature with a synthetic collection
 helper. Public proxy prototypes retain class-specific lexical-super forwarding. Neither
 Dart member caches nor JS ancestry tables hold business objects or callback instances.
-Within each emitted JS file, proxy constructors, named constructors and methods share
-complete matching parameter layouts. Ordinary factories reuse those existing layouts
-only when Context, readonly, fixed and default-value policies also match. Factory-only
-layouts stay in the function body, preserving lazy allocation. The shared tables contain
-declaration metadata and introduce no business receiver, callback root or GC ownership.
+Proxy constructors, named constructors and methods share complete matching parameter
+layouts. Split declaration files import constants from the existing module helper;
+single-file output retains a local pool. Ordered parameter names and every conversion
+flag remain part of the key. The existing runtime readers freeze these arrays and rows,
+and their WeakMap shares argument parsers without retaining receivers or call values.
+Private layout exports use the existing `MemberParameter` type rather than duplicating
+their full literal types in declarations. Unused constants remain tree-shakeable.
+Ordinary factories reuse their existing local layouts only when Context, readonly, fixed
+and default-value policies also match. Factory-only layouts stay in the function body,
+preserving lazy allocation. This changes no generic context, lexical-super target,
+callback root or joint-GC ownership.
 
 Ordinary call eligibility is separate from proxy override eligibility: `@nonVirtual`
 methods and accessors remain callable through the ordinary native descriptors, without

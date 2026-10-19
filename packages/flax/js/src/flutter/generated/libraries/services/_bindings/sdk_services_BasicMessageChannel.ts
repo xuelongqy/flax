@@ -5,9 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/sdk_services_M
 import '@flax/flutter/services/_bindings/sdk_services_MessageCodec';
 import type * as upstream1 from '@flax/flutter/services/_bindings/sdk_services_BinaryMessenger';
 import '@flax/flutter/services/_bindings/sdk_services_BinaryMessenger';
-const _flaxMemberParameters0 = [{"name":"message","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"handler","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":true,"positional":true},{"name":"codec","required":true,"positional":true},{"name":"binaryMessenger"}] as const;
+import { _flaxMemberParameters18, _flaxMemberParameters19, _flaxMemberParameters20 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,8 +13,8 @@ export interface BasicMessageChannel<T extends unknown | null = unknown | null> 
 readonly [_flaxDartTypeValue]: BasicMessageChannel<T>;
 
 }
-defineObject("flax.core/sdk_services#type:BasicMessageChannel", ["name","codec","binaryMessenger"], [], _flaxBindingMethods("flax.core/sdk_services#type:BasicMessageChannel", "object", {"send":_flaxMemberParameters0,"setMessageHandler":_flaxMemberParameters1}, {}), []);
-const _BasicMessageChannelProxy = {type: "flax.core/sdk_services#type:BasicMessageChannel", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"send":_flaxMemberParameters0,"setMessageHandler":_flaxMemberParameters1}, getters: ["name","codec","binaryMessenger"], setters: [], contextMembers: [], superMembers: ["get:name","get:codec","get:binaryMessenger","send","setMessageHandler"]} as const;
+defineObject("flax.core/sdk_services#type:BasicMessageChannel", ["name","codec","binaryMessenger"], [], _flaxBindingMethods("flax.core/sdk_services#type:BasicMessageChannel", "object", {"send":_flaxMemberParameters18,"setMessageHandler":_flaxMemberParameters19}, {}), []);
+const _BasicMessageChannelProxy = {type: "flax.core/sdk_services#type:BasicMessageChannel", parameters: _flaxMemberParameters20, constructors: {"": _flaxMemberParameters20}, methods: {"send":_flaxMemberParameters18,"setMessageHandler":_flaxMemberParameters19}, getters: ["name","codec","binaryMessenger"], setters: [], contextMembers: [], superMembers: ["get:name","get:codec","get:binaryMessenger","send","setMessageHandler"]} as const;
 export interface BasicMessageChannel<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: BasicMessageChannel<T>;
 

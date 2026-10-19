@@ -19,12 +19,7 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-const _flaxMemberParameters0 = [{"name":"data","required":true},{"name":"character"},{"name":"repeat"}] as const;
-const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [] as const;
-const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
-const _flaxMemberParameters5 = [{"name":"minLevel"}] as const;
+import { _flaxMemberParameters68, _flaxMemberParameters10, _flaxMemberParameters43, _flaxMemberParameters0, _flaxMemberParameters44, _flaxMemberParameters45 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -33,7 +28,7 @@ readonly [_flaxDartTypeValue]: RawKeyDownEvent;
 
 }
 defineObject("flax.core/sdk_services#type:RawKeyDownEvent", ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","physicalKey","logicalKey","character","repeat","data"], [], _flaxBindingMethods("flax.core/sdk_services#type:RawKeyDownEvent", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:RawKeyEvent");
-const _RawKeyDownEventProxy = {type: "flax.core/sdk_services#type:RawKeyDownEvent", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"isKeyPressed":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, getters: ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","physicalKey","logicalKey","character","repeat","data"], setters: [], contextMembers: [], superMembers: ["get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:physicalKey","get:logicalKey","get:character","get:repeat","get:data","isKeyPressed","debugFillProperties","toStringShort","toDiagnosticsNode","toString"]} as const;
+const _RawKeyDownEventProxy = {type: "flax.core/sdk_services#type:RawKeyDownEvent", parameters: _flaxMemberParameters68, constructors: {"": _flaxMemberParameters68}, methods: {"isKeyPressed":_flaxMemberParameters10,"debugFillProperties":_flaxMemberParameters43,"toStringShort":_flaxMemberParameters0,"toDiagnosticsNode":_flaxMemberParameters44,"toString":_flaxMemberParameters45}, getters: ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","physicalKey","logicalKey","character","repeat","data"], setters: [], contextMembers: [], superMembers: ["get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:physicalKey","get:logicalKey","get:character","get:repeat","get:data","isKeyPressed","debugFillProperties","toStringShort","toDiagnosticsNode","toString"]} as const;
 export interface RawKeyDownEvent {
 readonly [_flaxDartTypeValue]: RawKeyDownEvent;
 

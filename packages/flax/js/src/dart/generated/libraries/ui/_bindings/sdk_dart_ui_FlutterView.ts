@@ -21,9 +21,7 @@ import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Scene';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Scene';
 import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdate';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdate';
-const _flaxMemberParameters0 = [{"name":"scene","required":true,"positional":true},{"name":"size"}] as const;
-const _flaxMemberParameters1 = [{"name":"update","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+import { _flaxMemberParameters43, _flaxMemberParameters44, _flaxMemberParameters0 } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface FlutterView extends Readonly<{ "__flaxBound:dart:ui::FlutterView": readonly [] }> { readonly __FlutterView: unique symbol;
@@ -46,5 +44,5 @@ render(scene: Readonly<{ "__flaxBound:dart:ui::Scene": readonly [] }>, options?:
 updateSemantics(update: Readonly<{ "__flaxBound:dart:ui::SemanticsUpdate": readonly [] }>): void;
 toString(): string;
 }
-defineObject("flax.core/sdk_dart_ui#type:FlutterView", ["viewId","platformDispatcher","display","devicePixelRatio","physicalConstraints","physicalSize","viewInsets","viewPadding","systemGestureInsets","padding","gestureSettings","displayFeatures","displayCornerRadii"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:FlutterView", "object", {"render":_flaxMemberParameters0,"updateSemantics":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/sdk_dart_ui#type:FlutterView", ["viewId","platformDispatcher","display","devicePixelRatio","physicalConstraints","physicalSize","viewInsets","viewPadding","systemGestureInsets","padding","gestureSettings","displayFeatures","displayCornerRadii"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:FlutterView", "object", {"render":_flaxMemberParameters43,"updateSemantics":_flaxMemberParameters44,"toString":_flaxMemberParameters0}, {}), []);
 export const FlutterView: object & _FlaxInstanceType<FlutterView> & _FlaxDartType<FlutterView, readonly ["class", "flax.core/sdk_dart_ui#type:FlutterView", readonly [], false]> = _flaxBindInstanceType<FlutterView, object>({}, "flax.core/sdk_dart_ui#type:FlutterView", ["dart:core::Object"]) as object & _FlaxInstanceType<FlutterView> & _FlaxDartType<FlutterView, readonly ["class", "flax.core/sdk_dart_ui#type:FlutterView", readonly [], false]>;

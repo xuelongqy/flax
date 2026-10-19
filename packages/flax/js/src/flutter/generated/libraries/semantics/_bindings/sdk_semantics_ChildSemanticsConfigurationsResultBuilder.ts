@@ -5,9 +5,7 @@ import type * as upstream0 from '@flax/flutter/semantics/_bindings/sdk_semantics
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsConfiguration';
 import type * as upstream1 from '@flax/flutter/semantics/_bindings/sdk_semantics_ChildSemanticsConfigurationsResult';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_ChildSemanticsConfigurationsResult';
-const _flaxMemberParameters0 = [{"name":"config","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"configs","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+import { _flaxMemberParameters11, _flaxMemberParameters12, _flaxMemberParameters2 } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,8 +13,8 @@ export interface ChildSemanticsConfigurationsResultBuilder extends Readonly<{ "_
 readonly [_flaxDartTypeValue]: ChildSemanticsConfigurationsResultBuilder;
 
 }
-defineObject("flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", [], [], _flaxBindingMethods("flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", "object", {"markAsMergeUp":_flaxMemberParameters0,"markAsSiblingMergeGroup":_flaxMemberParameters1,"build":_flaxMemberParameters2}, {}), []);
-const _ChildSemanticsConfigurationsResultBuilderProxy = {type: "flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"markAsMergeUp":_flaxMemberParameters0,"markAsSiblingMergeGroup":_flaxMemberParameters1,"build":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["markAsMergeUp","markAsSiblingMergeGroup","build"]} as const;
+defineObject("flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", [], [], _flaxBindingMethods("flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", "object", {"markAsMergeUp":_flaxMemberParameters11,"markAsSiblingMergeGroup":_flaxMemberParameters12,"build":_flaxMemberParameters2}, {}), []);
+const _ChildSemanticsConfigurationsResultBuilderProxy = {type: "flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"markAsMergeUp":_flaxMemberParameters11,"markAsSiblingMergeGroup":_flaxMemberParameters12,"build":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["markAsMergeUp","markAsSiblingMergeGroup","build"]} as const;
 export interface ChildSemanticsConfigurationsResultBuilder {
 readonly [_flaxDartTypeValue]: ChildSemanticsConfigurationsResultBuilder;
 
