@@ -3,6 +3,8 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_DateTime';
 import '@flax/dart/core/_bindings/flutter_DateTime';
+import type * as upstream1 from '@flax/dart/core/_bindings/sdk_dependencies_Stopwatch';
+import '@flax/dart/core/_bindings/sdk_dependencies_Stopwatch';
 const _flaxMemberParameters0 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
@@ -11,12 +13,13 @@ export interface SamplingClock extends Readonly<{ "__flaxBound:package:flutter/s
 readonly [_flaxDartTypeValue]: SamplingClock;
 
 }
-defineObject("flax.core/sdk_gestures#type:SamplingClock", [], [], _flaxBindingMethods("flax.core/sdk_gestures#type:SamplingClock", "object", {"now":_flaxMemberParameters0}, {}), []);
-const _SamplingClockProxy = {type: "flax.core/sdk_gestures#type:SamplingClock", parameters: [], constructors: {"":[]}, methods: {"now":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["now"]} as const;
+defineObject("flax.core/sdk_gestures#type:SamplingClock", [], [], _flaxBindingMethods("flax.core/sdk_gestures#type:SamplingClock", "object", {"now":_flaxMemberParameters0,"stopwatch":_flaxMemberParameters0}, {}), []);
+const _SamplingClockProxy = {type: "flax.core/sdk_gestures#type:SamplingClock", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"now":_flaxMemberParameters0,"stopwatch":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["now","stopwatch"]} as const;
 export interface SamplingClock {
 readonly [_flaxDartTypeValue]: SamplingClock;
 
 now(): upstream0.DateTime;
+stopwatch(): upstream1.Stopwatch;
 }
 export abstract class SamplingClock extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SamplingClock>[typeof globalThis.Symbol.hasInstance];

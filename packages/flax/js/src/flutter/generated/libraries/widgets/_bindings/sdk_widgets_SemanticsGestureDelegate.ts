@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: SemanticsGestureDelegate;
 
 }
 defineObject("flax.core/sdk_widgets#type:SemanticsGestureDelegate", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SemanticsGestureDelegate", "object", {"assignSemantics":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), []);
-const _SemanticsGestureDelegateProxy = {type: "flax.core/sdk_widgets#type:SemanticsGestureDelegate", parameters: [], constructors: {"":[]}, methods: {"assignSemantics":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
+const _SemanticsGestureDelegateProxy = {type: "flax.core/sdk_widgets#type:SemanticsGestureDelegate", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"assignSemantics":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
 export interface SemanticsGestureDelegate {
 readonly [_flaxDartTypeValue]: SemanticsGestureDelegate;
 

@@ -15,7 +15,8 @@ const _flaxMemberParameters0 = [{"name":"canvas","required":true,"positional":tr
 const _flaxMemberParameters1 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"position","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [] as const;
-const _flaxMemberParameters4 = [{"name":"listener","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"repaint"}] as const;
+const _flaxMemberParameters5 = [{"name":"listener","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,7 +25,7 @@ readonly [_flaxDartTypeValue]: CustomPainter;
 
 }
 defineObject("flax.core/sdk_rendering#type:CustomPainter", ["semanticsBuilder"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:CustomPainter", "object", {"paint":_flaxMemberParameters0,"shouldRebuildSemantics":_flaxMemberParameters1,"shouldRepaint":_flaxMemberParameters1,"hitTest":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, {}), ["removeListener"], undefined, "flax.core/flutter#type:Listenable");
-const _CustomPainterProxy = {type: "flax.core/sdk_rendering#type:CustomPainter", parameters: [{"name":"repaint","required":false,"positional":false}], constructors: {"":[{"name":"repaint","required":false,"positional":false}]}, methods: {"addListener":_flaxMemberParameters4,"removeListener":_flaxMemberParameters4,"paint":_flaxMemberParameters0,"shouldRebuildSemantics":_flaxMemberParameters1,"shouldRepaint":_flaxMemberParameters1,"hitTest":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, getters: ["semanticsBuilder"], setters: [], contextMembers: [], superMembers: ["get:semanticsBuilder","addListener","removeListener","shouldRebuildSemantics","hitTest","toString"]} as const;
+const _CustomPainterProxy = {type: "flax.core/sdk_rendering#type:CustomPainter", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"addListener":_flaxMemberParameters5,"removeListener":_flaxMemberParameters5,"paint":_flaxMemberParameters0,"shouldRebuildSemantics":_flaxMemberParameters1,"shouldRepaint":_flaxMemberParameters1,"hitTest":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, getters: ["semanticsBuilder"], setters: [], contextMembers: [], superMembers: ["get:semanticsBuilder","addListener","removeListener","shouldRebuildSemantics","hitTest","toString"]} as const;
 export interface CustomPainter {
 readonly [_flaxDartTypeValue]: CustomPainter;
 

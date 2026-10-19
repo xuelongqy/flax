@@ -24,7 +24,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 6) throw new TypeError('Too many constructor arguments');
 if (colorStops === undefined && (tileMode !== undefined || matrix4 !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (tileMode === undefined && (matrix4 !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-return constructObject("object", "flax.core/sdk_dart_ui#type:Gradient", "linear", [{"name":"from","required":true,"positional":true},{"name":"to","required":true,"positional":true},{"name":"colors","required":true,"positional":true},{"name":"colorStops","required":false,"positional":true},{"name":"tileMode","required":false,"positional":true},{"name":"matrix4","required":false,"positional":true}], [from, to, colors, colorStops, tileMode, matrix4], {}) as Gradient;
+return constructObject("object", "flax.core/sdk_dart_ui#type:Gradient", "linear", [{"name":"from","required":true,"positional":true},{"name":"to","required":true,"positional":true},{"name":"colors","required":true,"positional":true},{"name":"colorStops","positional":true},{"name":"tileMode","positional":true},{"name":"matrix4","positional":true}], [from, to, colors, colorStops, tileMode, matrix4], {}) as Gradient;
 }
 }
 export namespace _GradientFactory {
@@ -35,7 +35,7 @@ if (colorStops === undefined && (tileMode !== undefined || matrix4 !== undefined
 if (tileMode === undefined && (matrix4 !== undefined || focal !== undefined || focalRadius !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (matrix4 === undefined && (focal !== undefined || focalRadius !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (focal === undefined && (focalRadius !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-return constructObject("object", "flax.core/sdk_dart_ui#type:Gradient", "radial", [{"name":"center","required":true,"positional":true},{"name":"radius","required":true,"positional":true},{"name":"colors","required":true,"positional":true},{"name":"colorStops","required":false,"positional":true},{"name":"tileMode","required":false,"positional":true},{"name":"matrix4","required":false,"positional":true},{"name":"focal","required":false,"positional":true},{"name":"focalRadius","required":false,"positional":true}], [center, radius, colors, colorStops, tileMode, matrix4, focal, focalRadius], {}) as Gradient;
+return constructObject("object", "flax.core/sdk_dart_ui#type:Gradient", "radial", [{"name":"center","required":true,"positional":true},{"name":"radius","required":true,"positional":true},{"name":"colors","required":true,"positional":true},{"name":"colorStops","positional":true},{"name":"tileMode","positional":true},{"name":"matrix4","positional":true},{"name":"focal","positional":true},{"name":"focalRadius","positional":true}], [center, radius, colors, colorStops, tileMode, matrix4, focal, focalRadius], {}) as Gradient;
 }
 }
 export namespace _GradientFactory {
@@ -46,7 +46,7 @@ if (colorStops === undefined && (tileMode !== undefined || startAngle !== undefi
 if (tileMode === undefined && (startAngle !== undefined || endAngle !== undefined || matrix4 !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (startAngle === undefined && (endAngle !== undefined || matrix4 !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (endAngle === undefined && (matrix4 !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-return constructObject("object", "flax.core/sdk_dart_ui#type:Gradient", "sweep", [{"name":"center","required":true,"positional":true},{"name":"colors","required":true,"positional":true},{"name":"colorStops","required":false,"positional":true},{"name":"tileMode","required":false,"positional":true},{"name":"startAngle","required":false,"positional":true},{"name":"endAngle","required":false,"positional":true},{"name":"matrix4","required":false,"positional":true}], [center, colors, colorStops, tileMode, startAngle, endAngle, matrix4], {}) as Gradient;
+return constructObject("object", "flax.core/sdk_dart_ui#type:Gradient", "sweep", [{"name":"center","required":true,"positional":true},{"name":"colors","required":true,"positional":true},{"name":"colorStops","positional":true},{"name":"tileMode","positional":true},{"name":"startAngle","positional":true},{"name":"endAngle","positional":true},{"name":"matrix4","positional":true}], [center, colors, colorStops, tileMode, startAngle, endAngle, matrix4], {}) as Gradient;
 }
 }
 export const Gradient: typeof _GradientFactory & _FlaxInstanceType<Gradient> & _FlaxDartType<Gradient, readonly ["class", "flax.core/sdk_dart_ui#type:Gradient", readonly [], false]> = _flaxBindInstanceType<Gradient, typeof _GradientFactory>(_GradientFactory, "flax.core/sdk_dart_ui#type:Gradient", ["flax.core/sdk_dart_ui#type:Shader","dart:core::Object"]) as typeof _GradientFactory & _FlaxInstanceType<Gradient> & _FlaxDartType<Gradient, readonly ["class", "flax.core/sdk_dart_ui#type:Gradient", readonly [], false]>;

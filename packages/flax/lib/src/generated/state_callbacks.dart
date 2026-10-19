@@ -23,6 +23,7 @@ const componentsBindings = FlaxBindingModule(
     ),
   ],
   functions: [],
+  constants: [],
   moduleId: "flax.core/components",
   dependencyModules: ["flax.core/flutter", "flax.core/sdk_foundation"],
   uiProtocol: 24,
@@ -68,7 +69,7 @@ const _stateVariant_KeepAliveState = FlaxStateVariantBinding(
   methods: {
     "updateKeepAlive": FlaxInstanceMethod(
       [],
-      _flaxBinding19,
+      _flaxBinding18,
       _KeepAliveState_call_updateKeepAlive,
     ),
   },
@@ -158,7 +159,7 @@ const _stateVariant_KeepAliveTickerState = FlaxStateVariantBinding(
   methods: {
     "updateKeepAlive": FlaxInstanceMethod(
       [],
-      _flaxBinding19,
+      _flaxBinding18,
       _KeepAliveTickerState_call_updateKeepAlive,
     ),
   },
@@ -207,7 +208,7 @@ const _stateVariant_KeepAliveSingleTickerState = FlaxStateVariantBinding(
   methods: {
     "updateKeepAlive": FlaxInstanceMethod(
       [],
-      _flaxBinding19,
+      _flaxBinding18,
       _KeepAliveSingleTickerState_call_updateKeepAlive,
     ),
   },
@@ -436,13 +437,13 @@ const _flaxBinding17 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
 );
-const _flaxBinding18 = <FlaxParameter>[
+const _flaxBinding18 = FlaxTypeRef("void");
+const _flaxBinding19 = <FlaxParameter>[
   FlaxParameter("properties", _flaxBinding17, required: true),
 ];
-const _flaxBinding19 = FlaxTypeRef("void");
 const _flaxBinding20 = FlaxInstanceMethod(
-  _flaxBinding18,
   _flaxBinding19,
+  _flaxBinding18,
   _StatefulWidget_debugFillProperties,
 );
 const _flaxBinding21 = <FlaxParameter>[

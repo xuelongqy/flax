@@ -6,7 +6,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Tangent';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 const _flaxMemberParameters0 = [{"name":"distance","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"start","required":true,"positional":true},{"name":"end","required":true,"positional":true},{"name":"startWithMoveTo","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"start","required":true,"positional":true},{"name":"end","required":true,"positional":true},{"name":"startWithMoveTo"}] as const;
 const _flaxMemberParameters2 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';

@@ -9,9 +9,10 @@ import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_Pla
 import '@flax/flutter/widgets/_bindings/sdk_widgets_PlatformMenuItem';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-const _flaxMemberParameters0 = [{"name":"topLevelMenus","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
+const _flaxMemberParameters0 = [{"name":"channel"}] as const;
+const _flaxMemberParameters1 = [{"name":"topLevelMenus","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters3 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +21,7 @@ readonly [_flaxDartTypeValue]: DefaultPlatformMenuDelegate;
 
 }
 defineObject("flax.core/sdk_widgets#type:DefaultPlatformMenuDelegate", ["channel"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DefaultPlatformMenuDelegate", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:PlatformMenuDelegate");
-const _DefaultPlatformMenuDelegateProxy = {type: "flax.core/sdk_widgets#type:DefaultPlatformMenuDelegate", parameters: [{"name":"channel","required":false,"positional":false}], constructors: {"":[{"name":"channel","required":false,"positional":false}]}, methods: {"setMenus":_flaxMemberParameters0,"clearMenus":_flaxMemberParameters1,"debugLockDelegate":_flaxMemberParameters2,"debugUnlockDelegate":_flaxMemberParameters2}, getters: ["channel"], setters: [], contextMembers: [], superMembers: ["get:channel","setMenus","clearMenus","debugLockDelegate","debugUnlockDelegate"]} as const;
+const _DefaultPlatformMenuDelegateProxy = {type: "flax.core/sdk_widgets#type:DefaultPlatformMenuDelegate", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"setMenus":_flaxMemberParameters1,"clearMenus":_flaxMemberParameters2,"debugLockDelegate":_flaxMemberParameters3,"debugUnlockDelegate":_flaxMemberParameters3}, getters: ["channel"], setters: [], contextMembers: [], superMembers: ["get:channel","setMenus","clearMenus","debugLockDelegate","debugUnlockDelegate"]} as const;
 export interface DefaultPlatformMenuDelegate {
 readonly [_flaxDartTypeValue]: DefaultPlatformMenuDelegate;
 

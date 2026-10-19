@@ -660,6 +660,14 @@ class FlaxCodegenBindingParser {
     throw StateError('Cyclic parameter default: ${parameter.name}');
   }
 
+  bool _requiresOmittedDefault(
+    FormalParameterElement parameter,
+    FormalParameterElement defaults,
+  ) =>
+      !parameter.isRequired &&
+      parameter.type.nullabilitySuffix != NullabilitySuffix.question &&
+      !defaults.hasDefaultValue;
+
   String? _safeConstantLiteral(TopLevelVariableElement variable) {
     if (!variable.isConst) return null;
     final parsed = _literalLibraries.putIfAbsent(
@@ -1663,11 +1671,7 @@ class FlaxCodegenBindingParser {
         final callbackDefault =
             {'callback', 'function'}.contains(type.kind) &&
             constant?.toFunctionValue() != null;
-        final hiddenDefault =
-            !parameter.isRequired &&
-            parameter.isNamed &&
-            parameter.type.nullabilitySuffix != NullabilitySuffix.question &&
-            !defaults.hasDefaultValue;
+        final hiddenDefault = _requiresOmittedDefault(parameter, defaults);
         // Preserve upstream sentinel identity as well as private callback defaults.
         final omitWhenAbsent =
             !parameter.isRequired &&
@@ -2260,7 +2264,13 @@ class FlaxCodegenBindingParser {
         throw StateError('Class operators require an object binding');
       }
       if (selection.instanceMethods.isNotEmpty &&
-          !{'state', 'object', 'stream', 'enum'}.contains(selection.kind) &&
+          !{
+            'context',
+            'state',
+            'object',
+            'stream',
+            'enum',
+          }.contains(selection.kind) &&
           !isWidget) {
         throw StateError(
           'Instance methods require a State or object adaptation',
@@ -2954,10 +2964,7 @@ class FlaxCodegenBindingParser {
                 !accessor.isAbstract &&
                 selected &&
                 accessor.metadata.hasNonVirtual) {
-              if (selection.inferredProxy) continue;
-              throw StateError(
-                'Non-virtual proxy property cannot be overridden: ${entry.key}.$name',
-              );
+              continue;
             }
             final concreteOverride =
                 selection.proxy == 'extends' &&
@@ -3048,10 +3055,7 @@ class FlaxCodegenBindingParser {
               implementation != null &&
               selectedConcrete &&
               implementation.metadata.hasNonVirtual) {
-            if (selection.inferredProxy) continue;
-            throw StateError(
-              'Non-virtual proxy method cannot be overridden: ${entry.key}.$name',
-            );
+            continue;
           }
           final concreteOverride =
               (selection.proxy == 'extends' || widgetInterfaceProxy) &&

@@ -6,6 +6,7 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"index","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"index","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,7 +15,7 @@ readonly [_flaxDartTypeValue]: ListWheelChildDelegate;
 
 }
 defineObject("flax.core/sdk_widgets#type:ListWheelChildDelegate", ["estimatedChildCount"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ListWheelChildDelegate", "object", {"build":_flaxMemberParameters0,"trueIndexOf":_flaxMemberParameters1,"shouldRebuild":_flaxMemberParameters2}, {}), []);
-const _ListWheelChildDelegateProxy = {type: "flax.core/sdk_widgets#type:ListWheelChildDelegate", parameters: [], constructors: {"":[]}, methods: {"build":_flaxMemberParameters0,"trueIndexOf":_flaxMemberParameters1,"shouldRebuild":_flaxMemberParameters2}, getters: ["estimatedChildCount"], setters: [], contextMembers: [], superMembers: ["trueIndexOf"]} as const;
+const _ListWheelChildDelegateProxy = {type: "flax.core/sdk_widgets#type:ListWheelChildDelegate", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"build":_flaxMemberParameters0,"trueIndexOf":_flaxMemberParameters1,"shouldRebuild":_flaxMemberParameters2}, getters: ["estimatedChildCount"], setters: [], contextMembers: [], superMembers: ["trueIndexOf"]} as const;
 export interface ListWheelChildDelegate {
 readonly [_flaxDartTypeValue]: ListWheelChildDelegate;
 

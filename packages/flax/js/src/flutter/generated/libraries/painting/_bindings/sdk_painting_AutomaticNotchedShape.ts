@@ -10,6 +10,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 const _flaxMemberParameters0 = [{"name":"hostRect","required":true,"positional":true},{"name":"guestRect","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"host","required":true,"positional":true},{"name":"guest","positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -18,7 +19,7 @@ readonly [_flaxDartTypeValue]: AutomaticNotchedShape;
 
 }
 defineObject("flax.core/sdk_painting#type:AutomaticNotchedShape", ["host","guest"], [], _flaxBindingMethods("flax.core/sdk_painting#type:AutomaticNotchedShape", "object", {"getOuterPath":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_painting#type:NotchedShape");
-const _AutomaticNotchedShapeProxy = {type: "flax.core/sdk_painting#type:AutomaticNotchedShape", parameters: [{"name":"host","required":true,"positional":true},{"name":"guest","required":false,"positional":true}], constructors: {"":[{"name":"host","required":true,"positional":true},{"name":"guest","required":false,"positional":true}]}, methods: {"getOuterPath":_flaxMemberParameters0}, getters: ["host","guest"], setters: [], contextMembers: [], superMembers: ["get:host","get:guest","getOuterPath"]} as const;
+const _AutomaticNotchedShapeProxy = {type: "flax.core/sdk_painting#type:AutomaticNotchedShape", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"getOuterPath":_flaxMemberParameters0}, getters: ["host","guest"], setters: [], contextMembers: [], superMembers: ["get:host","get:guest","getOuterPath"]} as const;
 export interface AutomaticNotchedShape {
 readonly [_flaxDartTypeValue]: AutomaticNotchedShape;
 

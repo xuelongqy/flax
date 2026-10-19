@@ -14,7 +14,9 @@ import '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
+import type * as upstream9 from '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
+import '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
+import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -60,9 +62,10 @@ export interface Decoration extends Omit<upstream0.Diagnosticable, _flaxOwnMembe
     }>, options?: {
         textDirection?: upstream8.TextDirection | null | undefined;
     }): boolean;
+    createBoxPainter(onChanged?: (() => void)): upstream9.BoxPainter;
     getClipPath(rect: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
-    }>, textDirection: upstream8.TextDirection): upstream9.Path;
+    }>, textDirection: upstream8.TextDirection): upstream10.Path;
 }
 export declare namespace _DecorationFactory {
     function lerp(a: (Readonly<{
@@ -76,5 +79,5 @@ export declare namespace _DecorationFactory {
     }>) | null, t: number): Decoration | null;
 }
 export declare const Decoration: typeof _DecorationFactory & _FlaxInstanceType<Decoration> & _FlaxDartType<Decoration, readonly ["class", "flax.core/flutter#type:Decoration", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "isComplex" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "debugAssertIsValid" | "lerpFrom" | "lerpTo" | "hitTest" | "getClipPath" | "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "isComplex" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "debugAssertIsValid" | "lerpFrom" | "lerpTo" | "hitTest" | "createBoxPainter" | "getClipPath" | "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

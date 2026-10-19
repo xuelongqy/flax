@@ -54,7 +54,7 @@ defineObject("flax.core/sdk_widgets#type:FormState", ["fields","widget","context
 export function _FormStateFactory(): FormState {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:FormState", "", [], [], {}) as FormState;
+return constructObject("object", "flax.core/sdk_widgets#type:FormState", "", _flaxMemberParameters1, [], {}) as FormState;
 }
 export const FormState: typeof _FormStateFactory & _FlaxInstanceType<FormState> & _FlaxDartType<FormState, readonly ["class", "flax.core/sdk_widgets#type:FormState", readonly [], false]> = _flaxBindInstanceType<FormState, typeof _FormStateFactory>(_FormStateFactory, "flax.core/sdk_widgets#type:FormState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _FormStateFactory & _FlaxInstanceType<FormState> & _FlaxDartType<FormState, readonly ["class", "flax.core/sdk_widgets#type:FormState", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "fields" | "widget" | "context" | "mounted" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "build" | "save" | "reset" | "clearError" | "validate" | "validateGranularly" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "activate" | "dispose" | "didChangeDependencies" | "__flaxBound:package:flutter/src/widgets/form.dart::FormState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

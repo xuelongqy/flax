@@ -21,7 +21,7 @@ readonly [_flaxDartTypeValue]: HitTestResult;
 
 }
 defineObject("flax.core/sdk_gestures#type:HitTestResult", ["path"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:HitTestResult", "object", {"add":_flaxMemberParameters0,"pushTransform":_flaxMemberParameters1,"pushOffset":_flaxMemberParameters2,"popTransform":_flaxMemberParameters3,"toString":_flaxMemberParameters3}, {}), []);
-const _HitTestResultProxy = {type: "flax.core/sdk_gestures#type:HitTestResult", parameters: [], constructors: {"":[]}, methods: {"add":_flaxMemberParameters0,"pushTransform":_flaxMemberParameters1,"pushOffset":_flaxMemberParameters2,"popTransform":_flaxMemberParameters3,"toString":_flaxMemberParameters3}, getters: ["path"], setters: [], contextMembers: [], superMembers: ["get:path","add","pushTransform","pushOffset","popTransform","toString"]} as const;
+const _HitTestResultProxy = {type: "flax.core/sdk_gestures#type:HitTestResult", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"add":_flaxMemberParameters0,"pushTransform":_flaxMemberParameters1,"pushOffset":_flaxMemberParameters2,"popTransform":_flaxMemberParameters3,"toString":_flaxMemberParameters3}, getters: ["path"], setters: [], contextMembers: [], superMembers: ["get:path","add","pushTransform","pushOffset","popTransform","toString"]} as const;
 export interface HitTestResult {
 readonly [_flaxDartTypeValue]: HitTestResult;
 

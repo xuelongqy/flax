@@ -40,6 +40,18 @@ dart run melos bootstrap --enforce-lockfile
 
 Run commands from the repository root.
 
+Keep disposable test workspaces and compiler files on the workspace volume, especially
+when the repository is on a separate development disk:
+
+```sh
+mkdir -p "$PWD/.local/tmp"
+export TMPDIR="$PWD/.local/tmp" TMP="$PWD/.local/tmp" TEMP="$PWD/.local/tmp"
+```
+
+Child Dart, Flutter, Node and Python processes inherit these paths. Remove completed
+scratch directories and temporary application copies after saving the test receipts;
+keep the maintained engine/SDK outputs for subsequent checks.
+
 | Change                                                 | Command                                                   |
 | ------------------------------------------------------ | --------------------------------------------------------- |
 | Dart packages or manifests                             | `dart run melos run analyze`                              |

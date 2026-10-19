@@ -8,6 +8,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_DisplayFeatureType';
 import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_DisplayFeatureState';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_DisplayFeatureState';
 const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"bounds","required":true},{"name":"type","required":true},{"name":"state","required":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,7 +17,7 @@ readonly [_flaxDartTypeValue]: DisplayFeature;
 
 }
 defineObject("flax.core/sdk_dart_ui#type:DisplayFeature", ["bounds","type","state"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:DisplayFeature", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _DisplayFeatureProxy = {type: "flax.core/sdk_dart_ui#type:DisplayFeature", parameters: [{"name":"bounds","required":true,"positional":false},{"name":"type","required":true,"positional":false},{"name":"state","required":true,"positional":false}], constructors: {"":[{"name":"bounds","required":true,"positional":false},{"name":"type","required":true,"positional":false},{"name":"state","required":true,"positional":false}]}, methods: {"toString":_flaxMemberParameters0}, getters: ["bounds","type","state"], setters: [], contextMembers: [], superMembers: ["get:bounds","get:type","get:state","toString"]} as const;
+const _DisplayFeatureProxy = {type: "flax.core/sdk_dart_ui#type:DisplayFeature", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: ["bounds","type","state"], setters: [], contextMembers: [], superMembers: ["get:bounds","get:type","get:state","toString"]} as const;
 export interface DisplayFeature {
 readonly [_flaxDartTypeValue]: DisplayFeature;
 

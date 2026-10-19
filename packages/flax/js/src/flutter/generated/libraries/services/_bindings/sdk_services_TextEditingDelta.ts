@@ -18,10 +18,11 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream7 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 const _flaxMemberParameters0 = [{"name":"value","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"oldText","required":true},{"name":"selection","required":true},{"name":"composing","required":true}] as const;
+const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -30,7 +31,7 @@ readonly [_flaxDartTypeValue]: TextEditingDelta;
 
 }
 defineObject("flax.core/sdk_services#type:TextEditingDelta", ["oldText","selection","composing"], [], _flaxBindingMethods("flax.core/sdk_services#type:TextEditingDelta", "object", {"apply":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _TextEditingDeltaProxy = {type: "flax.core/sdk_services#type:TextEditingDelta", parameters: [{"name":"oldText","required":true,"positional":false},{"name":"selection","required":true,"positional":false},{"name":"composing","required":true,"positional":false}], constructors: {"":[{"name":"oldText","required":true,"positional":false},{"name":"selection","required":true,"positional":false},{"name":"composing","required":true,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"apply":_flaxMemberParameters0}, getters: ["oldText","selection","composing"], setters: [], contextMembers: [], superMembers: ["get:oldText","get:selection","get:composing","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+const _TextEditingDeltaProxy = {type: "flax.core/sdk_services#type:TextEditingDelta", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"apply":_flaxMemberParameters0}, getters: ["oldText","selection","composing"], setters: [], contextMembers: [], superMembers: ["get:oldText","get:selection","get:composing","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
 export interface TextEditingDelta {
 readonly [_flaxDartTypeValue]: TextEditingDelta;
 

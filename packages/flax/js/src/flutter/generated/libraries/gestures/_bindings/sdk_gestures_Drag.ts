@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: Drag;
 
 }
 defineObject("flax.core/sdk_gestures#type:Drag", [], [], _flaxBindingMethods("flax.core/sdk_gestures#type:Drag", "object", {"update":_flaxMemberParameters0,"end":_flaxMemberParameters0,"cancel":_flaxMemberParameters1}, {}), []);
-const _DragProxy = {type: "flax.core/sdk_gestures#type:Drag", parameters: [], constructors: {"":[]}, methods: {"update":_flaxMemberParameters0,"end":_flaxMemberParameters0,"cancel":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["update","end","cancel"]} as const;
+const _DragProxy = {type: "flax.core/sdk_gestures#type:Drag", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"update":_flaxMemberParameters0,"end":_flaxMemberParameters0,"cancel":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["update","end","cancel"]} as const;
 export interface Drag {
 readonly [_flaxDartTypeValue]: Drag;
 

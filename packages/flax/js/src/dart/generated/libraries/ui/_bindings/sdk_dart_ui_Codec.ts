@@ -15,7 +15,7 @@ getNextFrame(): Promise<upstream0.FrameInfo>;
 dispose(): void;
 }
 defineObject("flax.core/sdk_dart_ui#type:Codec", ["frameCount","repetitionCount"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Codec", "object", {"getNextFrame":_flaxMemberParameters0,"dispose":_flaxMemberParameters0}, {}), []);
-const _CodecProxy = {type: "flax.core/sdk_dart_ui#type:Codec", parameters: [], constructors: {}, methods: {"getNextFrame":_flaxMemberParameters0,"dispose":_flaxMemberParameters0}, getters: ["frameCount","repetitionCount"], setters: [], contextMembers: [], superMembers: []} as const;
+const _CodecProxy = {type: "flax.core/sdk_dart_ui#type:Codec", parameters: _flaxMemberParameters0, constructors: {}, methods: {"getNextFrame":_flaxMemberParameters0,"dispose":_flaxMemberParameters0}, getters: ["frameCount","repetitionCount"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _CodecFactory { export function implement(args: [], implementation: {getNextFrame: (() => Promise<Readonly<{ "__flaxBound:dart:ui::FrameInfo": readonly [] }>>); dispose: (() => void); get frameCount(): number; get repetitionCount(): number}): Codec {
 return constructProxy(_CodecProxy, args, implementation) as Codec; } }
 export const Codec: typeof _CodecFactory & _FlaxInstanceType<Codec> & _FlaxDartType<Codec, readonly ["class", "flax.core/sdk_dart_ui#type:Codec", readonly [], false]> = _flaxBindInstanceType<Codec, typeof _CodecFactory>(_CodecFactory, "flax.core/sdk_dart_ui#type:Codec", ["dart:core::Object"]) as typeof _CodecFactory & _FlaxInstanceType<Codec> & _FlaxDartType<Codec, readonly ["class", "flax.core/sdk_dart_ui#type:Codec", readonly [], false]>;

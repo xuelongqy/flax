@@ -4,10 +4,11 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 const _flaxMemberParameters0 = [{"name":"name","required":true,"positional":true},{"name":"data","required":true,"positional":true},{"name":"callback","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"name","required":true,"positional":true},{"name":"callback","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"name","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"name","required":true,"positional":true},{"name":"listening","required":true,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"name","required":true,"positional":true},{"name":"listening","required":true}] as const;
 const _flaxMemberParameters4 = [{"name":"data","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"name","required":true,"positional":true},{"name":"newSize","required":true,"positional":true}] as const;
 const _flaxMemberParameters6 = [{"name":"name","required":true,"positional":true},{"name":"allowed","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,7 +17,7 @@ readonly [_flaxDartTypeValue]: ChannelBuffers;
 
 }
 defineObject("flax.core/sdk_dart_ui#type:ChannelBuffers", [], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:ChannelBuffers", "object", {"push":_flaxMemberParameters0,"setListener":_flaxMemberParameters1,"clearListener":_flaxMemberParameters2,"sendChannelUpdate":_flaxMemberParameters3,"drain":_flaxMemberParameters1,"handleMessage":_flaxMemberParameters4,"resize":_flaxMemberParameters5,"allowOverflow":_flaxMemberParameters6}, {}), []);
-const _ChannelBuffersProxy = {type: "flax.core/sdk_dart_ui#type:ChannelBuffers", parameters: [], constructors: {"":[]}, methods: {"push":_flaxMemberParameters0,"setListener":_flaxMemberParameters1,"clearListener":_flaxMemberParameters2,"sendChannelUpdate":_flaxMemberParameters3,"drain":_flaxMemberParameters1,"handleMessage":_flaxMemberParameters4,"resize":_flaxMemberParameters5,"allowOverflow":_flaxMemberParameters6}, getters: [], setters: [], contextMembers: [], superMembers: ["push","setListener","clearListener","sendChannelUpdate","drain","handleMessage","resize","allowOverflow"]} as const;
+const _ChannelBuffersProxy = {type: "flax.core/sdk_dart_ui#type:ChannelBuffers", parameters: _flaxMemberParameters7, constructors: {"": _flaxMemberParameters7}, methods: {"push":_flaxMemberParameters0,"setListener":_flaxMemberParameters1,"clearListener":_flaxMemberParameters2,"sendChannelUpdate":_flaxMemberParameters3,"drain":_flaxMemberParameters1,"handleMessage":_flaxMemberParameters4,"resize":_flaxMemberParameters5,"allowOverflow":_flaxMemberParameters6}, getters: [], setters: [], contextMembers: [], superMembers: ["push","setListener","clearListener","sendChannelUpdate","drain","handleMessage","resize","allowOverflow"]} as const;
 export interface ChannelBuffers {
 readonly [_flaxDartTypeValue]: ChannelBuffers;
 

@@ -27,16 +27,17 @@ import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-const _flaxMemberParameters0 = [{"name":"currentNode","required":true,"positional":true},{"name":"ignoreCurrentFocus","required":false,"positional":false}] as const;
-const _flaxMemberParameters1 = [{"name":"currentNode","required":true,"positional":true},{"name":"direction","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"node","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"node","required":false,"positional":false},{"name":"oldScope","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"currentNode","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"descendants","required":true,"positional":true},{"name":"currentNode","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [] as const;
-const _flaxMemberParameters7 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters8 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters9 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"requestFocusCallback"}] as const;
+const _flaxMemberParameters1 = [{"name":"currentNode","required":true,"positional":true},{"name":"ignoreCurrentFocus"}] as const;
+const _flaxMemberParameters2 = [{"name":"currentNode","required":true,"positional":true},{"name":"direction","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"node","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"node"},{"name":"oldScope"}] as const;
+const _flaxMemberParameters5 = [{"name":"currentNode","required":true,"positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"descendants","required":true,"positional":true},{"name":"currentNode","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [] as const;
+const _flaxMemberParameters8 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters9 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters10 = [{"name":"minLevel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -45,7 +46,7 @@ readonly [_flaxDartTypeValue]: ReadingOrderTraversalPolicy;
 
 }
 defineObject("flax.core/sdk_widgets#type:ReadingOrderTraversalPolicy", ["requestFocusCallback"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ReadingOrderTraversalPolicy", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:DirectionalFocusTraversalPolicyMixin");
-const _ReadingOrderTraversalPolicyProxy = {type: "flax.core/sdk_widgets#type:ReadingOrderTraversalPolicy", parameters: [{"name":"requestFocusCallback","required":false,"positional":false}], constructors: {"":[{"name":"requestFocusCallback","required":false,"positional":false}]}, methods: {"findFirstFocus":_flaxMemberParameters0,"findLastFocus":_flaxMemberParameters0,"findFirstFocusInDirection":_flaxMemberParameters1,"invalidateScopeData":_flaxMemberParameters2,"changedScope":_flaxMemberParameters3,"next":_flaxMemberParameters4,"previous":_flaxMemberParameters4,"inDirection":_flaxMemberParameters1,"sortDescendants":_flaxMemberParameters5,"toStringShort":_flaxMemberParameters6,"toDiagnosticsNode":_flaxMemberParameters7,"debugFillProperties":_flaxMemberParameters8,"toString":_flaxMemberParameters9}, getters: ["requestFocusCallback"], setters: [], contextMembers: [], superMembers: ["get:requestFocusCallback","findFirstFocus","findLastFocus","findFirstFocusInDirection","invalidateScopeData","changedScope","next","previous","inDirection","sortDescendants","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+const _ReadingOrderTraversalPolicyProxy = {type: "flax.core/sdk_widgets#type:ReadingOrderTraversalPolicy", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"findFirstFocus":_flaxMemberParameters1,"findLastFocus":_flaxMemberParameters1,"findFirstFocusInDirection":_flaxMemberParameters2,"invalidateScopeData":_flaxMemberParameters3,"changedScope":_flaxMemberParameters4,"next":_flaxMemberParameters5,"previous":_flaxMemberParameters5,"inDirection":_flaxMemberParameters2,"sortDescendants":_flaxMemberParameters6,"toStringShort":_flaxMemberParameters7,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters9,"toString":_flaxMemberParameters10}, getters: ["requestFocusCallback"], setters: [], contextMembers: [], superMembers: ["get:requestFocusCallback","findFirstFocus","findLastFocus","findFirstFocusInDirection","invalidateScopeData","changedScope","next","previous","inDirection","sortDescendants","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
 export interface ReadingOrderTraversalPolicy {
 readonly [_flaxDartTypeValue]: ReadingOrderTraversalPolicy;
 

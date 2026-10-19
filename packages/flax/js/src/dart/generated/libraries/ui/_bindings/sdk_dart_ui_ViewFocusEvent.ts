@@ -20,6 +20,6 @@ defineObject("flax.core/sdk_dart_ui#type:ViewFocusEvent", ["viewId","state","dir
 export function _ViewFocusEventFactory(options: { viewId: number; state: upstream0.ViewFocusState; direction: upstream1.ViewFocusDirection }): ViewFocusEvent {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:ViewFocusEvent", "", [{"name":"viewId","required":true,"positional":false},{"name":"state","required":true,"positional":false},{"name":"direction","required":true,"positional":false}], [], options) as ViewFocusEvent;
+return constructObject("object", "flax.core/sdk_dart_ui#type:ViewFocusEvent", "", [{"name":"viewId","required":true},{"name":"state","required":true},{"name":"direction","required":true}], [], options) as ViewFocusEvent;
 }
 export const ViewFocusEvent: typeof _ViewFocusEventFactory & _FlaxInstanceType<ViewFocusEvent> & _FlaxDartType<ViewFocusEvent, readonly ["class", "flax.core/sdk_dart_ui#type:ViewFocusEvent", readonly [], false]> = _flaxBindInstanceType<ViewFocusEvent, typeof _ViewFocusEventFactory>(_ViewFocusEventFactory, "flax.core/sdk_dart_ui#type:ViewFocusEvent", ["dart:core::Object"]) as typeof _ViewFocusEventFactory & _FlaxInstanceType<ViewFocusEvent> & _FlaxDartType<ViewFocusEvent, readonly ["class", "flax.core/sdk_dart_ui#type:ViewFocusEvent", readonly [], false]>;

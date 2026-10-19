@@ -26,11 +26,12 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
 import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
 const _flaxMemberParameters0 = [{"name":"configuration","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"configuration","required":true,"positional":false},{"name":"handleError","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"configuration","required":true},{"name":"handleError"}] as const;
 const _flaxMemberParameters2 = [{"name":"configuration","required":true,"positional":true},{"name":"stream","required":true,"positional":true},{"name":"key","required":true,"positional":true},{"name":"handleError","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"cache","required":false,"positional":false},{"name":"configuration","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"cache"},{"name":"configuration"}] as const;
 const _flaxMemberParameters4 = [{"name":"key","required":true,"positional":true},{"name":"decode","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [] as const;
+const _flaxMemberParameters6 = [{"name":"imageProvider","required":true,"positional":true},{"name":"width"},{"name":"height"},{"name":"policy"},{"name":"allowUpscaling"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -38,10 +39,11 @@ export interface ResizeImage extends Omit<upstream0.ImageProvider<upstream1.Resi
 readonly [_flaxDartTypeValue]: ResizeImage;
 
 }
-defineObject("flax.core/sdk_painting#type:ResizeImage", ["imageProvider","width","height","policy","allowUpscaling"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ResizeImage", "object", {"createStream":_flaxMemberParameters0,"obtainCacheStatus":_flaxMemberParameters1,"resolveStreamForKey":_flaxMemberParameters2,"evict":_flaxMemberParameters3,"obtainKey":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters4,"loadImage":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, {}), []);
-const _ResizeImageProxy = {type: "flax.core/sdk_painting#type:ResizeImage", parameters: [{"name":"imageProvider","required":true,"positional":true},{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false},{"name":"policy","required":false,"positional":false},{"name":"allowUpscaling","required":false,"positional":false}], constructors: {"":[{"name":"imageProvider","required":true,"positional":true},{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false},{"name":"policy","required":false,"positional":false},{"name":"allowUpscaling","required":false,"positional":false}]}, methods: {"createStream":_flaxMemberParameters0,"obtainCacheStatus":_flaxMemberParameters1,"resolveStreamForKey":_flaxMemberParameters2,"evict":_flaxMemberParameters3,"obtainKey":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters4,"loadImage":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, getters: ["imageProvider","width","height","policy","allowUpscaling"], setters: [], contextMembers: [], superMembers: ["get:imageProvider","get:width","get:height","get:policy","get:allowUpscaling","createStream","obtainCacheStatus","resolveStreamForKey","evict","obtainKey","loadBuffer","loadImage","toString"]} as const;
+defineObject("flax.core/sdk_painting#type:ResizeImage", ["imageProvider","width","height","policy","allowUpscaling"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ResizeImage", "object", {"resolve":_flaxMemberParameters0,"createStream":_flaxMemberParameters0,"obtainCacheStatus":_flaxMemberParameters1,"resolveStreamForKey":_flaxMemberParameters2,"evict":_flaxMemberParameters3,"obtainKey":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters4,"loadImage":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, {}), []);
+const _ResizeImageProxy = {type: "flax.core/sdk_painting#type:ResizeImage", parameters: _flaxMemberParameters6, constructors: {"": _flaxMemberParameters6}, methods: {"createStream":_flaxMemberParameters0,"obtainCacheStatus":_flaxMemberParameters1,"resolveStreamForKey":_flaxMemberParameters2,"evict":_flaxMemberParameters3,"obtainKey":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters4,"loadImage":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, getters: ["imageProvider","width","height","policy","allowUpscaling"], setters: [], contextMembers: [], superMembers: ["get:imageProvider","get:width","get:height","get:policy","get:allowUpscaling","createStream","obtainCacheStatus","resolveStreamForKey","evict","obtainKey","loadBuffer","loadImage","toString"]} as const;
 export interface ResizeImage {
 readonly [_flaxDartTypeValue]: ResizeImage;
+resolve(configuration: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [] }>): upstream3.ImageStream;
 
 createStream(configuration: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [] }>): upstream3.ImageStream;
 obtainCacheStatus(options: {configuration: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [] }>; handleError?: ((exception: {}, stackTrace: upstream6.StackTrace | null) => void) | null | undefined}): Promise<upstream5.ImageCacheStatus | null>;
@@ -51,7 +53,7 @@ obtainKey(configuration: Readonly<{ "__flaxBound:package:flutter/src/painting/im
 loadBuffer(key: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ResizeImageKey": readonly [] }>, decode: ((buffer: upstream10.ImmutableBuffer, options?: { allowUpscaling?: boolean | undefined; cacheHeight?: number | null | undefined; cacheWidth?: number | null | undefined }) => Promise<Readonly<{ "__flaxBound:dart:ui::Codec": readonly [] }>>)): upstream8.ImageStreamCompleter;
 loadImage(key: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ResizeImageKey": readonly [] }>, decode: ((buffer: upstream10.ImmutableBuffer, options?: { getTargetSize?: ((intrinsicWidth: number, intrinsicHeight: number) => upstream11.TargetImageSize) | null | undefined }) => Promise<Readonly<{ "__flaxBound:dart:ui::Codec": readonly [] }>>)): upstream8.ImageStreamCompleter;
 toString(): string;
-get imageProvider(): upstream0.ImageProvider<{}>;
+get imageProvider(): upstream0.ImageProvider<any>;
 get width(): number | null;
 get height(): number | null;
 get policy(): upstream2.ResizeImagePolicy;
@@ -66,10 +68,10 @@ constructor(imageProvider: Readonly<{ "__flaxBound:package:flutter/src/painting/
 _flaxDefineProxyBase(ResizeImage.prototype, _ResizeImageProxy);
 export namespace ResizeImage { export function implement(args: [imageProvider: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}] }>, options?: {width?: number | null | undefined; height?: number | null | undefined; policy?: upstream2.ResizeImagePolicy | undefined; allowUpscaling?: boolean | undefined}], implementation: {}): ResizeImage {
 return constructProxy(_ResizeImageProxy, args, implementation) as ResizeImage; } }
-export namespace ResizeImage { export function resizeIfNeeded(cacheWidth: number | null, cacheHeight: number | null, provider: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}] }>): upstream0.ImageProvider<{}> {
+export namespace ResizeImage { export function resizeIfNeeded(cacheWidth: number | null, cacheHeight: number | null, provider: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}] }>): upstream0.ImageProvider<any> {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_painting#function:ResizeImage.resizeIfNeeded", [cacheWidth, cacheHeight, provider]);
-return _flaxResult as upstream0.ImageProvider<{}>;
+return _flaxResult as upstream0.ImageProvider<any>;
 } }
 _flaxBindInstanceType<ResizeImage, typeof ResizeImage>(ResizeImage, "flax.core/sdk_painting#type:ResizeImage", ["flax.core/sdk_painting#type:ImageProvider","dart:core::Object"]);
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "imageProvider" | "width" | "height" | "policy" | "allowUpscaling" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ResizeImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "imageProvider" | "width" | "height" | "policy" | "allowUpscaling" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ResizeImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";

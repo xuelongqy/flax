@@ -1,6 +1,227 @@
 # Task: Flutter SDK Binding Verification
 
-Status: Local acceptance complete for the shared binding optimization baseline
+Status: Shared SDK capability and metadata-size fixes complete; local dual-engine
+acceptance and review complete; not pushed
+
+## Metadata sharing and compact storage
+
+Four changes reuse existing declaration metadata and dispatch. Closed required-only
+ordinary and lexical-super operations share matching proxy signatures. Static Dart
+constants share conversion groups and readable IDs, with function descriptors created
+only when used. Default-valued Dart metadata fields and false JS parameter flags are
+omitted. Manifest 27 adds a shared member table alongside its existing type table;
+expansion preserves every semantic field and decodes generic scopes independently.
+
+There are 26,572 shared-signature uses and 140 constant groups in Core. The groups
+replace 11,761 individual constant registrations. Computed getters, final/late fields,
+setters, real defaults and open generic factories retain their existing paths. Public
+function enumeration remains available through a cached complete view. Shared metadata
+contains no business receivers or callback instances. Sparse parameter readers check own
+fields, preserving omission even if application code modifies `Object.prototype`.
+
+| Measurement                                | Before bytes | After bytes | Reduction |
+| ------------------------------------------ | -----------: | ----------: | --------: |
+| Generated Core Dart, excluding bootstrap   |   49,811,555 |  48,448,429 |   2.7366% |
+| Generated Core TS, 3,062 files             |   31,241,006 |  30,565,124 |   2.1634% |
+| Compiled generated Core JS, 3,062 files    |   13,818,884 |  13,068,202 |   5.4323% |
+| Core Manifest                              |   35,173,787 |  20,270,360 |  42.3708% |
+| Acceptance application's delivered JS      |    4,976,652 |   4,642,716 |   6.7101% |
+| macOS release App.framework AOT executable |   73,708,192 |  73,412,704 |   0.4009% |
+
+The Manifest has 2,462 shared member entries. After expanding only those references and
+normalizing the format number, its complete JSON equals the baseline, including all 17
+module models and the unchanged type table. Material Dart saves 736,097 bytes; Rendering
+saves 123,606 and remains 15,235,265 bytes. Typed proxy bodies and super adapters still
+account for much of Rendering. These are complete SDK source counts and one
+representative application measurement, not universal application sizes.
+
+The generator run exercised 651 cases: 650 passed initially, and one old Manifest
+version assertion was corrected and passed in the 15-case storage/delivery rerun.
+Already passing generator cases were not repeated. Shared/static regressions pass 23
+cases, Core JS 82 and `@flax/build` 53. Strict workspace TypeScript, four-package
+reproducibility, public-type projection, module delivery and the regenerated author
+template pass. Review repeats the 23 shared/static cases, eight storage/delivery cases
+and 82 Core JS cases. Full workspace Dart analysis is clean. Current module hashes and
+the Core Manifest still match the dual-engine acceptance artifacts. Formatting and
+documentation checks pass.
+
+Fresh macOS V8 release/AOT acceptance passes the same 246 named cases as the baseline,
+with two debug rebuild checks inapplicable. Fresh iOS Simulator Hermes acceptance passes
+248 named cases, including those debug checks. The three native V8 hot-reload cases
+pass. The covered cases retain JS inheritance, overrides, lexical super and
+bidirectional collection. Both applications embed the same current 31 shared modules,
+their registry and 29 business fixture bodies. V8 engine-library hashes and the
+application's font hash are unchanged; application signing and execution after removing
+temporary sources pass.
+
+The existing five-sample Rendering benchmark retains identical iterations and checksums.
+Batch medians change from 357,598 to 359,462 microseconds for inherited calls, 318,841
+to 309,571 for JS override/super and 389,326 to 388,665 for native-parent
+override/super. A single first-frame sample changes from 269,110 to 286,328
+microseconds. Concurrent checks and Simulator execution prevent a controlled latency
+conclusion. A separate Node-only constructor benchmark adds about 0.03 microseconds for
+two parameters and 0.13 for ten when checking own flags; it excludes FFI and Dart. No
+speed guarantee or timing assertion is added.
+
+JS APIs and readable operation IDs remain intact; UI protocol 24 and native ABI 2 are
+unchanged. All current package Manifests and the author template use format 27;
+providers and consumers must regenerate together. Other platforms, every SDK member and
+complete optional-plugin UI suites were not rerun. No push, CI run or SDK rebuild is
+included. Concise receipts and the baseline source archive are retained in
+`.local/metadata-sharing-20261019/`; task-owned application copies and caches are
+removed after auditing, and the Simulator returns to Shutdown. The later sections retain
+measurements from earlier stages.
+
+## Widget member sharing and constructor layouts
+
+Closed Widget object views now reuse the existing ordinary-object descriptor and typed
+adapter sharing. Dart parents remain within one generated module. Exact member matching
+preserves defaults and conversion policies; narrowed members keep local adapters.
+Generic owners, native proxy subclasses and lexical super retain their existing
+generation paths. JS private prototypes reuse selected parents through the existing
+provider registration, including deferred registration across module cycles. Complete
+identical constructor and method parameter layouts share arrays within a generated file;
+factory-only arrays stay lazy. Neither cache retains business receivers or callback
+instances.
+
+All 17 Core module API-model digests and the shared type-table digest match the fresh
+baseline. Manifest 26 remains 35,173,787 bytes; UI protocol 24 and native ABI 2 are
+unchanged. The production runtime, maintained engine and dependency locks are unchanged.
+
+| Measurement                                | Before bytes | After bytes | Reduction |
+| ------------------------------------------ | -----------: | ----------: | --------: |
+| Generated Core Dart, excluding bootstrap   |   50,867,559 |  49,811,555 |    2.076% |
+| Generated Core TS, 3,062 files             |   31,841,667 |  31,241,006 |   1.8864% |
+| Compiled generated Core JS, 3,062 files    |   14,494,369 |  13,818,884 |   4.6603% |
+| macOS release App.framework AOT executable |   75,103,552 |  73,708,192 |   1.8579% |
+
+Dart savings are 882,678 bytes in SDK Widgets, 158,984 in SDK Material, 10,108 in SDK
+Cupertino and 4,234 in curated Flutter. Rendering remains 15,358,871 bytes. The AOT
+measurement uses one unchanged acceptance application and engine closure; it is not a
+universal application-size estimate or an application-only binding selection.
+
+The generator suite exercised 659 cases: 656 passed initially and three existing fixture
+assumptions were corrected and passed on rerun. The complete suite was not repeated
+after those fixture-only corrections. Exact negative-path fixtures now isolate package
+lookup on the workspace volume, and numeric collection callbacks use their common
+iterable input view. Core JS passes 81 cases, prepared-module delivery 17 and Manifest
+delivery three. Strict workspace TS, Dart analysis, four-package reproducibility, public
+type projection and delivery inventory checks pass. All 22 generated library indexes
+load, exposing 5,786 names.
+
+Fresh V8 release/AOT acceptance passes the same 246 named cases with two debug-only
+checks inapplicable. Engine-library hashes are unchanged. All 31 embedded test-module
+bodies match the current prepared JS artifacts, including the updated Widget modules.
+The three native V8 hot-reload cases pass. Fresh iOS Simulator Hermes acceptance passes
+248 named cases, including the two debug checks. Both engines verify signing, one
+unchanged engine closure and execution after temporary source removal. The Simulator is
+restored to its initial Shutdown state and task-owned application/DerivedData copies are
+removed after recording results.
+
+The existing Rendering control benchmark keeps identical checksums. Five-sample batch
+medians change from 361,182 to 339,160 microseconds for inherited calls, 320,440 to
+302,551 for JS override/super and 398,356 to 373,768 for native-parent override/super.
+One first-frame measurement changes from 307,335 to 319,675 microseconds. Concurrent
+static checks and a brief progress sample prevent treating this as a controlled latency
+benchmark; no performance guarantee or time assertion is added. Widget-specific call
+latency and exhaustive execution of every SDK member are not claimed.
+
+Sources, examples and UI fixtures were regenerated through official commands. Local
+evidence is in `.local/widget-binding-sharing-20261019/`. No commit, push, CI run or SDK
+rebuild is included.
+
+## Current shared capability completion
+
+The production binding backend is unchanged. Five corrections share existing selection,
+conversion and runtime mechanisms:
+
+1. Non-virtual members remain ordinary callable members of native proxies. Only illegal
+   Dart overrides and generated super adapters are excluded. Shared JS descriptors also
+   handle parents registered later by cyclic modules. Async type registration refreshes
+   any ordinary prototype prepared before Future or Stream ancestry was known.
+2. Context instance methods reuse State's typed invocation, callback ownership, generic
+   calls and return conversion. Mounted and session checks remain mandatory.
+3. Widget identity resolves through the package source-owner index across library
+   boundaries. Widget-constrained mixins remain non-constructible object views.
+4. Invalid observed dynamic generic uses no longer discard legal constructor plans.
+   Explicit type arguments still enforce bounds. Abstract optional non-null parameters
+   preserve real omission rather than guessing a null default.
+5. One dependency scope selects 39 public vector, encoding, IO, developer and isolate
+   types needed by Flutter signatures. Source ownership remains shared. Numeric typed
+   arrays reuse shared-buffer conversion for compatible List/Iterable inputs;
+   incompatible element types, ArrayBuffer and DataView are rejected.
+
+Core now has 17 modules and 3,080 outputs. Reproducibility passes; its source index has
+14,628 owner rows, 1,477 references, no duplicate owner and no unresolved reference. The
+raw skip rows fall from 4,196 to 4,119; distinct rows fall from 2,081 to 1,991. These
+are diagnostics, not independent missing APIs. The Manifest is 35,173,787 bytes,
+compared with 34,416,060 before this completion. Rendering Dart is 15,358,871 bytes,
+compared with 15,167,003; these are source sizes, not application binary sizes.
+
+Focused V8 execution passes the 14 SDK public-entry smoke cases and five shared
+Rendering/SDK cases. The latter cover inheritance, overrides, super, callbacks, Context
+invalidation and actual bidirectional collection. All 81 Core JS cases and 17 module
+delivery cases pass, as do strict TypeScript, public type projection, generated Dart
+analysis and documentation checks. The full generator run exercised 648 cases; two
+failures were corrected and all 23 cases in the affected files passed on rerun.
+
+The final macOS V8 release/AOT application passes 246 named cases; two Flutter
+debug-rebuild checks are explicitly inapplicable. The final iOS Simulator Hermes
+application passes 248 named cases, including actual Action construction and Dart-to-JS
+override invocation. The focused final V8 debug run also exercises that Action call.
+Both application audits verify signing, a single unchanged engine dependency closure and
+execution after removing the temporary source workspace. V8 release retains the required
+JIT entitlement. The task-booted Simulator is restored to Shutdown.
+
+The first Hermes attempt used fixture bundles pinned to an earlier Core JS artifact and
+was correctly rejected by module compatibility checks. Official fixture regeneration
+preserves that validation; both subsequent complete Hermes runs pass. The final shared
+Future/Stream prototype registration regression passes all 81 JS cases before the final
+dual-engine application acceptance. Initial failing logs remain in the local evidence.
+
+The dependency selection does not promise the whole IO/vector library surface. Private
+Flutter types such as WindowingOwner and private generic aspects remain unavailable. The
+current extends-proxy constructor rule also still excludes redirecting/factory
+constructors such as Action.overridable. No engine, ABI, UI protocol or Manifest format
+change is required. Local evidence is in `.local/sdk-capability-completion-20261018/`.
+Every SDK member, optional plugin suite, other platforms and mobile hot reload were not
+freshly rerun. No commit, push, CI run or SDK rebuild is part of this task.
+
+## Pre-completion full-SDK audit
+
+The production backend is retained. A fresh audit at Flax `1e70814481b8` and maintained
+Flutter `49e4666a853` resolves all 13 native public Flutter entries plus `dart:ui`.
+Package generation consistency passes for all 16 modules and 3,028 outputs. Strict
+generated Dart/TypeScript, public types and module delivery pass. The source index has
+14,481 owners, 1,443 references, no duplicate owner and no unresolved emitted reference.
+
+The public census contains 2,960 distinct declarations. Production models represent
+2,933 source identities; this is not complete member or runtime coverage. The 27
+unrepresented declarations include nine visibility exclusions, six native JS binary
+mappings, the explicit `runApp` exclusion and 11 dependency/selection restrictions. The
+4,196 raw skip rows must not be interpreted as independent failures.
+
+Actual macOS arm64 V8 debug execution passes one representative call from each of the 14
+SDK entries and both existing Rendering inheritance/super/joint-GC cases. A new
+callable-member contract fails for JS-created proxies: `AssetImage.resolve`,
+`ImageStreamCompleter.maybeDispose` and `NumericFocusOrder.compareTo` are absent.
+Cleanup completes before the failing assertion. The corresponding SDK methods are
+non-virtual; forbidding overrides must not remove ordinary calls.
+
+| Remaining area                             | Cause and proposed shared correction                                                                                                                                                                                                                                                                                                |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ordinary calls on proxies                  | 13 diagnostic rows across ImageProvider, ImageStreamCompleter and FocusOrder conflate override eligibility with callable-member selection. Preserve ordinary typed calls while omitting illegal overrides and super entries. Three representative missing methods are reproduced in V8.                                             |
+| Context instance methods                   | 16 BuildContext methods remain blocked by the special adapter; its runtime descriptor has no instance method table. Reuse typed invocation with mounted/session checks. The separate NavigatorState constructor rejection remains appropriate.                                                                                      |
+| Type lookup and mixin classification       | Widget Preview requires Widget to be re-exported locally despite its existing package owner, producing eight member/typedef diagnostics. SlottedMultiChildRenderObjectWidgetMixin is classified as a constructible Widget and omitted with two dependents. Reuse authoritative source identities and non-constructible mixin views. |
+| Generic constructors and abstract defaults | Observed dynamic arguments normalized to Object? discard Action/ThemeExtension constructor plans on bound failure. Reuse legal defaults or checked explicit types. Decoration.createBoxPainter also needs omission forwarding for its abstract optional callback instead of a guessed default.                                      |
+| Dependency type scope                      | Vector/Matrix/Quad dependencies account for 63 diagnostic rows, restricting Matrix4 and InteractiveViewer. Encoding and IO/isolate/platform types cause additional partial surfaces. Select necessary public dependency types through the shared owner plan; retain private/API visibility and platform boundaries.                 |
+
+Evidence and every remaining diagnostic are in
+`.local/flutter-sdk-validation-20261018/`: `README.md`, `audit.json`,
+`unique-skips.json`, per-library inventories and native/static logs. No generator,
+runtime, engine or generated output changed. Hermes, release/AOT, all SDK members and
+platform services were not freshly rerun. The older acceptance sections below remain
+scoped historical evidence, not proof that these API gaps are closed.
 
 ## Scope
 
@@ -57,12 +278,12 @@ publication are outside this task.
   declaration chunk. SDK callback values and Canvas fixtures use ordinary event/key/
   Offset references, `instanceof`, and the existing joint collector.
 
-The formal Core Manifest has 16 modules: the two curated modules and 14 automatic SDK
-scopes. Its source-index audit records 14,481 owner rows and 1,443 references, with no
-duplicate owner or unresolved reference. Owner rows include static operations and are
-not a class count. The models contain 2,263 classes, 125 top-level functions, five
-extensions and 335 typedefs. Ordinary supported members are inferred; unsupported
-selections still retain their skip reasons.
+Before capability completion, the formal Core Manifest had 16 modules: the two curated
+modules and 14 automatic SDK scopes. Its source-index audit records 14,481 owner rows
+and 1,443 references, with no duplicate owner or unresolved reference. Owner rows
+include static operations and are not a class count. The models contain 2,263 classes,
+125 top-level functions, five extensions and 335 typedefs. Ordinary supported members
+are inferred; unsupported selections still retain their skip reasons.
 
 Before the shared-generation optimization below, uncompressed generated outputs occupied
 130,036,843 Dart bytes and 38,198,346 TypeScript bytes; the pretty-printed Manifest is

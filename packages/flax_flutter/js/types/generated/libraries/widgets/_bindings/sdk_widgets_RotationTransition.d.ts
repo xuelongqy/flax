@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_MatrixTransition';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_MatrixTransition';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_AnimatedWidget';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
 import '@flax/flutter/widgets/_bindings/components_StatefulWidget';

@@ -79,41 +79,43 @@ import '@flax/flutter/gestures/_bindings/sdk_gestures_HitTestEntry';
 import type * as upstream40 from '@flax/dart/ui/_bindings/sdk_dart_ui_FrameTiming';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_FrameTiming';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_Priority';
-import type * as upstream42 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
+import '@flax/dart/developer/_bindings/sdk_dependencies_Flow';
+import type * as upstream43 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
-import type * as upstream43 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
+import type * as upstream44 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ViewFocusEvent';
-import type * as upstream45 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
+import type * as upstream46 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
-import type * as upstream46 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitType';
+import type * as upstream47 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitType';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitType';
-import type * as upstream47 from '@flax/dart/ui/_bindings/sdk_dart_ui_Codec';
+import type * as upstream48 from '@flax/dart/ui/_bindings/sdk_dart_ui_Codec';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Codec';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
-import type * as upstream50 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsActionEvent';
+import type * as upstream51 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsActionEvent';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsActionEvent';
-import type * as upstream51 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream52 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import type * as upstream52 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsHandle';
+import type * as upstream53 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsHandle';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsHandle';
-import type * as upstream53 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdateBuilder';
+import type * as upstream54 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdateBuilder';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdateBuilder';
-import type * as upstream54 from '@flax/flutter/rendering/_bindings/sdk_rendering_ViewConfiguration';
+import type * as upstream55 from '@flax/flutter/rendering/_bindings/sdk_rendering_ViewConfiguration';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_ViewConfiguration';
-import type * as upstream55 from '@flax/dart/ui/_bindings/sdk_dart_ui_SceneBuilder';
+import type * as upstream56 from '@flax/dart/ui/_bindings/sdk_dart_ui_SceneBuilder';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SceneBuilder';
-import type * as upstream56 from '@flax/dart/ui/_bindings/sdk_dart_ui_PictureRecorder';
+import type * as upstream57 from '@flax/dart/ui/_bindings/sdk_dart_ui_PictureRecorder';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PictureRecorder';
-import type * as upstream57 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
+import type * as upstream58 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetsBindingObserver';
-import type * as upstream59 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
+import type * as upstream60 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
-import type * as upstream60 from '@flax/flutter/widgets/_bindings/sdk_widgets_RootWidget';
-import type * as upstream61 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
-import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import type * as upstream61 from '@flax/flutter/widgets/_bindings/sdk_widgets_RootWidget';
+import type * as upstream62 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
 export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flaxOwnMembers0>, Omit<upstream1.GestureBinding, _flaxOwnMembers0 | keyof upstream0.BindingBase>, Omit<upstream2.HitTestable, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding>, Omit<upstream3.HitTestDispatcher, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding | keyof upstream2.HitTestable>, Omit<upstream4.HitTestTarget, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding | keyof upstream2.HitTestable | keyof upstream3.HitTestDispatcher>, Omit<upstream5.SchedulerBinding, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding | keyof upstream2.HitTestable | keyof upstream3.HitTestDispatcher | keyof upstream4.HitTestTarget>, Omit<upstream6.ServicesBinding, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding | keyof upstream2.HitTestable | keyof upstream3.HitTestDispatcher | keyof upstream4.HitTestTarget | keyof upstream5.SchedulerBinding>, Omit<upstream7.PaintingBinding, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding | keyof upstream2.HitTestable | keyof upstream3.HitTestDispatcher | keyof upstream4.HitTestTarget | keyof upstream5.SchedulerBinding | keyof upstream6.ServicesBinding>, Omit<upstream8.SemanticsBinding, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding | keyof upstream2.HitTestable | keyof upstream3.HitTestDispatcher | keyof upstream4.HitTestTarget | keyof upstream5.SchedulerBinding | keyof upstream6.ServicesBinding | keyof upstream7.PaintingBinding>, Omit<upstream9.RendererBinding, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding | keyof upstream2.HitTestable | keyof upstream3.HitTestDispatcher | keyof upstream4.HitTestTarget | keyof upstream5.SchedulerBinding | keyof upstream6.ServicesBinding | keyof upstream7.PaintingBinding | keyof upstream8.SemanticsBinding>, Omit<upstream10.WidgetsBinding, _flaxOwnMembers0 | keyof upstream0.BindingBase | keyof upstream1.GestureBinding | keyof upstream2.HitTestable | keyof upstream3.HitTestDispatcher | keyof upstream4.HitTestTarget | keyof upstream5.SchedulerBinding | keyof upstream6.ServicesBinding | keyof upstream7.PaintingBinding | keyof upstream8.SemanticsBinding | keyof upstream9.RendererBinding>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsFlutterBinding": readonly [];
 }>, Readonly<{
@@ -144,64 +146,12 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     readonly [_flaxDartMethodCases]?: {
         scheduleTask: _FlaxSignature0;
     };
-    readonly window: upstream11.SingletonFlutterWindow;
-    readonly platformDispatcher: upstream12.PlatformDispatcher;
-    readonly locked: boolean;
-    readonly pointerRouter: upstream13.PointerRouter;
-    readonly gestureArena: upstream14.GestureArenaManager;
-    readonly pointerSignalResolver: upstream15.PointerSignalResolver;
-    readonly debugSamplingClock: upstream16.SamplingClock | null;
-    readonly samplingClock: upstream16.SamplingClock;
-    get resamplingEnabled(): boolean;
-    get samplingOffset(): upstream17.Duration;
-    readonly lifecycleState: upstream18.AppLifecycleState | null;
-    get schedulingStrategy(): ((options: {
-        priority: number;
-        scheduler: Readonly<{
-            "__flaxBound:package:flutter/src/scheduler/binding.dart::SchedulerBinding": readonly [];
-        }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/binding.dart::BindingBase": readonly [];
-        }>;
-    }) => boolean);
-    readonly transientCallbackCount: number;
-    readonly endOfFrame: Promise<void>;
-    readonly hasScheduledFrame: boolean;
-    readonly schedulerPhase: upstream19.SchedulerPhase;
-    readonly framesEnabled: boolean;
-    readonly currentFrameTimeStamp: upstream17.Duration;
-    readonly currentSystemFrameTimeStamp: upstream17.Duration;
-    readonly keyboard: upstream20.HardwareKeyboard;
-    readonly keyEventManager: upstream21.KeyEventManager;
-    readonly defaultBinaryMessenger: upstream22.BinaryMessenger;
-    readonly channelBuffers: upstream23.ChannelBuffers;
-    readonly accessibilityFocus: upstream24.ValueNotifier<number | null>;
-    readonly restorationManager: upstream25.RestorationManager;
-    readonly imageCache: upstream26.ImageCache;
-    readonly systemFonts: upstream27.Listenable;
-    readonly semanticsEnabled: boolean;
-    readonly debugOutstandingSemanticsHandles: number;
-    readonly accessibilityFeatures: upstream28.AccessibilityFeatures;
-    readonly disableAnimations: boolean;
-    readonly mouseTracker: upstream29.MouseTracker;
-    readonly pipelineOwner: upstream30.PipelineOwner;
-    readonly renderView: upstream31.RenderView;
-    readonly rootPipelineOwner: upstream30.PipelineOwner;
-    readonly renderViews: DartIterable<upstream31.RenderView>;
-    readonly sendFramesToEngine: boolean;
-    get debugShowWidgetInspectorOverride(): boolean;
-    readonly debugShowWidgetInspectorOverrideNotifier: upstream24.ValueNotifier<boolean>;
-    readonly debugWidgetInspectorSelectionOnTapEnabled: upstream24.ValueNotifier<boolean>;
-    get debugExcludeRootWidgetInspector(): boolean;
-    readonly buildOwner: upstream32.BuildOwner | null;
-    readonly focusManager: upstream33.FocusManager;
-    get platformMenuDelegate(): upstream34.PlatformMenuDelegate;
-    readonly firstFrameRasterized: boolean;
-    readonly waitUntilFirstFrameRasterized: Promise<void>;
-    readonly debugDidSendFirstFrameEvent: boolean;
-    get debugBuildingDirtyElements(): boolean;
-    readonly rootElement: upstream35.Element | null;
-    readonly renderViewElement: upstream35.Element | null;
-    readonly isRootWidgetAttached: boolean;
+}
+export interface WidgetsFlutterBinding {
+    readonly [_flaxDartTypeValue]: WidgetsFlutterBinding;
+    readonly [_flaxDartMethodCases]?: {
+        scheduleTask: _FlaxSignature1;
+    };
     initInstances(): void;
     debugCheckZone(entryPoint: string): boolean;
     initServiceExtensions(): void;
@@ -210,28 +160,28 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     reassembleApplication(): Promise<void>;
     performReassemble(): Promise<void>;
     registerSignalServiceExtension(options: {
-        callback: (() => Promise<void>);
         name: string;
+        callback: (() => Promise<void>);
     }): void;
     registerBoolServiceExtension(options: {
-        getter: (() => Promise<boolean>);
         name: string;
+        getter: (() => Promise<boolean>);
         setter: ((value: boolean) => Promise<void>);
     }): void;
     registerNumericServiceExtension(options: {
-        getter: (() => Promise<number>);
         name: string;
+        getter: (() => Promise<number>);
         setter: ((value: number) => Promise<void>);
     }): void;
     postEvent(eventKind: string, eventData: DartMapInput<string, unknown | null, string, unknown | null>): void;
     registerStringServiceExtension(options: {
-        getter: (() => Promise<string>);
         name: string;
+        getter: (() => Promise<string>);
         setter: ((value: string) => Promise<void>);
     }): void;
     registerServiceExtension(options: {
-        callback: ((parameters: DartMap<string, string>) => Promise<DartMapInput<string, unknown | null, string, unknown | null>>);
         name: string;
+        callback: ((parameters: DartMap<string, string>) => Promise<DartMapInput<string, unknown | null, string, unknown | null>>);
     }): void;
     toString(): string;
     cancelPointer(pointer: number): void;
@@ -276,6 +226,9 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
         "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
     }>, options?: {
         debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }): Promise<_FlaxDartOutput<T>>;
     scheduleFrameCallback(callback: ((timeStamp: upstream17.Duration) => void), options?: {
         rescheduling?: boolean | undefined;
@@ -300,8 +253,8 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     }> & Readonly<{
         "__flaxBound:dart:core::Comparable": readonly [upstream17.Duration];
     }>) | null): void;
-    requestPerformanceMode(mode: upstream43.DartPerformanceMode): upstream42.PerformanceModeRequestHandle | null;
-    debugGetRequestedPerformanceMode(): upstream43.DartPerformanceMode | null;
+    requestPerformanceMode(mode: upstream44.DartPerformanceMode): upstream43.PerformanceModeRequestHandle | null;
+    debugGetRequestedPerformanceMode(): upstream44.DartPerformanceMode | null;
     handleDrawFrame(): void;
     createBinaryMessenger(): upstream22.BinaryMessenger;
     handleMemoryPressure(): void;
@@ -312,8 +265,8 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     handleViewFocusChanged(event: Readonly<{
         "__flaxBound:dart:ui::ViewFocusEvent": readonly [];
     }>): void;
-    handleRequestAppExit(): Promise<upstream45.AppExitResponse>;
-    exitApplication(exitType: upstream46.AppExitType, exitCode?: number): Promise<upstream45.AppExitResponse>;
+    handleRequestAppExit(): Promise<upstream46.AppExitResponse>;
+    exitApplication(exitType: upstream47.AppExitType, exitCode?: number): Promise<upstream46.AppExitResponse>;
     createRestorationManager(): upstream25.RestorationManager;
     setSystemUiChangeCallback(callback: ((systemOverlaysAreVisible: boolean) => Promise<void>) | null): void;
     initializationComplete(): Promise<void>;
@@ -321,28 +274,28 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     instantiateImageCodecFromBuffer(buffer: Readonly<{
         "__flaxBound:dart:ui::ImmutableBuffer": readonly [];
     }>, options?: {
-        allowUpscaling?: boolean | undefined;
-        cacheHeight?: number | null | undefined;
         cacheWidth?: number | null | undefined;
-    }): Promise<upstream47.Codec>;
+        cacheHeight?: number | null | undefined;
+        allowUpscaling?: boolean | undefined;
+    }): Promise<upstream48.Codec>;
     instantiateImageCodecWithSize(buffer: Readonly<{
         "__flaxBound:dart:ui::ImmutableBuffer": readonly [];
     }>, options?: {
         getTargetSize?: ((intrinsicWidth: number, intrinsicHeight: number) => Readonly<{
             "__flaxBound:dart:ui::TargetImageSize": readonly [];
         }>) | null | undefined;
-    }): Promise<upstream47.Codec>;
+    }): Promise<upstream48.Codec>;
     addSemanticsEnabledListener(listener: (() => void)): void;
     removeSemanticsEnabledListener(listener: (() => void)): void;
-    addSemanticsActionListener(listener: ((value: upstream50.SemanticsActionEvent) => void)): void;
-    removeSemanticsActionListener(listener: ((value: upstream50.SemanticsActionEvent) => void)): void;
-    getRectOfSemanticsNodeInViewCoordinates(viewId: number, nodeId: number): upstream51.Rect | null;
-    ensureSemantics(): upstream52.SemanticsHandle;
+    addSemanticsActionListener(listener: ((value: upstream51.SemanticsActionEvent) => void)): void;
+    removeSemanticsActionListener(listener: ((value: upstream51.SemanticsActionEvent) => void)): void;
+    getRectOfSemanticsNodeInViewCoordinates(viewId: number, nodeId: number): upstream52.Rect | null;
+    ensureSemantics(): upstream53.SemanticsHandle;
     performSemanticsAction(action: Readonly<{
         "__flaxBound:dart:ui::SemanticsActionEvent": readonly [];
     }>): void;
     handleAccessibilityFeaturesChanged(): void;
-    createSemanticsUpdateBuilder(): upstream53.SemanticsUpdateBuilder;
+    createSemanticsUpdateBuilder(): upstream54.SemanticsUpdateBuilder;
     createRootPipelineOwner(): upstream30.PipelineOwner;
     addRenderView(view: Readonly<{
         "__flaxBound:package:flutter/src/rendering/view.dart::RenderView": readonly [];
@@ -357,7 +310,7 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin": readonly [upstream61.RenderBox];
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin": readonly [upstream62.RenderBox];
     }>): void;
     removeRenderView(view: Readonly<{
         "__flaxBound:package:flutter/src/rendering/view.dart::RenderView": readonly [];
@@ -372,7 +325,7 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin": readonly [upstream61.RenderBox];
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin": readonly [upstream62.RenderBox];
     }>): void;
     createViewConfigurationFor(renderView: Readonly<{
         "__flaxBound:package:flutter/src/rendering/view.dart::RenderView": readonly [];
@@ -387,13 +340,13 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin": readonly [upstream61.RenderBox];
-    }>): upstream54.ViewConfiguration;
-    createSceneBuilder(): upstream55.SceneBuilder;
-    createPictureRecorder(): upstream56.PictureRecorder;
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin": readonly [upstream62.RenderBox];
+    }>): upstream55.ViewConfiguration;
+    createSceneBuilder(): upstream56.SceneBuilder;
+    createPictureRecorder(): upstream57.PictureRecorder;
     createCanvas(recorder: Readonly<{
         "__flaxBound:dart:ui::PictureRecorder": readonly [];
-    }>): upstream57.Canvas;
+    }>): upstream58.Canvas;
     handleTextScaleFactorChanged(): void;
     handlePlatformBrightnessChanged(): void;
     deferFirstFrame(): void;
@@ -407,17 +360,75 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
         "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
     }>): boolean;
     handleMetricsChanged(): void;
-    dispatchLocalesChanged(locales: DartListInput<upstream59.Locale, Readonly<{
+    dispatchLocalesChanged(locales: DartListInput<upstream60.Locale, Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
     }>> | null): void;
     dispatchAccessibilityFeaturesChanged(): void;
     wrapWithDefaultView(rootWidget: Widget): Widget;
     scheduleAttachRootWidget(rootWidget: Widget): void;
     attachRootWidget(rootWidget: Widget): void;
-    attachToBuildOwner(widget: upstream60.RootWidget): void;
-    computePlatformResolvedLocale(supportedLocales: DartListInput<upstream59.Locale, Readonly<{
+    attachToBuildOwner(widget: upstream61.RootWidget): void;
+    computePlatformResolvedLocale(supportedLocales: DartListInput<upstream60.Locale, Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
-    }>>): upstream59.Locale | null;
+    }>>): upstream60.Locale | null;
+    get window(): upstream11.SingletonFlutterWindow;
+    get platformDispatcher(): upstream12.PlatformDispatcher;
+    get locked(): boolean;
+    get pointerRouter(): upstream13.PointerRouter;
+    get gestureArena(): upstream14.GestureArenaManager;
+    get pointerSignalResolver(): upstream15.PointerSignalResolver;
+    get debugSamplingClock(): upstream16.SamplingClock | null;
+    get samplingClock(): upstream16.SamplingClock;
+    get resamplingEnabled(): boolean;
+    get samplingOffset(): upstream17.Duration;
+    get lifecycleState(): upstream18.AppLifecycleState | null;
+    get schedulingStrategy(): ((options: {
+        priority: number;
+        scheduler: Readonly<{
+            "__flaxBound:package:flutter/src/scheduler/binding.dart::SchedulerBinding": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/binding.dart::BindingBase": readonly [];
+        }>;
+    }) => boolean);
+    get transientCallbackCount(): number;
+    get endOfFrame(): Promise<void>;
+    get hasScheduledFrame(): boolean;
+    get schedulerPhase(): upstream19.SchedulerPhase;
+    get framesEnabled(): boolean;
+    get currentFrameTimeStamp(): upstream17.Duration;
+    get currentSystemFrameTimeStamp(): upstream17.Duration;
+    get keyboard(): upstream20.HardwareKeyboard;
+    get keyEventManager(): upstream21.KeyEventManager;
+    get defaultBinaryMessenger(): upstream22.BinaryMessenger;
+    get channelBuffers(): upstream23.ChannelBuffers;
+    get accessibilityFocus(): upstream24.ValueNotifier<number | null>;
+    get restorationManager(): upstream25.RestorationManager;
+    get imageCache(): upstream26.ImageCache;
+    get systemFonts(): upstream27.Listenable;
+    get semanticsEnabled(): boolean;
+    get debugOutstandingSemanticsHandles(): number;
+    get accessibilityFeatures(): upstream28.AccessibilityFeatures;
+    get disableAnimations(): boolean;
+    get mouseTracker(): upstream29.MouseTracker;
+    get pipelineOwner(): upstream30.PipelineOwner;
+    get renderView(): upstream31.RenderView;
+    get rootPipelineOwner(): upstream30.PipelineOwner;
+    get renderViews(): DartIterable<upstream31.RenderView>;
+    get sendFramesToEngine(): boolean;
+    get debugShowWidgetInspectorOverride(): boolean;
+    get debugShowWidgetInspectorOverrideNotifier(): upstream24.ValueNotifier<boolean>;
+    get debugWidgetInspectorSelectionOnTapEnabled(): upstream24.ValueNotifier<boolean>;
+    get debugExcludeRootWidgetInspector(): boolean;
+    get buildOwner(): upstream32.BuildOwner | null;
+    get focusManager(): upstream33.FocusManager;
+    get platformMenuDelegate(): upstream34.PlatformMenuDelegate;
+    get firstFrameRasterized(): boolean;
+    get waitUntilFirstFrameRasterized(): Promise<void>;
+    get debugDidSendFirstFrameEvent(): boolean;
+    get debugBuildingDirtyElements(): boolean;
+    get rootElement(): upstream35.Element | null;
+    get renderViewElement(): upstream35.Element | null;
+    get isRootWidgetAttached(): boolean;
     set resamplingEnabled(value: boolean);
     set samplingOffset(value: Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
@@ -435,17 +446,37 @@ export interface WidgetsFlutterBinding extends Omit<upstream0.BindingBase, _flax
     }>);
     set debugBuildingDirtyElements(value: boolean);
 }
-export declare function _WidgetsFlutterBindingFactory(): WidgetsFlutterBinding;
-export declare namespace _WidgetsFlutterBindingFactory {
+export declare abstract class WidgetsFlutterBinding extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<WidgetsFlutterBinding>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: WidgetsFlutterBinding;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:WidgetsFlutterBinding", readonly [], false];
+    constructor();
+}
+export declare namespace WidgetsFlutterBinding {
+    function implement(args: [], implementation: {}): WidgetsFlutterBinding;
+}
+export declare namespace WidgetsFlutterBinding {
     function ensureInitialized(): upstream10.WidgetsBinding;
 }
-export declare const WidgetsFlutterBinding: typeof _WidgetsFlutterBindingFactory & _FlaxInstanceType<WidgetsFlutterBinding> & _FlaxDartType<WidgetsFlutterBinding, readonly ["class", "flax.core/sdk_widgets#type:WidgetsFlutterBinding", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "window" | "platformDispatcher" | "locked" | "pointerRouter" | "gestureArena" | "pointerSignalResolver" | "debugSamplingClock" | "samplingClock" | "resamplingEnabled" | "samplingOffset" | "lifecycleState" | "schedulingStrategy" | "transientCallbackCount" | "endOfFrame" | "hasScheduledFrame" | "schedulerPhase" | "framesEnabled" | "currentFrameTimeStamp" | "currentSystemFrameTimeStamp" | "keyboard" | "keyEventManager" | "defaultBinaryMessenger" | "channelBuffers" | "accessibilityFocus" | "restorationManager" | "imageCache" | "systemFonts" | "semanticsEnabled" | "debugOutstandingSemanticsHandles" | "accessibilityFeatures" | "disableAnimations" | "mouseTracker" | "pipelineOwner" | "renderView" | "rootPipelineOwner" | "renderViews" | "sendFramesToEngine" | "debugShowWidgetInspectorOverride" | "debugShowWidgetInspectorOverrideNotifier" | "debugWidgetInspectorSelectionOnTapEnabled" | "debugExcludeRootWidgetInspector" | "buildOwner" | "focusManager" | "platformMenuDelegate" | "firstFrameRasterized" | "waitUntilFirstFrameRasterized" | "debugDidSendFirstFrameEvent" | "debugBuildingDirtyElements" | "rootElement" | "renderViewElement" | "isRootWidgetAttached" | "initInstances" | "debugCheckZone" | "initServiceExtensions" | "lockEvents" | "unlocked" | "reassembleApplication" | "performReassemble" | "registerSignalServiceExtension" | "registerBoolServiceExtension" | "registerNumericServiceExtension" | "postEvent" | "registerStringServiceExtension" | "registerServiceExtension" | "toString" | "cancelPointer" | "handlePointerEvent" | "hitTestInView" | "hitTest" | "dispatchEvent" | "handleEvent" | "resetGestureBinding" | "addTimingsCallback" | "removeTimingsCallback" | "handleAppLifecycleStateChanged" | "scheduleTask" | "scheduleFrameCallback" | "cancelFrameCallbackWithId" | "debugAssertNoTransientCallbacks" | "debugAssertNoPendingPerformanceModeRequests" | "debugAssertNoTimeDilation" | "addPersistentFrameCallback" | "addPostFrameCallback" | "ensureFrameCallbacksRegistered" | "ensureVisualUpdate" | "scheduleFrame" | "scheduleForcedFrame" | "scheduleWarmUpFrame" | "resetEpoch" | "handleBeginFrame" | "requestPerformanceMode" | "debugGetRequestedPerformanceMode" | "handleDrawFrame" | "createBinaryMessenger" | "handleMemoryPressure" | "handleSystemMessage" | "initLicenses" | "evict" | "readInitialLifecycleStateFromNativeWindow" | "handleViewFocusChanged" | "handleRequestAppExit" | "exitApplication" | "createRestorationManager" | "setSystemUiChangeCallback" | "initializationComplete" | "createImageCache" | "instantiateImageCodecFromBuffer" | "instantiateImageCodecWithSize" | "addSemanticsEnabledListener" | "removeSemanticsEnabledListener" | "addSemanticsActionListener" | "removeSemanticsActionListener" | "getRectOfSemanticsNodeInViewCoordinates" | "ensureSemantics" | "performSemanticsAction" | "handleAccessibilityFeaturesChanged" | "createSemanticsUpdateBuilder" | "createRootPipelineOwner" | "addRenderView" | "removeRenderView" | "createViewConfigurationFor" | "createSceneBuilder" | "createPictureRecorder" | "createCanvas" | "handleTextScaleFactorChanged" | "handlePlatformBrightnessChanged" | "deferFirstFrame" | "allowFirstFrame" | "resetFirstFrameSent" | "drawFrame" | "addObserver" | "removeObserver" | "handleMetricsChanged" | "dispatchLocalesChanged" | "dispatchAccessibilityFeaturesChanged" | "wrapWithDefaultView" | "scheduleAttachRootWidget" | "attachRootWidget" | "attachToBuildOwner" | "computePlatformResolvedLocale" | "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsFlutterBinding" | "__flaxBound:package:flutter/src/foundation/binding.dart::BindingBase" | "__flaxBound:package:flutter/src/gestures/binding.dart::GestureBinding" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestable" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestDispatcher" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/scheduler/binding.dart::SchedulerBinding" | "__flaxBound:package:flutter/src/services/binding.dart::ServicesBinding" | "__flaxBound:package:flutter/src/painting/binding.dart::PaintingBinding" | "__flaxBound:package:flutter/src/semantics/binding.dart::SemanticsBinding" | "__flaxBound:package:flutter/src/rendering/binding.dart::RendererBinding" | "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBinding";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (task: (() => (_Selected0 | DartInput<_Selected0>) | Promise<(_Selected0 | DartInput<_Selected0>)>), priority: Readonly<{
         "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
     }>, options?: {
         debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
+    }) => Promise<_Selected0> : never : never;
+}
+interface _FlaxSignature1 extends _FlaxDartSignature {
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (task: (() => (_Selected0 | DartInput<_Selected0>) | Promise<(_Selected0 | DartInput<_Selected0>)>), priority: Readonly<{
+        "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
+    }>, options?: {
+        debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }) => Promise<_Selected0> : never : never;
 }
 export {};

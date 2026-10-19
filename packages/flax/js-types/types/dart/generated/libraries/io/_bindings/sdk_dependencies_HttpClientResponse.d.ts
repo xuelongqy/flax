@@ -1,8 +1,22 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartList, type DartInput } from '@flax/core/bindings';
 import type { DartFunction as _FlaxDartFunction } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/async/_bindings/flutter_Stream';
+import type * as upstream1 from '@flax/dart/io/_bindings/sdk_dependencies_HttpClientResponseCompressionState';
+import '@flax/dart/io/_bindings/sdk_dependencies_HttpClientResponseCompressionState';
+import type * as upstream2 from '@flax/dart/io/_bindings/sdk_dependencies_RedirectInfo';
+import '@flax/dart/io/_bindings/sdk_dependencies_RedirectInfo';
+import type * as upstream3 from '@flax/dart/io/_bindings/sdk_dependencies_HttpHeaders';
+import '@flax/dart/io/_bindings/sdk_dependencies_HttpHeaders';
+import type * as upstream4 from '@flax/dart/io/_bindings/sdk_dependencies_Cookie';
+import '@flax/dart/io/_bindings/sdk_dependencies_Cookie';
+import type * as upstream5 from '@flax/dart/io/_bindings/sdk_dependencies_X509Certificate';
+import '@flax/dart/io/_bindings/sdk_dependencies_X509Certificate';
+import type * as upstream6 from '@flax/dart/io/_bindings/sdk_dependencies_HttpConnectionInfo';
+import '@flax/dart/io/_bindings/sdk_dependencies_HttpConnectionInfo';
 import '@flax/dart/core/_bindings/flutter_Uri';
-import type * as upstream2 from '@flax/dart/async/_bindings/flutter_StreamSubscription';
+import type * as upstream8 from '@flax/dart/io/_bindings/sdk_dependencies_Socket';
+import '@flax/dart/io/_bindings/sdk_dependencies_Socket';
+import type * as upstream9 from '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import '@flax/dart/async/_bindings/flutter_StreamSubscription';
 import '@flax/dart/async/_bindings/flutter_StreamConsumer';
 import '@flax/dart/async/_bindings/flutter_StreamTransformer';
@@ -29,8 +43,14 @@ export interface HttpClientResponse extends Omit<upstream0.Stream<DartList<numbe
     readonly statusCode: number;
     readonly reasonPhrase: string;
     readonly contentLength: number;
+    readonly compressionState: upstream1.HttpClientResponseCompressionState;
     readonly persistentConnection: boolean;
     readonly isRedirect: boolean;
+    readonly redirects: DartList<upstream2.RedirectInfo>;
+    readonly headers: upstream3.HttpHeaders;
+    readonly cookies: DartList<upstream4.Cookie>;
+    readonly certificate: upstream5.X509Certificate | null;
+    readonly connectionInfo: upstream6.HttpConnectionInfo | null;
     readonly isBroadcast: boolean;
     readonly length: Promise<number>;
     readonly isEmpty: Promise<boolean>;
@@ -40,12 +60,13 @@ export interface HttpClientResponse extends Omit<upstream0.Stream<DartList<numbe
     redirect(method?: string | null, url?: DartInput<Readonly<{
         "__flaxBound:dart:core::Uri": readonly [];
     }>> | null, followLoops?: boolean | null): Promise<HttpClientResponse>;
+    detachSocket(): Promise<upstream8.Socket>;
     asBroadcastStream: upstream0.Stream<DartList<number>>["asBroadcastStream"];
     listen(onData: ((event: DartList<number>) => void) | null, options?: {
         cancelOnError?: boolean | null | undefined;
         onDone?: (() => void) | null | undefined;
         onError?: _FlaxDartFunction | null | undefined;
-    }): upstream2.StreamSubscription<DartList<number>>;
+    }): upstream9.StreamSubscription<DartList<number>>;
     where: upstream0.Stream<DartList<number>>["where"];
     map: upstream0.Stream<DartList<number>>["map"];
     asyncMap: upstream0.Stream<DartList<number>>["asyncMap"];
@@ -78,8 +99,8 @@ export interface HttpClientResponse extends Omit<upstream0.Stream<DartList<numbe
     elementAt: upstream0.Stream<DartList<number>>["elementAt"];
     timeout: upstream0.Stream<DartList<number>>["timeout"];
 }
-export declare const HttpClientResponse: object & _FlaxInstanceType<HttpClientResponse> & _FlaxDartType<HttpClientResponse, readonly ["class", "flax.core/sdk_foundation#type:HttpClientResponse", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "statusCode" | "reasonPhrase" | "contentLength" | "persistentConnection" | "isRedirect" | "isBroadcast" | "length" | "isEmpty" | "first" | "last" | "single" | "redirect" | "asBroadcastStream" | "listen" | "where" | "map" | "asyncMap" | "asyncExpand" | "handleError" | "expand" | "pipe" | "transform" | "reduce" | "fold" | "join" | "contains" | "forEach" | "every" | "any" | "cast" | "toList" | "toSet" | "drain" | "take" | "takeWhile" | "skip" | "skipWhile" | "distinct" | "firstWhere" | "lastWhere" | "singleWhere" | "elementAt" | "timeout" | "__flaxBound:dart:_http::HttpClientResponse" | "__flaxBound:dart:async::Stream";
+export declare const HttpClientResponse: object & _FlaxInstanceType<HttpClientResponse> & _FlaxDartType<HttpClientResponse, readonly ["class", "flax.core/sdk_dependencies#type:HttpClientResponse", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "statusCode" | "reasonPhrase" | "contentLength" | "compressionState" | "persistentConnection" | "isRedirect" | "redirects" | "headers" | "cookies" | "certificate" | "connectionInfo" | "isBroadcast" | "length" | "isEmpty" | "first" | "last" | "single" | "redirect" | "detachSocket" | "asBroadcastStream" | "listen" | "where" | "map" | "asyncMap" | "asyncExpand" | "handleError" | "expand" | "pipe" | "transform" | "reduce" | "fold" | "join" | "contains" | "forEach" | "every" | "any" | "cast" | "toList" | "toSet" | "drain" | "take" | "takeWhile" | "skip" | "skipWhile" | "distinct" | "firstWhere" | "lastWhere" | "singleWhere" | "elementAt" | "timeout" | "__flaxBound:dart:_http::HttpClientResponse" | "__flaxBound:dart:async::Stream";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (convert: ((event: DartList<number>) => (_Selected0 | DartInput<_Selected0>))) => upstream0.Stream<_Selected0> : never : never;
 }

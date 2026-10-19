@@ -13,10 +13,10 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"cursorColor","required":false,"positional":false},{"name":"selectionColor","required":false,"positional":false},{"name":"selectionHandleColor","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"cursorColor"},{"name":"selectionColor"},{"name":"selectionHandleColor"}] as const;
 const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters3 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
@@ -26,7 +26,7 @@ readonly [_flaxDartTypeValue]: TextSelectionThemeData;
 
 }
 defineObject("flax.core/sdk_material#type:TextSelectionThemeData", ["cursorColor","selectionColor","selectionHandleColor"], [], _flaxBindingMethods("flax.core/sdk_material#type:TextSelectionThemeData", "object", {"copyWith":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _TextSelectionThemeDataProxy = {type: "flax.core/sdk_material#type:TextSelectionThemeData", parameters: [{"name":"cursorColor","required":false,"positional":false},{"name":"selectionColor","required":false,"positional":false},{"name":"selectionHandleColor","required":false,"positional":false}], constructors: {"":[{"name":"cursorColor","required":false,"positional":false},{"name":"selectionColor","required":false,"positional":false},{"name":"selectionHandleColor","required":false,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"copyWith":_flaxMemberParameters0}, getters: ["cursorColor","selectionColor","selectionHandleColor"], setters: [], contextMembers: [], superMembers: ["get:cursorColor","get:selectionColor","get:selectionHandleColor","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
+const _TextSelectionThemeDataProxy = {type: "flax.core/sdk_material#type:TextSelectionThemeData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"copyWith":_flaxMemberParameters0}, getters: ["cursorColor","selectionColor","selectionHandleColor"], setters: [], contextMembers: [], superMembers: ["get:cursorColor","get:selectionColor","get:selectionHandleColor","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith"]} as const;
 export interface TextSelectionThemeData {
 readonly [_flaxDartTypeValue]: TextSelectionThemeData;
 

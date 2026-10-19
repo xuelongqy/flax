@@ -20,42 +20,42 @@ export namespace _DeprecatedFactory {
 export function implement(message?: string | null): Deprecated {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Deprecated", "implement", [{"name":"message","required":false,"positional":true}], [message], {}) as Deprecated;
+return constructObject("object", "flax.core/flutter#type:Deprecated", "implement", [{"name":"message","positional":true}], [message], {}) as Deprecated;
 }
 }
 export namespace _DeprecatedFactory {
 export function extend(message?: string | null): Deprecated {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Deprecated", "extend", [{"name":"message","required":false,"positional":true}], [message], {}) as Deprecated;
+return constructObject("object", "flax.core/flutter#type:Deprecated", "extend", [{"name":"message","positional":true}], [message], {}) as Deprecated;
 }
 }
 export namespace _DeprecatedFactory {
 export function subclass(message?: string | null): Deprecated {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Deprecated", "subclass", [{"name":"message","required":false,"positional":true}], [message], {}) as Deprecated;
+return constructObject("object", "flax.core/flutter#type:Deprecated", "subclass", [{"name":"message","positional":true}], [message], {}) as Deprecated;
 }
 }
 export namespace _DeprecatedFactory {
 export function instantiate(message?: string | null): Deprecated {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Deprecated", "instantiate", [{"name":"message","required":false,"positional":true}], [message], {}) as Deprecated;
+return constructObject("object", "flax.core/flutter#type:Deprecated", "instantiate", [{"name":"message","positional":true}], [message], {}) as Deprecated;
 }
 }
 export namespace _DeprecatedFactory {
 export function mixin(message?: string | null): Deprecated {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Deprecated", "mixin", [{"name":"message","required":false,"positional":true}], [message], {}) as Deprecated;
+return constructObject("object", "flax.core/flutter#type:Deprecated", "mixin", [{"name":"message","positional":true}], [message], {}) as Deprecated;
 }
 }
 export namespace _DeprecatedFactory {
 export function optional(message?: string | null): Deprecated {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Deprecated", "optional", [{"name":"message","required":false,"positional":true}], [message], {}) as Deprecated;
+return constructObject("object", "flax.core/flutter#type:Deprecated", "optional", [{"name":"message","positional":true}], [message], {}) as Deprecated;
 }
 }
 export const Deprecated: typeof _DeprecatedFactory & _FlaxInstanceType<Deprecated> & _FlaxDartType<Deprecated, readonly ["class", "flax.core/flutter#type:Deprecated", readonly [], false]> = _flaxBindInstanceType<Deprecated, typeof _DeprecatedFactory>(_DeprecatedFactory, "flax.core/flutter#type:Deprecated", ["dart:core::Object"]) as typeof _DeprecatedFactory & _FlaxInstanceType<Deprecated> & _FlaxDartType<Deprecated, readonly ["class", "flax.core/flutter#type:Deprecated", readonly [], false]>;

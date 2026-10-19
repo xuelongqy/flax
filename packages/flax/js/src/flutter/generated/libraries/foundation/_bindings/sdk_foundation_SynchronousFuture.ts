@@ -6,10 +6,11 @@ import type * as upstream0 from '@flax/dart/async/_bindings/flutter_Stream';
 import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"onError","required":true,"positional":true},{"name":"test","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"onValue","required":true,"positional":true},{"name":"onError","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"timeLimit","required":true,"positional":true},{"name":"onTimeout","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"onError","required":true,"positional":true},{"name":"test"}] as const;
+const _flaxMemberParameters2 = [{"name":"onValue","required":true,"positional":true},{"name":"onError"}] as const;
+const _flaxMemberParameters3 = [{"name":"timeLimit","required":true,"positional":true},{"name":"onTimeout"}] as const;
 const _flaxMemberParameters4 = [{"name":"action","required":true,"positional":true}] as const;
+const _flaxMemberParameters5 = [{"name":"_value","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,8 +18,8 @@ export interface SynchronousFuture<T extends unknown | null = unknown | null> ex
 readonly [_flaxDartTypeValue]: SynchronousFuture<T>;
 
 }
-defineObject("flax.core/sdk_foundation#type:SynchronousFuture", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:SynchronousFuture", "object", {"asStream":_flaxMemberParameters0,"catchError":_flaxMemberParameters1,"then":_flaxMemberParameters2,"timeout":_flaxMemberParameters3,"whenComplete":_flaxMemberParameters4}, {"then":{"id":"then","parameters":[{"name":"onValue","required":true,"positional":true},{"name":"onError","required":false,"positional":false}]}}), []);
-const _SynchronousFutureProxy = {type: "flax.core/sdk_foundation#type:SynchronousFuture", parameters: [{"name":"_value","required":true,"positional":true}], constructors: {"":[{"name":"_value","required":true,"positional":true}]}, methods: {"asStream":_flaxMemberParameters0,"catchError":_flaxMemberParameters1,"then":_flaxMemberParameters2,"timeout":_flaxMemberParameters3,"whenComplete":_flaxMemberParameters4}, getters: [], setters: [], contextMembers: ["then"], superMembers: ["asStream","catchError","then","timeout","whenComplete"]} as const;
+defineObject("flax.core/sdk_foundation#type:SynchronousFuture", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:SynchronousFuture", "object", {"asStream":_flaxMemberParameters0,"catchError":_flaxMemberParameters1,"then":_flaxMemberParameters2,"timeout":_flaxMemberParameters3,"whenComplete":_flaxMemberParameters4}, {"then":{"id":"then","parameters":[{"name":"onValue","required":true,"positional":true},{"name":"onError"}]}}), []);
+const _SynchronousFutureProxy = {type: "flax.core/sdk_foundation#type:SynchronousFuture", parameters: _flaxMemberParameters5, constructors: {"": _flaxMemberParameters5}, methods: {"asStream":_flaxMemberParameters0,"catchError":_flaxMemberParameters1,"then":_flaxMemberParameters2,"timeout":_flaxMemberParameters3,"whenComplete":_flaxMemberParameters4}, getters: [], setters: [], contextMembers: ["then"], superMembers: ["asStream","catchError","then","timeout","whenComplete"]} as const;
 export interface SynchronousFuture<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: SynchronousFuture<T>;
 

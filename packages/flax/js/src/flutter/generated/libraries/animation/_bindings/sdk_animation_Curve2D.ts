@@ -9,7 +9,7 @@ import type * as upstream2 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_Curve2DSample';
 const _flaxMemberParameters0 = [{"name":"t","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"end","required":false,"positional":false},{"name":"start","required":false,"positional":false},{"name":"tolerance","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"end"},{"name":"start"},{"name":"tolerance"}] as const;
 const _flaxMemberParameters3 = [{"name":"x","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/animation/_bindings/sdk_animation.__module";
@@ -19,7 +19,7 @@ readonly [_flaxDartTypeValue]: Curve2D;
 
 }
 defineObject("flax.core/sdk_animation#type:Curve2D", ["samplingSeed"], [], _flaxBindingMethods("flax.core/sdk_animation#type:Curve2D", "object", {"transform":_flaxMemberParameters0,"transformInternal":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"generateSamples":_flaxMemberParameters2,"findInverse":_flaxMemberParameters3}, {}), []);
-const _Curve2DProxy = {type: "flax.core/sdk_animation#type:Curve2D", parameters: [], constructors: {"":[]}, methods: {"transform":_flaxMemberParameters0,"transformInternal":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"generateSamples":_flaxMemberParameters2,"findInverse":_flaxMemberParameters3}, getters: ["samplingSeed"], setters: [], contextMembers: [], superMembers: ["get:samplingSeed","transform","transformInternal","toString","generateSamples","findInverse"]} as const;
+const _Curve2DProxy = {type: "flax.core/sdk_animation#type:Curve2D", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"transform":_flaxMemberParameters0,"transformInternal":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"generateSamples":_flaxMemberParameters2,"findInverse":_flaxMemberParameters3}, getters: ["samplingSeed"], setters: [], contextMembers: [], superMembers: ["get:samplingSeed","transform","transformInternal","toString","generateSamples","findInverse"]} as const;
 export interface Curve2D {
 readonly [_flaxDartTypeValue]: Curve2D;
 

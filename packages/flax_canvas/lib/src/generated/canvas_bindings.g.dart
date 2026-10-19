@@ -24,34 +24,10 @@ const canvasBindings = FlaxBindingModule(
       "flax.canvas/canvas#type:FlaxCanvasView",
       {
         "": [
-          FlaxParameter(
-            "canvas",
-            _flaxBinding72,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "key",
-            _flaxBinding73,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "width",
-            _flaxBinding74,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "height",
-            _flaxBinding74,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("canvas", _flaxBinding72, required: true),
+          FlaxParameter("key", _flaxBinding73, required: false),
+          FlaxParameter("width", _flaxBinding74, required: false),
+          FlaxParameter("height", _flaxBinding74, required: false),
         ],
       },
       _FlaxCanvasViewHost.new,
@@ -59,17 +35,14 @@ const canvasBindings = FlaxBindingModule(
       methods: {},
     ),
   ],
-  functions: [
-    const FlaxFunctionBinding.constant(
-      "flax.canvas/canvas#read:FlaxCanvasSurface.pictureLimit",
-      _flaxBinding3,
-      api.FlaxCanvasSurface.pictureLimit,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.canvas/canvas#read:FlaxCanvasSurface.commandBytesLimit",
-      _flaxBinding3,
-      api.FlaxCanvasSurface.commandBytesLimit,
-    ),
+  functions: [],
+  constants: [
+    FlaxConstantGroup(_flaxBinding3, {
+      "flax.canvas/canvas#read:FlaxCanvasSurface.pictureLimit":
+          api.FlaxCanvasSurface.pictureLimit,
+      "flax.canvas/canvas#read:FlaxCanvasSurface.commandBytesLimit":
+          api.FlaxCanvasSurface.commandBytesLimit,
+    }),
   ],
   moduleId: "flax.canvas/canvas",
   dependencyModules: [

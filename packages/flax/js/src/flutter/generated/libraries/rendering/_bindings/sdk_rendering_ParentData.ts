@@ -10,7 +10,7 @@ readonly [_flaxDartTypeValue]: ParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:ParentData", [], [], _flaxBindingMethods("flax.core/sdk_rendering#type:ParentData", "object", {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, {}), []);
-const _ParentDataProxy = {type: "flax.core/sdk_rendering#type:ParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["detach","toString"]} as const;
+const _ParentDataProxy = {type: "flax.core/sdk_rendering#type:ParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["detach","toString"]} as const;
 export interface ParentData {
 readonly [_flaxDartTypeValue]: ParentData;
 

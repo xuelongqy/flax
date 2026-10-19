@@ -11,6 +11,7 @@ import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_KeyData';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_KeyData';
 const _flaxMemberParameters0 = [{"name":"data","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"message","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"_hardwareKeyboard","required":true,"positional":true},{"name":"_rawKeyboard","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,7 +20,7 @@ readonly [_flaxDartTypeValue]: KeyEventManager;
 
 }
 defineObject("flax.core/sdk_services#type:KeyEventManager", ["keyMessageHandler"], ["keyMessageHandler"], _flaxBindingMethods("flax.core/sdk_services#type:KeyEventManager", "object", {"handleKeyData":_flaxMemberParameters0,"handleRawKeyMessage":_flaxMemberParameters1}, {}), []);
-const _KeyEventManagerProxy = {type: "flax.core/sdk_services#type:KeyEventManager", parameters: [{"name":"_hardwareKeyboard","required":true,"positional":true},{"name":"_rawKeyboard","required":true,"positional":true}], constructors: {"":[{"name":"_hardwareKeyboard","required":true,"positional":true},{"name":"_rawKeyboard","required":true,"positional":true}]}, methods: {"handleKeyData":_flaxMemberParameters0,"handleRawKeyMessage":_flaxMemberParameters1}, getters: ["keyMessageHandler"], setters: ["keyMessageHandler"], contextMembers: [], superMembers: ["get:keyMessageHandler","set:keyMessageHandler","handleKeyData","handleRawKeyMessage"]} as const;
+const _KeyEventManagerProxy = {type: "flax.core/sdk_services#type:KeyEventManager", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"handleKeyData":_flaxMemberParameters0,"handleRawKeyMessage":_flaxMemberParameters1}, getters: ["keyMessageHandler"], setters: ["keyMessageHandler"], contextMembers: [], superMembers: ["get:keyMessageHandler","set:keyMessageHandler","handleKeyData","handleRawKeyMessage"]} as const;
 export interface KeyEventManager {
 readonly [_flaxDartTypeValue]: KeyEventManager;
 

@@ -60,11 +60,11 @@ const _flaxMemberParameters5 = [] as const;
 const _flaxMemberParameters6 = [{"name":"didPop","required":true,"positional":true},{"name":"result","required":true,"positional":true}] as const;
 const _flaxMemberParameters7 = [{"name":"callback","required":true,"positional":true}] as const;
 const _flaxMemberParameters8 = [{"name":"popEntry","required":true,"positional":true}] as const;
-const _flaxMemberParameters9 = [{"name":"forward","required":true,"positional":false}] as const;
+const _flaxMemberParameters9 = [{"name":"forward","required":true}] as const;
 const _flaxMemberParameters10 = [{"name":"oldRoute","required":true,"positional":true}] as const;
 const _flaxMemberParameters11 = [{"name":"result","required":true,"positional":true}] as const;
-const _flaxMemberParameters12 = [{"name":"progress","required":false,"positional":false}] as const;
-const _flaxMemberParameters13 = [{"name":"progress","required":true,"positional":false}] as const;
+const _flaxMemberParameters12 = [{"name":"progress"}] as const;
+const _flaxMemberParameters13 = [{"name":"progress","required":true}] as const;
 const _flaxMemberParameters14 = [{"name":"didPop","required":true,"positional":true}] as const;
 const _flaxMemberParameters15 = [{"name":"entry","required":true,"positional":true}] as const;
 const _flaxMemberParameters16 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
@@ -167,7 +167,7 @@ export function _CupertinoPageRouteFactory(options: { builder: ((context: upstre
 export function _CupertinoPageRouteFactory(options: Record<string, unknown>): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoPageRoute", "", [{"name":"builder","required":true,"positional":false},{"name":"title","required":false,"positional":false},{"name":"settings","required":false,"positional":false},{"name":"requestFocus","required":false,"positional":false},{"name":"maintainState","required":false,"positional":false},{"name":"fullscreenDialog","required":false,"positional":false},{"name":"allowSnapshotting","required":false,"positional":false},{"name":"barrierDismissible","required":false,"positional":false}], [], options) as CupertinoPageRoute<unknown | null>;
+return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoPageRoute", "", [{"name":"builder","required":true},{"name":"title"},{"name":"settings"},{"name":"requestFocus"},{"name":"maintainState"},{"name":"fullscreenDialog"},{"name":"allowSnapshotting"},{"name":"barrierDismissible"}], [], options) as CupertinoPageRoute<unknown | null>;
 }
 export const CupertinoPageRoute: typeof _CupertinoPageRouteFactory & _FlaxInstanceType<CupertinoPageRoute<unknown | null>> & _FlaxDartType<CupertinoPageRoute<unknown | null>, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoPageRoute", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<CupertinoPageRoute<unknown | null>, typeof _CupertinoPageRouteFactory>(_CupertinoPageRouteFactory, "flax.core/sdk_cupertino#type:CupertinoPageRoute", ["flax.core/sdk_widgets#type:PageRoute","flax.core/sdk_widgets#type:ModalRoute","flax.core/sdk_widgets#type:TransitionRoute","flax.core/sdk_widgets#type:OverlayRoute","flax.core/flutter#type:Route","package:flutter/src/widgets/navigator.dart::_RoutePlaceholder","flax.core/sdk_widgets#type:PredictiveBackRoute","flax.core/sdk_widgets#type:LocalHistoryRoute","flax.core/sdk_cupertino#type:CupertinoRouteTransitionMixin"]) as typeof _CupertinoPageRouteFactory & _FlaxInstanceType<CupertinoPageRoute<unknown | null>> & _FlaxDartType<CupertinoPageRoute<unknown | null>, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoPageRoute", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 _flaxDefineDartTypes(CupertinoPageRoute, "flax.core/sdk_cupertino#type:CupertinoPageRoute", {"category":"object","constructors":{"":[{"name":"builder","required":true,"positional":false},{"name":"title","required":false,"positional":false},{"name":"settings","required":false,"positional":false},{"name":"requestFocus","required":false,"positional":false},{"name":"maintainState","required":false,"positional":false},{"name":"fullscreenDialog","required":false,"positional":false},{"name":"allowSnapshotting","required":false,"positional":false},{"name":"barrierDismissible","required":false,"positional":false}]}});

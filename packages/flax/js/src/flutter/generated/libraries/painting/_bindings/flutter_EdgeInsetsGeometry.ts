@@ -53,21 +53,21 @@ export namespace _EdgeInsetsGeometryFactory {
 export function only(options: { left?: number | undefined; right?: number | undefined; top?: number | undefined; bottom?: number | undefined } = {}): EdgeInsetsGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:EdgeInsetsGeometry", "only", [{"name":"left","required":false,"positional":false},{"name":"right","required":false,"positional":false},{"name":"top","required":false,"positional":false},{"name":"bottom","required":false,"positional":false}], [], options) as EdgeInsetsGeometry;
+return constructObject("object", "flax.core/flutter#type:EdgeInsetsGeometry", "only", [{"name":"left"},{"name":"right"},{"name":"top"},{"name":"bottom"}], [], options) as EdgeInsetsGeometry;
 }
 }
 export namespace _EdgeInsetsGeometryFactory {
 export function directional(options: { start?: number | undefined; end?: number | undefined; top?: number | undefined; bottom?: number | undefined } = {}): EdgeInsetsGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:EdgeInsetsGeometry", "directional", [{"name":"start","required":false,"positional":false},{"name":"end","required":false,"positional":false},{"name":"top","required":false,"positional":false},{"name":"bottom","required":false,"positional":false}], [], options) as EdgeInsetsGeometry;
+return constructObject("object", "flax.core/flutter#type:EdgeInsetsGeometry", "directional", [{"name":"start"},{"name":"end"},{"name":"top"},{"name":"bottom"}], [], options) as EdgeInsetsGeometry;
 }
 }
 export namespace _EdgeInsetsGeometryFactory {
 export function symmetric(options: { vertical?: number | undefined; horizontal?: number | undefined } = {}): EdgeInsetsGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:EdgeInsetsGeometry", "symmetric", [{"name":"vertical","required":false,"positional":false},{"name":"horizontal","required":false,"positional":false}], [], options) as EdgeInsetsGeometry;
+return constructObject("object", "flax.core/flutter#type:EdgeInsetsGeometry", "symmetric", [{"name":"vertical"},{"name":"horizontal"}], [], options) as EdgeInsetsGeometry;
 }
 }
 export namespace _EdgeInsetsGeometryFactory {

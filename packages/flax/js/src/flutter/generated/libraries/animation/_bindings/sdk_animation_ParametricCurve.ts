@@ -13,7 +13,7 @@ readonly [_flaxDartTypeValue]: ParametricCurve<T>;
 
 }
 defineObject("flax.core/sdk_animation#type:ParametricCurve", [], [], _flaxBindingMethods("flax.core/sdk_animation#type:ParametricCurve", "object", {"transform":_flaxMemberParameters0,"transformInternal":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), []);
-const _ParametricCurveProxy = {type: "flax.core/sdk_animation#type:ParametricCurve", parameters: [], constructors: {"":[]}, methods: {"transform":_flaxMemberParameters0,"transformInternal":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["transform","transformInternal","toString"]} as const;
+const _ParametricCurveProxy = {type: "flax.core/sdk_animation#type:ParametricCurve", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"transform":_flaxMemberParameters0,"transformInternal":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["transform","transformInternal","toString"]} as const;
 export interface ParametricCurve<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: ParametricCurve<T>;
 

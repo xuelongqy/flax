@@ -7,9 +7,9 @@ import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 const _flaxMemberParameters0 = [{"name":"callback","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"onError","required":true,"positional":true},{"name":"test","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"onValue","required":true,"positional":true},{"name":"onError","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"timeLimit","required":true,"positional":true},{"name":"onTimeout","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"onError","required":true,"positional":true},{"name":"test"}] as const;
+const _flaxMemberParameters3 = [{"name":"onValue","required":true,"positional":true},{"name":"onError"}] as const;
+const _flaxMemberParameters4 = [{"name":"timeLimit","required":true,"positional":true},{"name":"onTimeout"}] as const;
 const _flaxMemberParameters5 = [{"name":"action","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/scheduler/_bindings/sdk_scheduler.__module";
@@ -18,8 +18,8 @@ export interface TickerFuture extends Omit<Promise<void>, _flaxOwnMembers0>, Rea
 readonly [_flaxDartTypeValue]: TickerFuture;
 
 }
-defineObject("flax.core/sdk_scheduler#type:TickerFuture", ["orCancel"], [], _flaxBindingMethods("flax.core/sdk_scheduler#type:TickerFuture", "object", {"whenCompleteOrCancel":_flaxMemberParameters0,"asStream":_flaxMemberParameters1,"catchError":_flaxMemberParameters2,"then":_flaxMemberParameters3,"timeout":_flaxMemberParameters4,"whenComplete":_flaxMemberParameters5,"toString":_flaxMemberParameters1}, {"then":{"id":"then","parameters":[{"name":"onValue","required":true,"positional":true},{"name":"onError","required":false,"positional":false}]}}), []);
-const _TickerFutureProxy = {type: "flax.core/sdk_scheduler#type:TickerFuture", parameters: [], constructors: {"complete":[]}, methods: {"whenCompleteOrCancel":_flaxMemberParameters0,"asStream":_flaxMemberParameters1,"catchError":_flaxMemberParameters2,"then":_flaxMemberParameters3,"timeout":_flaxMemberParameters4,"whenComplete":_flaxMemberParameters5,"toString":_flaxMemberParameters1}, getters: ["orCancel"], setters: [], contextMembers: ["then"], superMembers: ["get:orCancel","whenCompleteOrCancel","asStream","catchError","then","timeout","whenComplete","toString"]} as const;
+defineObject("flax.core/sdk_scheduler#type:TickerFuture", ["orCancel"], [], _flaxBindingMethods("flax.core/sdk_scheduler#type:TickerFuture", "object", {"whenCompleteOrCancel":_flaxMemberParameters0,"asStream":_flaxMemberParameters1,"catchError":_flaxMemberParameters2,"then":_flaxMemberParameters3,"timeout":_flaxMemberParameters4,"whenComplete":_flaxMemberParameters5,"toString":_flaxMemberParameters1}, {"then":{"id":"then","parameters":[{"name":"onValue","required":true,"positional":true},{"name":"onError"}]}}), []);
+const _TickerFutureProxy = {type: "flax.core/sdk_scheduler#type:TickerFuture", parameters: _flaxMemberParameters1, constructors: {"complete": _flaxMemberParameters1}, methods: {"whenCompleteOrCancel":_flaxMemberParameters0,"asStream":_flaxMemberParameters1,"catchError":_flaxMemberParameters2,"then":_flaxMemberParameters3,"timeout":_flaxMemberParameters4,"whenComplete":_flaxMemberParameters5,"toString":_flaxMemberParameters1}, getters: ["orCancel"], setters: [], contextMembers: ["then"], superMembers: ["get:orCancel","whenCompleteOrCancel","asStream","catchError","then","timeout","whenComplete","toString"]} as const;
 export interface TickerFuture {
 readonly [_flaxDartTypeValue]: TickerFuture;
 

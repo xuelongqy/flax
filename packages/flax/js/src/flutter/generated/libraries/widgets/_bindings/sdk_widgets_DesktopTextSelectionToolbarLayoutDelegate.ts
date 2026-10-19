@@ -10,8 +10,9 @@ import '@flax/dart/ui/_bindings/flutter_Size';
 import type * as upstream3 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 const _flaxMemberParameters0 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"constraints","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"size","required":true,"positional":true},{"name":"childSize","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"anchor","required":true}] as const;
+const _flaxMemberParameters2 = [{"name":"constraints","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"size","required":true,"positional":true},{"name":"childSize","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +21,7 @@ readonly [_flaxDartTypeValue]: DesktopTextSelectionToolbarLayoutDelegate;
 
 }
 defineObject("flax.core/sdk_widgets#type:DesktopTextSelectionToolbarLayoutDelegate", ["anchor"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DesktopTextSelectionToolbarLayoutDelegate", "object", {"shouldRelayout":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_rendering#type:SingleChildLayoutDelegate");
-const _DesktopTextSelectionToolbarLayoutDelegateProxy = {type: "flax.core/sdk_widgets#type:DesktopTextSelectionToolbarLayoutDelegate", parameters: [{"name":"anchor","required":true,"positional":false}], constructors: {"":[{"name":"anchor","required":true,"positional":false}]}, methods: {"getSize":_flaxMemberParameters1,"getConstraintsForChild":_flaxMemberParameters1,"getPositionForChild":_flaxMemberParameters2,"shouldRelayout":_flaxMemberParameters0}, getters: ["anchor"], setters: [], contextMembers: [], superMembers: ["get:anchor","getSize","getConstraintsForChild","getPositionForChild","shouldRelayout"]} as const;
+const _DesktopTextSelectionToolbarLayoutDelegateProxy = {type: "flax.core/sdk_widgets#type:DesktopTextSelectionToolbarLayoutDelegate", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"getSize":_flaxMemberParameters2,"getConstraintsForChild":_flaxMemberParameters2,"getPositionForChild":_flaxMemberParameters3,"shouldRelayout":_flaxMemberParameters0}, getters: ["anchor"], setters: [], contextMembers: [], superMembers: ["get:anchor","getSize","getConstraintsForChild","getPositionForChild","shouldRelayout"]} as const;
 export interface DesktopTextSelectionToolbarLayoutDelegate {
 readonly [_flaxDartTypeValue]: DesktopTextSelectionToolbarLayoutDelegate;
 

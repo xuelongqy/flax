@@ -36,7 +36,8 @@ import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream19 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import type * as upstream20 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ExpansionTile extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
@@ -185,13 +186,13 @@ export declare function _ExpansionTileFactory(options: {
     statesController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream19.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream20.WidgetState>];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream19.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream20.WidgetState>];
     }>) | null | undefined;
 }): ExpansionTile;
 export declare const ExpansionTile: typeof _ExpansionTileFactory & _FlaxInstanceType<ExpansionTile> & _FlaxDartType<ExpansionTile, readonly ["class", "flax.core/sdk_material#type:ExpansionTile", readonly [], false]>;

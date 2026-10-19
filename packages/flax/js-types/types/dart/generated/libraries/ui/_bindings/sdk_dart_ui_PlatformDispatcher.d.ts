@@ -33,8 +33,9 @@ import type * as upstream15 from '@flax/dart/ui/_bindings/sdk_dart_ui_ViewFocusD
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ViewFocusDirection';
 import type * as upstream16 from '@flax/dart/ui/_bindings/sdk_dart_ui_ViewFocusState';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ViewFocusState';
+import '@flax/dart/isolate/_bindings/sdk_dependencies_SendPort';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_RootIsolateToken';
-import type * as upstream18 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
+import type * as upstream19 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdate';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -111,12 +112,17 @@ export interface PlatformDispatcher extends Readonly<{
         viewId: number;
     }): void;
     sendPlatformMessage(name: string, data: globalThis.DataView | null, callback: ((data: globalThis.DataView | null) => void) | null): void;
+    sendPortPlatformMessage(name: string, data: globalThis.DataView | null, identifier: number, port: Readonly<{
+        "__flaxBound:dart:isolate::SendPort": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:isolate::Capability": readonly [];
+    }>): void;
     registerBackgroundIsolate(token: Readonly<{
         "__flaxBound:dart:ui::RootIsolateToken": readonly [];
     }>): void;
     setSemanticsTreeEnabled(enabled: boolean): void;
     setIsolateDebugName(name: string): void;
-    requestDartPerformanceMode(mode: upstream18.DartPerformanceMode): void;
+    requestDartPerformanceMode(mode: upstream19.DartPerformanceMode): void;
     getPersistentIsolateData(): globalThis.DataView | null;
     scheduleFrame(): void;
     scheduleWarmUpFrame(options: {

@@ -30,6 +30,9 @@ export interface NetworkImage extends Omit<upstream0.ImageProvider<NetworkImage>
     readonly scale: number;
     readonly headers: DartMap<string, string> | null;
     readonly webHtmlElementStrategy: upstream1.WebHtmlElementStrategy;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream2.ImageStream;
     createStream(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream2.ImageStream;
@@ -82,9 +85,6 @@ export interface NetworkImage extends Omit<upstream0.ImageProvider<NetworkImage>
         "__flaxBound:dart:ui::Codec": readonly [];
     }>>)): upstream7.ImageStreamCompleter;
     toString(): string;
-    resolve(configuration: Readonly<{
-        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
-    }>): upstream2.ImageStream;
 }
 export declare function _NetworkImageFactory(url: string, options?: {
     scale?: number | undefined;
@@ -92,5 +92,5 @@ export declare function _NetworkImageFactory(url: string, options?: {
     webHtmlElementStrategy?: upstream1.WebHtmlElementStrategy | undefined;
 }): NetworkImage;
 export declare const NetworkImage: typeof _NetworkImageFactory & _FlaxInstanceType<NetworkImage> & _FlaxDartType<NetworkImage, readonly ["class", "flax.core/sdk_painting#type:NetworkImage", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "url" | "scale" | "headers" | "webHtmlElementStrategy" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "resolve" | "__flaxBound:package:flutter/src/painting/image_provider.dart::NetworkImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "url" | "scale" | "headers" | "webHtmlElementStrategy" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::NetworkImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 export {};

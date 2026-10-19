@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: StreamTransformerBase<S, T>;
 readonly [_flaxDartMethodCases]?: {cast: _FlaxSignature1<S, T>;};
 }
 defineObject("flax.core/flutter#type:StreamTransformerBase", [], [], _flaxBindingMethods("flax.core/flutter#type:StreamTransformerBase", "object", {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, {"cast":{"id":"cast","parameters":[]}}), []);
-const _StreamTransformerBaseProxy = {type: "flax.core/flutter#type:StreamTransformerBase", parameters: [], constructors: {"":[]}, methods: {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: ["cast"], superMembers: ["cast"]} as const;
+const _StreamTransformerBaseProxy = {type: "flax.core/flutter#type:StreamTransformerBase", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"bind":_flaxMemberParameters0,"cast":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: ["cast"], superMembers: ["cast"]} as const;
 export interface StreamTransformerBase<S extends unknown | null = unknown | null, T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: StreamTransformerBase<S, T>;
 readonly [_flaxDartMethodCases]?: {cast: _FlaxSignature2<S, T>;};

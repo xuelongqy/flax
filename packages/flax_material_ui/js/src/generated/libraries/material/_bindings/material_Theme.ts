@@ -15,7 +15,7 @@ export interface Theme extends WidgetDescription, Omit<Readonly<{ "__flaxBound:p
 export function _ThemeFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; data: Bindable<Readonly<{ "__flaxBound:package:material_ui/src/theme_data.dart::ThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>; child: Bindable<Widget> }): Theme {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.material/material#type:Theme", "", [{"name":"key","required":false,"positional":false},{"name":"data","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Theme;
+return construct("widget", "flax.material/material#type:Theme", "", [{"name":"key"},{"name":"data","required":true},{"name":"child","required":true}], [], options) as Theme;
 }
 export namespace _ThemeFactory { export function of(context: upstream2.BuildContext): upstream1.ThemeData {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

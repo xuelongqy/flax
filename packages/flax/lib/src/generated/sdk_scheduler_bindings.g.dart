@@ -31,168 +31,99 @@ const sdk_schedulerBindings = FlaxBindingModule(
       {"timeDilation": api.SchedulerServiceExtensions.timeDilation},
       supertypes: ["flax.core/flutter#type:Enum", "dart:core::Object"],
     ),
-    _flaxBinding3,
-    _flaxBinding10,
-    _flaxBinding70,
-    _flaxBinding79,
-    _flaxBinding122,
+    _flaxBinding29,
+    _flaxBinding36,
+    _flaxBinding81,
+    _flaxBinding87,
+    _flaxBinding118,
   ],
   functions: [
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#read:debugPrintBeginFrameBanner",
       [],
-      _flaxBinding11,
+      _flaxBinding9,
       _read_debugPrintBeginFrameBanner,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#read:debugPrintEndFrameBanner",
       [],
-      _flaxBinding11,
+      _flaxBinding9,
       _read_debugPrintEndFrameBanner,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#read:debugPrintScheduleFrameStacks",
       [],
-      _flaxBinding11,
+      _flaxBinding9,
       _read_debugPrintScheduleFrameStacks,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#read:debugTracePostFrameCallbacks",
       [],
-      _flaxBinding11,
+      _flaxBinding9,
       _read_debugTracePostFrameCallbacks,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#read:timeDilation",
       [],
-      _flaxBinding123,
+      _flaxBinding119,
       _read_timeDilation,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#function:debugAssertAllSchedulerVarsUnset",
-      [
-        FlaxParameter(
-          "reason",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding11,
+      [FlaxParameter("reason", _flaxBinding2, required: true)],
+      _flaxBinding9,
       _function_debugAssertAllSchedulerVarsUnset,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#function:defaultSchedulingStrategy",
       [
-        FlaxParameter(
-          "priority",
-          _flaxBinding4,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "scheduler",
-          _flaxBinding124,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("priority", _flaxBinding30, required: true),
+        FlaxParameter("scheduler", _flaxBinding120, required: true),
       ],
-      _flaxBinding11,
+      _flaxBinding9,
       _function_defaultSchedulingStrategy,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_scheduler#read:Priority.idle",
-      _flaxBinding7,
-      api.Priority.idle,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_scheduler#read:Priority.animation",
-      _flaxBinding7,
-      api.Priority.animation,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_scheduler#read:Priority.touch",
-      _flaxBinding7,
-      api.Priority.touch,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_scheduler#read:Priority.kMaxOffset",
-      _flaxBinding4,
-      api.Priority.kMaxOffset,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#function:debugPrintBeginFrameBanner%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding11,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding1,
+      [FlaxParameter("value", _flaxBinding9, required: true)],
+      _flaxBinding5,
       _write_debugPrintBeginFrameBanner,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#function:debugPrintEndFrameBanner%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding11,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding1,
+      [FlaxParameter("value", _flaxBinding9, required: true)],
+      _flaxBinding5,
       _write_debugPrintEndFrameBanner,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#function:debugPrintScheduleFrameStacks%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding11,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding1,
+      [FlaxParameter("value", _flaxBinding9, required: true)],
+      _flaxBinding5,
       _write_debugPrintScheduleFrameStacks,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#function:debugTracePostFrameCallbacks%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding11,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding1,
+      [FlaxParameter("value", _flaxBinding9, required: true)],
+      _flaxBinding5,
       _write_debugTracePostFrameCallbacks,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_scheduler#function:timeDilation%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding123,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding1,
+      [FlaxParameter("value", _flaxBinding119, required: true)],
+      _flaxBinding5,
       _write_timeDilation,
     ),
+  ],
+  constants: [
+    FlaxConstantGroup(_flaxBinding32, {
+      "flax.core/sdk_scheduler#read:Priority.idle": api.Priority.idle,
+      "flax.core/sdk_scheduler#read:Priority.animation": api.Priority.animation,
+      "flax.core/sdk_scheduler#read:Priority.touch": api.Priority.touch,
+    }),
+    FlaxConstantGroup(_flaxBinding30, {
+      "flax.core/sdk_scheduler#read:Priority.kMaxOffset":
+          api.Priority.kMaxOffset,
+    }),
   ],
   moduleId: "flax.core/sdk_scheduler",
   dependencyModules: ["flax.core/flutter", "flax.core/sdk_foundation"],
@@ -1405,10 +1336,27 @@ Function _flaxGeneric_TickerFuture_super_then<_Method0 extends Object?>() =>
       );
     };
 const _flaxDartShapes = <FlaxDartShapeTemplate>[
-  FlaxDartShapeTemplate("[\"callback\",[1,1,[],[]]]", _flaxShape0),
-  FlaxDartShapeTemplate("[\"callback\",[0,0,[],[]]]", _flaxShape1),
+  FlaxDartShapeTemplate("[\"callback\",[0,0,[],[]]]", _flaxShape0),
+  FlaxDartShapeTemplate("[\"callback\",[1,1,[],[]]]", _flaxShape1),
 ];
-Function _flaxShape0<_Shape0, _Shape1>() =>
+Function _flaxShape0<_Shape0>() => (FlaxDartTypes types, bool withinCallback) {
+  return types.define<_Shape0 Function()>(
+    FlaxTypeRef(
+      "callback",
+      nullable: false,
+      callback: FlaxCallbackBinding(
+        [],
+        types.ref<_Shape0>(withinCallback: true),
+        FlaxCallbackAdapters.wrap0<_Shape0>,
+        id: types.key<_Shape0 Function()>() + ":callback:<>()->parameter:",
+        invoke: FlaxCallbackAdapters.invoke0<_Shape0>,
+        matches: FlaxCallbackAdapters.matches0<_Shape0>,
+      ),
+    ),
+    withinCallback: withinCallback,
+  );
+};
+Function _flaxShape1<_Shape0, _Shape1>() =>
     (FlaxDartTypes types, bool withinCallback) {
       return types.define<_Shape1 Function(_Shape0 elapsed)>(
         FlaxTypeRef(
@@ -1435,23 +1383,6 @@ Function _flaxShape0<_Shape0, _Shape1>() =>
         withinCallback: withinCallback,
       );
     };
-Function _flaxShape1<_Shape0>() => (FlaxDartTypes types, bool withinCallback) {
-  return types.define<_Shape0 Function()>(
-    FlaxTypeRef(
-      "callback",
-      nullable: false,
-      callback: FlaxCallbackBinding(
-        [],
-        types.ref<_Shape0>(withinCallback: true),
-        FlaxCallbackAdapters.wrap0<_Shape0>,
-        id: types.key<_Shape0 Function()>() + ":callback:<>()->parameter:",
-        invoke: FlaxCallbackAdapters.invoke0<_Shape0>,
-        matches: FlaxCallbackAdapters.matches0<_Shape0>,
-      ),
-    ),
-    withinCallback: withinCallback,
-  );
-};
 Object _callback0(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
@@ -1691,17 +1622,170 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
-const _flaxBinding0 = <FlaxParameter>[];
-const _flaxBinding1 = FlaxTypeRef("void");
-const _flaxBinding2 = FlaxInstanceMethod(
+const _flaxBinding0 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_scheduler#type:TickerFuture",
+);
+const _flaxBinding1 = FlaxCallbackBinding.signature(
+  [],
   _flaxBinding0,
-  _flaxBinding1,
+  id: "callback:<>()->object:flax.core/sdk_scheduler#type:TickerFuture",
+);
+const _flaxBinding2 = FlaxTypeRef("String");
+const _flaxBinding3 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
+);
+const _flaxBinding4 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "name",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding3,
+  id: "callback:<>(p:r:name:String:)->object:flax.core/sdk_foundation#type:DiagnosticsNode",
+);
+const _flaxBinding5 = FlaxTypeRef("void");
+const _flaxBinding6 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding5,
+  id: "callback:<>()->void:",
+);
+const _flaxBinding7 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_scheduler#type:Ticker",
+);
+const _flaxBinding8 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "originalTicker",
+      _flaxBinding7,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding5,
+  id: "callback:<>(p:r:originalTicker:object:flax.core/sdk_scheduler#type:Ticker)->void:",
+);
+const _flaxBinding9 = FlaxTypeRef("bool");
+const _flaxBinding10 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding9,
+  id: "callback:<>()->bool:",
+);
+const _flaxBinding11 = FlaxTypeRef("String", nullable: true);
+const _flaxBinding12 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding11,
+  id: "callback:<>()->String?:",
+);
+const _flaxBinding13 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding9,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding5,
+  id: "callback:<>(p:r:value:bool:)->void:",
+);
+const _flaxBinding14 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding2,
+  id: "callback:<>()->String:",
+);
+const _flaxBinding15 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_scheduler#type:Ticker",
+  nullable: true,
+);
+const _flaxBinding16 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding15,
+  id: "callback:<>()->object?:flax.core/sdk_scheduler#type:Ticker",
+);
+const _flaxBinding17 = FlaxCallbackBinding(
+  [],
+  _flaxBinding5,
+  FlaxCallbackAdapters.wrapVoid0,
+  id: "callback:<>()->void:",
+  invoke: FlaxCallbackAdapters.invokeVoid0,
+  matches: FlaxCallbackAdapters.matchesVoid0,
+);
+const _flaxBinding18 = FlaxTypeRef("callback", callback: _flaxBinding17);
+const _flaxBinding19 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "callback",
+      _flaxBinding18,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding5,
+  id: "callback:<>(p:r:callback:callback:<>()->void:)->void:",
+);
+const _flaxBinding20 = FlaxTypeRef(
+  "stream",
+  id: "flax.core/flutter#type:Stream",
+  dartType: FlaxDartTypes.typeOf<api3.Stream<void>>,
+  item: _flaxBinding5,
+  stream: FlaxStreamBinding(
+    "stream:flax.core/flutter#type:Stream[void:]",
+    _stream0Matches,
+    _stream0Adapt,
+  ),
+);
+const _flaxBinding21 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding20,
+  id: "callback:<>()->stream:flax.core/flutter#type:Stream[void:]",
+);
+const _flaxBinding22 = FlaxTypeRef("any", nullable: true);
+const _flaxBinding23 = FlaxCallbackBinding(
+  [],
+  _flaxBinding22,
+  FlaxCallbackAdapters.wrap0<Object?>,
+  id: "callback:<>()->any?:",
+  invoke: FlaxCallbackAdapters.invoke0<Object?>,
+  matches: FlaxCallbackAdapters.matches0<Object?>,
+);
+const _flaxBinding24 = FlaxTypeRef("callback", callback: _flaxBinding23);
+const _flaxBinding25 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding5,
+  future: FlaxFutureBinding("void:", _future0Adapt),
+);
+const _flaxBinding26 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "action",
+      _flaxBinding24,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding25,
+  id: "callback:<>(p:r:action:callback:<>()->any?:)->future:[void:]",
+);
+const _flaxBinding27 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding25,
+  id: "callback:<>()->future:[void:]",
+);
+const _flaxBinding28 = FlaxInstanceMethod.signature(
+  _flaxBinding6,
   _PerformanceModeRequestHandle_dispose,
 );
-const _flaxBinding3 = FlaxObjectBinding(
+const _flaxBinding29 = FlaxObjectBinding(
   "flax.core/sdk_scheduler#type:PerformanceModeRequestHandle",
   [],
-  {"dispose": _flaxBinding2},
+  {"dispose": _flaxBinding28},
   constructors: {},
   create: _createPerformanceModeRequestHandle,
   matches: _isPerformanceModeRequestHandle,
@@ -1709,830 +1793,640 @@ const _flaxBinding3 = FlaxObjectBinding(
   supertypes: ["dart:core::Object"],
   disposeMethod: "dispose",
 );
-const _flaxBinding4 = FlaxTypeRef("int");
-const _flaxBinding5 = FlaxGetter("value", _flaxBinding4, _Priority_value);
-const _flaxBinding6 = <FlaxParameter>[
-  FlaxParameter("offset", _flaxBinding4, required: true),
-];
-const _flaxBinding7 = FlaxTypeRef(
+const _flaxBinding30 = FlaxTypeRef("int");
+const _flaxBinding31 = FlaxGetter("value", _flaxBinding30, _Priority_value);
+const _flaxBinding32 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_scheduler#type:Priority",
 );
-const _flaxBinding8 = FlaxInstanceMethod(
-  _flaxBinding6,
-  _flaxBinding7,
+const _flaxBinding33 = <FlaxParameter>[
+  FlaxParameter("offset", _flaxBinding30, required: true),
+];
+const _flaxBinding34 = FlaxInstanceMethod(
+  _flaxBinding33,
+  _flaxBinding32,
   _Priority_operatorAdd,
 );
-const _flaxBinding9 = FlaxInstanceMethod(
-  _flaxBinding6,
-  _flaxBinding7,
+const _flaxBinding35 = FlaxInstanceMethod(
+  _flaxBinding33,
+  _flaxBinding32,
   _Priority_operatorSubtract,
 );
-const _flaxBinding10 = FlaxObjectBinding(
+const _flaxBinding36 = FlaxObjectBinding(
   "flax.core/sdk_scheduler#type:Priority",
-  [_flaxBinding5],
-  {"operatorAdd": _flaxBinding8, "operatorSubtract": _flaxBinding9},
+  [_flaxBinding31],
+  {"operatorAdd": _flaxBinding34, "operatorSubtract": _flaxBinding35},
   constructors: {},
   create: _createPriority,
   matches: _isPriority,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding11 = FlaxTypeRef("bool");
-const _flaxBinding12 = FlaxGetter(
+const _flaxBinding37 = FlaxGetter(
   "forceFrames",
-  _flaxBinding11,
+  _flaxBinding9,
   _Ticker_forceFrames,
 );
-const _flaxBinding13 = FlaxGetter("muted", _flaxBinding11, _Ticker_muted);
-const _flaxBinding14 = FlaxGetter(
+const _flaxBinding38 = FlaxGetter("muted", _flaxBinding9, _Ticker_muted);
+const _flaxBinding39 = FlaxGetter(
   "isTicking",
-  _flaxBinding11,
+  _flaxBinding9,
   _Ticker_isTicking,
 );
-const _flaxBinding15 = FlaxGetter("isActive", _flaxBinding11, _Ticker_isActive);
-const _flaxBinding16 = FlaxGetter(
+const _flaxBinding40 = FlaxGetter("isActive", _flaxBinding9, _Ticker_isActive);
+const _flaxBinding41 = FlaxGetter(
   "scheduled",
-  _flaxBinding11,
+  _flaxBinding9,
   _Ticker_scheduled,
 );
-const _flaxBinding17 = FlaxGetter(
+const _flaxBinding42 = FlaxGetter(
   "shouldScheduleTick",
-  _flaxBinding11,
+  _flaxBinding9,
   _Ticker_shouldScheduleTick,
 );
-const _flaxBinding18 = FlaxTypeRef("String", nullable: true);
-const _flaxBinding19 = FlaxGetter(
+const _flaxBinding43 = FlaxGetter(
   "debugLabel",
-  _flaxBinding18,
+  _flaxBinding11,
   _Ticker_debugLabel,
 );
-const _flaxBinding20 = FlaxSetter(
+const _flaxBinding44 = FlaxSetter(
   "forceFrames",
-  _flaxBinding11,
+  _flaxBinding9,
   _Ticker_set_forceFrames,
 );
-const _flaxBinding21 = FlaxSetter("muted", _flaxBinding11, _Ticker_set_muted);
-const _flaxBinding22 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_scheduler#type:TickerFuture",
-);
-const _flaxBinding23 = FlaxInstanceMethod(
-  _flaxBinding0,
-  _flaxBinding22,
+const _flaxBinding45 = FlaxSetter("muted", _flaxBinding9, _Ticker_set_muted);
+const _flaxBinding46 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _Ticker_start,
 );
-const _flaxBinding24 = FlaxTypeRef("String");
-const _flaxBinding25 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding24, required: true),
-];
-const _flaxBinding26 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-);
-const _flaxBinding27 = FlaxInstanceMethod(
-  _flaxBinding25,
-  _flaxBinding26,
+const _flaxBinding47 = FlaxInstanceMethod.signature(
+  _flaxBinding4,
   _Ticker_describeForError,
 );
-const _flaxBinding28 = <FlaxParameter>[
+const _flaxBinding48 = <FlaxParameter>[
   FlaxParameter(
     "canceled",
-    _flaxBinding11,
+    _flaxBinding9,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding29 = FlaxInstanceMethod(
-  _flaxBinding28,
-  _flaxBinding1,
+const _flaxBinding49 = FlaxInstanceMethod(
+  _flaxBinding48,
+  _flaxBinding5,
   _Ticker_stop,
 );
-const _flaxBinding30 = <FlaxParameter>[
+const _flaxBinding50 = <FlaxParameter>[
   FlaxParameter(
     "rescheduling",
-    _flaxBinding11,
+    _flaxBinding9,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding31 = FlaxInstanceMethod(
-  _flaxBinding30,
-  _flaxBinding1,
+const _flaxBinding51 = FlaxInstanceMethod(
+  _flaxBinding50,
+  _flaxBinding5,
   _Ticker_scheduleTick,
 );
-const _flaxBinding32 = FlaxInstanceMethod(
-  _flaxBinding0,
-  _flaxBinding1,
+const _flaxBinding52 = FlaxInstanceMethod.signature(
+  _flaxBinding6,
   _Ticker_unscheduleTick,
 );
-const _flaxBinding33 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_scheduler#type:Ticker",
-);
-const _flaxBinding34 = <FlaxParameter>[
-  FlaxParameter("originalTicker", _flaxBinding33, required: true),
-];
-const _flaxBinding35 = FlaxInstanceMethod(
-  _flaxBinding34,
-  _flaxBinding1,
+const _flaxBinding53 = FlaxInstanceMethod.signature(
+  _flaxBinding8,
   _Ticker_absorbTicker,
 );
-const _flaxBinding36 = FlaxInstanceMethod(
-  _flaxBinding0,
-  _flaxBinding1,
+const _flaxBinding54 = FlaxInstanceMethod.signature(
+  _flaxBinding6,
   _Ticker_dispose,
 );
-const _flaxBinding37 = <FlaxParameter>[
+const _flaxBinding55 = <FlaxParameter>[
   FlaxParameter(
     "debugIncludeStack",
-    _flaxBinding11,
+    _flaxBinding9,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding38 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding24,
+const _flaxBinding56 = FlaxInstanceMethod(
+  _flaxBinding55,
+  _flaxBinding2,
   _Ticker_toString,
 );
-const _flaxBinding39 = FlaxTypeRef(
+const _flaxBinding57 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Duration",
 );
-const _flaxBinding40 = FlaxCallbackBinding(
+const _flaxBinding58 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "elapsed",
-      _flaxBinding39,
+      _flaxBinding57,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding1,
+  _flaxBinding5,
   FlaxCallbackAdapters.wrapVoid1<api2.Duration>,
   id: "callback:<>(p:r:elapsed:object:flax.core/flutter#type:Duration)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api2.Duration>,
   matches: FlaxCallbackAdapters.matchesVoid1<api2.Duration>,
 );
-const _flaxBinding41 = FlaxTypeRef("callback", callback: _flaxBinding40);
-const _flaxBinding42 = <FlaxParameter>[
-  FlaxParameter("_onTick", _flaxBinding41, required: true),
-  FlaxParameter("debugLabel", _flaxBinding18, required: false),
+const _flaxBinding59 = FlaxTypeRef("callback", callback: _flaxBinding58);
+const _flaxBinding60 = <FlaxParameter>[
+  FlaxParameter("_onTick", _flaxBinding59, required: true),
+  FlaxParameter("debugLabel", _flaxBinding11, required: false),
 ];
-const _flaxBinding43 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding22,
-  id: "callback:<>()->object:flax.core/sdk_scheduler#type:TickerFuture",
-);
-const _flaxBinding44 = FlaxProxyMember(
+const _flaxBinding61 = FlaxProxyMember(
   "start",
   0,
-  _flaxBinding43,
-  hasSuper: true,
-);
-const _flaxBinding45 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "name",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding26,
-  id: "callback:<>(p:r:name:String:)->object:flax.core/sdk_foundation#type:DiagnosticsNode",
-);
-const _flaxBinding46 = FlaxProxyMember(
-  "describeForError",
-  0,
-  _flaxBinding45,
-  hasSuper: true,
-);
-const _flaxBinding47 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "canceled",
-      _flaxBinding11,
-      required: false,
-      positional: false,
-    ),
-  ],
   _flaxBinding1,
-  id: "callback:<>(n:o:canceled:bool:)->void:",
-);
-const _flaxBinding48 = FlaxProxyMember(
-  "stop",
-  0,
-  _flaxBinding47,
-  hasSuper: true,
-);
-const _flaxBinding49 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "rescheduling",
-      _flaxBinding11,
-      required: false,
-      positional: false,
-    ),
-  ],
-  _flaxBinding1,
-  id: "callback:<>(n:o:rescheduling:bool:)->void:",
-);
-const _flaxBinding50 = FlaxProxyMember(
-  "scheduleTick",
-  0,
-  _flaxBinding49,
-  hasSuper: true,
-);
-const _flaxBinding51 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1,
-  id: "callback:<>()->void:",
-);
-const _flaxBinding52 = FlaxProxyMember(
-  "unscheduleTick",
-  0,
-  _flaxBinding51,
-  hasSuper: true,
-);
-const _flaxBinding53 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "originalTicker",
-      _flaxBinding33,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding1,
-  id: "callback:<>(p:r:originalTicker:object:flax.core/sdk_scheduler#type:Ticker)->void:",
-);
-const _flaxBinding54 = FlaxProxyMember(
-  "absorbTicker",
-  0,
-  _flaxBinding53,
-  hasSuper: true,
-);
-const _flaxBinding55 = FlaxProxyMember(
-  "dispose",
-  0,
-  _flaxBinding51,
-  hasSuper: true,
-);
-const _flaxBinding56 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "debugIncludeStack",
-      _flaxBinding11,
-      required: false,
-      positional: false,
-    ),
-  ],
-  _flaxBinding24,
-  id: "callback:<>(n:o:debugIncludeStack:bool:)->String:",
-);
-const _flaxBinding57 = FlaxProxyMember(
-  "toString",
-  0,
-  _flaxBinding56,
-  hasSuper: true,
-);
-const _flaxBinding58 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding11,
-  id: "callback:<>()->bool:",
-);
-const _flaxBinding59 = FlaxProxyMember(
-  "forceFrames",
-  1,
-  _flaxBinding58,
-  hasSuper: true,
-);
-const _flaxBinding60 = FlaxProxyMember(
-  "muted",
-  1,
-  _flaxBinding58,
-  hasSuper: true,
-);
-const _flaxBinding61 = FlaxProxyMember(
-  "isTicking",
-  1,
-  _flaxBinding58,
   hasSuper: true,
 );
 const _flaxBinding62 = FlaxProxyMember(
-  "isActive",
-  1,
-  _flaxBinding58,
+  "describeForError",
+  0,
+  _flaxBinding4,
   hasSuper: true,
 );
-const _flaxBinding63 = FlaxProxyMember(
-  "scheduled",
-  1,
-  _flaxBinding58,
-  hasSuper: true,
+const _flaxBinding63 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "canceled",
+      _flaxBinding9,
+      required: false,
+      positional: false,
+    ),
+  ],
+  _flaxBinding5,
+  id: "callback:<>(n:o:canceled:bool:)->void:",
 );
 const _flaxBinding64 = FlaxProxyMember(
-  "shouldScheduleTick",
-  1,
-  _flaxBinding58,
+  "stop",
+  0,
+  _flaxBinding63,
   hasSuper: true,
 );
 const _flaxBinding65 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding18,
-  id: "callback:<>()->String?:",
+  [
+    FlaxCallbackParameter(
+      "rescheduling",
+      _flaxBinding9,
+      required: false,
+      positional: false,
+    ),
+  ],
+  _flaxBinding5,
+  id: "callback:<>(n:o:rescheduling:bool:)->void:",
 );
 const _flaxBinding66 = FlaxProxyMember(
-  "debugLabel",
-  1,
+  "scheduleTick",
+  0,
   _flaxBinding65,
   hasSuper: true,
 );
-const _flaxBinding67 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding11,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding1,
-  id: "callback:<>(p:r:value:bool:)->void:",
+const _flaxBinding67 = FlaxProxyMember(
+  "unscheduleTick",
+  0,
+  _flaxBinding6,
+  hasSuper: true,
 );
 const _flaxBinding68 = FlaxProxyMember(
-  "forceFrames",
-  2,
-  _flaxBinding67,
+  "absorbTicker",
+  0,
+  _flaxBinding8,
   hasSuper: true,
 );
 const _flaxBinding69 = FlaxProxyMember(
-  "muted",
-  2,
-  _flaxBinding67,
+  "dispose",
+  0,
+  _flaxBinding6,
   hasSuper: true,
 );
-const _flaxBinding70 = FlaxObjectBinding(
+const _flaxBinding70 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "debugIncludeStack",
+      _flaxBinding9,
+      required: false,
+      positional: false,
+    ),
+  ],
+  _flaxBinding2,
+  id: "callback:<>(n:o:debugIncludeStack:bool:)->String:",
+);
+const _flaxBinding71 = FlaxProxyMember(
+  "toString",
+  0,
+  _flaxBinding70,
+  hasSuper: true,
+);
+const _flaxBinding72 = FlaxProxyMember(
+  "forceFrames",
+  1,
+  _flaxBinding10,
+  hasSuper: true,
+);
+const _flaxBinding73 = FlaxProxyMember(
+  "muted",
+  1,
+  _flaxBinding10,
+  hasSuper: true,
+);
+const _flaxBinding74 = FlaxProxyMember(
+  "isTicking",
+  1,
+  _flaxBinding10,
+  hasSuper: true,
+);
+const _flaxBinding75 = FlaxProxyMember(
+  "isActive",
+  1,
+  _flaxBinding10,
+  hasSuper: true,
+);
+const _flaxBinding76 = FlaxProxyMember(
+  "scheduled",
+  1,
+  _flaxBinding10,
+  hasSuper: true,
+);
+const _flaxBinding77 = FlaxProxyMember(
+  "shouldScheduleTick",
+  1,
+  _flaxBinding10,
+  hasSuper: true,
+);
+const _flaxBinding78 = FlaxProxyMember(
+  "debugLabel",
+  1,
+  _flaxBinding12,
+  hasSuper: true,
+);
+const _flaxBinding79 = FlaxProxyMember(
+  "forceFrames",
+  2,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding80 = FlaxProxyMember(
+  "muted",
+  2,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding81 = FlaxObjectBinding(
   "flax.core/sdk_scheduler#type:Ticker",
   [
-    _flaxBinding12,
-    _flaxBinding13,
-    _flaxBinding14,
-    _flaxBinding15,
-    _flaxBinding16,
-    _flaxBinding17,
-    _flaxBinding19,
+    _flaxBinding37,
+    _flaxBinding38,
+    _flaxBinding39,
+    _flaxBinding40,
+    _flaxBinding41,
+    _flaxBinding42,
+    _flaxBinding43,
   ],
   {
-    "start": _flaxBinding23,
-    "describeForError": _flaxBinding27,
-    "stop": _flaxBinding29,
-    "scheduleTick": _flaxBinding31,
-    "unscheduleTick": _flaxBinding32,
-    "absorbTicker": _flaxBinding35,
-    "dispose": _flaxBinding36,
-    "toString": _flaxBinding38,
-    "@super:start": FlaxInstanceMethod(
-      _flaxBinding0,
-      _flaxBinding22,
+    "start": _flaxBinding46,
+    "describeForError": _flaxBinding47,
+    "stop": _flaxBinding49,
+    "scheduleTick": _flaxBinding51,
+    "unscheduleTick": _flaxBinding52,
+    "absorbTicker": _flaxBinding53,
+    "dispose": _flaxBinding54,
+    "toString": _flaxBinding56,
+    "@super:start": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _Ticker_super_start,
     ),
-    "@super:describeForError": FlaxInstanceMethod(
-      _flaxBinding25,
-      _flaxBinding26,
+    "@super:describeForError": FlaxInstanceMethod.signature(
+      _flaxBinding4,
       _Ticker_super_describeForError,
     ),
     "@super:stop": FlaxInstanceMethod(
-      _flaxBinding28,
-      _flaxBinding1,
+      _flaxBinding48,
+      _flaxBinding5,
       _Ticker_super_stop,
     ),
     "@super:scheduleTick": FlaxInstanceMethod(
-      _flaxBinding30,
-      _flaxBinding1,
+      _flaxBinding50,
+      _flaxBinding5,
       _Ticker_super_scheduleTick,
     ),
-    "@super:unscheduleTick": FlaxInstanceMethod(
-      _flaxBinding0,
-      _flaxBinding1,
+    "@super:unscheduleTick": FlaxInstanceMethod.signature(
+      _flaxBinding6,
       _Ticker_super_unscheduleTick,
     ),
-    "@super:absorbTicker": FlaxInstanceMethod(
-      _flaxBinding34,
-      _flaxBinding1,
+    "@super:absorbTicker": FlaxInstanceMethod.signature(
+      _flaxBinding8,
       _Ticker_super_absorbTicker,
     ),
-    "@super:dispose": FlaxInstanceMethod(
-      _flaxBinding0,
-      _flaxBinding1,
+    "@super:dispose": FlaxInstanceMethod.signature(
+      _flaxBinding6,
       _Ticker_super_dispose,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding24,
+      _flaxBinding55,
+      _flaxBinding2,
       _Ticker_super_toString,
     ),
-    "@super:get:forceFrames": FlaxInstanceMethod(
-      [],
-      _flaxBinding11,
+    "@super:get:forceFrames": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _Ticker_super_get_forceFrames,
     ),
-    "@super:get:muted": FlaxInstanceMethod(
-      [],
-      _flaxBinding11,
+    "@super:get:muted": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _Ticker_super_get_muted,
     ),
-    "@super:get:isTicking": FlaxInstanceMethod(
-      [],
-      _flaxBinding11,
+    "@super:get:isTicking": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _Ticker_super_get_isTicking,
     ),
-    "@super:get:isActive": FlaxInstanceMethod(
-      [],
-      _flaxBinding11,
+    "@super:get:isActive": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _Ticker_super_get_isActive,
     ),
-    "@super:get:scheduled": FlaxInstanceMethod(
-      [],
-      _flaxBinding11,
+    "@super:get:scheduled": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _Ticker_super_get_scheduled,
     ),
-    "@super:get:shouldScheduleTick": FlaxInstanceMethod(
-      [],
-      _flaxBinding11,
+    "@super:get:shouldScheduleTick": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _Ticker_super_get_shouldScheduleTick,
     ),
-    "@super:get:debugLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding18,
+    "@super:get:debugLabel": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _Ticker_super_get_debugLabel,
     ),
     "@super:set:forceFrames": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding11, required: true)],
+      [FlaxParameter("value", _flaxBinding9, required: true)],
       const FlaxTypeRef("void"),
       _Ticker_super_set_forceFrames,
     ),
     "@super:set:muted": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding11, required: true)],
+      [FlaxParameter("value", _flaxBinding9, required: true)],
       const FlaxTypeRef("void"),
       _Ticker_super_set_muted,
     ),
   },
-  constructors: {"@implementation": _flaxBinding42},
+  constructors: {"@implementation": _flaxBinding60},
   create: _createTicker,
   matches: _isTicker,
-  setters: [_flaxBinding20, _flaxBinding21],
+  setters: [_flaxBinding44, _flaxBinding45],
   supertypes: ["dart:core::Object"],
   disposeMethod: "dispose",
   proxy: FlaxProxyBinding([
-    _flaxBinding44,
-    _flaxBinding46,
-    _flaxBinding48,
-    _flaxBinding50,
-    _flaxBinding52,
-    _flaxBinding54,
-    _flaxBinding55,
-    _flaxBinding57,
-    _flaxBinding59,
-    _flaxBinding60,
     _flaxBinding61,
     _flaxBinding62,
-    _flaxBinding63,
     _flaxBinding64,
     _flaxBinding66,
+    _flaxBinding67,
     _flaxBinding68,
     _flaxBinding69,
+    _flaxBinding71,
+    _flaxBinding72,
+    _flaxBinding73,
+    _flaxBinding74,
+    _flaxBinding75,
+    _flaxBinding76,
+    _flaxBinding77,
+    _flaxBinding78,
+    _flaxBinding79,
+    _flaxBinding80,
   ]),
 );
-const _flaxBinding71 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_scheduler#type:Ticker",
-  nullable: true,
-);
-const _flaxBinding72 = FlaxGetter(
+const _flaxBinding82 = FlaxGetter(
   "ticker",
-  _flaxBinding71,
+  _flaxBinding15,
   _TickerCanceled_ticker,
 );
-const _flaxBinding73 = FlaxInstanceMethod(
-  _flaxBinding0,
-  _flaxBinding24,
+const _flaxBinding83 = FlaxInstanceMethod.signature(
+  _flaxBinding14,
   _TickerCanceled_toString,
 );
-const _flaxBinding74 = <FlaxParameter>[
-  FlaxParameter("ticker", _flaxBinding71, required: false),
+const _flaxBinding84 = <FlaxParameter>[
+  FlaxParameter("ticker", _flaxBinding15, required: false),
 ];
-const _flaxBinding75 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding24,
-  id: "callback:<>()->String:",
-);
-const _flaxBinding76 = FlaxProxyMember(
+const _flaxBinding85 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding75,
+  _flaxBinding14,
   hasSuper: true,
 );
-const _flaxBinding77 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding71,
-  id: "callback:<>()->object?:flax.core/sdk_scheduler#type:Ticker",
-);
-const _flaxBinding78 = FlaxProxyMember(
+const _flaxBinding86 = FlaxProxyMember(
   "ticker",
   1,
-  _flaxBinding77,
+  _flaxBinding16,
   hasSuper: true,
 );
-const _flaxBinding79 = FlaxObjectBinding(
+const _flaxBinding87 = FlaxObjectBinding(
   "flax.core/sdk_scheduler#type:TickerCanceled",
-  [_flaxBinding72],
+  [_flaxBinding82],
   {
-    "toString": _flaxBinding73,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding0,
-      _flaxBinding24,
+    "toString": _flaxBinding83,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding14,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:ticker": FlaxInstanceMethod(
-      [],
-      _flaxBinding71,
+    "@super:get:ticker": FlaxInstanceMethod.signature(
+      _flaxBinding16,
       _TickerCanceled_super_get_ticker,
     ),
   },
-  constructors: {"@implementation": _flaxBinding74},
+  constructors: {"@implementation": _flaxBinding84},
   create: _createTickerCanceled,
   matches: _isTickerCanceled,
   setters: [],
   supertypes: ["dart:core::Object", "dart:core::Exception"],
-  proxy: FlaxProxyBinding([_flaxBinding76, _flaxBinding78]),
+  proxy: FlaxProxyBinding([_flaxBinding85, _flaxBinding86]),
 );
-const _flaxBinding80 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding1,
-  future: FlaxFutureBinding("void:", _future0Adapt),
-);
-const _flaxBinding81 = FlaxGetter(
+const _flaxBinding88 = FlaxGetter(
   "orCancel",
-  _flaxBinding80,
+  _flaxBinding25,
   _TickerFuture_orCancel,
 );
-const _flaxBinding82 = FlaxCallbackBinding(
-  [],
-  _flaxBinding1,
-  FlaxCallbackAdapters.wrapVoid0,
-  id: "callback:<>()->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid0,
-  matches: FlaxCallbackAdapters.matchesVoid0,
-);
-const _flaxBinding83 = FlaxTypeRef("callback", callback: _flaxBinding82);
-const _flaxBinding84 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding83, required: true),
-];
-const _flaxBinding85 = FlaxInstanceMethod(
-  _flaxBinding84,
-  _flaxBinding1,
+const _flaxBinding89 = FlaxInstanceMethod.signature(
+  _flaxBinding19,
   _TickerFuture_whenCompleteOrCancel,
 );
-const _flaxBinding86 = FlaxTypeRef(
-  "stream",
-  id: "flax.core/flutter#type:Stream",
-  dartType: FlaxDartTypes.typeOf<api3.Stream<void>>,
-  item: _flaxBinding1,
-  stream: FlaxStreamBinding(
-    "stream:flax.core/flutter#type:Stream[void:]",
-    _stream0Matches,
-    _stream0Adapt,
-  ),
-);
-const _flaxBinding87 = FlaxInstanceMethod(
-  _flaxBinding0,
-  _flaxBinding86,
+const _flaxBinding90 = FlaxInstanceMethod.signature(
+  _flaxBinding21,
   _TickerFuture_asStream,
 );
-const _flaxBinding88 = FlaxTypeRef("function");
-const _flaxBinding89 = FlaxTypeRef("any");
-const _flaxBinding90 = FlaxCallbackBinding(
+const _flaxBinding91 = FlaxTypeRef("function");
+const _flaxBinding92 = FlaxTypeRef("any");
+const _flaxBinding93 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "p0",
-      _flaxBinding89,
+      _flaxBinding92,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding11,
+  _flaxBinding9,
   FlaxCallbackAdapters.wrap1<Object, bool>,
   id: "callback:<>(p:r:p0:any:)->bool:",
   invoke: FlaxCallbackAdapters.invoke1<Object, bool>,
   matches: FlaxCallbackAdapters.matches1<Object, bool>,
 );
-const _flaxBinding91 = FlaxTypeRef(
+const _flaxBinding94 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding90,
+  callback: _flaxBinding93,
 );
-const _flaxBinding92 = <FlaxParameter>[
-  FlaxParameter("onError", _flaxBinding88, required: true),
-  FlaxParameter("test", _flaxBinding91, required: false),
+const _flaxBinding95 = <FlaxParameter>[
+  FlaxParameter("onError", _flaxBinding91, required: true),
+  FlaxParameter("test", _flaxBinding94, required: false),
 ];
-const _flaxBinding93 = FlaxInstanceMethod(
-  _flaxBinding92,
-  _flaxBinding80,
+const _flaxBinding96 = FlaxInstanceMethod(
+  _flaxBinding95,
+  _flaxBinding25,
   _TickerFuture_catchError,
 );
-const _flaxBinding94 = FlaxTypeRef("any", nullable: true);
-const _flaxBinding95 = FlaxTypeRef(
-  "futureOr",
-  item: _flaxBinding94,
-  future: FlaxFutureBinding("any?:", _future1Adapt),
-);
-const _flaxBinding96 = FlaxTypeRef("function", nullable: true);
 const _flaxBinding97 = FlaxTypeRef(
   "futureOr",
-  item: _flaxBinding1,
+  item: _flaxBinding22,
+  future: FlaxFutureBinding("any?:", _future1Adapt),
+);
+const _flaxBinding98 = FlaxTypeRef("function", nullable: true);
+const _flaxBinding99 = FlaxTypeRef(
+  "futureOr",
+  item: _flaxBinding5,
   future: FlaxFutureBinding("void:", _future0Adapt),
 );
-const _flaxBinding98 = FlaxCallbackBinding(
+const _flaxBinding100 = FlaxCallbackBinding(
   [],
-  _flaxBinding97,
+  _flaxBinding99,
   _callback1,
   id: "callback:<>()->futureOr:[void:]",
   invoke: _callback1Invoke,
   matches: _callback1Matches,
 );
-const _flaxBinding99 = FlaxTypeRef(
+const _flaxBinding101 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding98,
+  callback: _flaxBinding100,
 );
-const _flaxBinding100 = <FlaxParameter>[
-  FlaxParameter("timeLimit", _flaxBinding39, required: true),
-  FlaxParameter("onTimeout", _flaxBinding99, required: false),
+const _flaxBinding102 = <FlaxParameter>[
+  FlaxParameter("timeLimit", _flaxBinding57, required: true),
+  FlaxParameter("onTimeout", _flaxBinding101, required: false),
 ];
-const _flaxBinding101 = FlaxInstanceMethod(
-  _flaxBinding100,
-  _flaxBinding80,
+const _flaxBinding103 = FlaxInstanceMethod(
+  _flaxBinding102,
+  _flaxBinding25,
   _TickerFuture_timeout,
 );
-const _flaxBinding102 = FlaxCallbackBinding(
-  [],
-  _flaxBinding94,
-  FlaxCallbackAdapters.wrap0<Object?>,
-  id: "callback:<>()->any?:",
-  invoke: FlaxCallbackAdapters.invoke0<Object?>,
-  matches: FlaxCallbackAdapters.matches0<Object?>,
-);
-const _flaxBinding103 = FlaxTypeRef("callback", callback: _flaxBinding102);
-const _flaxBinding104 = <FlaxParameter>[
-  FlaxParameter("action", _flaxBinding103, required: true),
-];
-const _flaxBinding105 = FlaxInstanceMethod(
-  _flaxBinding104,
-  _flaxBinding80,
+const _flaxBinding104 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TickerFuture_whenComplete,
 );
-const _flaxBinding106 = FlaxInstanceMethod(
-  _flaxBinding0,
-  _flaxBinding24,
+const _flaxBinding105 = FlaxInstanceMethod.signature(
+  _flaxBinding14,
   _TickerFuture_toString,
 );
-const _flaxBinding107 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "callback",
-      _flaxBinding83,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding1,
-  id: "callback:<>(p:r:callback:callback:<>()->void:)->void:",
-);
-const _flaxBinding108 = FlaxProxyMember(
+const _flaxBinding106 = <FlaxParameter>[];
+const _flaxBinding107 = FlaxProxyMember(
   "whenCompleteOrCancel",
   0,
-  _flaxBinding107,
+  _flaxBinding19,
+  hasSuper: true,
+);
+const _flaxBinding108 = FlaxProxyMember(
+  "asStream",
+  0,
+  _flaxBinding21,
   hasSuper: true,
 );
 const _flaxBinding109 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding86,
-  id: "callback:<>()->stream:flax.core/flutter#type:Stream[void:]",
-);
-const _flaxBinding110 = FlaxProxyMember(
-  "asStream",
-  0,
-  _flaxBinding109,
-  hasSuper: true,
-);
-const _flaxBinding111 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "onError",
-      _flaxBinding88,
+      _flaxBinding91,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "test",
-      _flaxBinding91,
+      _flaxBinding94,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding80,
+  _flaxBinding25,
   id: "callback:<>(p:r:onError:function:,n:o:test:callback?:<>(p:r:p0:any:)->bool:)->future:[void:]",
 );
-const _flaxBinding112 = FlaxProxyMember(
+const _flaxBinding110 = FlaxProxyMember(
   "catchError",
   0,
-  _flaxBinding111,
+  _flaxBinding109,
   hasSuper: true,
 );
-const _flaxBinding113 = FlaxCallbackBinding(
+const _flaxBinding111 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
-      _flaxBinding1,
+      _flaxBinding5,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding95,
+  _flaxBinding97,
   _callback2,
   id: "callback:<>(p:r:value:void:)->futureOr:[any?:]",
   invoke: _callback2Invoke,
   matches: _callback2Matches,
 );
-const _flaxBinding114 = FlaxTypeRef("callback", callback: _flaxBinding113);
-const _flaxBinding115 = FlaxTypeRef(
+const _flaxBinding112 = FlaxTypeRef("callback", callback: _flaxBinding111);
+const _flaxBinding113 = FlaxTypeRef(
   "future",
-  item: _flaxBinding94,
+  item: _flaxBinding22,
   future: FlaxFutureBinding("any?:", _future1Adapt),
 );
-const _flaxBinding116 = FlaxCallbackBinding.signature(
+const _flaxBinding114 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "timeLimit",
-      _flaxBinding39,
+      _flaxBinding57,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "onTimeout",
-      _flaxBinding99,
+      _flaxBinding101,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding80,
+  _flaxBinding25,
   id: "callback:<>(p:r:timeLimit:object:flax.core/flutter#type:Duration,n:o:onTimeout:callback?:<>()->futureOr:[void:])->future:[void:]",
 );
-const _flaxBinding117 = FlaxProxyMember(
+const _flaxBinding115 = FlaxProxyMember(
   "timeout",
   0,
-  _flaxBinding116,
+  _flaxBinding114,
   hasSuper: true,
 );
-const _flaxBinding118 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "action",
-      _flaxBinding103,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding80,
-  id: "callback:<>(p:r:action:callback:<>()->any?:)->future:[void:]",
-);
-const _flaxBinding119 = FlaxProxyMember(
+const _flaxBinding116 = FlaxProxyMember(
   "whenComplete",
   0,
-  _flaxBinding118,
+  _flaxBinding26,
   hasSuper: true,
 );
-const _flaxBinding120 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding80,
-  id: "callback:<>()->future:[void:]",
-);
-const _flaxBinding121 = FlaxProxyMember(
+const _flaxBinding117 = FlaxProxyMember(
   "orCancel",
   1,
-  _flaxBinding120,
+  _flaxBinding27,
   hasSuper: true,
 );
-const _flaxBinding122 = FlaxObjectBinding(
+const _flaxBinding118 = FlaxObjectBinding(
   "flax.core/sdk_scheduler#type:TickerFuture",
-  [_flaxBinding81],
+  [_flaxBinding88],
   {
-    "whenCompleteOrCancel": _flaxBinding85,
-    "asStream": _flaxBinding87,
-    "catchError": _flaxBinding93,
+    "whenCompleteOrCancel": _flaxBinding89,
+    "asStream": _flaxBinding90,
+    "catchError": _flaxBinding96,
     "then": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -2543,12 +2437,12 @@ const _flaxBinding122 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding1,
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding95,
+              _flaxBinding97,
               _callback0,
               id: "callback:<>(p:r:value:void:)->futureOr:[any?:]",
               invoke: _callback0Invoke,
@@ -2557,33 +2451,31 @@ const _flaxBinding122 = FlaxObjectBinding(
           ),
           required: true,
         ),
-        FlaxParameter("onError", _flaxBinding96, required: false),
+        FlaxParameter("onError", _flaxBinding98, required: false),
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding94,
+        item: _flaxBinding22,
         future: FlaxFutureBinding("any?:", _future1Adapt),
       ),
       _TickerFuture_then,
       genericFactory: _flaxGeneric_TickerFuture_then,
       ownerTypes: [],
     ),
-    "timeout": _flaxBinding101,
-    "whenComplete": _flaxBinding105,
-    "toString": _flaxBinding106,
-    "@super:whenCompleteOrCancel": FlaxInstanceMethod(
-      _flaxBinding84,
-      _flaxBinding1,
+    "timeout": _flaxBinding103,
+    "whenComplete": _flaxBinding104,
+    "toString": _flaxBinding105,
+    "@super:whenCompleteOrCancel": FlaxInstanceMethod.signature(
+      _flaxBinding19,
       _TickerFuture_super_whenCompleteOrCancel,
     ),
-    "@super:asStream": FlaxInstanceMethod(
-      _flaxBinding0,
-      _flaxBinding86,
+    "@super:asStream": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _TickerFuture_super_asStream,
     ),
     "@super:catchError": FlaxInstanceMethod(
-      _flaxBinding92,
-      _flaxBinding80,
+      _flaxBinding95,
+      _flaxBinding25,
       _TickerFuture_super_catchError,
     ),
     "@super:then": FlaxInstanceMethod(
@@ -2596,12 +2488,12 @@ const _flaxBinding122 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding1,
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding95,
+              _flaxBinding97,
               _callback0,
               id: "callback:<>(p:r:value:void:)->futureOr:[any?:]",
               invoke: _callback0Invoke,
@@ -2610,11 +2502,11 @@ const _flaxBinding122 = FlaxObjectBinding(
           ),
           required: true,
         ),
-        FlaxParameter("onError", _flaxBinding96, required: false),
+        FlaxParameter("onError", _flaxBinding98, required: false),
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding94,
+        item: _flaxBinding22,
         future: FlaxFutureBinding("any?:", _future1Adapt),
       ),
       _TickerFuture_super_then,
@@ -2622,38 +2514,35 @@ const _flaxBinding122 = FlaxObjectBinding(
       ownerTypes: [],
     ),
     "@super:timeout": FlaxInstanceMethod(
-      _flaxBinding100,
-      _flaxBinding80,
+      _flaxBinding102,
+      _flaxBinding25,
       _TickerFuture_super_timeout,
     ),
-    "@super:whenComplete": FlaxInstanceMethod(
-      _flaxBinding104,
-      _flaxBinding80,
+    "@super:whenComplete": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _TickerFuture_super_whenComplete,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding0,
-      _flaxBinding24,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding14,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:orCancel": FlaxInstanceMethod(
-      [],
-      _flaxBinding80,
+    "@super:get:orCancel": FlaxInstanceMethod.signature(
+      _flaxBinding27,
       _TickerFuture_super_get_orCancel,
     ),
   },
   constructors: {
-    "@implementation": _flaxBinding0,
-    "@implementation:complete": _flaxBinding0,
+    "@implementation": _flaxBinding106,
+    "@implementation:complete": _flaxBinding106,
   },
   create: _createTickerFuture,
   matches: _isTickerFuture,
   setters: [],
   supertypes: ["dart:core::Object", "dart:async::Future"],
   proxy: FlaxProxyBinding([
+    _flaxBinding107,
     _flaxBinding108,
     _flaxBinding110,
-    _flaxBinding112,
     FlaxProxyMember(
       "then",
       0,
@@ -2661,18 +2550,18 @@ const _flaxBinding122 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "onValue",
-            _flaxBinding114,
+            _flaxBinding112,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "onError",
-            _flaxBinding96,
+            _flaxBinding98,
             required: false,
             positional: false,
           ),
         ],
-        _flaxBinding115,
+        _flaxBinding113,
         _callback3,
         id: "callback:<R:any?:=any?:>(p:r:onValue:callback:<>(p:r:value:void:)->futureOr:[any?:],n:o:onError:function?:)->future:[any?:]",
         invoke: _callback3Invoke,
@@ -2682,14 +2571,14 @@ const _flaxBinding122 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
+    _flaxBinding115,
+    _flaxBinding116,
+    _flaxBinding85,
     _flaxBinding117,
-    _flaxBinding119,
-    _flaxBinding76,
-    _flaxBinding121,
   ]),
 );
-const _flaxBinding123 = FlaxTypeRef("double");
-const _flaxBinding124 = FlaxTypeRef(
+const _flaxBinding119 = FlaxTypeRef("double");
+const _flaxBinding120 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:SchedulerBinding",
 );

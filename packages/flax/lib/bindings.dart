@@ -15,6 +15,7 @@ import 'src/generated/flutter_bindings.g.dart';
 import 'src/generated/sdk_animation_bindings.g.dart';
 import 'src/generated/sdk_cupertino_bindings.g.dart';
 import 'src/generated/sdk_dart_ui_bindings.g.dart';
+import 'src/generated/sdk_dependencies_bindings.g.dart';
 import 'src/generated/sdk_foundation_bindings.g.dart';
 import 'src/generated/sdk_gestures_bindings.g.dart';
 import 'src/generated/sdk_material_bindings.g.dart';

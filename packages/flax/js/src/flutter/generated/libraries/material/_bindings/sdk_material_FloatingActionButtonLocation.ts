@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: FloatingActionButtonLocation;
 
 }
 defineObject("flax.core/sdk_material#type:FloatingActionButtonLocation", [], [], _flaxBindingMethods("flax.core/sdk_material#type:FloatingActionButtonLocation", "object", {"getOffset":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), []);
-const _FloatingActionButtonLocationProxy = {type: "flax.core/sdk_material#type:FloatingActionButtonLocation", parameters: [], constructors: {"":[]}, methods: {"getOffset":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
+const _FloatingActionButtonLocationProxy = {type: "flax.core/sdk_material#type:FloatingActionButtonLocation", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"getOffset":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
 export interface FloatingActionButtonLocation {
 readonly [_flaxDartTypeValue]: FloatingActionButtonLocation;
 

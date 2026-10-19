@@ -15,18 +15,18 @@ import '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
+import type * as upstream9 from '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
+import '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
+import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream15 from '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
-import '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
 export interface FlutterLogoDecoration extends Omit<upstream0.Decoration, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Decoration>, Readonly<{
@@ -64,20 +64,20 @@ export interface FlutterLogoDecoration {
     }>, options?: {
         textDirection?: upstream8.TextDirection | null | undefined;
     }): boolean;
+    createBoxPainter(onChanged?: (() => void) | null): upstream9.BoxPainter;
     getClipPath(rect: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
-    }>, textDirection: upstream8.TextDirection): upstream9.Path;
+    }>, textDirection: upstream8.TextDirection): upstream10.Path;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream12.DiagnosticsTreeStyle | null | undefined;
-    }): upstream11.DiagnosticsNode;
+        style?: upstream13.DiagnosticsTreeStyle | null | undefined;
+    }): upstream12.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
     toString(options?: {
-        minLevel?: upstream14.DiagnosticLevel | undefined;
+        minLevel?: upstream15.DiagnosticLevel | undefined;
     }): string;
-    createBoxPainter(onChanged?: (() => void) | null): upstream15.BoxPainter;
     get textColor(): upstream2.Color;
     get style(): upstream3.FlutterLogoStyle;
     get margin(): upstream4.EdgeInsets;
@@ -128,5 +128,5 @@ export declare namespace FlutterLogoDecoration {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null, t: number): FlutterLogoDecoration | null;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "isComplex" | "textColor" | "style" | "margin" | "toStringShort" | "debugAssertIsValid" | "lerpFrom" | "lerpTo" | "hitTest" | "getClipPath" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "createBoxPainter" | "__flaxBound:package:flutter/src/painting/flutter_logo.dart::FlutterLogoDecoration" | "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "isComplex" | "textColor" | "style" | "margin" | "toStringShort" | "debugAssertIsValid" | "lerpFrom" | "lerpTo" | "hitTest" | "createBoxPainter" | "getClipPath" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/painting/flutter_logo.dart::FlutterLogoDecoration" | "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -17,7 +17,7 @@ readonly [_flaxDartTypeValue]: ShortcutActivator;
 
 }
 defineObject("flax.core/sdk_widgets#type:ShortcutActivator", ["triggers"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ShortcutActivator", "object", {"accepts":_flaxMemberParameters0,"debugDescribeKeys":_flaxMemberParameters1}, {}), []);
-const _ShortcutActivatorProxy = {type: "flax.core/sdk_widgets#type:ShortcutActivator", parameters: [], constructors: {"":[]}, methods: {"accepts":_flaxMemberParameters0,"debugDescribeKeys":_flaxMemberParameters1}, getters: ["triggers"], setters: [], contextMembers: [], superMembers: ["get:triggers"]} as const;
+const _ShortcutActivatorProxy = {type: "flax.core/sdk_widgets#type:ShortcutActivator", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"accepts":_flaxMemberParameters0,"debugDescribeKeys":_flaxMemberParameters1}, getters: ["triggers"], setters: [], contextMembers: [], superMembers: ["get:triggers"]} as const;
 export interface ShortcutActivator {
 readonly [_flaxDartTypeValue]: ShortcutActivator;
 

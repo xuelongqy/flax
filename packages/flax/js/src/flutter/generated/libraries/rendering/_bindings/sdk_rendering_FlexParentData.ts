@@ -24,7 +24,7 @@ readonly [_flaxDartTypeValue]: FlexParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:FlexParentData", ["offset","previousSibling","nextSibling","flex","fit"], ["offset","previousSibling","nextSibling","flex","fit"], _flaxBindingMethods("flax.core/sdk_rendering#type:FlexParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
-const _FlexParentDataProxy = {type: "flax.core/sdk_rendering#type:FlexParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["flex","fit","offset","previousSibling","nextSibling"], setters: ["flex","fit","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:flex","get:fit","get:offset","get:previousSibling","get:nextSibling","set:flex","set:fit","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _FlexParentDataProxy = {type: "flax.core/sdk_rendering#type:FlexParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["flex","fit","offset","previousSibling","nextSibling"], setters: ["flex","fit","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:flex","get:fit","get:offset","get:previousSibling","get:nextSibling","set:flex","set:fit","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface FlexParentData {
 readonly [_flaxDartTypeValue]: FlexParentData;
 

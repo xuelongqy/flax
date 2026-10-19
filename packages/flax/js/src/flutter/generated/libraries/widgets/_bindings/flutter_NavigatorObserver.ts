@@ -6,7 +6,7 @@ import '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Route';
 import '@flax/flutter/widgets/_bindings/flutter_Route';
 const _flaxMemberParameters0 = [{"name":"route","required":true,"positional":true},{"name":"previousRoute","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"newRoute","required":false,"positional":false},{"name":"oldRoute","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"newRoute"},{"name":"oldRoute"}] as const;
 const _flaxMemberParameters2 = [{"name":"topRoute","required":true,"positional":true},{"name":"previousTopRoute","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
@@ -27,6 +27,6 @@ defineObject("flax.core/flutter#type:NavigatorObserver", ["navigator"], [], _fla
 export function _NavigatorObserverFactory(): NavigatorObserver {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:NavigatorObserver", "", [], [], {}) as NavigatorObserver;
+return constructObject("object", "flax.core/flutter#type:NavigatorObserver", "", _flaxMemberParameters3, [], {}) as NavigatorObserver;
 }
 export const NavigatorObserver: typeof _NavigatorObserverFactory & _FlaxInstanceType<NavigatorObserver> & _FlaxDartType<NavigatorObserver, readonly ["class", "flax.core/flutter#type:NavigatorObserver", readonly [], false]> = _flaxBindInstanceType<NavigatorObserver, typeof _NavigatorObserverFactory>(_NavigatorObserverFactory, "flax.core/flutter#type:NavigatorObserver", ["dart:core::Object"]) as typeof _NavigatorObserverFactory & _FlaxInstanceType<NavigatorObserver> & _FlaxDartType<NavigatorObserver, readonly ["class", "flax.core/flutter#type:NavigatorObserver", readonly [], false]>;

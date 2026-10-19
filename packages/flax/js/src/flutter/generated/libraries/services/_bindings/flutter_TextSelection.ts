@@ -7,8 +7,8 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextAffinity';
 import '@flax/dart/ui/_bindings/flutter_TextAffinity';
 import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
-const _flaxMemberParameters0 = [{"name":"affinity","required":false,"positional":false},{"name":"baseOffset","required":false,"positional":false},{"name":"extentOffset","required":false,"positional":false},{"name":"isDirectional","required":false,"positional":false}] as const;
-const _flaxMemberParameters1 = [{"name":"position","required":true,"positional":true},{"name":"extentAtIndex","required":false,"positional":true}] as const;
+const _flaxMemberParameters0 = [{"name":"affinity"},{"name":"baseOffset"},{"name":"extentOffset"},{"name":"isDirectional"}] as const;
+const _flaxMemberParameters1 = [{"name":"position","required":true,"positional":true},{"name":"extentAtIndex","positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"position","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -38,20 +38,20 @@ defineObject("flax.core/flutter#type:TextSelection", ["start","end","isValid","i
 export function _TextSelectionFactory(options: { baseOffset: number; extentOffset: number; affinity?: upstream1.TextAffinity | undefined; isDirectional?: boolean | undefined }): TextSelection {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:TextSelection", "", [{"name":"baseOffset","required":true,"positional":false},{"name":"extentOffset","required":true,"positional":false},{"name":"affinity","required":false,"positional":false},{"name":"isDirectional","required":false,"positional":false}], [], options) as TextSelection;
+return constructObject("object", "flax.core/flutter#type:TextSelection", "", [{"name":"baseOffset","required":true},{"name":"extentOffset","required":true},{"name":"affinity"},{"name":"isDirectional"}], [], options) as TextSelection;
 }
 export namespace _TextSelectionFactory {
 export function collapsed(options: { offset: number; affinity?: upstream1.TextAffinity | undefined }): TextSelection {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:TextSelection", "collapsed", [{"name":"offset","required":true,"positional":false},{"name":"affinity","required":false,"positional":false}], [], options) as TextSelection;
+return constructObject("object", "flax.core/flutter#type:TextSelection", "collapsed", [{"name":"offset","required":true},{"name":"affinity"}], [], options) as TextSelection;
 }
 }
 export namespace _TextSelectionFactory {
 export function fromPosition(position: Readonly<{ "__flaxBound:dart:ui::TextPosition": readonly [] }>): TextSelection {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:TextSelection", "fromPosition", [{"name":"position","required":true,"positional":true}], [position], {}) as TextSelection;
+return constructObject("object", "flax.core/flutter#type:TextSelection", "fromPosition", _flaxMemberParameters2, [position], {}) as TextSelection;
 }
 }
 export const TextSelection: typeof _TextSelectionFactory & _FlaxInstanceType<TextSelection> & _FlaxDartType<TextSelection, readonly ["class", "flax.core/flutter#type:TextSelection", readonly [], false]> = _flaxBindInstanceType<TextSelection, typeof _TextSelectionFactory>(_TextSelectionFactory, "flax.core/flutter#type:TextSelection", ["flax.core/flutter#type:TextRange","dart:core::Object"]) as typeof _TextSelectionFactory & _FlaxInstanceType<TextSelection> & _FlaxDartType<TextSelection, readonly ["class", "flax.core/flutter#type:TextSelection", readonly [], false]>;

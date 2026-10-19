@@ -2,6 +2,7 @@
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyWidget';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_Element';
@@ -14,11 +15,6 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -35,11 +31,11 @@ toStringDeep(options?: {minLevel?: upstream4.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream6.DiagnosticsTreeStyle | null | undefined}): upstream5.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream5.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:EnableWidgetInspectorScope", ["child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:EnableWidgetInspectorScope", "object", {"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_widgets#type:EnableWidgetInspectorScope", ["child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:EnableWidgetInspectorScope", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:ProxyWidget");
 export function _EnableWidgetInspectorScopeFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Widget }): EnableWidgetInspectorScope {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:EnableWidgetInspectorScope", "", [{"name":"key","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as EnableWidgetInspectorScope;
+return constructObject("object", "flax.core/sdk_widgets#type:EnableWidgetInspectorScope", "", [{"name":"key"},{"name":"child","required":true}], [], options) as EnableWidgetInspectorScope;
 }
 export const EnableWidgetInspectorScope: typeof _EnableWidgetInspectorScopeFactory & _FlaxInstanceType<EnableWidgetInspectorScope> & _FlaxDartType<EnableWidgetInspectorScope, readonly ["class", "flax.core/sdk_widgets#type:EnableWidgetInspectorScope", readonly [], false]> = _flaxBindInstanceType<EnableWidgetInspectorScope, typeof _EnableWidgetInspectorScopeFactory>(_EnableWidgetInspectorScopeFactory, "flax.core/sdk_widgets#type:EnableWidgetInspectorScope", ["flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _EnableWidgetInspectorScopeFactory & _FlaxInstanceType<EnableWidgetInspectorScope> & _FlaxDartType<EnableWidgetInspectorScope, readonly ["class", "flax.core/sdk_widgets#type:EnableWidgetInspectorScope", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "key" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/widget_inspector.dart::EnableWidgetInspectorScope" | "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

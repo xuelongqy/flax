@@ -32,9 +32,9 @@ import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 const _flaxMemberParameters0 = [] as const;
 const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -66,7 +66,7 @@ export function _RawAutocompleteFactory(options: { key?: Readonly<{ "__flaxBound
 export function _RawAutocompleteFactory(options: Record<string, unknown>): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:RawAutocomplete", "", [{"name":"key","required":false,"positional":false},{"name":"optionsViewBuilder","required":true,"positional":false},{"name":"optionsBuilder","required":true,"positional":false},{"name":"optionsViewOpenDirection","required":false,"positional":false},{"name":"displayStringForOption","required":false,"positional":false},{"name":"fieldViewBuilder","required":false,"positional":false},{"name":"focusNode","required":false,"positional":false},{"name":"onSelected","required":false,"positional":false},{"name":"textEditingController","required":false,"positional":false},{"name":"initialValue","required":false,"positional":false}], [], options) as RawAutocomplete<{}>;
+return constructObject("object", "flax.core/sdk_widgets#type:RawAutocomplete", "", [{"name":"key"},{"name":"optionsViewBuilder","required":true},{"name":"optionsBuilder","required":true},{"name":"optionsViewOpenDirection"},{"name":"displayStringForOption"},{"name":"fieldViewBuilder"},{"name":"focusNode"},{"name":"onSelected"},{"name":"textEditingController"},{"name":"initialValue"}], [], options) as RawAutocomplete<{}>;
 }
 export namespace _RawAutocompleteFactory { function _flaxDefault_onFieldSubmitted<T extends {} = {}>(key: Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::GlobalKey": readonly [upstream8.State<upstream0.StatefulWidget>] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

@@ -8,7 +8,7 @@ import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
 const _flaxMemberParameters0 = [{"name":"event","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"position","required":false,"positional":false},{"name":"size","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"position"},{"name":"size"}] as const;
 const _flaxMemberParameters2 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
@@ -18,7 +18,7 @@ readonly [_flaxDartTypeValue]: PlatformViewController;
 
 }
 defineObject("flax.core/sdk_services#type:PlatformViewController", ["viewId","awaitingCreation"], [], _flaxBindingMethods("flax.core/sdk_services#type:PlatformViewController", "object", {"dispatchPointerEvent":_flaxMemberParameters0,"create":_flaxMemberParameters1,"dispose":_flaxMemberParameters2,"clearFocus":_flaxMemberParameters2}, {}), []);
-const _PlatformViewControllerProxy = {type: "flax.core/sdk_services#type:PlatformViewController", parameters: [], constructors: {"":[]}, methods: {"dispatchPointerEvent":_flaxMemberParameters0,"create":_flaxMemberParameters1,"dispose":_flaxMemberParameters2,"clearFocus":_flaxMemberParameters2}, getters: ["viewId","awaitingCreation"], setters: [], contextMembers: [], superMembers: ["get:awaitingCreation","create"]} as const;
+const _PlatformViewControllerProxy = {type: "flax.core/sdk_services#type:PlatformViewController", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"dispatchPointerEvent":_flaxMemberParameters0,"create":_flaxMemberParameters1,"dispose":_flaxMemberParameters2,"clearFocus":_flaxMemberParameters2}, getters: ["viewId","awaitingCreation"], setters: [], contextMembers: [], superMembers: ["get:awaitingCreation","create"]} as const;
 export interface PlatformViewController {
 readonly [_flaxDartTypeValue]: PlatformViewController;
 

@@ -3,6 +3,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Par
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_MultiChildLayoutParentData';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_MultiChildLayoutParentData';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyWidget';
 import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream4 from '@flax/dart/core/_bindings/flutter_Type';

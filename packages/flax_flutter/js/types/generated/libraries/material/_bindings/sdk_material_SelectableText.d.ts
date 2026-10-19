@@ -60,7 +60,8 @@ import type * as upstream29 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream30 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream31 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableText';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import type * as upstream32 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableText';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SelectableText extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
@@ -115,17 +116,17 @@ export interface SelectableText extends _FlaxDartWidget, Omit<upstream0.Stateful
     readonly contextMenuBuilder: ((context: upstream21.BuildContext, editableTextState: Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::EditableTextState": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream31.EditableText];
+        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream32.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/services/autofill.dart::AutofillClient": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream31.EditableText];
+        "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream32.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream31.EditableText];
+        "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream32.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
     }> & Readonly<{

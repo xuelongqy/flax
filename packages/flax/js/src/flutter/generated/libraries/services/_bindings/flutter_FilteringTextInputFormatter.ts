@@ -21,20 +21,20 @@ defineObject("flax.core/flutter#type:FilteringTextInputFormatter", ["filterPatte
 export function _FilteringTextInputFormatterFactory(filterPattern: DartInput<Readonly<{ "__flaxBound:dart:core::Pattern": readonly [] }>> | string, options: { allow: boolean; replacementString?: string | undefined }): FilteringTextInputFormatter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:FilteringTextInputFormatter", "", [{"name":"filterPattern","required":true,"positional":true},{"name":"allow","required":true,"positional":false},{"name":"replacementString","required":false,"positional":false}], [filterPattern], options) as FilteringTextInputFormatter;
+return constructObject("object", "flax.core/flutter#type:FilteringTextInputFormatter", "", [{"name":"filterPattern","required":true,"positional":true},{"name":"allow","required":true},{"name":"replacementString"}], [filterPattern], options) as FilteringTextInputFormatter;
 }
 export namespace _FilteringTextInputFormatterFactory {
 export function allow(filterPattern: DartInput<Readonly<{ "__flaxBound:dart:core::Pattern": readonly [] }>> | string, options: { replacementString?: string | undefined } = {}): FilteringTextInputFormatter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:FilteringTextInputFormatter", "allow", [{"name":"filterPattern","required":true,"positional":true},{"name":"replacementString","required":false,"positional":false}], [filterPattern], options) as FilteringTextInputFormatter;
+return constructObject("object", "flax.core/flutter#type:FilteringTextInputFormatter", "allow", [{"name":"filterPattern","required":true,"positional":true},{"name":"replacementString"}], [filterPattern], options) as FilteringTextInputFormatter;
 }
 }
 export namespace _FilteringTextInputFormatterFactory {
 export function deny(filterPattern: DartInput<Readonly<{ "__flaxBound:dart:core::Pattern": readonly [] }>> | string, options: { replacementString?: string | undefined } = {}): FilteringTextInputFormatter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:FilteringTextInputFormatter", "deny", [{"name":"filterPattern","required":true,"positional":true},{"name":"replacementString","required":false,"positional":false}], [filterPattern], options) as FilteringTextInputFormatter;
+return constructObject("object", "flax.core/flutter#type:FilteringTextInputFormatter", "deny", [{"name":"filterPattern","required":true,"positional":true},{"name":"replacementString"}], [filterPattern], options) as FilteringTextInputFormatter;
 }
 }
 export namespace _FilteringTextInputFormatterFactory { export declare const singleLineFormatter: upstream0.TextInputFormatter; }

@@ -1555,7 +1555,7 @@ extensions:
       expect(module.extensions.single.name, 'ItemX');
       expect(module.classes, isEmpty);
       expect(module.extensions.single.onType.id, 'example.base/base#type:Item');
-      expect(validated.manifest.toJson()['formatVersion'], 26);
+      expect(validated.manifest.toJson()['formatVersion'], 27);
       expect(
         validated.manifest.modules.single.model.identities.where(
           (row) => row.owner,
@@ -2346,7 +2346,7 @@ classes: {}
         'Binding config must be inside the package bindings directory.',
       );
 
-      final orphanRoot = _trustedTempRoot('flax-orphan-');
+      final orphanRoot = _trustedTempRoot('flax-orphan-', outsidePackage: true);
       addTearDown(() {
         if (orphanRoot.existsSync()) {
           orphanRoot.deleteSync(recursive: true);
@@ -5329,7 +5329,10 @@ _tempPackage({
   bool writePackageConfig = true,
   String? packageConfigContents,
 }) {
-  final root = _trustedTempRoot('flax-pipeline-pkg-');
+  final root = _trustedTempRoot(
+    'flax-pipeline-pkg-',
+    outsidePackage: !writePackageConfig && packageConfigContents == null,
+  );
   addTearDown(() {
     if (root.existsSync()) {
       root.deleteSync(recursive: true);
@@ -5371,9 +5374,19 @@ bindingNamespace: example.host
   );
 }
 
-Directory _trustedTempRoot(String prefix) =>
-    Directory(Directory.systemTemp.resolveSymbolicLinksSync())
-        .createTempSync(prefix);
+Directory _trustedTempRoot(String prefix, {bool outsidePackage = false}) {
+  var parent = Directory(Directory.systemTemp.resolveSymbolicLinksSync());
+  if (outsidePackage) {
+    // Repo-local TMPDIR must not leak its pubspec or package config into negatives.
+    for (var ancestor = parent; ; ancestor = ancestor.parent) {
+      if (File(p.join(ancestor.path, 'pubspec.yaml')).existsSync()) {
+        parent = ancestor.parent;
+      }
+      if (ancestor.parent.path == ancestor.path) break;
+    }
+  }
+  return parent.createTempSync(prefix);
+}
 
 Directory _tempWorkspace() {
   final root = _trustedTempRoot('flax-pipeline-ws-');

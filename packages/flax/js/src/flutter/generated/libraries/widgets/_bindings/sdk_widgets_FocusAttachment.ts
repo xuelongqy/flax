@@ -4,7 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"parent","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"parent"}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface FocusAttachment extends Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusAttachment": readonly [] }> { readonly __FocusAttachment: unique symbol;

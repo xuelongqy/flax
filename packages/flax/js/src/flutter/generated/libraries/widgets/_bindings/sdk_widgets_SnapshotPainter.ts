@@ -16,8 +16,8 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
 const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true},{"name":"offset","required":true,"positional":true},{"name":"size","required":true,"positional":true},{"name":"image","required":true,"positional":true},{"name":"sourceSize","required":true,"positional":true},{"name":"pixelRatio","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"context","required":true,"positional":true},{"name":"offset","required":true,"positional":true},{"name":"size","required":true,"positional":true},{"name":"painter","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"oldPainter","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"listener","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [] as const;
+const _flaxMemberParameters3 = [] as const;
+const _flaxMemberParameters4 = [{"name":"listener","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -26,7 +26,7 @@ readonly [_flaxDartTypeValue]: SnapshotPainter;
 
 }
 defineObject("flax.core/sdk_widgets#type:SnapshotPainter", ["hasListeners"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SnapshotPainter", "object", {"paintSnapshot":_flaxMemberParameters0,"paint":_flaxMemberParameters1,"shouldRepaint":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _SnapshotPainterProxy = {type: "flax.core/sdk_widgets#type:SnapshotPainter", parameters: [], constructors: {"":[]}, methods: {"addListener":_flaxMemberParameters3,"removeListener":_flaxMemberParameters3,"dispose":_flaxMemberParameters4,"paintSnapshot":_flaxMemberParameters0,"paint":_flaxMemberParameters1,"shouldRepaint":_flaxMemberParameters2}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
+const _SnapshotPainterProxy = {type: "flax.core/sdk_widgets#type:SnapshotPainter", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"addListener":_flaxMemberParameters4,"removeListener":_flaxMemberParameters4,"dispose":_flaxMemberParameters3,"paintSnapshot":_flaxMemberParameters0,"paint":_flaxMemberParameters1,"shouldRepaint":_flaxMemberParameters2}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
 export interface SnapshotPainter {
 readonly [_flaxDartTypeValue]: SnapshotPainter;
 

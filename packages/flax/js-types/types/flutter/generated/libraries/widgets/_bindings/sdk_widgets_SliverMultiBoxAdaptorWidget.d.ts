@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_SliverWithKeepAliveWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_SliverWithKeepAliveWidget';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_SliverChildDelegate';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_SliverChildDelegate';

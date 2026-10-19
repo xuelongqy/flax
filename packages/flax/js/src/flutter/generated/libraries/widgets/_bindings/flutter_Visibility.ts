@@ -11,13 +11,13 @@ export interface Visibility extends WidgetDescription, Omit<Readonly<{ "__flaxBo
 export function _VisibilityFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Bindable<Widget>; replacement?: Bindable<Widget> | undefined; visible?: Bindable<boolean> | undefined; maintainState?: Bindable<boolean> | undefined; maintainAnimation?: Bindable<boolean> | undefined; maintainSize?: Bindable<boolean> | undefined; maintainSemantics?: Bindable<boolean> | undefined; maintainInteractivity?: Bindable<boolean> | undefined; maintainFocusability?: Bindable<boolean> | undefined }): Visibility {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Visibility", "", [{"name":"key","required":false,"positional":false},{"name":"child","required":true,"positional":false},{"name":"replacement","required":false,"positional":false},{"name":"visible","required":false,"positional":false},{"name":"maintainState","required":false,"positional":false},{"name":"maintainAnimation","required":false,"positional":false},{"name":"maintainSize","required":false,"positional":false},{"name":"maintainSemantics","required":false,"positional":false},{"name":"maintainInteractivity","required":false,"positional":false},{"name":"maintainFocusability","required":false,"positional":false}], [], options) as Visibility;
+return construct("widget", "flax.core/flutter#type:Visibility", "", [{"name":"key"},{"name":"child","required":true},{"name":"replacement"},{"name":"visible"},{"name":"maintainState"},{"name":"maintainAnimation"},{"name":"maintainSize"},{"name":"maintainSemantics"},{"name":"maintainInteractivity"},{"name":"maintainFocusability"}], [], options) as Visibility;
 }
 export namespace _VisibilityFactory {
 export function maintain(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Bindable<Widget>; visible?: Bindable<boolean> | undefined }): Visibility {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Visibility", "maintain", [{"name":"key","required":false,"positional":false},{"name":"child","required":true,"positional":false},{"name":"visible","required":false,"positional":false}], [], options) as Visibility;
+return construct("widget", "flax.core/flutter#type:Visibility", "maintain", [{"name":"key"},{"name":"child","required":true},{"name":"visible"}], [], options) as Visibility;
 }
 }
 export namespace _VisibilityFactory { export function of(context: upstream1.BuildContext): boolean {

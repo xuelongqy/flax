@@ -20,6 +20,7 @@ export { PlatformDispatcher } from "@flax/dart/ui/_bindings/sdk_dart_ui_Platform
 export { SingletonFlutterWindow } from "@flax/dart/ui/_bindings/sdk_dart_ui_SingletonFlutterWindow";
 export type { VoidCallback, VoidCallbackInput } from "@flax/dart/ui/_bindings/sdk_dart_ui_VoidCallback";
 export { clampDouble } from "@flax/dart/ui/_bindings/sdk_dart_ui_clampDouble";
+export { HttpClientResponse } from "@flax/dart/io/_bindings/sdk_dependencies_HttpClientResponse";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_AbstractNode";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_AggregatedTimedBlock";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_AggregatedTimings";
@@ -56,7 +57,6 @@ import "@flax/flutter/foundation/_bindings/sdk_foundation_FlutterErrorDetails";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_FlutterMemoryAllocations";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_FlutterTimeline";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_HashedObserverList";
-import "@flax/flutter/foundation/_bindings/sdk_foundation_HttpClientResponse";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_IntProperty";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_IterableProperty";
 import "@flax/flutter/foundation/_bindings/sdk_foundation_LicenseEntry";
@@ -135,7 +135,6 @@ export { FlutterMemoryAllocations } from "@flax/flutter/foundation/_bindings/sdk
 export { FlutterTimeline } from "@flax/flutter/foundation/_bindings/sdk_foundation_FlutterTimeline";
 export { FoundationServiceExtensions } from "@flax/flutter/foundation/_bindings/sdk_foundation_FoundationServiceExtensions";
 export { HashedObserverList } from "@flax/flutter/foundation/_bindings/sdk_foundation_HashedObserverList";
-export { HttpClientResponse } from "@flax/flutter/foundation/_bindings/sdk_foundation_HttpClientResponse";
 export type { InformationCollector, InformationCollectorInput } from "@flax/flutter/foundation/_bindings/sdk_foundation_InformationCollector";
 export { IntProperty } from "@flax/flutter/foundation/_bindings/sdk_foundation_IntProperty";
 export type { IterableFilter, IterableFilterInput } from "@flax/flutter/foundation/_bindings/sdk_foundation_IterableFilter";

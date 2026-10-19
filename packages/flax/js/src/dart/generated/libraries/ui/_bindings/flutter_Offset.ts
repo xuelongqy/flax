@@ -50,7 +50,7 @@ export namespace _OffsetFactory {
 export function fromDirection(direction: number, distance?: number): Offset {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Offset", "fromDirection", [{"name":"direction","required":true,"positional":true},{"name":"distance","required":false,"positional":true}], [direction, distance], {}) as Offset;
+return constructObject("object", "flax.core/flutter#type:Offset", "fromDirection", [{"name":"direction","required":true,"positional":true},{"name":"distance","positional":true}], [direction, distance], {}) as Offset;
 }
 }
 export namespace _OffsetFactory { export declare const zero: Offset; }

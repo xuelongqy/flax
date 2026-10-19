@@ -63,7 +63,7 @@ final class FlaxCodegenManifest {
   }) : imports = List.unmodifiable(imports),
        modules = List.unmodifiable(modules);
 
-  static const formatVersion = 26;
+  static const formatVersion = 27;
   static const uiProtocol = 24;
 
   final String package;
@@ -389,6 +389,8 @@ FlaxCodegenManifestModule? _decodeModuleEntry(
       'native-widget-proxies',
       'native-navigation-objects',
       'widget-interface-proxies',
+      'context-instance-methods',
+      'proxy-native-members',
       'shared-uint8',
       'shared-buffers',
     }.contains(capability),

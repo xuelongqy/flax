@@ -10,6 +10,6 @@ if (options === null || typeof options !== 'object' || Array.isArray(options) ||
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:compute", [callback, message, options.debugLabel]);
 return _flaxResult as Promise<_FlaxDartOutput<R>>;
 }
-const _flaxGeneric_compute = _flaxDefineDartCallTypes(_flaxTopLevel_compute, {"id":"flax.core/sdk_foundation#function:compute","parameters":[{"name":"callback","required":true,"positional":true},{"name":"message","required":true,"positional":true},{"name":"debugLabel","required":false,"positional":false}]}) as _FlaxDartCallable<typeof _flaxTopLevel_compute, _FlaxSignature0>;
+const _flaxGeneric_compute = _flaxDefineDartCallTypes(_flaxTopLevel_compute, {"id":"flax.core/sdk_foundation#function:compute","parameters":[{"name":"callback","required":true,"positional":true},{"name":"message","required":true,"positional":true},{"name":"debugLabel"}]}) as _FlaxDartCallable<typeof _flaxTopLevel_compute, _FlaxSignature0>;
 export { _flaxGeneric_compute as compute };
 interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0, infer _Selected1] ? [_Selected0] extends [unknown | null] ? [_Selected1] extends [unknown | null] ? (callback: ((message: _Selected0) => (_Selected1 | DartInput<_Selected1>) | Promise<(_Selected1 | DartInput<_Selected1>)>),message: (_Selected0 | DartInput<_Selected0>),options?: {debugLabel?: string | null | undefined}) => Promise<_Selected1> : never : never : never; }

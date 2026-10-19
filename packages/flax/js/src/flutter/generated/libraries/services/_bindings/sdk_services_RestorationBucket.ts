@@ -6,7 +6,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/sdk_services_R
 import '@flax/flutter/services/_bindings/sdk_services_RestorationManager';
 const _flaxMemberParameters0 = [{"name":"restorationId","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"restorationId","required":true,"positional":true},{"name":"value","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"restorationId","required":true,"positional":true},{"name":"debugOwner","required":true,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"restorationId","required":true,"positional":true},{"name":"debugOwner","required":true}] as const;
 const _flaxMemberParameters3 = [{"name":"child","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"newRestorationId","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [] as const;
@@ -33,21 +33,21 @@ export namespace _RestorationBucketFactory {
 export function empty(options: { restorationId: string; debugOwner: unknown | null }): RestorationBucket {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_services#type:RestorationBucket", "empty", [{"name":"restorationId","required":true,"positional":false},{"name":"debugOwner","required":true,"positional":false}], [], options) as RestorationBucket;
+return constructObject("object", "flax.core/sdk_services#type:RestorationBucket", "empty", [{"name":"restorationId","required":true},{"name":"debugOwner","required":true}], [], options) as RestorationBucket;
 }
 }
 export namespace _RestorationBucketFactory {
 export function root(options: { manager: Readonly<{ "__flaxBound:package:flutter/src/services/restoration.dart::RestorationManager": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>; rawData: DartMapInput<unknown | null, unknown | null, unknown | null, unknown | null> | null }): RestorationBucket {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_services#type:RestorationBucket", "root", [{"name":"manager","required":true,"positional":false},{"name":"rawData","required":true,"positional":false}], [], options) as RestorationBucket;
+return constructObject("object", "flax.core/sdk_services#type:RestorationBucket", "root", [{"name":"manager","required":true},{"name":"rawData","required":true}], [], options) as RestorationBucket;
 }
 }
 export namespace _RestorationBucketFactory {
 export function child(options: { restorationId: string; parent: Readonly<{ "__flaxBound:package:flutter/src/services/restoration.dart::RestorationBucket": readonly [] }>; debugOwner: unknown | null }): RestorationBucket {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_services#type:RestorationBucket", "child", [{"name":"restorationId","required":true,"positional":false},{"name":"parent","required":true,"positional":false},{"name":"debugOwner","required":true,"positional":false}], [], options) as RestorationBucket;
+return constructObject("object", "flax.core/sdk_services#type:RestorationBucket", "child", [{"name":"restorationId","required":true},{"name":"parent","required":true},{"name":"debugOwner","required":true}], [], options) as RestorationBucket;
 }
 }
 export const RestorationBucket: typeof _RestorationBucketFactory & _FlaxInstanceType<RestorationBucket> & _FlaxDartType<RestorationBucket, readonly ["class", "flax.core/sdk_services#type:RestorationBucket", readonly [], false]> = _flaxBindInstanceType<RestorationBucket, typeof _RestorationBucketFactory>(_RestorationBucketFactory, "flax.core/sdk_services#type:RestorationBucket", ["dart:core::Object"]) as typeof _RestorationBucketFactory & _FlaxInstanceType<RestorationBucket> & _FlaxDartType<RestorationBucket, readonly ["class", "flax.core/sdk_services#type:RestorationBucket", readonly [], false]>;

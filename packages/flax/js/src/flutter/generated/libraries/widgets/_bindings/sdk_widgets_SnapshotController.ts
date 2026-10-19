@@ -6,7 +6,8 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_ChangeNotifier';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"listener","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"allowSnapshotting"}] as const;
+const _flaxMemberParameters2 = [{"name":"listener","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,7 +16,7 @@ readonly [_flaxDartTypeValue]: SnapshotController;
 
 }
 defineObject("flax.core/sdk_widgets#type:SnapshotController", ["hasListeners","allowSnapshotting"], ["allowSnapshotting"], _flaxBindingMethods("flax.core/sdk_widgets#type:SnapshotController", "object", {"clear":_flaxMemberParameters0}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _SnapshotControllerProxy = {type: "flax.core/sdk_widgets#type:SnapshotController", parameters: [{"name":"allowSnapshotting","required":false,"positional":false}], constructors: {"":[{"name":"allowSnapshotting","required":false,"positional":false}]}, methods: {"addListener":_flaxMemberParameters1,"removeListener":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"clear":_flaxMemberParameters0}, getters: ["allowSnapshotting","hasListeners"], setters: ["allowSnapshotting"], contextMembers: [], superMembers: ["get:allowSnapshotting","get:hasListeners","set:allowSnapshotting","addListener","removeListener","dispose","clear"]} as const;
+const _SnapshotControllerProxy = {type: "flax.core/sdk_widgets#type:SnapshotController", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"addListener":_flaxMemberParameters2,"removeListener":_flaxMemberParameters2,"dispose":_flaxMemberParameters0,"clear":_flaxMemberParameters0}, getters: ["allowSnapshotting","hasListeners"], setters: ["allowSnapshotting"], contextMembers: [], superMembers: ["get:allowSnapshotting","get:hasListeners","set:allowSnapshotting","addListener","removeListener","dispose","clear"]} as const;
 export interface SnapshotController {
 readonly [_flaxDartTypeValue]: SnapshotController;
 

@@ -9,7 +9,109 @@ import {
   Text,
 } from '../../dist/flutter/widgets.js';
 import { signal } from '../../dist/runtime/index.js';
-import { contextHandle } from '../../dist/runtime/bindings.js';
+import {
+  contextHandle,
+  defineContext,
+  bindingMethods,
+  construct,
+} from '../../dist/runtime/bindings.js';
+
+test('sparse parameter flags preserve omission, null and argument validation', (t) => {
+  const type = 'fixture:SparseParameters';
+  const methods = bindingMethods(type, 'context', {
+    read: [{ name: 'value' }],
+    required: [{ name: 'value', required: true }],
+    positional: [
+      { name: 'first', positional: true },
+      { name: 'second', positional: true },
+    ],
+  });
+  defineContext(type, [], methods);
+  const previous = operationHost(
+    'context',
+    (_version, _owner, _id, _name, value) => value,
+  );
+  t.after(() => operationHost('context', previous));
+  const context = globalThis.__flaxBindings.context(type, 987);
+  t.after(() => globalThis.__flaxBindings.releaseContext(987));
+  assert.equal(context.read(), undefined);
+  assert.equal(context.read({ value: null }), null);
+  assert.equal(context.required({ value: null }), null);
+  assert.throws(() => context.required(), /Missing required/);
+  assert.throws(() => context.read({ other: 1 }), /Invalid named method arguments/);
+  assert.throws(() => context.positional(undefined, 1), /trailing suffix/);
+  let inheritedReads = 0;
+  const saved = ['required', 'positional'].map((name) => [
+    name,
+    Object.getOwnPropertyDescriptor(Object.prototype, name),
+  ]);
+  try {
+    for (const [name] of saved)
+      Object.defineProperty(Object.prototype, name, {
+        configurable: true,
+        get() {
+          inheritedReads++;
+          throw new Error('Inherited parameter flag');
+        },
+      });
+    assert.equal(context.read(), undefined);
+    assert.equal(context.required({ value: null }), null);
+    for (const parameters of [
+      [{ name: 'value' }],
+      [{ name: 'value', required: false, positional: false }],
+    ]) {
+      assert.deepEqual(construct('widget', type, '', parameters, [], {}).args, {});
+      assert.deepEqual(
+        construct('widget', type, '', parameters, [], { value: null }).args,
+        { value: null },
+      );
+    }
+  } finally {
+    for (const [name, descriptor] of saved) {
+      if (descriptor) Object.defineProperty(Object.prototype, name, descriptor);
+      else delete Object.prototype[name];
+    }
+  }
+  assert.equal(inheritedReads, 0);
+});
+
+test('Context methods share typed calls and reject retired or foreign receivers', (t) => {
+  const type = 'fixture:ContextCalls';
+  const methods = bindingMethods(type, 'context', {
+    visit: [{ name: 'visitor', required: true, positional: true }],
+  });
+  defineContext(type, ['mounted'], methods);
+  let calls = 0;
+  const previous = operationHost('context', (_version, owner, id, name, callback) => {
+    assert.deepEqual([owner, id, name], [type, 78, 'visit']);
+    calls++;
+    return callback(3);
+  });
+  t.after(() => operationHost('context', previous));
+  const api = globalThis.__flaxBindings;
+  const context = api.context(type, 78);
+  assert.equal(
+    context.visit((value) => value + 1),
+    4,
+  );
+  assert.throws(() => context.visit(), /Missing required/);
+  assert.throws(() => context.visit(() => true, 3), /Too many/);
+  assert.throws(() => methods.visit.call({}, () => true), /foreign/);
+  assert.throws(() => methods.visit.call(null, () => true), /foreign/);
+  assert.equal(calls, 1);
+  api.releaseContext(78);
+  assert.equal(context.mounted, false);
+  assert.throws(() => context.visit(() => true), /unmounted/);
+  assert.equal(calls, 1);
+});
+
+test('numeric collection inputs recognize intrinsic buffer brands', () => {
+  const api = globalThis.__flaxBindings;
+  assert.equal(api.collectionShape(new Uint8Array([1])), 'buffer');
+  assert.equal(api.collectionShape(new Float64Array([1])), 'buffer');
+  assert.notEqual(api.collectionShape(new DataView(new ArrayBuffer(4))), 'buffer');
+  assert.equal(api.collectionShape({ [Symbol.toStringTag]: 'Uint8Array' }), 'record');
+});
 
 test('constructing builders never executes callbacks or observes their bindings', () => {
   let calls = 0;

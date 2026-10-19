@@ -1,0 +1,45 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/core/_bindings/flutter_DateTime';
+import '@flax/dart/core/_bindings/flutter_DateTime';
+const _flaxMemberParameters0 = [{"name":"name","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"name","required":true,"positional":true},{"name":"value","required":true,"positional":true},{"name":"preserveHeaderCase"}] as const;
+const _flaxMemberParameters2 = [{"name":"name","required":true,"positional":true},{"name":"value","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"action","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [] as const;
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/vector_math/_bindings/sdk_dependencies.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface HttpHeaders extends Readonly<{ "__flaxBound:dart:_http::HttpHeaders": readonly [] }> { readonly __HttpHeaders: unique symbol;
+readonly [_flaxDartTypeValue]: HttpHeaders;
+
+get date(): upstream0.DateTime | null;
+get expires(): upstream0.DateTime | null;
+get ifModifiedSince(): upstream0.DateTime | null;
+get host(): string | null;
+get port(): number | null;
+get contentLength(): number;
+get persistentConnection(): boolean;
+get chunkedTransferEncoding(): boolean;
+value(name: string): string | null;
+add(name: string, value: {}, options?: {preserveHeaderCase?: boolean | undefined}): void;
+set(name: string, value: {}, options?: {preserveHeaderCase?: boolean | undefined}): void;
+remove(name: string, value: {}): void;
+removeAll(name: string): void;
+forEach(action: ((name: string, values: DartList<string>) => void)): void;
+noFolding(name: string): void;
+clear(): void;
+operatorGetIndex(name: string): DartList<string> | null;
+set date(value: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>> | null);
+set expires(value: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>> | null);
+set ifModifiedSince(value: DartInput<Readonly<{ "__flaxBound:dart:core::DateTime": readonly [] }>> | null);
+set host(value: string | null);
+set port(value: number | null);
+set contentLength(value: number);
+set persistentConnection(value: boolean);
+set chunkedTransferEncoding(value: boolean);
+}
+defineObject("flax.core/sdk_dependencies#type:HttpHeaders", ["date","expires","ifModifiedSince","host","port","contentLength","persistentConnection","chunkedTransferEncoding"], ["date","expires","ifModifiedSince","host","port","contentLength","persistentConnection","chunkedTransferEncoding"], _flaxBindingMethods("flax.core/sdk_dependencies#type:HttpHeaders", "object", {"value":_flaxMemberParameters0,"add":_flaxMemberParameters1,"set":_flaxMemberParameters1,"remove":_flaxMemberParameters2,"removeAll":_flaxMemberParameters0,"forEach":_flaxMemberParameters3,"noFolding":_flaxMemberParameters0,"clear":_flaxMemberParameters4,"operatorGetIndex":_flaxMemberParameters0}, {}), []);
+const _HttpHeadersFactory = {} as {readonly acceptHeader: string;readonly acceptCharsetHeader: string;readonly acceptEncodingHeader: string;readonly acceptLanguageHeader: string;readonly acceptRangesHeader: string;readonly accessControlAllowCredentialsHeader: string;readonly accessControlAllowHeadersHeader: string;readonly accessControlAllowMethodsHeader: string;readonly accessControlAllowOriginHeader: string;readonly accessControlExposeHeadersHeader: string;readonly accessControlMaxAgeHeader: string;readonly accessControlRequestHeadersHeader: string;readonly accessControlRequestMethodHeader: string;readonly ageHeader: string;readonly allowHeader: string;readonly authorizationHeader: string;readonly cacheControlHeader: string;readonly connectionHeader: string;readonly contentEncodingHeader: string;readonly contentLanguageHeader: string;readonly contentLengthHeader: string;readonly contentLocationHeader: string;readonly contentMD5Header: string;readonly contentRangeHeader: string;readonly contentTypeHeader: string;readonly dateHeader: string;readonly etagHeader: string;readonly expectHeader: string;readonly expiresHeader: string;readonly fromHeader: string;readonly hostHeader: string;readonly ifMatchHeader: string;readonly ifModifiedSinceHeader: string;readonly ifNoneMatchHeader: string;readonly ifRangeHeader: string;readonly ifUnmodifiedSinceHeader: string;readonly lastModifiedHeader: string;readonly locationHeader: string;readonly maxForwardsHeader: string;readonly pragmaHeader: string;readonly proxyAuthenticateHeader: string;readonly proxyAuthorizationHeader: string;readonly rangeHeader: string;readonly refererHeader: string;readonly retryAfterHeader: string;readonly serverHeader: string;readonly teHeader: string;readonly trailerHeader: string;readonly transferEncodingHeader: string;readonly upgradeHeader: string;readonly userAgentHeader: string;readonly varyHeader: string;readonly viaHeader: string;readonly warningHeader: string;readonly wwwAuthenticateHeader: string;readonly contentDisposition: string;readonly cookieHeader: string;readonly setCookieHeader: string;readonly generalHeaders: DartList<string>;readonly entityHeaders: DartList<string>;readonly responseHeaders: DartList<string>;readonly requestHeaders: DartList<string>};
+_flaxDefineStaticGetters(_HttpHeadersFactory, "flax.core/sdk_dependencies#read:HttpHeaders.", ["acceptHeader","acceptCharsetHeader","acceptEncodingHeader","acceptLanguageHeader","acceptRangesHeader","accessControlAllowCredentialsHeader","accessControlAllowHeadersHeader","accessControlAllowMethodsHeader","accessControlAllowOriginHeader","accessControlExposeHeadersHeader","accessControlMaxAgeHeader","accessControlRequestHeadersHeader","accessControlRequestMethodHeader","ageHeader","allowHeader","authorizationHeader","cacheControlHeader","connectionHeader","contentEncodingHeader","contentLanguageHeader","contentLengthHeader","contentLocationHeader","contentMD5Header","contentRangeHeader","contentTypeHeader","dateHeader","etagHeader","expectHeader","expiresHeader","fromHeader","hostHeader","ifMatchHeader","ifModifiedSinceHeader","ifNoneMatchHeader","ifRangeHeader","ifUnmodifiedSinceHeader","lastModifiedHeader","locationHeader","maxForwardsHeader","pragmaHeader","proxyAuthenticateHeader","proxyAuthorizationHeader","rangeHeader","refererHeader","retryAfterHeader","serverHeader","teHeader","trailerHeader","transferEncodingHeader","upgradeHeader","userAgentHeader","varyHeader","viaHeader","warningHeader","wwwAuthenticateHeader","contentDisposition","cookieHeader","setCookieHeader","generalHeaders","entityHeaders","responseHeaders","requestHeaders"]);
+export const HttpHeaders: typeof _HttpHeadersFactory & _FlaxInstanceType<HttpHeaders> & _FlaxDartType<HttpHeaders, readonly ["class", "flax.core/sdk_dependencies#type:HttpHeaders", readonly [], false]> = _flaxBindInstanceType<HttpHeaders, typeof _HttpHeadersFactory>(_HttpHeadersFactory, "flax.core/sdk_dependencies#type:HttpHeaders", ["dart:core::Object"]) as typeof _HttpHeadersFactory & _FlaxInstanceType<HttpHeaders> & _FlaxDartType<HttpHeaders, readonly ["class", "flax.core/sdk_dependencies#type:HttpHeaders", readonly [], false]>;

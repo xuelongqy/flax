@@ -16,7 +16,7 @@ listAssets(): DartList<string>;
 getAssetVariants(key: string): DartList<upstream1.AssetMetadata> | null;
 }
 defineObject("flax.core/sdk_services#type:AssetManifest", [], [], _flaxBindingMethods("flax.core/sdk_services#type:AssetManifest", "object", {"listAssets":_flaxMemberParameters0,"getAssetVariants":_flaxMemberParameters1}, {}), []);
-const _AssetManifestProxy = {type: "flax.core/sdk_services#type:AssetManifest", parameters: [], constructors: {}, methods: {"listAssets":_flaxMemberParameters0,"getAssetVariants":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
+const _AssetManifestProxy = {type: "flax.core/sdk_services#type:AssetManifest", parameters: _flaxMemberParameters0, constructors: {}, methods: {"listAssets":_flaxMemberParameters0,"getAssetVariants":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _AssetManifestFactory { export function implement(args: [], implementation: {listAssets: (() => DartListInput<string, string>); getAssetVariants: ((key: string) => DartListInput<upstream1.AssetMetadata, Readonly<{ "__flaxBound:package:flutter/src/services/asset_manifest.dart::AssetMetadata": readonly [] }>> | null)}): AssetManifest {
 return constructProxy(_AssetManifestProxy, args, implementation) as AssetManifest; } }
 export namespace _AssetManifestFactory { export function loadFromAssetBundle(bundle: Readonly<{ "__flaxBound:package:flutter/src/services/asset_bundle.dart::AssetBundle": readonly [] }>): Promise<AssetManifest> {

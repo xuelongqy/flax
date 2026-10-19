@@ -42,11 +42,12 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitType';
 import type * as upstream20 from '@flax/dart/ui/_bindings/sdk_dart_ui_FrameTiming';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_FrameTiming';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_Priority';
-import type * as upstream22 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
+import '@flax/dart/developer/_bindings/sdk_dependencies_Flow';
+import type * as upstream23 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
-import type * as upstream23 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
+import type * as upstream24 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
-import type * as upstream24 from '@flax/dart/ui/_bindings/sdk_dart_ui_Codec';
+import type * as upstream25 from '@flax/dart/ui/_bindings/sdk_dart_ui_Codec';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Codec';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
@@ -145,6 +146,9 @@ export interface PaintingBinding extends Omit<upstream0.BindingBase, _flaxOwnMem
         "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
     }>, options?: {
         debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }): Promise<_FlaxDartOutput<T>>;
     scheduleFrameCallback(callback: ((timeStamp: upstream13.Duration) => void), options?: {
         rescheduling?: boolean | undefined;
@@ -169,8 +173,8 @@ export interface PaintingBinding extends Omit<upstream0.BindingBase, _flaxOwnMem
     }> & Readonly<{
         "__flaxBound:dart:core::Comparable": readonly [upstream13.Duration];
     }>) | null): void;
-    requestPerformanceMode(mode: upstream23.DartPerformanceMode): upstream22.PerformanceModeRequestHandle | null;
-    debugGetRequestedPerformanceMode(): upstream23.DartPerformanceMode | null;
+    requestPerformanceMode(mode: upstream24.DartPerformanceMode): upstream23.PerformanceModeRequestHandle | null;
+    debugGetRequestedPerformanceMode(): upstream24.DartPerformanceMode | null;
     handleDrawFrame(): void;
     createImageCache(): upstream14.ImageCache;
     instantiateImageCodecFromBuffer(buffer: Readonly<{
@@ -179,14 +183,14 @@ export interface PaintingBinding extends Omit<upstream0.BindingBase, _flaxOwnMem
         allowUpscaling?: boolean | undefined;
         cacheHeight?: number | null | undefined;
         cacheWidth?: number | null | undefined;
-    }): Promise<upstream24.Codec>;
+    }): Promise<upstream25.Codec>;
     instantiateImageCodecWithSize(buffer: Readonly<{
         "__flaxBound:dart:ui::ImmutableBuffer": readonly [];
     }>, options?: {
         getTargetSize?: ((intrinsicWidth: number, intrinsicHeight: number) => Readonly<{
             "__flaxBound:dart:ui::TargetImageSize": readonly [];
         }>) | null | undefined;
-    }): Promise<upstream24.Codec>;
+    }): Promise<upstream25.Codec>;
     set schedulingStrategy(value: ((options: {
         priority: number;
         scheduler: upstream2.SchedulerBinding;
@@ -210,6 +214,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
         "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
     }>, options?: {
         debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }) => Promise<_Selected0> : never : never;
 }
 export {};

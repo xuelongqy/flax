@@ -24,10 +24,11 @@ import type * as upstream9 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 const _flaxMemberParameters0 = [{"name":"route","required":true,"positional":true},{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"animation","required":true,"positional":true},{"name":"secondaryAnimation","required":true,"positional":true},{"name":"child","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"platform","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"builders"}] as const;
+const _flaxMemberParameters3 = [] as const;
+const _flaxMemberParameters4 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters5 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters6 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -36,7 +37,7 @@ readonly [_flaxDartTypeValue]: PageTransitionsTheme;
 readonly [_flaxDartMethodCases]?: {buildTransitions: _FlaxSignature0;};
 }
 defineObject("flax.core/sdk_material#type:PageTransitionsTheme", ["builders"], [], _flaxBindingMethods("flax.core/sdk_material#type:PageTransitionsTheme", "object", {"buildTransitions":_flaxMemberParameters0,"delegatedTransition":_flaxMemberParameters1}, {"buildTransitions":{"id":"buildTransitions","parameters":[{"name":"route","required":true,"positional":true},{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"animation","required":true,"positional":true},{"name":"secondaryAnimation","required":true,"positional":true},{"name":"child","required":true,"positional":true}]}}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _PageTransitionsThemeProxy = {type: "flax.core/sdk_material#type:PageTransitionsTheme", parameters: [{"name":"builders","required":false,"positional":false}], constructors: {"":[{"name":"builders","required":false,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"buildTransitions":_flaxMemberParameters0,"delegatedTransition":_flaxMemberParameters1}, getters: ["builders"], setters: [], contextMembers: ["buildTransitions"], superMembers: ["get:builders","toStringShort","toString","toDiagnosticsNode","debugFillProperties","buildTransitions","delegatedTransition"]} as const;
+const _PageTransitionsThemeProxy = {type: "flax.core/sdk_material#type:PageTransitionsTheme", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters3,"toString":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugFillProperties":_flaxMemberParameters6,"buildTransitions":_flaxMemberParameters0,"delegatedTransition":_flaxMemberParameters1}, getters: ["builders"], setters: [], contextMembers: ["buildTransitions"], superMembers: ["get:builders","toStringShort","toString","toDiagnosticsNode","debugFillProperties","buildTransitions","delegatedTransition"]} as const;
 export interface PageTransitionsTheme {
 readonly [_flaxDartTypeValue]: PageTransitionsTheme;
 readonly [_flaxDartMethodCases]?: {buildTransitions: _FlaxSignature1;};

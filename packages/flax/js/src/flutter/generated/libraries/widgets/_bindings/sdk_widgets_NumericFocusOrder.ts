@@ -16,10 +16,11 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 const _flaxMemberParameters0 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"order","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters3 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters5 = [{"name":"minLevel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -28,9 +29,10 @@ readonly [_flaxDartTypeValue]: NumericFocusOrder;
 
 }
 defineObject("flax.core/sdk_widgets#type:NumericFocusOrder", ["order"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:NumericFocusOrder", "object", {"doCompare":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:FocusOrder");
-const _NumericFocusOrderProxy = {type: "flax.core/sdk_widgets#type:NumericFocusOrder", parameters: [{"name":"order","required":true,"positional":true}], constructors: {"":[{"name":"order","required":true,"positional":true}]}, methods: {"doCompare":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, getters: ["order"], setters: [], contextMembers: [], superMembers: ["get:order","doCompare","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+const _NumericFocusOrderProxy = {type: "flax.core/sdk_widgets#type:NumericFocusOrder", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"doCompare":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, getters: ["order"], setters: [], contextMembers: [], superMembers: ["get:order","doCompare","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
 export interface NumericFocusOrder {
 readonly [_flaxDartTypeValue]: NumericFocusOrder;
+compareTo(other: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream0.FocusOrder] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): number;
 
 doCompare(other: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NumericFocusOrder": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream0.FocusOrder] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): number;
 toStringShort(): string;
@@ -49,4 +51,4 @@ _flaxDefineProxyBase(NumericFocusOrder.prototype, _NumericFocusOrderProxy);
 export namespace NumericFocusOrder { export function implement(args: [order: number], implementation: {}): NumericFocusOrder {
 return constructProxy(_NumericFocusOrderProxy, args, implementation) as NumericFocusOrder; } }
 _flaxBindInstanceType<NumericFocusOrder, typeof NumericFocusOrder>(NumericFocusOrder, "flax.core/sdk_widgets#type:NumericFocusOrder", ["flax.core/sdk_widgets#type:FocusOrder","dart:core::Object","flax.core/flutter#type:Comparable","flax.core/sdk_foundation#type:Diagnosticable"]);
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "order" | "doCompare" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "compareTo" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NumericFocusOrder" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder" | "__flaxBound:dart:core::Comparable" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "order" | "compareTo" | "doCompare" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::NumericFocusOrder" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder" | "__flaxBound:dart:core::Comparable" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

@@ -74,9 +74,10 @@ import type * as upstream46 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream47 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream48 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
-import type * as upstream49 from '@flax/flutter/widgets/_bindings/sdk_widgets_UndoHistoryValue';
-import type * as upstream50 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import type * as upstream49 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
+import type * as upstream50 from '@flax/flutter/widgets/_bindings/sdk_widgets_UndoHistoryValue';
+import type * as upstream51 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextFormField extends _FlaxDartWidget, Omit<upstream0.FormField<string>, _flaxOwnMembers0>, Omit<upstream1.StatefulWidget, _flaxOwnMembers0 | keyof upstream0.FormField<string>>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.FormField<string> | keyof upstream1.StatefulWidget>, Readonly<{
@@ -146,13 +147,13 @@ export declare function _TextFormFieldFactory(options?: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream48.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream49.TextEditingValue];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream48.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream49.TextEditingValue];
     }>) | null | undefined;
     initialValue?: string | null | undefined;
     focusNode?: (Readonly<{
@@ -280,13 +281,13 @@ export declare function _TextFormFieldFactory(options?: {
     undoController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream49.UndoHistoryValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream50.UndoHistoryValue];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream49.UndoHistoryValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream50.UndoHistoryValue];
     }>) | null | undefined;
     onAppPrivateCommand?: ((action: string, data: DartMap<string, unknown | null>) => void) | null | undefined;
     cursorOpacityAnimates?: boolean | null | undefined;
@@ -299,13 +300,13 @@ export declare function _TextFormFieldFactory(options?: {
     statesController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream50.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream51.WidgetState>];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream50.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream51.WidgetState>];
     }>) | null | undefined;
     clipBehavior?: upstream40.Clip | undefined;
     scribbleEnabled?: boolean | undefined;

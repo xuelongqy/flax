@@ -12,7 +12,7 @@ readonly name: string;
 toString(): string;
 }
 defineObject("flax.core/sdk_dart_ui#type:SemanticsAction", ["index","name"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:SemanticsAction", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _SemanticsActionProxy = {type: "flax.core/sdk_dart_ui#type:SemanticsAction", parameters: [], constructors: {}, methods: {"toString":_flaxMemberParameters0}, getters: ["index","name"], setters: [], contextMembers: [], superMembers: []} as const;
+const _SemanticsActionProxy = {type: "flax.core/sdk_dart_ui#type:SemanticsAction", parameters: _flaxMemberParameters0, constructors: {}, methods: {"toString":_flaxMemberParameters0}, getters: ["index","name"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _SemanticsActionFactory { export function implement(args: [], implementation: {toString: (() => string); get index(): number; get name(): string}): SemanticsAction {
 return constructProxy(_SemanticsActionProxy, args, implementation) as SemanticsAction; } }
 export namespace _SemanticsActionFactory { export declare const tap: SemanticsAction; }

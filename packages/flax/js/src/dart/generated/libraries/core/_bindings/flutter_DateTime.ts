@@ -49,7 +49,7 @@ if (hour === undefined && (minute !== undefined || second !== undefined || milli
 if (minute === undefined && (second !== undefined || millisecond !== undefined || microsecond !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (second === undefined && (millisecond !== undefined || microsecond !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (millisecond === undefined && (microsecond !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-return constructObject("object", "flax.core/flutter#type:DateTime", "", [{"name":"year","required":true,"positional":true},{"name":"month","required":false,"positional":true},{"name":"day","required":false,"positional":true},{"name":"hour","required":false,"positional":true},{"name":"minute","required":false,"positional":true},{"name":"second","required":false,"positional":true},{"name":"millisecond","required":false,"positional":true},{"name":"microsecond","required":false,"positional":true}], [year, month, day, hour, minute, second, millisecond, microsecond], {}) as DateTime;
+return constructObject("object", "flax.core/flutter#type:DateTime", "", [{"name":"year","required":true,"positional":true},{"name":"month","positional":true},{"name":"day","positional":true},{"name":"hour","positional":true},{"name":"minute","positional":true},{"name":"second","positional":true},{"name":"millisecond","positional":true},{"name":"microsecond","positional":true}], [year, month, day, hour, minute, second, millisecond, microsecond], {}) as DateTime;
 }
 export namespace _DateTimeFactory {
 export function utc(year: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, millisecond?: number, microsecond?: number): DateTime {
@@ -61,35 +61,35 @@ if (hour === undefined && (minute !== undefined || second !== undefined || milli
 if (minute === undefined && (second !== undefined || millisecond !== undefined || microsecond !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (second === undefined && (millisecond !== undefined || microsecond !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
 if (millisecond === undefined && (microsecond !== undefined)) throw new TypeError('Optional positional arguments must omit a trailing suffix');
-return constructObject("object", "flax.core/flutter#type:DateTime", "utc", [{"name":"year","required":true,"positional":true},{"name":"month","required":false,"positional":true},{"name":"day","required":false,"positional":true},{"name":"hour","required":false,"positional":true},{"name":"minute","required":false,"positional":true},{"name":"second","required":false,"positional":true},{"name":"millisecond","required":false,"positional":true},{"name":"microsecond","required":false,"positional":true}], [year, month, day, hour, minute, second, millisecond, microsecond], {}) as DateTime;
+return constructObject("object", "flax.core/flutter#type:DateTime", "utc", [{"name":"year","required":true,"positional":true},{"name":"month","positional":true},{"name":"day","positional":true},{"name":"hour","positional":true},{"name":"minute","positional":true},{"name":"second","positional":true},{"name":"millisecond","positional":true},{"name":"microsecond","positional":true}], [year, month, day, hour, minute, second, millisecond, microsecond], {}) as DateTime;
 }
 }
 export namespace _DateTimeFactory {
 export function now(): DateTime {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:DateTime", "now", [], [], {}) as DateTime;
+return constructObject("object", "flax.core/flutter#type:DateTime", "now", _flaxMemberParameters1, [], {}) as DateTime;
 }
 }
 export namespace _DateTimeFactory {
 export function timestamp(): DateTime {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:DateTime", "timestamp", [], [], {}) as DateTime;
+return constructObject("object", "flax.core/flutter#type:DateTime", "timestamp", _flaxMemberParameters1, [], {}) as DateTime;
 }
 }
 export namespace _DateTimeFactory {
 export function fromMillisecondsSinceEpoch(millisecondsSinceEpoch: number, options: { isUtc?: boolean | undefined } = {}): DateTime {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:DateTime", "fromMillisecondsSinceEpoch", [{"name":"millisecondsSinceEpoch","required":true,"positional":true},{"name":"isUtc","required":false,"positional":false}], [millisecondsSinceEpoch], options) as DateTime;
+return constructObject("object", "flax.core/flutter#type:DateTime", "fromMillisecondsSinceEpoch", [{"name":"millisecondsSinceEpoch","required":true,"positional":true},{"name":"isUtc"}], [millisecondsSinceEpoch], options) as DateTime;
 }
 }
 export namespace _DateTimeFactory {
 export function fromMicrosecondsSinceEpoch(microsecondsSinceEpoch: number, options: { isUtc?: boolean | undefined } = {}): DateTime {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:DateTime", "fromMicrosecondsSinceEpoch", [{"name":"microsecondsSinceEpoch","required":true,"positional":true},{"name":"isUtc","required":false,"positional":false}], [microsecondsSinceEpoch], options) as DateTime;
+return constructObject("object", "flax.core/flutter#type:DateTime", "fromMicrosecondsSinceEpoch", [{"name":"microsecondsSinceEpoch","required":true,"positional":true},{"name":"isUtc"}], [microsecondsSinceEpoch], options) as DateTime;
 }
 }
 export namespace _DateTimeFactory { export declare const monday: number; }

@@ -19,10 +19,11 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"currentTextEditingValue","required":true,"positional":true},{"name":"replacementText","required":true,"positional":true},{"name":"replacementRange","required":true,"positional":true},{"name":"cause","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"minLevel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -31,7 +32,7 @@ readonly [_flaxDartTypeValue]: ReplaceTextIntent;
 
 }
 defineObject("flax.core/sdk_widgets#type:ReplaceTextIntent", ["currentTextEditingValue","replacementText","replacementRange","cause"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ReplaceTextIntent", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Intent");
-const _ReplaceTextIntentProxy = {type: "flax.core/sdk_widgets#type:ReplaceTextIntent", parameters: [{"name":"currentTextEditingValue","required":true,"positional":true},{"name":"replacementText","required":true,"positional":true},{"name":"replacementRange","required":true,"positional":true},{"name":"cause","required":true,"positional":true}], constructors: {"":[{"name":"currentTextEditingValue","required":true,"positional":true},{"name":"replacementText","required":true,"positional":true},{"name":"replacementRange","required":true,"positional":true},{"name":"cause","required":true,"positional":true}]}, methods: {"toStringShort":_flaxMemberParameters0,"toDiagnosticsNode":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, getters: ["currentTextEditingValue","replacementText","replacementRange","cause"], setters: [], contextMembers: [], superMembers: ["get:currentTextEditingValue","get:replacementText","get:replacementRange","get:cause","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+const _ReplaceTextIntentProxy = {type: "flax.core/sdk_widgets#type:ReplaceTextIntent", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShort":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, getters: ["currentTextEditingValue","replacementText","replacementRange","cause"], setters: [], contextMembers: [], superMembers: ["get:currentTextEditingValue","get:replacementText","get:replacementRange","get:cause","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
 export interface ReplaceTextIntent {
 readonly [_flaxDartTypeValue]: ReplaceTextIntent;
 

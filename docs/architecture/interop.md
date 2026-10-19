@@ -21,6 +21,14 @@ metadata object per collection. The decoder still performs its collection checks
 iteration: iterator and Proxy getters can have observable effects. Classification does
 not cache mutable input results or add another ownership path.
 
+Numeric typed arrays can also enter compatible Dart `List<T>` and `Iterable<T>`
+parameters through the existing shared-buffer bridge. For example, the Uint8Array
+returned by `Utf8Codec.encode` can go directly into `decode(List<int>)`. No intermediate
+JS array or Dart element copy is required. The actual Dart list type must match: a
+Float64Array cannot enter `List<int>`, and DataView, ArrayBuffer and forged buffer tags
+do not become lists. Shared backing storage keeps its existing lifetime and mutation
+semantics; ordinary JS arrays still use structural collection conversion.
+
 Navigator and showDialog arguments, results and pop callbacks use ordinary conversion,
 just like functions and methods. Named-page entry parameters keep their explicit copy
 contract. An API may separately request the generator's `data` selection, which copies
@@ -316,7 +324,7 @@ The existing `createArrayBuffer` / `readBytes` operations retain their explicit 
 semantics for Blob/Fetch and other snapshot APIs, with one payload copy in each
 direction. Native snapshots are released by Dart's external-data finalizer independently
 of session disposal. The internal binding engine table is version 5; native ABI 2, UI
-protocol 24 and Manifest 26 remain independent. Modules using Uint8List require the
+protocol 24 and Manifest 27 remain independent. Modules using Uint8List require the
 additive `shared-uint8` capability. Other supported binary types require
 `shared-buffers` and use this same storage lease:
 

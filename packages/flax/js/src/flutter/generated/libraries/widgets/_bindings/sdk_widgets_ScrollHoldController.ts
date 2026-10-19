@@ -10,7 +10,7 @@ readonly [_flaxDartTypeValue]: ScrollHoldController;
 cancel(): void;
 }
 defineObject("flax.core/sdk_widgets#type:ScrollHoldController", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ScrollHoldController", "object", {"cancel":_flaxMemberParameters0}, {}), []);
-const _ScrollHoldControllerProxy = {type: "flax.core/sdk_widgets#type:ScrollHoldController", parameters: [], constructors: {}, methods: {"cancel":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
+const _ScrollHoldControllerProxy = {type: "flax.core/sdk_widgets#type:ScrollHoldController", parameters: _flaxMemberParameters0, constructors: {}, methods: {"cancel":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _ScrollHoldControllerFactory { export function implement(args: [], implementation: {cancel: (() => void)}): ScrollHoldController {
 return constructProxy(_ScrollHoldControllerProxy, args, implementation) as ScrollHoldController; } }
 export const ScrollHoldController: typeof _ScrollHoldControllerFactory & _FlaxInstanceType<ScrollHoldController> & _FlaxDartType<ScrollHoldController, readonly ["class", "flax.core/sdk_widgets#type:ScrollHoldController", readonly [], false]> = _flaxBindInstanceType<ScrollHoldController, typeof _ScrollHoldControllerFactory>(_ScrollHoldControllerFactory, "flax.core/sdk_widgets#type:ScrollHoldController", ["dart:core::Object"]) as typeof _ScrollHoldControllerFactory & _FlaxInstanceType<ScrollHoldController> & _FlaxDartType<ScrollHoldController, readonly ["class", "flax.core/sdk_widgets#type:ScrollHoldController", readonly [], false]>;

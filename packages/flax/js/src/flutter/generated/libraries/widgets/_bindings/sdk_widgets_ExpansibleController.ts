@@ -17,7 +17,7 @@ readonly [_flaxDartTypeValue]: ExpansibleController;
 
 }
 defineObject("flax.core/sdk_widgets#type:ExpansibleController", ["hasListeners","isExpanded"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ExpansibleController", "object", {"expand":_flaxMemberParameters0,"collapse":_flaxMemberParameters0,"toggle":_flaxMemberParameters0}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _ExpansibleControllerProxy = {type: "flax.core/sdk_widgets#type:ExpansibleController", parameters: [], constructors: {"":[]}, methods: {"addListener":_flaxMemberParameters1,"removeListener":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"expand":_flaxMemberParameters0,"collapse":_flaxMemberParameters0,"toggle":_flaxMemberParameters0}, getters: ["isExpanded","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:isExpanded","get:hasListeners","addListener","removeListener","dispose","expand","collapse","toggle"]} as const;
+const _ExpansibleControllerProxy = {type: "flax.core/sdk_widgets#type:ExpansibleController", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"addListener":_flaxMemberParameters1,"removeListener":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"expand":_flaxMemberParameters0,"collapse":_flaxMemberParameters0,"toggle":_flaxMemberParameters0}, getters: ["isExpanded","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:isExpanded","get:hasListeners","addListener","removeListener","dispose","expand","collapse","toggle"]} as const;
 export interface ExpansibleController {
 readonly [_flaxDartTypeValue]: ExpansibleController;
 

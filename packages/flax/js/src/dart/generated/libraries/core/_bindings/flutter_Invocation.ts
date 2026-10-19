@@ -24,14 +24,14 @@ export namespace _InvocationFactory {
 export function method(memberName: Readonly<{ "__flaxBound:dart:core::Symbol": readonly [] }>, positionalArguments: DartIterableInput<unknown | null, unknown | null> | null, namedArguments?: DartMapInput<upstream0.Symbol, unknown | null, Readonly<{ "__flaxBound:dart:core::Symbol": readonly [] }>, unknown | null> | null): Invocation {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Invocation", "method", [{"name":"memberName","required":true,"positional":true},{"name":"positionalArguments","required":true,"positional":true},{"name":"namedArguments","required":false,"positional":true}], [memberName, positionalArguments, namedArguments], {}) as Invocation;
+return constructObject("object", "flax.core/flutter#type:Invocation", "method", [{"name":"memberName","required":true,"positional":true},{"name":"positionalArguments","required":true,"positional":true},{"name":"namedArguments","positional":true}], [memberName, positionalArguments, namedArguments], {}) as Invocation;
 }
 }
 export namespace _InvocationFactory {
 export function genericMethod(memberName: Readonly<{ "__flaxBound:dart:core::Symbol": readonly [] }>, typeArguments: DartIterableInput<upstream1.Type, Readonly<{ "__flaxBound:dart:core::Type": readonly [] }>> | null, positionalArguments: DartIterableInput<unknown | null, unknown | null> | null, namedArguments?: DartMapInput<upstream0.Symbol, unknown | null, Readonly<{ "__flaxBound:dart:core::Symbol": readonly [] }>, unknown | null> | null): Invocation {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 4) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Invocation", "genericMethod", [{"name":"memberName","required":true,"positional":true},{"name":"typeArguments","required":true,"positional":true},{"name":"positionalArguments","required":true,"positional":true},{"name":"namedArguments","required":false,"positional":true}], [memberName, typeArguments, positionalArguments, namedArguments], {}) as Invocation;
+return constructObject("object", "flax.core/flutter#type:Invocation", "genericMethod", [{"name":"memberName","required":true,"positional":true},{"name":"typeArguments","required":true,"positional":true},{"name":"positionalArguments","required":true,"positional":true},{"name":"namedArguments","positional":true}], [memberName, typeArguments, positionalArguments, namedArguments], {}) as Invocation;
 }
 }
 export namespace _InvocationFactory {

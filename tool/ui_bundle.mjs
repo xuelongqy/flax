@@ -63,8 +63,12 @@ const moduleEntries = [
     'services',
     'widget_previews',
     'widgets',
+    'vector_math',
   ].map((name) => [`@flax/flutter/${name}`, '@flax/core-runtime']),
-  ['@flax/dart/ui', '@flax/core-runtime'],
+  ...['async', 'convert', 'core', 'developer', 'io', 'isolate', 'ui'].map((name) => [
+    `@flax/dart/${name}`,
+    '@flax/core-runtime',
+  ]),
   ['@flax/material-ui', '@flax/material-ui-runtime'],
   ['@flax/cupertino-ui', '@flax/cupertino-ui-runtime'],
   ['@flax/fetch', '@flax/fetch-runtime'],

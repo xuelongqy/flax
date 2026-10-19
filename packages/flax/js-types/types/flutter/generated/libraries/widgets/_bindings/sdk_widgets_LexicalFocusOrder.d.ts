@@ -28,6 +28,13 @@ export interface LexicalFocusOrder extends Omit<upstream0.FocusOrder, _flaxOwnMe
 }
 export interface LexicalFocusOrder {
     readonly [_flaxDartTypeValue]: LexicalFocusOrder;
+    compareTo(other: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream0.FocusOrder];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): number;
     doCompare(other: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::LexicalFocusOrder": readonly [];
     }> & Readonly<{
@@ -59,5 +66,5 @@ export declare abstract class LexicalFocusOrder extends _FlaxProxyBase {
 export declare namespace LexicalFocusOrder {
     function implement(args: [order: string], implementation: {}): LexicalFocusOrder;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "order" | "doCompare" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "compareTo" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::LexicalFocusOrder" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder" | "__flaxBound:dart:core::Comparable" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "order" | "compareTo" | "doCompare" | "toStringShort" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::LexicalFocusOrder" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder" | "__flaxBound:dart:core::Comparable" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

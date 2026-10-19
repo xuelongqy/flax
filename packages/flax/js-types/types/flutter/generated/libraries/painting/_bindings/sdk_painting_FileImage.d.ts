@@ -1,22 +1,25 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/painting/_bindings/sdk_painting_ImageProvider';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageProvider';
-import type * as upstream1 from '@flax/flutter/painting/_bindings/sdk_painting_ImageStream';
+import type * as upstream1 from '@flax/dart/io/_bindings/sdk_dependencies_File';
+import '@flax/dart/io/_bindings/sdk_dependencies_File';
+import type * as upstream2 from '@flax/flutter/painting/_bindings/sdk_painting_ImageStream';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageStream';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageConfiguration';
-import type * as upstream3 from '@flax/flutter/painting/_bindings/sdk_painting_ImageCacheStatus';
+import type * as upstream4 from '@flax/flutter/painting/_bindings/sdk_painting_ImageCacheStatus';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageCacheStatus';
-import type * as upstream4 from '@flax/dart/core/_bindings/flutter_StackTrace';
+import type * as upstream5 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageCache_cx';
-import type * as upstream6 from '@flax/flutter/painting/_bindings/sdk_painting_ImageStreamCompleter';
+import type * as upstream7 from '@flax/flutter/painting/_bindings/sdk_painting_ImageStreamCompleter';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageStreamCompleter';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Codec';
-import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
+import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
-import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
+import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
-import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
 export interface FileImage extends Omit<upstream0.ImageProvider<FileImage>, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/painting/image_provider.dart::FileImage": readonly [];
 }>, Readonly<{
@@ -24,16 +27,21 @@ export interface FileImage extends Omit<upstream0.ImageProvider<FileImage>, _fla
 }> {
     readonly __FileImage: unique symbol;
     readonly [_flaxDartTypeValue]: FileImage;
-    readonly scale: number;
+}
+export interface FileImage {
+    readonly [_flaxDartTypeValue]: FileImage;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream2.ImageStream;
     createStream(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
-    }>): upstream1.ImageStream;
+    }>): upstream2.ImageStream;
     obtainCacheStatus(options: {
         configuration: Readonly<{
             "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
         }>;
-        handleError?: ((exception: {}, stackTrace: upstream4.StackTrace | null) => void) | null | undefined;
-    }): Promise<upstream3.ImageCacheStatus | null>;
+        handleError?: ((exception: {}, stackTrace: upstream5.StackTrace | null) => void) | null | undefined;
+    }): Promise<upstream4.ImageCacheStatus | null>;
     resolveStreamForKey(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>, stream: Readonly<{
@@ -44,7 +52,7 @@ export interface FileImage extends Omit<upstream0.ImageProvider<FileImage>, _fla
         "__flaxBound:package:flutter/src/painting/image_provider.dart::FileImage": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [FileImage];
-    }>, handleError: ((exception: {}, stackTrace: upstream4.StackTrace | null) => void)): void;
+    }>, handleError: ((exception: {}, stackTrace: upstream5.StackTrace | null) => void)): void;
     evict(options?: {
         cache?: Readonly<{
             "__flaxBound:package:flutter/src/painting/image_cache.dart::ImageCache": readonly [];
@@ -60,27 +68,46 @@ export interface FileImage extends Omit<upstream0.ImageProvider<FileImage>, _fla
         "__flaxBound:package:flutter/src/painting/image_provider.dart::FileImage": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [FileImage];
-    }>, decode: ((buffer: upstream8.ImmutableBuffer, options?: {
+    }>, decode: ((buffer: upstream9.ImmutableBuffer, options?: {
         allowUpscaling?: boolean | undefined;
         cacheHeight?: number | null | undefined;
         cacheWidth?: number | null | undefined;
     }) => Promise<Readonly<{
         "__flaxBound:dart:ui::Codec": readonly [];
-    }>>)): upstream6.ImageStreamCompleter;
+    }>>)): upstream7.ImageStreamCompleter;
     loadImage(key: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::FileImage": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [FileImage];
-    }>, decode: ((buffer: upstream8.ImmutableBuffer, options?: {
-        getTargetSize?: ((intrinsicWidth: number, intrinsicHeight: number) => upstream9.TargetImageSize) | null | undefined;
+    }>, decode: ((buffer: upstream9.ImmutableBuffer, options?: {
+        getTargetSize?: ((intrinsicWidth: number, intrinsicHeight: number) => upstream10.TargetImageSize) | null | undefined;
     }) => Promise<Readonly<{
         "__flaxBound:dart:ui::Codec": readonly [];
-    }>>)): upstream6.ImageStreamCompleter;
+    }>>)): upstream7.ImageStreamCompleter;
     toString(): string;
-    resolve(configuration: Readonly<{
-        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
-    }>): upstream1.ImageStream;
+    get file(): upstream1.File;
+    get scale(): number;
 }
-export declare const FileImage: object & _FlaxInstanceType<FileImage> & _FlaxDartType<FileImage, readonly ["class", "flax.core/sdk_painting#type:FileImage", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "scale" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "resolve" | "__flaxBound:package:flutter/src/painting/image_provider.dart::FileImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+export declare abstract class FileImage extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<FileImage>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: FileImage;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_painting#type:FileImage", readonly [], false];
+    constructor(file: Readonly<{
+        "__flaxBound:dart:io::File": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:io::FileSystemEntity": readonly [];
+    }>, options?: {
+        scale?: number | undefined;
+    });
+}
+export declare namespace FileImage {
+    function implement(args: [file: Readonly<{
+        "__flaxBound:dart:io::File": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:io::FileSystemEntity": readonly [];
+    }>, options?: {
+        scale?: number | undefined;
+    }], implementation: {}): FileImage;
+}
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "file" | "scale" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::FileImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 export {};

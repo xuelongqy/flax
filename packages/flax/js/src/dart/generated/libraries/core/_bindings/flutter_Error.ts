@@ -16,7 +16,7 @@ defineObject("flax.core/flutter#type:Error", ["stackTrace"], [], _flaxBindingMet
 export function _ErrorFactory(): Error {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Error", "", [], [], {}) as Error;
+return constructObject("object", "flax.core/flutter#type:Error", "", _flaxMemberParameters0, [], {}) as Error;
 }
 export namespace _ErrorFactory { export function safeToString(object: unknown | null): string {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

@@ -29,7 +29,7 @@ export interface DecorationImage {
     readonly [_flaxDartTypeValue]: DecorationImage;
     createPainter(onChanged: (() => void)): upstream8.DecorationImagePainter;
     toString(): string;
-    get image(): upstream0.ImageProvider<{}>;
+    get image(): upstream0.ImageProvider<any>;
     get onError(): ((exception: {}, stackTrace: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }> | null) => void) | null;

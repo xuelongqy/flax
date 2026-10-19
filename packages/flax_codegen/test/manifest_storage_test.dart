@@ -139,4 +139,108 @@ void main() {
       expect(deep.items.single.message, contains('depth limit'));
     },
   );
+
+  test(
+    'shared members retain defaults, callback policy and declaration data',
+    () {
+      final method = <String, Object?>{
+        'name': 'read',
+        'parameters': [
+          {
+            'name': 'value',
+            'type': list,
+            'required': false,
+            'positional': false,
+            'defaultCode': 'const []',
+            'omitWhenAbsent': true,
+            'scoped': true,
+            'encodeKind': 'data',
+          },
+        ],
+        'result': string,
+        'mustCallSuper': true,
+      };
+      final semantic = <String, Object?>{
+        'modules': [
+          {
+            'methods': [method, method],
+          },
+          {
+            'methods': [
+              method,
+              {...method, 'mustCallSuper': false},
+            ],
+          },
+        ],
+        'typeLibraries': {r'$member': 'package:example/types.dart'},
+      };
+      final stored = FlaxCodegenManifestStorage.compact(semantic);
+      expect(stored['memberTable'], hasLength(1));
+      final diagnostics = FlaxCodegenManifestDiagnostics('members.json');
+      final restored = FlaxCodegenManifestStorage.expand(
+        jsonDecode(jsonEncode(stored)),
+        diagnostics,
+      );
+      diagnostics.throwIfAny();
+      expect(restored, semantic);
+      expect(
+        FlaxCodegenManifestStorage.compact(restored! as Map<String, Object?>),
+        stored,
+      );
+    },
+  );
+
+  test(
+    'member references reject invalid, cyclic, duplicate and unused rows',
+    () {
+      final member = <String, Object?>{
+        'name': 'read',
+        'parameters': [],
+        'result': string,
+      };
+      for (final invalid in [
+        {'memberTable': null},
+        {
+          'memberTable': [null],
+        },
+        {
+          'memberTable': [member],
+          'value': {r'$member': -1},
+        },
+        {
+          'memberTable': [member],
+          'value': {r'$member': 0.5},
+        },
+        {
+          'memberTable': [member],
+          'value': {r'$member': 1},
+        },
+        {
+          'memberTable': [member],
+          'value': {r'$member': 0, 'extra': true},
+        },
+        {
+          'memberTable': [member, member],
+          'value': {r'$member': 0},
+        },
+        {
+          'memberTable': [member],
+        },
+        {
+          'memberTable': [
+            {
+              'name': 'read',
+              'parameters': [
+                {r'$member': 0},
+              ],
+            },
+          ],
+        },
+      ]) {
+        final diagnostics = FlaxCodegenManifestDiagnostics('bad-members.json');
+        expect(FlaxCodegenManifestStorage.expand(invalid, diagnostics), isNull);
+        expect(diagnostics.items, isNotEmpty);
+      }
+    },
+  );
 }

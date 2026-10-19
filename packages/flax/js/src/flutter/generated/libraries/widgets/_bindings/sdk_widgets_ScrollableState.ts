@@ -43,8 +43,8 @@ import '@flax/dart/core/_bindings/flutter_Duration';
 import type * as upstream20 from '@flax/flutter/widgets/_bindings/sdk_widgets_RestorableProperty';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RestorableProperty';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"value","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"actions","required":true,"positional":true}] as const;
@@ -103,7 +103,7 @@ defineObject("flax.core/sdk_widgets#type:ScrollableState", ["notificationContext
 export function _ScrollableStateFactory(): ScrollableState {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:ScrollableState", "", [], [], {}) as ScrollableState;
+return constructObject("object", "flax.core/sdk_widgets#type:ScrollableState", "", _flaxMemberParameters0, [], {}) as ScrollableState;
 }
 export const ScrollableState: typeof _ScrollableStateFactory & _FlaxInstanceType<ScrollableState> & _FlaxDartType<ScrollableState, readonly ["class", "flax.core/sdk_widgets#type:ScrollableState", readonly [], false]> = _flaxBindInstanceType<ScrollableState, typeof _ScrollableStateFactory>(_ScrollableStateFactory, "flax.core/sdk_widgets#type:ScrollableState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/sdk_widgets#type:ScrollContext","flax.core/sdk_widgets#type:TickerProviderStateMixin","flax.core/flutter#type:TickerProvider","flax.core/sdk_widgets#type:RestorationMixin"]) as typeof _ScrollableStateFactory & _FlaxInstanceType<ScrollableState> & _FlaxDartType<ScrollableState, readonly ["class", "flax.core/sdk_widgets#type:ScrollableState", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "notificationContext" | "storageContext" | "vsync" | "axisDirection" | "devicePixelRatio" | "widget" | "context" | "mounted" | "restorationId" | "bucket" | "restorePending" | "position" | "resolvedPhysics" | "deltaToScrollOrigin" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "setIgnorePointer" | "setCanDrag" | "setSemanticsActions" | "saveOffset" | "createTicker" | "activate" | "dispose" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "build" | "didChangeDependencies" | "restoreState" | "didToggleBucket" | "registerForRestoration" | "unregisterFromRestoration" | "didUpdateRestorationId" | "__flaxBound:package:flutter/src/widgets/scrollable.dart::ScrollableState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/scroll_context.dart::ScrollContext" | "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin" | "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorationMixin";

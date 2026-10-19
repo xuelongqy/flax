@@ -18,7 +18,7 @@ readonly [_flaxDartTypeValue]: StandardFabLocation;
 
 }
 defineObject("flax.core/sdk_material#type:StandardFabLocation", [], [], _flaxBindingMethods("flax.core/sdk_material#type:StandardFabLocation", "object", {"getOffsetX":_flaxMemberParameters0,"getOffsetY":_flaxMemberParameters0,"isMini":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_material#type:FloatingActionButtonLocation");
-const _StandardFabLocationProxy = {type: "flax.core/sdk_material#type:StandardFabLocation", parameters: [], constructors: {"":[]}, methods: {"getOffset":_flaxMemberParameters2,"toString":_flaxMemberParameters1,"getOffsetX":_flaxMemberParameters0,"getOffsetY":_flaxMemberParameters0,"isMini":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["getOffset","toString","isMini"]} as const;
+const _StandardFabLocationProxy = {type: "flax.core/sdk_material#type:StandardFabLocation", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"getOffset":_flaxMemberParameters2,"toString":_flaxMemberParameters1,"getOffsetX":_flaxMemberParameters0,"getOffsetY":_flaxMemberParameters0,"isMini":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["getOffset","toString","isMini"]} as const;
 export interface StandardFabLocation {
 readonly [_flaxDartTypeValue]: StandardFabLocation;
 

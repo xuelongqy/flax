@@ -4,6 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
+const _flaxMemberParameters1 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/cupertino/_bindings/sdk_cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface CupertinoMenuEntry extends Readonly<{ "__flaxBound:package:flutter/src/cupertino/menu_anchor.dart::CupertinoMenuEntry": readonly [] }> { readonly __CupertinoMenuEntry: unique symbol;
@@ -13,7 +14,7 @@ readonly isDivider: boolean;
 hasLeading(context: upstream0.BuildContext): boolean;
 }
 defineObject("flax.core/sdk_cupertino#type:CupertinoMenuEntry", ["isDivider"], [], _flaxBindingMethods("flax.core/sdk_cupertino#type:CupertinoMenuEntry", "object", {"hasLeading":_flaxMemberParameters0}, {}), []);
-const _CupertinoMenuEntryProxy = {type: "flax.core/sdk_cupertino#type:CupertinoMenuEntry", parameters: [], constructors: {}, methods: {"hasLeading":_flaxMemberParameters0}, getters: ["isDivider"], setters: [], contextMembers: [], superMembers: []} as const;
+const _CupertinoMenuEntryProxy = {type: "flax.core/sdk_cupertino#type:CupertinoMenuEntry", parameters: _flaxMemberParameters1, constructors: {}, methods: {"hasLeading":_flaxMemberParameters0}, getters: ["isDivider"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _CupertinoMenuEntryFactory { export function implement(args: [], implementation: {hasLeading: ((context: upstream0.BuildContext) => boolean); get isDivider(): boolean}): CupertinoMenuEntry {
 return constructProxy(_CupertinoMenuEntryProxy, args, implementation) as CupertinoMenuEntry; } }
 export const CupertinoMenuEntry: typeof _CupertinoMenuEntryFactory & _FlaxInstanceType<CupertinoMenuEntry> & _FlaxDartType<CupertinoMenuEntry, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoMenuEntry", readonly [], false]> = _flaxBindInstanceType<CupertinoMenuEntry, typeof _CupertinoMenuEntryFactory>(_CupertinoMenuEntryFactory, "flax.core/sdk_cupertino#type:CupertinoMenuEntry", ["dart:core::Object"]) as typeof _CupertinoMenuEntryFactory & _FlaxInstanceType<CupertinoMenuEntry> & _FlaxDartType<CupertinoMenuEntry, readonly ["class", "flax.core/sdk_cupertino#type:CupertinoMenuEntry", readonly [], false]>;

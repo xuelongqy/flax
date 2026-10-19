@@ -22,7 +22,7 @@ readonly [_flaxDartTypeValue]: ContainerBoxParentData<ChildType>;
 
 }
 defineObject("flax.core/sdk_rendering#type:ContainerBoxParentData", ["offset","previousSibling","nextSibling"], ["offset","previousSibling","nextSibling"], _flaxBindingMethods("flax.core/sdk_rendering#type:ContainerBoxParentData", "object", {"toString":_flaxMemberParameters0,"detach":_flaxMemberParameters0}, {}), []);
-const _ContainerBoxParentDataProxy = {type: "flax.core/sdk_rendering#type:ContainerBoxParentData", parameters: [], constructors: {"":[]}, methods: {"toString":_flaxMemberParameters0,"detach":_flaxMemberParameters0}, getters: ["offset","previousSibling","nextSibling"], setters: ["offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:offset","get:previousSibling","get:nextSibling","set:offset","set:previousSibling","set:nextSibling","toString","detach"]} as const;
+const _ContainerBoxParentDataProxy = {type: "flax.core/sdk_rendering#type:ContainerBoxParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toString":_flaxMemberParameters0,"detach":_flaxMemberParameters0}, getters: ["offset","previousSibling","nextSibling"], setters: ["offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:offset","get:previousSibling","get:nextSibling","set:offset","set:previousSibling","set:nextSibling","toString","detach"]} as const;
 export interface ContainerBoxParentData<ChildType extends upstream0.RenderObject = upstream0.RenderObject> {
 readonly [_flaxDartTypeValue]: ContainerBoxParentData<ChildType>;
 

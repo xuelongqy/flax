@@ -14,7 +14,7 @@ readonly bottom: number;
 toString(): string;
 }
 defineObject("flax.core/sdk_dart_ui#type:ViewPadding", ["left","top","right","bottom"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:ViewPadding", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _ViewPaddingProxy = {type: "flax.core/sdk_dart_ui#type:ViewPadding", parameters: [], constructors: {}, methods: {"toString":_flaxMemberParameters0}, getters: ["left","top","right","bottom"], setters: [], contextMembers: [], superMembers: []} as const;
+const _ViewPaddingProxy = {type: "flax.core/sdk_dart_ui#type:ViewPadding", parameters: _flaxMemberParameters0, constructors: {}, methods: {"toString":_flaxMemberParameters0}, getters: ["left","top","right","bottom"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _ViewPaddingFactory { export function implement(args: [], implementation: {toString: (() => string); get left(): number; get top(): number; get right(): number; get bottom(): number}): ViewPadding {
 return constructProxy(_ViewPaddingProxy, args, implementation) as ViewPadding; } }
 export namespace _ViewPaddingFactory { export declare const zero: ViewPadding; }

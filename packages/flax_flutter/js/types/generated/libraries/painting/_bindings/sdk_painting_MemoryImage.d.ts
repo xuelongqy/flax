@@ -28,6 +28,9 @@ export interface MemoryImage extends Omit<upstream0.ImageProvider<MemoryImage>, 
 }
 export interface MemoryImage {
     readonly [_flaxDartTypeValue]: MemoryImage;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream1.ImageStream;
     createStream(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream1.ImageStream;
@@ -96,5 +99,5 @@ export declare namespace MemoryImage {
         scale?: number | undefined;
     }], implementation: {}): MemoryImage;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "bytes" | "scale" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::MemoryImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "bytes" | "scale" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::MemoryImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 export {};

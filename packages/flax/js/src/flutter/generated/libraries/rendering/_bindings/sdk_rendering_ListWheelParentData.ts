@@ -24,7 +24,7 @@ readonly [_flaxDartTypeValue]: ListWheelParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:ListWheelParentData", ["offset","previousSibling","nextSibling","index","transform"], ["offset","previousSibling","nextSibling","index","transform"], _flaxBindingMethods("flax.core/sdk_rendering#type:ListWheelParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
-const _ListWheelParentDataProxy = {type: "flax.core/sdk_rendering#type:ListWheelParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["index","transform","offset","previousSibling","nextSibling"], setters: ["index","transform","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:index","get:transform","get:offset","get:previousSibling","get:nextSibling","set:index","set:transform","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _ListWheelParentDataProxy = {type: "flax.core/sdk_rendering#type:ListWheelParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["index","transform","offset","previousSibling","nextSibling"], setters: ["index","transform","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:index","get:transform","get:offset","get:previousSibling","get:nextSibling","set:index","set:transform","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface ListWheelParentData {
 readonly [_flaxDartTypeValue]: ListWheelParentData;
 

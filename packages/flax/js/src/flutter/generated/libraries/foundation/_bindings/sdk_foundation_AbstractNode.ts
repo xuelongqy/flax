@@ -12,7 +12,7 @@ readonly [_flaxDartTypeValue]: AbstractNode;
 
 }
 defineObject("flax.core/sdk_foundation#type:AbstractNode", ["depth","owner","attached","parent"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:AbstractNode", "object", {"redepthChild":_flaxMemberParameters0,"redepthChildren":_flaxMemberParameters1,"attach":_flaxMemberParameters2,"detach":_flaxMemberParameters1,"adoptChild":_flaxMemberParameters0,"dropChild":_flaxMemberParameters0}, {}), []);
-const _AbstractNodeProxy = {type: "flax.core/sdk_foundation#type:AbstractNode", parameters: [], constructors: {"":[]}, methods: {"redepthChild":_flaxMemberParameters0,"redepthChildren":_flaxMemberParameters1,"attach":_flaxMemberParameters2,"detach":_flaxMemberParameters1,"adoptChild":_flaxMemberParameters0,"dropChild":_flaxMemberParameters0}, getters: ["depth","owner","attached","parent"], setters: [], contextMembers: [], superMembers: ["get:depth","get:owner","get:attached","get:parent","redepthChild","redepthChildren","attach","detach","adoptChild","dropChild"]} as const;
+const _AbstractNodeProxy = {type: "flax.core/sdk_foundation#type:AbstractNode", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"redepthChild":_flaxMemberParameters0,"redepthChildren":_flaxMemberParameters1,"attach":_flaxMemberParameters2,"detach":_flaxMemberParameters1,"adoptChild":_flaxMemberParameters0,"dropChild":_flaxMemberParameters0}, getters: ["depth","owner","attached","parent"], setters: [], contextMembers: [], superMembers: ["get:depth","get:owner","get:attached","get:parent","redepthChild","redepthChildren","attach","detach","adoptChild","dropChild"]} as const;
 export interface AbstractNode {
 readonly [_flaxDartTypeValue]: AbstractNode;
 

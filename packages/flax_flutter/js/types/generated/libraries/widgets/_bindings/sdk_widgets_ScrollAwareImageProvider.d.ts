@@ -34,6 +34,9 @@ export interface ScrollAwareImageProvider<T extends {} = {}> extends Omit<upstre
 }
 export interface ScrollAwareImageProvider<T extends {} = {}> {
     readonly [_flaxDartTypeValue]: ScrollAwareImageProvider<T>;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream4.ImageStream;
     createStream(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream4.ImageStream;
@@ -102,7 +105,7 @@ export declare namespace ScrollAwareImageProvider {
         }>;
     }], implementation: {}): ScrollAwareImageProvider<T>;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "context" | "imageProvider" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_aware_image_provider.dart::ScrollAwareImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "context" | "imageProvider" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_aware_image_provider.dart::ScrollAwareImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 interface _FlaxSignature1 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [{}] ? (abstract new (options: {
         context: Readonly<{

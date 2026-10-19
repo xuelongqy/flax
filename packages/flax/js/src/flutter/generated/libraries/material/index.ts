@@ -1034,6 +1034,7 @@ export { GradientRotation } from "@flax/flutter/painting/_bindings/sdk_painting_
 export { GradientTransform } from "@flax/flutter/painting/_bindings/sdk_painting_GradientTransform";
 export { HSLColor } from "@flax/flutter/painting/_bindings/sdk_painting_HSLColor";
 export { HSVColor } from "@flax/flutter/painting/_bindings/sdk_painting_HSVColor";
+export type { HttpClientProvider, HttpClientProviderInput } from "@flax/flutter/painting/_bindings/sdk_painting_HttpClientProvider";
 export { ImageCache } from "@flax/flutter/painting/_bindings/sdk_painting_ImageCache_cx";
 export { ImageCacheStatus } from "@flax/flutter/painting/_bindings/sdk_painting_ImageCacheStatus";
 export { ImageChunkEvent } from "@flax/flutter/painting/_bindings/sdk_painting_ImageChunkEvent";
@@ -1100,6 +1101,7 @@ export { debugDescribeTransform } from "@flax/flutter/painting/_bindings/sdk_pai
 export { getDebugDisableShadows, setDebugDisableShadows } from "@flax/flutter/painting/_bindings/sdk_painting_debugDisableShadows";
 export { getDebugImageOverheadAllowance, setDebugImageOverheadAllowance } from "@flax/flutter/painting/_bindings/sdk_painting_debugImageOverheadAllowance";
 export { getDebugInvertOversizedImages, setDebugInvertOversizedImages } from "@flax/flutter/painting/_bindings/sdk_painting_debugInvertOversizedImages";
+export { getDebugNetworkImageHttpClientProvider, setDebugNetworkImageHttpClientProvider } from "@flax/flutter/painting/_bindings/sdk_painting_debugNetworkImageHttpClientProvider";
 export { getDebugOnPaintImage, setDebugOnPaintImage } from "@flax/flutter/painting/_bindings/sdk_painting_debugOnPaintImage";
 export { decodeImageFromList } from "@flax/flutter/painting/_bindings/sdk_painting_decodeImageFromList";
 export { flipAxis } from "@flax/flutter/painting/_bindings/sdk_painting_flipAxis";
@@ -1493,6 +1495,7 @@ export { InspectorSelection } from "@flax/flutter/widgets/_bindings/sdk_widgets_
 export type { InspectorSelectionChangedCallback, InspectorSelectionChangedCallbackInput } from "@flax/flutter/widgets/_bindings/sdk_widgets_InspectorSelectionChangedCallback";
 export { Intent } from "@flax/flutter/widgets/_bindings/sdk_widgets_Intent";
 export { InteractiveViewer } from "@flax/flutter/widgets/_bindings/sdk_widgets_InteractiveViewer";
+export type { InteractiveViewerWidgetBuilder, InteractiveViewerWidgetBuilderInput } from "@flax/flutter/widgets/_bindings/sdk_widgets_InteractiveViewerWidgetBuilder";
 export { IntrinsicHeight } from "@flax/flutter/widgets/_bindings/sdk_widgets_IntrinsicHeight";
 export { IntrinsicWidth } from "@flax/flutter/widgets/_bindings/sdk_widgets_IntrinsicWidth";
 export { KeepAlive } from "@flax/flutter/widgets/_bindings/sdk_widgets_KeepAlive";
@@ -1872,6 +1875,9 @@ export { SliverVariedExtentList } from "@flax/flutter/widgets/_bindings/sdk_widg
 export { SliverVisibility } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverVisibility";
 export { SliverWithKeepAliveWidget } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverWithKeepAliveWidget";
 export { SlottedContainerRenderObjectMixin } from "@flax/flutter/widgets/_bindings/sdk_widgets_SlottedContainerRenderObjectMixin";
+export { SlottedMultiChildRenderObjectWidget } from "@flax/flutter/widgets/_bindings/sdk_widgets_SlottedMultiChildRenderObjectWidget";
+export { SlottedMultiChildRenderObjectWidgetMixin } from "@flax/flutter/widgets/_bindings/sdk_widgets_SlottedMultiChildRenderObjectWidgetMixin";
+export { SlottedRenderObjectElement } from "@flax/flutter/widgets/_bindings/sdk_widgets_SlottedRenderObjectElement";
 export { SnapshotController } from "@flax/flutter/widgets/_bindings/sdk_widgets_SnapshotController";
 export { SnapshotMode } from "@flax/flutter/widgets/_bindings/sdk_widgets_SnapshotMode";
 export { SnapshotPainter } from "@flax/flutter/widgets/_bindings/sdk_widgets_SnapshotPainter";

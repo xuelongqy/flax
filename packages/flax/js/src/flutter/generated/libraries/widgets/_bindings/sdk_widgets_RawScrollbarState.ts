@@ -41,8 +41,8 @@ import '@flax/flutter/gestures/_bindings/sdk_gestures_PointerHoverEvent';
 import type * as upstream19 from '@flax/flutter/gestures/_bindings/sdk_gestures_PointerExitEvent';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_PointerExitEvent';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"onTick","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"oldWidget","required":true,"positional":true}] as const;
@@ -52,7 +52,7 @@ const _flaxMemberParameters8 = [{"name":"localPosition","required":true,"positio
 const _flaxMemberParameters9 = [{"name":"localPosition","required":true,"positional":true},{"name":"velocity","required":true,"positional":true}] as const;
 const _flaxMemberParameters10 = [{"name":"details","required":true,"positional":true}] as const;
 const _flaxMemberParameters11 = [{"name":"position","required":true,"positional":true},{"name":"kind","required":true,"positional":true}] as const;
-const _flaxMemberParameters12 = [{"name":"position","required":true,"positional":true},{"name":"kind","required":true,"positional":true},{"name":"forHover","required":false,"positional":false}] as const;
+const _flaxMemberParameters12 = [{"name":"position","required":true,"positional":true},{"name":"kind","required":true,"positional":true},{"name":"forHover"}] as const;
 const _flaxMemberParameters13 = [{"name":"event","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -99,7 +99,7 @@ export function _RawScrollbarStateFactory(): RawScrollbarState<upstream0.RawScro
 export function _RawScrollbarStateFactory(): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:RawScrollbarState", "", [], [], {}) as RawScrollbarState<upstream0.RawScrollbar>;
+return constructObject("object", "flax.core/sdk_widgets#type:RawScrollbarState", "", _flaxMemberParameters0, [], {}) as RawScrollbarState<upstream0.RawScrollbar>;
 }
 export const RawScrollbarState: typeof _RawScrollbarStateFactory & _FlaxInstanceType<RawScrollbarState<upstream0.RawScrollbar>> & _FlaxDartType<RawScrollbarState<upstream0.RawScrollbar>, readonly ["class", "flax.core/sdk_widgets#type:RawScrollbarState", readonly [readonly ["class", "flax.core/sdk_widgets#type:RawScrollbar", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<RawScrollbarState<upstream0.RawScrollbar>, typeof _RawScrollbarStateFactory>(_RawScrollbarStateFactory, "flax.core/sdk_widgets#type:RawScrollbarState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/sdk_widgets#type:TickerProviderStateMixin","flax.core/flutter#type:TickerProvider"]) as typeof _RawScrollbarStateFactory & _FlaxInstanceType<RawScrollbarState<upstream0.RawScrollbar>> & _FlaxDartType<RawScrollbarState<upstream0.RawScrollbar>, readonly ["class", "flax.core/sdk_widgets#type:RawScrollbarState", readonly [readonly ["class", "flax.core/sdk_widgets#type:RawScrollbar", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 _flaxDefineDartTypes(RawScrollbarState, "flax.core/sdk_widgets#type:RawScrollbarState", {"category":"object","constructors":{"":[]}});

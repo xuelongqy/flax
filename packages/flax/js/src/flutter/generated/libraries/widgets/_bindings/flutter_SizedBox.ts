@@ -11,34 +11,34 @@ export interface SizedBox extends WidgetDescription, Omit<Readonly<{ "__flaxBoun
 export function _SizedBoxFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; width?: Bindable<number | null> | undefined; height?: Bindable<number | null> | undefined; child?: Bindable<Widget | null> | undefined } = {}): SizedBox {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:SizedBox", "", [{"name":"key","required":false,"positional":false},{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as SizedBox;
+return construct("widget", "flax.core/flutter#type:SizedBox", "", [{"name":"key"},{"name":"width"},{"name":"height"},{"name":"child"}], [], options) as SizedBox;
 }
 export namespace _SizedBoxFactory {
 export function expand(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child?: Bindable<Widget | null> | undefined } = {}): SizedBox {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:SizedBox", "expand", [{"name":"key","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as SizedBox;
+return construct("widget", "flax.core/flutter#type:SizedBox", "expand", [{"name":"key"},{"name":"child"}], [], options) as SizedBox;
 }
 }
 export namespace _SizedBoxFactory {
 export function shrink(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child?: Bindable<Widget | null> | undefined } = {}): SizedBox {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:SizedBox", "shrink", [{"name":"key","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as SizedBox;
+return construct("widget", "flax.core/flutter#type:SizedBox", "shrink", [{"name":"key"},{"name":"child"}], [], options) as SizedBox;
 }
 }
 export namespace _SizedBoxFactory {
 export function fromSize(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child?: Bindable<Widget | null> | undefined; size?: Bindable<Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null> | undefined } = {}): SizedBox {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:SizedBox", "fromSize", [{"name":"key","required":false,"positional":false},{"name":"child","required":false,"positional":false},{"name":"size","required":false,"positional":false}], [], options) as SizedBox;
+return construct("widget", "flax.core/flutter#type:SizedBox", "fromSize", [{"name":"key"},{"name":"child"},{"name":"size"}], [], options) as SizedBox;
 }
 }
 export namespace _SizedBoxFactory {
 export function square(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child?: Bindable<Widget | null> | undefined; dimension?: Bindable<number | null> | undefined } = {}): SizedBox {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:SizedBox", "square", [{"name":"key","required":false,"positional":false},{"name":"child","required":false,"positional":false},{"name":"dimension","required":false,"positional":false}], [], options) as SizedBox;
+return construct("widget", "flax.core/flutter#type:SizedBox", "square", [{"name":"key"},{"name":"child"},{"name":"dimension"}], [], options) as SizedBox;
 }
 }
 export const SizedBox: typeof _SizedBoxFactory & _FlaxInstanceType<SizedBox> & _FlaxDartType<SizedBox, readonly ["class", "flax.core/flutter#type:SizedBox", readonly [], false]> = _flaxBindInstanceType<SizedBox, typeof _SizedBoxFactory>(_SizedBoxFactory, "flax.core/flutter#type:SizedBox", ["flax.core/sdk_widgets#type:SingleChildRenderObjectWidget","flax.core/sdk_widgets#type:RenderObjectWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SizedBoxFactory & _FlaxInstanceType<SizedBox> & _FlaxDartType<SizedBox, readonly ["class", "flax.core/flutter#type:SizedBox", readonly [], false]>;

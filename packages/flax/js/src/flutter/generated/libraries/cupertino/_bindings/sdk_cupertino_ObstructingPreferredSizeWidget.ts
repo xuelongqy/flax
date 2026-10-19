@@ -18,12 +18,13 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters1 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"key"}] as const;
+const _flaxMemberParameters2 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+const _flaxMemberParameters4 = [] as const;
+const _flaxMemberParameters5 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters6 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [{"name":"minLevel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/cupertino/_bindings/sdk_cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -41,7 +42,7 @@ toString(options?: {minLevel?: upstream3.DiagnosticLevel | undefined}): string;
 shouldFullyObstruct(context: upstream7.BuildContext): boolean;
 }
 defineObject("flax.core/sdk_cupertino#type:ObstructingPreferredSizeWidget", ["preferredSize"], [], _flaxBindingMethods("flax.core/sdk_cupertino#type:ObstructingPreferredSizeWidget", "object", {"shouldFullyObstruct":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:PreferredSizeWidget");
-const _ObstructingPreferredSizeWidgetProxy = {nativeWidget: true, type: "flax.core/sdk_cupertino#type:ObstructingPreferredSizeWidget", parameters: [{"name":"key","required":false,"positional":false}], constructors: {"":[{"name":"key","required":false,"positional":false}]}, methods: {"toStringShallow":_flaxMemberParameters1,"toStringDeep":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters6,"shouldFullyObstruct":_flaxMemberParameters0,"build":_flaxMemberParameters0}, getters: ["preferredSize"], setters: [], contextMembers: [], superMembers: ["toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties","toString"]} as const;
+const _ObstructingPreferredSizeWidgetProxy = {nativeWidget: true, type: "flax.core/sdk_cupertino#type:ObstructingPreferredSizeWidget", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toStringShort":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugDescribeChildren":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters6,"toString":_flaxMemberParameters7,"shouldFullyObstruct":_flaxMemberParameters0,"build":_flaxMemberParameters0}, getters: ["preferredSize"], setters: [], contextMembers: [], superMembers: ["toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties","toString"]} as const;
 export interface _ObstructingPreferredSizeWidgetImplementation extends ObstructingPreferredSizeWidget {
 readonly [_flaxDartTypeValue]: _ObstructingPreferredSizeWidgetImplementation;
 

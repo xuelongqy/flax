@@ -44,7 +44,8 @@ import type * as upstream22 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream23 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream24 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import type * as upstream25 from '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SearchAnchor extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
@@ -89,26 +90,26 @@ export interface SearchAnchor extends _FlaxDartWidget, Omit<upstream0.StatefulWi
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream24.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream25.TextEditingValue];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream24.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream25.TextEditingValue];
     }>) => Widget);
     readonly suggestionsBuilder: ((context: upstream10.BuildContext, controller: Readonly<{
         "__flaxBound:package:flutter/src/material/search_anchor.dart::SearchController": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream24.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream25.TextEditingValue];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream24.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream25.TextEditingValue];
     }>) => DartIterable<Widget> | Promise<DartIterable<Widget>>);
     readonly textInputAction: upstream11.TextInputAction | null;
     readonly keyboardType: upstream12.TextInputType | null;
@@ -148,13 +149,13 @@ export declare function _SearchAnchorFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream24.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream25.TextEditingValue];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream24.TextEditingValue];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream25.TextEditingValue];
     }>) | null | undefined;
     viewBuilder?: ((suggestions: DartIterable<Widget>) => Widget) | null | undefined;
     viewLeading?: Widget | null | undefined;
@@ -307,13 +308,13 @@ export declare namespace _SearchAnchorFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream24.TextEditingValue];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream25.TextEditingValue];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream24.TextEditingValue];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream25.TextEditingValue];
         }>) | undefined;
         textCapitalization?: upstream9.TextCapitalization | undefined;
         suggestionsBuilder: ((context: upstream10.BuildContext, controller: upstream2.SearchController) => DartIterableInput<Widget, Widget> | Promise<DartIterableInput<Widget, Widget>>);

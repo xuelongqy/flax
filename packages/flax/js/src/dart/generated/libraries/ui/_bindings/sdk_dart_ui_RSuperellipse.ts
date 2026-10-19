@@ -89,14 +89,14 @@ export namespace _RSuperellipseFactory {
 export function fromLTRBAndCorners(left: number, top: number, right: number, bottom: number, options: { topLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; topRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): RSuperellipse {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 5) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:RSuperellipse", "fromLTRBAndCorners", [{"name":"left","required":true,"positional":true},{"name":"top","required":true,"positional":true},{"name":"right","required":true,"positional":true},{"name":"bottom","required":true,"positional":true},{"name":"topLeft","required":false,"positional":false},{"name":"topRight","required":false,"positional":false},{"name":"bottomRight","required":false,"positional":false},{"name":"bottomLeft","required":false,"positional":false}], [left, top, right, bottom], options) as RSuperellipse;
+return constructObject("object", "flax.core/sdk_dart_ui#type:RSuperellipse", "fromLTRBAndCorners", [{"name":"left","required":true,"positional":true},{"name":"top","required":true,"positional":true},{"name":"right","required":true,"positional":true},{"name":"bottom","required":true,"positional":true},{"name":"topLeft"},{"name":"topRight"},{"name":"bottomRight"},{"name":"bottomLeft"}], [left, top, right, bottom], options) as RSuperellipse;
 }
 }
 export namespace _RSuperellipseFactory {
 export function fromRectAndCorners(rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, options: { topLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; topRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): RSuperellipse {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:RSuperellipse", "fromRectAndCorners", [{"name":"rect","required":true,"positional":true},{"name":"topLeft","required":false,"positional":false},{"name":"topRight","required":false,"positional":false},{"name":"bottomRight","required":false,"positional":false},{"name":"bottomLeft","required":false,"positional":false}], [rect], options) as RSuperellipse;
+return constructObject("object", "flax.core/sdk_dart_ui#type:RSuperellipse", "fromRectAndCorners", [{"name":"rect","required":true,"positional":true},{"name":"topLeft"},{"name":"topRight"},{"name":"bottomRight"},{"name":"bottomLeft"}], [rect], options) as RSuperellipse;
 }
 }
 export namespace _RSuperellipseFactory { export declare const zero: RSuperellipse; }

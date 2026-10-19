@@ -14,6 +14,7 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerLayer';
 import type * as upstream5 from '@flax/flutter/rendering/_bindings/sdk_rendering_TransformLayer';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_TransformLayer';
 const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"_layer","positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +23,7 @@ readonly [_flaxDartTypeValue]: LayerHandle<T>;
 
 }
 defineObject("flax.core/sdk_rendering#type:LayerHandle", ["layer"], ["layer"], _flaxBindingMethods("flax.core/sdk_rendering#type:LayerHandle", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _LayerHandleProxy = {type: "flax.core/sdk_rendering#type:LayerHandle", parameters: [{"name":"_layer","required":false,"positional":true}], constructors: {"":[{"name":"_layer","required":false,"positional":true}]}, methods: {"toString":_flaxMemberParameters0}, getters: ["layer"], setters: ["layer"], contextMembers: [], superMembers: ["get:layer","set:layer","toString"]} as const;
+const _LayerHandleProxy = {type: "flax.core/sdk_rendering#type:LayerHandle", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: ["layer"], setters: ["layer"], contextMembers: [], superMembers: ["get:layer","set:layer","toString"]} as const;
 export interface LayerHandle<T extends upstream0.Layer = upstream0.Layer> {
 readonly [_flaxDartTypeValue]: LayerHandle<T>;
 

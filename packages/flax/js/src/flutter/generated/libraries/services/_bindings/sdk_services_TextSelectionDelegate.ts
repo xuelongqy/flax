@@ -8,7 +8,7 @@ import '@flax/flutter/services/_bindings/sdk_services_SelectionChangedCause';
 import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 const _flaxMemberParameters0 = [{"name":"value","required":true,"positional":true},{"name":"cause","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"hideHandles","required":false,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"hideHandles","positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"position","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"cause","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";

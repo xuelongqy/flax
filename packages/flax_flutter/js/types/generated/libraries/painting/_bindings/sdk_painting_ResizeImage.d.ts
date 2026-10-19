@@ -32,6 +32,9 @@ export interface ResizeImage extends Omit<upstream0.ImageProvider<upstream1.Resi
 }
 export interface ResizeImage {
     readonly [_flaxDartTypeValue]: ResizeImage;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream3.ImageStream;
     createStream(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream3.ImageStream;
@@ -78,7 +81,7 @@ export interface ResizeImage {
         "__flaxBound:dart:ui::Codec": readonly [];
     }>>)): upstream8.ImageStreamCompleter;
     toString(): string;
-    get imageProvider(): upstream0.ImageProvider<{}>;
+    get imageProvider(): upstream0.ImageProvider<any>;
     get width(): number | null;
     get height(): number | null;
     get policy(): upstream2.ResizeImagePolicy;
@@ -110,7 +113,7 @@ export declare namespace ResizeImage {
 export declare namespace ResizeImage {
     function resizeIfNeeded(cacheWidth: number | null, cacheHeight: number | null, provider: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
-    }>): upstream0.ImageProvider<{}>;
+    }>): upstream0.ImageProvider<any>;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "imageProvider" | "width" | "height" | "policy" | "allowUpscaling" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ResizeImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "imageProvider" | "width" | "height" | "policy" | "allowUpscaling" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ResizeImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 export {};

@@ -32,14 +32,15 @@ import '@flax/flutter/services/_bindings/sdk_services_SystemContextMenuClient';
 import type * as upstream15 from '@flax/dart/ui/_bindings/sdk_dart_ui_FrameTiming';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_FrameTiming';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_Priority';
-import type * as upstream17 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
+import '@flax/dart/developer/_bindings/sdk_dependencies_Flow';
+import type * as upstream18 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
-import type * as upstream18 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
+import type * as upstream19 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ViewFocusEvent';
-import type * as upstream20 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
+import type * as upstream21 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitResponse';
-import type * as upstream21 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitType';
+import type * as upstream22 from '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitType';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_AppExitType';
 import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ServicesBinding extends Omit<upstream0.BindingBase, _flaxOwnMembers0>, Omit<upstream1.SchedulerBinding, _flaxOwnMembers0 | keyof upstream0.BindingBase>, Readonly<{
@@ -118,6 +119,9 @@ export interface ServicesBinding extends Omit<upstream0.BindingBase, _flaxOwnMem
         "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
     }>, options?: {
         debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }): Promise<_FlaxDartOutput<T>>;
     scheduleFrameCallback(callback: ((timeStamp: upstream6.Duration) => void), options?: {
         rescheduling?: boolean | undefined;
@@ -142,8 +146,8 @@ export interface ServicesBinding extends Omit<upstream0.BindingBase, _flaxOwnMem
     }> & Readonly<{
         "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
     }>) | null): void;
-    requestPerformanceMode(mode: upstream18.DartPerformanceMode): upstream17.PerformanceModeRequestHandle | null;
-    debugGetRequestedPerformanceMode(): upstream18.DartPerformanceMode | null;
+    requestPerformanceMode(mode: upstream19.DartPerformanceMode): upstream18.PerformanceModeRequestHandle | null;
+    debugGetRequestedPerformanceMode(): upstream19.DartPerformanceMode | null;
     handleDrawFrame(): void;
     createBinaryMessenger(): upstream9.BinaryMessenger;
     handleMemoryPressure(): void;
@@ -154,8 +158,8 @@ export interface ServicesBinding extends Omit<upstream0.BindingBase, _flaxOwnMem
     handleViewFocusChanged(event: Readonly<{
         "__flaxBound:dart:ui::ViewFocusEvent": readonly [];
     }>): void;
-    handleRequestAppExit(): Promise<upstream20.AppExitResponse>;
-    exitApplication(exitType: upstream21.AppExitType, exitCode?: number): Promise<upstream20.AppExitResponse>;
+    handleRequestAppExit(): Promise<upstream21.AppExitResponse>;
+    exitApplication(exitType: upstream22.AppExitType, exitCode?: number): Promise<upstream21.AppExitResponse>;
     createRestorationManager(): upstream12.RestorationManager;
     setSystemUiChangeCallback(callback: ((systemOverlaysAreVisible: boolean) => Promise<void>) | null): void;
     initializationComplete(): Promise<void>;
@@ -182,6 +186,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
         "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
     }>, options?: {
         debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }) => Promise<_Selected0> : never : never;
 }
 export {};

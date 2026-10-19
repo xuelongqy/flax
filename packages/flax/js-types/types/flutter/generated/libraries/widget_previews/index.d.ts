@@ -12,3 +12,4 @@ export type { PreviewLocalizations, PreviewLocalizationsInput } from "@flax/flut
 export { PreviewLocalizationsData } from "@flax/flutter/widget_previews/_bindings/sdk_widget_previews_PreviewLocalizationsData";
 export type { PreviewTheme, PreviewThemeInput } from "@flax/flutter/widget_previews/_bindings/sdk_widget_previews_PreviewTheme";
 export { PreviewThemeData } from "@flax/flutter/widget_previews/_bindings/sdk_widget_previews_PreviewThemeData";
+export type { WidgetWrapper, WidgetWrapperInput } from "@flax/flutter/widget_previews/_bindings/sdk_widget_previews_WidgetWrapper";

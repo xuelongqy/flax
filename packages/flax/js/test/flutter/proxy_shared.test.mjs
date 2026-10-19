@@ -83,7 +83,14 @@ test('Future object views share Promise adoption and preserve Dart named calls',
   };
   defineObject(type, [], [], methods, []);
   function FutureToken() {}
-  FutureToken.prototype.then = methods.then;
+  defineProxyBase(FutureToken.prototype, {
+    type,
+    parameters: [],
+    methods: { then: [{ name: 'onValue', required: true, positional: true }] },
+    getters: [],
+    setters: [],
+    superMembers: ['then'],
+  });
   bindInstanceType(FutureToken, type, ['dart:async::Future']);
   const then = FutureToken.prototype.then;
   for (let i = 0; i < 8; i++) {
@@ -113,6 +120,34 @@ test('Future object views share Promise adoption and preserve Dart named calls',
   await assert.rejects(Promise.resolve(failure), /future failed/);
   assert.equal(await failure.then(null, () => 3), 3);
   assert.equal(await failure.catch(() => 4), 4);
+});
+
+test('Stream ancestry completes views prepared during proxy registration', async (t) => {
+  const type = 'fixture:StreamObject';
+  const previous = operationHost('reference', (_version, _type, _id, operation) => {
+    assert.equal(operation, 'stream');
+    return {
+      async *[Symbol.asyncIterator]() {
+        yield 7;
+      },
+    };
+  });
+  t.after(() => operationHost('reference', previous));
+  defineObject(type, [], [], {}, []);
+  function StreamToken() {}
+  defineProxyBase(StreamToken.prototype, {
+    type,
+    parameters: [],
+    methods: {},
+    getters: [],
+    setters: [],
+    superMembers: [],
+  });
+  bindInstanceType(StreamToken, type, ['dart:async::Stream']);
+  const value = globalThis.__flaxBindings.object(type, 4201);
+  const items = [];
+  for await (const item of value) items.push(item);
+  assert.deepEqual(items, [7]);
 });
 
 test('shared prototype forwarding preserves receiver, direct super and omission', (t) => {
@@ -145,6 +180,7 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
   };
   globalThis.__flaxCreateObject = (_version, _type, descriptor) => {
     assert.equal(typeof descriptor.widgetType, 'number');
+    assert.equal(descriptor.args.value, 5);
     return globalThis.__flaxBindings.object(type, 4001);
   };
   globalThis.__flaxBindPeer = (version, source, target) => {
@@ -156,12 +192,14 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
     calls.push(args);
     return args.at(-1);
   });
+  const parameters = [{ name: 'value', required: true, positional: true }];
   const definition = {
     nativeWidget: true,
     type,
-    parameters: [],
+    parameters,
+    constructors: { '': parameters, named: parameters },
     methods: {
-      add: [{ name: 'value', required: true, positional: true }],
+      add: parameters,
       named: [{ name: 'value', required: false, positional: false }],
     },
     getters: ['value'],
@@ -170,8 +208,8 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
     contextMembers: ['add'],
   };
   class Base extends FlaxProxyBase {
-    constructor() {
-      super(definition, []);
+    constructor(...args) {
+      super(definition, args);
     }
   }
   defineProxyBase(Base.prototype, definition);
@@ -184,7 +222,9 @@ test('shared prototype forwarding preserves receiver, direct super and omission'
       return super.add(value) + 10;
     }
   }
-  const instance = new Custom();
+  assert.ok(Object.isFrozen(parameters));
+  assert.throws(() => new Custom(), /Missing required/);
+  const instance = new Custom(5);
   assert.deepEqual(peers, [instance]);
   assert.equal(instance.add(2), 12);
   assert.equal(calls.at(-1)[4], '@super:add');
@@ -358,4 +398,70 @@ test('collection children retain inherited native member argument layouts', (t) 
   assert.equal(typeof length?.get, 'function');
   assert.equal(length.get.call(b), true);
   assert.deepEqual(calls.at(-1), [child, 'length']);
+});
+
+test('ordinary proxies reuse native callable and property descriptors', (t) => {
+  const type = 'fixture:NativeOnlyMembers';
+  const calls = [];
+  const previous = operationHost(
+    'object',
+    (_version, selected, id, op, name, ...args) => {
+      calls.push([selected, id, op, name, ...args]);
+      return 7;
+    },
+  );
+  t.after(() => operationHost('object', previous));
+  defineObject(
+    type,
+    ['nativeValue'],
+    ['nativeValue'],
+    bindingMethods(type, 'object', {
+      nativeCall: [{ name: 'value', required: true, positional: true }],
+      toString: [],
+    }),
+    [],
+  );
+  class Proxy {}
+  defineProxyBase(Proxy.prototype, {
+    type,
+    parameters: [],
+    methods: {},
+    getters: [],
+    setters: [],
+    superMembers: [],
+  });
+  const receiver = globalThis.__flaxBindings.object(type, 9820);
+  assert.equal(Proxy.prototype.nativeCall.call(receiver, 3), 7);
+  const property = Object.getOwnPropertyDescriptor(Proxy.prototype, 'nativeValue');
+  property.set.call(receiver, 4);
+  assert.equal(property.get.call(receiver), 7);
+  assert.equal(Proxy.prototype.toString.call(receiver), 7);
+  assert.deepEqual(calls, [
+    [type, 9820, 'call', 'nativeCall', 3],
+    [type, 9820, 'set', 'nativeValue', 4],
+    [type, 9820, 'get', 'nativeValue'],
+    [type, 9820, 'call', 'toString'],
+  ]);
+  assert.throws(() => Proxy.prototype.nativeCall.call({}, 3), /foreign/);
+});
+
+test('native proxy members wait for parent registration across module cycles', () => {
+  const parent = 'fixture:LateNativeParent';
+  const child = 'fixture:EarlyNativeChild';
+  defineObject(child, [], [], {}, [], undefined, parent);
+  class Child {}
+  defineProxyBase(Child.prototype, {
+    type: child,
+    parameters: [],
+    methods: {},
+    getters: [],
+    setters: [],
+    superMembers: [],
+  });
+  const native = function () {
+    return this;
+  };
+  defineObject(parent, [], [], { native }, []);
+  assert.equal(Child.prototype.native, native);
+  assert.equal(Child.prototype.native.call(Child.prototype), Child.prototype);
 });

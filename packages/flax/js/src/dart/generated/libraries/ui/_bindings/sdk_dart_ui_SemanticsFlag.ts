@@ -12,7 +12,7 @@ readonly name: string;
 toString(): string;
 }
 defineObject("flax.core/sdk_dart_ui#type:SemanticsFlag", ["index","name"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:SemanticsFlag", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _SemanticsFlagProxy = {type: "flax.core/sdk_dart_ui#type:SemanticsFlag", parameters: [], constructors: {}, methods: {"toString":_flaxMemberParameters0}, getters: ["index","name"], setters: [], contextMembers: [], superMembers: []} as const;
+const _SemanticsFlagProxy = {type: "flax.core/sdk_dart_ui#type:SemanticsFlag", parameters: _flaxMemberParameters0, constructors: {}, methods: {"toString":_flaxMemberParameters0}, getters: ["index","name"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _SemanticsFlagFactory { export function implement(args: [], implementation: {toString: (() => string); get index(): number; get name(): string}): SemanticsFlag {
 return constructProxy(_SemanticsFlagProxy, args, implementation) as SemanticsFlag; } }
 export namespace _SemanticsFlagFactory { export declare const hasCheckedState: SemanticsFlag; }

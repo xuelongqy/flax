@@ -36,9 +36,6 @@
     "../packages/flax/js/src/flutter/generated/libraries/gestures/index.ts",
     "../packages/flax/js/src/flutter/generated/libraries/scheduler/index.ts",
     "../packages/flax/js/src/flutter/generated/libraries/services/index.ts",
-    "../packages/flax/js/src/dart/generated/libraries/async/index.ts",
-    "../packages/flax/js/src/dart/generated/libraries/core/index.ts",
-    "../packages/flax/js/src/dart/generated/libraries/ui/index.ts",
     "../packages/flax_material_ui/js/src/index.ts",
     "../packages/flax_cupertino_ui/js/src/index.ts",
     "../packages/flax/js/src/runtime/index.ts",
@@ -55,5 +52,8 @@
     "../packages/flax_canvas/js/src/index.ts",
     "../packages/flax_canvas/js/src/globals.ts"
   ],
-  "include": ["../packages/flax/js/src/flutter/generated/libraries/*/index.ts"]
+  "include": [
+    "../packages/flax/js/src/flutter/generated/libraries/*/index.ts",
+    "../packages/flax/js/src/dart/generated/libraries/*/index.ts"
+  ]
 }

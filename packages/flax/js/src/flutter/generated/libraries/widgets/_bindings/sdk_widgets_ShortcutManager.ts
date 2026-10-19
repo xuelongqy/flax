@@ -26,11 +26,12 @@ import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream11 from '@flax/flutter/services/_bindings/flutter_KeyEvent';
 import '@flax/flutter/services/_bindings/flutter_KeyEvent';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"event","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"listener","required":true,"positional":true}] as const;
+const _flaxMemberParameters5 = [{"name":"shortcuts"},{"name":"modal"}] as const;
+const _flaxMemberParameters6 = [{"name":"listener","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -39,7 +40,7 @@ readonly [_flaxDartTypeValue]: ShortcutManager;
 
 }
 defineObject("flax.core/sdk_widgets#type:ShortcutManager", ["hasListeners","modal","shortcuts"], ["shortcuts"], _flaxBindingMethods("flax.core/sdk_widgets#type:ShortcutManager", "object", {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3,"handleKeypress":_flaxMemberParameters4}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _ShortcutManagerProxy = {type: "flax.core/sdk_widgets#type:ShortcutManager", parameters: [{"name":"shortcuts","required":false,"positional":false},{"name":"modal","required":false,"positional":false}], constructors: {"":[{"name":"shortcuts","required":false,"positional":false},{"name":"modal","required":false,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3,"addListener":_flaxMemberParameters5,"removeListener":_flaxMemberParameters5,"dispose":_flaxMemberParameters0,"handleKeypress":_flaxMemberParameters4}, getters: ["modal","shortcuts","hasListeners"], setters: ["shortcuts"], contextMembers: [], superMembers: ["get:modal","get:shortcuts","get:hasListeners","set:shortcuts","toStringShort","toString","toDiagnosticsNode","debugFillProperties","addListener","removeListener","dispose","handleKeypress"]} as const;
+const _ShortcutManagerProxy = {type: "flax.core/sdk_widgets#type:ShortcutManager", parameters: _flaxMemberParameters5, constructors: {"": _flaxMemberParameters5}, methods: {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3,"addListener":_flaxMemberParameters6,"removeListener":_flaxMemberParameters6,"dispose":_flaxMemberParameters0,"handleKeypress":_flaxMemberParameters4}, getters: ["modal","shortcuts","hasListeners"], setters: ["shortcuts"], contextMembers: [], superMembers: ["get:modal","get:shortcuts","get:hasListeners","set:shortcuts","toStringShort","toString","toDiagnosticsNode","debugFillProperties","addListener","removeListener","dispose","handleKeypress"]} as const;
 export interface ShortcutManager {
 readonly [_flaxDartTypeValue]: ShortcutManager;
 

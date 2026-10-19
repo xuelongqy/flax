@@ -5,6 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
 const _flaxMemberParameters0 = [] as const;
 const _flaxMemberParameters1 = [{"name":"other","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"image","required":true},{"name":"scale"},{"name":"debugLabel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -13,7 +14,7 @@ readonly [_flaxDartTypeValue]: ImageInfo;
 
 }
 defineObject("flax.core/sdk_painting#type:ImageInfo", ["image","sizeBytes","scale","debugLabel"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ImageInfo", "object", {"clone":_flaxMemberParameters0,"isCloneOf":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, {}), []);
-const _ImageInfoProxy = {type: "flax.core/sdk_painting#type:ImageInfo", parameters: [{"name":"image","required":true,"positional":false},{"name":"scale","required":false,"positional":false},{"name":"debugLabel","required":false,"positional":false}], constructors: {"":[{"name":"image","required":true,"positional":false},{"name":"scale","required":false,"positional":false},{"name":"debugLabel","required":false,"positional":false}]}, methods: {"clone":_flaxMemberParameters0,"isCloneOf":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["image","sizeBytes","scale","debugLabel"], setters: [], contextMembers: [], superMembers: ["get:image","get:sizeBytes","get:scale","get:debugLabel","clone","isCloneOf","dispose","toString"]} as const;
+const _ImageInfoProxy = {type: "flax.core/sdk_painting#type:ImageInfo", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"clone":_flaxMemberParameters0,"isCloneOf":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["image","sizeBytes","scale","debugLabel"], setters: [], contextMembers: [], superMembers: ["get:image","get:sizeBytes","get:scale","get:debugLabel","clone","isCloneOf","dispose","toString"]} as const;
 export interface ImageInfo {
 readonly [_flaxDartTypeValue]: ImageInfo;
 

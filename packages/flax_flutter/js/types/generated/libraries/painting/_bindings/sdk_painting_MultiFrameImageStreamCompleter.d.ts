@@ -34,6 +34,7 @@ export interface MultiFrameImageStreamCompleter extends Omit<upstream0.ImageStre
 }
 export interface MultiFrameImageStreamCompleter {
     readonly [_flaxDartTypeValue]: MultiFrameImageStreamCompleter;
+    maybeDispose(): void;
     addListener(listener: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamListener": readonly [];
     }>): void;
@@ -117,5 +118,5 @@ export declare namespace MultiFrameImageStreamCompleter {
         }>>) | null | undefined;
     }], implementation: {}): MultiFrameImageStreamCompleter;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "debugLabel" | "addListener" | "addEphemeralErrorListener" | "keepAlive" | "removeListener" | "onDisposed" | "addOnLastListenerRemovedCallback" | "removeOnLastListenerRemovedCallback" | "setImage" | "reportError" | "reportImageChunkEvent" | "debugFillProperties" | "toStringShort" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/painting/image_stream.dart::MultiFrameImageStreamCompleter" | "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamCompleter" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "debugLabel" | "addListener" | "addEphemeralErrorListener" | "keepAlive" | "removeListener" | "onDisposed" | "maybeDispose" | "addOnLastListenerRemovedCallback" | "removeOnLastListenerRemovedCallback" | "setImage" | "reportError" | "reportImageChunkEvent" | "debugFillProperties" | "toStringShort" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/painting/image_stream.dart::MultiFrameImageStreamCompleter" | "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamCompleter" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

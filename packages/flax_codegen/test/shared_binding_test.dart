@@ -26,6 +26,18 @@ const _ordinary = FlaxCodegenClassSelection(
   },
 );
 
+const _widget = FlaxCodegenClassSelection(
+  {'': []},
+  proxy: 'extends',
+  getters: ['value', 'narrowed'],
+  instanceMethods: {
+    'scale': ['input'],
+    'narrow': ['input'],
+    'defaulted': ['amount'],
+    'callWith': ['callback'],
+  },
+);
+
 void main() {
   var root = Directory.current;
   while (!Directory(p.join(root.path, 'packages/flax_codegen')).existsSync()) {
@@ -56,6 +68,97 @@ void main() {
     parser = FlaxCodegenBindingParser(root.path);
     addTearDown(parser.dispose);
   });
+
+  test(
+    'Widget views share ordinary calls and keep local super semantics',
+    () async {
+      final widgetConfig = config(const {
+        'SharedWidgetLeaf': _widget,
+        'SharedWidgetChild': _widget,
+        'SharedWidgetBase': _widget,
+        'SharedRestrictedWidget': FlaxCodegenClassSelection(
+          {'': []},
+          instanceMethods: {
+            'scale': ['input'],
+          },
+        ),
+      });
+      final coreConfig = FlaxCodegenBindingConfig.read(
+        p.join(root.path, 'packages/flax/bindings/flax_bindings.yaml'),
+      );
+      await parser.prepare([coreConfig, widgetConfig]);
+      final core = await parser.parse(coreConfig);
+      parser.prepareModules([core]);
+      final module = await parser.parse(widgetConfig);
+      final emitter = FlaxCodegenBindingEmitter([core, module]);
+      await compileFixture(
+        root.path,
+        emitter,
+        module,
+        consumerSource: '''
+import {SharedWidgetLeaf} from './plugin.js';
+class Leaf extends SharedWidgetLeaf {
+  override scale(input: number): number { return super.scale(input) + 1; }
+  override get value(): number { return super.value; }
+}
+const result: number = new Leaf().scale(3);
+''',
+        dartTestSource: r'''
+FlaxObjectBinding binding(String name) {
+  final selected = sharedBindings.types.singleWhere((b) => b.id.endsWith('::$name'));
+  return selected is FlaxWidgetBinding ? selected.objectView! : selected as FlaxObjectBinding;
+}
+class _Peer implements FlaxProxyPeer {
+  @override
+  bool get active => false;
+  @override
+  FlaxCallbackBinding genericSignature(int member, List<Type> types,
+      FlaxCallbackBinding Function(FlaxDartTypes) create) => throw StateError('inactive');
+  @override
+  (bool, Object?) call(int member, List<Object?> positional, Map<String, Object?> named,
+      {FlaxCallbackBinding? signature, Function? superCall}) => (false, null);
+}
+void main() {
+  test('Widget ordinary members preserve sharing, virtual calls and narrowed types', () {
+    final base = binding('SharedWidgetBase');
+    final child = binding('SharedWidgetChild');
+    final leaf = binding('SharedWidgetLeaf');
+    final value = api.SharedWidgetLeaf();
+    expect(child.parent, same(base));
+    expect(leaf.parent, same(child));
+    expect(leaf.instanceMethods['scale'], same(base.instanceMethods['scale']));
+    expect(leaf.getters.firstWhere((g) => g.name == 'value'),
+      same(base.getters.firstWhere((g) => g.name == 'value')));
+    expect(leaf.instanceMethods['scale']!.invoke(value, {'input': 3}), 115);
+    expect(leaf.instanceMethods['callWith']!.invoke(value, {'callback': (num n) => n + 4}), 6);
+    final signature = base.proxy!.members.singleWhere((member) => member.name == 'scale').signature;
+    expect(base.instanceMethods['scale']!.parameters, same(signature.parameters));
+    expect(base.instanceMethods['@super:scale']!.parameters, same(signature.parameters));
+    expect(child.getters.firstWhere((g) => g.name == 'narrowed').type.kind, 'double');
+    expect(child.instanceMethods['defaulted']!.parameters.single.defaultValue, 2);
+    expect(base.instanceMethods['defaulted']!.parameters.single.defaultValue, 1);
+    expect(() => leaf.instanceMethods['narrow']!.invoke(value, {'input': 'wrong'}),
+      throwsA(isA<TypeError>()));
+    final restricted = binding('SharedRestrictedWidget');
+    expect(restricted.parent, isNull);
+    expect(restricted.getters, isEmpty);
+    expect(restricted.instanceMethods.keys, ['scale']);
+  });
+  test('each Widget proxy retains its actual lexical super target', () {
+    for (final (name, expected) in [('SharedWidgetBase', 4),
+        ('SharedWidgetChild', 15), ('SharedWidgetLeaf', 115)]) {
+      final b = binding(name);
+      final proxy = b.create('@implementation', {'@peer': _Peer()});
+      expect(b.instanceMethods['@super:scale']!.invoke(proxy, {'input': 3}), expected);
+    }
+    expect(() => binding('SharedWidgetChild').instanceMethods['@super:scale']!
+      .invoke(api.SharedWidgetChild(), {'input': 3}), throwsA(isA<TypeError>()));
+  });
+}
+''',
+      );
+    },
+  );
 
   test(
     'inherited registrations survive reversed order without dead aliases',

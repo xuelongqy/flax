@@ -3,6 +3,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { format } from 'prettier';
+import { expandManifestMembers } from './binding_manifest.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const check = process.argv.slice(2).includes('--check');
@@ -17,10 +18,10 @@ async function json(path) {
 
 async function bindingManifest(path) {
   const manifest = await json(join(root, path));
-  if (manifest.formatVersion !== 26) {
-    throw new Error(`Expected Binding Manifest 26: ${path}`);
+  if (manifest.formatVersion !== 27) {
+    throw new Error(`Expected Binding Manifest 27: ${path}`);
   }
-  return manifest;
+  return expandManifestMembers(manifest);
 }
 
 function uniqueSorted(values) {
@@ -110,8 +111,12 @@ function publicRequirements(manifest) {
   const result = new Map();
   for (const module of manifest.modules) {
     const requirement = bindingRequirement(module);
-    const libraries = [...(module.model.publicLibraries ?? [])].sort((a, b) =>
-      a.jsPackage.localeCompare(b.jsPackage),
+    // Match the emitter's install helper owner, which prefers the module entry.
+    const libraries = [...(module.model.publicLibraries ?? [])].sort(
+      (a, b) =>
+        Number(b.jsPackage === module.model.jsPackage) -
+          Number(a.jsPackage === module.model.jsPackage) ||
+        a.jsPackage.localeCompare(b.jsPackage),
     );
     if (libraries.length > 0) {
       const specifier = libraries[0].jsPackage;

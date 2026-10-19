@@ -26,11 +26,9 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream12 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -51,17 +49,17 @@ toStringDeep(options?: {minLevel?: upstream9.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream11.DiagnosticsTreeStyle | null | undefined}): upstream10.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream10.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:Localizations", ["locale","delegates","child","isApplicationLevel","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:Localizations", "object", {"createState":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_widgets#type:Localizations", ["locale","delegates","child","isApplicationLevel","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:Localizations", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:Widget");
 export function _LocalizationsFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; locale: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }>; delegates: DartListInput<upstream3.LocalizationsDelegate<unknown | null>, Readonly<{ "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null] }>>; child?: Widget | null | undefined; isApplicationLevel?: boolean | undefined }): Localizations {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:Localizations", "", [{"name":"key","required":false,"positional":false},{"name":"locale","required":true,"positional":false},{"name":"delegates","required":true,"positional":false},{"name":"child","required":false,"positional":false},{"name":"isApplicationLevel","required":false,"positional":false}], [], options) as Localizations;
+return constructObject("object", "flax.core/sdk_widgets#type:Localizations", "", [{"name":"key"},{"name":"locale","required":true},{"name":"delegates","required":true},{"name":"child"},{"name":"isApplicationLevel"}], [], options) as Localizations;
 }
 export namespace _LocalizationsFactory {
 export function override(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; context: upstream4.BuildContext; locale?: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }> | null | undefined; delegates?: DartListInput<upstream3.LocalizationsDelegate<unknown | null>, Readonly<{ "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null] }>> | null | undefined; child?: Widget | null | undefined }): Localizations {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:Localizations", "override", [{"name":"key","required":false,"positional":false},{"name":"context","required":true,"positional":false},{"name":"locale","required":false,"positional":false},{"name":"delegates","required":false,"positional":false},{"name":"child","required":false,"positional":false}], [], options) as Localizations;
+return constructObject("object", "flax.core/sdk_widgets#type:Localizations", "override", [{"name":"key"},{"name":"context","required":true},{"name":"locale"},{"name":"delegates"},{"name":"child"}], [], options) as Localizations;
 }
 }
 export namespace _LocalizationsFactory { export function localeOf(context: upstream4.BuildContext): upstream2.Locale {

@@ -1457,7 +1457,7 @@ class FlaxCodegenModuleModel {
     );
     final inheritedMembers = classes.any(
       (type) =>
-          type.kind == 'object' &&
+          {'object', 'widget'}.contains(type.kind) &&
           type.typeParameters.isEmpty &&
           type.typeArguments.isEmpty &&
           type.supertypes.isNotEmpty,
@@ -1480,6 +1480,24 @@ class FlaxCodegenModuleModel {
     final widgetInterfaceProxies = classes.any(
       (c) => c.proxy?.widgetInterface == true,
     );
+    final contextMethods = classes.any(
+      (c) => c.kind == 'context' && c.methods.any((m) => m.instance),
+    );
+    final nativeProxyMembers = classes.any((c) {
+      final proxy = c.proxy;
+      return proxy != null &&
+          {'object', 'widget'}.contains(c.kind) &&
+          (c.methods.any(
+                (m) =>
+                    m.instance && !proxy.methods.any((p) => p.name == m.name),
+              ) ||
+              c.getters.any(
+                (g) => !proxy.getters.any((p) => p.name == g.name),
+              ) ||
+              c.setters.any(
+                (s) => !proxy.setters.any((p) => p.name == s.name),
+              ));
+    });
     final bottomTypes = valueTypes.any((type) => type.containsNever);
     final genericCalls =
         classes.any((t) => t.methods.any((m) => m.typeParameters.isNotEmpty)) ||
@@ -1504,6 +1522,8 @@ class FlaxCodegenModuleModel {
         !callbackKeys &&
         !namedProxyConstructors &&
         !widgetInterfaceProxies &&
+        !contextMethods &&
+        !nativeProxyMembers &&
         !bottomTypes &&
         !explicitTypes &&
         !genericCalls &&
@@ -1524,6 +1544,8 @@ class FlaxCodegenModuleModel {
       if (callbackKeys) 'callback-map-keys',
       if (namedProxyConstructors) 'proxy-super-constructors',
       if (widgetInterfaceProxies) 'widget-interface-proxies',
+      if (contextMethods) 'context-instance-methods',
+      if (nativeProxyMembers) 'proxy-native-members',
       if (bottomTypes) 'bottom-types',
       if (explicitTypes) 'explicit-generic-types',
       if (dartTypes) 'dart-type-tokens',

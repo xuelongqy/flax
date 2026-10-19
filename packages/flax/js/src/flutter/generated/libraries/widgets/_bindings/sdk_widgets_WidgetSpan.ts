@@ -39,22 +39,23 @@ import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-const _flaxMemberParameters0 = [{"name":"buffer","required":true,"positional":true},{"name":"includePlaceholders","required":false,"positional":false},{"name":"includeSemanticsLabels","required":false,"positional":false}] as const;
-const _flaxMemberParameters1 = [{"name":"collector","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [] as const;
-const _flaxMemberParameters4 = [{"name":"builder","required":true,"positional":true},{"name":"dimensions","required":false,"positional":false},{"name":"textScaler","required":false,"positional":false}] as const;
-const _flaxMemberParameters5 = [{"name":"visitor","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"position","required":true,"positional":true}] as const;
-const _flaxMemberParameters7 = [{"name":"position","required":true,"positional":true},{"name":"offset","required":true,"positional":true}] as const;
-const _flaxMemberParameters8 = [{"name":"includePlaceholders","required":false,"positional":false},{"name":"includeSemanticsLabels","required":false,"positional":false}] as const;
-const _flaxMemberParameters9 = [{"name":"index","required":true,"positional":true}] as const;
-const _flaxMemberParameters10 = [{"name":"index","required":true,"positional":true},{"name":"offset","required":true,"positional":true}] as const;
-const _flaxMemberParameters11 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters12 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters13 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters14 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters15 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"child","required":true},{"name":"alignment"},{"name":"baseline"},{"name":"style"}] as const;
+const _flaxMemberParameters1 = [{"name":"buffer","required":true,"positional":true},{"name":"includePlaceholders"},{"name":"includeSemanticsLabels"}] as const;
+const _flaxMemberParameters2 = [{"name":"collector","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [] as const;
+const _flaxMemberParameters5 = [{"name":"builder","required":true,"positional":true},{"name":"dimensions"},{"name":"textScaler"}] as const;
+const _flaxMemberParameters6 = [{"name":"visitor","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [{"name":"position","required":true,"positional":true}] as const;
+const _flaxMemberParameters8 = [{"name":"position","required":true,"positional":true},{"name":"offset","required":true,"positional":true}] as const;
+const _flaxMemberParameters9 = [{"name":"includePlaceholders"},{"name":"includeSemanticsLabels"}] as const;
+const _flaxMemberParameters10 = [{"name":"index","required":true,"positional":true}] as const;
+const _flaxMemberParameters11 = [{"name":"index","required":true,"positional":true},{"name":"offset","required":true,"positional":true}] as const;
+const _flaxMemberParameters12 = [{"name":"other","required":true,"positional":true}] as const;
+const _flaxMemberParameters13 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters14 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+const _flaxMemberParameters15 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters16 = [{"name":"minLevel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -63,7 +64,7 @@ readonly [_flaxDartTypeValue]: WidgetSpan;
 
 }
 defineObject("flax.core/sdk_widgets#type:WidgetSpan", ["alignment","baseline","style","child"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetSpan", "object", {}, {}), [], undefined, "flax.core/sdk_painting#type:PlaceholderSpan");
-const _WidgetSpanProxy = {type: "flax.core/sdk_widgets#type:WidgetSpan", parameters: [{"name":"child","required":true,"positional":false},{"name":"alignment","required":false,"positional":false},{"name":"baseline","required":false,"positional":false},{"name":"style","required":false,"positional":false}], constructors: {"":[{"name":"child","required":true,"positional":false},{"name":"alignment","required":false,"positional":false},{"name":"baseline","required":false,"positional":false},{"name":"style","required":false,"positional":false}]}, methods: {"computeToPlainText":_flaxMemberParameters0,"computeSemanticsInformation":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters2,"debugAssertIsValid":_flaxMemberParameters3,"build":_flaxMemberParameters4,"visitChildren":_flaxMemberParameters5,"visitDirectChildren":_flaxMemberParameters5,"getSpanForPosition":_flaxMemberParameters6,"getSpanForPositionVisitor":_flaxMemberParameters7,"toPlainText":_flaxMemberParameters8,"getSemanticsInformation":_flaxMemberParameters3,"codeUnitAt":_flaxMemberParameters9,"codeUnitAtVisitor":_flaxMemberParameters10,"compareTo":_flaxMemberParameters11,"toStringShallow":_flaxMemberParameters12,"toStringDeep":_flaxMemberParameters13,"toStringShort":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters14,"debugDescribeChildren":_flaxMemberParameters3,"toString":_flaxMemberParameters15}, getters: ["child","alignment","baseline","style"], setters: [], contextMembers: [], superMembers: ["get:child","get:alignment","get:baseline","get:style","computeToPlainText","computeSemanticsInformation","debugFillProperties","debugAssertIsValid","build","visitChildren","visitDirectChildren","getSpanForPosition","getSpanForPositionVisitor","toPlainText","getSemanticsInformation","codeUnitAt","codeUnitAtVisitor","compareTo","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","toString"]} as const;
+const _WidgetSpanProxy = {type: "flax.core/sdk_widgets#type:WidgetSpan", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"computeToPlainText":_flaxMemberParameters1,"computeSemanticsInformation":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3,"debugAssertIsValid":_flaxMemberParameters4,"build":_flaxMemberParameters5,"visitChildren":_flaxMemberParameters6,"visitDirectChildren":_flaxMemberParameters6,"getSpanForPosition":_flaxMemberParameters7,"getSpanForPositionVisitor":_flaxMemberParameters8,"toPlainText":_flaxMemberParameters9,"getSemanticsInformation":_flaxMemberParameters4,"codeUnitAt":_flaxMemberParameters10,"codeUnitAtVisitor":_flaxMemberParameters11,"compareTo":_flaxMemberParameters12,"toStringShallow":_flaxMemberParameters13,"toStringDeep":_flaxMemberParameters14,"toStringShort":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters15,"debugDescribeChildren":_flaxMemberParameters4,"toString":_flaxMemberParameters16}, getters: ["child","alignment","baseline","style"], setters: [], contextMembers: [], superMembers: ["get:child","get:alignment","get:baseline","get:style","computeToPlainText","computeSemanticsInformation","debugFillProperties","debugAssertIsValid","build","visitChildren","visitDirectChildren","getSpanForPosition","getSpanForPositionVisitor","toPlainText","getSemanticsInformation","codeUnitAt","codeUnitAtVisitor","compareTo","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","toString"]} as const;
 export interface WidgetSpan {
 readonly [_flaxDartTypeValue]: WidgetSpan;
 

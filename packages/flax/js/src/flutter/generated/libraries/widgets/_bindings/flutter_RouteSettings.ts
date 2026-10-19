@@ -15,6 +15,6 @@ defineObject("flax.core/flutter#type:RouteSettings", ["name","arguments"], [], _
 export function _RouteSettingsFactory(options: { name?: string | null | undefined; arguments?: unknown | null | undefined } = {}): RouteSettings {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:RouteSettings", "", [{"name":"name","required":false,"positional":false},{"name":"arguments","required":false,"positional":false}], [], options) as RouteSettings;
+return constructObject("object", "flax.core/flutter#type:RouteSettings", "", [{"name":"name"},{"name":"arguments"}], [], options) as RouteSettings;
 }
 export const RouteSettings: typeof _RouteSettingsFactory & _FlaxInstanceType<RouteSettings> & _FlaxDartType<RouteSettings, readonly ["class", "flax.core/flutter#type:RouteSettings", readonly [], false]> = _flaxBindInstanceType<RouteSettings, typeof _RouteSettingsFactory>(_RouteSettingsFactory, "flax.core/flutter#type:RouteSettings", ["dart:core::Object"]) as typeof _RouteSettingsFactory & _FlaxInstanceType<RouteSettings> & _FlaxDartType<RouteSettings, readonly ["class", "flax.core/flutter#type:RouteSettings", readonly [], false]>;

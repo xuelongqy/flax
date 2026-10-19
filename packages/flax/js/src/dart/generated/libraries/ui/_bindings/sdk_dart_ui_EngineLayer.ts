@@ -10,7 +10,7 @@ readonly [_flaxDartTypeValue]: EngineLayer;
 dispose(): void;
 }
 defineObject("flax.core/sdk_dart_ui#type:EngineLayer", [], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:EngineLayer", "object", {"dispose":_flaxMemberParameters0}, {}), []);
-const _EngineLayerProxy = {type: "flax.core/sdk_dart_ui#type:EngineLayer", parameters: [], constructors: {}, methods: {"dispose":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
+const _EngineLayerProxy = {type: "flax.core/sdk_dart_ui#type:EngineLayer", parameters: _flaxMemberParameters0, constructors: {}, methods: {"dispose":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _EngineLayerFactory { export function implement(args: [], implementation: {dispose: (() => void)}): EngineLayer {
 return constructProxy(_EngineLayerProxy, args, implementation) as EngineLayer; } }
 export const EngineLayer: typeof _EngineLayerFactory & _FlaxInstanceType<EngineLayer> & _FlaxDartType<EngineLayer, readonly ["class", "flax.core/sdk_dart_ui#type:EngineLayer", readonly [], false]> = _flaxBindInstanceType<EngineLayer, typeof _EngineLayerFactory>(_EngineLayerFactory, "flax.core/sdk_dart_ui#type:EngineLayer", ["dart:core::Object"]) as typeof _EngineLayerFactory & _FlaxInstanceType<EngineLayer> & _FlaxDartType<EngineLayer, readonly ["class", "flax.core/sdk_dart_ui#type:EngineLayer", readonly [], false]>;

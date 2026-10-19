@@ -167,7 +167,7 @@ classes:
       );
       expect(
         FlaxCodegenBindingEmitter([module]).dart(module),
-        contains('FlaxFunctionBinding.constant('),
+        contains('FlaxConstantGroup('),
       );
       await compileFixture(
         root.path,
@@ -195,6 +195,8 @@ StaticValues.setCount(1, 2);
         dartTestSource: """
 void main() {
   test('generated static operations are live and synchronous', () {
+    expect(staticsBindings.constants, isNotEmpty);
+    expect(staticsBindings.functions, same(staticsBindings.functions));
     dynamic invoke(String name, [Map<String, Object?> values = const {}]) =>
       staticsBindings.functions.singleWhere((function) => function.id.endsWith('::StaticValues.\$name')).invoke(values);
     expect(() => invoke('delayed'), throwsA(isA<Error>()));
@@ -204,6 +206,16 @@ void main() {
     expect(invoke('values'), same(api.StaticValues.values));
     expect(invoke('transform'), same(api.StaticValues.transform));
     expect((invoke('transform') as int Function(int))(4), 5);
+    const duplicate = 'test/constants#read:value';
+    const group = FlaxConstantGroup(FlaxTypeRef('int'), {duplicate: 1});
+    FlaxBindingModule module(String name, {bool function = false}) => FlaxBindingModule(
+      name, const [], moduleId: 'test/\$name', uiProtocol: 24,
+      requiredCapabilities: const [], constants: function ? const [] : const [group],
+      functions: function ? const [FlaxFunctionBinding.constant(duplicate, FlaxTypeRef('int'), 2)] : const [],
+    );
+    expect(() => FlaxBindingRegistry([module('left'), module('right')]), throwsArgumentError);
+    expect(() => FlaxBindingRegistry([module('left'), module('right', function: true)]), throwsArgumentError);
+    expect(() => FlaxBindingRegistry([module('left', function: true), module('right')]), throwsArgumentError);
     invoke('count=', {'value': 4});
     expect(invoke('count'), 4);
     expect(invoke('tracked'), 4);

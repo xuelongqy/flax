@@ -29,18 +29,20 @@ import type * as upstream14 from '@flax/dart/ui/_bindings/sdk_dart_ui_FilterQual
 import '@flax/dart/ui/_bindings/sdk_dart_ui_FilterQuality';
 import type * as upstream15 from '@flax/flutter/painting/_bindings/sdk_painting_WebHtmlElementStrategy';
 import '@flax/flutter/painting/_bindings/sdk_painting_WebHtmlElementStrategy';
+import '@flax/dart/io/_bindings/sdk_dependencies_File';
 import '@flax/flutter/services/_bindings/sdk_services_AssetBundle';
-import type * as upstream17 from '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream18 from '@flax/flutter/widgets/_bindings/components_State';
 import '@flax/flutter/widgets/_bindings/components_State';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream19 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream20 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
-import type * as upstream20 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream21 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream21 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream22 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream22 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream23 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Image extends _FlaxDartWidget, Omit<upstream1.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream1.StatefulWidget>, Readonly<{
@@ -56,7 +58,7 @@ export interface Image extends _FlaxDartWidget, Omit<upstream1.StatefulWidget, _
 }> {
     readonly __Image: unique symbol;
     readonly [_flaxDartTypeValue]: Image;
-    readonly image: upstream3.ImageProvider<{}>;
+    readonly image: upstream3.ImageProvider<any>;
     readonly frameBuilder: ((context: upstream4.BuildContext, child: Widget, frame: number | null, wasSynchronouslyLoaded: boolean) => Widget) | null;
     readonly loadingBuilder: ((context: upstream4.BuildContext, child: Widget, loadingProgress: (Readonly<{
         "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageChunkEvent": readonly [];
@@ -82,27 +84,27 @@ export interface Image extends _FlaxDartWidget, Omit<upstream1.StatefulWidget, _
     readonly excludeFromSemantics: boolean;
     readonly isAntiAlias: boolean;
     readonly key: upstream2.Key | null;
-    createState(): upstream17.State<Image>;
+    createState(): upstream18.State<Image>;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
-    createElement(): upstream19.StatefulElement;
+    createElement(): upstream20.StatefulElement;
     toStringShort(): string;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream20.DiagnosticLevel | undefined;
+        minLevel?: upstream21.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
-        minLevel?: upstream20.DiagnosticLevel | undefined;
+        minLevel?: upstream21.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream22.DiagnosticsTreeStyle | null | undefined;
-    }): upstream21.DiagnosticsNode;
-    debugDescribeChildren(): DartList<upstream21.DiagnosticsNode>;
+        style?: upstream23.DiagnosticsTreeStyle | null | undefined;
+    }): upstream22.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream22.DiagnosticsNode>;
 }
 export declare function _ImageFactory(options: {
     key?: Readonly<{
@@ -182,6 +184,49 @@ export declare namespace _ImageFactory {
         cacheWidth?: number | null | undefined;
         cacheHeight?: number | null | undefined;
         webHtmlElementStrategy?: upstream15.WebHtmlElementStrategy | undefined;
+    }): Image;
+}
+export declare namespace _ImageFactory {
+    function file(file: Readonly<{
+        "__flaxBound:dart:io::File": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:io::FileSystemEntity": readonly [];
+    }>, options?: {
+        key?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+        }> | null | undefined;
+        scale?: number | undefined;
+        frameBuilder?: ((context: upstream4.BuildContext, child: Widget, frame: number | null, wasSynchronouslyLoaded: boolean) => Widget) | null | undefined;
+        errorBuilder?: ((context: upstream4.BuildContext, error: {}, stackTrace: upstream6.StackTrace | null) => Widget) | null | undefined;
+        semanticLabel?: string | null | undefined;
+        excludeFromSemantics?: boolean | undefined;
+        width?: number | null | undefined;
+        height?: number | null | undefined;
+        color?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        opacity?: (Readonly<{
+            "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        }>) | null | undefined;
+        colorBlendMode?: upstream9.BlendMode | null | undefined;
+        fit?: upstream10.BoxFit | null | undefined;
+        alignment?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
+        }> | undefined;
+        repeat?: upstream12.ImageRepeat | undefined;
+        centerSlice?: Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }> | null | undefined;
+        matchTextDirection?: boolean | undefined;
+        gaplessPlayback?: boolean | undefined;
+        isAntiAlias?: boolean | undefined;
+        filterQuality?: upstream14.FilterQuality | undefined;
+        cacheWidth?: number | null | undefined;
+        cacheHeight?: number | null | undefined;
     }): Image;
 }
 export declare namespace _ImageFactory {

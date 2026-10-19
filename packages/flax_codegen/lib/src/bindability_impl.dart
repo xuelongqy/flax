@@ -387,7 +387,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     return FlaxCodegenProposedBinding(name: name, id: id, skips: skips);
   }
 
-  final widget = parser._isFlutterWidget(element);
+  final widget = element is! MixinElement && parser._isFlutterWidget(element);
   final kind =
       base?.kind ??
       (element is EnumElement
@@ -795,8 +795,8 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
       : null;
   final proxy = explicitProxy ?? (inferProxy ? recommendation.proxy : null);
   Map<String, List<String>> selectedConstructors = constructors;
-  List<String> selectedGetters = getters;
-  List<String> selectedSetters = setters;
+  final selectedGetters = getters;
+  final selectedSetters = setters;
   Map<String, List<String>> selectedInstanceMethods = instanceMethods;
   if (element is ClassElement && proxy == 'extends') {
     final requested = base?.proxy == 'extends' && base!.constructors.isNotEmpty
@@ -812,17 +812,9 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     selectedConstructors = constructorName == null
         ? const {}
         : {constructorName: constructors[constructorName]!};
-    selectedGetters = [
-      for (final member in getters)
-        if (_proxyAccessorCanOverride(element, member, setter: false)) member,
-    ];
-    selectedSetters = [
-      for (final member in setters)
-        if (_proxyAccessorCanOverride(element, member, setter: true)) member,
-    ];
     selectedInstanceMethods = {
       for (final entry in instanceMethods.entries)
-        if (_proxyMethodCanOverride(element, entry.key) &&
+        if (!_proxyMethodCanOverride(element, entry.key) ||
             element.thisType
                 .lookUpMethod(entry.key, element.library)!
                 .formalParameters
@@ -924,12 +916,10 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
   // Adapter categories keep the same supported operations as explicit selection.
   final blockedConstructors = {'context', 'state'}.contains(kind);
   final blockedSetters = !{'object', 'enum'}.contains(kind) && !widget;
-  final blockedMethods = kind == 'context';
   final blockedOperators = !{'object', 'enum'}.contains(kind);
   for (final member in [
     if (blockedConstructors) ...selectedConstructors.keys,
     if (blockedSetters) ...selectedSetters,
-    if (blockedMethods) ...selectedInstanceMethods.keys,
     if (blockedOperators) ...operators.keys,
   ]) {
     skip(
@@ -948,7 +938,7 @@ Future<FlaxCodegenProposedBinding> _proposeSelection(
     setters: blockedSetters ? const [] : selectedSetters,
     staticGetters: staticGetters,
     staticSetters: staticSetters,
-    instanceMethods: blockedMethods ? const {} : selectedInstanceMethods,
+    instanceMethods: selectedInstanceMethods,
     operators: blockedOperators ? const {} : operators,
     methods: methods,
     disposeMethod: base?.disposeMethod ?? inferredDisposeMethod,
@@ -1250,12 +1240,9 @@ _ConstructorSpecializationPlan _constructorSpecializationPlan({
         element.library,
         false,
       );
-    } on StateError catch (error) {
-      return _ConstructorSpecializationPlan(
-        const [],
-        reason: error.message.toString(),
-        code: 'constructor_specialization_invalid_bounds',
-      );
+    } on StateError {
+      // An observed dynamic use is not a constructor's declared default.
+      continue;
     }
     targets.add(
       _ConstructorSpecializationTarget(
@@ -1808,11 +1795,7 @@ List<String>? _bindConstructor({
   final callbackDefault =
       {'callback', 'function'}.contains(type.kind) &&
       constant?.toFunctionValue() != null;
-  final hiddenDefault =
-      !parameter.isRequired &&
-      parameter.isNamed &&
-      parameter.type.nullabilitySuffix != NullabilitySuffix.question &&
-      !defaults.hasDefaultValue;
+  final hiddenDefault = parser._requiresOmittedDefault(parameter, defaults);
   final omitWhenAbsent =
       !parameter.isRequired &&
       (hiddenDefault || callbackDefault || _opaqueDefault(constant, type));

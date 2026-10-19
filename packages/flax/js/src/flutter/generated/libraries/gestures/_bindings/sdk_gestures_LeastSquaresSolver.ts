@@ -4,6 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/flutter/gestures/_bindings/sdk_gestures_PolynomialFit';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_PolynomialFit';
 const _flaxMemberParameters0 = [{"name":"degree","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"x","required":true,"positional":true},{"name":"y","required":true,"positional":true},{"name":"w","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -12,7 +13,7 @@ readonly [_flaxDartTypeValue]: LeastSquaresSolver;
 
 }
 defineObject("flax.core/sdk_gestures#type:LeastSquaresSolver", ["x","y","w"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:LeastSquaresSolver", "object", {"solve":_flaxMemberParameters0}, {}), []);
-const _LeastSquaresSolverProxy = {type: "flax.core/sdk_gestures#type:LeastSquaresSolver", parameters: [{"name":"x","required":true,"positional":true},{"name":"y","required":true,"positional":true},{"name":"w","required":true,"positional":true}], constructors: {"":[{"name":"x","required":true,"positional":true},{"name":"y","required":true,"positional":true},{"name":"w","required":true,"positional":true}]}, methods: {"solve":_flaxMemberParameters0}, getters: ["x","y","w"], setters: [], contextMembers: [], superMembers: ["get:x","get:y","get:w","solve"]} as const;
+const _LeastSquaresSolverProxy = {type: "flax.core/sdk_gestures#type:LeastSquaresSolver", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"solve":_flaxMemberParameters0}, getters: ["x","y","w"], setters: [], contextMembers: [], superMembers: ["get:x","get:y","get:w","solve"]} as const;
 export interface LeastSquaresSolver {
 readonly [_flaxDartTypeValue]: LeastSquaresSolver;
 

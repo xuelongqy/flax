@@ -18,10 +18,10 @@ import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_Int
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Intent';
 import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-const _flaxMemberParameters0 = [{"name":"action","required":true,"positional":true},{"name":"intent","required":true,"positional":true},{"name":"context","required":false,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
+const _flaxMemberParameters0 = [{"name":"action","required":true,"positional":true},{"name":"intent","required":true,"positional":true},{"name":"context","positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
 const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters3 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
@@ -31,7 +31,7 @@ readonly [_flaxDartTypeValue]: ActionDispatcher;
 
 }
 defineObject("flax.core/sdk_widgets#type:ActionDispatcher", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ActionDispatcher", "object", {"invokeAction":_flaxMemberParameters0,"invokeActionIfEnabled":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _ActionDispatcherProxy = {type: "flax.core/sdk_widgets#type:ActionDispatcher", parameters: [], constructors: {"":[]}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"invokeAction":_flaxMemberParameters0,"invokeActionIfEnabled":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties","invokeAction","invokeActionIfEnabled"]} as const;
+const _ActionDispatcherProxy = {type: "flax.core/sdk_widgets#type:ActionDispatcher", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"invokeAction":_flaxMemberParameters0,"invokeActionIfEnabled":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties","invokeAction","invokeActionIfEnabled"]} as const;
 export interface ActionDispatcher {
 readonly [_flaxDartTypeValue]: ActionDispatcher;
 

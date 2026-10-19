@@ -1,5 +1,5 @@
 import { type DartList } from '@flax/core/bindings';
-import '@flax/flutter/foundation/_bindings/sdk_foundation_HttpClientResponse';
+import '@flax/dart/io/_bindings/sdk_dependencies_HttpClientResponse';
 declare function _flaxTopLevel_consolidateHttpClientResponseBytes(response: Readonly<{
     "__flaxBound:dart:_http::HttpClientResponse": readonly [];
 }> & Readonly<{

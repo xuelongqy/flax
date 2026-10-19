@@ -179,7 +179,10 @@ void _validateModuleBindings(
         );
       }
       final types = binding.types.map((value) => value.id).toSet();
-      final functions = binding.functions.map((value) => value.id).toSet();
+      final functions = {
+        for (final value in binding._functions) value.id,
+        for (final group in binding.constants) ...group.values.keys,
+      };
       final missingTypes = [
         for (final type in required.types)
           if (!types.contains(type)) type,

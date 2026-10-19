@@ -1,8 +1,8 @@
 // GENERATED CODE. Selected public API subset; do not edit.
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
-const _flaxMemberParameters0 = [{"name":"maximum","required":false,"positional":false},{"name":"minimum","required":false,"positional":false}] as const;
-const _flaxMemberParameters1 = [{"name":"maximumX","required":false,"positional":false},{"name":"maximumY","required":false,"positional":false},{"name":"minimumX","required":false,"positional":false},{"name":"minimumY","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"maximum"},{"name":"minimum"}] as const;
+const _flaxMemberParameters1 = [{"name":"maximumX"},{"name":"maximumY"},{"name":"minimumX"},{"name":"minimumY"}] as const;
 const _flaxMemberParameters2 = [] as const;
 const _flaxMemberParameters3 = [{"name":"other","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"operand","required":true,"positional":true}] as const;

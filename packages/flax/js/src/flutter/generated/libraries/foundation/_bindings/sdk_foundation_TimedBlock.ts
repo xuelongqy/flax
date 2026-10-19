@@ -17,6 +17,6 @@ defineObject("flax.core/sdk_foundation#type:TimedBlock", ["name","start","end","
 export function _TimedBlockFactory(options: { name: string; start: number; end: number }): TimedBlock {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_foundation#type:TimedBlock", "", [{"name":"name","required":true,"positional":false},{"name":"start","required":true,"positional":false},{"name":"end","required":true,"positional":false}], [], options) as TimedBlock;
+return constructObject("object", "flax.core/sdk_foundation#type:TimedBlock", "", [{"name":"name","required":true},{"name":"start","required":true},{"name":"end","required":true}], [], options) as TimedBlock;
 }
 export const TimedBlock: typeof _TimedBlockFactory & _FlaxInstanceType<TimedBlock> & _FlaxDartType<TimedBlock, readonly ["class", "flax.core/sdk_foundation#type:TimedBlock", readonly [], false]> = _flaxBindInstanceType<TimedBlock, typeof _TimedBlockFactory>(_TimedBlockFactory, "flax.core/sdk_foundation#type:TimedBlock", ["dart:core::Object"]) as typeof _TimedBlockFactory & _FlaxInstanceType<TimedBlock> & _FlaxDartType<TimedBlock, readonly ["class", "flax.core/sdk_foundation#type:TimedBlock", readonly [], false]>;

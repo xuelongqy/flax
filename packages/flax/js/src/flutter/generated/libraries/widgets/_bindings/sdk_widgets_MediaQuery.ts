@@ -42,9 +42,9 @@ const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional
 const _flaxMemberParameters2 = [{"name":"oldWidget","required":true,"positional":true},{"name":"dependencies","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"aspect","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [] as const;
-const _flaxMemberParameters5 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters6 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters7 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters5 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters6 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+const _flaxMemberParameters7 = [{"name":"name"},{"name":"style"}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -68,27 +68,27 @@ defineObject("flax.core/sdk_widgets#type:MediaQuery", ["data","child","key"], []
 export function _MediaQueryFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; data: Readonly<{ "__flaxBound:package:flutter/src/widgets/media_query.dart::MediaQueryData": readonly [] }>; child: Widget }): MediaQuery {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "", [{"name":"key","required":false,"positional":false},{"name":"data","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as MediaQuery;
+return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "", [{"name":"key"},{"name":"data","required":true},{"name":"child","required":true}], [], options) as MediaQuery;
 }
 export namespace _MediaQueryFactory {
 export function removePadding(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; context: upstream4.BuildContext; removeLeft?: boolean | undefined; removeTop?: boolean | undefined; removeRight?: boolean | undefined; removeBottom?: boolean | undefined; child: Widget }): MediaQuery {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removePadding", [{"name":"key","required":false,"positional":false},{"name":"context","required":true,"positional":false},{"name":"removeLeft","required":false,"positional":false},{"name":"removeTop","required":false,"positional":false},{"name":"removeRight","required":false,"positional":false},{"name":"removeBottom","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as MediaQuery;
+return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removePadding", [{"name":"key"},{"name":"context","required":true},{"name":"removeLeft"},{"name":"removeTop"},{"name":"removeRight"},{"name":"removeBottom"},{"name":"child","required":true}], [], options) as MediaQuery;
 }
 }
 export namespace _MediaQueryFactory {
 export function removeViewInsets(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; context: upstream4.BuildContext; removeLeft?: boolean | undefined; removeTop?: boolean | undefined; removeRight?: boolean | undefined; removeBottom?: boolean | undefined; child: Widget }): MediaQuery {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removeViewInsets", [{"name":"key","required":false,"positional":false},{"name":"context","required":true,"positional":false},{"name":"removeLeft","required":false,"positional":false},{"name":"removeTop","required":false,"positional":false},{"name":"removeRight","required":false,"positional":false},{"name":"removeBottom","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as MediaQuery;
+return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removeViewInsets", [{"name":"key"},{"name":"context","required":true},{"name":"removeLeft"},{"name":"removeTop"},{"name":"removeRight"},{"name":"removeBottom"},{"name":"child","required":true}], [], options) as MediaQuery;
 }
 }
 export namespace _MediaQueryFactory {
 export function removeViewPadding(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; context: upstream4.BuildContext; removeLeft?: boolean | undefined; removeTop?: boolean | undefined; removeRight?: boolean | undefined; removeBottom?: boolean | undefined; child: Widget }): MediaQuery {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removeViewPadding", [{"name":"key","required":false,"positional":false},{"name":"context","required":true,"positional":false},{"name":"removeLeft","required":false,"positional":false},{"name":"removeTop","required":false,"positional":false},{"name":"removeRight","required":false,"positional":false},{"name":"removeBottom","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as MediaQuery;
+return constructObject("object", "flax.core/sdk_widgets#type:MediaQuery", "removeViewPadding", [{"name":"key"},{"name":"context","required":true},{"name":"removeLeft"},{"name":"removeTop"},{"name":"removeRight"},{"name":"removeBottom"},{"name":"child","required":true}], [], options) as MediaQuery;
 }
 }
 export namespace _MediaQueryFactory { export function applyTextStyleOverrides(options: { child: Widget; key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; letterSpacingOverride: number | null; lineHeightScaleFactorOverride: number | null; paragraphSpacingOverride: number | null; wordSpacingOverride: number | null }): Widget {

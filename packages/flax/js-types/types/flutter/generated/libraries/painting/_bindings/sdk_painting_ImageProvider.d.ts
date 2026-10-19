@@ -30,6 +30,9 @@ export interface ImageProvider<T extends {} = {}> extends Readonly<{
 }
 export interface ImageProvider<T extends {} = {}> {
     readonly [_flaxDartTypeValue]: ImageProvider<T>;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream5.ImageStream;
     createStream(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream5.ImageStream;

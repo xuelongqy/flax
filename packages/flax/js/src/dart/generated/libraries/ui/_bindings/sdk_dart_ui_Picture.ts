@@ -6,7 +6,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_TargetPixelFormat';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TargetPixelFormat';
 const _flaxMemberParameters0 = [{"name":"width","required":true,"positional":true},{"name":"height","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"width","required":true,"positional":true},{"name":"height","required":true,"positional":true},{"name":"targetFormat","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"width","required":true,"positional":true},{"name":"height","required":true,"positional":true},{"name":"targetFormat"}] as const;
 const _flaxMemberParameters2 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +20,7 @@ toImageSync(width: number, height: number, options?: {targetFormat?: upstream1.T
 dispose(): void;
 }
 defineObject("flax.core/sdk_dart_ui#type:Picture", ["debugDisposed","approximateBytesUsed"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Picture", "object", {"toImage":_flaxMemberParameters0,"toImageSync":_flaxMemberParameters1,"dispose":_flaxMemberParameters2}, {}), []);
-const _PictureProxy = {type: "flax.core/sdk_dart_ui#type:Picture", parameters: [], constructors: {}, methods: {"toImage":_flaxMemberParameters0,"toImageSync":_flaxMemberParameters1,"dispose":_flaxMemberParameters2}, getters: ["debugDisposed","approximateBytesUsed"], setters: [], contextMembers: [], superMembers: []} as const;
+const _PictureProxy = {type: "flax.core/sdk_dart_ui#type:Picture", parameters: _flaxMemberParameters2, constructors: {}, methods: {"toImage":_flaxMemberParameters0,"toImageSync":_flaxMemberParameters1,"dispose":_flaxMemberParameters2}, getters: ["debugDisposed","approximateBytesUsed"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _PictureFactory { export function implement(args: [], implementation: {toImage: ((width: number, height: number) => Promise<Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>>); toImageSync: ((width: number, height: number, options?: { targetFormat?: upstream1.TargetPixelFormat | undefined }) => Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>); dispose: (() => void); get debugDisposed(): boolean; get approximateBytesUsed(): number}): Picture {
 return constructProxy(_PictureProxy, args, implementation) as Picture; } }
 export namespace _PictureFactory { export function setOnCreate(value: ((picture: Picture) => void) | null): void {

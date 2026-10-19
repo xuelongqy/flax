@@ -195,7 +195,7 @@ void main() {
   });
 
   test(
-    'keeps the shared owner and skips an invalid constructor specialization',
+    'invalid observed constructor arguments preserve the legal shared owner',
     () async {
       final numericBox = library.getClass('NumericBox')!;
       final invalidUse = numericBox.instantiate(
@@ -209,10 +209,12 @@ void main() {
       );
 
       expect(proposed.selection, isNotNull);
-      expect(proposed.selection!.constructors, isEmpty);
+      expect(proposed.selection!.constructors, {
+        '': ['value'],
+      });
       expect(
         proposed.skips.map((skip) => skip.reason).join('\n'),
-        contains('does not satisfy'),
+        isNot(contains('does not satisfy')),
       );
     },
   );

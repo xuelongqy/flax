@@ -5,6 +5,7 @@ import type * as upstream0 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 const _flaxMemberParameters0 = [] as const;
 const _flaxMemberParameters1 = [{"name":"other","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"local","required":true},{"name":"global","required":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -13,7 +14,7 @@ readonly [_flaxDartTypeValue]: OffsetPair;
 
 }
 defineObject("flax.core/sdk_gestures#type:OffsetPair", ["local","global"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:OffsetPair", "object", {"toString":_flaxMemberParameters0,"operatorAdd":_flaxMemberParameters1,"operatorSubtract":_flaxMemberParameters1}, {}), []);
-const _OffsetPairProxy = {type: "flax.core/sdk_gestures#type:OffsetPair", parameters: [{"name":"local","required":true,"positional":false},{"name":"global","required":true,"positional":false}], constructors: {"":[{"name":"local","required":true,"positional":false},{"name":"global","required":true,"positional":false}]}, methods: {"toString":_flaxMemberParameters0,"operatorAdd":_flaxMemberParameters1,"operatorSubtract":_flaxMemberParameters1}, getters: ["local","global"], setters: [], contextMembers: [], superMembers: ["get:local","get:global","toString","operatorAdd","operatorSubtract"]} as const;
+const _OffsetPairProxy = {type: "flax.core/sdk_gestures#type:OffsetPair", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toString":_flaxMemberParameters0,"operatorAdd":_flaxMemberParameters1,"operatorSubtract":_flaxMemberParameters1}, getters: ["local","global"], setters: [], contextMembers: [], superMembers: ["get:local","get:global","toString","operatorAdd","operatorSubtract"]} as const;
 export interface OffsetPair {
 readonly [_flaxDartTypeValue]: OffsetPair;
 

@@ -5,6 +5,7 @@ import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Image';
+const _flaxMemberParameters0 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface FrameInfo extends Readonly<{ "__flaxBound:dart:ui::FrameInfo": readonly [] }> { readonly __FrameInfo: unique symbol;
@@ -14,7 +15,7 @@ readonly duration: upstream0.Duration;
 readonly image: upstream1.Image;
 }
 defineObject("flax.core/sdk_dart_ui#type:FrameInfo", ["duration","image"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:FrameInfo", "object", {}, {}), []);
-const _FrameInfoProxy = {type: "flax.core/sdk_dart_ui#type:FrameInfo", parameters: [], constructors: {}, methods: {}, getters: ["duration","image"], setters: [], contextMembers: [], superMembers: []} as const;
+const _FrameInfoProxy = {type: "flax.core/sdk_dart_ui#type:FrameInfo", parameters: _flaxMemberParameters0, constructors: {}, methods: {}, getters: ["duration","image"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _FrameInfoFactory { export function implement(args: [], implementation: {get duration(): Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream0.Duration] }>; get image(): Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>}): FrameInfo {
 return constructProxy(_FrameInfoProxy, args, implementation) as FrameInfo; } }
 export const FrameInfo: typeof _FrameInfoFactory & _FlaxInstanceType<FrameInfo> & _FlaxDartType<FrameInfo, readonly ["class", "flax.core/sdk_dart_ui#type:FrameInfo", readonly [], false]> = _flaxBindInstanceType<FrameInfo, typeof _FrameInfoFactory>(_FrameInfoFactory, "flax.core/sdk_dart_ui#type:FrameInfo", ["dart:core::Object"]) as typeof _FrameInfoFactory & _FlaxInstanceType<FrameInfo> & _FlaxDartType<FrameInfo, readonly ["class", "flax.core/sdk_dart_ui#type:FrameInfo", readonly [], false]>;

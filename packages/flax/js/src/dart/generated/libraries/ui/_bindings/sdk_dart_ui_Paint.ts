@@ -61,7 +61,7 @@ defineObject("flax.core/sdk_dart_ui#type:Paint", ["isAntiAlias","color","blendMo
 export function _PaintFactory(): Paint {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:Paint", "", [], [], {}) as Paint;
+return constructObject("object", "flax.core/sdk_dart_ui#type:Paint", "", _flaxMemberParameters0, [], {}) as Paint;
 }
 export namespace _PaintFactory {
 export function from(other: Readonly<{ "__flaxBound:dart:ui::Paint": readonly [] }>): Paint {

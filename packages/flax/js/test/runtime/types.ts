@@ -1,5 +1,19 @@
 import type {} from '../../src/host/index.js';
 import { action, computed, effect, signal, untracked } from '@flax/core';
+import type { DartIterableInput } from '../../src/runtime/bindings.js';
+
+const bytesAsList: DartListInput<number> = new Uint8Array([1, 2]);
+const nativeInts: DartIterableInput<number> = new BigInt64Array([BigInt(1)]);
+// @ts-expect-error A DataView has no Dart List element type.
+const dataAsList: DartListInput<number> = new DataView(new ArrayBuffer(4));
+// @ts-expect-error A numeric buffer cannot be a List<String>.
+const bytesAsStrings: DartListInput<string> = new Uint8Array([1]);
+void [bytesAsList, nativeInts, dataAsList, bytesAsStrings];
+
+import { Utf8Codec } from '../../src/dart/generated/libraries/convert/index.js';
+const encoding = Utf8Codec();
+const decodedBytes: string = encoding.decode(encoding.encode('Flax'));
+void decodedBytes;
 
 const count = signal(0);
 const doubled = computed(() => count.value * 2);

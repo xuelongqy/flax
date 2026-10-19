@@ -4,6 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextLeadingDistribution';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextLeadingDistribution';
 const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"applyHeightToFirstAscent"},{"name":"applyHeightToLastDescent"},{"name":"leadingDistribution"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -12,7 +13,7 @@ readonly [_flaxDartTypeValue]: TextHeightBehavior;
 
 }
 defineObject("flax.core/sdk_dart_ui#type:TextHeightBehavior", ["applyHeightToFirstAscent","applyHeightToLastDescent","leadingDistribution"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:TextHeightBehavior", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _TextHeightBehaviorProxy = {type: "flax.core/sdk_dart_ui#type:TextHeightBehavior", parameters: [{"name":"applyHeightToFirstAscent","required":false,"positional":false},{"name":"applyHeightToLastDescent","required":false,"positional":false},{"name":"leadingDistribution","required":false,"positional":false}], constructors: {"":[{"name":"applyHeightToFirstAscent","required":false,"positional":false},{"name":"applyHeightToLastDescent","required":false,"positional":false},{"name":"leadingDistribution","required":false,"positional":false}]}, methods: {"toString":_flaxMemberParameters0}, getters: ["applyHeightToFirstAscent","applyHeightToLastDescent","leadingDistribution"], setters: [], contextMembers: [], superMembers: ["get:applyHeightToFirstAscent","get:applyHeightToLastDescent","get:leadingDistribution","toString"]} as const;
+const _TextHeightBehaviorProxy = {type: "flax.core/sdk_dart_ui#type:TextHeightBehavior", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: ["applyHeightToFirstAscent","applyHeightToLastDescent","leadingDistribution"], setters: [], contextMembers: [], superMembers: ["get:applyHeightToFirstAscent","get:applyHeightToLastDescent","get:leadingDistribution","toString"]} as const;
 export interface TextHeightBehavior {
 readonly [_flaxDartTypeValue]: TextHeightBehavior;
 

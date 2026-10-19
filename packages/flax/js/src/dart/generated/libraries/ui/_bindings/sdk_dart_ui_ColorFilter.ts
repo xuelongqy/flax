@@ -35,14 +35,14 @@ export namespace _ColorFilterFactory {
 export function linearToSrgbGamma(): ColorFilter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:ColorFilter", "linearToSrgbGamma", [], [], {}) as ColorFilter;
+return constructObject("object", "flax.core/sdk_dart_ui#type:ColorFilter", "linearToSrgbGamma", _flaxMemberParameters0, [], {}) as ColorFilter;
 }
 }
 export namespace _ColorFilterFactory {
 export function srgbToLinearGamma(): ColorFilter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:ColorFilter", "srgbToLinearGamma", [], [], {}) as ColorFilter;
+return constructObject("object", "flax.core/sdk_dart_ui#type:ColorFilter", "srgbToLinearGamma", _flaxMemberParameters0, [], {}) as ColorFilter;
 }
 }
 export namespace _ColorFilterFactory {

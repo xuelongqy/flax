@@ -86,10 +86,13 @@ for (const entry of await readdir(join(emittedFlutter, 'generated', 'libraries')
 
 const emittedDart = join(build, 'packages', 'flax', 'js', 'src', 'dart');
 const stagedDart = join(stage, 'dart');
-for (const library of ['async', 'core', 'ui']) {
+for (const entry of await readdir(join(emittedDart, 'generated', 'libraries'), {
+  withFileTypes: true,
+})) {
+  if (!entry.isDirectory()) continue;
   await copy(
-    join(emittedDart, 'generated', 'libraries', library),
-    join(stagedDart, 'generated', 'libraries', library),
+    join(emittedDart, 'generated', 'libraries', entry.name),
+    join(stagedDart, 'generated', 'libraries', entry.name),
   );
 }
 

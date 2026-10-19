@@ -30,7 +30,7 @@ export function nothing(): AsyncSnapshot<unknown | null>;
 export function nothing(): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "nothing", [], [], {}) as AsyncSnapshot<unknown | null>;
+return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "nothing", _flaxMemberParameters1, [], {}) as AsyncSnapshot<unknown | null>;
 }
 }
 export namespace _AsyncSnapshotFactory {
@@ -39,7 +39,7 @@ export function waiting(): AsyncSnapshot<unknown | null>;
 export function waiting(): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "waiting", [], [], {}) as AsyncSnapshot<unknown | null>;
+return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "waiting", _flaxMemberParameters1, [], {}) as AsyncSnapshot<unknown | null>;
 }
 }
 export namespace _AsyncSnapshotFactory {
@@ -57,7 +57,7 @@ export function withError(state: upstream0.ConnectionState, error: {}, stackTrac
 export function withError(state: unknown, error: unknown, stackTrace?: unknown): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "withError", [{"name":"state","required":true,"positional":true},{"name":"error","required":true,"positional":true},{"name":"stackTrace","required":false,"positional":true}], [state, error, stackTrace], {}) as AsyncSnapshot<unknown | null>;
+return constructObject("object", "flax.core/flutter#type:AsyncSnapshot", "withError", [{"name":"state","required":true,"positional":true},{"name":"error","required":true,"positional":true},{"name":"stackTrace","positional":true}], [state, error, stackTrace], {}) as AsyncSnapshot<unknown | null>;
 }
 }
 export const AsyncSnapshot: typeof _AsyncSnapshotFactory & _FlaxInstanceType<AsyncSnapshot<unknown | null>> & _FlaxDartType<AsyncSnapshot<unknown | null>, readonly ["class", "flax.core/flutter#type:AsyncSnapshot", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<AsyncSnapshot<unknown | null>, typeof _AsyncSnapshotFactory>(_AsyncSnapshotFactory, "flax.core/flutter#type:AsyncSnapshot", ["dart:core::Object"]) as typeof _AsyncSnapshotFactory & _FlaxInstanceType<AsyncSnapshot<unknown | null>> & _FlaxDartType<AsyncSnapshot<unknown | null>, readonly ["class", "flax.core/flutter#type:AsyncSnapshot", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;

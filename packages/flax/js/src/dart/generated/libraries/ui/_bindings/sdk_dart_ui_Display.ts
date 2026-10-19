@@ -16,7 +16,7 @@ readonly refreshRate: number;
 toString(): string;
 }
 defineObject("flax.core/sdk_dart_ui#type:Display", ["id","devicePixelRatio","size","refreshRate"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Display", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _DisplayProxy = {type: "flax.core/sdk_dart_ui#type:Display", parameters: [], constructors: {}, methods: {"toString":_flaxMemberParameters0}, getters: ["id","devicePixelRatio","size","refreshRate"], setters: [], contextMembers: [], superMembers: []} as const;
+const _DisplayProxy = {type: "flax.core/sdk_dart_ui#type:Display", parameters: _flaxMemberParameters0, constructors: {}, methods: {"toString":_flaxMemberParameters0}, getters: ["id","devicePixelRatio","size","refreshRate"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _DisplayFactory { export function implement(args: [], implementation: {toString: (() => string); get id(): number; get devicePixelRatio(): number; get size(): Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; get refreshRate(): number}): Display {
 return constructProxy(_DisplayProxy, args, implementation) as Display; } }
 export const Display: typeof _DisplayFactory & _FlaxInstanceType<Display> & _FlaxDartType<Display, readonly ["class", "flax.core/sdk_dart_ui#type:Display", readonly [], false]> = _flaxBindInstanceType<Display, typeof _DisplayFactory>(_DisplayFactory, "flax.core/sdk_dart_ui#type:Display", ["dart:core::Object"]) as typeof _DisplayFactory & _FlaxInstanceType<Display> & _FlaxDartType<Display, readonly ["class", "flax.core/sdk_dart_ui#type:Display", readonly [], false]>;

@@ -752,7 +752,7 @@ import {AsyncCallbacks, AsyncContract, DeferredValues, GenericContract, GenericF
 const value = DeferredValues();
 const callback = value.transforms.get(0);
 const result: number = callback([1, 2]).get(0);
-value.transforms.add(items => [items.get(0)]);
+value.transforms.add(items => Array.from<number | bigint, number>(items, Number));
 value.passTransforms([items => [items.get(0)]]);
 const missing: Promise<number> | null = value.absent;
 const later: Promise<() => number> = value.laterFunction;

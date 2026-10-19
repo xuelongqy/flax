@@ -15,9 +15,10 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream6 from '@flax/flutter/gestures/_bindings/sdk_gestures_DragEndDetails';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_DragEndDetails';
-const _flaxMemberParameters0 = [{"name":"description","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"target","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters0 = [{"name":"metrics","required":true},{"name":"context","required":true},{"name":"dragDetails"}] as const;
+const _flaxMemberParameters1 = [{"name":"description","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"target","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
+const _flaxMemberParameters3 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -26,7 +27,7 @@ readonly [_flaxDartTypeValue]: ScrollEndNotification;
 
 }
 defineObject("flax.core/sdk_widgets#type:ScrollEndNotification", ["metrics","context","depth","dragDetails"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ScrollEndNotification", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:ScrollNotification");
-const _ScrollEndNotificationProxy = {type: "flax.core/sdk_widgets#type:ScrollEndNotification", parameters: [{"name":"metrics","required":true,"positional":false},{"name":"context","required":true,"positional":false},{"name":"dragDetails","required":false,"positional":false}], constructors: {"":[{"name":"metrics","required":true,"positional":false},{"name":"context","required":true,"positional":false},{"name":"dragDetails","required":false,"positional":false}]}, methods: {"debugFillDescription":_flaxMemberParameters0,"dispatch":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["dragDetails","metrics","context","depth"], setters: [], contextMembers: [], superMembers: ["get:dragDetails","get:metrics","get:context","get:depth","debugFillDescription","dispatch","toString"]} as const;
+const _ScrollEndNotificationProxy = {type: "flax.core/sdk_widgets#type:ScrollEndNotification", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"debugFillDescription":_flaxMemberParameters1,"dispatch":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, getters: ["dragDetails","metrics","context","depth"], setters: [], contextMembers: [], superMembers: ["get:dragDetails","get:metrics","get:context","get:depth","debugFillDescription","dispatch","toString"]} as const;
 export interface ScrollEndNotification {
 readonly [_flaxDartTypeValue]: ScrollEndNotification;
 

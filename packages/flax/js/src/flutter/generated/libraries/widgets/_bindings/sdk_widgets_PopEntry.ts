@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: PopEntry<T>;
 
 }
 defineObject("flax.core/sdk_widgets#type:PopEntry", ["canPopNotifier"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:PopEntry", "object", {"onPopInvoked":_flaxMemberParameters0,"onPopInvokedWithResult":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, {}), []);
-const _PopEntryProxy = {type: "flax.core/sdk_widgets#type:PopEntry", parameters: [], constructors: {"":[]}, methods: {"onPopInvoked":_flaxMemberParameters0,"onPopInvokedWithResult":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["canPopNotifier"], setters: [], contextMembers: [], superMembers: ["onPopInvoked","onPopInvokedWithResult","toString"]} as const;
+const _PopEntryProxy = {type: "flax.core/sdk_widgets#type:PopEntry", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"onPopInvoked":_flaxMemberParameters0,"onPopInvokedWithResult":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["canPopNotifier"], setters: [], contextMembers: [], superMembers: ["onPopInvoked","onPopInvokedWithResult","toString"]} as const;
 export interface PopEntry<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: PopEntry<T>;
 

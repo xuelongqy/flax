@@ -17,34 +17,34 @@ export interface Positioned extends WidgetDescription, Omit<Readonly<{ "__flaxBo
 export function _PositionedFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; left?: Bindable<number | null> | undefined; top?: Bindable<number | null> | undefined; right?: Bindable<number | null> | undefined; bottom?: Bindable<number | null> | undefined; width?: Bindable<number | null> | undefined; height?: Bindable<number | null> | undefined; child: Bindable<Widget> }): Positioned {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Positioned", "", [{"name":"key","required":false,"positional":false},{"name":"left","required":false,"positional":false},{"name":"top","required":false,"positional":false},{"name":"right","required":false,"positional":false},{"name":"bottom","required":false,"positional":false},{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Positioned;
+return construct("widget", "flax.core/flutter#type:Positioned", "", [{"name":"key"},{"name":"left"},{"name":"top"},{"name":"right"},{"name":"bottom"},{"name":"width"},{"name":"height"},{"name":"child","required":true}], [], options) as Positioned;
 }
 export namespace _PositionedFactory {
 export function fromRect(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; rect: Bindable<Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>>; child: Bindable<Widget> }): Positioned {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Positioned", "fromRect", [{"name":"key","required":false,"positional":false},{"name":"rect","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Positioned;
+return construct("widget", "flax.core/flutter#type:Positioned", "fromRect", [{"name":"key"},{"name":"rect","required":true},{"name":"child","required":true}], [], options) as Positioned;
 }
 }
 export namespace _PositionedFactory {
 export function fromRelativeRect(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; rect: Bindable<Readonly<{ "__flaxBound:package:flutter/src/rendering/stack.dart::RelativeRect": readonly [] }>>; child: Bindable<Widget> }): Positioned {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Positioned", "fromRelativeRect", [{"name":"key","required":false,"positional":false},{"name":"rect","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Positioned;
+return construct("widget", "flax.core/flutter#type:Positioned", "fromRelativeRect", [{"name":"key"},{"name":"rect","required":true},{"name":"child","required":true}], [], options) as Positioned;
 }
 }
 export namespace _PositionedFactory {
 export function fill(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; left?: Bindable<number | null> | undefined; top?: Bindable<number | null> | undefined; right?: Bindable<number | null> | undefined; bottom?: Bindable<number | null> | undefined; child: Bindable<Widget> }): Positioned {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Positioned", "fill", [{"name":"key","required":false,"positional":false},{"name":"left","required":false,"positional":false},{"name":"top","required":false,"positional":false},{"name":"right","required":false,"positional":false},{"name":"bottom","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Positioned;
+return construct("widget", "flax.core/flutter#type:Positioned", "fill", [{"name":"key"},{"name":"left"},{"name":"top"},{"name":"right"},{"name":"bottom"},{"name":"child","required":true}], [], options) as Positioned;
 }
 }
 export namespace _PositionedFactory {
 export function directional(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; textDirection: Bindable<upstream4.TextDirection>; start?: Bindable<number | null> | undefined; top?: Bindable<number | null> | undefined; end?: Bindable<number | null> | undefined; bottom?: Bindable<number | null> | undefined; width?: Bindable<number | null> | undefined; height?: Bindable<number | null> | undefined; child: Bindable<Widget> }): Positioned {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Positioned", "directional", [{"name":"key","required":false,"positional":false},{"name":"textDirection","required":true,"positional":false},{"name":"start","required":false,"positional":false},{"name":"top","required":false,"positional":false},{"name":"end","required":false,"positional":false},{"name":"bottom","required":false,"positional":false},{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Positioned;
+return construct("widget", "flax.core/flutter#type:Positioned", "directional", [{"name":"key"},{"name":"textDirection","required":true},{"name":"start"},{"name":"top"},{"name":"end"},{"name":"bottom"},{"name":"width"},{"name":"height"},{"name":"child","required":true}], [], options) as Positioned;
 }
 }
 export const Positioned: typeof _PositionedFactory & _FlaxInstanceType<Positioned> & _FlaxDartType<Positioned, readonly ["class", "flax.core/flutter#type:Positioned", readonly [], false]> = _flaxBindInstanceType<Positioned, typeof _PositionedFactory>(_PositionedFactory, "flax.core/flutter#type:Positioned", ["flax.core/sdk_widgets#type:ParentDataWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _PositionedFactory & _FlaxInstanceType<Positioned> & _FlaxDartType<Positioned, readonly ["class", "flax.core/flutter#type:Positioned", readonly [], false]>;

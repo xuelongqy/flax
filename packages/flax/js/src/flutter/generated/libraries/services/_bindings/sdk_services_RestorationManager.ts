@@ -8,7 +8,7 @@ import '@flax/flutter/foundation/_bindings/flutter_Listenable';
 import type * as upstream2 from '@flax/flutter/services/_bindings/sdk_services_RestorationBucket';
 import '@flax/flutter/services/_bindings/sdk_services_RestorationBucket';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"data","required":true,"positional":false},{"name":"enabled","required":true,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"data","required":true},{"name":"enabled","required":true}] as const;
 const _flaxMemberParameters2 = [{"name":"encodedData","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"listener","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -19,7 +19,7 @@ readonly [_flaxDartTypeValue]: RestorationManager;
 
 }
 defineObject("flax.core/sdk_services#type:RestorationManager", ["hasListeners","rootBucket","isReplacing"], [], _flaxBindingMethods("flax.core/sdk_services#type:RestorationManager", "object", {"initChannels":_flaxMemberParameters0,"handleRestorationUpdateFromEngine":_flaxMemberParameters1,"sendToEngine":_flaxMemberParameters2,"flushData":_flaxMemberParameters0}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _RestorationManagerProxy = {type: "flax.core/sdk_services#type:RestorationManager", parameters: [], constructors: {"":[]}, methods: {"addListener":_flaxMemberParameters3,"removeListener":_flaxMemberParameters3,"dispose":_flaxMemberParameters0,"initChannels":_flaxMemberParameters0,"handleRestorationUpdateFromEngine":_flaxMemberParameters1,"sendToEngine":_flaxMemberParameters2,"flushData":_flaxMemberParameters0}, getters: ["rootBucket","isReplacing","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:rootBucket","get:isReplacing","get:hasListeners","addListener","removeListener","dispose","initChannels","handleRestorationUpdateFromEngine","sendToEngine","flushData"]} as const;
+const _RestorationManagerProxy = {type: "flax.core/sdk_services#type:RestorationManager", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"addListener":_flaxMemberParameters3,"removeListener":_flaxMemberParameters3,"dispose":_flaxMemberParameters0,"initChannels":_flaxMemberParameters0,"handleRestorationUpdateFromEngine":_flaxMemberParameters1,"sendToEngine":_flaxMemberParameters2,"flushData":_flaxMemberParameters0}, getters: ["rootBucket","isReplacing","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:rootBucket","get:isReplacing","get:hasListeners","addListener","removeListener","dispose","initChannels","handleRestorationUpdateFromEngine","sendToEngine","flushData"]} as const;
 export interface RestorationManager {
 readonly [_flaxDartTypeValue]: RestorationManager;
 

@@ -21,35 +21,35 @@ export namespace _ImageFilterFactory {
 export function blur(options: { sigmaX?: number | undefined; sigmaY?: number | undefined; tileMode?: upstream0.TileMode | null | undefined; bounds?: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null | undefined } = {}): ImageFilter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:ImageFilter", "blur", [{"name":"sigmaX","required":false,"positional":false},{"name":"sigmaY","required":false,"positional":false},{"name":"tileMode","required":false,"positional":false},{"name":"bounds","required":false,"positional":false}], [], options) as ImageFilter;
+return constructObject("object", "flax.core/flutter#type:ImageFilter", "blur", [{"name":"sigmaX"},{"name":"sigmaY"},{"name":"tileMode"},{"name":"bounds"}], [], options) as ImageFilter;
 }
 }
 export namespace _ImageFilterFactory {
 export function dilate(options: { radiusX?: number | undefined; radiusY?: number | undefined } = {}): ImageFilter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:ImageFilter", "dilate", [{"name":"radiusX","required":false,"positional":false},{"name":"radiusY","required":false,"positional":false}], [], options) as ImageFilter;
+return constructObject("object", "flax.core/flutter#type:ImageFilter", "dilate", [{"name":"radiusX"},{"name":"radiusY"}], [], options) as ImageFilter;
 }
 }
 export namespace _ImageFilterFactory {
 export function erode(options: { radiusX?: number | undefined; radiusY?: number | undefined } = {}): ImageFilter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:ImageFilter", "erode", [{"name":"radiusX","required":false,"positional":false},{"name":"radiusY","required":false,"positional":false}], [], options) as ImageFilter;
+return constructObject("object", "flax.core/flutter#type:ImageFilter", "erode", [{"name":"radiusX"},{"name":"radiusY"}], [], options) as ImageFilter;
 }
 }
 export namespace _ImageFilterFactory {
 export function matrix(matrix4: globalThis.Float64Array, options: { filterQuality?: upstream2.FilterQuality | undefined } = {}): ImageFilter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:ImageFilter", "matrix", [{"name":"matrix4","required":true,"positional":true},{"name":"filterQuality","required":false,"positional":false}], [matrix4], options) as ImageFilter;
+return constructObject("object", "flax.core/flutter#type:ImageFilter", "matrix", [{"name":"matrix4","required":true,"positional":true},{"name":"filterQuality"}], [matrix4], options) as ImageFilter;
 }
 }
 export namespace _ImageFilterFactory {
 export function compose(options: { outer: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }>; inner: Readonly<{ "__flaxBound:dart:ui::ImageFilter": readonly [] }> }): ImageFilter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:ImageFilter", "compose", [{"name":"outer","required":true,"positional":false},{"name":"inner","required":true,"positional":false}], [], options) as ImageFilter;
+return constructObject("object", "flax.core/flutter#type:ImageFilter", "compose", [{"name":"outer","required":true},{"name":"inner","required":true}], [], options) as ImageFilter;
 }
 }
 export namespace _ImageFilterFactory {

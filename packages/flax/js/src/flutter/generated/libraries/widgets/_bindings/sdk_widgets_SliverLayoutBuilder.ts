@@ -6,6 +6,7 @@ import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverConstraints';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_AbstractLayoutBuilder';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
@@ -27,14 +28,7 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"oldWidget","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"renderObject","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"renderObject","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters7 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters8 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"oldWidget","required":true,"positional":true}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -55,11 +49,11 @@ toStringDeep(options?: {minLevel?: upstream11.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream13.DiagnosticsTreeStyle | null | undefined}): upstream12.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:SliverLayoutBuilder", ["builder","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverLayoutBuilder", "object", {"createRenderObject":_flaxMemberParameters0,"createElement":_flaxMemberParameters1,"updateShouldRebuild":_flaxMemberParameters2,"updateRenderObject":_flaxMemberParameters3,"didUnmountRenderObject":_flaxMemberParameters4,"toStringShort":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters5,"toStringShallow":_flaxMemberParameters6,"toStringDeep":_flaxMemberParameters7,"toDiagnosticsNode":_flaxMemberParameters8,"debugDescribeChildren":_flaxMemberParameters1}, {}), []);
+defineObject("flax.core/sdk_widgets#type:SliverLayoutBuilder", ["builder","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverLayoutBuilder", "object", {"createRenderObject":_flaxMemberParameters0,"updateShouldRebuild":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_widgets#type:RenderObjectWidget");
 export function _SliverLayoutBuilderFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; builder: ((context: upstream5.BuildContext, constraints: upstream1.SliverConstraints) => Widget) }): SliverLayoutBuilder {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:SliverLayoutBuilder", "", [{"name":"key","required":false,"positional":false},{"name":"builder","required":true,"positional":false}], [], options) as SliverLayoutBuilder;
+return constructObject("object", "flax.core/sdk_widgets#type:SliverLayoutBuilder", "", [{"name":"key"},{"name":"builder","required":true}], [], options) as SliverLayoutBuilder;
 }
 export const SliverLayoutBuilder: typeof _SliverLayoutBuilderFactory & _FlaxInstanceType<SliverLayoutBuilder> & _FlaxDartType<SliverLayoutBuilder, readonly ["class", "flax.core/sdk_widgets#type:SliverLayoutBuilder", readonly [], false]> = _flaxBindInstanceType<SliverLayoutBuilder, typeof _SliverLayoutBuilderFactory>(_SliverLayoutBuilderFactory, "flax.core/sdk_widgets#type:SliverLayoutBuilder", ["flax.core/sdk_widgets#type:ConstrainedLayoutBuilder","flax.core/sdk_widgets#type:AbstractLayoutBuilder","flax.core/sdk_widgets#type:RenderObjectWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SliverLayoutBuilderFactory & _FlaxInstanceType<SliverLayoutBuilder> & _FlaxDartType<SliverLayoutBuilder, readonly ["class", "flax.core/sdk_widgets#type:SliverLayoutBuilder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "builder" | "key" | "createRenderObject" | "createElement" | "updateShouldRebuild" | "updateRenderObject" | "didUnmountRenderObject" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver_layout_builder.dart::SliverLayoutBuilder" | "__flaxBound:package:flutter/src/widgets/layout_builder.dart::ConstrainedLayoutBuilder" | "__flaxBound:package:flutter/src/widgets/layout_builder.dart::AbstractLayoutBuilder" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

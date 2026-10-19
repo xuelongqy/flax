@@ -198,6 +198,21 @@ extension _Collections on _Session {
       return _Value(existing);
     }
     shape ??= helper('collectionShape').call([input]);
+    if (shape is FlaxJsString &&
+        shape.value == 'buffer' &&
+        {'list', 'iterable'}.contains(type.kind)) {
+      final kind = helper('valueType').call([input]);
+      final bufferType = kind is FlaxJsString
+          ? FlaxBufferType.byDartName[kind.value]
+          : null;
+      if (bufferType == null) throw ArgumentError('Unsupported typed buffer');
+      final data = runtime.readSharedBuffer(input, bufferType);
+      if (type.collection!.matches(data) != true) {
+        throw ArgumentError('Incompatible Dart collection');
+      }
+      memo.add(index, input, data);
+      return _Value(data);
+    }
     final isMap = type.kind == 'map';
     final acceptedShapes = switch (type.kind) {
       'list' => const {'list'},

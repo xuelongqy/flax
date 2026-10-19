@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import type * as upstream4 from '@flax/dart/async/_bindings/flutter_Stream';
 const _flaxMemberParameters0 = [{"name":"event","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"error","required":true,"positional":true},{"name":"stackTrace","required":false,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"error","required":true,"positional":true},{"name":"stackTrace","positional":true}] as const;
 const _flaxMemberParameters2 = [] as const;
 const _flaxMemberParameters3 = [{"name":"stream","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";

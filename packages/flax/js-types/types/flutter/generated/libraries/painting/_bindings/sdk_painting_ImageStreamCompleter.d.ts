@@ -27,6 +27,7 @@ export interface ImageStreamCompleter extends Omit<upstream0.Diagnosticable, _fl
 }
 export interface ImageStreamCompleter {
     readonly [_flaxDartTypeValue]: ImageStreamCompleter;
+    maybeDispose(): void;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream1.DiagnosticLevel | undefined;
@@ -82,5 +83,5 @@ export declare abstract class ImageStreamCompleter extends _FlaxProxyBase {
 export declare namespace ImageStreamCompleter {
     function implement(args: [], implementation: {}): ImageStreamCompleter;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "debugLabel" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "addListener" | "addEphemeralErrorListener" | "keepAlive" | "removeListener" | "onDisposed" | "addOnLastListenerRemovedCallback" | "removeOnLastListenerRemovedCallback" | "setImage" | "reportError" | "reportImageChunkEvent" | "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamCompleter" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "debugLabel" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "addListener" | "addEphemeralErrorListener" | "keepAlive" | "removeListener" | "onDisposed" | "maybeDispose" | "addOnLastListenerRemovedCallback" | "removeOnLastListenerRemovedCallback" | "setImage" | "reportError" | "reportImageChunkEvent" | "__flaxBound:package:flutter/src/painting/image_stream.dart::ImageStreamCompleter" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

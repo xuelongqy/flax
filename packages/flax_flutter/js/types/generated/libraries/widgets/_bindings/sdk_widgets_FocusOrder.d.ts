@@ -24,6 +24,13 @@ export interface FocusOrder extends Omit<upstream0.Comparable<FocusOrder>, _flax
 }
 export interface FocusOrder {
     readonly [_flaxDartTypeValue]: FocusOrder;
+    compareTo(other: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [FocusOrder];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): number;
     toStringShort(): string;
     toString(options?: {
         minLevel?: upstream2.DiagnosticLevel | undefined;

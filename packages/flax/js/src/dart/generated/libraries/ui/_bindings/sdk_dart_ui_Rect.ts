@@ -66,14 +66,14 @@ export namespace _RectFactory {
 export function fromCircle(options: { center: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; radius: number }): Rect {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:Rect", "fromCircle", [{"name":"center","required":true,"positional":false},{"name":"radius","required":true,"positional":false}], [], options) as Rect;
+return constructObject("object", "flax.core/sdk_dart_ui#type:Rect", "fromCircle", [{"name":"center","required":true},{"name":"radius","required":true}], [], options) as Rect;
 }
 }
 export namespace _RectFactory {
 export function fromCenter(options: { center: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; width: number; height: number }): Rect {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:Rect", "fromCenter", [{"name":"center","required":true,"positional":false},{"name":"width","required":true,"positional":false},{"name":"height","required":true,"positional":false}], [], options) as Rect;
+return constructObject("object", "flax.core/sdk_dart_ui#type:Rect", "fromCenter", [{"name":"center","required":true},{"name":"width","required":true},{"name":"height","required":true}], [], options) as Rect;
 }
 }
 export namespace _RectFactory {

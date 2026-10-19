@@ -8,8 +8,8 @@ import '@flax/dart/core/_bindings/flutter_StackTrace';
 import type * as upstream2 from '@flax/flutter/painting/_bindings/sdk_painting_ImageCacheStatus';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageCacheStatus';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true},{"name":"includeLive","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"key","required":true,"positional":true},{"name":"loader","required":true,"positional":true},{"name":"onError","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true},{"name":"includeLive"}] as const;
+const _flaxMemberParameters2 = [{"name":"key","required":true,"positional":true},{"name":"loader","required":true,"positional":true},{"name":"onError"}] as const;
 const _flaxMemberParameters3 = [{"name":"key","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
@@ -19,7 +19,7 @@ readonly [_flaxDartTypeValue]: ImageCache;
 
 }
 defineObject("flax.core/sdk_painting#type:ImageCache", ["maximumSize","currentSize","maximumSizeBytes","currentSizeBytes","liveImageCount","pendingImageCount"], ["maximumSize","maximumSizeBytes"], _flaxBindingMethods("flax.core/sdk_painting#type:ImageCache", "object", {"clear":_flaxMemberParameters0,"evict":_flaxMemberParameters1,"putIfAbsent":_flaxMemberParameters2,"statusForKey":_flaxMemberParameters3,"containsKey":_flaxMemberParameters3,"clearLiveImages":_flaxMemberParameters0}, {}), []);
-const _ImageCacheProxy = {type: "flax.core/sdk_painting#type:ImageCache", parameters: [], constructors: {"":[]}, methods: {"clear":_flaxMemberParameters0,"evict":_flaxMemberParameters1,"putIfAbsent":_flaxMemberParameters2,"statusForKey":_flaxMemberParameters3,"containsKey":_flaxMemberParameters3,"clearLiveImages":_flaxMemberParameters0}, getters: ["maximumSize","currentSize","maximumSizeBytes","currentSizeBytes","liveImageCount","pendingImageCount"], setters: ["maximumSize","maximumSizeBytes"], contextMembers: [], superMembers: ["get:maximumSize","get:currentSize","get:maximumSizeBytes","get:currentSizeBytes","get:liveImageCount","get:pendingImageCount","set:maximumSize","set:maximumSizeBytes","clear","evict","putIfAbsent","statusForKey","containsKey","clearLiveImages"]} as const;
+const _ImageCacheProxy = {type: "flax.core/sdk_painting#type:ImageCache", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"clear":_flaxMemberParameters0,"evict":_flaxMemberParameters1,"putIfAbsent":_flaxMemberParameters2,"statusForKey":_flaxMemberParameters3,"containsKey":_flaxMemberParameters3,"clearLiveImages":_flaxMemberParameters0}, getters: ["maximumSize","currentSize","maximumSizeBytes","currentSizeBytes","liveImageCount","pendingImageCount"], setters: ["maximumSize","maximumSizeBytes"], contextMembers: [], superMembers: ["get:maximumSize","get:currentSize","get:maximumSizeBytes","get:currentSizeBytes","get:liveImageCount","get:pendingImageCount","set:maximumSize","set:maximumSizeBytes","clear","evict","putIfAbsent","statusForKey","containsKey","clearLiveImages"]} as const;
 export interface ImageCache {
 readonly [_flaxDartTypeValue]: ImageCache;
 

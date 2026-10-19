@@ -5,6 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Par
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_KeepAliveParentDataMixin';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_KeepAliveParentDataMixin';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyWidget';
 import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream4 from '@flax/dart/core/_bindings/flutter_Type';
@@ -23,10 +24,6 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 const _flaxMemberParameters0 = [{"name":"renderObject","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters5 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -49,11 +46,11 @@ toStringDeep(options?: {minLevel?: upstream8.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream10.DiagnosticsTreeStyle | null | undefined}): upstream9.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream9.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:KeepAlive", ["keepAlive","debugTypicalAncestorWidgetClass","debugTypicalAncestorWidgetDescription","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:KeepAlive", "object", {"applyParentData":_flaxMemberParameters0,"debugCanApplyOutOfTurn":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters2,"createElement":_flaxMemberParameters1,"debugIsValidRenderObject":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters1,"toStringShallow":_flaxMemberParameters3,"toStringDeep":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugDescribeChildren":_flaxMemberParameters1}, {}), []);
+defineObject("flax.core/sdk_widgets#type:KeepAlive", ["keepAlive","debugTypicalAncestorWidgetClass","debugTypicalAncestorWidgetDescription","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:KeepAlive", "object", {"applyParentData":_flaxMemberParameters0,"debugCanApplyOutOfTurn":_flaxMemberParameters1,"createElement":_flaxMemberParameters1,"debugIsValidRenderObject":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:ProxyWidget");
 export function _KeepAliveFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; keepAlive: boolean; child: Widget }): KeepAlive {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:KeepAlive", "", [{"name":"key","required":false,"positional":false},{"name":"keepAlive","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as KeepAlive;
+return constructObject("object", "flax.core/sdk_widgets#type:KeepAlive", "", [{"name":"key"},{"name":"keepAlive","required":true},{"name":"child","required":true}], [], options) as KeepAlive;
 }
 export const KeepAlive: typeof _KeepAliveFactory & _FlaxInstanceType<KeepAlive> & _FlaxDartType<KeepAlive, readonly ["class", "flax.core/sdk_widgets#type:KeepAlive", readonly [], false]> = _flaxBindInstanceType<KeepAlive, typeof _KeepAliveFactory>(_KeepAliveFactory, "flax.core/sdk_widgets#type:KeepAlive", ["flax.core/sdk_widgets#type:ParentDataWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _KeepAliveFactory & _FlaxInstanceType<KeepAlive> & _FlaxDartType<KeepAlive, readonly ["class", "flax.core/sdk_widgets#type:KeepAlive", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "keepAlive" | "debugTypicalAncestorWidgetClass" | "debugTypicalAncestorWidgetDescription" | "child" | "key" | "applyParentData" | "debugCanApplyOutOfTurn" | "debugFillProperties" | "createElement" | "debugIsValidRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::KeepAlive" | "__flaxBound:package:flutter/src/widgets/framework.dart::ParentDataWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

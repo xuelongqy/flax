@@ -6,7 +6,7 @@ be supported by the generator while a particular SDK library still needs its own
 selection and runtime verification.
 
 The current version domains are binding selection format **2**, package metadata format
-**2**, Manifest **24**, UI protocol **24**, native ABI **2**, and internal engine
+**2**, Manifest **27**, UI protocol **24**, native ABI **2**, and internal engine
 binding extension **8**. Only the current formats are read and written.
 
 ## Engine-backed audit and consolidated backlog
@@ -17,9 +17,17 @@ census. A supported mechanism does not expose every library automatically or cer
 every platform. The sections below retain the detailed contracts and regression links.
 
 The separate [Flutter SDK verification](../tasks/flutter-sdk-bindings.md) records the
-2026-10-17 complete public-entry census and production generation/compile matrix. It
-identifies dependency-closure, filtered-metadata and generic subtype blockers; it does
-not claim whole-SDK runtime acceptance.
+complete public-entry census, current generation/compile checks and the shared
+corrections below. It distinguishes those checks from runtime acceptance of every SDK
+member on every platform.
+
+The SDK completion pass separates native callable members from proxy overrides, adds
+typed Context instance calls, reuses Widget identities across library boundaries,
+preserves Widget-constrained mixin views, and retains constructors despite invalid
+observed generic instantiations. Abstract optional arguments use actual omission.
+Selected vector-math/encoding/IO/isolate dependencies use ordinary object conversion and
+shared source ownership. These are shared mechanism changes; the SDK task record
+distinguishes generated surfaces, native execution and remaining platform boundaries.
 
 The maintained engine changes three important boundaries:
 
@@ -297,7 +305,7 @@ Dart value permits them. See
 
 Class static reads and writes are independent capabilities on every supported class
 category. Reads use `Class.property`; writes use `Class.setProperty(value)`. They retain
-their own types and operation identities in Manifest 26. Static declarations are not
+their own types and operation identities in Manifest 27. Static declarations are not
 inherited; a read-only provider cannot supply a write. A generated setter name collision
 fails explicit selection or produces `static_setter_export_collision` in automatic
 selection. See [static property rules](bindings.md#class-static-properties) and the

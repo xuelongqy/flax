@@ -11,10 +11,11 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters0 = [{"name":"startOffset","required":true},{"name":"endOffset","required":true}] as const;
+const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters3 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +24,7 @@ readonly [_flaxDartTypeValue]: SelectedContentRange;
 
 }
 defineObject("flax.core/sdk_rendering#type:SelectedContentRange", ["startOffset","endOffset"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SelectedContentRange", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _SelectedContentRangeProxy = {type: "flax.core/sdk_rendering#type:SelectedContentRange", parameters: [{"name":"startOffset","required":true,"positional":false},{"name":"endOffset","required":true,"positional":false}], constructors: {"":[{"name":"startOffset","required":true,"positional":false},{"name":"endOffset","required":true,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3}, getters: ["startOffset","endOffset"], setters: [], contextMembers: [], superMembers: ["get:startOffset","get:endOffset","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+const _SelectedContentRangeProxy = {type: "flax.core/sdk_rendering#type:SelectedContentRange", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4}, getters: ["startOffset","endOffset"], setters: [], contextMembers: [], superMembers: ["get:startOffset","get:endOffset","toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
 export interface SelectedContentRange {
 readonly [_flaxDartTypeValue]: SelectedContentRange;
 

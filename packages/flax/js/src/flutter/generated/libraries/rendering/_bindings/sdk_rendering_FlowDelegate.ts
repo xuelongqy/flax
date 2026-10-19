@@ -14,6 +14,7 @@ const _flaxMemberParameters1 = [{"name":"i","required":true,"positional":true},{
 const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [] as const;
+const _flaxMemberParameters5 = [{"name":"repaint"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -22,7 +23,7 @@ readonly [_flaxDartTypeValue]: FlowDelegate;
 
 }
 defineObject("flax.core/sdk_rendering#type:FlowDelegate", [], [], _flaxBindingMethods("flax.core/sdk_rendering#type:FlowDelegate", "object", {"getSize":_flaxMemberParameters0,"getConstraintsForChild":_flaxMemberParameters1,"paintChildren":_flaxMemberParameters2,"shouldRelayout":_flaxMemberParameters3,"shouldRepaint":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, {}), []);
-const _FlowDelegateProxy = {type: "flax.core/sdk_rendering#type:FlowDelegate", parameters: [{"name":"repaint","required":false,"positional":false}], constructors: {"":[{"name":"repaint","required":false,"positional":false}]}, methods: {"getSize":_flaxMemberParameters0,"getConstraintsForChild":_flaxMemberParameters1,"paintChildren":_flaxMemberParameters2,"shouldRelayout":_flaxMemberParameters3,"shouldRepaint":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, getters: [], setters: [], contextMembers: [], superMembers: ["getSize","getConstraintsForChild","shouldRelayout","toString"]} as const;
+const _FlowDelegateProxy = {type: "flax.core/sdk_rendering#type:FlowDelegate", parameters: _flaxMemberParameters5, constructors: {"": _flaxMemberParameters5}, methods: {"getSize":_flaxMemberParameters0,"getConstraintsForChild":_flaxMemberParameters1,"paintChildren":_flaxMemberParameters2,"shouldRelayout":_flaxMemberParameters3,"shouldRepaint":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, getters: [], setters: [], contextMembers: [], superMembers: ["getSize","getConstraintsForChild","shouldRelayout","toString"]} as const;
 export interface FlowDelegate {
 readonly [_flaxDartTypeValue]: FlowDelegate;
 

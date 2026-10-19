@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-const _flaxMemberParameters0 = [{"name":"position","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"position"}] as const;
 const _flaxMemberParameters1 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: MenuController;
 
 }
 defineObject("flax.core/sdk_widgets#type:MenuController", ["isOpen"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:MenuController", "object", {"open":_flaxMemberParameters0,"close":_flaxMemberParameters1,"closeChildren":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, {}), []);
-const _MenuControllerProxy = {type: "flax.core/sdk_widgets#type:MenuController", parameters: [], constructors: {"":[]}, methods: {"open":_flaxMemberParameters0,"close":_flaxMemberParameters1,"closeChildren":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, getters: ["isOpen"], setters: [], contextMembers: [], superMembers: ["get:isOpen","open","close","closeChildren","toString"]} as const;
+const _MenuControllerProxy = {type: "flax.core/sdk_widgets#type:MenuController", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"open":_flaxMemberParameters0,"close":_flaxMemberParameters1,"closeChildren":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, getters: ["isOpen"], setters: [], contextMembers: [], superMembers: ["get:isOpen","open","close","closeChildren","toString"]} as const;
 export interface MenuController {
 readonly [_flaxDartTypeValue]: MenuController;
 

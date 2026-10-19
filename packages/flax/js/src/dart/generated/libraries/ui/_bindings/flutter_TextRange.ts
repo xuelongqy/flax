@@ -22,7 +22,7 @@ defineObject("flax.core/flutter#type:TextRange", ["start","end","isValid","isCol
 export function _TextRangeFactory(options: { start: number; end: number }): TextRange {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:TextRange", "", [{"name":"start","required":true,"positional":false},{"name":"end","required":true,"positional":false}], [], options) as TextRange;
+return constructObject("object", "flax.core/flutter#type:TextRange", "", [{"name":"start","required":true},{"name":"end","required":true}], [], options) as TextRange;
 }
 export namespace _TextRangeFactory {
 export function collapsed(offset: number): TextRange {

@@ -2,6 +2,7 @@
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_InheritedWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_InheritedWidget';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_ProxyWidget';
 import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
@@ -24,11 +25,6 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 const _flaxMemberParameters0 = [{"name":"oldWidget","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters5 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -49,17 +45,17 @@ toStringDeep(options?: {minLevel?: upstream9.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream11.DiagnosticsTreeStyle | null | undefined}): upstream10.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream10.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:PrimaryScrollController", ["controller","scrollDirection","automaticallyInheritForPlatforms","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:PrimaryScrollController", "object", {"updateShouldNotify":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"createElement":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters2,"toStringShallow":_flaxMemberParameters3,"toStringDeep":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugDescribeChildren":_flaxMemberParameters2}, {}), []);
+defineObject("flax.core/sdk_widgets#type:PrimaryScrollController", ["controller","scrollDirection","automaticallyInheritForPlatforms","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:PrimaryScrollController", "object", {"updateShouldNotify":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedWidget");
 export function _PrimaryScrollControllerFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; controller: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>; automaticallyInheritForPlatforms?: DartSetInput<upstream4.TargetPlatform, upstream4.TargetPlatform> | undefined; scrollDirection?: upstream5.Axis | null | undefined; child: Widget }): PrimaryScrollController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:PrimaryScrollController", "", [{"name":"key","required":false,"positional":false},{"name":"controller","required":true,"positional":false},{"name":"automaticallyInheritForPlatforms","required":false,"positional":false},{"name":"scrollDirection","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as PrimaryScrollController;
+return constructObject("object", "flax.core/sdk_widgets#type:PrimaryScrollController", "", [{"name":"key"},{"name":"controller","required":true},{"name":"automaticallyInheritForPlatforms"},{"name":"scrollDirection"},{"name":"child","required":true}], [], options) as PrimaryScrollController;
 }
 export namespace _PrimaryScrollControllerFactory {
 export function none(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; child: Widget }): PrimaryScrollController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:PrimaryScrollController", "none", [{"name":"key","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as PrimaryScrollController;
+return constructObject("object", "flax.core/sdk_widgets#type:PrimaryScrollController", "none", [{"name":"key"},{"name":"child","required":true}], [], options) as PrimaryScrollController;
 }
 }
 export namespace _PrimaryScrollControllerFactory { export function shouldInherit(context: upstream6.BuildContext, scrollDirection: upstream5.Axis): boolean {

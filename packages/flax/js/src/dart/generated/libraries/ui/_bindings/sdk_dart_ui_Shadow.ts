@@ -9,6 +9,7 @@ import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 const _flaxMemberParameters0 = [] as const;
 const _flaxMemberParameters1 = [{"name":"factor","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"color"},{"name":"offset"},{"name":"blurRadius"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,7 +18,7 @@ readonly [_flaxDartTypeValue]: Shadow;
 
 }
 defineObject("flax.core/sdk_dart_ui#type:Shadow", ["color","offset","blurRadius","blurSigma"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Shadow", "object", {"toPaint":_flaxMemberParameters0,"scale":_flaxMemberParameters1,"toString":_flaxMemberParameters0}, {}), []);
-const _ShadowProxy = {type: "flax.core/sdk_dart_ui#type:Shadow", parameters: [{"name":"color","required":false,"positional":false},{"name":"offset","required":false,"positional":false},{"name":"blurRadius","required":false,"positional":false}], constructors: {"":[{"name":"color","required":false,"positional":false},{"name":"offset","required":false,"positional":false},{"name":"blurRadius","required":false,"positional":false}]}, methods: {"toPaint":_flaxMemberParameters0,"scale":_flaxMemberParameters1,"toString":_flaxMemberParameters0}, getters: ["color","offset","blurRadius","blurSigma"], setters: [], contextMembers: [], superMembers: ["get:color","get:offset","get:blurRadius","get:blurSigma","toPaint","scale","toString"]} as const;
+const _ShadowProxy = {type: "flax.core/sdk_dart_ui#type:Shadow", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toPaint":_flaxMemberParameters0,"scale":_flaxMemberParameters1,"toString":_flaxMemberParameters0}, getters: ["color","offset","blurRadius","blurSigma"], setters: [], contextMembers: [], superMembers: ["get:color","get:offset","get:blurRadius","get:blurSigma","toPaint","scale","toString"]} as const;
 export interface Shadow {
 readonly [_flaxDartTypeValue]: Shadow;
 

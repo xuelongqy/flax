@@ -135,7 +135,7 @@ extension _MemberCalls on _Session {
     String operation,
     String name,
   ) {
-    final definition = _functionBindings[type];
+    final definition = _functionBinding(type);
     if (definition == null || operation != 'call' || name.isNotEmpty) {
       throw ArgumentError('Unknown top-level function');
     }
@@ -383,9 +383,20 @@ extension _MemberCalls on _Session {
     String name,
   ) {
     final binding = _typeBinding(type);
-    if (binding is! FlaxContextBinding || operation != 'get') {
+    if (binding is! FlaxContextBinding) {
       throw ArgumentError('Unknown context operation');
     }
+    if (operation == 'call') {
+      final method =
+          _genericMethod(type, name) ?? binding.instanceMethods[name];
+      if (method == null) throw ArgumentError('Unknown Context method');
+      return (id, args) => _invokeInstanceMethod(
+        _context(FlaxJsNumber(id.toDouble()), type).requireActive(),
+        method,
+        args,
+      );
+    }
+    if (operation != 'get') throw ArgumentError('Unknown context operation');
     final getter = binding.getters.where((g) => g.name == name).firstOrNull;
     if (getter == null) throw ArgumentError('Unknown Context getter');
     return (id, args) {
@@ -442,37 +453,43 @@ extension _MemberCalls on _Session {
       final actual = _typeBinding(ref.type) as FlaxStateBinding;
       final selected =
           _genericMethod(type, name) ?? actual.instanceMethods[name]!;
-      if (selected.requiresTypeArguments) FlaxDartTypes.requireArguments();
-      if (args.length > selected.parameters.length) {
-        throw ArgumentError('Too many State arguments');
-      }
-      if (selected.startsRoute) requireOpen();
-      Map<String, _Value>? values;
-      try {
-        values = _callArguments(
-          args,
-          selected.parameters,
-          0,
-          argumentKind: 'method',
-        );
-        for (final parameter in selected.parameters) {
-          final value = values[parameter.name];
-          if (value == null) continue;
-          value.escapeCallbacks();
-          escapeWidget(value.data, parameter.type);
-        }
-        final inputs = values.map((k, v) => MapEntry(k, v.data));
-        final result = selected.invoke(state, inputs);
-        return holdHostResult(memberResult(result, selected.result));
-      } finally {
-        if (values != null) {
-          for (final value in values.values.toList().reversed) {
-            value.release();
-          }
-        }
-        checkpoint();
-      }
+      return _invokeInstanceMethod(state, selected, args);
     };
+  }
+
+  FlaxJsValue _invokeInstanceMethod(
+    Object receiver,
+    FlaxInstanceMethod method,
+    List<FlaxJsValue> args,
+  ) {
+    if (method.requiresTypeArguments) FlaxDartTypes.requireArguments();
+    if (method.startsRoute) requireOpen();
+    Map<String, _Value>? values;
+    try {
+      values = _callArguments(
+        args,
+        method.parameters,
+        0,
+        argumentKind: 'method',
+      );
+      for (final parameter in method.parameters) {
+        final value = values[parameter.name];
+        if (value == null) continue;
+        value.escapeCallbacks();
+        escapeWidget(value.data, parameter.type);
+      }
+      final inputs = values.map((k, v) => MapEntry(k, v.data));
+      return holdHostResult(
+        memberResult(method.invoke(receiver, inputs), method.result),
+      );
+    } finally {
+      if (values != null) {
+        for (final value in values.values.toList().reversed) {
+          value.release();
+        }
+      }
+      checkpoint();
+    }
   }
 
   String enumName(Object value, FlaxTypeRef type) {

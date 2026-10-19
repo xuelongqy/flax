@@ -15,7 +15,7 @@ toImage(width: number, height: number): Promise<upstream0.Image>;
 dispose(): void;
 }
 defineObject("flax.core/sdk_dart_ui#type:Scene", [], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:Scene", "object", {"toImageSync":_flaxMemberParameters0,"toImage":_flaxMemberParameters0,"dispose":_flaxMemberParameters1}, {}), []);
-const _SceneProxy = {type: "flax.core/sdk_dart_ui#type:Scene", parameters: [], constructors: {}, methods: {"toImageSync":_flaxMemberParameters0,"toImage":_flaxMemberParameters0,"dispose":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
+const _SceneProxy = {type: "flax.core/sdk_dart_ui#type:Scene", parameters: _flaxMemberParameters1, constructors: {}, methods: {"toImageSync":_flaxMemberParameters0,"toImage":_flaxMemberParameters0,"dispose":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _SceneFactory { export function implement(args: [], implementation: {toImageSync: ((width: number, height: number) => Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>); toImage: ((width: number, height: number) => Promise<Readonly<{ "__flaxBound:dart:ui::Image": readonly [] }>>); dispose: (() => void)}): Scene {
 return constructProxy(_SceneProxy, args, implementation) as Scene; } }
 export const Scene: typeof _SceneFactory & _FlaxInstanceType<Scene> & _FlaxDartType<Scene, readonly ["class", "flax.core/sdk_dart_ui#type:Scene", readonly [], false]> = _flaxBindInstanceType<Scene, typeof _SceneFactory>(_SceneFactory, "flax.core/sdk_dart_ui#type:Scene", ["dart:core::Object"]) as typeof _SceneFactory & _FlaxInstanceType<Scene> & _FlaxDartType<Scene, readonly ["class", "flax.core/sdk_dart_ui#type:Scene", readonly [], false]>;

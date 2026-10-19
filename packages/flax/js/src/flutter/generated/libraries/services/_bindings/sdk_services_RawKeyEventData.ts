@@ -19,11 +19,11 @@ import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"key","required":true,"positional":true},{"name":"side","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"key","required":true,"positional":true},{"name":"side"}] as const;
 const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
@@ -33,7 +33,7 @@ readonly [_flaxDartTypeValue]: RawKeyEventData;
 
 }
 defineObject("flax.core/sdk_services#type:RawKeyEventData", ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed","physicalKey","logicalKey","keyLabel"], [], _flaxBindingMethods("flax.core/sdk_services#type:RawKeyEventData", "object", {"isModifierPressed":_flaxMemberParameters0,"getModifierSide":_flaxMemberParameters1,"shouldDispatchEvent":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _RawKeyEventDataProxy = {type: "flax.core/sdk_services#type:RawKeyEventData", parameters: [], constructors: {"":[]}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"isModifierPressed":_flaxMemberParameters0,"getModifierSide":_flaxMemberParameters1,"shouldDispatchEvent":_flaxMemberParameters2}, getters: ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed","physicalKey","logicalKey","keyLabel"], setters: [], contextMembers: [], superMembers: ["get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:modifiersPressed","toStringShort","toString","toDiagnosticsNode","debugFillProperties","shouldDispatchEvent"]} as const;
+const _RawKeyEventDataProxy = {type: "flax.core/sdk_services#type:RawKeyEventData", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"isModifierPressed":_flaxMemberParameters0,"getModifierSide":_flaxMemberParameters1,"shouldDispatchEvent":_flaxMemberParameters2}, getters: ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed","physicalKey","logicalKey","keyLabel"], setters: [], contextMembers: [], superMembers: ["get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:modifiersPressed","toStringShort","toString","toDiagnosticsNode","debugFillProperties","shouldDispatchEvent"]} as const;
 export interface RawKeyEventData {
 readonly [_flaxDartTypeValue]: RawKeyEventData;
 

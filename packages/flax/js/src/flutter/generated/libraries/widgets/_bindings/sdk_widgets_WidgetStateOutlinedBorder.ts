@@ -24,15 +24,15 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 const _flaxMemberParameters0 = [{"name":"states","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"side","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"other","required":true,"positional":true},{"name":"reversed","required":false,"positional":false}] as const;
-const _flaxMemberParameters6 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection","required":false,"positional":false}] as const;
-const _flaxMemberParameters7 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"paint","required":true,"positional":true},{"name":"textDirection","required":false,"positional":false}] as const;
-const _flaxMemberParameters8 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"textDirection","required":false,"positional":false}] as const;
-const _flaxMemberParameters9 = [] as const;
+const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"side"}] as const;
+const _flaxMemberParameters3 = [{"name":"t","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
+const _flaxMemberParameters5 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"other","required":true,"positional":true},{"name":"reversed"}] as const;
+const _flaxMemberParameters7 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection"}] as const;
+const _flaxMemberParameters8 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"paint","required":true,"positional":true},{"name":"textDirection"}] as const;
+const _flaxMemberParameters9 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"textDirection"}] as const;
 const _flaxMemberParameters10 = [{"name":"other","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
@@ -42,7 +42,7 @@ readonly [_flaxDartTypeValue]: WidgetStateOutlinedBorder;
 
 }
 defineObject("flax.core/sdk_widgets#type:WidgetStateOutlinedBorder", ["dimensions","side","preferPaintInterior"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStateOutlinedBorder", "object", {"resolve":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:OutlinedBorder");
-const _WidgetStateOutlinedBorderProxy = {type: "flax.core/sdk_widgets#type:WidgetStateOutlinedBorder", parameters: [], constructors: {"":[]}, methods: {"copyWith":_flaxMemberParameters1,"scale":_flaxMemberParameters2,"lerpFrom":_flaxMemberParameters3,"lerpTo":_flaxMemberParameters4,"add":_flaxMemberParameters5,"getOuterPath":_flaxMemberParameters6,"getInnerPath":_flaxMemberParameters6,"paintInterior":_flaxMemberParameters7,"paint":_flaxMemberParameters8,"toString":_flaxMemberParameters9,"resolve":_flaxMemberParameters0,"operatorAdd":_flaxMemberParameters10}, getters: ["dimensions","side","preferPaintInterior"], setters: [], contextMembers: [], superMembers: ["get:dimensions","get:side","get:preferPaintInterior","lerpFrom","lerpTo","add","paintInterior","toString","operatorAdd"]} as const;
+const _WidgetStateOutlinedBorderProxy = {type: "flax.core/sdk_widgets#type:WidgetStateOutlinedBorder", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"copyWith":_flaxMemberParameters2,"scale":_flaxMemberParameters3,"lerpFrom":_flaxMemberParameters4,"lerpTo":_flaxMemberParameters5,"add":_flaxMemberParameters6,"getOuterPath":_flaxMemberParameters7,"getInnerPath":_flaxMemberParameters7,"paintInterior":_flaxMemberParameters8,"paint":_flaxMemberParameters9,"toString":_flaxMemberParameters1,"resolve":_flaxMemberParameters0,"operatorAdd":_flaxMemberParameters10}, getters: ["dimensions","side","preferPaintInterior"], setters: [], contextMembers: [], superMembers: ["get:dimensions","get:side","get:preferPaintInterior","lerpFrom","lerpTo","add","paintInterior","toString","operatorAdd"]} as const;
 export interface WidgetStateOutlinedBorder {
 readonly [_flaxDartTypeValue]: WidgetStateOutlinedBorder;
 

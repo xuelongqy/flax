@@ -38,6 +38,8 @@ void main() {
     final script = File(p.join(temporary.path, 'tool/module_delivery.mjs'));
     script.parent.createSync(recursive: true);
     File(p.join(root, 'tool/module_delivery.mjs')).copySync(script.path);
+    File(p.join(root, 'tool/binding_manifest.mjs'))
+        .copySync(p.join(temporary.path, 'tool/binding_manifest.mjs'));
     for (final owner in [
       'flax_fetch',
       'flax_websocket',
@@ -51,7 +53,7 @@ void main() {
     }
     _writeJson(
       p.join(temporary.path, 'packages/flax_canvas/bindings/manifest.json'),
-      {'formatVersion': 26, 'modules': <Map<String, Object?>>[]},
+      {'formatVersion': 27, 'modules': <Map<String, Object?>>[]},
     );
     for (final target in _targets) {
       final directory = p.join(temporary.path, 'packages', target.directory);
@@ -63,7 +65,7 @@ void main() {
       _writeJson(
         p.join(directory, 'bindings/manifest.json'),
         FlaxCodegenManifestStorage.compact({
-          'formatVersion': 26,
+          'formatVersion': 27,
           'modules': [
             {
               'name': target.directory,
@@ -103,7 +105,7 @@ void main() {
   ], workingDirectory: temporary.path);
 
   test(
-    'Manifest 26 delivery includes owned setters and excludes references',
+    'Manifest 27 delivery includes owned setters and excludes references',
     () async {
       final result = await run();
       expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
@@ -221,7 +223,7 @@ void main() {
       final path = 'packages/$owner/bindings/manifest.json';
       final file = File(p.join(temporary.path, path));
       final original = file.readAsStringSync();
-      _writeJson(file.path, {'formatVersion': 25, 'modules': <Object?>[]});
+      _writeJson(file.path, {'formatVersion': 26, 'modules': <Object?>[]});
       final result = await run();
       expect(result.exitCode, isNot(0));
       expect(result.stderr, contains('Expected Binding Manifest'));
@@ -234,6 +236,37 @@ void main() {
       file.writeAsStringSync(original);
     }
   });
+
+  test(
+    'member storage preserves projection and rejects unsafe references',
+    () async {
+      final result = await Process.run('node', [
+        '--input-type=module',
+        '-e',
+        r'''
+import assert from 'node:assert/strict';
+import {expandManifestMembers as expand} from './tool/binding_manifest.mjs';
+const row = {name: 'read', parameters: [{name: 'value', type: {$type: 0}}], result: {$type: 0}};
+const body = {typeTable: [{kind: 'String'}], modules: [{methods: [{$member: 0}, {$member: 0}]}], typeLibraries: {$member: 'package:example/types.dart'}};
+assert.deepEqual(expand({...body, memberTable: [row]}), {...body, modules: [{methods: [row, row]}]});
+for (const invalid of [
+  {memberTable: null}, {memberTable: [null]},
+  {memberTable: [row], value: {$member: -1}},
+  {memberTable: [row], value: {$member: 0.5}},
+  {memberTable: [row], value: {$member: 1}},
+  {memberTable: [row], value: {$member: 0, extra: true}},
+  {memberTable: [row, row], value: {$member: 0}},
+  {memberTable: [row]},
+  {memberTable: [{name: 'self', parameters: [{$member: 0}]}]},
+]) assert.throws(() => expand(invalid));
+const growing = [row];
+for (let i = 0; i < 30; i++) growing.push({name: 'grow', parameters: [{$member: i}, {$member: i}]});
+assert.throws(() => expand({memberTable: growing}), /limit/);
+''',
+      ], workingDirectory: temporary.path);
+      expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    },
+  );
 }
 
 void _writeJson(String path, Object value) {

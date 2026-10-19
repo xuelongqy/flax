@@ -8,9 +8,10 @@ import '@flax/flutter/material/_bindings/sdk_material_DayPeriod';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 const _flaxMemberParameters0 = [{"name":"other","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"hour","required":false,"positional":false},{"name":"minute","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"hour"},{"name":"minute"}] as const;
 const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
 const _flaxMemberParameters3 = [] as const;
+const _flaxMemberParameters4 = [{"name":"hour","required":true},{"name":"minute","required":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,7 +20,7 @@ readonly [_flaxDartTypeValue]: TimeOfDay;
 
 }
 defineObject("flax.core/sdk_material#type:TimeOfDay", ["hour","minute","period","hourOfPeriod","periodOffset"], [], _flaxBindingMethods("flax.core/sdk_material#type:TimeOfDay", "object", {"compareTo":_flaxMemberParameters0,"replacing":_flaxMemberParameters1,"format":_flaxMemberParameters2,"isBefore":_flaxMemberParameters0,"isAfter":_flaxMemberParameters0,"isAtSameTimeAs":_flaxMemberParameters0,"toString":_flaxMemberParameters3}, {}), []);
-const _TimeOfDayProxy = {type: "flax.core/sdk_material#type:TimeOfDay", parameters: [{"name":"hour","required":true,"positional":false},{"name":"minute","required":true,"positional":false}], constructors: {"":[{"name":"hour","required":true,"positional":false},{"name":"minute","required":true,"positional":false}]}, methods: {"compareTo":_flaxMemberParameters0,"replacing":_flaxMemberParameters1,"format":_flaxMemberParameters2,"isBefore":_flaxMemberParameters0,"isAfter":_flaxMemberParameters0,"isAtSameTimeAs":_flaxMemberParameters0,"toString":_flaxMemberParameters3}, getters: ["hour","minute","period","hourOfPeriod","periodOffset"], setters: [], contextMembers: [], superMembers: ["get:hour","get:minute","get:period","get:hourOfPeriod","get:periodOffset","compareTo","replacing","format","isBefore","isAfter","isAtSameTimeAs","toString"]} as const;
+const _TimeOfDayProxy = {type: "flax.core/sdk_material#type:TimeOfDay", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"compareTo":_flaxMemberParameters0,"replacing":_flaxMemberParameters1,"format":_flaxMemberParameters2,"isBefore":_flaxMemberParameters0,"isAfter":_flaxMemberParameters0,"isAtSameTimeAs":_flaxMemberParameters0,"toString":_flaxMemberParameters3}, getters: ["hour","minute","period","hourOfPeriod","periodOffset"], setters: [], contextMembers: [], superMembers: ["get:hour","get:minute","get:period","get:hourOfPeriod","get:periodOffset","compareTo","replacing","format","isBefore","isAfter","isAtSameTimeAs","toString"]} as const;
 export interface TimeOfDay {
 readonly [_flaxDartTypeValue]: TimeOfDay;
 

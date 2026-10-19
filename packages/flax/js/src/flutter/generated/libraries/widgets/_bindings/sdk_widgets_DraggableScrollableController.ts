@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 const _flaxMemberParameters0 = [{"name":"size","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"pixels","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"size","required":true,"positional":true},{"name":"curve","required":true,"positional":false},{"name":"duration","required":true,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"size","required":true,"positional":true},{"name":"curve","required":true},{"name":"duration","required":true}] as const;
 const _flaxMemberParameters3 = [] as const;
 const _flaxMemberParameters4 = [{"name":"listener","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -22,7 +22,7 @@ readonly [_flaxDartTypeValue]: DraggableScrollableController;
 
 }
 defineObject("flax.core/sdk_widgets#type:DraggableScrollableController", ["hasListeners","size","pixels","isAttached"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DraggableScrollableController", "object", {"sizeToPixels":_flaxMemberParameters0,"pixelsToSize":_flaxMemberParameters1,"animateTo":_flaxMemberParameters2,"jumpTo":_flaxMemberParameters0,"reset":_flaxMemberParameters3}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _DraggableScrollableControllerProxy = {type: "flax.core/sdk_widgets#type:DraggableScrollableController", parameters: [], constructors: {"":[]}, methods: {"addListener":_flaxMemberParameters4,"removeListener":_flaxMemberParameters4,"dispose":_flaxMemberParameters3,"sizeToPixels":_flaxMemberParameters0,"pixelsToSize":_flaxMemberParameters1,"animateTo":_flaxMemberParameters2,"jumpTo":_flaxMemberParameters0,"reset":_flaxMemberParameters3}, getters: ["size","pixels","isAttached","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:size","get:pixels","get:isAttached","get:hasListeners","addListener","removeListener","dispose","sizeToPixels","pixelsToSize","animateTo","jumpTo","reset"]} as const;
+const _DraggableScrollableControllerProxy = {type: "flax.core/sdk_widgets#type:DraggableScrollableController", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"addListener":_flaxMemberParameters4,"removeListener":_flaxMemberParameters4,"dispose":_flaxMemberParameters3,"sizeToPixels":_flaxMemberParameters0,"pixelsToSize":_flaxMemberParameters1,"animateTo":_flaxMemberParameters2,"jumpTo":_flaxMemberParameters0,"reset":_flaxMemberParameters3}, getters: ["size","pixels","isAttached","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:size","get:pixels","get:isAttached","get:hasListeners","addListener","removeListener","dispose","sizeToPixels","pixelsToSize","animateTo","jumpTo","reset"]} as const;
 export interface DraggableScrollableController {
 readonly [_flaxDartTypeValue]: DraggableScrollableController;
 

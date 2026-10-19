@@ -60,11 +60,11 @@ const _flaxMemberParameters5 = [] as const;
 const _flaxMemberParameters6 = [{"name":"didPop","required":true,"positional":true},{"name":"result","required":true,"positional":true}] as const;
 const _flaxMemberParameters7 = [{"name":"callback","required":true,"positional":true}] as const;
 const _flaxMemberParameters8 = [{"name":"popEntry","required":true,"positional":true}] as const;
-const _flaxMemberParameters9 = [{"name":"forward","required":true,"positional":false}] as const;
+const _flaxMemberParameters9 = [{"name":"forward","required":true}] as const;
 const _flaxMemberParameters10 = [{"name":"oldRoute","required":true,"positional":true}] as const;
 const _flaxMemberParameters11 = [{"name":"result","required":true,"positional":true}] as const;
-const _flaxMemberParameters12 = [{"name":"progress","required":false,"positional":false}] as const;
-const _flaxMemberParameters13 = [{"name":"progress","required":true,"positional":false}] as const;
+const _flaxMemberParameters12 = [{"name":"progress"}] as const;
+const _flaxMemberParameters13 = [{"name":"progress","required":true}] as const;
 const _flaxMemberParameters14 = [{"name":"didPop","required":true,"positional":true}] as const;
 const _flaxMemberParameters15 = [{"name":"entry","required":true,"positional":true}] as const;
 const _flaxMemberParameters16 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
@@ -169,7 +169,7 @@ export function _CupertinoSheetRouteFactory(options?: { settings?: Readonly<{ "_
 export function _CupertinoSheetRouteFactory(options: Record<string, unknown> = {}): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoSheetRoute", "", [{"name":"settings","required":false,"positional":false},{"name":"builder","required":false,"positional":false},{"name":"scrollableBuilder","required":false,"positional":false},{"name":"enableDrag","required":false,"positional":false},{"name":"showDragHandle","required":false,"positional":false},{"name":"topGap","required":false,"positional":false}], [], options) as CupertinoSheetRoute<unknown | null>;
+return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoSheetRoute", "", [{"name":"settings"},{"name":"builder"},{"name":"scrollableBuilder"},{"name":"enableDrag"},{"name":"showDragHandle"},{"name":"topGap"}], [], options) as CupertinoSheetRoute<unknown | null>;
 }
 export namespace _CupertinoSheetRouteFactory { export function hasParentSheet(context: upstream8.BuildContext): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

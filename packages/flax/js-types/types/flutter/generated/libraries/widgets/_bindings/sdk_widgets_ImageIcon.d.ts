@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessWidget';
 import type * as upstream1 from '@flax/flutter/painting/_bindings/sdk_painting_ImageProvider';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageProvider';
 import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_Key';
@@ -32,7 +33,7 @@ export interface ImageIcon extends _FlaxDartWidget, Omit<upstream0.StatelessWidg
 }> {
     readonly __ImageIcon: unique symbol;
     readonly [_flaxDartTypeValue]: ImageIcon;
-    readonly image: upstream1.ImageProvider<{}> | null;
+    readonly image: upstream1.ImageProvider<any> | null;
     readonly size: number | null;
     readonly color: upstream3.Color | null;
     readonly semanticLabel: string | null;

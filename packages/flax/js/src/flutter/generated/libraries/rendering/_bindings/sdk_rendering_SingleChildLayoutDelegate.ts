@@ -12,6 +12,7 @@ import '@flax/dart/ui/_bindings/flutter_Offset';
 const _flaxMemberParameters0 = [{"name":"constraints","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"size","required":true,"positional":true},{"name":"childSize","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"oldDelegate","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"relayout"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -20,7 +21,7 @@ readonly [_flaxDartTypeValue]: SingleChildLayoutDelegate;
 
 }
 defineObject("flax.core/sdk_rendering#type:SingleChildLayoutDelegate", [], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SingleChildLayoutDelegate", "object", {"getSize":_flaxMemberParameters0,"getConstraintsForChild":_flaxMemberParameters0,"getPositionForChild":_flaxMemberParameters1,"shouldRelayout":_flaxMemberParameters2}, {}), []);
-const _SingleChildLayoutDelegateProxy = {type: "flax.core/sdk_rendering#type:SingleChildLayoutDelegate", parameters: [{"name":"relayout","required":false,"positional":false}], constructors: {"":[{"name":"relayout","required":false,"positional":false}]}, methods: {"getSize":_flaxMemberParameters0,"getConstraintsForChild":_flaxMemberParameters0,"getPositionForChild":_flaxMemberParameters1,"shouldRelayout":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["getSize","getConstraintsForChild","getPositionForChild"]} as const;
+const _SingleChildLayoutDelegateProxy = {type: "flax.core/sdk_rendering#type:SingleChildLayoutDelegate", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"getSize":_flaxMemberParameters0,"getConstraintsForChild":_flaxMemberParameters0,"getPositionForChild":_flaxMemberParameters1,"shouldRelayout":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["getSize","getConstraintsForChild","getPositionForChild"]} as const;
 export interface SingleChildLayoutDelegate {
 readonly [_flaxDartTypeValue]: SingleChildLayoutDelegate;
 

@@ -21,12 +21,13 @@ import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-const _flaxMemberParameters0 = [{"name":"key","required":true,"positional":true},{"name":"side","required":false,"positional":false}] as const;
-const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"hidUsage"},{"name":"codePoint"},{"name":"modifiers"}] as const;
+const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true},{"name":"side"}] as const;
+const _flaxMemberParameters2 = [{"name":"key","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"minLevel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -35,7 +36,7 @@ readonly [_flaxDartTypeValue]: RawKeyEventDataFuchsia;
 
 }
 defineObject("flax.core/sdk_services#type:RawKeyEventDataFuchsia", ["isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed","physicalKey","logicalKey","keyLabel","hidUsage","codePoint","modifiers"], [], _flaxBindingMethods("flax.core/sdk_services#type:RawKeyEventDataFuchsia", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:RawKeyEventData");
-const _RawKeyEventDataFuchsiaProxy = {type: "flax.core/sdk_services#type:RawKeyEventDataFuchsia", parameters: [{"name":"hidUsage","required":false,"positional":false},{"name":"codePoint","required":false,"positional":false},{"name":"modifiers","required":false,"positional":false}], constructors: {"":[{"name":"hidUsage","required":false,"positional":false},{"name":"codePoint","required":false,"positional":false},{"name":"modifiers","required":false,"positional":false}]}, methods: {"isModifierPressed":_flaxMemberParameters0,"getModifierSide":_flaxMemberParameters1,"shouldDispatchEvent":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, getters: ["hidUsage","codePoint","modifiers","keyLabel","logicalKey","physicalKey","isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed"], setters: [], contextMembers: [], superMembers: ["get:hidUsage","get:codePoint","get:modifiers","get:keyLabel","get:logicalKey","get:physicalKey","get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:modifiersPressed","isModifierPressed","getModifierSide","shouldDispatchEvent","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+const _RawKeyEventDataFuchsiaProxy = {type: "flax.core/sdk_services#type:RawKeyEventDataFuchsia", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"isModifierPressed":_flaxMemberParameters1,"getModifierSide":_flaxMemberParameters2,"shouldDispatchEvent":_flaxMemberParameters3,"toStringShort":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters6}, getters: ["hidUsage","codePoint","modifiers","keyLabel","logicalKey","physicalKey","isControlPressed","isShiftPressed","isAltPressed","isMetaPressed","modifiersPressed"], setters: [], contextMembers: [], superMembers: ["get:hidUsage","get:codePoint","get:modifiers","get:keyLabel","get:logicalKey","get:physicalKey","get:isControlPressed","get:isShiftPressed","get:isAltPressed","get:isMetaPressed","get:modifiersPressed","isModifierPressed","getModifierSide","shouldDispatchEvent","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
 export interface RawKeyEventDataFuchsia {
 readonly [_flaxDartTypeValue]: RawKeyEventDataFuchsia;
 

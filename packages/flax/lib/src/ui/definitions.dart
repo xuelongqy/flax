@@ -24,6 +24,8 @@ const _supportedCapabilities = <String>{
   'native-widget-proxies',
   'native-navigation-objects',
   'widget-interface-proxies',
+  'context-instance-methods',
+  'proxy-native-members',
   'shared-uint8',
   'shared-buffers',
 };
@@ -148,34 +150,26 @@ abstract interface class FlaxCallback {
   );
 }
 
-class FlaxCallbackParameter {
+class FlaxCallbackParameter extends FlaxParameter {
   const FlaxCallbackParameter(
-    this.name,
-    this.type, {
-    required this.required,
+    super.name,
+    super.type, {
+    required super.required,
     required this.positional,
     FlaxTypeRef? encode,
     this.scoped = false,
   }) : encode = encode ?? type;
-  final String name;
-  final FlaxTypeRef type;
   final FlaxTypeRef encode;
-  final bool required;
   final bool positional;
   final bool scoped;
 }
 
 class FlaxCallbackBinding {
-  const FlaxCallbackBinding.signature(
-    this.parameters,
-    this.result, {
-    required this.id,
-  }) : wrap = _signatureWrap,
-       invoke = _signatureInvoke,
-       matches = _signatureMatches,
-       independentWidgetResult = false,
-       requiresTypeArguments = false,
-       genericFactory = null;
+  const factory FlaxCallbackBinding.signature(
+    List<FlaxCallbackParameter> parameters,
+    FlaxTypeRef result, {
+    required String id,
+  }) = _FlaxProxySignature;
 
   static Never _signatureWrap(FlaxCallback callback) =>
       throw StateError('Proxy signature used as a function wrapper');
@@ -208,6 +202,30 @@ class FlaxCallbackBinding {
   final List<FlaxCallbackParameter> parameters;
   final FlaxTypeRef result;
   final Object Function(FlaxCallback) wrap;
+}
+
+// A proxy signature has no function adapter or generic factory to store.
+class _FlaxProxySignature implements FlaxCallbackBinding {
+  const _FlaxProxySignature(this.parameters, this.result, {required this.id});
+  @override
+  final List<FlaxCallbackParameter> parameters;
+  @override
+  final FlaxTypeRef result;
+  @override
+  final String id;
+  @override
+  Object Function(FlaxCallback) get wrap => FlaxCallbackBinding._signatureWrap;
+  @override
+  Object? Function(Object, List<Object?>, Map<String, Object?>) get invoke =>
+      FlaxCallbackBinding._signatureInvoke;
+  @override
+  bool Function(Object) get matches => FlaxCallbackBinding._signatureMatches;
+  @override
+  bool get independentWidgetResult => false;
+  @override
+  bool get requiresTypeArguments => false;
+  @override
+  Function? get genericFactory => null;
 }
 
 class FlaxGetter {
@@ -445,6 +463,13 @@ class _FlaxConstantFunctionBinding extends FlaxFunctionBinding {
       throw StateError('Invalid constant invocation');
 }
 
+/// Static Dart constants share one conversion type and retain readable IDs.
+class FlaxConstantGroup {
+  const FlaxConstantGroup(this.type, this.values);
+  final FlaxTypeRef type;
+  final Map<String, Object?> values;
+}
+
 /// Navigation admission and UI callback roles for selected function bindings.
 class FlaxRouteCallBinding {
   const FlaxRouteCallBinding([this.builders = const []]);
@@ -452,6 +477,15 @@ class FlaxRouteCallBinding {
 }
 
 class FlaxInstanceMethod {
+  const factory FlaxInstanceMethod.signature(
+    FlaxCallbackBinding signature,
+    Object? Function(Object, Map<String, Object?>) invoke, {
+    bool startsRoute,
+    Function? genericFactory,
+    List<Type> ownerTypes,
+    bool requiresTypeArguments,
+  }) = _FlaxSignatureInstanceMethod;
+
   const FlaxInstanceMethod(
     this.parameters,
     this.result,
@@ -468,6 +502,33 @@ class FlaxInstanceMethod {
   final FlaxTypeRef result;
   final Object? Function(Object, Map<String, Object?>) invoke;
   final bool startsRoute;
+}
+
+/// Reuses an existing closed proxy signature without copying its parameter view.
+class _FlaxSignatureInstanceMethod implements FlaxInstanceMethod {
+  const _FlaxSignatureInstanceMethod(
+    this.signature,
+    this.invoke, {
+    this.startsRoute = false,
+    this.genericFactory,
+    this.ownerTypes = const [],
+    this.requiresTypeArguments = false,
+  });
+  final FlaxCallbackBinding signature;
+  @override
+  List<FlaxParameter> get parameters => signature.parameters;
+  @override
+  FlaxTypeRef get result => signature.result;
+  @override
+  final Object? Function(Object, Map<String, Object?>) invoke;
+  @override
+  final bool startsRoute;
+  @override
+  final Function? genericFactory;
+  @override
+  final List<Type> ownerTypes;
+  @override
+  final bool requiresTypeArguments;
 }
 
 class FlaxStateBinding extends FlaxTypeBinding {
@@ -509,8 +570,14 @@ class FlaxMemberBinding extends FlaxTypeBinding {
 }
 
 class FlaxContextBinding extends FlaxTypeBinding {
-  const FlaxContextBinding(super.id, this.getters, {this.matches});
+  const FlaxContextBinding(
+    super.id,
+    this.getters, {
+    this.instanceMethods = const {},
+    this.matches,
+  });
   final List<FlaxGetter> getters;
+  final Map<String, FlaxInstanceMethod> instanceMethods;
   final bool Function(Object)? matches;
 }
 
@@ -575,18 +642,33 @@ class FlaxBindingModule {
     required this.moduleId,
     required this.uiProtocol,
     required this.requiredCapabilities,
-    this.functions = const [],
+    List<FlaxFunctionBinding> functions = const [],
+    this.constants = const [],
     this.stateVariants = const [],
     this.dependencyModules = const [],
     this.dartTypes = const [],
     this.dartShapes = const [],
-  });
+  }) : // Named public arguments cannot use private initializing formals.
+       // ignore: prefer_initializing_formals
+       _functions = functions;
   final String name;
   final List<FlaxTypeBinding> types;
   final String moduleId;
   final int uiProtocol;
   final List<String> requiredCapabilities;
-  final List<FlaxFunctionBinding> functions;
+  final List<FlaxFunctionBinding> _functions;
+  static final _functionViews = Expando<List<FlaxFunctionBinding>>();
+
+  /// Complete author-facing metadata; registries index groups without expanding them.
+  List<FlaxFunctionBinding> get functions => constants.isEmpty
+      ? _functions
+      : _functionViews[this] ??= List.unmodifiable([
+          ..._functions,
+          for (final group in constants)
+            for (final entry in group.values.entries)
+              FlaxFunctionBinding.constant(entry.key, group.type, entry.value),
+        ]);
+  final List<FlaxConstantGroup> constants;
   final List<FlaxStateVariantBinding> stateVariants;
   final List<String> dependencyModules;
   final List<FlaxDartClassTemplate> dartTypes;
@@ -600,6 +682,7 @@ class FlaxBindingRegistry {
     final moduleIds = <String>{};
     final types = <String, FlaxTypeBinding>{};
     final functions = <String, FlaxFunctionBinding>{};
+    final constants = <String, FlaxConstantGroup>{};
     final stateVariants = <String, FlaxStateVariantBinding>{};
     final componentStateTypes = <String>{};
     for (final module in [componentsBindings, ...this.modules]) {
@@ -623,12 +706,22 @@ class FlaxBindingRegistry {
         types[type.id] = type;
         _bindingOwners[type.id] = module;
       }
-      for (final function in module.functions) {
-        if (functions.containsKey(function.id)) {
+      for (final function in module._functions) {
+        if (functions.containsKey(function.id) ||
+            constants.containsKey(function.id)) {
           throw ArgumentError('Duplicate function binding: ${function.id}');
         }
         functions[function.id] = function;
         _bindingOwners[function.id] = module;
+      }
+      for (final group in module.constants) {
+        for (final id in group.values.keys) {
+          if (functions.containsKey(id) || constants.containsKey(id)) {
+            throw ArgumentError('Duplicate function binding: $id');
+          }
+          constants[id] = group;
+          _bindingOwners[id] = module;
+        }
       }
       for (final variant in module.stateVariants) {
         if (stateVariants.containsKey(variant.id)) {
@@ -640,6 +733,7 @@ class FlaxBindingRegistry {
     }
     _types.addAll(types);
     _functions.addAll(functions);
+    _constantGroups.addAll(constants);
     _stateVariants.addAll(stateVariants);
     _componentStateTypes.addAll(componentStateTypes);
   }
@@ -653,6 +747,7 @@ class FlaxBindingRegistry {
             _bindingOwners[type.id]!.moduleId.split('/').first == 'flax.core',
       );
   final _functions = <String, FlaxFunctionBinding>{};
+  final _constantGroups = <String, FlaxConstantGroup>{};
   final _stateVariants = <String, FlaxStateVariantBinding>{};
   final _componentStateTypes = <String>{};
 

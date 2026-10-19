@@ -56,11 +56,11 @@ const _flaxMemberParameters5 = [{"name":"callback","required":true,"positional":
 const _flaxMemberParameters6 = [{"name":"popEntry","required":true,"positional":true}] as const;
 const _flaxMemberParameters7 = [{"name":"previousRoute","required":true,"positional":true}] as const;
 const _flaxMemberParameters8 = [{"name":"nextRoute","required":true,"positional":true}] as const;
-const _flaxMemberParameters9 = [{"name":"forward","required":true,"positional":false}] as const;
+const _flaxMemberParameters9 = [{"name":"forward","required":true}] as const;
 const _flaxMemberParameters10 = [{"name":"oldRoute","required":true,"positional":true}] as const;
 const _flaxMemberParameters11 = [{"name":"result","required":true,"positional":true}] as const;
-const _flaxMemberParameters12 = [{"name":"progress","required":false,"positional":false}] as const;
-const _flaxMemberParameters13 = [{"name":"progress","required":true,"positional":false}] as const;
+const _flaxMemberParameters12 = [{"name":"progress"}] as const;
+const _flaxMemberParameters13 = [{"name":"progress","required":true}] as const;
 const _flaxMemberParameters14 = [{"name":"didPop","required":true,"positional":true}] as const;
 const _flaxMemberParameters15 = [{"name":"entry","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";

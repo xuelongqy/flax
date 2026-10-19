@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: TableColumnWidth;
 
 }
 defineObject("flax.core/sdk_rendering#type:TableColumnWidth", [], [], _flaxBindingMethods("flax.core/sdk_rendering#type:TableColumnWidth", "object", {"minIntrinsicWidth":_flaxMemberParameters0,"maxIntrinsicWidth":_flaxMemberParameters0,"flex":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, {}), []);
-const _TableColumnWidthProxy = {type: "flax.core/sdk_rendering#type:TableColumnWidth", parameters: [], constructors: {"":[]}, methods: {"minIntrinsicWidth":_flaxMemberParameters0,"maxIntrinsicWidth":_flaxMemberParameters0,"flex":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["flex","toString"]} as const;
+const _TableColumnWidthProxy = {type: "flax.core/sdk_rendering#type:TableColumnWidth", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"minIntrinsicWidth":_flaxMemberParameters0,"maxIntrinsicWidth":_flaxMemberParameters0,"flex":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["flex","toString"]} as const;
 export interface TableColumnWidth {
 readonly [_flaxDartTypeValue]: TableColumnWidth;
 

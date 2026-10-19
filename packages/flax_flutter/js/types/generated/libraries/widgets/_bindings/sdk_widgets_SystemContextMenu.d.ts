@@ -21,7 +21,8 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream12 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableText';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import type * as upstream13 from '@flax/flutter/widgets/_bindings/sdk_widgets_EditableText';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SystemContextMenu extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
@@ -71,17 +72,17 @@ export declare namespace _SystemContextMenuFactory {
         editableTextState: Readonly<{
             "__flaxBound:package:flutter/src/widgets/editable_text.dart::EditableTextState": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream12.EditableText];
+            "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream13.EditableText];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/services/autofill.dart::AutofillClient": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream12.EditableText];
+            "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream13.EditableText];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream12.EditableText];
+            "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream13.EditableText];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
         }> & Readonly<{
@@ -101,17 +102,17 @@ export declare namespace _SystemContextMenuFactory {
     function isSupportedByField(editableTextState: Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::EditableTextState": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream12.EditableText];
+        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream13.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/services/autofill.dart::AutofillClient": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream12.EditableText];
+        "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream13.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream12.EditableText];
+        "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream13.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
     }> & Readonly<{
@@ -124,17 +125,17 @@ export declare namespace _SystemContextMenuFactory {
     function getDefaultItems(editableTextState: Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::EditableTextState": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream12.EditableText];
+        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream13.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/services/autofill.dart::AutofillClient": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream12.EditableText];
+        "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::AutomaticKeepAliveClientMixin": readonly [upstream13.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream12.EditableText];
+        "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin": readonly [upstream13.EditableText];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
     }> & Readonly<{

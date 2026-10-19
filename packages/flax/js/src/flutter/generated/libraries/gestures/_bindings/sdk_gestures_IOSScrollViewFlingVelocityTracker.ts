@@ -14,7 +14,8 @@ import '@flax/flutter/gestures/_bindings/sdk_gestures_VelocityEstimate';
 import type * as upstream5 from '@flax/flutter/gestures/_bindings/sdk_gestures_Velocity';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_Velocity';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"time","required":true,"positional":true},{"name":"position","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"kind","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"time","required":true,"positional":true},{"name":"position","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +24,7 @@ readonly [_flaxDartTypeValue]: IOSScrollViewFlingVelocityTracker;
 
 }
 defineObject("flax.core/sdk_gestures#type:IOSScrollViewFlingVelocityTracker", ["kind"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:IOSScrollViewFlingVelocityTracker", "object", {"getVelocityEstimate":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_gestures#type:VelocityTracker");
-const _IOSScrollViewFlingVelocityTrackerProxy = {type: "flax.core/sdk_gestures#type:IOSScrollViewFlingVelocityTracker", parameters: [{"name":"kind","required":true,"positional":true}], constructors: {"":[{"name":"kind","required":true,"positional":true}]}, methods: {"addPosition":_flaxMemberParameters1,"getVelocityEstimate":_flaxMemberParameters0,"getVelocity":_flaxMemberParameters0}, getters: ["kind"], setters: [], contextMembers: [], superMembers: ["get:kind","addPosition","getVelocityEstimate","getVelocity"]} as const;
+const _IOSScrollViewFlingVelocityTrackerProxy = {type: "flax.core/sdk_gestures#type:IOSScrollViewFlingVelocityTracker", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"addPosition":_flaxMemberParameters2,"getVelocityEstimate":_flaxMemberParameters0,"getVelocity":_flaxMemberParameters0}, getters: ["kind"], setters: [], contextMembers: [], superMembers: ["get:kind","addPosition","getVelocityEstimate","getVelocity"]} as const;
 export interface IOSScrollViewFlingVelocityTracker {
 readonly [_flaxDartTypeValue]: IOSScrollViewFlingVelocityTracker;
 

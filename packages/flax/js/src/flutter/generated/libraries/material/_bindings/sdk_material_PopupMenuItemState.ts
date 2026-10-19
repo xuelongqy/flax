@@ -17,11 +17,11 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters5 = [{"name":"child","required":true,"positional":false}] as const;
+const _flaxMemberParameters5 = [{"name":"child","required":true}] as const;
 const _flaxMemberParameters6 = [{"name":"oldWidget","required":true,"positional":true}] as const;
 const _flaxMemberParameters7 = [{"name":"fn","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
@@ -55,7 +55,7 @@ export function _PopupMenuItemStateFactory(): PopupMenuItemState<unknown | null,
 export function _PopupMenuItemStateFactory(): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_material#type:PopupMenuItemState", "", [], [], {}) as PopupMenuItemState<unknown | null, upstream0.PopupMenuItem<unknown | null>>;
+return constructObject("object", "flax.core/sdk_material#type:PopupMenuItemState", "", _flaxMemberParameters0, [], {}) as PopupMenuItemState<unknown | null, upstream0.PopupMenuItem<unknown | null>>;
 }
 export const PopupMenuItemState: typeof _PopupMenuItemStateFactory & _FlaxInstanceType<PopupMenuItemState<unknown | null, upstream0.PopupMenuItem<unknown | null>>> & _FlaxDartType<PopupMenuItemState<unknown | null, upstream0.PopupMenuItem<unknown | null>>, readonly ["class", "flax.core/sdk_material#type:PopupMenuItemState", readonly [readonly ["any", null, readonly [], true], readonly ["class", "flax.core/sdk_material#type:PopupMenuItem", readonly [readonly ["any", null, readonly [], true]], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<PopupMenuItemState<unknown | null, upstream0.PopupMenuItem<unknown | null>>, typeof _PopupMenuItemStateFactory>(_PopupMenuItemStateFactory, "flax.core/sdk_material#type:PopupMenuItemState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _PopupMenuItemStateFactory & _FlaxInstanceType<PopupMenuItemState<unknown | null, upstream0.PopupMenuItem<unknown | null>>> & _FlaxDartType<PopupMenuItemState<unknown | null, upstream0.PopupMenuItem<unknown | null>>, readonly ["class", "flax.core/sdk_material#type:PopupMenuItemState", readonly [readonly ["any", null, readonly [], true], readonly ["class", "flax.core/sdk_material#type:PopupMenuItem", readonly [readonly ["any", null, readonly [], true]], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 _flaxDefineDartTypes(PopupMenuItemState, "flax.core/sdk_material#type:PopupMenuItemState", {"category":"object","constructors":{"":[]}});

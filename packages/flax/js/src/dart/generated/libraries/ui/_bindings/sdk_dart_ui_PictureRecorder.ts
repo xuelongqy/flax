@@ -16,9 +16,9 @@ defineObject("flax.core/sdk_dart_ui#type:PictureRecorder", ["isRecording"], [], 
 export function _PictureRecorderFactory(): PictureRecorder {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:PictureRecorder", "", [], [], {}) as PictureRecorder;
+return constructObject("object", "flax.core/sdk_dart_ui#type:PictureRecorder", "", _flaxMemberParameters0, [], {}) as PictureRecorder;
 }
-const _PictureRecorderProxy = {type: "flax.core/sdk_dart_ui#type:PictureRecorder", parameters: [], constructors: {"":[]}, methods: {"endRecording":_flaxMemberParameters0}, getters: ["isRecording"], setters: [], contextMembers: [], superMembers: []} as const;
+const _PictureRecorderProxy = {type: "flax.core/sdk_dart_ui#type:PictureRecorder", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"endRecording":_flaxMemberParameters0}, getters: ["isRecording"], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _PictureRecorderFactory { export function implement(args: [], implementation: {endRecording: (() => Readonly<{ "__flaxBound:dart:ui::Picture": readonly [] }>); get isRecording(): boolean}): PictureRecorder {
 return constructProxy(_PictureRecorderProxy, args, implementation) as PictureRecorder; } }
 export const PictureRecorder: typeof _PictureRecorderFactory & _FlaxInstanceType<PictureRecorder> & _FlaxDartType<PictureRecorder, readonly ["class", "flax.core/sdk_dart_ui#type:PictureRecorder", readonly [], false]> = _flaxBindInstanceType<PictureRecorder, typeof _PictureRecorderFactory>(_PictureRecorderFactory, "flax.core/sdk_dart_ui#type:PictureRecorder", ["dart:core::Object"]) as typeof _PictureRecorderFactory & _FlaxInstanceType<PictureRecorder> & _FlaxDartType<PictureRecorder, readonly ["class", "flax.core/sdk_dart_ui#type:PictureRecorder", readonly [], false]>;

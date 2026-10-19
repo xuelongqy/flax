@@ -24,9 +24,9 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
 import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TargetImageSize';
 const _flaxMemberParameters0 = [{"name":"configuration","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"configuration","required":true,"positional":false},{"name":"handleError","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"configuration","required":true},{"name":"handleError"}] as const;
 const _flaxMemberParameters2 = [{"name":"configuration","required":true,"positional":true},{"name":"stream","required":true,"positional":true},{"name":"key","required":true,"positional":true},{"name":"handleError","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"cache","required":false,"positional":false},{"name":"configuration","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"cache"},{"name":"configuration"}] as const;
 const _flaxMemberParameters4 = [{"name":"key","required":true,"positional":true},{"name":"decode","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -36,10 +36,11 @@ export interface AssetBundleImageProvider extends Omit<upstream0.ImageProvider<u
 readonly [_flaxDartTypeValue]: AssetBundleImageProvider;
 
 }
-defineObject("flax.core/sdk_painting#type:AssetBundleImageProvider", [], [], _flaxBindingMethods("flax.core/sdk_painting#type:AssetBundleImageProvider", "object", {"createStream":_flaxMemberParameters0,"obtainCacheStatus":_flaxMemberParameters1,"resolveStreamForKey":_flaxMemberParameters2,"evict":_flaxMemberParameters3,"obtainKey":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters4,"loadImage":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, {}), []);
-const _AssetBundleImageProviderProxy = {type: "flax.core/sdk_painting#type:AssetBundleImageProvider", parameters: [], constructors: {"":[]}, methods: {"createStream":_flaxMemberParameters0,"obtainCacheStatus":_flaxMemberParameters1,"resolveStreamForKey":_flaxMemberParameters2,"evict":_flaxMemberParameters3,"obtainKey":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters4,"loadImage":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, getters: [], setters: [], contextMembers: [], superMembers: ["createStream","obtainCacheStatus","resolveStreamForKey","evict","loadBuffer","loadImage","toString"]} as const;
+defineObject("flax.core/sdk_painting#type:AssetBundleImageProvider", [], [], _flaxBindingMethods("flax.core/sdk_painting#type:AssetBundleImageProvider", "object", {"resolve":_flaxMemberParameters0,"createStream":_flaxMemberParameters0,"obtainCacheStatus":_flaxMemberParameters1,"resolveStreamForKey":_flaxMemberParameters2,"evict":_flaxMemberParameters3,"obtainKey":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters4,"loadImage":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, {}), []);
+const _AssetBundleImageProviderProxy = {type: "flax.core/sdk_painting#type:AssetBundleImageProvider", parameters: _flaxMemberParameters5, constructors: {"": _flaxMemberParameters5}, methods: {"createStream":_flaxMemberParameters0,"obtainCacheStatus":_flaxMemberParameters1,"resolveStreamForKey":_flaxMemberParameters2,"evict":_flaxMemberParameters3,"obtainKey":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters4,"loadImage":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, getters: [], setters: [], contextMembers: [], superMembers: ["createStream","obtainCacheStatus","resolveStreamForKey","evict","loadBuffer","loadImage","toString"]} as const;
 export interface AssetBundleImageProvider {
 readonly [_flaxDartTypeValue]: AssetBundleImageProvider;
+resolve(configuration: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [] }>): upstream2.ImageStream;
 
 createStream(configuration: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [] }>): upstream2.ImageStream;
 obtainCacheStatus(options: {configuration: Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [] }>; handleError?: ((exception: {}, stackTrace: upstream5.StackTrace | null) => void) | null | undefined}): Promise<upstream4.ImageCacheStatus | null>;
@@ -60,4 +61,4 @@ _flaxDefineProxyBase(AssetBundleImageProvider.prototype, _AssetBundleImageProvid
 export namespace AssetBundleImageProvider { export function implement(args: [], implementation: {obtainKey: ((configuration: upstream3.ImageConfiguration) => Promise<Readonly<{ "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageKey": readonly [] }>>)}): AssetBundleImageProvider {
 return constructProxy(_AssetBundleImageProviderProxy, args, implementation) as AssetBundleImageProvider; } }
 _flaxBindInstanceType<AssetBundleImageProvider, typeof AssetBundleImageProvider>(AssetBundleImageProvider, "flax.core/sdk_painting#type:AssetBundleImageProvider", ["flax.core/sdk_painting#type:ImageProvider","dart:core::Object"]);
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";

@@ -8,7 +8,8 @@ import '@flax/dart/ui/_bindings/flutter_TextRange';
 import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"range","required":true,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"range","required":true},{"name":"locale","required":true}] as const;
+const _flaxMemberParameters2 = [{"name":"range","required":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,7 +18,7 @@ readonly [_flaxDartTypeValue]: LocaleStringAttribute;
 
 }
 defineObject("flax.core/sdk_dart_ui#type:LocaleStringAttribute", ["range","locale"], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:LocaleStringAttribute", "object", {"toString":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_dart_ui#type:StringAttribute");
-const _LocaleStringAttributeProxy = {type: "flax.core/sdk_dart_ui#type:LocaleStringAttribute", parameters: [{"name":"range","required":true,"positional":false},{"name":"locale","required":true,"positional":false}], constructors: {"":[{"name":"range","required":true,"positional":false},{"name":"locale","required":true,"positional":false}]}, methods: {"copy":_flaxMemberParameters1,"toString":_flaxMemberParameters0}, getters: ["locale","range"], setters: [], contextMembers: [], superMembers: ["get:locale","get:range","copy","toString"]} as const;
+const _LocaleStringAttributeProxy = {type: "flax.core/sdk_dart_ui#type:LocaleStringAttribute", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"copy":_flaxMemberParameters2,"toString":_flaxMemberParameters0}, getters: ["locale","range"], setters: [], contextMembers: [], superMembers: ["get:locale","get:range","copy","toString"]} as const;
 export interface LocaleStringAttribute {
 readonly [_flaxDartTypeValue]: LocaleStringAttribute;
 

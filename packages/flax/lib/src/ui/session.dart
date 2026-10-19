@@ -235,6 +235,18 @@ class _Session {
   late final _functionBindings = <String, FlaxFunctionBinding>{
     ...registry._functions,
   };
+  FlaxFunctionBinding? _functionBinding(String id) {
+    final existing = _functionBindings[id];
+    if (existing != null) return existing;
+    final group = registry._constantGroups[id];
+    if (group == null) return null;
+    return _functionBindings[id] = FlaxFunctionBinding.constant(
+      id,
+      group.type,
+      group.values[id],
+    );
+  }
+
   late final dartTypes = FlaxDartTypes._(this);
   FlaxTypeBinding? _typeBinding(String? id) =>
       id == null ? null : _typeBindings[id] ?? dartTypes.materialize(id);

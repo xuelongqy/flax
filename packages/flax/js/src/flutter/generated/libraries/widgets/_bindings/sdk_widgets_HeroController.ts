@@ -12,9 +12,10 @@ import '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
 import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_Route';
 import '@flax/flutter/widgets/_bindings/flutter_Route';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"route","required":true,"positional":true},{"name":"previousRoute","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"newRoute","required":false,"positional":false},{"name":"oldRoute","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"topRoute","required":true,"positional":true},{"name":"previousTopRoute","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"createRectTween"}] as const;
+const _flaxMemberParameters2 = [{"name":"route","required":true,"positional":true},{"name":"previousRoute","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"newRoute"},{"name":"oldRoute"}] as const;
+const _flaxMemberParameters4 = [{"name":"topRoute","required":true,"positional":true},{"name":"previousTopRoute","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,7 +24,7 @@ readonly [_flaxDartTypeValue]: HeroController;
 
 }
 defineObject("flax.core/sdk_widgets#type:HeroController", ["navigator","createRectTween"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:HeroController", "object", {"dispose":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:NavigatorObserver");
-const _HeroControllerProxy = {type: "flax.core/sdk_widgets#type:HeroController", parameters: [{"name":"createRectTween","required":false,"positional":false}], constructors: {"":[{"name":"createRectTween","required":false,"positional":false}]}, methods: {"didPush":_flaxMemberParameters1,"didPop":_flaxMemberParameters1,"didRemove":_flaxMemberParameters1,"didReplace":_flaxMemberParameters2,"didChangeTop":_flaxMemberParameters3,"didStartUserGesture":_flaxMemberParameters1,"didStopUserGesture":_flaxMemberParameters0,"dispose":_flaxMemberParameters0}, getters: ["createRectTween","navigator"], setters: [], contextMembers: [], superMembers: ["get:createRectTween","get:navigator","didPush","didPop","didRemove","didReplace","didChangeTop","didStartUserGesture","didStopUserGesture","dispose"]} as const;
+const _HeroControllerProxy = {type: "flax.core/sdk_widgets#type:HeroController", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"didPush":_flaxMemberParameters2,"didPop":_flaxMemberParameters2,"didRemove":_flaxMemberParameters2,"didReplace":_flaxMemberParameters3,"didChangeTop":_flaxMemberParameters4,"didStartUserGesture":_flaxMemberParameters2,"didStopUserGesture":_flaxMemberParameters0,"dispose":_flaxMemberParameters0}, getters: ["createRectTween","navigator"], setters: [], contextMembers: [], superMembers: ["get:createRectTween","get:navigator","didPush","didPop","didRemove","didReplace","didChangeTop","didStartUserGesture","didStopUserGesture","dispose"]} as const;
 export interface HeroController {
 readonly [_flaxDartTypeValue]: HeroController;
 

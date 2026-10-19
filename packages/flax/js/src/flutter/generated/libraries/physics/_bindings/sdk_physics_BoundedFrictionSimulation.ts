@@ -7,9 +7,10 @@ import type * as upstream1 from '@flax/flutter/physics/_bindings/sdk_physics_Sim
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import type * as upstream2 from '@flax/flutter/physics/_bindings/sdk_physics_Tolerance';
 import '@flax/flutter/physics/_bindings/sdk_physics_Tolerance';
-const _flaxMemberParameters0 = [{"name":"time","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"x","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters0 = [{"name":"drag","required":true,"positional":true},{"name":"position","required":true,"positional":true},{"name":"velocity","required":true,"positional":true},{"name":"_minX","required":true,"positional":true},{"name":"_maxX","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"time","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"x","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/physics/_bindings/sdk_physics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -18,7 +19,7 @@ readonly [_flaxDartTypeValue]: BoundedFrictionSimulation;
 
 }
 defineObject("flax.core/sdk_physics#type:BoundedFrictionSimulation", ["finalX","tolerance"], ["tolerance"], _flaxBindingMethods("flax.core/sdk_physics#type:BoundedFrictionSimulation", "object", {}, {}), [], undefined, "flax.core/sdk_physics#type:FrictionSimulation");
-const _BoundedFrictionSimulationProxy = {type: "flax.core/sdk_physics#type:BoundedFrictionSimulation", parameters: [{"name":"drag","required":true,"positional":true},{"name":"position","required":true,"positional":true},{"name":"velocity","required":true,"positional":true},{"name":"_minX","required":true,"positional":true},{"name":"_maxX","required":true,"positional":true}], constructors: {"":[{"name":"drag","required":true,"positional":true},{"name":"position","required":true,"positional":true},{"name":"velocity","required":true,"positional":true},{"name":"_minX","required":true,"positional":true},{"name":"_maxX","required":true,"positional":true}]}, methods: {"x":_flaxMemberParameters0,"dx":_flaxMemberParameters0,"timeAtX":_flaxMemberParameters1,"isDone":_flaxMemberParameters0,"toString":_flaxMemberParameters2}, getters: ["finalX","tolerance"], setters: ["tolerance"], contextMembers: [], superMembers: ["get:finalX","get:tolerance","set:tolerance","x","dx","timeAtX","isDone","toString"]} as const;
+const _BoundedFrictionSimulationProxy = {type: "flax.core/sdk_physics#type:BoundedFrictionSimulation", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"x":_flaxMemberParameters1,"dx":_flaxMemberParameters1,"timeAtX":_flaxMemberParameters2,"isDone":_flaxMemberParameters1,"toString":_flaxMemberParameters3}, getters: ["finalX","tolerance"], setters: ["tolerance"], contextMembers: [], superMembers: ["get:finalX","get:tolerance","set:tolerance","x","dx","timeAtX","isDone","toString"]} as const;
 export interface BoundedFrictionSimulation {
 readonly [_flaxDartTypeValue]: BoundedFrictionSimulation;
 

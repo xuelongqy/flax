@@ -8,6 +8,7 @@ import '@flax/flutter/foundation/_bindings/flutter_LocalKey';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
 const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"key","required":true},{"name":"child","required":true},{"name":"color"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,7 +17,7 @@ readonly [_flaxDartTypeValue]: MaterialSlice;
 
 }
 defineObject("flax.core/sdk_material#type:MaterialSlice", ["key","child","color"], [], _flaxBindingMethods("flax.core/sdk_material#type:MaterialSlice", "object", {"toString":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_material#type:MergeableMaterialItem");
-const _MaterialSliceProxy = {type: "flax.core/sdk_material#type:MaterialSlice", parameters: [{"name":"key","required":true,"positional":false},{"name":"child","required":true,"positional":false},{"name":"color","required":false,"positional":false}], constructors: {"":[{"name":"key","required":true,"positional":false},{"name":"child","required":true,"positional":false},{"name":"color","required":false,"positional":false}]}, methods: {"toString":_flaxMemberParameters0}, getters: ["child","color","key"], setters: [], contextMembers: [], superMembers: ["get:child","get:color","get:key","toString"]} as const;
+const _MaterialSliceProxy = {type: "flax.core/sdk_material#type:MaterialSlice", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: ["child","color","key"], setters: [], contextMembers: [], superMembers: ["get:child","get:color","get:key","toString"]} as const;
 export interface MaterialSlice {
 readonly [_flaxDartTypeValue]: MaterialSlice;
 

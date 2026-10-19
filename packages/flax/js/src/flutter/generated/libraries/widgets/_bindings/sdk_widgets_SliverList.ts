@@ -2,6 +2,7 @@
 // Regenerate with dart run melos run bindings:generate.
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_SliverMultiBoxAdaptorWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_SliverMultiBoxAdaptorWidget';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_SliverWithKeepAliveWidget';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
 import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_Key';
@@ -26,15 +27,7 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters2 = [{"name":"constraints","required":true,"positional":true},{"name":"firstIndex","required":true,"positional":true},{"name":"lastIndex","required":true,"positional":true},{"name":"leadingScrollOffset","required":true,"positional":true},{"name":"trailingScrollOffset","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"renderObject","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"renderObject","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters7 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters8 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -55,31 +48,31 @@ toStringDeep(options?: {minLevel?: upstream11.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream13.DiagnosticsTreeStyle | null | undefined}): upstream12.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream12.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:SliverList", ["delegate","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverList", "object", {"createElement":_flaxMemberParameters0,"createRenderObject":_flaxMemberParameters1,"estimateMaxScrollOffset":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters3,"updateRenderObject":_flaxMemberParameters4,"didUnmountRenderObject":_flaxMemberParameters5,"toStringShort":_flaxMemberParameters0,"toStringShallow":_flaxMemberParameters6,"toStringDeep":_flaxMemberParameters7,"toDiagnosticsNode":_flaxMemberParameters8,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_widgets#type:SliverList", ["delegate","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverList", "object", {"createRenderObject":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:SliverMultiBoxAdaptorWidget");
 export function _SliverListFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; delegate: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::SliverChildDelegate": readonly [] }> }): SliverList {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "", [{"name":"key","required":false,"positional":false},{"name":"delegate","required":true,"positional":false}], [], options) as SliverList;
+return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "", [{"name":"key"},{"name":"delegate","required":true}], [], options) as SliverList;
 }
 export namespace _SliverListFactory {
 export function builder(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; itemBuilder: ((context: upstream5.BuildContext, index: number) => Widget | null); findChildIndexCallback?: ((key: upstream3.Key) => number | null) | null | undefined; itemCount?: number | null | undefined; addAutomaticKeepAlives?: boolean | undefined; addRepaintBoundaries?: boolean | undefined; addSemanticIndexes?: boolean | undefined; semanticIndexOffset?: number | undefined }): SliverList {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "builder", [{"name":"key","required":false,"positional":false},{"name":"itemBuilder","required":true,"positional":false},{"name":"findChildIndexCallback","required":false,"positional":false},{"name":"itemCount","required":false,"positional":false},{"name":"addAutomaticKeepAlives","required":false,"positional":false},{"name":"addRepaintBoundaries","required":false,"positional":false},{"name":"addSemanticIndexes","required":false,"positional":false},{"name":"semanticIndexOffset","required":false,"positional":false}], [], options) as SliverList;
+return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "builder", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"findChildIndexCallback"},{"name":"itemCount"},{"name":"addAutomaticKeepAlives"},{"name":"addRepaintBoundaries"},{"name":"addSemanticIndexes"},{"name":"semanticIndexOffset"}], [], options) as SliverList;
 }
 }
 export namespace _SliverListFactory {
 export function separated(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; itemBuilder: ((context: upstream5.BuildContext, index: number) => Widget | null); findChildIndexCallback?: ((key: upstream3.Key) => number | null) | null | undefined; findItemIndexCallback?: ((key: upstream3.Key) => number | null) | null | undefined; separatorBuilder: ((context: upstream5.BuildContext, index: number) => Widget | null); itemCount?: number | null | undefined; addAutomaticKeepAlives?: boolean | undefined; addRepaintBoundaries?: boolean | undefined; addSemanticIndexes?: boolean | undefined }): SliverList {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "separated", [{"name":"key","required":false,"positional":false},{"name":"itemBuilder","required":true,"positional":false},{"name":"findChildIndexCallback","required":false,"positional":false},{"name":"findItemIndexCallback","required":false,"positional":false},{"name":"separatorBuilder","required":true,"positional":false},{"name":"itemCount","required":false,"positional":false},{"name":"addAutomaticKeepAlives","required":false,"positional":false},{"name":"addRepaintBoundaries","required":false,"positional":false},{"name":"addSemanticIndexes","required":false,"positional":false}], [], options) as SliverList;
+return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "separated", [{"name":"key"},{"name":"itemBuilder","required":true},{"name":"findChildIndexCallback"},{"name":"findItemIndexCallback"},{"name":"separatorBuilder","required":true},{"name":"itemCount"},{"name":"addAutomaticKeepAlives"},{"name":"addRepaintBoundaries"},{"name":"addSemanticIndexes"}], [], options) as SliverList;
 }
 }
 export namespace _SliverListFactory {
 export function list(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; children: DartListInput<Widget, Widget>; addAutomaticKeepAlives?: boolean | undefined; addRepaintBoundaries?: boolean | undefined; addSemanticIndexes?: boolean | undefined }): SliverList {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "list", [{"name":"key","required":false,"positional":false},{"name":"children","required":true,"positional":false},{"name":"addAutomaticKeepAlives","required":false,"positional":false},{"name":"addRepaintBoundaries","required":false,"positional":false},{"name":"addSemanticIndexes","required":false,"positional":false}], [], options) as SliverList;
+return constructObject("object", "flax.core/sdk_widgets#type:SliverList", "list", [{"name":"key"},{"name":"children","required":true},{"name":"addAutomaticKeepAlives"},{"name":"addRepaintBoundaries"},{"name":"addSemanticIndexes"}], [], options) as SliverList;
 }
 }
 export const SliverList: typeof _SliverListFactory & _FlaxInstanceType<SliverList> & _FlaxDartType<SliverList, readonly ["class", "flax.core/sdk_widgets#type:SliverList", readonly [], false]> = _flaxBindInstanceType<SliverList, typeof _SliverListFactory>(_SliverListFactory, "flax.core/sdk_widgets#type:SliverList", ["flax.core/sdk_widgets#type:SliverMultiBoxAdaptorWidget","flax.core/sdk_widgets#type:SliverWithKeepAliveWidget","flax.core/sdk_widgets#type:RenderObjectWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SliverListFactory & _FlaxInstanceType<SliverList> & _FlaxDartType<SliverList, readonly ["class", "flax.core/sdk_widgets#type:SliverList", readonly [], false]>;

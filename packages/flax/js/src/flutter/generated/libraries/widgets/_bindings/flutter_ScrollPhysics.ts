@@ -16,7 +16,7 @@ const _flaxMemberParameters1 = [{"name":"position","required":true,"positional":
 const _flaxMemberParameters2 = [{"name":"position","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"velocity","required":true,"positional":true},{"name":"metrics","required":true,"positional":true},{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
 const _flaxMemberParameters4 = [{"name":"position","required":true,"positional":true},{"name":"value","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"isScrolling","required":true,"positional":false},{"name":"newPosition","required":true,"positional":false},{"name":"oldPosition","required":true,"positional":false},{"name":"velocity","required":true,"positional":false}] as const;
+const _flaxMemberParameters5 = [{"name":"isScrolling","required":true},{"name":"newPosition","required":true},{"name":"oldPosition","required":true},{"name":"velocity","required":true}] as const;
 const _flaxMemberParameters6 = [{"name":"position","required":true,"positional":true},{"name":"velocity","required":true,"positional":true}] as const;
 const _flaxMemberParameters7 = [{"name":"metrics","required":true,"positional":true}] as const;
 const _flaxMemberParameters8 = [{"name":"existingVelocity","required":true,"positional":true}] as const;
@@ -51,6 +51,6 @@ defineObject("flax.core/flutter#type:ScrollPhysics", ["parent","spring","toleran
 export function _ScrollPhysicsFactory(options: { parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): ScrollPhysics {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:ScrollPhysics", "", [{"name":"parent","required":false,"positional":false}], [], options) as ScrollPhysics;
+return constructObject("object", "flax.core/flutter#type:ScrollPhysics", "", [{"name":"parent"}], [], options) as ScrollPhysics;
 }
 export const ScrollPhysics: typeof _ScrollPhysicsFactory & _FlaxInstanceType<ScrollPhysics> & _FlaxDartType<ScrollPhysics, readonly ["class", "flax.core/flutter#type:ScrollPhysics", readonly [], false]> = _flaxBindInstanceType<ScrollPhysics, typeof _ScrollPhysicsFactory>(_ScrollPhysicsFactory, "flax.core/flutter#type:ScrollPhysics", ["dart:core::Object"]) as typeof _ScrollPhysicsFactory & _FlaxInstanceType<ScrollPhysics> & _FlaxDartType<ScrollPhysics, readonly ["class", "flax.core/flutter#type:ScrollPhysics", readonly [], false]>;

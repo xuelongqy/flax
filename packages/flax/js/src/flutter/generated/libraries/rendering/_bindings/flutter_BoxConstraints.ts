@@ -11,13 +11,13 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream4 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
-const _flaxMemberParameters0 = [{"name":"maxHeight","required":false,"positional":false},{"name":"maxWidth","required":false,"positional":false},{"name":"minHeight","required":false,"positional":false},{"name":"minWidth","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"maxHeight"},{"name":"maxWidth"},{"name":"minHeight"},{"name":"minWidth"}] as const;
 const _flaxMemberParameters1 = [{"name":"edges","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [] as const;
 const _flaxMemberParameters3 = [{"name":"constraints","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"height","required":false,"positional":false},{"name":"width","required":false,"positional":false}] as const;
-const _flaxMemberParameters5 = [{"name":"width","required":false,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"height","required":false,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"height"},{"name":"width"}] as const;
+const _flaxMemberParameters5 = [{"name":"width","positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"height","positional":true}] as const;
 const _flaxMemberParameters7 = [{"name":"size","required":true,"positional":true}] as const;
 const _flaxMemberParameters8 = [{"name":"width","required":true,"positional":true},{"name":"height","required":true,"positional":true}] as const;
 const _flaxMemberParameters9 = [{"name":"factor","required":true,"positional":true}] as const;
@@ -67,48 +67,48 @@ defineObject("flax.core/flutter#type:BoxConstraints", ["isTight","isNormalized",
 export function _BoxConstraintsFactory(options: { minWidth?: number | undefined; maxWidth?: number | undefined; minHeight?: number | undefined; maxHeight?: number | undefined } = {}): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "", [{"name":"minWidth","required":false,"positional":false},{"name":"maxWidth","required":false,"positional":false},{"name":"minHeight","required":false,"positional":false},{"name":"maxHeight","required":false,"positional":false}], [], options) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "", [{"name":"minWidth"},{"name":"maxWidth"},{"name":"minHeight"},{"name":"maxHeight"}], [], options) as BoxConstraints;
 }
 export namespace _BoxConstraintsFactory {
 export function tight(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "tight", [{"name":"size","required":true,"positional":true}], [size], {}) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "tight", _flaxMemberParameters7, [size], {}) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory {
 export function tightFor(options: { width?: number | null | undefined; height?: number | null | undefined } = {}): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "tightFor", [{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false}], [], options) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "tightFor", [{"name":"width"},{"name":"height"}], [], options) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory {
 export function tightForFinite(options: { width?: number | undefined; height?: number | undefined } = {}): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "tightForFinite", [{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false}], [], options) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "tightForFinite", [{"name":"width"},{"name":"height"}], [], options) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory {
 export function loose(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "loose", [{"name":"size","required":true,"positional":true}], [size], {}) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "loose", _flaxMemberParameters7, [size], {}) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory {
 export function expand(options: { width?: number | null | undefined; height?: number | null | undefined } = {}): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "expand", [{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false}], [], options) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "expand", [{"name":"width"},{"name":"height"}], [], options) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory {
 export function fromViewConstraints(constraints: Readonly<{ "__flaxBound:dart:ui::ViewConstraints": readonly [] }>): BoxConstraints {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BoxConstraints", "fromViewConstraints", [{"name":"constraints","required":true,"positional":true}], [constraints], {}) as BoxConstraints;
+return constructObject("object", "flax.core/flutter#type:BoxConstraints", "fromViewConstraints", _flaxMemberParameters3, [constraints], {}) as BoxConstraints;
 }
 }
 export namespace _BoxConstraintsFactory { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [] }> | null, t: number): BoxConstraints | null {

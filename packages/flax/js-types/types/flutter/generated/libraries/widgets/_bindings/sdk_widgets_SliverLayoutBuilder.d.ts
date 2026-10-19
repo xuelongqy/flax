@@ -4,6 +4,7 @@ import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverConstraints';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_AbstractLayoutBuilder';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';

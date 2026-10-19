@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartList } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartIterable, type DartList } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTreeMixin';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTreeMixin';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTree';
@@ -37,6 +37,8 @@ export interface PipelineOwner extends Omit<upstream0.DiagnosticableTreeMixin, _
 }
 export interface PipelineOwner {
     readonly [_flaxDartTypeValue]: PipelineOwner;
+    get nodesNeedingLayout(): DartIterable<upstream4.RenderObject>;
+    get nodesNeedingPaint(): DartIterable<upstream4.RenderObject>;
     toString(options?: {
         minLevel?: upstream6.DiagnosticLevel | undefined;
     }): string;
@@ -135,5 +137,5 @@ export declare namespace PipelineOwner {
         onSemanticsOwnerDisposed?: (() => void) | null | undefined;
     }], implementation: {}): PipelineOwner;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "onNeedVisualUpdate" | "onSemanticsOwnerCreated" | "onSemanticsUpdate" | "onSemanticsOwnerDisposed" | "rootNode" | "debugDoingLayout" | "debugDoingPaint" | "semanticsOwner" | "debugOutstandingSemanticsHandles" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "requestVisualUpdate" | "flushLayout" | "flushCompositingBits" | "flushPaint" | "ensureSemantics" | "flushSemantics" | "attach" | "detach" | "adoptChild" | "dropChild" | "visitChildren" | "dispose" | "__flaxBound:package:flutter/src/rendering/object.dart::PipelineOwner" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "onNeedVisualUpdate" | "onSemanticsOwnerCreated" | "onSemanticsUpdate" | "onSemanticsOwnerDisposed" | "rootNode" | "nodesNeedingLayout" | "debugDoingLayout" | "nodesNeedingPaint" | "debugDoingPaint" | "semanticsOwner" | "debugOutstandingSemanticsHandles" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "requestVisualUpdate" | "flushLayout" | "flushCompositingBits" | "flushPaint" | "ensureSemantics" | "flushSemantics" | "attach" | "detach" | "adoptChild" | "dropChild" | "visitChildren" | "dispose" | "__flaxBound:package:flutter/src/rendering/object.dart::PipelineOwner" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

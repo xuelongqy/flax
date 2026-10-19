@@ -44,28 +44,28 @@ export namespace _BorderRadiusGeometryFactory {
 export function horizontal(options: { left?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; right?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; start?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined; end?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | null | undefined } = {}): BorderRadiusGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BorderRadiusGeometry", "horizontal", [{"name":"left","required":false,"positional":false},{"name":"right","required":false,"positional":false},{"name":"start","required":false,"positional":false},{"name":"end","required":false,"positional":false}], [], options) as BorderRadiusGeometry;
+return constructObject("object", "flax.core/flutter#type:BorderRadiusGeometry", "horizontal", [{"name":"left"},{"name":"right"},{"name":"start"},{"name":"end"}], [], options) as BorderRadiusGeometry;
 }
 }
 export namespace _BorderRadiusGeometryFactory {
 export function only(options: { topLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; topRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomLeft?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomRight?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadiusGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BorderRadiusGeometry", "only", [{"name":"topLeft","required":false,"positional":false},{"name":"topRight","required":false,"positional":false},{"name":"bottomLeft","required":false,"positional":false},{"name":"bottomRight","required":false,"positional":false}], [], options) as BorderRadiusGeometry;
+return constructObject("object", "flax.core/flutter#type:BorderRadiusGeometry", "only", [{"name":"topLeft"},{"name":"topRight"},{"name":"bottomLeft"},{"name":"bottomRight"}], [], options) as BorderRadiusGeometry;
 }
 }
 export namespace _BorderRadiusGeometryFactory {
 export function directional(options: { topStart?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; topEnd?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomStart?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomEnd?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadiusGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BorderRadiusGeometry", "directional", [{"name":"topStart","required":false,"positional":false},{"name":"topEnd","required":false,"positional":false},{"name":"bottomStart","required":false,"positional":false},{"name":"bottomEnd","required":false,"positional":false}], [], options) as BorderRadiusGeometry;
+return constructObject("object", "flax.core/flutter#type:BorderRadiusGeometry", "directional", [{"name":"topStart"},{"name":"topEnd"},{"name":"bottomStart"},{"name":"bottomEnd"}], [], options) as BorderRadiusGeometry;
 }
 }
 export namespace _BorderRadiusGeometryFactory {
 export function vertical(options: { top?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottom?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadiusGeometry {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BorderRadiusGeometry", "vertical", [{"name":"top","required":false,"positional":false},{"name":"bottom","required":false,"positional":false}], [], options) as BorderRadiusGeometry;
+return constructObject("object", "flax.core/flutter#type:BorderRadiusGeometry", "vertical", [{"name":"top"},{"name":"bottom"}], [], options) as BorderRadiusGeometry;
 }
 }
 export namespace _BorderRadiusGeometryFactory { export declare const zero: BorderRadiusGeometry; }

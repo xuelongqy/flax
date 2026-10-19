@@ -12,7 +12,7 @@ readonly [_flaxDartTypeValue]: SliverLogicalParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:SliverLogicalParentData", ["layoutOffset"], ["layoutOffset"], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverLogicalParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:ParentData");
-const _SliverLogicalParentDataProxy = {type: "flax.core/sdk_rendering#type:SliverLogicalParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["layoutOffset"], setters: ["layoutOffset"], contextMembers: [], superMembers: ["get:layoutOffset","set:layoutOffset","detach","toString"]} as const;
+const _SliverLogicalParentDataProxy = {type: "flax.core/sdk_rendering#type:SliverLogicalParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["layoutOffset"], setters: ["layoutOffset"], contextMembers: [], superMembers: ["get:layoutOffset","set:layoutOffset","detach","toString"]} as const;
 export interface SliverLogicalParentData {
 readonly [_flaxDartTypeValue]: SliverLogicalParentData;
 

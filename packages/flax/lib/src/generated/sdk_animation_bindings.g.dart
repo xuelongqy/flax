@@ -42,35 +42,31 @@ const sdk_animationBindings = FlaxBindingModule(
     FlaxObjectBinding(
       "flax.core/sdk_animation#type:AlwaysStoppedAnimation",
       [
-        _flaxBinding1,
+        _flaxBinding100,
         FlaxGetter(
           "value",
           FlaxTypeRef("any", nullable: true),
           _AlwaysStoppedAnimation_value,
         ),
-        _flaxBinding3,
-        _flaxBinding4,
-        _flaxBinding5,
-        _flaxBinding6,
+        _flaxBinding101,
+        _flaxBinding102,
+        _flaxBinding103,
+        _flaxBinding104,
       ],
       {
-        "addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _AlwaysStoppedAnimation_addListener,
         ),
-        "removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _AlwaysStoppedAnimation_removeListener,
         ),
-        "addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _AlwaysStoppedAnimation_addStatusListener,
         ),
-        "removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _AlwaysStoppedAnimation_removeStatusListener,
         ),
@@ -90,33 +86,27 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_AlwaysStoppedAnimation_drive,
           ownerTypes: [_flaxDefault_AlwaysStoppedAnimation_0],
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _AlwaysStoppedAnimation_toString,
         ),
-        "toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _AlwaysStoppedAnimation_toStringDetails,
         ),
-        "@super:addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "@super:addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _FlaxProxyDispatch0_super_call_addListener,
         ),
-        "@super:removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "@super:removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _FlaxProxyDispatch0_super_call_removeListener,
         ),
-        "@super:addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "@super:addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _FlaxProxyDispatch0_super_call_addStatusListener,
         ),
-        "@super:removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "@super:removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _FlaxProxyDispatch0_super_call_removeStatusListener,
         ),
@@ -136,48 +126,41 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_AlwaysStoppedAnimation_super_drive,
           ownerTypes: [_flaxDefault_AlwaysStoppedAnimation_0],
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
-        "@super:toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("any", nullable: true),
           _AlwaysStoppedAnimation_super_get_value,
         ),
-        "@super:get:status": FlaxInstanceMethod(
-          [],
-          _flaxBinding0,
+        "@super:get:status": FlaxInstanceMethod.signature(
+          _flaxBinding10,
           _FlaxProxyDispatch0_super_get_status,
         ),
-        "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isDismissed": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
-        "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
-        "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isAnimating": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
-        "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
       },
-      constructors: {"@implementation": _flaxBinding17},
+      constructors: {"@implementation": _flaxBinding107},
       create: _createAlwaysStoppedAnimation,
       disposeMethod: null,
       listenerPairs: {"addListener": "removeListener"},
@@ -191,10 +174,10 @@ const sdk_animationBindings = FlaxBindingModule(
       matches: _isAlwaysStoppedAnimation,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding19,
-        _flaxBinding20,
-        _flaxBinding22,
-        _flaxBinding23,
+        _flaxBinding108,
+        _flaxBinding109,
+        _flaxBinding110,
+        _flaxBinding111,
         FlaxProxyMember(
           "drive",
           0,
@@ -202,12 +185,12 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "child",
-                _flaxBinding24,
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            _flaxBinding25,
+            _flaxBinding113,
             _callback0,
             id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<any?:>)->object:flax.core/sdk_animation#type:Animation<any?:>",
             invoke: _callback0Invoke,
@@ -217,8 +200,8 @@ const sdk_animationBindings = FlaxBindingModule(
           hasSuper: true,
           hasCallContext: true,
         ),
-        _flaxBinding27,
-        _flaxBinding28,
+        _flaxBinding114,
+        _flaxBinding115,
         FlaxProxyMember(
           "value",
           1,
@@ -229,11 +212,11 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding30,
-        _flaxBinding32,
-        _flaxBinding33,
-        _flaxBinding34,
-        _flaxBinding35,
+        _flaxBinding116,
+        _flaxBinding117,
+        _flaxBinding118,
+        _flaxBinding119,
+        _flaxBinding120,
       ]),
     ),
     FlaxObjectBinding(
@@ -241,42 +224,42 @@ const sdk_animationBindings = FlaxBindingModule(
       [],
       {
         "transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _Animatable_transform,
         ),
         "evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _Animatable_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _Animatable_animate,
         ),
         "chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _Animatable_chain,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _Animatable_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _Animatable_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _Animatable_super_chain,
         ),
       },
-      constructors: {"@implementation": _flaxBinding14},
+      constructors: {"@implementation": _flaxBinding105},
       create: _createAnimatable,
       disposeMethod: null,
       listenerPairs: {},
@@ -292,7 +275,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -308,7 +291,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "animation",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -325,7 +308,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -342,7 +325,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding41,
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -365,30 +348,26 @@ const sdk_animationBindings = FlaxBindingModule(
           FlaxTypeRef("any", nullable: true),
           _Animation_value,
         ),
-        _flaxBinding43,
-        _flaxBinding44,
-        _flaxBinding45,
-        _flaxBinding46,
-        _flaxBinding47,
+        _flaxBinding125,
+        _flaxBinding126,
+        _flaxBinding127,
+        _flaxBinding128,
+        _flaxBinding129,
       ],
       {
-        "addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _Animation_addListener,
         ),
-        "removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _Animation_removeListener,
         ),
-        "addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _Animation_addStatusListener,
         ),
-        "removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _Animation_removeStatusListener,
         ),
@@ -408,14 +387,12 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_Animation_drive,
           ownerTypes: [_flaxDefault_Animation_0],
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _Animation_toString,
         ),
-        "toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _Animation_toStringDetails,
         ),
         "@super:drive": FlaxInstanceMethod(
@@ -434,38 +411,32 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_Animation_super_drive,
           ownerTypes: [_flaxDefault_Animation_0],
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
-        "@super:toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
-        "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isDismissed": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
-        "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
-        "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isAnimating": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
-        "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
       },
-      constructors: {"@implementation": _flaxBinding14},
+      constructors: {"@implementation": _flaxBinding105},
       create: _createAnimation,
       disposeMethod: null,
       listenerPairs: {"addListener": "removeListener"},
@@ -478,10 +449,10 @@ const sdk_animationBindings = FlaxBindingModule(
       matches: _isAnimation,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding48,
-        _flaxBinding49,
-        _flaxBinding50,
-        _flaxBinding51,
+        _flaxBinding130,
+        _flaxBinding131,
+        _flaxBinding132,
+        _flaxBinding133,
         FlaxProxyMember(
           "drive",
           0,
@@ -489,12 +460,12 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "child",
-                _flaxBinding24,
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            _flaxBinding25,
+            _flaxBinding113,
             _callback1,
             id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<any?:>)->object:flax.core/sdk_animation#type:Animation<any?:>",
             invoke: _callback1Invoke,
@@ -504,9 +475,9 @@ const sdk_animationBindings = FlaxBindingModule(
           hasSuper: true,
           hasCallContext: true,
         ),
-        _flaxBinding27,
-        _flaxBinding28,
-        _flaxBinding52,
+        _flaxBinding114,
+        _flaxBinding115,
+        _flaxBinding134,
         FlaxProxyMember(
           "value",
           1,
@@ -516,17 +487,17 @@ const sdk_animationBindings = FlaxBindingModule(
             id: "callback:<>()->any?:",
           ),
         ),
-        _flaxBinding32,
-        _flaxBinding33,
-        _flaxBinding34,
-        _flaxBinding35,
+        _flaxBinding117,
+        _flaxBinding118,
+        _flaxBinding119,
+        _flaxBinding120,
       ]),
     ),
-    _flaxBinding164,
-    _flaxBinding165,
-    _flaxBinding171,
-    _flaxBinding174,
-    _flaxBinding177,
+    _flaxBinding224,
+    _flaxBinding225,
+    _flaxBinding231,
+    _flaxBinding234,
+    _flaxBinding237,
     FlaxObjectBinding(
       "flax.core/sdk_animation#type:AnimationMax",
       [
@@ -540,47 +511,40 @@ const sdk_animationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _AnimationMax_next,
         ),
-        _flaxBinding178,
+        _flaxBinding238,
         FlaxGetter("value", FlaxTypeRef("num"), _AnimationMax_value),
-        _flaxBinding179,
-        _flaxBinding180,
-        _flaxBinding181,
-        _flaxBinding182,
-        _flaxBinding183,
+        _flaxBinding239,
+        _flaxBinding240,
+        _flaxBinding241,
+        _flaxBinding242,
+        _flaxBinding243,
       ],
       {
-        "didStartListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didStartListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_didStartListening,
         ),
-        "didStopListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didStopListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_didStopListening,
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _AnimationMax_toString,
         ),
-        "addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _AnimationMax_addListener,
         ),
-        "removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _AnimationMax_removeListener,
         ),
-        "addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _AnimationMax_addStatusListener,
         ),
-        "removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _AnimationMax_removeStatusListener,
         ),
@@ -600,73 +564,59 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_AnimationMax_drive,
           ownerTypes: [_flaxDefault_AnimationMax_0],
         ),
-        "toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _AnimationMax_toStringDetails,
         ),
-        "didRegisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didRegisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_didRegisterListener,
         ),
-        "didUnregisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didUnregisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_didUnregisterListener,
         ),
-        "clearListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "clearListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_clearListeners,
         ),
-        "notifyListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "notifyListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_notifyListeners,
         ),
-        "clearStatusListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "clearStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_clearStatusListeners,
         ),
-        "notifyStatusListeners": FlaxInstanceMethod(
-          _flaxBinding86,
-          _flaxBinding7,
+        "notifyStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding14,
           _AnimationMax_notifyStatusListeners,
         ),
-        "@super:didStartListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didStartListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_super_didStartListening,
         ),
-        "@super:didStopListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didStopListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_super_didStopListening,
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
-        "@super:addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "@super:addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _FlaxProxyDispatch0_super_call_addListener,
         ),
-        "@super:removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "@super:removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _FlaxProxyDispatch0_super_call_removeListener,
         ),
-        "@super:addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "@super:addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _FlaxProxyDispatch0_super_call_addStatusListener,
         ),
-        "@super:removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "@super:removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _FlaxProxyDispatch0_super_call_removeStatusListener,
         ),
@@ -686,88 +636,75 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_AnimationMax_super_drive,
           ownerTypes: [_flaxDefault_AnimationMax_0],
         ),
-        "@super:toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
-        "@super:didRegisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didRegisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_super_didRegisterListener,
         ),
-        "@super:didUnregisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didUnregisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_super_didUnregisterListener,
         ),
-        "@super:clearListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:clearListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_super_clearListeners,
         ),
-        "@super:notifyListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:notifyListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_super_notifyListeners,
         ),
-        "@super:clearStatusListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:clearStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMax_super_clearStatusListeners,
         ),
-        "@super:notifyStatusListeners": FlaxInstanceMethod(
-          _flaxBinding86,
-          _flaxBinding7,
+        "@super:notifyStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding14,
           _AnimationMax_super_notifyStatusListeners,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("num"),
           _AnimationMax_super_get_value,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _AnimationMax_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _AnimationMax_super_get_next,
         ),
-        "@super:get:status": FlaxInstanceMethod(
-          [],
-          _flaxBinding0,
+        "@super:get:status": FlaxInstanceMethod.signature(
+          _flaxBinding10,
           _FlaxProxyDispatch0_super_get_status,
         ),
-        "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isDismissed": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
-        "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
-        "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isAnimating": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
-        "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
-        "@super:get:isListening": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isListening": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _AnimationMax_super_get_isListening,
         ),
       },
-      constructors: {"@implementation": _flaxBinding185},
+      constructors: {"@implementation": _flaxBinding245},
       create: _createAnimationMax,
       disposeMethod: null,
       listenerPairs: {"addListener": "removeListener"},
@@ -785,13 +722,13 @@ const sdk_animationBindings = FlaxBindingModule(
       matches: _isAnimationMax,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding186,
-        _flaxBinding187,
-        _flaxBinding27,
-        _flaxBinding19,
-        _flaxBinding20,
-        _flaxBinding22,
-        _flaxBinding23,
+        _flaxBinding246,
+        _flaxBinding247,
+        _flaxBinding114,
+        _flaxBinding108,
+        _flaxBinding109,
+        _flaxBinding110,
+        _flaxBinding111,
         FlaxProxyMember(
           "drive",
           0,
@@ -799,12 +736,12 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "child",
-                _flaxBinding24,
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            _flaxBinding25,
+            _flaxBinding113,
             _callback3,
             id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<any?:>)->object:flax.core/sdk_animation#type:Animation<any?:>",
             invoke: _callback3Invoke,
@@ -814,13 +751,13 @@ const sdk_animationBindings = FlaxBindingModule(
           hasSuper: true,
           hasCallContext: true,
         ),
-        _flaxBinding28,
-        _flaxBinding117,
-        _flaxBinding118,
-        _flaxBinding120,
-        _flaxBinding121,
-        _flaxBinding122,
-        _flaxBinding124,
+        _flaxBinding115,
+        _flaxBinding187,
+        _flaxBinding188,
+        _flaxBinding190,
+        _flaxBinding191,
+        _flaxBinding192,
+        _flaxBinding193,
         FlaxProxyMember(
           "value",
           1,
@@ -851,15 +788,15 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding30,
-        _flaxBinding32,
-        _flaxBinding33,
-        _flaxBinding34,
-        _flaxBinding35,
-        _flaxBinding188,
+        _flaxBinding116,
+        _flaxBinding117,
+        _flaxBinding118,
+        _flaxBinding119,
+        _flaxBinding120,
+        _flaxBinding248,
       ]),
     ),
-    _flaxBinding202,
+    _flaxBinding262,
     FlaxObjectBinding(
       "flax.core/sdk_animation#type:AnimationMin",
       [
@@ -873,47 +810,40 @@ const sdk_animationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _AnimationMin_next,
         ),
-        _flaxBinding203,
+        _flaxBinding263,
         FlaxGetter("value", FlaxTypeRef("num"), _AnimationMin_value),
-        _flaxBinding204,
-        _flaxBinding205,
-        _flaxBinding206,
-        _flaxBinding207,
-        _flaxBinding208,
+        _flaxBinding264,
+        _flaxBinding265,
+        _flaxBinding266,
+        _flaxBinding267,
+        _flaxBinding268,
       ],
       {
-        "didStartListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didStartListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_didStartListening,
         ),
-        "didStopListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didStopListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_didStopListening,
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _AnimationMin_toString,
         ),
-        "addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _AnimationMin_addListener,
         ),
-        "removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _AnimationMin_removeListener,
         ),
-        "addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _AnimationMin_addStatusListener,
         ),
-        "removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _AnimationMin_removeStatusListener,
         ),
@@ -933,73 +863,59 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_AnimationMin_drive,
           ownerTypes: [_flaxDefault_AnimationMin_0],
         ),
-        "toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _AnimationMin_toStringDetails,
         ),
-        "didRegisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didRegisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_didRegisterListener,
         ),
-        "didUnregisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didUnregisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_didUnregisterListener,
         ),
-        "clearListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "clearListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_clearListeners,
         ),
-        "notifyListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "notifyListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_notifyListeners,
         ),
-        "clearStatusListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "clearStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_clearStatusListeners,
         ),
-        "notifyStatusListeners": FlaxInstanceMethod(
-          _flaxBinding86,
-          _flaxBinding7,
+        "notifyStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding14,
           _AnimationMin_notifyStatusListeners,
         ),
-        "@super:didStartListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didStartListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_super_didStartListening,
         ),
-        "@super:didStopListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didStopListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_super_didStopListening,
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
-        "@super:addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "@super:addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _FlaxProxyDispatch0_super_call_addListener,
         ),
-        "@super:removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "@super:removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _FlaxProxyDispatch0_super_call_removeListener,
         ),
-        "@super:addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "@super:addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _FlaxProxyDispatch0_super_call_addStatusListener,
         ),
-        "@super:removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "@super:removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _FlaxProxyDispatch0_super_call_removeStatusListener,
         ),
@@ -1019,88 +935,75 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_AnimationMin_super_drive,
           ownerTypes: [_flaxDefault_AnimationMin_0],
         ),
-        "@super:toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
-        "@super:didRegisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didRegisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_super_didRegisterListener,
         ),
-        "@super:didUnregisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didUnregisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_super_didUnregisterListener,
         ),
-        "@super:clearListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:clearListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_super_clearListeners,
         ),
-        "@super:notifyListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:notifyListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_super_notifyListeners,
         ),
-        "@super:clearStatusListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:clearStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _AnimationMin_super_clearStatusListeners,
         ),
-        "@super:notifyStatusListeners": FlaxInstanceMethod(
-          _flaxBinding86,
-          _flaxBinding7,
+        "@super:notifyStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding14,
           _AnimationMin_super_notifyStatusListeners,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("num"),
           _AnimationMin_super_get_value,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _AnimationMin_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _AnimationMin_super_get_next,
         ),
-        "@super:get:status": FlaxInstanceMethod(
-          [],
-          _flaxBinding0,
+        "@super:get:status": FlaxInstanceMethod.signature(
+          _flaxBinding10,
           _FlaxProxyDispatch0_super_get_status,
         ),
-        "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isDismissed": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
-        "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
-        "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isAnimating": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
-        "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
-        "@super:get:isListening": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isListening": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _AnimationMin_super_get_isListening,
         ),
       },
-      constructors: {"@implementation": _flaxBinding185},
+      constructors: {"@implementation": _flaxBinding245},
       create: _createAnimationMin,
       disposeMethod: null,
       listenerPairs: {"addListener": "removeListener"},
@@ -1118,13 +1021,13 @@ const sdk_animationBindings = FlaxBindingModule(
       matches: _isAnimationMin,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding186,
-        _flaxBinding187,
-        _flaxBinding27,
-        _flaxBinding19,
-        _flaxBinding20,
-        _flaxBinding22,
-        _flaxBinding23,
+        _flaxBinding246,
+        _flaxBinding247,
+        _flaxBinding114,
+        _flaxBinding108,
+        _flaxBinding109,
+        _flaxBinding110,
+        _flaxBinding111,
         FlaxProxyMember(
           "drive",
           0,
@@ -1132,12 +1035,12 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "child",
-                _flaxBinding24,
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            _flaxBinding25,
+            _flaxBinding113,
             _callback5,
             id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<any?:>)->object:flax.core/sdk_animation#type:Animation<any?:>",
             invoke: _callback5Invoke,
@@ -1147,13 +1050,13 @@ const sdk_animationBindings = FlaxBindingModule(
           hasSuper: true,
           hasCallContext: true,
         ),
-        _flaxBinding28,
-        _flaxBinding117,
-        _flaxBinding118,
-        _flaxBinding120,
-        _flaxBinding121,
-        _flaxBinding122,
-        _flaxBinding124,
+        _flaxBinding115,
+        _flaxBinding187,
+        _flaxBinding188,
+        _flaxBinding190,
+        _flaxBinding191,
+        _flaxBinding192,
+        _flaxBinding193,
         FlaxProxyMember(
           "value",
           1,
@@ -1184,15 +1087,15 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding30,
-        _flaxBinding32,
-        _flaxBinding33,
-        _flaxBinding34,
-        _flaxBinding35,
-        _flaxBinding188,
+        _flaxBinding116,
+        _flaxBinding117,
+        _flaxBinding118,
+        _flaxBinding119,
+        _flaxBinding120,
+        _flaxBinding248,
       ]),
     ),
-    _flaxBinding245,
+    _flaxBinding296,
     FlaxObjectBinding(
       "flax.core/sdk_animation#type:AnimationWithParentMixin",
       [
@@ -1201,26 +1104,22 @@ const sdk_animationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _AnimationWithParentMixin_parent,
         ),
-        _flaxBinding246,
+        _flaxBinding297,
       ],
       {
-        "addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _AnimationWithParentMixin_addListener,
         ),
-        "removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _AnimationWithParentMixin_removeListener,
         ),
-        "addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _AnimationWithParentMixin_addStatusListener,
         ),
-        "removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _AnimationWithParentMixin_removeStatusListener,
         ),
@@ -1234,23 +1133,23 @@ const sdk_animationBindings = FlaxBindingModule(
       matches: _isAnimationWithParentMixin,
       methods: const {},
     ),
-    _flaxBinding265,
-    _flaxBinding289,
-    _flaxBinding319,
+    _flaxBinding310,
+    _flaxBinding329,
+    _flaxBinding350,
     FlaxObjectBinding(
       "flax.core/sdk_animation#type:CompoundAnimation",
       [
-        _flaxBinding320,
+        _flaxBinding351,
         FlaxGetter(
           "value",
           FlaxTypeRef("any", nullable: true),
           _CompoundAnimation_value,
         ),
-        _flaxBinding321,
-        _flaxBinding322,
-        _flaxBinding323,
-        _flaxBinding324,
-        _flaxBinding325,
+        _flaxBinding352,
+        _flaxBinding353,
+        _flaxBinding354,
+        _flaxBinding355,
+        _flaxBinding356,
         FlaxGetter(
           "first",
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
@@ -1263,23 +1162,19 @@ const sdk_animationBindings = FlaxBindingModule(
         ),
       ],
       {
-        "addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _CompoundAnimation_addListener,
         ),
-        "removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _CompoundAnimation_removeListener,
         ),
-        "addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _CompoundAnimation_addStatusListener,
         ),
-        "removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _CompoundAnimation_removeStatusListener,
         ),
@@ -1299,73 +1194,59 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_CompoundAnimation_drive,
           ownerTypes: [_flaxDefault_CompoundAnimation_0],
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _CompoundAnimation_toString,
         ),
-        "toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _CompoundAnimation_toStringDetails,
         ),
-        "didRegisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didRegisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_didRegisterListener,
         ),
-        "didUnregisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didUnregisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_didUnregisterListener,
         ),
-        "didStartListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didStartListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_didStartListening,
         ),
-        "didStopListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "didStopListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_didStopListening,
         ),
-        "clearListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "clearListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_clearListeners,
         ),
-        "notifyListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "notifyListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_notifyListeners,
         ),
-        "clearStatusListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "clearStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_clearStatusListeners,
         ),
-        "notifyStatusListeners": FlaxInstanceMethod(
-          _flaxBinding86,
-          _flaxBinding7,
+        "notifyStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding14,
           _CompoundAnimation_notifyStatusListeners,
         ),
-        "@super:addListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "@super:addListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _FlaxProxyDispatch0_super_call_addListener,
         ),
-        "@super:removeListener": FlaxInstanceMethod(
-          _flaxBinding10,
-          _flaxBinding7,
+        "@super:removeListener": FlaxInstanceMethod.signature(
+          _flaxBinding3,
           _FlaxProxyDispatch0_super_call_removeListener,
         ),
-        "@super:addStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "@super:addStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _FlaxProxyDispatch0_super_call_addStatusListener,
         ),
-        "@super:removeStatusListener": FlaxInstanceMethod(
-          _flaxBinding13,
+        "@super:removeStatusListener": FlaxInstanceMethod.signature(
           _flaxBinding7,
           _FlaxProxyDispatch0_super_call_removeStatusListener,
         ),
@@ -1385,98 +1266,82 @@ const sdk_animationBindings = FlaxBindingModule(
           genericFactory: _flaxGeneric_CompoundAnimation_super_drive,
           ownerTypes: [_flaxDefault_CompoundAnimation_0],
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
-        "@super:toStringDetails": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toStringDetails": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
-        "@super:didRegisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didRegisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_super_didRegisterListener,
         ),
-        "@super:didUnregisterListener": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didUnregisterListener": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_super_didUnregisterListener,
         ),
-        "@super:didStartListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didStartListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_super_didStartListening,
         ),
-        "@super:didStopListening": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:didStopListening": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_super_didStopListening,
         ),
-        "@super:clearListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:clearListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_super_clearListeners,
         ),
-        "@super:notifyListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:notifyListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_super_notifyListeners,
         ),
-        "@super:clearStatusListeners": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding7,
+        "@super:clearStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding13,
           _CompoundAnimation_super_clearStatusListeners,
         ),
-        "@super:notifyStatusListeners": FlaxInstanceMethod(
-          _flaxBinding86,
-          _flaxBinding7,
+        "@super:notifyStatusListeners": FlaxInstanceMethod.signature(
+          _flaxBinding14,
           _CompoundAnimation_super_notifyStatusListeners,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _CompoundAnimation_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _CompoundAnimation_super_get_next,
         ),
-        "@super:get:status": FlaxInstanceMethod(
-          [],
-          _flaxBinding0,
+        "@super:get:status": FlaxInstanceMethod.signature(
+          _flaxBinding10,
           _FlaxProxyDispatch0_super_get_status,
         ),
-        "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isDismissed": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
-        "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
-        "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isAnimating": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
-        "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
-        "@super:get:isListening": FlaxInstanceMethod(
-          [],
-          _flaxBinding2,
+        "@super:get:isListening": FlaxInstanceMethod.signature(
+          _flaxBinding12,
           _CompoundAnimation_super_get_isListening,
         ),
       },
-      constructors: {"@implementation": _flaxBinding326},
+      constructors: {"@implementation": _flaxBinding357},
       create: _createCompoundAnimation,
       disposeMethod: null,
       listenerPairs: {"addListener": "removeListener"},
@@ -1493,10 +1358,10 @@ const sdk_animationBindings = FlaxBindingModule(
       matches: _isCompoundAnimation,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding19,
-        _flaxBinding20,
-        _flaxBinding22,
-        _flaxBinding23,
+        _flaxBinding108,
+        _flaxBinding109,
+        _flaxBinding110,
+        _flaxBinding111,
         FlaxProxyMember(
           "drive",
           0,
@@ -1504,12 +1369,12 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "child",
-                _flaxBinding24,
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            _flaxBinding25,
+            _flaxBinding113,
             _callback6,
             id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<any?:>)->object:flax.core/sdk_animation#type:Animation<any?:>",
             invoke: _callback6Invoke,
@@ -1519,16 +1384,16 @@ const sdk_animationBindings = FlaxBindingModule(
           hasSuper: true,
           hasCallContext: true,
         ),
-        _flaxBinding27,
-        _flaxBinding28,
-        _flaxBinding117,
-        _flaxBinding118,
-        _flaxBinding186,
+        _flaxBinding114,
+        _flaxBinding115,
         _flaxBinding187,
-        _flaxBinding120,
-        _flaxBinding121,
-        _flaxBinding122,
-        _flaxBinding124,
+        _flaxBinding188,
+        _flaxBinding246,
+        _flaxBinding247,
+        _flaxBinding190,
+        _flaxBinding191,
+        _flaxBinding192,
+        _flaxBinding193,
         FlaxProxyMember(
           "first",
           1,
@@ -1549,7 +1414,7 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding30,
+        _flaxBinding116,
         FlaxProxyMember(
           "value",
           1,
@@ -1559,11 +1424,11 @@ const sdk_animationBindings = FlaxBindingModule(
             id: "callback:<>()->any?:",
           ),
         ),
-        _flaxBinding32,
-        _flaxBinding33,
-        _flaxBinding34,
-        _flaxBinding35,
-        _flaxBinding188,
+        _flaxBinding117,
+        _flaxBinding118,
+        _flaxBinding119,
+        _flaxBinding120,
+        _flaxBinding248,
       ]),
     ),
     FlaxObjectBinding(
@@ -1582,72 +1447,70 @@ const sdk_animationBindings = FlaxBindingModule(
       ],
       {
         "lerp": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ConstantTween_lerp,
         ),
         "transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ConstantTween_transform,
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _ConstantTween_toString,
         ),
         "evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _ConstantTween_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _ConstantTween_animate,
         ),
         "chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _ConstantTween_chain,
         ),
         "@super:lerp": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ConstantTween_super_lerp,
         ),
         "@super:transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ConstantTween_super_transform,
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _ConstantTween_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _ConstantTween_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _ConstantTween_super_chain,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("any", nullable: true),
           _ConstantTween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("any", nullable: true),
           _ConstantTween_super_get_end,
         ),
@@ -1674,7 +1537,7 @@ const sdk_animationBindings = FlaxBindingModule(
           _ConstantTween_super_set_end,
         ),
       },
-      constructors: {"@implementation": _flaxBinding17},
+      constructors: {"@implementation": _flaxBinding107},
       create: _createConstantTween,
       disposeMethod: null,
       listenerPairs: {},
@@ -1705,7 +1568,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -1722,7 +1585,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -1732,7 +1595,7 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding27,
+        _flaxBinding114,
         FlaxProxyMember(
           "evaluate",
           0,
@@ -1740,7 +1603,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "animation",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -1757,7 +1620,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -1774,7 +1637,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding41,
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -1819,7 +1682,7 @@ const sdk_animationBindings = FlaxBindingModule(
                 positional: true,
               ),
             ],
-            _flaxBinding7,
+            _flaxBinding0,
             id: "callback:<>(p:r:value:any?:)->void:",
           ),
           hasSuper: true,
@@ -1836,60 +1699,58 @@ const sdk_animationBindings = FlaxBindingModule(
                 positional: true,
               ),
             ],
-            _flaxBinding7,
+            _flaxBinding0,
             id: "callback:<>(p:r:value:any?:)->void:",
           ),
           hasSuper: true,
         ),
       ]),
     ),
-    _flaxBinding286,
-    _flaxBinding334,
-    _flaxBinding352,
-    _flaxBinding380,
-    _flaxBinding388,
-    _flaxBinding394,
-    _flaxBinding400,
-    _flaxBinding406,
-    _flaxBinding416,
-    _flaxBinding445,
-    _flaxBinding456,
+    _flaxBinding326,
+    _flaxBinding364,
+    _flaxBinding378,
+    _flaxBinding404,
+    _flaxBinding412,
+    _flaxBinding418,
+    _flaxBinding424,
+    _flaxBinding430,
+    _flaxBinding440,
+    _flaxBinding461,
+    _flaxBinding472,
     FlaxObjectBinding(
       "flax.core/sdk_animation#type:ParametricCurve",
       [],
       {
         "transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ParametricCurve_transform,
         ),
         "transformInternal": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ParametricCurve_transformInternal,
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _ParametricCurve_toString,
         ),
         "@super:transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ParametricCurve_super_transform,
         ),
         "@super:transformInternal": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ParametricCurve_super_transformInternal,
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
       },
-      constructors: {"@implementation": _flaxBinding14},
+      constructors: {"@implementation": _flaxBinding105},
       create: _createParametricCurve,
       disposeMethod: null,
       listenerPairs: {},
@@ -1905,7 +1766,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -1922,7 +1783,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -1932,12 +1793,12 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding27,
+        _flaxBinding114,
       ]),
     ),
-    _flaxBinding473,
-    _flaxBinding503,
-    _flaxBinding515,
+    _flaxBinding486,
+    _flaxBinding507,
+    _flaxBinding519,
     FlaxObjectBinding(
       "flax.core/sdk_animation#type:ReverseTween",
       [
@@ -1959,77 +1820,75 @@ const sdk_animationBindings = FlaxBindingModule(
       ],
       {
         "lerp": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ReverseTween_lerp,
         ),
         "transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ReverseTween_transform,
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _ReverseTween_toString,
         ),
         "evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _ReverseTween_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _ReverseTween_animate,
         ),
         "chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _ReverseTween_chain,
         ),
         "@super:lerp": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ReverseTween_super_lerp,
         ),
         "@super:transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _ReverseTween_super_transform,
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _ReverseTween_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _ReverseTween_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _ReverseTween_super_chain,
         ),
         "@super:get:parent": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Tween"),
           _ReverseTween_super_get_parent,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("any", nullable: true),
           _ReverseTween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("any", nullable: true),
           _ReverseTween_super_get_end,
         ),
@@ -2056,7 +1915,7 @@ const sdk_animationBindings = FlaxBindingModule(
           _ReverseTween_super_set_end,
         ),
       },
-      constructors: {"@implementation": _flaxBinding517},
+      constructors: {"@implementation": _flaxBinding521},
       create: _createReverseTween,
       disposeMethod: null,
       listenerPairs: {},
@@ -2087,7 +1946,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -2104,7 +1963,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -2114,7 +1973,7 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding27,
+        _flaxBinding114,
         FlaxProxyMember(
           "evaluate",
           0,
@@ -2122,7 +1981,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "animation",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -2139,7 +1998,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -2156,7 +2015,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding41,
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -2211,7 +2070,7 @@ const sdk_animationBindings = FlaxBindingModule(
                 positional: true,
               ),
             ],
-            _flaxBinding7,
+            _flaxBinding0,
             id: "callback:<>(p:r:value:any?:)->void:",
           ),
           hasSuper: true,
@@ -2228,20 +2087,20 @@ const sdk_animationBindings = FlaxBindingModule(
                 positional: true,
               ),
             ],
-            _flaxBinding7,
+            _flaxBinding0,
             id: "callback:<>(p:r:value:any?:)->void:",
           ),
           hasSuper: true,
         ),
       ]),
     ),
-    _flaxBinding525,
-    _flaxBinding555,
-    _flaxBinding567,
-    _flaxBinding578,
-    _flaxBinding594,
-    _flaxBinding602,
-    _flaxBinding621,
+    _flaxBinding529,
+    _flaxBinding550,
+    _flaxBinding562,
+    _flaxBinding573,
+    _flaxBinding589,
+    _flaxBinding597,
+    _flaxBinding613,
     FlaxObjectBinding(
       "flax.core/sdk_animation#type:Tween",
       [
@@ -2250,72 +2109,70 @@ const sdk_animationBindings = FlaxBindingModule(
       ],
       {
         "transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _Tween_transform,
         ),
         "evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _Tween_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _Tween_animate,
         ),
         "chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _Tween_chain,
         ),
         "lerp": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _Tween_lerp,
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _Tween_toString,
         ),
         "@super:transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _Tween_super_transform,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _Tween_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _Tween_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _Tween_super_chain,
         ),
         "@super:lerp": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _Tween_super_lerp,
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("any", nullable: true),
           _Tween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("any", nullable: true),
           _Tween_super_get_end,
         ),
@@ -2342,7 +2199,7 @@ const sdk_animationBindings = FlaxBindingModule(
           _Tween_super_set_end,
         ),
       },
-      constructors: {"@implementation": _flaxBinding622},
+      constructors: {"@implementation": _flaxBinding614},
       create: _createTween,
       disposeMethod: null,
       listenerPairs: {},
@@ -2368,7 +2225,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -2385,7 +2242,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "animation",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -2402,7 +2259,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -2419,7 +2276,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding41,
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -2439,7 +2296,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -2449,7 +2306,7 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding27,
+        _flaxBinding114,
         FlaxProxyMember(
           "begin",
           1,
@@ -2482,7 +2339,7 @@ const sdk_animationBindings = FlaxBindingModule(
                 positional: true,
               ),
             ],
-            _flaxBinding7,
+            _flaxBinding0,
             id: "callback:<>(p:r:value:any?:)->void:",
           ),
           hasSuper: true,
@@ -2499,7 +2356,7 @@ const sdk_animationBindings = FlaxBindingModule(
                 positional: true,
               ),
             ],
-            _flaxBinding7,
+            _flaxBinding0,
             id: "callback:<>(p:r:value:any?:)->void:",
           ),
           hasSuper: true,
@@ -2511,57 +2368,55 @@ const sdk_animationBindings = FlaxBindingModule(
       [],
       {
         "transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _TweenSequence_transform,
         ),
         "evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _TweenSequence_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _TweenSequence_animate,
         ),
         "chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _TweenSequence_chain,
         ),
-        "toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _TweenSequence_toString,
         ),
         "@super:transform": FlaxInstanceMethod(
-          _flaxBinding37,
+          _flaxBinding121,
           FlaxTypeRef("any", nullable: true),
           _TweenSequence_super_transform,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          _flaxBinding39,
+          _flaxBinding122,
           FlaxTypeRef("any", nullable: true),
           _TweenSequence_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          _flaxBinding40,
+          _flaxBinding123,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animation"),
           _TweenSequence_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          _flaxBinding42,
+          _flaxBinding124,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _TweenSequence_super_chain,
         ),
-        "@super:toString": FlaxInstanceMethod(
-          _flaxBinding14,
-          _flaxBinding15,
+        "@super:toString": FlaxInstanceMethod.signature(
+          _flaxBinding9,
           _FlaxProxyDispatch1_super_call_toString,
         ),
       },
-      constructors: {"@implementation": _flaxBinding626},
+      constructors: {"@implementation": _flaxBinding618},
       create: _createTweenSequence,
       disposeMethod: null,
       listenerPairs: {},
@@ -2580,7 +2435,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "t",
-                _flaxBinding36,
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -2597,7 +2452,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "animation",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -2614,7 +2469,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding38,
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -2631,7 +2486,7 @@ const sdk_animationBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "parent",
-                _flaxBinding41,
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -2644,7 +2499,7 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding27,
+        _flaxBinding114,
       ]),
     ),
     FlaxObjectBinding(
@@ -2655,21 +2510,20 @@ const sdk_animationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _TweenSequenceItem_tween,
         ),
-        _flaxBinding627,
+        _flaxBinding619,
       ],
       {
         "@super:get:tween": FlaxInstanceMethod(
-          [],
+          _flaxBinding105,
           FlaxTypeRef("object", id: "flax.core/sdk_animation#type:Animatable"),
           _TweenSequenceItem_super_get_tween,
         ),
-        "@super:get:weight": FlaxInstanceMethod(
-          [],
-          _flaxBinding36,
+        "@super:get:weight": FlaxInstanceMethod.signature(
+          _flaxBinding21,
           _TweenSequenceItem_super_get_weight,
         ),
       },
-      constructors: {"@implementation": _flaxBinding628},
+      constructors: {"@implementation": _flaxBinding620},
       create: _createTweenSequenceItem,
       disposeMethod: null,
       listenerPairs: {},
@@ -2691,7 +2545,7 @@ const sdk_animationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding629,
+        _flaxBinding621,
       ]),
     ),
   ],
@@ -2699,132 +2553,70 @@ const sdk_animationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_animation#read:kAlwaysCompleteAnimation",
       [],
-      _flaxBinding38,
+      _flaxBinding26,
       _read_kAlwaysCompleteAnimation,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_animation#read:kAlwaysDismissedAnimation",
       [],
-      _flaxBinding38,
+      _flaxBinding26,
       _read_kAlwaysDismissedAnimation,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_animation#function:AnimationStatus.isDismissed%3Aget",
-      [
-        FlaxParameter(
-          "receiver",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding2,
+      [FlaxParameter("receiver", _flaxBinding4, required: true)],
+      _flaxBinding11,
       _enum_AnimationStatus_get_isDismissed,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_animation#function:AnimationStatus.isCompleted%3Aget",
-      [
-        FlaxParameter(
-          "receiver",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding2,
+      [FlaxParameter("receiver", _flaxBinding4, required: true)],
+      _flaxBinding11,
       _enum_AnimationStatus_get_isCompleted,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_animation#function:AnimationStatus.isAnimating%3Aget",
-      [
-        FlaxParameter(
-          "receiver",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding2,
+      [FlaxParameter("receiver", _flaxBinding4, required: true)],
+      _flaxBinding11,
       _enum_AnimationStatus_get_isAnimating,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_animation#function:AnimationStatus.isForwardOrCompleted%3Aget",
-      [
-        FlaxParameter(
-          "receiver",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding2,
+      [FlaxParameter("receiver", _flaxBinding4, required: true)],
+      _flaxBinding11,
       _enum_AnimationStatus_get_isForwardOrCompleted,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_animation#function:AnimationStyle.lerp",
       [
-        FlaxParameter(
-          "a",
-          _flaxBinding228,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "b",
-          _flaxBinding228,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "t",
-          _flaxBinding36,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("a", _flaxBinding34, required: true),
+        FlaxParameter("b", _flaxBinding34, required: true),
+        FlaxParameter("t", _flaxBinding20, required: true),
       ],
-      _flaxBinding228,
+      _flaxBinding34,
       _AnimationStyle_lerp,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_animation#read:AnimationStyle.noAnimation",
-      _flaxBinding226,
-      api.AnimationStyle.noAnimation,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_animation#function:CatmullRomCurve.validateControlPoints",
       [
-        FlaxParameter(
-          "controlPoints",
-          _flaxBinding630,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "reasons",
-          _flaxBinding632,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("controlPoints", _flaxBinding622, required: true),
+        FlaxParameter("reasons", _flaxBinding624, required: false),
         FlaxParameter(
           "tension",
-          _flaxBinding36,
+          _flaxBinding20,
           required: false,
           defaultValue: 0.0,
-          omitWhenAbsent: false,
         ),
       ],
-      _flaxBinding2,
+      _flaxBinding11,
       _CatmullRomCurve_validateControlPoints,
     ),
+  ],
+  constants: [
+    FlaxConstantGroup(_flaxBinding35, {
+      "flax.core/sdk_animation#read:AnimationStyle.noAnimation":
+          api.AnimationStyle.noAnimation,
+    }),
   ],
   moduleId: "flax.core/sdk_animation",
   dependencyModules: [
@@ -15036,12 +14828,12 @@ Function _flaxClass_AlwaysStoppedAnimation<
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0>(),
           _AlwaysStoppedAnimation_super_get_value,
         ),
         "@super:get:status": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef(
             "enum",
             id: "flax.core/sdk_animation#type:AnimationStatus",
@@ -15049,22 +14841,22 @@ Function _flaxClass_AlwaysStoppedAnimation<
           _FlaxProxyDispatch0_super_get_status,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
@@ -16034,22 +15826,22 @@ Function _flaxClass_Animation<
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
@@ -17171,22 +16963,22 @@ Function _flaxClass_AnimationMax<
           _AnimationMax_super_notifyStatusListeners,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0>(),
           _AnimationMax_super_get_value,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMax_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMax_super_get_next,
         ),
         "@super:get:status": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef(
             "enum",
             id: "flax.core/sdk_animation#type:AnimationStatus",
@@ -17194,27 +16986,27 @@ Function _flaxClass_AnimationMax<
           _FlaxProxyDispatch0_super_get_status,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
         "@super:get:isListening": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _AnimationMax_super_get_isListening,
         ),
@@ -18479,22 +18271,22 @@ Function _flaxClass_AnimationMin<
           _AnimationMin_super_notifyStatusListeners,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0>(),
           _AnimationMin_super_get_value,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMin_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMin_super_get_next,
         ),
         "@super:get:status": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef(
             "enum",
             id: "flax.core/sdk_animation#type:AnimationStatus",
@@ -18502,27 +18294,27 @@ Function _flaxClass_AnimationMin<
           _FlaxProxyDispatch0_super_get_status,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
         "@super:get:isListening": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _AnimationMin_super_get_isListening,
         ),
@@ -19957,17 +19749,17 @@ Function _flaxClass_CompoundAnimation<
           _CompoundAnimation_super_notifyStatusListeners,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<api.Animation<_Owner0>>(),
           _CompoundAnimation_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<api.Animation<_Owner0>>(),
           _CompoundAnimation_super_get_next,
         ),
         "@super:get:status": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef(
             "enum",
             id: "flax.core/sdk_animation#type:AnimationStatus",
@@ -19975,27 +19767,27 @@ Function _flaxClass_CompoundAnimation<
           _FlaxProxyDispatch0_super_get_status,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
         "@super:get:isListening": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("bool"),
           _CompoundAnimation_super_get_isListening,
         ),
@@ -20711,12 +20503,12 @@ Function _flaxClass_ConstantTween<
           _ConstantTween_super_chain,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0?>(),
           _ConstantTween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0?>(),
           _ConstantTween_super_get_end,
         ),
@@ -21537,17 +21329,17 @@ Function _flaxClass_ReverseTween<
           _ReverseTween_super_chain,
         ),
         "@super:get:parent": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<api.Tween<_Owner0>>(),
           _ReverseTween_super_get_parent,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0?>(),
           _ReverseTween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0?>(),
           _ReverseTween_super_get_end,
         ),
@@ -22082,12 +21874,12 @@ Function _flaxClass_Tween<
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0?>(),
           _Tween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<_Owner0?>(),
           _Tween_super_get_end,
         ),
@@ -22711,12 +22503,12 @@ Function _flaxClass_TweenSequenceItem<_Owner0 extends Object?>() =>
           ],
           {
             "@super:get:tween": FlaxInstanceMethod(
-              [],
+              <FlaxParameter>[],
               types.ref<api.Animatable<_Owner0>>(),
               _TweenSequenceItem_super_get_tween,
             ),
             "@super:get:weight": FlaxInstanceMethod(
-              [],
+              <FlaxParameter>[],
               FlaxTypeRef("double"),
               _TweenSequenceItem_super_get_weight,
             ),
@@ -23468,966 +23260,1504 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
-const _flaxBinding0 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_animation#type:AnimationStatus",
-);
-const _flaxBinding1 = FlaxGetter(
-  "status",
-  _flaxBinding0,
-  _AlwaysStoppedAnimation_status,
-);
-const _flaxBinding2 = FlaxTypeRef("bool");
-const _flaxBinding3 = FlaxGetter(
-  "isDismissed",
-  _flaxBinding2,
-  _AlwaysStoppedAnimation_isDismissed,
-);
-const _flaxBinding4 = FlaxGetter(
-  "isCompleted",
-  _flaxBinding2,
-  _AlwaysStoppedAnimation_isCompleted,
-);
-const _flaxBinding5 = FlaxGetter(
-  "isAnimating",
-  _flaxBinding2,
-  _AlwaysStoppedAnimation_isAnimating,
-);
-const _flaxBinding6 = FlaxGetter(
-  "isForwardOrCompleted",
-  _flaxBinding2,
-  _AlwaysStoppedAnimation_isForwardOrCompleted,
-);
-const _flaxBinding7 = FlaxTypeRef("void");
-const _flaxBinding8 = FlaxCallbackBinding(
+const _flaxBinding0 = FlaxTypeRef("void");
+const _flaxBinding1 = FlaxCallbackBinding(
   [],
-  _flaxBinding7,
+  _flaxBinding0,
   FlaxCallbackAdapters.wrapVoid0,
   id: "callback:<>()->void:",
   invoke: FlaxCallbackAdapters.invokeVoid0,
   matches: FlaxCallbackAdapters.matchesVoid0,
 );
-const _flaxBinding9 = FlaxTypeRef("callback", callback: _flaxBinding8);
-const _flaxBinding10 = <FlaxParameter>[
-  FlaxParameter("listener", _flaxBinding9, required: true),
-];
-const _flaxBinding11 = FlaxCallbackBinding(
+const _flaxBinding2 = FlaxTypeRef("callback", callback: _flaxBinding1);
+const _flaxBinding3 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
-      "status",
-      _flaxBinding0,
+      "listener",
+      _flaxBinding2,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding7,
+  _flaxBinding0,
+  id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
+);
+const _flaxBinding4 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_animation#type:AnimationStatus",
+);
+const _flaxBinding5 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "status",
+      _flaxBinding4,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
   id: "callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
   matches: FlaxCallbackAdapters.matchesVoid1<api.AnimationStatus>,
 );
-const _flaxBinding12 = FlaxTypeRef("callback", callback: _flaxBinding11);
-const _flaxBinding13 = <FlaxParameter>[
-  FlaxParameter("listener", _flaxBinding12, required: true),
-];
-const _flaxBinding14 = <FlaxParameter>[];
-const _flaxBinding15 = FlaxTypeRef("String");
-const _flaxBinding16 = FlaxTypeRef("any", nullable: true);
-const _flaxBinding17 = <FlaxParameter>[
-  FlaxParameter("value", _flaxBinding16, required: true),
-];
-const _flaxBinding18 = FlaxCallbackBinding.signature(
+const _flaxBinding6 = FlaxTypeRef("callback", callback: _flaxBinding5);
+const _flaxBinding7 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "listener",
-      _flaxBinding9,
+      _flaxBinding6,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
-);
-const _flaxBinding19 = FlaxProxyMember(
-  "addListener",
-  0,
-  _flaxBinding18,
-  hasSuper: true,
-);
-const _flaxBinding20 = FlaxProxyMember(
-  "removeListener",
-  0,
-  _flaxBinding18,
-  hasSuper: true,
-);
-const _flaxBinding21 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "listener",
-      _flaxBinding12,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
+  _flaxBinding0,
   id: "callback:<>(p:r:listener:callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:)->void:",
 );
-const _flaxBinding22 = FlaxProxyMember(
-  "addStatusListener",
-  0,
-  _flaxBinding21,
-  hasSuper: true,
-);
-const _flaxBinding23 = FlaxProxyMember(
-  "removeStatusListener",
-  0,
-  _flaxBinding21,
-  hasSuper: true,
-);
-const _flaxBinding24 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animatable",
-  dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-);
-const _flaxBinding25 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animation",
-  dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-);
-const _flaxBinding26 = FlaxCallbackBinding.signature(
+const _flaxBinding8 = FlaxTypeRef("String");
+const _flaxBinding9 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding15,
+  _flaxBinding8,
   id: "callback:<>()->String:",
 );
-const _flaxBinding27 = FlaxProxyMember(
-  "toString",
-  0,
-  _flaxBinding26,
-  hasSuper: true,
-);
-const _flaxBinding28 = FlaxProxyMember(
-  "toStringDetails",
-  0,
-  _flaxBinding26,
-  hasSuper: true,
-);
-const _flaxBinding29 = FlaxCallbackBinding.signature(
+const _flaxBinding10 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding0,
+  _flaxBinding4,
   id: "callback:<>()->enum:flax.core/sdk_animation#type:AnimationStatus",
 );
-const _flaxBinding30 = FlaxProxyMember(
-  "status",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding31 = FlaxCallbackBinding.signature(
+const _flaxBinding11 = FlaxTypeRef("bool");
+const _flaxBinding12 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding2,
+  _flaxBinding11,
   id: "callback:<>()->bool:",
 );
-const _flaxBinding32 = FlaxProxyMember(
-  "isDismissed",
-  1,
-  _flaxBinding31,
-  hasSuper: true,
+const _flaxBinding13 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding0,
+  id: "callback:<>()->void:",
 );
-const _flaxBinding33 = FlaxProxyMember(
-  "isCompleted",
-  1,
-  _flaxBinding31,
-  hasSuper: true,
+const _flaxBinding14 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "status",
+      _flaxBinding4,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
 );
-const _flaxBinding34 = FlaxProxyMember(
-  "isAnimating",
-  1,
-  _flaxBinding31,
-  hasSuper: true,
+const _flaxBinding15 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:TickerProvider",
 );
-const _flaxBinding35 = FlaxProxyMember(
-  "isForwardOrCompleted",
-  1,
-  _flaxBinding31,
-  hasSuper: true,
+const _flaxBinding16 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "vsync",
+      _flaxBinding15,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:vsync:object:flax.core/flutter#type:TickerProvider)->void:",
 );
-const _flaxBinding36 = FlaxTypeRef("double");
-const _flaxBinding37 = <FlaxParameter>[
-  FlaxParameter("t", _flaxBinding36, required: true),
-];
-const _flaxBinding38 = FlaxTypeRef(
+const _flaxBinding17 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_physics#type:Simulation",
+);
+const _flaxBinding18 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_scheduler#type:TickerFuture",
+);
+const _flaxBinding19 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "simulation",
+      _flaxBinding17,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding18,
+  id: "callback:<>(p:r:simulation:object:flax.core/sdk_physics#type:Simulation)->object:flax.core/sdk_scheduler#type:TickerFuture",
+);
+const _flaxBinding20 = FlaxTypeRef("double");
+const _flaxBinding21 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding20,
+  id: "callback:<>()->double:",
+);
+const _flaxBinding22 = FlaxTypeRef("String", nullable: true);
+const _flaxBinding23 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding22,
+  id: "callback:<>()->String?:",
+);
+const _flaxBinding24 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_animation#type:AnimationBehavior",
+);
+const _flaxBinding25 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding24,
+  id: "callback:<>()->enum:flax.core/sdk_animation#type:AnimationBehavior",
+);
+const _flaxBinding26 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Animation",
   dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
 );
-const _flaxBinding39 = <FlaxParameter>[
-  FlaxParameter("animation", _flaxBinding38, required: true),
-];
-const _flaxBinding40 = <FlaxParameter>[
-  FlaxParameter("parent", _flaxBinding38, required: true),
-];
-const _flaxBinding41 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animatable",
-  dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
+const _flaxBinding27 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding26,
+  id: "callback:<>()->object:flax.core/sdk_animation#type:Animation<double:>",
 );
-const _flaxBinding42 = <FlaxParameter>[
-  FlaxParameter("parent", _flaxBinding41, required: true),
-];
-const _flaxBinding43 = FlaxGetter("status", _flaxBinding0, _Animation_status);
-const _flaxBinding44 = FlaxGetter(
-  "isDismissed",
-  _flaxBinding2,
-  _Animation_isDismissed,
-);
-const _flaxBinding45 = FlaxGetter(
-  "isCompleted",
-  _flaxBinding2,
-  _Animation_isCompleted,
-);
-const _flaxBinding46 = FlaxGetter(
-  "isAnimating",
-  _flaxBinding2,
-  _Animation_isAnimating,
-);
-const _flaxBinding47 = FlaxGetter(
-  "isForwardOrCompleted",
-  _flaxBinding2,
-  _Animation_isForwardOrCompleted,
-);
-const _flaxBinding48 = FlaxProxyMember("addListener", 0, _flaxBinding18);
-const _flaxBinding49 = FlaxProxyMember("removeListener", 0, _flaxBinding18);
-const _flaxBinding50 = FlaxProxyMember("addStatusListener", 0, _flaxBinding21);
-const _flaxBinding51 = FlaxProxyMember(
-  "removeStatusListener",
-  0,
-  _flaxBinding21,
-);
-const _flaxBinding52 = FlaxProxyMember("status", 1, _flaxBinding29);
-const _flaxBinding53 = FlaxGetter(
-  "status",
-  _flaxBinding0,
-  _AnimationController_status,
-);
-const _flaxBinding54 = FlaxGetter(
-  "value",
-  _flaxBinding36,
-  _AnimationController_value,
-);
-const _flaxBinding55 = FlaxGetter(
-  "isDismissed",
-  _flaxBinding2,
-  _AnimationController_isDismissed,
-);
-const _flaxBinding56 = FlaxGetter(
-  "isCompleted",
-  _flaxBinding2,
-  _AnimationController_isCompleted,
-);
-const _flaxBinding57 = FlaxGetter(
-  "isAnimating",
-  _flaxBinding2,
-  _AnimationController_isAnimating,
-);
-const _flaxBinding58 = FlaxGetter(
-  "isForwardOrCompleted",
-  _flaxBinding2,
-  _AnimationController_isForwardOrCompleted,
-);
-const _flaxBinding59 = FlaxGetter(
-  "lowerBound",
-  _flaxBinding36,
-  _AnimationController_lowerBound,
-);
-const _flaxBinding60 = FlaxGetter(
-  "upperBound",
-  _flaxBinding36,
-  _AnimationController_upperBound,
-);
-const _flaxBinding61 = FlaxTypeRef("String", nullable: true);
-const _flaxBinding62 = FlaxGetter(
-  "debugLabel",
-  _flaxBinding61,
-  _AnimationController_debugLabel,
-);
-const _flaxBinding63 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_animation#type:AnimationBehavior",
-);
-const _flaxBinding64 = FlaxGetter(
-  "animationBehavior",
-  _flaxBinding63,
-  _AnimationController_animationBehavior,
-);
-const _flaxBinding65 = FlaxGetter(
-  "view",
-  _flaxBinding38,
-  _AnimationController_view,
-);
-const _flaxBinding66 = FlaxTypeRef(
+const _flaxBinding28 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Duration",
   nullable: true,
 );
-const _flaxBinding67 = FlaxGetter(
-  "duration",
-  _flaxBinding66,
-  _AnimationController_duration,
-);
-const _flaxBinding68 = FlaxGetter(
-  "reverseDuration",
-  _flaxBinding66,
-  _AnimationController_reverseDuration,
-);
-const _flaxBinding69 = FlaxGetter(
-  "velocity",
-  _flaxBinding36,
-  _AnimationController_velocity,
-);
-const _flaxBinding70 = FlaxGetter(
-  "lastElapsedDuration",
-  _flaxBinding66,
-  _AnimationController_lastElapsedDuration,
-);
-const _flaxBinding71 = FlaxSetter(
-  "duration",
-  _flaxBinding66,
-  _AnimationController_set_duration,
-);
-const _flaxBinding72 = FlaxSetter(
-  "reverseDuration",
-  _flaxBinding66,
-  _AnimationController_set_reverseDuration,
-);
-const _flaxBinding73 = FlaxSetter(
-  "value",
-  _flaxBinding36,
-  _AnimationController_set_value,
-);
-const _flaxBinding74 = FlaxInstanceMethod(
-  _flaxBinding10,
-  _flaxBinding7,
-  _AnimationLocalListenersMixin_addListener,
-);
-const _flaxBinding75 = FlaxInstanceMethod(
-  _flaxBinding10,
-  _flaxBinding7,
-  _AnimationLocalListenersMixin_removeListener,
-);
-const _flaxBinding76 = FlaxInstanceMethod(
-  _flaxBinding13,
-  _flaxBinding7,
-  _AnimationLocalStatusListenersMixin_addStatusListener,
-);
-const _flaxBinding77 = FlaxInstanceMethod(
-  _flaxBinding13,
-  _flaxBinding7,
-  _AnimationLocalStatusListenersMixin_removeStatusListener,
-);
-const _flaxBinding78 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
-  _AnimationController_toString,
-);
-const _flaxBinding79 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
-  _AnimationController_toStringDetails,
-);
-const _flaxBinding80 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
-  _AnimationEagerListenerMixin_didRegisterListener,
-);
-const _flaxBinding81 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
-  _AnimationEagerListenerMixin_didUnregisterListener,
-);
-const _flaxBinding82 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
-  _AnimationEagerListenerMixin_dispose,
-);
-const _flaxBinding83 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
-  _AnimationLocalListenersMixin_clearListeners,
-);
-const _flaxBinding84 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
-  _AnimationLocalListenersMixin_notifyListeners,
-);
-const _flaxBinding85 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
-  _AnimationLocalStatusListenersMixin_clearStatusListeners,
-);
-const _flaxBinding86 = <FlaxParameter>[
-  FlaxParameter("status", _flaxBinding0, required: true),
-];
-const _flaxBinding87 = FlaxInstanceMethod(
-  _flaxBinding86,
-  _flaxBinding7,
-  _AnimationLocalStatusListenersMixin_notifyStatusListeners,
-);
-const _flaxBinding88 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:TickerProvider",
-);
-const _flaxBinding89 = <FlaxParameter>[
-  FlaxParameter("vsync", _flaxBinding88, required: true),
-];
-const _flaxBinding90 = FlaxInstanceMethod(
-  _flaxBinding89,
-  _flaxBinding7,
-  _AnimationController_resync,
-);
-const _flaxBinding91 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
-  _AnimationController_reset,
-);
-const _flaxBinding92 = FlaxTypeRef("double", nullable: true);
-const _flaxBinding93 = <FlaxParameter>[
-  FlaxParameter("from", _flaxBinding92, required: false),
-];
-const _flaxBinding94 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_scheduler#type:TickerFuture",
-);
-const _flaxBinding95 = FlaxInstanceMethod(
-  _flaxBinding93,
-  _flaxBinding94,
-  _AnimationController_forward,
-);
-const _flaxBinding96 = FlaxInstanceMethod(
-  _flaxBinding93,
-  _flaxBinding94,
-  _AnimationController_reverse,
-);
-const _flaxBinding97 = FlaxInstanceMethod(
-  _flaxBinding93,
-  _flaxBinding94,
-  _AnimationController_toggle,
-);
-const _flaxBinding98 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Curve",
-);
-const _flaxBinding99 = <FlaxParameter>[
-  FlaxParameter("target", _flaxBinding36, required: true),
-  FlaxParameter("curve", _flaxBinding98, required: false, omitWhenAbsent: true),
-  FlaxParameter("duration", _flaxBinding66, required: false),
-];
-const _flaxBinding100 = FlaxInstanceMethod(
-  _flaxBinding99,
-  _flaxBinding94,
-  _AnimationController_animateTo,
-);
-const _flaxBinding101 = FlaxInstanceMethod(
-  _flaxBinding99,
-  _flaxBinding94,
-  _AnimationController_animateBack,
-);
-const _flaxBinding102 = FlaxTypeRef("int", nullable: true);
-const _flaxBinding103 = <FlaxParameter>[
-  FlaxParameter("count", _flaxBinding102, required: false),
-  FlaxParameter("max", _flaxBinding92, required: false),
-  FlaxParameter("min", _flaxBinding92, required: false),
-  FlaxParameter("period", _flaxBinding66, required: false),
-  FlaxParameter("reverse", _flaxBinding2, required: false, defaultValue: false),
-];
-const _flaxBinding104 = FlaxInstanceMethod(
-  _flaxBinding103,
-  _flaxBinding94,
-  _AnimationController_repeat,
-);
-const _flaxBinding105 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_animation#type:AnimationBehavior",
-  nullable: true,
-);
-const _flaxBinding106 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_physics#type:SpringDescription",
-  nullable: true,
-);
-const _flaxBinding107 = <FlaxParameter>[
-  FlaxParameter("animationBehavior", _flaxBinding105, required: false),
-  FlaxParameter("springDescription", _flaxBinding106, required: false),
-  FlaxParameter("velocity", _flaxBinding36, required: false, defaultValue: 1.0),
-];
-const _flaxBinding108 = FlaxInstanceMethod(
-  _flaxBinding107,
-  _flaxBinding94,
-  _AnimationController_fling,
-);
-const _flaxBinding109 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_physics#type:Simulation",
-);
-const _flaxBinding110 = <FlaxParameter>[
-  FlaxParameter("simulation", _flaxBinding109, required: true),
-];
-const _flaxBinding111 = FlaxInstanceMethod(
-  _flaxBinding110,
-  _flaxBinding94,
-  _AnimationController_animateWith,
-);
-const _flaxBinding112 = FlaxInstanceMethod(
-  _flaxBinding110,
-  _flaxBinding94,
-  _AnimationController_animateBackWith,
-);
-const _flaxBinding113 = <FlaxParameter>[
-  FlaxParameter("canceled", _flaxBinding2, required: false, defaultValue: true),
-];
-const _flaxBinding114 = FlaxInstanceMethod(
-  _flaxBinding113,
-  _flaxBinding7,
-  _AnimationController_stop,
-);
-const _flaxBinding115 = <FlaxParameter>[
-  FlaxParameter("value", _flaxBinding92, required: false),
-  FlaxParameter("duration", _flaxBinding66, required: false),
-  FlaxParameter("reverseDuration", _flaxBinding66, required: false),
-  FlaxParameter("debugLabel", _flaxBinding61, required: false),
-  FlaxParameter(
-    "lowerBound",
-    _flaxBinding36,
-    required: false,
-    defaultValue: 0.0,
-  ),
-  FlaxParameter(
-    "upperBound",
-    _flaxBinding36,
-    required: false,
-    defaultValue: 1.0,
-  ),
-  FlaxParameter(
-    "animationBehavior",
-    _flaxBinding63,
-    required: false,
-    defaultValue: api.AnimationBehavior.normal,
-  ),
-  FlaxParameter("vsync", _flaxBinding88, required: true),
-];
-const _flaxBinding116 = FlaxCallbackBinding.signature(
+const _flaxBinding29 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding7,
-  id: "callback:<>()->void:",
+  _flaxBinding28,
+  id: "callback:<>()->object?:flax.core/flutter#type:Duration",
 );
-const _flaxBinding117 = FlaxProxyMember(
-  "didRegisterListener",
-  0,
-  _flaxBinding116,
-  hasSuper: true,
-);
-const _flaxBinding118 = FlaxProxyMember(
-  "didUnregisterListener",
-  0,
-  _flaxBinding116,
-  hasSuper: true,
-);
-const _flaxBinding119 = FlaxProxyMember(
-  "dispose",
-  0,
-  _flaxBinding116,
-  hasSuper: true,
-);
-const _flaxBinding120 = FlaxProxyMember(
-  "clearListeners",
-  0,
-  _flaxBinding116,
-  hasSuper: true,
-);
-const _flaxBinding121 = FlaxProxyMember(
-  "notifyListeners",
-  0,
-  _flaxBinding116,
-  hasSuper: true,
-);
-const _flaxBinding122 = FlaxProxyMember(
-  "clearStatusListeners",
-  0,
-  _flaxBinding116,
-  hasSuper: true,
-);
-const _flaxBinding123 = FlaxCallbackBinding.signature(
+const _flaxBinding30 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
-      "status",
-      _flaxBinding0,
+      "value",
+      _flaxBinding28,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Duration)->void:",
 );
-const _flaxBinding124 = FlaxProxyMember(
-  "notifyStatusListeners",
-  0,
-  _flaxBinding123,
-  hasSuper: true,
-);
-const _flaxBinding125 = FlaxCallbackBinding.signature(
+const _flaxBinding31 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
-      "vsync",
+      "value",
+      _flaxBinding20,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:double:)->void:",
+);
+const _flaxBinding32 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
+);
+const _flaxBinding33 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "properties",
+      _flaxBinding32,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:properties:object:flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder)->void:",
+);
+const _flaxBinding34 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:AnimationStyle",
+  nullable: true,
+);
+const _flaxBinding35 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:AnimationStyle",
+);
+const _flaxBinding36 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "other",
+      _flaxBinding34,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding35,
+  id: "callback:<>(p:r:other:object?:flax.core/sdk_animation#type:AnimationStyle)->object:flax.core/sdk_animation#type:AnimationStyle",
+);
+const _flaxBinding37 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Curve",
+  nullable: true,
+);
+const _flaxBinding38 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding37,
+  id: "callback:<>()->object?:flax.core/flutter#type:Curve",
+);
+const _flaxBinding39 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "t",
+      _flaxBinding20,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding20,
+  id: "callback:<>(p:r:t:double:)->double:",
+);
+const _flaxBinding40 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Offset",
+);
+const _flaxBinding41 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding40,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/flutter#type:Offset]",
+    _collection1Create,
+    _collection1Matches,
+    restore: _collection1Restore,
+  ),
+);
+const _flaxBinding42 = FlaxTypeRef(
+  "list",
+  item: _flaxBinding40,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/flutter#type:Offset]",
+    _collection0Create,
+    _collection0Matches,
+  ),
+  iterable: _flaxBinding41,
+);
+const _flaxBinding43 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding42,
+  id: "callback:<>()->list:[object:flax.core/flutter#type:Offset]",
+);
+const _flaxBinding44 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Curve",
+);
+const _flaxBinding45 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding44,
+  id: "callback:<>()->object:flax.core/flutter#type:Curve",
+);
+const _flaxBinding46 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "x",
+      _flaxBinding20,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding20,
+  id: "callback:<>(p:r:x:double:)->double:",
+);
+const _flaxBinding47 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "t",
+      _flaxBinding20,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding40,
+  id: "callback:<>(p:r:t:double:)->object:flax.core/flutter#type:Offset",
+);
+const _flaxBinding48 = FlaxTypeRef("int");
+const _flaxBinding49 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding48,
+  id: "callback:<>()->int:",
+);
+const _flaxBinding50 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Color",
+  nullable: true,
+);
+const _flaxBinding51 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "t",
+      _flaxBinding20,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding50,
+  id: "callback:<>(p:r:t:double:)->object?:flax.core/flutter#type:Color",
+);
+const _flaxBinding52 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "animation",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding50,
+  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->object?:flax.core/flutter#type:Color",
+);
+const _flaxBinding53 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animation",
+  dartType: FlaxDartTypes.typeOf<api.Animation<api1.Color?>>,
+);
+const _flaxBinding54 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding53,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<object?:flax.core/flutter#type:Color>",
+);
+const _flaxBinding55 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animatable",
+  dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
+);
+const _flaxBinding56 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animatable",
+  dartType: FlaxDartTypes.typeOf<api.Animatable<api1.Color?>>,
+);
+const _flaxBinding57 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding55,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding56,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<object?:flax.core/flutter#type:Color>",
+);
+const _flaxBinding58 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding50,
+  id: "callback:<>()->object?:flax.core/flutter#type:Color",
+);
+const _flaxBinding59 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding50,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Color)->void:",
+);
+const _flaxBinding60 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding40,
+  id: "callback:<>()->object:flax.core/flutter#type:Offset",
+);
+const _flaxBinding61 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "animation",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding20,
+  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->double:",
+);
+const _flaxBinding62 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding26,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<double:>",
+);
+const _flaxBinding63 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding55,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding55,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<double:>",
+);
+const _flaxBinding64 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding44,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:object:flax.core/flutter#type:Curve)->void:",
+);
+const _flaxBinding65 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding37,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Curve)->void:",
+);
+const _flaxBinding66 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding11,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:bool:)->void:",
+);
+const _flaxBinding67 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "t",
+      _flaxBinding20,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding48,
+  id: "callback:<>(p:r:t:double:)->int:",
+);
+const _flaxBinding68 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "animation",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding48,
+  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->int:",
+);
+const _flaxBinding69 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animation",
+  dartType: FlaxDartTypes.typeOf<api.Animation<int>>,
+);
+const _flaxBinding70 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding69,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<int:>",
+);
+const _flaxBinding71 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animatable",
+  dartType: FlaxDartTypes.typeOf<api.Animatable<int>>,
+);
+const _flaxBinding72 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding55,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding71,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<int:>",
+);
+const _flaxBinding73 = FlaxTypeRef("int", nullable: true);
+const _flaxBinding74 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding73,
+  id: "callback:<>()->int?:",
+);
+const _flaxBinding75 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding73,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:int?:)->void:",
+);
+const _flaxBinding76 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animation",
+  dartType: FlaxDartTypes.typeOf<api.Animation<double>?>,
+  nullable: true,
+);
+const _flaxBinding77 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding76,
+  id: "callback:<>()->object?:flax.core/sdk_animation#type:Animation<double:>",
+);
+const _flaxBinding78 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding76,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:object?:flax.core/sdk_animation#type:Animation<double:>)->void:",
+);
+const _flaxBinding79 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_dart_ui#type:Rect",
+  nullable: true,
+);
+const _flaxBinding80 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "t",
+      _flaxBinding20,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding79,
+  id: "callback:<>(p:r:t:double:)->object?:flax.core/sdk_dart_ui#type:Rect",
+);
+const _flaxBinding81 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "animation",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding79,
+  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->object?:flax.core/sdk_dart_ui#type:Rect",
+);
+const _flaxBinding82 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animation",
+  dartType: FlaxDartTypes.typeOf<api.Animation<api1.Rect?>>,
+);
+const _flaxBinding83 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding82,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<object?:flax.core/sdk_dart_ui#type:Rect>",
+);
+const _flaxBinding84 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animatable",
+  dartType: FlaxDartTypes.typeOf<api.Animatable<api1.Rect?>>,
+);
+const _flaxBinding85 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding55,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding84,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<object?:flax.core/sdk_dart_ui#type:Rect>",
+);
+const _flaxBinding86 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding79,
+  id: "callback:<>()->object?:flax.core/sdk_dart_ui#type:Rect",
+);
+const _flaxBinding87 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding79,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:object?:flax.core/sdk_dart_ui#type:Rect)->void:",
+);
+const _flaxBinding88 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Size",
+  nullable: true,
+);
+const _flaxBinding89 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "t",
+      _flaxBinding20,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding88,
+  id: "callback:<>(p:r:t:double:)->object?:flax.core/flutter#type:Size",
+);
+const _flaxBinding90 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "animation",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding88,
+  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->object?:flax.core/flutter#type:Size",
+);
+const _flaxBinding91 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animation",
+  dartType: FlaxDartTypes.typeOf<api.Animation<api1.Size?>>,
+);
+const _flaxBinding92 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding26,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding91,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<object?:flax.core/flutter#type:Size>",
+);
+const _flaxBinding93 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animatable",
+  dartType: FlaxDartTypes.typeOf<api.Animatable<api1.Size?>>,
+);
+const _flaxBinding94 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "parent",
+      _flaxBinding55,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding93,
+  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<object?:flax.core/flutter#type:Size>",
+);
+const _flaxBinding95 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding88,
+  id: "callback:<>()->object?:flax.core/flutter#type:Size",
+);
+const _flaxBinding96 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
       _flaxBinding88,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:vsync:object:flax.core/flutter#type:TickerProvider)->void:",
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Size)->void:",
 );
-const _flaxBinding126 = FlaxProxyMember(
+const _flaxBinding97 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding1,
+);
+const _flaxBinding98 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding97,
+  id: "callback:<>()->callback?:<>()->void:",
+);
+const _flaxBinding99 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding97,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding0,
+  id: "callback:<>(p:r:value:callback?:<>()->void:)->void:",
+);
+const _flaxBinding100 = FlaxGetter(
+  "status",
+  _flaxBinding4,
+  _AlwaysStoppedAnimation_status,
+);
+const _flaxBinding101 = FlaxGetter(
+  "isDismissed",
+  _flaxBinding11,
+  _AlwaysStoppedAnimation_isDismissed,
+);
+const _flaxBinding102 = FlaxGetter(
+  "isCompleted",
+  _flaxBinding11,
+  _AlwaysStoppedAnimation_isCompleted,
+);
+const _flaxBinding103 = FlaxGetter(
+  "isAnimating",
+  _flaxBinding11,
+  _AlwaysStoppedAnimation_isAnimating,
+);
+const _flaxBinding104 = FlaxGetter(
+  "isForwardOrCompleted",
+  _flaxBinding11,
+  _AlwaysStoppedAnimation_isForwardOrCompleted,
+);
+const _flaxBinding105 = <FlaxParameter>[];
+const _flaxBinding106 = FlaxTypeRef("any", nullable: true);
+const _flaxBinding107 = <FlaxParameter>[
+  FlaxParameter("value", _flaxBinding106, required: true),
+];
+const _flaxBinding108 = FlaxProxyMember(
+  "addListener",
+  0,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding109 = FlaxProxyMember(
+  "removeListener",
+  0,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding110 = FlaxProxyMember(
+  "addStatusListener",
+  0,
+  _flaxBinding7,
+  hasSuper: true,
+);
+const _flaxBinding111 = FlaxProxyMember(
+  "removeStatusListener",
+  0,
+  _flaxBinding7,
+  hasSuper: true,
+);
+const _flaxBinding112 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animatable",
+  dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
+);
+const _flaxBinding113 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:Animation",
+  dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
+);
+const _flaxBinding114 = FlaxProxyMember(
+  "toString",
+  0,
+  _flaxBinding9,
+  hasSuper: true,
+);
+const _flaxBinding115 = FlaxProxyMember(
+  "toStringDetails",
+  0,
+  _flaxBinding9,
+  hasSuper: true,
+);
+const _flaxBinding116 = FlaxProxyMember(
+  "status",
+  1,
+  _flaxBinding10,
+  hasSuper: true,
+);
+const _flaxBinding117 = FlaxProxyMember(
+  "isDismissed",
+  1,
+  _flaxBinding12,
+  hasSuper: true,
+);
+const _flaxBinding118 = FlaxProxyMember(
+  "isCompleted",
+  1,
+  _flaxBinding12,
+  hasSuper: true,
+);
+const _flaxBinding119 = FlaxProxyMember(
+  "isAnimating",
+  1,
+  _flaxBinding12,
+  hasSuper: true,
+);
+const _flaxBinding120 = FlaxProxyMember(
+  "isForwardOrCompleted",
+  1,
+  _flaxBinding12,
+  hasSuper: true,
+);
+const _flaxBinding121 = <FlaxParameter>[
+  FlaxParameter("t", _flaxBinding20, required: true),
+];
+const _flaxBinding122 = <FlaxParameter>[
+  FlaxParameter("animation", _flaxBinding26, required: true),
+];
+const _flaxBinding123 = <FlaxParameter>[
+  FlaxParameter("parent", _flaxBinding26, required: true),
+];
+const _flaxBinding124 = <FlaxParameter>[
+  FlaxParameter("parent", _flaxBinding55, required: true),
+];
+const _flaxBinding125 = FlaxGetter("status", _flaxBinding4, _Animation_status);
+const _flaxBinding126 = FlaxGetter(
+  "isDismissed",
+  _flaxBinding11,
+  _Animation_isDismissed,
+);
+const _flaxBinding127 = FlaxGetter(
+  "isCompleted",
+  _flaxBinding11,
+  _Animation_isCompleted,
+);
+const _flaxBinding128 = FlaxGetter(
+  "isAnimating",
+  _flaxBinding11,
+  _Animation_isAnimating,
+);
+const _flaxBinding129 = FlaxGetter(
+  "isForwardOrCompleted",
+  _flaxBinding11,
+  _Animation_isForwardOrCompleted,
+);
+const _flaxBinding130 = FlaxProxyMember("addListener", 0, _flaxBinding3);
+const _flaxBinding131 = FlaxProxyMember("removeListener", 0, _flaxBinding3);
+const _flaxBinding132 = FlaxProxyMember("addStatusListener", 0, _flaxBinding7);
+const _flaxBinding133 = FlaxProxyMember(
+  "removeStatusListener",
+  0,
+  _flaxBinding7,
+);
+const _flaxBinding134 = FlaxProxyMember("status", 1, _flaxBinding10);
+const _flaxBinding135 = FlaxGetter(
+  "status",
+  _flaxBinding4,
+  _AnimationController_status,
+);
+const _flaxBinding136 = FlaxGetter(
+  "value",
+  _flaxBinding20,
+  _AnimationController_value,
+);
+const _flaxBinding137 = FlaxGetter(
+  "isDismissed",
+  _flaxBinding11,
+  _AnimationController_isDismissed,
+);
+const _flaxBinding138 = FlaxGetter(
+  "isCompleted",
+  _flaxBinding11,
+  _AnimationController_isCompleted,
+);
+const _flaxBinding139 = FlaxGetter(
+  "isAnimating",
+  _flaxBinding11,
+  _AnimationController_isAnimating,
+);
+const _flaxBinding140 = FlaxGetter(
+  "isForwardOrCompleted",
+  _flaxBinding11,
+  _AnimationController_isForwardOrCompleted,
+);
+const _flaxBinding141 = FlaxGetter(
+  "lowerBound",
+  _flaxBinding20,
+  _AnimationController_lowerBound,
+);
+const _flaxBinding142 = FlaxGetter(
+  "upperBound",
+  _flaxBinding20,
+  _AnimationController_upperBound,
+);
+const _flaxBinding143 = FlaxGetter(
+  "debugLabel",
+  _flaxBinding22,
+  _AnimationController_debugLabel,
+);
+const _flaxBinding144 = FlaxGetter(
+  "animationBehavior",
+  _flaxBinding24,
+  _AnimationController_animationBehavior,
+);
+const _flaxBinding145 = FlaxGetter(
+  "view",
+  _flaxBinding26,
+  _AnimationController_view,
+);
+const _flaxBinding146 = FlaxGetter(
+  "duration",
+  _flaxBinding28,
+  _AnimationController_duration,
+);
+const _flaxBinding147 = FlaxGetter(
+  "reverseDuration",
+  _flaxBinding28,
+  _AnimationController_reverseDuration,
+);
+const _flaxBinding148 = FlaxGetter(
+  "velocity",
+  _flaxBinding20,
+  _AnimationController_velocity,
+);
+const _flaxBinding149 = FlaxGetter(
+  "lastElapsedDuration",
+  _flaxBinding28,
+  _AnimationController_lastElapsedDuration,
+);
+const _flaxBinding150 = FlaxSetter(
+  "duration",
+  _flaxBinding28,
+  _AnimationController_set_duration,
+);
+const _flaxBinding151 = FlaxSetter(
+  "reverseDuration",
+  _flaxBinding28,
+  _AnimationController_set_reverseDuration,
+);
+const _flaxBinding152 = FlaxSetter(
+  "value",
+  _flaxBinding20,
+  _AnimationController_set_value,
+);
+const _flaxBinding153 = FlaxInstanceMethod.signature(
+  _flaxBinding3,
+  _AnimationLocalListenersMixin_addListener,
+);
+const _flaxBinding154 = FlaxInstanceMethod.signature(
+  _flaxBinding3,
+  _AnimationLocalListenersMixin_removeListener,
+);
+const _flaxBinding155 = FlaxInstanceMethod.signature(
+  _flaxBinding7,
+  _AnimationLocalStatusListenersMixin_addStatusListener,
+);
+const _flaxBinding156 = FlaxInstanceMethod.signature(
+  _flaxBinding7,
+  _AnimationLocalStatusListenersMixin_removeStatusListener,
+);
+const _flaxBinding157 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
+  _AnimationController_toString,
+);
+const _flaxBinding158 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
+  _AnimationController_toStringDetails,
+);
+const _flaxBinding159 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
+  _AnimationEagerListenerMixin_didRegisterListener,
+);
+const _flaxBinding160 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
+  _AnimationEagerListenerMixin_didUnregisterListener,
+);
+const _flaxBinding161 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
+  _AnimationEagerListenerMixin_dispose,
+);
+const _flaxBinding162 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
+  _AnimationLocalListenersMixin_clearListeners,
+);
+const _flaxBinding163 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
+  _AnimationLocalListenersMixin_notifyListeners,
+);
+const _flaxBinding164 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
+  _AnimationLocalStatusListenersMixin_clearStatusListeners,
+);
+const _flaxBinding165 = FlaxInstanceMethod.signature(
+  _flaxBinding14,
+  _AnimationLocalStatusListenersMixin_notifyStatusListeners,
+);
+const _flaxBinding166 = FlaxInstanceMethod.signature(
+  _flaxBinding16,
+  _AnimationController_resync,
+);
+const _flaxBinding167 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
+  _AnimationController_reset,
+);
+const _flaxBinding168 = FlaxTypeRef("double", nullable: true);
+const _flaxBinding169 = <FlaxParameter>[
+  FlaxParameter("from", _flaxBinding168, required: false),
+];
+const _flaxBinding170 = FlaxInstanceMethod(
+  _flaxBinding169,
+  _flaxBinding18,
+  _AnimationController_forward,
+);
+const _flaxBinding171 = FlaxInstanceMethod(
+  _flaxBinding169,
+  _flaxBinding18,
+  _AnimationController_reverse,
+);
+const _flaxBinding172 = FlaxInstanceMethod(
+  _flaxBinding169,
+  _flaxBinding18,
+  _AnimationController_toggle,
+);
+const _flaxBinding173 = <FlaxParameter>[
+  FlaxParameter("target", _flaxBinding20, required: true),
+  FlaxParameter("curve", _flaxBinding44, required: false, omitWhenAbsent: true),
+  FlaxParameter("duration", _flaxBinding28, required: false),
+];
+const _flaxBinding174 = FlaxInstanceMethod(
+  _flaxBinding173,
+  _flaxBinding18,
+  _AnimationController_animateTo,
+);
+const _flaxBinding175 = FlaxInstanceMethod(
+  _flaxBinding173,
+  _flaxBinding18,
+  _AnimationController_animateBack,
+);
+const _flaxBinding176 = <FlaxParameter>[
+  FlaxParameter("count", _flaxBinding73, required: false),
+  FlaxParameter("max", _flaxBinding168, required: false),
+  FlaxParameter("min", _flaxBinding168, required: false),
+  FlaxParameter("period", _flaxBinding28, required: false),
+  FlaxParameter(
+    "reverse",
+    _flaxBinding11,
+    required: false,
+    defaultValue: false,
+  ),
+];
+const _flaxBinding177 = FlaxInstanceMethod(
+  _flaxBinding176,
+  _flaxBinding18,
+  _AnimationController_repeat,
+);
+const _flaxBinding178 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_animation#type:AnimationBehavior",
+  nullable: true,
+);
+const _flaxBinding179 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_physics#type:SpringDescription",
+  nullable: true,
+);
+const _flaxBinding180 = <FlaxParameter>[
+  FlaxParameter("animationBehavior", _flaxBinding178, required: false),
+  FlaxParameter("springDescription", _flaxBinding179, required: false),
+  FlaxParameter("velocity", _flaxBinding20, required: false, defaultValue: 1.0),
+];
+const _flaxBinding181 = FlaxInstanceMethod(
+  _flaxBinding180,
+  _flaxBinding18,
+  _AnimationController_fling,
+);
+const _flaxBinding182 = FlaxInstanceMethod.signature(
+  _flaxBinding19,
+  _AnimationController_animateWith,
+);
+const _flaxBinding183 = FlaxInstanceMethod.signature(
+  _flaxBinding19,
+  _AnimationController_animateBackWith,
+);
+const _flaxBinding184 = <FlaxParameter>[
+  FlaxParameter(
+    "canceled",
+    _flaxBinding11,
+    required: false,
+    defaultValue: true,
+  ),
+];
+const _flaxBinding185 = FlaxInstanceMethod(
+  _flaxBinding184,
+  _flaxBinding0,
+  _AnimationController_stop,
+);
+const _flaxBinding186 = <FlaxParameter>[
+  FlaxParameter("value", _flaxBinding168, required: false),
+  FlaxParameter("duration", _flaxBinding28, required: false),
+  FlaxParameter("reverseDuration", _flaxBinding28, required: false),
+  FlaxParameter("debugLabel", _flaxBinding22, required: false),
+  FlaxParameter(
+    "lowerBound",
+    _flaxBinding20,
+    required: false,
+    defaultValue: 0.0,
+  ),
+  FlaxParameter(
+    "upperBound",
+    _flaxBinding20,
+    required: false,
+    defaultValue: 1.0,
+  ),
+  FlaxParameter(
+    "animationBehavior",
+    _flaxBinding24,
+    required: false,
+    defaultValue: api.AnimationBehavior.normal,
+  ),
+  FlaxParameter("vsync", _flaxBinding15, required: true),
+];
+const _flaxBinding187 = FlaxProxyMember(
+  "didRegisterListener",
+  0,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding188 = FlaxProxyMember(
+  "didUnregisterListener",
+  0,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding189 = FlaxProxyMember(
+  "dispose",
+  0,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding190 = FlaxProxyMember(
+  "clearListeners",
+  0,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding191 = FlaxProxyMember(
+  "notifyListeners",
+  0,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding192 = FlaxProxyMember(
+  "clearStatusListeners",
+  0,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding193 = FlaxProxyMember(
+  "notifyStatusListeners",
+  0,
+  _flaxBinding14,
+  hasSuper: true,
+);
+const _flaxBinding194 = FlaxProxyMember(
   "resync",
   0,
-  _flaxBinding125,
+  _flaxBinding16,
   hasSuper: true,
 );
-const _flaxBinding127 = FlaxProxyMember(
+const _flaxBinding195 = FlaxProxyMember(
   "reset",
   0,
-  _flaxBinding116,
+  _flaxBinding13,
   hasSuper: true,
 );
-const _flaxBinding128 = FlaxCallbackBinding.signature(
+const _flaxBinding196 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "from",
-      _flaxBinding92,
+      _flaxBinding168,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding94,
+  _flaxBinding18,
   id: "callback:<>(n:o:from:double?:)->object:flax.core/sdk_scheduler#type:TickerFuture",
 );
-const _flaxBinding129 = FlaxProxyMember(
+const _flaxBinding197 = FlaxProxyMember(
   "forward",
   0,
-  _flaxBinding128,
+  _flaxBinding196,
   hasSuper: true,
 );
-const _flaxBinding130 = FlaxProxyMember(
+const _flaxBinding198 = FlaxProxyMember(
   "reverse",
   0,
-  _flaxBinding128,
+  _flaxBinding196,
   hasSuper: true,
 );
-const _flaxBinding131 = FlaxProxyMember(
+const _flaxBinding199 = FlaxProxyMember(
   "toggle",
   0,
-  _flaxBinding128,
+  _flaxBinding196,
   hasSuper: true,
 );
-const _flaxBinding132 = FlaxCallbackBinding.signature(
+const _flaxBinding200 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "target",
-      _flaxBinding36,
+      _flaxBinding20,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "duration",
-      _flaxBinding66,
+      _flaxBinding28,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "curve",
-      _flaxBinding98,
+      _flaxBinding44,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding94,
+  _flaxBinding18,
   id: "callback:<>(p:r:target:double:,n:o:duration:object?:flax.core/flutter#type:Duration,n:o:curve:object:flax.core/flutter#type:Curve)->object:flax.core/sdk_scheduler#type:TickerFuture",
 );
-const _flaxBinding133 = FlaxProxyMember(
+const _flaxBinding201 = FlaxProxyMember(
   "animateTo",
   0,
-  _flaxBinding132,
+  _flaxBinding200,
   hasSuper: true,
 );
-const _flaxBinding134 = FlaxProxyMember(
+const _flaxBinding202 = FlaxProxyMember(
   "animateBack",
   0,
-  _flaxBinding132,
+  _flaxBinding200,
   hasSuper: true,
 );
-const _flaxBinding135 = FlaxCallbackBinding.signature(
+const _flaxBinding203 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "min",
-      _flaxBinding92,
+      _flaxBinding168,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "max",
-      _flaxBinding92,
+      _flaxBinding168,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "reverse",
-      _flaxBinding2,
+      _flaxBinding11,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "period",
-      _flaxBinding66,
+      _flaxBinding28,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "count",
-      _flaxBinding102,
+      _flaxBinding73,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding94,
+  _flaxBinding18,
   id: "callback:<>(n:o:min:double?:,n:o:max:double?:,n:o:reverse:bool:,n:o:period:object?:flax.core/flutter#type:Duration,n:o:count:int?:)->object:flax.core/sdk_scheduler#type:TickerFuture",
 );
-const _flaxBinding136 = FlaxProxyMember(
+const _flaxBinding204 = FlaxProxyMember(
   "repeat",
   0,
-  _flaxBinding135,
+  _flaxBinding203,
   hasSuper: true,
 );
-const _flaxBinding137 = FlaxCallbackBinding.signature(
+const _flaxBinding205 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "velocity",
-      _flaxBinding36,
+      _flaxBinding20,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "springDescription",
-      _flaxBinding106,
+      _flaxBinding179,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "animationBehavior",
-      _flaxBinding105,
+      _flaxBinding178,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding94,
+  _flaxBinding18,
   id: "callback:<>(n:o:velocity:double:,n:o:springDescription:object?:flax.core/sdk_physics#type:SpringDescription,n:o:animationBehavior:enum?:flax.core/sdk_animation#type:AnimationBehavior)->object:flax.core/sdk_scheduler#type:TickerFuture",
 );
-const _flaxBinding138 = FlaxProxyMember(
+const _flaxBinding206 = FlaxProxyMember(
   "fling",
   0,
-  _flaxBinding137,
+  _flaxBinding205,
   hasSuper: true,
 );
-const _flaxBinding139 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "simulation",
-      _flaxBinding109,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding94,
-  id: "callback:<>(p:r:simulation:object:flax.core/sdk_physics#type:Simulation)->object:flax.core/sdk_scheduler#type:TickerFuture",
-);
-const _flaxBinding140 = FlaxProxyMember(
+const _flaxBinding207 = FlaxProxyMember(
   "animateWith",
   0,
-  _flaxBinding139,
+  _flaxBinding19,
   hasSuper: true,
 );
-const _flaxBinding141 = FlaxProxyMember(
+const _flaxBinding208 = FlaxProxyMember(
   "animateBackWith",
   0,
-  _flaxBinding139,
+  _flaxBinding19,
   hasSuper: true,
 );
-const _flaxBinding142 = FlaxCallbackBinding.signature(
+const _flaxBinding209 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "canceled",
-      _flaxBinding2,
+      _flaxBinding11,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding7,
+  _flaxBinding0,
   id: "callback:<>(n:o:canceled:bool:)->void:",
 );
-const _flaxBinding143 = FlaxProxyMember(
+const _flaxBinding210 = FlaxProxyMember(
   "stop",
   0,
-  _flaxBinding142,
+  _flaxBinding209,
   hasSuper: true,
 );
-const _flaxBinding144 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding36,
-  id: "callback:<>()->double:",
-);
-const _flaxBinding145 = FlaxProxyMember(
+const _flaxBinding211 = FlaxProxyMember(
   "lowerBound",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding146 = FlaxProxyMember(
+const _flaxBinding212 = FlaxProxyMember(
   "upperBound",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding147 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding61,
-  id: "callback:<>()->String?:",
-);
-const _flaxBinding148 = FlaxProxyMember(
+const _flaxBinding213 = FlaxProxyMember(
   "debugLabel",
   1,
-  _flaxBinding147,
+  _flaxBinding23,
   hasSuper: true,
 );
-const _flaxBinding149 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding63,
-  id: "callback:<>()->enum:flax.core/sdk_animation#type:AnimationBehavior",
-);
-const _flaxBinding150 = FlaxProxyMember(
+const _flaxBinding214 = FlaxProxyMember(
   "animationBehavior",
   1,
-  _flaxBinding149,
+  _flaxBinding25,
   hasSuper: true,
 );
-const _flaxBinding151 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding38,
-  id: "callback:<>()->object:flax.core/sdk_animation#type:Animation<double:>",
-);
-const _flaxBinding152 = FlaxProxyMember(
+const _flaxBinding215 = FlaxProxyMember(
   "view",
   1,
-  _flaxBinding151,
+  _flaxBinding27,
   hasSuper: true,
 );
-const _flaxBinding153 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding66,
-  id: "callback:<>()->object?:flax.core/flutter#type:Duration",
-);
-const _flaxBinding154 = FlaxProxyMember(
+const _flaxBinding216 = FlaxProxyMember(
   "duration",
   1,
-  _flaxBinding153,
+  _flaxBinding29,
   hasSuper: true,
 );
-const _flaxBinding155 = FlaxProxyMember(
+const _flaxBinding217 = FlaxProxyMember(
   "reverseDuration",
   1,
-  _flaxBinding153,
+  _flaxBinding29,
   hasSuper: true,
 );
-const _flaxBinding156 = FlaxProxyMember(
+const _flaxBinding218 = FlaxProxyMember(
   "value",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding157 = FlaxProxyMember(
+const _flaxBinding219 = FlaxProxyMember(
   "velocity",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding158 = FlaxProxyMember(
+const _flaxBinding220 = FlaxProxyMember(
   "lastElapsedDuration",
   1,
-  _flaxBinding153,
+  _flaxBinding29,
   hasSuper: true,
 );
-const _flaxBinding159 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding66,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Duration)->void:",
-);
-const _flaxBinding160 = FlaxProxyMember(
+const _flaxBinding221 = FlaxProxyMember(
   "duration",
   2,
-  _flaxBinding159,
+  _flaxBinding30,
   hasSuper: true,
 );
-const _flaxBinding161 = FlaxProxyMember(
+const _flaxBinding222 = FlaxProxyMember(
   "reverseDuration",
   2,
-  _flaxBinding159,
+  _flaxBinding30,
   hasSuper: true,
 );
-const _flaxBinding162 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding36,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:double:)->void:",
-);
-const _flaxBinding163 = FlaxProxyMember(
+const _flaxBinding223 = FlaxProxyMember(
   "value",
   2,
-  _flaxBinding162,
+  _flaxBinding31,
   hasSuper: true,
 );
-const _flaxBinding164 = FlaxObjectBinding(
+const _flaxBinding224 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:AnimationController",
   [
-    _flaxBinding53,
-    _flaxBinding54,
-    _flaxBinding55,
-    _flaxBinding56,
-    _flaxBinding57,
-    _flaxBinding58,
-    _flaxBinding59,
-    _flaxBinding60,
-    _flaxBinding62,
-    _flaxBinding64,
-    _flaxBinding65,
-    _flaxBinding67,
-    _flaxBinding68,
-    _flaxBinding69,
-    _flaxBinding70,
+    _flaxBinding135,
+    _flaxBinding136,
+    _flaxBinding137,
+    _flaxBinding138,
+    _flaxBinding139,
+    _flaxBinding140,
+    _flaxBinding141,
+    _flaxBinding142,
+    _flaxBinding143,
+    _flaxBinding144,
+    _flaxBinding145,
+    _flaxBinding146,
+    _flaxBinding147,
+    _flaxBinding148,
+    _flaxBinding149,
   ],
   {
-    "addListener": _flaxBinding74,
-    "removeListener": _flaxBinding75,
-    "addStatusListener": _flaxBinding76,
-    "removeStatusListener": _flaxBinding77,
+    "addListener": _flaxBinding153,
+    "removeListener": _flaxBinding154,
+    "addStatusListener": _flaxBinding155,
+    "removeStatusListener": _flaxBinding156,
     "drive": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -24441,44 +24771,40 @@ const _flaxBinding164 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_AnimationController_drive,
       ownerTypes: [],
     ),
-    "toString": _flaxBinding78,
-    "toStringDetails": _flaxBinding79,
-    "didRegisterListener": _flaxBinding80,
-    "didUnregisterListener": _flaxBinding81,
-    "dispose": _flaxBinding82,
-    "clearListeners": _flaxBinding83,
-    "notifyListeners": _flaxBinding84,
-    "clearStatusListeners": _flaxBinding85,
-    "notifyStatusListeners": _flaxBinding87,
-    "resync": _flaxBinding90,
-    "reset": _flaxBinding91,
-    "forward": _flaxBinding95,
-    "reverse": _flaxBinding96,
-    "toggle": _flaxBinding97,
-    "animateTo": _flaxBinding100,
-    "animateBack": _flaxBinding101,
-    "repeat": _flaxBinding104,
-    "fling": _flaxBinding108,
-    "animateWith": _flaxBinding111,
-    "animateBackWith": _flaxBinding112,
-    "stop": _flaxBinding114,
-    "@super:addListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "toString": _flaxBinding157,
+    "toStringDetails": _flaxBinding158,
+    "didRegisterListener": _flaxBinding159,
+    "didUnregisterListener": _flaxBinding160,
+    "dispose": _flaxBinding161,
+    "clearListeners": _flaxBinding162,
+    "notifyListeners": _flaxBinding163,
+    "clearStatusListeners": _flaxBinding164,
+    "notifyStatusListeners": _flaxBinding165,
+    "resync": _flaxBinding166,
+    "reset": _flaxBinding167,
+    "forward": _flaxBinding170,
+    "reverse": _flaxBinding171,
+    "toggle": _flaxBinding172,
+    "animateTo": _flaxBinding174,
+    "animateBack": _flaxBinding175,
+    "repeat": _flaxBinding177,
+    "fling": _flaxBinding181,
+    "animateWith": _flaxBinding182,
+    "animateBackWith": _flaxBinding183,
+    "stop": _flaxBinding185,
+    "@super:addListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_addListener,
     ),
-    "@super:removeListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "@super:removeListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_removeListener,
     ),
-    "@super:addStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:addStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_addStatusListener,
     ),
-    "@super:removeStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:removeStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_removeStatusListener,
     ),
@@ -24495,206 +24821,178 @@ const _flaxBinding164 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_AnimationController_super_drive,
       ownerTypes: [],
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:toStringDetails": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toStringDetails": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch2_super_call_toStringDetails,
     ),
-    "@super:didRegisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didRegisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationController_super_didRegisterListener,
     ),
-    "@super:didUnregisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didUnregisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationController_super_didUnregisterListener,
     ),
-    "@super:dispose": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:dispose": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationController_super_dispose,
     ),
-    "@super:clearListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationController_super_clearListeners,
     ),
-    "@super:notifyListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:notifyListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationController_super_notifyListeners,
     ),
-    "@super:clearStatusListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationController_super_clearStatusListeners,
     ),
-    "@super:notifyStatusListeners": FlaxInstanceMethod(
-      _flaxBinding86,
-      _flaxBinding7,
+    "@super:notifyStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding14,
       _AnimationController_super_notifyStatusListeners,
     ),
-    "@super:resync": FlaxInstanceMethod(
-      _flaxBinding89,
-      _flaxBinding7,
+    "@super:resync": FlaxInstanceMethod.signature(
+      _flaxBinding16,
       _AnimationController_super_resync,
     ),
-    "@super:reset": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:reset": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationController_super_reset,
     ),
     "@super:forward": FlaxInstanceMethod(
-      _flaxBinding93,
-      _flaxBinding94,
+      _flaxBinding169,
+      _flaxBinding18,
       _AnimationController_super_forward,
     ),
     "@super:reverse": FlaxInstanceMethod(
-      _flaxBinding93,
-      _flaxBinding94,
+      _flaxBinding169,
+      _flaxBinding18,
       _AnimationController_super_reverse,
     ),
     "@super:toggle": FlaxInstanceMethod(
-      _flaxBinding93,
-      _flaxBinding94,
+      _flaxBinding169,
+      _flaxBinding18,
       _AnimationController_super_toggle,
     ),
     "@super:animateTo": FlaxInstanceMethod(
-      _flaxBinding99,
-      _flaxBinding94,
+      _flaxBinding173,
+      _flaxBinding18,
       _AnimationController_super_animateTo,
     ),
     "@super:animateBack": FlaxInstanceMethod(
-      _flaxBinding99,
-      _flaxBinding94,
+      _flaxBinding173,
+      _flaxBinding18,
       _AnimationController_super_animateBack,
     ),
     "@super:repeat": FlaxInstanceMethod(
-      _flaxBinding103,
-      _flaxBinding94,
+      _flaxBinding176,
+      _flaxBinding18,
       _AnimationController_super_repeat,
     ),
     "@super:fling": FlaxInstanceMethod(
-      _flaxBinding107,
-      _flaxBinding94,
+      _flaxBinding180,
+      _flaxBinding18,
       _AnimationController_super_fling,
     ),
-    "@super:animateWith": FlaxInstanceMethod(
-      _flaxBinding110,
-      _flaxBinding94,
+    "@super:animateWith": FlaxInstanceMethod.signature(
+      _flaxBinding19,
       _AnimationController_super_animateWith,
     ),
-    "@super:animateBackWith": FlaxInstanceMethod(
-      _flaxBinding110,
-      _flaxBinding94,
+    "@super:animateBackWith": FlaxInstanceMethod.signature(
+      _flaxBinding19,
       _AnimationController_super_animateBackWith,
     ),
     "@super:stop": FlaxInstanceMethod(
-      _flaxBinding113,
-      _flaxBinding7,
+      _flaxBinding184,
+      _flaxBinding0,
       _AnimationController_super_stop,
     ),
-    "@super:get:lowerBound": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:lowerBound": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _AnimationController_super_get_lowerBound,
     ),
-    "@super:get:upperBound": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:upperBound": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _AnimationController_super_get_upperBound,
     ),
-    "@super:get:debugLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding61,
+    "@super:get:debugLabel": FlaxInstanceMethod.signature(
+      _flaxBinding23,
       _AnimationController_super_get_debugLabel,
     ),
-    "@super:get:animationBehavior": FlaxInstanceMethod(
-      [],
-      _flaxBinding63,
+    "@super:get:animationBehavior": FlaxInstanceMethod.signature(
+      _flaxBinding25,
       _AnimationController_super_get_animationBehavior,
     ),
-    "@super:get:view": FlaxInstanceMethod(
-      [],
-      _flaxBinding38,
+    "@super:get:view": FlaxInstanceMethod.signature(
+      _flaxBinding27,
       _AnimationController_super_get_view,
     ),
-    "@super:get:duration": FlaxInstanceMethod(
-      [],
-      _flaxBinding66,
+    "@super:get:duration": FlaxInstanceMethod.signature(
+      _flaxBinding29,
       _AnimationController_super_get_duration,
     ),
-    "@super:get:reverseDuration": FlaxInstanceMethod(
-      [],
-      _flaxBinding66,
+    "@super:get:reverseDuration": FlaxInstanceMethod.signature(
+      _flaxBinding29,
       _AnimationController_super_get_reverseDuration,
     ),
-    "@super:get:value": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:value": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _AnimationController_super_get_value,
     ),
-    "@super:get:velocity": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:velocity": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _AnimationController_super_get_velocity,
     ),
-    "@super:get:lastElapsedDuration": FlaxInstanceMethod(
-      [],
-      _flaxBinding66,
+    "@super:get:lastElapsedDuration": FlaxInstanceMethod.signature(
+      _flaxBinding29,
       _AnimationController_super_get_lastElapsedDuration,
     ),
-    "@super:get:isAnimating": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isAnimating": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isAnimating,
     ),
-    "@super:get:status": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:status": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _FlaxProxyDispatch0_super_get_status,
     ),
-    "@super:get:isDismissed": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isDismissed": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isDismissed,
     ),
-    "@super:get:isCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isCompleted,
     ),
-    "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
     ),
     "@super:set:duration": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding66, required: true)],
+      [FlaxParameter("value", _flaxBinding28, required: true)],
       const FlaxTypeRef("void"),
       _AnimationController_super_set_duration,
     ),
     "@super:set:reverseDuration": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding66, required: true)],
+      [FlaxParameter("value", _flaxBinding28, required: true)],
       const FlaxTypeRef("void"),
       _AnimationController_super_set_reverseDuration,
     ),
     "@super:set:value": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding36, required: true)],
+      [FlaxParameter("value", _flaxBinding20, required: true)],
       const FlaxTypeRef("void"),
       _AnimationController_super_set_value,
     ),
   },
-  constructors: {"@implementation": _flaxBinding115},
+  constructors: {"@implementation": _flaxBinding186},
   create: _createAnimationController,
   matches: _isAnimationController,
-  setters: [_flaxBinding71, _flaxBinding72, _flaxBinding73],
+  setters: [_flaxBinding150, _flaxBinding151, _flaxBinding152],
   supertypes: [
     "flax.core/sdk_animation#type:Animation",
     "flax.core/flutter#type:Listenable",
@@ -24707,10 +25005,10 @@ const _flaxBinding164 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding19,
-    _flaxBinding20,
-    _flaxBinding22,
-    _flaxBinding23,
+    _flaxBinding108,
+    _flaxBinding109,
+    _flaxBinding110,
+    _flaxBinding111,
     FlaxProxyMember(
       "drive",
       0,
@@ -24718,12 +25016,12 @@ const _flaxBinding164 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "child",
-            _flaxBinding24,
+            _flaxBinding112,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding25,
+        _flaxBinding113,
         _callback2,
         id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<parameter:>)->object:flax.core/sdk_animation#type:Animation<parameter:>",
         invoke: _callback2Invoke,
@@ -24733,54 +25031,54 @@ const _flaxBinding164 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding27,
-    _flaxBinding28,
+    _flaxBinding114,
+    _flaxBinding115,
+    _flaxBinding187,
+    _flaxBinding188,
+    _flaxBinding189,
+    _flaxBinding190,
+    _flaxBinding191,
+    _flaxBinding192,
+    _flaxBinding193,
+    _flaxBinding194,
+    _flaxBinding195,
+    _flaxBinding197,
+    _flaxBinding198,
+    _flaxBinding199,
+    _flaxBinding201,
+    _flaxBinding202,
+    _flaxBinding204,
+    _flaxBinding206,
+    _flaxBinding207,
+    _flaxBinding208,
+    _flaxBinding210,
+    _flaxBinding211,
+    _flaxBinding212,
+    _flaxBinding213,
+    _flaxBinding214,
+    _flaxBinding215,
+    _flaxBinding216,
+    _flaxBinding217,
+    _flaxBinding218,
+    _flaxBinding219,
+    _flaxBinding220,
+    _flaxBinding119,
+    _flaxBinding116,
     _flaxBinding117,
     _flaxBinding118,
-    _flaxBinding119,
     _flaxBinding120,
-    _flaxBinding121,
-    _flaxBinding122,
-    _flaxBinding124,
-    _flaxBinding126,
-    _flaxBinding127,
-    _flaxBinding129,
-    _flaxBinding130,
-    _flaxBinding131,
-    _flaxBinding133,
-    _flaxBinding134,
-    _flaxBinding136,
-    _flaxBinding138,
-    _flaxBinding140,
-    _flaxBinding141,
-    _flaxBinding143,
-    _flaxBinding145,
-    _flaxBinding146,
-    _flaxBinding148,
-    _flaxBinding150,
-    _flaxBinding152,
-    _flaxBinding154,
-    _flaxBinding155,
-    _flaxBinding156,
-    _flaxBinding157,
-    _flaxBinding158,
-    _flaxBinding34,
-    _flaxBinding30,
-    _flaxBinding32,
-    _flaxBinding33,
-    _flaxBinding35,
-    _flaxBinding160,
-    _flaxBinding161,
-    _flaxBinding163,
+    _flaxBinding221,
+    _flaxBinding222,
+    _flaxBinding223,
   ]),
 );
-const _flaxBinding165 = FlaxObjectBinding(
+const _flaxBinding225 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:AnimationEagerListenerMixin",
   [],
   {
-    "didRegisterListener": _flaxBinding80,
-    "didUnregisterListener": _flaxBinding81,
-    "dispose": _flaxBinding82,
+    "didRegisterListener": _flaxBinding159,
+    "didUnregisterListener": _flaxBinding160,
+    "dispose": _flaxBinding161,
   },
   constructors: {},
   create: _createAnimationEagerListenerMixin,
@@ -24789,39 +25087,35 @@ const _flaxBinding165 = FlaxObjectBinding(
   supertypes: ["dart:core::Object"],
   disposeMethod: "dispose",
 );
-const _flaxBinding166 = FlaxGetter(
+const _flaxBinding226 = FlaxGetter(
   "isListening",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationLazyListenerMixin_isListening,
 );
-const _flaxBinding167 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding227 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _AnimationLazyListenerMixin_didRegisterListener,
 );
-const _flaxBinding168 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding228 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _AnimationLazyListenerMixin_didUnregisterListener,
 );
-const _flaxBinding169 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding229 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _AnimationLazyListenerMixin_didStartListening,
 );
-const _flaxBinding170 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding230 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _AnimationLazyListenerMixin_didStopListening,
 );
-const _flaxBinding171 = FlaxObjectBinding(
+const _flaxBinding231 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:AnimationLazyListenerMixin",
-  [_flaxBinding166],
+  [_flaxBinding226],
   {
-    "didRegisterListener": _flaxBinding167,
-    "didUnregisterListener": _flaxBinding168,
-    "didStartListening": _flaxBinding169,
-    "didStopListening": _flaxBinding170,
+    "didRegisterListener": _flaxBinding227,
+    "didUnregisterListener": _flaxBinding228,
+    "didStartListening": _flaxBinding229,
+    "didStopListening": _flaxBinding230,
   },
   constructors: {},
   create: _createAnimationLazyListenerMixin,
@@ -24829,26 +25123,24 @@ const _flaxBinding171 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding172 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding232 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _AnimationLocalListenersMixin_didRegisterListener,
 );
-const _flaxBinding173 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding233 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _AnimationLocalListenersMixin_didUnregisterListener,
 );
-const _flaxBinding174 = FlaxObjectBinding(
+const _flaxBinding234 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:AnimationLocalListenersMixin",
   [],
   {
-    "didRegisterListener": _flaxBinding172,
-    "didUnregisterListener": _flaxBinding173,
-    "addListener": _flaxBinding74,
-    "removeListener": _flaxBinding75,
-    "clearListeners": _flaxBinding83,
-    "notifyListeners": _flaxBinding84,
+    "didRegisterListener": _flaxBinding232,
+    "didUnregisterListener": _flaxBinding233,
+    "addListener": _flaxBinding153,
+    "removeListener": _flaxBinding154,
+    "clearListeners": _flaxBinding162,
+    "notifyListeners": _flaxBinding163,
   },
   constructors: {},
   create: _createAnimationLocalListenersMixin,
@@ -24856,26 +25148,24 @@ const _flaxBinding174 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding175 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding235 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _AnimationLocalStatusListenersMixin_didRegisterListener,
 );
-const _flaxBinding176 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding236 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _AnimationLocalStatusListenersMixin_didUnregisterListener,
 );
-const _flaxBinding177 = FlaxObjectBinding(
+const _flaxBinding237 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:AnimationLocalStatusListenersMixin",
   [],
   {
-    "didRegisterListener": _flaxBinding175,
-    "didUnregisterListener": _flaxBinding176,
-    "addStatusListener": _flaxBinding76,
-    "removeStatusListener": _flaxBinding77,
-    "clearStatusListeners": _flaxBinding85,
-    "notifyStatusListeners": _flaxBinding87,
+    "didRegisterListener": _flaxBinding235,
+    "didUnregisterListener": _flaxBinding236,
+    "addStatusListener": _flaxBinding155,
+    "removeStatusListener": _flaxBinding156,
+    "clearStatusListeners": _flaxBinding164,
+    "notifyStatusListeners": _flaxBinding165,
   },
   constructors: {},
   create: _createAnimationLocalStatusListenersMixin,
@@ -24883,146 +25173,144 @@ const _flaxBinding177 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding178 = FlaxGetter(
+const _flaxBinding238 = FlaxGetter(
   "status",
-  _flaxBinding0,
+  _flaxBinding4,
   _AnimationMax_status,
 );
-const _flaxBinding179 = FlaxGetter(
+const _flaxBinding239 = FlaxGetter(
   "isDismissed",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMax_isDismissed,
 );
-const _flaxBinding180 = FlaxGetter(
+const _flaxBinding240 = FlaxGetter(
   "isCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMax_isCompleted,
 );
-const _flaxBinding181 = FlaxGetter(
+const _flaxBinding241 = FlaxGetter(
   "isAnimating",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMax_isAnimating,
 );
-const _flaxBinding182 = FlaxGetter(
+const _flaxBinding242 = FlaxGetter(
   "isForwardOrCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMax_isForwardOrCompleted,
 );
-const _flaxBinding183 = FlaxGetter(
+const _flaxBinding243 = FlaxGetter(
   "isListening",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMax_isListening,
 );
-const _flaxBinding184 = FlaxTypeRef(
+const _flaxBinding244 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Animation",
   dartType: FlaxDartTypes.typeOf<api.Animation<num>>,
 );
-const _flaxBinding185 = <FlaxParameter>[
-  FlaxParameter("first", _flaxBinding184, required: true),
-  FlaxParameter("next", _flaxBinding184, required: true),
+const _flaxBinding245 = <FlaxParameter>[
+  FlaxParameter("first", _flaxBinding244, required: true),
+  FlaxParameter("next", _flaxBinding244, required: true),
 ];
-const _flaxBinding186 = FlaxProxyMember(
+const _flaxBinding246 = FlaxProxyMember(
   "didStartListening",
   0,
-  _flaxBinding116,
+  _flaxBinding13,
   hasSuper: true,
 );
-const _flaxBinding187 = FlaxProxyMember(
+const _flaxBinding247 = FlaxProxyMember(
   "didStopListening",
   0,
-  _flaxBinding116,
+  _flaxBinding13,
   hasSuper: true,
 );
-const _flaxBinding188 = FlaxProxyMember(
+const _flaxBinding248 = FlaxProxyMember(
   "isListening",
   1,
-  _flaxBinding31,
+  _flaxBinding12,
   hasSuper: true,
 );
-const _flaxBinding189 = FlaxGetter(
+const _flaxBinding249 = FlaxGetter(
   "first",
-  _flaxBinding38,
+  _flaxBinding26,
   _AnimationMean_first,
 );
-const _flaxBinding190 = FlaxGetter("next", _flaxBinding38, _AnimationMean_next);
-const _flaxBinding191 = FlaxGetter(
+const _flaxBinding250 = FlaxGetter("next", _flaxBinding26, _AnimationMean_next);
+const _flaxBinding251 = FlaxGetter(
   "status",
-  _flaxBinding0,
+  _flaxBinding4,
   _AnimationMean_status,
 );
-const _flaxBinding192 = FlaxGetter(
+const _flaxBinding252 = FlaxGetter(
   "value",
-  _flaxBinding36,
+  _flaxBinding20,
   _AnimationMean_value,
 );
-const _flaxBinding193 = FlaxGetter(
+const _flaxBinding253 = FlaxGetter(
   "isDismissed",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMean_isDismissed,
 );
-const _flaxBinding194 = FlaxGetter(
+const _flaxBinding254 = FlaxGetter(
   "isCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMean_isCompleted,
 );
-const _flaxBinding195 = FlaxGetter(
+const _flaxBinding255 = FlaxGetter(
   "isAnimating",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMean_isAnimating,
 );
-const _flaxBinding196 = FlaxGetter(
+const _flaxBinding256 = FlaxGetter(
   "isForwardOrCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMean_isForwardOrCompleted,
 );
-const _flaxBinding197 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding257 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _AnimationMean_toString,
 );
-const _flaxBinding198 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding258 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _AnimationMean_toStringDetails,
 );
-const _flaxBinding199 = <FlaxParameter>[
-  FlaxParameter("left", _flaxBinding38, required: true),
-  FlaxParameter("right", _flaxBinding38, required: true),
+const _flaxBinding259 = <FlaxParameter>[
+  FlaxParameter("left", _flaxBinding26, required: true),
+  FlaxParameter("right", _flaxBinding26, required: true),
 ];
-const _flaxBinding200 = FlaxProxyMember(
+const _flaxBinding260 = FlaxProxyMember(
   "first",
   1,
-  _flaxBinding151,
+  _flaxBinding27,
   hasSuper: true,
 );
-const _flaxBinding201 = FlaxProxyMember(
+const _flaxBinding261 = FlaxProxyMember(
   "next",
   1,
-  _flaxBinding151,
+  _flaxBinding27,
   hasSuper: true,
 );
-const _flaxBinding202 = FlaxObjectBinding(
+const _flaxBinding262 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:AnimationMean",
   [
-    _flaxBinding189,
-    _flaxBinding190,
-    _flaxBinding191,
-    _flaxBinding192,
-    _flaxBinding193,
-    _flaxBinding194,
-    _flaxBinding195,
-    _flaxBinding196,
-    _flaxBinding166,
+    _flaxBinding249,
+    _flaxBinding250,
+    _flaxBinding251,
+    _flaxBinding252,
+    _flaxBinding253,
+    _flaxBinding254,
+    _flaxBinding255,
+    _flaxBinding256,
+    _flaxBinding226,
   ],
   {
-    "didStartListening": _flaxBinding169,
-    "didStopListening": _flaxBinding170,
-    "toString": _flaxBinding197,
-    "addListener": _flaxBinding74,
-    "removeListener": _flaxBinding75,
-    "addStatusListener": _flaxBinding76,
-    "removeStatusListener": _flaxBinding77,
+    "didStartListening": _flaxBinding229,
+    "didStopListening": _flaxBinding230,
+    "toString": _flaxBinding257,
+    "addListener": _flaxBinding153,
+    "removeListener": _flaxBinding154,
+    "addStatusListener": _flaxBinding155,
+    "removeStatusListener": _flaxBinding156,
     "drive": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -25036,45 +25324,38 @@ const _flaxBinding202 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_AnimationMean_drive,
       ownerTypes: [],
     ),
-    "toStringDetails": _flaxBinding198,
-    "didRegisterListener": _flaxBinding167,
-    "didUnregisterListener": _flaxBinding168,
-    "clearListeners": _flaxBinding83,
-    "notifyListeners": _flaxBinding84,
-    "clearStatusListeners": _flaxBinding85,
-    "notifyStatusListeners": _flaxBinding87,
-    "@super:didStartListening": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "toStringDetails": _flaxBinding258,
+    "didRegisterListener": _flaxBinding227,
+    "didUnregisterListener": _flaxBinding228,
+    "clearListeners": _flaxBinding162,
+    "notifyListeners": _flaxBinding163,
+    "clearStatusListeners": _flaxBinding164,
+    "notifyStatusListeners": _flaxBinding165,
+    "@super:didStartListening": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationMean_super_didStartListening,
     ),
-    "@super:didStopListening": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didStopListening": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationMean_super_didStopListening,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:addListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "@super:addListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_addListener,
     ),
-    "@super:removeListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "@super:removeListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_removeListener,
     ),
-    "@super:addStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:addStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_addStatusListener,
     ),
-    "@super:removeStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:removeStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_removeStatusListener,
     ),
@@ -25091,88 +25372,72 @@ const _flaxBinding202 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_AnimationMean_super_drive,
       ownerTypes: [],
     ),
-    "@super:toStringDetails": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toStringDetails": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch2_super_call_toStringDetails,
     ),
-    "@super:didRegisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didRegisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationMean_super_didRegisterListener,
     ),
-    "@super:didUnregisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didUnregisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationMean_super_didUnregisterListener,
     ),
-    "@super:clearListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationMean_super_clearListeners,
     ),
-    "@super:notifyListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:notifyListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationMean_super_notifyListeners,
     ),
-    "@super:clearStatusListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _AnimationMean_super_clearStatusListeners,
     ),
-    "@super:notifyStatusListeners": FlaxInstanceMethod(
-      _flaxBinding86,
-      _flaxBinding7,
+    "@super:notifyStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding14,
       _AnimationMean_super_notifyStatusListeners,
     ),
-    "@super:get:value": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:value": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _AnimationMean_super_get_value,
     ),
-    "@super:get:first": FlaxInstanceMethod(
-      [],
-      _flaxBinding38,
+    "@super:get:first": FlaxInstanceMethod.signature(
+      _flaxBinding27,
       _AnimationMean_super_get_first,
     ),
-    "@super:get:next": FlaxInstanceMethod(
-      [],
-      _flaxBinding38,
+    "@super:get:next": FlaxInstanceMethod.signature(
+      _flaxBinding27,
       _AnimationMean_super_get_next,
     ),
-    "@super:get:status": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:status": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _FlaxProxyDispatch0_super_get_status,
     ),
-    "@super:get:isDismissed": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isDismissed": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isDismissed,
     ),
-    "@super:get:isCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isCompleted,
     ),
-    "@super:get:isAnimating": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isAnimating": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isAnimating,
     ),
-    "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
     ),
-    "@super:get:isListening": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isListening": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _AnimationMean_super_get_isListening,
     ),
   },
-  constructors: {"@implementation": _flaxBinding199},
+  constructors: {"@implementation": _flaxBinding259},
   create: _createAnimationMean,
   matches: _isAnimationMean,
   setters: [],
@@ -25188,13 +25453,13 @@ const _flaxBinding202 = FlaxObjectBinding(
   ],
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding186,
-    _flaxBinding187,
-    _flaxBinding27,
-    _flaxBinding19,
-    _flaxBinding20,
-    _flaxBinding22,
-    _flaxBinding23,
+    _flaxBinding246,
+    _flaxBinding247,
+    _flaxBinding114,
+    _flaxBinding108,
+    _flaxBinding109,
+    _flaxBinding110,
+    _flaxBinding111,
     FlaxProxyMember(
       "drive",
       0,
@@ -25202,12 +25467,12 @@ const _flaxBinding202 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "child",
-            _flaxBinding24,
+            _flaxBinding112,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding25,
+        _flaxBinding113,
         _callback4,
         id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<parameter:>)->object:flax.core/sdk_animation#type:Animation<parameter:>",
         invoke: _callback4Invoke,
@@ -25217,358 +25482,295 @@ const _flaxBinding202 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding28,
+    _flaxBinding115,
+    _flaxBinding187,
+    _flaxBinding188,
+    _flaxBinding190,
+    _flaxBinding191,
+    _flaxBinding192,
+    _flaxBinding193,
+    _flaxBinding218,
+    _flaxBinding260,
+    _flaxBinding261,
+    _flaxBinding116,
     _flaxBinding117,
     _flaxBinding118,
+    _flaxBinding119,
     _flaxBinding120,
-    _flaxBinding121,
-    _flaxBinding122,
-    _flaxBinding124,
-    _flaxBinding156,
-    _flaxBinding200,
-    _flaxBinding201,
-    _flaxBinding30,
-    _flaxBinding32,
-    _flaxBinding33,
-    _flaxBinding34,
-    _flaxBinding35,
-    _flaxBinding188,
+    _flaxBinding248,
   ]),
 );
-const _flaxBinding203 = FlaxGetter(
+const _flaxBinding263 = FlaxGetter(
   "status",
-  _flaxBinding0,
+  _flaxBinding4,
   _AnimationMin_status,
 );
-const _flaxBinding204 = FlaxGetter(
+const _flaxBinding264 = FlaxGetter(
   "isDismissed",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMin_isDismissed,
 );
-const _flaxBinding205 = FlaxGetter(
+const _flaxBinding265 = FlaxGetter(
   "isCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMin_isCompleted,
 );
-const _flaxBinding206 = FlaxGetter(
+const _flaxBinding266 = FlaxGetter(
   "isAnimating",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMin_isAnimating,
 );
-const _flaxBinding207 = FlaxGetter(
+const _flaxBinding267 = FlaxGetter(
   "isForwardOrCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMin_isForwardOrCompleted,
 );
-const _flaxBinding208 = FlaxGetter(
+const _flaxBinding268 = FlaxGetter(
   "isListening",
-  _flaxBinding2,
+  _flaxBinding11,
   _AnimationMin_isListening,
 );
-const _flaxBinding209 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Curve",
-  nullable: true,
-);
-const _flaxBinding210 = FlaxGetter(
+const _flaxBinding269 = FlaxGetter(
   "curve",
-  _flaxBinding209,
+  _flaxBinding37,
   _AnimationStyle_curve,
 );
-const _flaxBinding211 = FlaxGetter(
+const _flaxBinding270 = FlaxGetter(
   "duration",
-  _flaxBinding66,
+  _flaxBinding28,
   _AnimationStyle_duration,
 );
-const _flaxBinding212 = FlaxGetter(
+const _flaxBinding271 = FlaxGetter(
   "reverseCurve",
-  _flaxBinding209,
+  _flaxBinding37,
   _AnimationStyle_reverseCurve,
 );
-const _flaxBinding213 = FlaxGetter(
+const _flaxBinding272 = FlaxGetter(
   "reverseDuration",
-  _flaxBinding66,
+  _flaxBinding28,
   _AnimationStyle_reverseDuration,
 );
-const _flaxBinding214 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding273 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _AnimationStyle_toStringShort,
 );
-const _flaxBinding215 = FlaxTypeRef(
+const _flaxBinding274 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticLevel",
 );
-const _flaxBinding216 = <FlaxParameter>[
+const _flaxBinding275 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
-    _flaxBinding215,
+    _flaxBinding274,
     required: false,
     defaultValue: api2.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding217 = FlaxInstanceMethod(
-  _flaxBinding216,
-  _flaxBinding15,
+const _flaxBinding276 = FlaxInstanceMethod(
+  _flaxBinding275,
+  _flaxBinding8,
   _AnimationStyle_toString,
 );
-const _flaxBinding218 = FlaxTypeRef(
+const _flaxBinding277 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
   nullable: true,
 );
-const _flaxBinding219 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding61, required: false),
-  FlaxParameter("style", _flaxBinding218, required: false),
+const _flaxBinding278 = <FlaxParameter>[
+  FlaxParameter("name", _flaxBinding22, required: false),
+  FlaxParameter("style", _flaxBinding277, required: false),
 ];
-const _flaxBinding220 = FlaxTypeRef(
+const _flaxBinding279 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding221 = FlaxInstanceMethod(
-  _flaxBinding219,
-  _flaxBinding220,
+const _flaxBinding280 = FlaxInstanceMethod(
+  _flaxBinding278,
+  _flaxBinding279,
   _AnimationStyle_toDiagnosticsNode,
 );
-const _flaxBinding222 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-);
-const _flaxBinding223 = <FlaxParameter>[
-  FlaxParameter("properties", _flaxBinding222, required: true),
-];
-const _flaxBinding224 = FlaxInstanceMethod(
-  _flaxBinding223,
-  _flaxBinding7,
+const _flaxBinding281 = FlaxInstanceMethod.signature(
+  _flaxBinding33,
   _AnimationStyle_debugFillProperties,
 );
-const _flaxBinding225 = <FlaxParameter>[
-  FlaxParameter("curve", _flaxBinding209, required: false),
-  FlaxParameter("duration", _flaxBinding66, required: false),
-  FlaxParameter("reverseCurve", _flaxBinding209, required: false),
-  FlaxParameter("reverseDuration", _flaxBinding66, required: false),
+const _flaxBinding282 = <FlaxParameter>[
+  FlaxParameter("curve", _flaxBinding37, required: false),
+  FlaxParameter("duration", _flaxBinding28, required: false),
+  FlaxParameter("reverseCurve", _flaxBinding37, required: false),
+  FlaxParameter("reverseDuration", _flaxBinding28, required: false),
 ];
-const _flaxBinding226 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:AnimationStyle",
-);
-const _flaxBinding227 = FlaxInstanceMethod(
-  _flaxBinding225,
-  _flaxBinding226,
+const _flaxBinding283 = FlaxInstanceMethod(
+  _flaxBinding282,
+  _flaxBinding35,
   _AnimationStyle_copyWith,
 );
-const _flaxBinding228 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:AnimationStyle",
-  nullable: true,
-);
-const _flaxBinding229 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding228, required: true),
-];
-const _flaxBinding230 = FlaxInstanceMethod(
-  _flaxBinding229,
-  _flaxBinding226,
+const _flaxBinding284 = FlaxInstanceMethod.signature(
+  _flaxBinding36,
   _AnimationStyle_merge,
 );
-const _flaxBinding231 = FlaxProxyMember(
+const _flaxBinding285 = FlaxProxyMember(
   "toStringShort",
   0,
-  _flaxBinding26,
+  _flaxBinding9,
   hasSuper: true,
 );
-const _flaxBinding232 = FlaxCallbackBinding.signature(
+const _flaxBinding286 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "minLevel",
-      _flaxBinding215,
+      _flaxBinding274,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding15,
+  _flaxBinding8,
   id: "callback:<>(n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding233 = FlaxProxyMember(
+const _flaxBinding287 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding232,
+  _flaxBinding286,
   hasSuper: true,
 );
-const _flaxBinding234 = FlaxCallbackBinding.signature(
+const _flaxBinding288 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "name",
-      _flaxBinding61,
+      _flaxBinding22,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "style",
-      _flaxBinding218,
+      _flaxBinding277,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding220,
+  _flaxBinding279,
   id: "callback:<>(n:o:name:String?:,n:o:style:enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle)->object:flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding235 = FlaxProxyMember(
+const _flaxBinding289 = FlaxProxyMember(
   "toDiagnosticsNode",
   0,
-  _flaxBinding234,
+  _flaxBinding288,
   hasSuper: true,
 );
-const _flaxBinding236 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "properties",
-      _flaxBinding222,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:properties:object:flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder)->void:",
-);
-const _flaxBinding237 = FlaxProxyMember(
+const _flaxBinding290 = FlaxProxyMember(
   "debugFillProperties",
   0,
-  _flaxBinding236,
+  _flaxBinding33,
   hasSuper: true,
 );
-const _flaxBinding238 = FlaxCallbackBinding.signature(
+const _flaxBinding291 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "curve",
-      _flaxBinding209,
+      _flaxBinding37,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "duration",
-      _flaxBinding66,
+      _flaxBinding28,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "reverseCurve",
-      _flaxBinding209,
+      _flaxBinding37,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "reverseDuration",
-      _flaxBinding66,
+      _flaxBinding28,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding226,
+  _flaxBinding35,
   id: "callback:<>(n:o:curve:object?:flax.core/flutter#type:Curve,n:o:duration:object?:flax.core/flutter#type:Duration,n:o:reverseCurve:object?:flax.core/flutter#type:Curve,n:o:reverseDuration:object?:flax.core/flutter#type:Duration)->object:flax.core/sdk_animation#type:AnimationStyle",
 );
-const _flaxBinding239 = FlaxProxyMember(
+const _flaxBinding292 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding238,
+  _flaxBinding291,
   hasSuper: true,
 );
-const _flaxBinding240 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "other",
-      _flaxBinding228,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding226,
-  id: "callback:<>(p:r:other:object?:flax.core/sdk_animation#type:AnimationStyle)->object:flax.core/sdk_animation#type:AnimationStyle",
-);
-const _flaxBinding241 = FlaxProxyMember(
+const _flaxBinding293 = FlaxProxyMember(
   "merge",
   0,
-  _flaxBinding240,
+  _flaxBinding36,
   hasSuper: true,
 );
-const _flaxBinding242 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding209,
-  id: "callback:<>()->object?:flax.core/flutter#type:Curve",
-);
-const _flaxBinding243 = FlaxProxyMember(
+const _flaxBinding294 = FlaxProxyMember(
   "curve",
   1,
-  _flaxBinding242,
+  _flaxBinding38,
   hasSuper: true,
 );
-const _flaxBinding244 = FlaxProxyMember(
+const _flaxBinding295 = FlaxProxyMember(
   "reverseCurve",
   1,
-  _flaxBinding242,
+  _flaxBinding38,
   hasSuper: true,
 );
-const _flaxBinding245 = FlaxObjectBinding(
+const _flaxBinding296 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:AnimationStyle",
-  [_flaxBinding210, _flaxBinding211, _flaxBinding212, _flaxBinding213],
+  [_flaxBinding269, _flaxBinding270, _flaxBinding271, _flaxBinding272],
   {
-    "toStringShort": _flaxBinding214,
-    "toString": _flaxBinding217,
-    "toDiagnosticsNode": _flaxBinding221,
-    "debugFillProperties": _flaxBinding224,
-    "copyWith": _flaxBinding227,
-    "merge": _flaxBinding230,
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "toStringShort": _flaxBinding273,
+    "toString": _flaxBinding276,
+    "toDiagnosticsNode": _flaxBinding280,
+    "debugFillProperties": _flaxBinding281,
+    "copyWith": _flaxBinding283,
+    "merge": _flaxBinding284,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _AnimationStyle_super_toStringShort,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding216,
-      _flaxBinding15,
+      _flaxBinding275,
+      _flaxBinding8,
       _AnimationStyle_super_toString,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding219,
-      _flaxBinding220,
+      _flaxBinding278,
+      _flaxBinding279,
       _AnimationStyle_super_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding223,
-      _flaxBinding7,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding33,
       _AnimationStyle_super_debugFillProperties,
     ),
     "@super:copyWith": FlaxInstanceMethod(
-      _flaxBinding225,
-      _flaxBinding226,
+      _flaxBinding282,
+      _flaxBinding35,
       _AnimationStyle_super_copyWith,
     ),
-    "@super:merge": FlaxInstanceMethod(
-      _flaxBinding229,
-      _flaxBinding226,
+    "@super:merge": FlaxInstanceMethod.signature(
+      _flaxBinding36,
       _AnimationStyle_super_merge,
     ),
-    "@super:get:curve": FlaxInstanceMethod(
-      [],
-      _flaxBinding209,
+    "@super:get:curve": FlaxInstanceMethod.signature(
+      _flaxBinding38,
       _AnimationStyle_super_get_curve,
     ),
-    "@super:get:duration": FlaxInstanceMethod(
-      [],
-      _flaxBinding66,
+    "@super:get:duration": FlaxInstanceMethod.signature(
+      _flaxBinding29,
       _AnimationStyle_super_get_duration,
     ),
-    "@super:get:reverseCurve": FlaxInstanceMethod(
-      [],
-      _flaxBinding209,
+    "@super:get:reverseCurve": FlaxInstanceMethod.signature(
+      _flaxBinding38,
       _AnimationStyle_super_get_reverseCurve,
     ),
-    "@super:get:reverseDuration": FlaxInstanceMethod(
-      [],
-      _flaxBinding66,
+    "@super:get:reverseDuration": FlaxInstanceMethod.signature(
+      _flaxBinding29,
       _AnimationStyle_super_get_reverseDuration,
     ),
   },
-  constructors: {"@implementation": _flaxBinding225},
+  constructors: {"@implementation": _flaxBinding282},
   create: _createAnimationStyle,
   matches: _isAnimationStyle,
   setters: [],
@@ -25577,172 +25779,117 @@ const _flaxBinding245 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding231,
-    _flaxBinding233,
-    _flaxBinding235,
-    _flaxBinding237,
-    _flaxBinding239,
-    _flaxBinding241,
-    _flaxBinding243,
-    _flaxBinding154,
-    _flaxBinding244,
-    _flaxBinding155,
+    _flaxBinding285,
+    _flaxBinding287,
+    _flaxBinding289,
+    _flaxBinding290,
+    _flaxBinding292,
+    _flaxBinding293,
+    _flaxBinding294,
+    _flaxBinding216,
+    _flaxBinding295,
+    _flaxBinding217,
   ]),
 );
-const _flaxBinding246 = FlaxGetter(
+const _flaxBinding297 = FlaxGetter(
   "status",
-  _flaxBinding0,
+  _flaxBinding4,
   _AnimationWithParentMixin_status,
 );
-const _flaxBinding247 = FlaxGetter(
+const _flaxBinding298 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _CatmullRomCurve_flipped,
 );
-const _flaxBinding248 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Offset",
-);
-const _flaxBinding249 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding248,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/flutter#type:Offset]",
-    _collection1Create,
-    _collection1Matches,
-    restore: _collection1Restore,
-  ),
-);
-const _flaxBinding250 = FlaxTypeRef(
-  "list",
-  item: _flaxBinding248,
-  collection: FlaxCollectionBinding(
-    "list:[object:flax.core/flutter#type:Offset]",
-    _collection0Create,
-    _collection0Matches,
-  ),
-  iterable: _flaxBinding249,
-);
-const _flaxBinding251 = FlaxGetter(
+const _flaxBinding299 = FlaxGetter(
   "controlPoints",
-  _flaxBinding250,
+  _flaxBinding42,
   _CatmullRomCurve_controlPoints,
 );
-const _flaxBinding252 = FlaxGetter(
+const _flaxBinding300 = FlaxGetter(
   "tension",
-  _flaxBinding36,
+  _flaxBinding20,
   _CatmullRomCurve_tension,
 );
-const _flaxBinding253 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding301 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _CatmullRomCurve_transform,
 );
-const _flaxBinding254 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding302 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _CatmullRomCurve_transformInternal,
 );
-const _flaxBinding255 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding303 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _CatmullRomCurve_toString,
 );
-const _flaxBinding256 = <FlaxParameter>[
-  FlaxParameter("controlPoints", _flaxBinding250, required: true),
-  FlaxParameter("tension", _flaxBinding36, required: false, defaultValue: 0.0),
+const _flaxBinding304 = <FlaxParameter>[
+  FlaxParameter("controlPoints", _flaxBinding42, required: true),
+  FlaxParameter("tension", _flaxBinding20, required: false, defaultValue: 0.0),
 ];
-const _flaxBinding257 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "t",
-      _flaxBinding36,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding36,
-  id: "callback:<>(p:r:t:double:)->double:",
-);
-const _flaxBinding258 = FlaxProxyMember(
+const _flaxBinding305 = FlaxProxyMember(
   "transform",
   0,
-  _flaxBinding257,
+  _flaxBinding39,
   hasSuper: true,
 );
-const _flaxBinding259 = FlaxProxyMember(
+const _flaxBinding306 = FlaxProxyMember(
   "transformInternal",
   0,
-  _flaxBinding257,
+  _flaxBinding39,
   hasSuper: true,
 );
-const _flaxBinding260 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding250,
-  id: "callback:<>()->list:[object:flax.core/flutter#type:Offset]",
-);
-const _flaxBinding261 = FlaxProxyMember(
+const _flaxBinding307 = FlaxProxyMember(
   "controlPoints",
   1,
-  _flaxBinding260,
+  _flaxBinding43,
   hasSuper: true,
 );
-const _flaxBinding262 = FlaxProxyMember(
+const _flaxBinding308 = FlaxProxyMember(
   "tension",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding263 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding98,
-  id: "callback:<>()->object:flax.core/flutter#type:Curve",
-);
-const _flaxBinding264 = FlaxProxyMember(
+const _flaxBinding309 = FlaxProxyMember(
   "flipped",
   1,
-  _flaxBinding263,
+  _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding265 = FlaxObjectBinding(
+const _flaxBinding310 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:CatmullRomCurve",
-  [_flaxBinding247, _flaxBinding251, _flaxBinding252],
+  [_flaxBinding298, _flaxBinding299, _flaxBinding300],
   {
-    "transform": _flaxBinding253,
-    "transformInternal": _flaxBinding254,
-    "toString": _flaxBinding255,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding301,
+    "transformInternal": _flaxBinding302,
+    "toString": _flaxBinding303,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:controlPoints": FlaxInstanceMethod(
-      [],
-      _flaxBinding250,
+    "@super:get:controlPoints": FlaxInstanceMethod.signature(
+      _flaxBinding43,
       _CatmullRomCurve_super_get_controlPoints,
     ),
-    "@super:get:tension": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:tension": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _CatmullRomCurve_super_get_tension,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding256},
+  constructors: {"@implementation": _flaxBinding304},
   create: _createCatmullRomCurve,
   matches: _isCatmullRomCurve,
   setters: [],
@@ -25752,52 +25899,48 @@ const _flaxBinding265 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding261,
-    _flaxBinding262,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding307,
+    _flaxBinding308,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding266 = FlaxTypeRef("int");
-const _flaxBinding267 = FlaxGetter(
+const _flaxBinding311 = FlaxGetter(
   "samplingSeed",
-  _flaxBinding266,
+  _flaxBinding48,
   _Curve2D_samplingSeed,
 );
-const _flaxBinding268 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding248,
+const _flaxBinding312 = FlaxInstanceMethod.signature(
+  _flaxBinding47,
   _Curve2D_transform,
 );
-const _flaxBinding269 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding248,
+const _flaxBinding313 = FlaxInstanceMethod.signature(
+  _flaxBinding47,
   _Curve2D_transformInternal,
 );
-const _flaxBinding270 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding314 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _Curve2D_toString,
 );
-const _flaxBinding271 = <FlaxParameter>[
-  FlaxParameter("end", _flaxBinding36, required: false, defaultValue: 1.0),
-  FlaxParameter("start", _flaxBinding36, required: false, defaultValue: 0.0),
+const _flaxBinding315 = <FlaxParameter>[
+  FlaxParameter("end", _flaxBinding20, required: false, defaultValue: 1.0),
+  FlaxParameter("start", _flaxBinding20, required: false, defaultValue: 0.0),
   FlaxParameter(
     "tolerance",
-    _flaxBinding36,
+    _flaxBinding20,
     required: false,
     defaultValue: 1e-10,
   ),
 ];
-const _flaxBinding272 = FlaxTypeRef(
+const _flaxBinding316 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Curve2DSample",
 );
-const _flaxBinding273 = FlaxTypeRef(
+const _flaxBinding317 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding272,
+  item: _flaxBinding316,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_animation#type:Curve2DSample]",
     _collection2Create,
@@ -25805,143 +25948,105 @@ const _flaxBinding273 = FlaxTypeRef(
     restore: _collection2Restore,
   ),
 );
-const _flaxBinding274 = FlaxInstanceMethod(
-  _flaxBinding271,
-  _flaxBinding273,
+const _flaxBinding318 = FlaxInstanceMethod(
+  _flaxBinding315,
+  _flaxBinding317,
   _Curve2D_generateSamples,
 );
-const _flaxBinding275 = <FlaxParameter>[
-  FlaxParameter("x", _flaxBinding36, required: true),
-];
-const _flaxBinding276 = FlaxInstanceMethod(
-  _flaxBinding275,
-  _flaxBinding36,
+const _flaxBinding319 = FlaxInstanceMethod.signature(
+  _flaxBinding46,
   _Curve2D_findInverse,
 );
-const _flaxBinding277 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "t",
-      _flaxBinding36,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding248,
-  id: "callback:<>(p:r:t:double:)->object:flax.core/flutter#type:Offset",
-);
-const _flaxBinding278 = FlaxProxyMember(
+const _flaxBinding320 = FlaxProxyMember(
   "transform",
   0,
-  _flaxBinding277,
+  _flaxBinding47,
   hasSuper: true,
 );
-const _flaxBinding279 = FlaxProxyMember(
+const _flaxBinding321 = FlaxProxyMember(
   "transformInternal",
   0,
-  _flaxBinding277,
+  _flaxBinding47,
   hasSuper: true,
 );
-const _flaxBinding280 = FlaxCallbackBinding.signature(
+const _flaxBinding322 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "start",
-      _flaxBinding36,
+      _flaxBinding20,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "end",
-      _flaxBinding36,
+      _flaxBinding20,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "tolerance",
-      _flaxBinding36,
+      _flaxBinding20,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding273,
+  _flaxBinding317,
   id: "callback:<>(n:o:start:double:,n:o:end:double:,n:o:tolerance:double:)->iterable:[object:flax.core/sdk_animation#type:Curve2DSample]",
 );
-const _flaxBinding281 = FlaxProxyMember(
+const _flaxBinding323 = FlaxProxyMember(
   "generateSamples",
   0,
-  _flaxBinding280,
+  _flaxBinding322,
   hasSuper: true,
 );
-const _flaxBinding282 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "x",
-      _flaxBinding36,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding36,
-  id: "callback:<>(p:r:x:double:)->double:",
-);
-const _flaxBinding283 = FlaxProxyMember(
+const _flaxBinding324 = FlaxProxyMember(
   "findInverse",
   0,
-  _flaxBinding282,
+  _flaxBinding46,
   hasSuper: true,
 );
-const _flaxBinding284 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding266,
-  id: "callback:<>()->int:",
-);
-const _flaxBinding285 = FlaxProxyMember(
+const _flaxBinding325 = FlaxProxyMember(
   "samplingSeed",
   1,
-  _flaxBinding284,
+  _flaxBinding49,
   hasSuper: true,
 );
-const _flaxBinding286 = FlaxObjectBinding(
+const _flaxBinding326 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:Curve2D",
-  [_flaxBinding267],
+  [_flaxBinding311],
   {
-    "transform": _flaxBinding268,
-    "transformInternal": _flaxBinding269,
-    "toString": _flaxBinding270,
-    "generateSamples": _flaxBinding274,
-    "findInverse": _flaxBinding276,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding248,
+    "transform": _flaxBinding312,
+    "transformInternal": _flaxBinding313,
+    "toString": _flaxBinding314,
+    "generateSamples": _flaxBinding318,
+    "findInverse": _flaxBinding319,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding47,
       _FlaxProxyDispatch12_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding248,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding47,
       _FlaxProxyDispatch12_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
     "@super:generateSamples": FlaxInstanceMethod(
-      _flaxBinding271,
-      _flaxBinding273,
+      _flaxBinding315,
+      _flaxBinding317,
       _FlaxProxyDispatch12_super_call_generateSamples,
     ),
-    "@super:findInverse": FlaxInstanceMethod(
-      _flaxBinding275,
-      _flaxBinding36,
+    "@super:findInverse": FlaxInstanceMethod.signature(
+      _flaxBinding46,
       _FlaxProxyDispatch12_super_call_findInverse,
     ),
-    "@super:get:samplingSeed": FlaxInstanceMethod(
-      [],
-      _flaxBinding266,
+    "@super:get:samplingSeed": FlaxInstanceMethod.signature(
+      _flaxBinding49,
       _FlaxProxyDispatch12_super_get_samplingSeed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding14},
+  constructors: {"@implementation": _flaxBinding105},
   create: _createCurve2D,
   matches: _isCurve2D,
   setters: [],
@@ -25950,61 +26055,56 @@ const _flaxBinding286 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding278,
-    _flaxBinding279,
-    _flaxBinding27,
-    _flaxBinding281,
-    _flaxBinding283,
-    _flaxBinding285,
+    _flaxBinding320,
+    _flaxBinding321,
+    _flaxBinding114,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding325,
   ]),
 );
-const _flaxBinding287 = FlaxTypeRef(
+const _flaxBinding327 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Offset",
   nullable: true,
 );
-const _flaxBinding288 = <FlaxParameter>[
-  FlaxParameter("controlPoints", _flaxBinding250, required: true),
-  FlaxParameter("tension", _flaxBinding36, required: false, defaultValue: 0.0),
-  FlaxParameter("startHandle", _flaxBinding287, required: false),
-  FlaxParameter("endHandle", _flaxBinding287, required: false),
+const _flaxBinding328 = <FlaxParameter>[
+  FlaxParameter("controlPoints", _flaxBinding42, required: true),
+  FlaxParameter("tension", _flaxBinding20, required: false, defaultValue: 0.0),
+  FlaxParameter("startHandle", _flaxBinding327, required: false),
+  FlaxParameter("endHandle", _flaxBinding327, required: false),
 ];
-const _flaxBinding289 = FlaxObjectBinding(
+const _flaxBinding329 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:CatmullRomSpline",
   [],
   {
     "@super:generateSamples": FlaxInstanceMethod(
-      _flaxBinding271,
-      _flaxBinding273,
+      _flaxBinding315,
+      _flaxBinding317,
       _FlaxProxyDispatch12_super_call_generateSamples,
     ),
-    "@super:findInverse": FlaxInstanceMethod(
-      _flaxBinding275,
-      _flaxBinding36,
+    "@super:findInverse": FlaxInstanceMethod.signature(
+      _flaxBinding46,
       _FlaxProxyDispatch12_super_call_findInverse,
     ),
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding248,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding47,
       _FlaxProxyDispatch12_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding248,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding47,
       _FlaxProxyDispatch12_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:samplingSeed": FlaxInstanceMethod(
-      [],
-      _flaxBinding266,
+    "@super:get:samplingSeed": FlaxInstanceMethod.signature(
+      _flaxBinding49,
       _FlaxProxyDispatch12_super_get_samplingSeed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding288},
+  constructors: {"@implementation": _flaxBinding328},
   create: _createCatmullRomSpline,
   matches: _isCatmullRomSpline,
   setters: [],
@@ -26013,713 +26113,515 @@ const _flaxBinding289 = FlaxObjectBinding(
     "flax.core/sdk_animation#type:ParametricCurve",
     "dart:core::Object",
   ],
-  parent: _flaxBinding286,
+  parent: _flaxBinding326,
   proxy: FlaxProxyBinding([
-    _flaxBinding281,
-    _flaxBinding283,
-    _flaxBinding278,
-    _flaxBinding279,
-    _flaxBinding27,
-    _flaxBinding285,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding320,
+    _flaxBinding321,
+    _flaxBinding114,
+    _flaxBinding325,
   ]),
 );
-const _flaxBinding290 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Color",
-  nullable: true,
-);
-const _flaxBinding291 = FlaxGetter("begin", _flaxBinding290, _ColorTween_begin);
-const _flaxBinding292 = FlaxGetter("end", _flaxBinding290, _ColorTween_end);
-const _flaxBinding293 = FlaxSetter(
+const _flaxBinding330 = FlaxGetter("begin", _flaxBinding50, _ColorTween_begin);
+const _flaxBinding331 = FlaxGetter("end", _flaxBinding50, _ColorTween_end);
+const _flaxBinding332 = FlaxSetter(
   "begin",
-  _flaxBinding290,
+  _flaxBinding50,
   _ColorTween_set_begin,
 );
-const _flaxBinding294 = FlaxSetter("end", _flaxBinding290, _ColorTween_set_end);
-const _flaxBinding295 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding290,
+const _flaxBinding333 = FlaxSetter("end", _flaxBinding50, _ColorTween_set_end);
+const _flaxBinding334 = FlaxInstanceMethod.signature(
+  _flaxBinding51,
   _ColorTween_lerp,
 );
-const _flaxBinding296 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding290,
+const _flaxBinding335 = FlaxInstanceMethod.signature(
+  _flaxBinding51,
   _ColorTween_transform,
 );
-const _flaxBinding297 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding336 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _ColorTween_toString,
 );
-const _flaxBinding298 = FlaxInstanceMethod(
-  _flaxBinding39,
-  _flaxBinding290,
+const _flaxBinding337 = FlaxInstanceMethod.signature(
+  _flaxBinding52,
   _ColorTween_evaluate,
 );
-const _flaxBinding299 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animation",
-  dartType: FlaxDartTypes.typeOf<api.Animation<api1.Color?>>,
-);
-const _flaxBinding300 = FlaxInstanceMethod(
-  _flaxBinding40,
-  _flaxBinding299,
+const _flaxBinding338 = FlaxInstanceMethod.signature(
+  _flaxBinding54,
   _ColorTween_animate,
 );
-const _flaxBinding301 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animatable",
-  dartType: FlaxDartTypes.typeOf<api.Animatable<api1.Color?>>,
-);
-const _flaxBinding302 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding301,
+const _flaxBinding339 = FlaxInstanceMethod.signature(
+  _flaxBinding57,
   _ColorTween_chain,
 );
-const _flaxBinding303 = <FlaxParameter>[
-  FlaxParameter("begin", _flaxBinding290, required: false),
-  FlaxParameter("end", _flaxBinding290, required: false),
+const _flaxBinding340 = <FlaxParameter>[
+  FlaxParameter("begin", _flaxBinding50, required: false),
+  FlaxParameter("end", _flaxBinding50, required: false),
 ];
-const _flaxBinding304 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "t",
-      _flaxBinding36,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding290,
-  id: "callback:<>(p:r:t:double:)->object?:flax.core/flutter#type:Color",
-);
-const _flaxBinding305 = FlaxProxyMember(
+const _flaxBinding341 = FlaxProxyMember(
   "lerp",
   0,
-  _flaxBinding304,
+  _flaxBinding51,
   hasSuper: true,
 );
-const _flaxBinding306 = FlaxProxyMember(
+const _flaxBinding342 = FlaxProxyMember(
   "transform",
   0,
-  _flaxBinding304,
+  _flaxBinding51,
   hasSuper: true,
 );
-const _flaxBinding307 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "animation",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding290,
-  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->object?:flax.core/flutter#type:Color",
-);
-const _flaxBinding308 = FlaxProxyMember(
+const _flaxBinding343 = FlaxProxyMember(
   "evaluate",
   0,
-  _flaxBinding307,
+  _flaxBinding52,
   hasSuper: true,
 );
-const _flaxBinding309 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding299,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<object?:flax.core/flutter#type:Color>",
-);
-const _flaxBinding310 = FlaxProxyMember(
+const _flaxBinding344 = FlaxProxyMember(
   "animate",
   0,
-  _flaxBinding309,
+  _flaxBinding54,
   hasSuper: true,
 );
-const _flaxBinding311 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding41,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding301,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<object?:flax.core/flutter#type:Color>",
-);
-const _flaxBinding312 = FlaxProxyMember(
+const _flaxBinding345 = FlaxProxyMember(
   "chain",
   0,
-  _flaxBinding311,
+  _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding313 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding290,
-  id: "callback:<>()->object?:flax.core/flutter#type:Color",
-);
-const _flaxBinding314 = FlaxProxyMember(
+const _flaxBinding346 = FlaxProxyMember(
   "begin",
   1,
-  _flaxBinding313,
+  _flaxBinding58,
   hasSuper: true,
 );
-const _flaxBinding315 = FlaxProxyMember(
+const _flaxBinding347 = FlaxProxyMember(
   "end",
   1,
-  _flaxBinding313,
+  _flaxBinding58,
   hasSuper: true,
 );
-const _flaxBinding316 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding290,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Color)->void:",
-);
-const _flaxBinding317 = FlaxProxyMember(
+const _flaxBinding348 = FlaxProxyMember(
   "begin",
   2,
-  _flaxBinding316,
+  _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding318 = FlaxProxyMember(
+const _flaxBinding349 = FlaxProxyMember(
   "end",
   2,
-  _flaxBinding316,
+  _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding319 = FlaxObjectBinding(
+const _flaxBinding350 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:ColorTween",
-  [_flaxBinding291, _flaxBinding292],
+  [_flaxBinding330, _flaxBinding331],
   {
-    "lerp": _flaxBinding295,
-    "transform": _flaxBinding296,
-    "toString": _flaxBinding297,
-    "evaluate": _flaxBinding298,
-    "animate": _flaxBinding300,
-    "chain": _flaxBinding302,
-    "@super:lerp": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding290,
+    "lerp": _flaxBinding334,
+    "transform": _flaxBinding335,
+    "toString": _flaxBinding336,
+    "evaluate": _flaxBinding337,
+    "animate": _flaxBinding338,
+    "chain": _flaxBinding339,
+    "@super:lerp": FlaxInstanceMethod.signature(
+      _flaxBinding51,
       _ColorTween_super_lerp,
     ),
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding290,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding51,
       _ColorTween_super_transform,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:evaluate": FlaxInstanceMethod(
-      _flaxBinding39,
-      _flaxBinding290,
+    "@super:evaluate": FlaxInstanceMethod.signature(
+      _flaxBinding52,
       _ColorTween_super_evaluate,
     ),
-    "@super:animate": FlaxInstanceMethod(
-      _flaxBinding40,
-      _flaxBinding299,
+    "@super:animate": FlaxInstanceMethod.signature(
+      _flaxBinding54,
       _ColorTween_super_animate,
     ),
-    "@super:chain": FlaxInstanceMethod(
-      _flaxBinding42,
-      _flaxBinding301,
+    "@super:chain": FlaxInstanceMethod.signature(
+      _flaxBinding57,
       _ColorTween_super_chain,
     ),
-    "@super:get:begin": FlaxInstanceMethod(
-      [],
-      _flaxBinding290,
+    "@super:get:begin": FlaxInstanceMethod.signature(
+      _flaxBinding58,
       _ColorTween_super_get_begin,
     ),
-    "@super:get:end": FlaxInstanceMethod(
-      [],
-      _flaxBinding290,
+    "@super:get:end": FlaxInstanceMethod.signature(
+      _flaxBinding58,
       _ColorTween_super_get_end,
     ),
     "@super:set:begin": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding290, required: true)],
+      [FlaxParameter("value", _flaxBinding50, required: true)],
       const FlaxTypeRef("void"),
       _ColorTween_super_set_begin,
     ),
     "@super:set:end": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding290, required: true)],
+      [FlaxParameter("value", _flaxBinding50, required: true)],
       const FlaxTypeRef("void"),
       _ColorTween_super_set_end,
     ),
   },
-  constructors: {"@implementation": _flaxBinding303},
+  constructors: {"@implementation": _flaxBinding340},
   create: _createColorTween,
   matches: _isColorTween,
-  setters: [_flaxBinding293, _flaxBinding294],
+  setters: [_flaxBinding332, _flaxBinding333],
   supertypes: [
     "flax.core/sdk_animation#type:Tween",
     "flax.core/sdk_animation#type:Animatable",
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding305,
-    _flaxBinding306,
-    _flaxBinding27,
-    _flaxBinding308,
-    _flaxBinding310,
-    _flaxBinding312,
-    _flaxBinding314,
-    _flaxBinding315,
-    _flaxBinding317,
-    _flaxBinding318,
+    _flaxBinding341,
+    _flaxBinding342,
+    _flaxBinding114,
+    _flaxBinding343,
+    _flaxBinding344,
+    _flaxBinding345,
+    _flaxBinding346,
+    _flaxBinding347,
+    _flaxBinding348,
+    _flaxBinding349,
   ]),
 );
-const _flaxBinding320 = FlaxGetter(
+const _flaxBinding351 = FlaxGetter(
   "status",
-  _flaxBinding0,
+  _flaxBinding4,
   _CompoundAnimation_status,
 );
-const _flaxBinding321 = FlaxGetter(
+const _flaxBinding352 = FlaxGetter(
   "isDismissed",
-  _flaxBinding2,
+  _flaxBinding11,
   _CompoundAnimation_isDismissed,
 );
-const _flaxBinding322 = FlaxGetter(
+const _flaxBinding353 = FlaxGetter(
   "isCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _CompoundAnimation_isCompleted,
 );
-const _flaxBinding323 = FlaxGetter(
+const _flaxBinding354 = FlaxGetter(
   "isAnimating",
-  _flaxBinding2,
+  _flaxBinding11,
   _CompoundAnimation_isAnimating,
 );
-const _flaxBinding324 = FlaxGetter(
+const _flaxBinding355 = FlaxGetter(
   "isForwardOrCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _CompoundAnimation_isForwardOrCompleted,
 );
-const _flaxBinding325 = FlaxGetter(
+const _flaxBinding356 = FlaxGetter(
   "isListening",
-  _flaxBinding2,
+  _flaxBinding11,
   _CompoundAnimation_isListening,
 );
-const _flaxBinding326 = <FlaxParameter>[
-  FlaxParameter("first", _flaxBinding25, required: true),
-  FlaxParameter("next", _flaxBinding25, required: true),
+const _flaxBinding357 = <FlaxParameter>[
+  FlaxParameter("first", _flaxBinding113, required: true),
+  FlaxParameter("next", _flaxBinding113, required: true),
 ];
-const _flaxBinding327 = FlaxGetter("t", _flaxBinding36, _Curve2DSample_t);
-const _flaxBinding328 = FlaxGetter(
+const _flaxBinding358 = FlaxGetter("t", _flaxBinding20, _Curve2DSample_t);
+const _flaxBinding359 = FlaxGetter(
   "value",
-  _flaxBinding248,
+  _flaxBinding40,
   _Curve2DSample_value,
 );
-const _flaxBinding329 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding360 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _Curve2DSample_toString,
 );
-const _flaxBinding330 = <FlaxParameter>[
-  FlaxParameter("t", _flaxBinding36, required: true),
-  FlaxParameter("value", _flaxBinding248, required: true),
+const _flaxBinding361 = <FlaxParameter>[
+  FlaxParameter("t", _flaxBinding20, required: true),
+  FlaxParameter("value", _flaxBinding40, required: true),
 ];
-const _flaxBinding331 = FlaxProxyMember(
-  "t",
-  1,
-  _flaxBinding144,
-  hasSuper: true,
-);
-const _flaxBinding332 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding248,
-  id: "callback:<>()->object:flax.core/flutter#type:Offset",
-);
-const _flaxBinding333 = FlaxProxyMember(
+const _flaxBinding362 = FlaxProxyMember("t", 1, _flaxBinding21, hasSuper: true);
+const _flaxBinding363 = FlaxProxyMember(
   "value",
   1,
-  _flaxBinding332,
+  _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding334 = FlaxObjectBinding(
+const _flaxBinding364 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:Curve2DSample",
-  [_flaxBinding327, _flaxBinding328],
+  [_flaxBinding358, _flaxBinding359],
   {
-    "toString": _flaxBinding329,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "toString": _flaxBinding360,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:t": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:t": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _Curve2DSample_super_get_t,
     ),
-    "@super:get:value": FlaxInstanceMethod(
-      [],
-      _flaxBinding248,
+    "@super:get:value": FlaxInstanceMethod.signature(
+      _flaxBinding60,
       _Curve2DSample_super_get_value,
     ),
   },
-  constructors: {"@implementation": _flaxBinding330},
+  constructors: {"@implementation": _flaxBinding361},
   create: _createCurve2DSample,
   matches: _isCurve2DSample,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding27, _flaxBinding331, _flaxBinding333]),
+  proxy: FlaxProxyBinding([_flaxBinding114, _flaxBinding362, _flaxBinding363]),
 );
-const _flaxBinding335 = FlaxGetter("curve", _flaxBinding98, _CurveTween_curve);
-const _flaxBinding336 = FlaxSetter(
+const _flaxBinding365 = FlaxGetter("curve", _flaxBinding44, _CurveTween_curve);
+const _flaxBinding366 = FlaxSetter(
   "curve",
-  _flaxBinding98,
+  _flaxBinding44,
   _CurveTween_set_curve,
 );
-const _flaxBinding337 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding367 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _CurveTween_transform,
 );
-const _flaxBinding338 = FlaxInstanceMethod(
-  _flaxBinding39,
-  _flaxBinding36,
+const _flaxBinding368 = FlaxInstanceMethod.signature(
+  _flaxBinding61,
   _CurveTween_evaluate,
 );
-const _flaxBinding339 = FlaxInstanceMethod(
-  _flaxBinding40,
-  _flaxBinding38,
+const _flaxBinding369 = FlaxInstanceMethod.signature(
+  _flaxBinding62,
   _CurveTween_animate,
 );
-const _flaxBinding340 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding41,
+const _flaxBinding370 = FlaxInstanceMethod.signature(
+  _flaxBinding63,
   _CurveTween_chain,
 );
-const _flaxBinding341 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding371 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _CurveTween_toString,
 );
-const _flaxBinding342 = <FlaxParameter>[
-  FlaxParameter("curve", _flaxBinding98, required: true),
+const _flaxBinding372 = <FlaxParameter>[
+  FlaxParameter("curve", _flaxBinding44, required: true),
 ];
-const _flaxBinding343 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "animation",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding36,
-  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->double:",
-);
-const _flaxBinding344 = FlaxProxyMember(
+const _flaxBinding373 = FlaxProxyMember(
   "evaluate",
   0,
-  _flaxBinding343,
+  _flaxBinding61,
   hasSuper: true,
 );
-const _flaxBinding345 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding38,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<double:>",
-);
-const _flaxBinding346 = FlaxProxyMember(
+const _flaxBinding374 = FlaxProxyMember(
   "animate",
   0,
-  _flaxBinding345,
+  _flaxBinding62,
   hasSuper: true,
 );
-const _flaxBinding347 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding41,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding41,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<double:>",
-);
-const _flaxBinding348 = FlaxProxyMember(
+const _flaxBinding375 = FlaxProxyMember(
   "chain",
   0,
-  _flaxBinding347,
+  _flaxBinding63,
   hasSuper: true,
 );
-const _flaxBinding349 = FlaxProxyMember(
+const _flaxBinding376 = FlaxProxyMember(
   "curve",
   1,
-  _flaxBinding263,
+  _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding350 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding98,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:object:flax.core/flutter#type:Curve)->void:",
-);
-const _flaxBinding351 = FlaxProxyMember(
+const _flaxBinding377 = FlaxProxyMember(
   "curve",
   2,
-  _flaxBinding350,
+  _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding352 = FlaxObjectBinding(
+const _flaxBinding378 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:CurveTween",
-  [_flaxBinding335],
+  [_flaxBinding365],
   {
-    "transform": _flaxBinding337,
-    "evaluate": _flaxBinding338,
-    "animate": _flaxBinding339,
-    "chain": _flaxBinding340,
-    "toString": _flaxBinding341,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding367,
+    "evaluate": _flaxBinding368,
+    "animate": _flaxBinding369,
+    "chain": _flaxBinding370,
+    "toString": _flaxBinding371,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:evaluate": FlaxInstanceMethod(
-      _flaxBinding39,
-      _flaxBinding36,
+    "@super:evaluate": FlaxInstanceMethod.signature(
+      _flaxBinding61,
       _FlaxProxyDispatch13_super_call_evaluate,
     ),
-    "@super:animate": FlaxInstanceMethod(
-      _flaxBinding40,
-      _flaxBinding38,
+    "@super:animate": FlaxInstanceMethod.signature(
+      _flaxBinding62,
       _FlaxProxyDispatch13_super_call_animate,
     ),
-    "@super:chain": FlaxInstanceMethod(
-      _flaxBinding42,
-      _flaxBinding41,
+    "@super:chain": FlaxInstanceMethod.signature(
+      _flaxBinding63,
       _FlaxProxyDispatch13_super_call_chain,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:curve": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:curve": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _CurveTween_super_get_curve,
     ),
     "@super:set:curve": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
+      [FlaxParameter("value", _flaxBinding44, required: true)],
       const FlaxTypeRef("void"),
       _CurveTween_super_set_curve,
     ),
   },
-  constructors: {"@implementation": _flaxBinding342},
+  constructors: {"@implementation": _flaxBinding372},
   create: _createCurveTween,
   matches: _isCurveTween,
-  setters: [_flaxBinding336],
+  setters: [_flaxBinding366],
   supertypes: ["flax.core/sdk_animation#type:Animatable", "dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding344,
-    _flaxBinding346,
-    _flaxBinding348,
-    _flaxBinding27,
-    _flaxBinding349,
-    _flaxBinding351,
+    _flaxBinding305,
+    _flaxBinding373,
+    _flaxBinding374,
+    _flaxBinding375,
+    _flaxBinding114,
+    _flaxBinding376,
+    _flaxBinding377,
   ]),
 );
-const _flaxBinding353 = FlaxGetter(
+const _flaxBinding379 = FlaxGetter(
   "status",
-  _flaxBinding0,
+  _flaxBinding4,
   _CurvedAnimation_status,
 );
-const _flaxBinding354 = FlaxGetter(
+const _flaxBinding380 = FlaxGetter(
   "value",
-  _flaxBinding36,
+  _flaxBinding20,
   _CurvedAnimation_value,
 );
-const _flaxBinding355 = FlaxGetter(
+const _flaxBinding381 = FlaxGetter(
   "isDismissed",
-  _flaxBinding2,
+  _flaxBinding11,
   _CurvedAnimation_isDismissed,
 );
-const _flaxBinding356 = FlaxGetter(
+const _flaxBinding382 = FlaxGetter(
   "isCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _CurvedAnimation_isCompleted,
 );
-const _flaxBinding357 = FlaxGetter(
+const _flaxBinding383 = FlaxGetter(
   "isAnimating",
-  _flaxBinding2,
+  _flaxBinding11,
   _CurvedAnimation_isAnimating,
 );
-const _flaxBinding358 = FlaxGetter(
+const _flaxBinding384 = FlaxGetter(
   "isForwardOrCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _CurvedAnimation_isForwardOrCompleted,
 );
-const _flaxBinding359 = FlaxGetter(
+const _flaxBinding385 = FlaxGetter(
   "parent",
-  _flaxBinding38,
+  _flaxBinding26,
   _CurvedAnimation_parent,
 );
-const _flaxBinding360 = FlaxGetter(
+const _flaxBinding386 = FlaxGetter(
   "curve",
-  _flaxBinding98,
+  _flaxBinding44,
   _CurvedAnimation_curve,
 );
-const _flaxBinding361 = FlaxGetter(
+const _flaxBinding387 = FlaxGetter(
   "reverseCurve",
-  _flaxBinding209,
+  _flaxBinding37,
   _CurvedAnimation_reverseCurve,
 );
-const _flaxBinding362 = FlaxGetter(
+const _flaxBinding388 = FlaxGetter(
   "isDisposed",
-  _flaxBinding2,
+  _flaxBinding11,
   _CurvedAnimation_isDisposed,
 );
-const _flaxBinding363 = FlaxSetter(
+const _flaxBinding389 = FlaxSetter(
   "curve",
-  _flaxBinding98,
+  _flaxBinding44,
   _CurvedAnimation_set_curve,
 );
-const _flaxBinding364 = FlaxSetter(
+const _flaxBinding390 = FlaxSetter(
   "reverseCurve",
-  _flaxBinding209,
+  _flaxBinding37,
   _CurvedAnimation_set_reverseCurve,
 );
-const _flaxBinding365 = FlaxSetter(
+const _flaxBinding391 = FlaxSetter(
   "isDisposed",
-  _flaxBinding2,
+  _flaxBinding11,
   _CurvedAnimation_set_isDisposed,
 );
-const _flaxBinding366 = FlaxInstanceMethod(
-  _flaxBinding10,
-  _flaxBinding7,
+const _flaxBinding392 = FlaxInstanceMethod.signature(
+  _flaxBinding3,
   _CurvedAnimation_addListener,
 );
-const _flaxBinding367 = FlaxInstanceMethod(
-  _flaxBinding10,
-  _flaxBinding7,
+const _flaxBinding393 = FlaxInstanceMethod.signature(
+  _flaxBinding3,
   _CurvedAnimation_removeListener,
 );
-const _flaxBinding368 = FlaxInstanceMethod(
-  _flaxBinding13,
+const _flaxBinding394 = FlaxInstanceMethod.signature(
   _flaxBinding7,
   _CurvedAnimation_addStatusListener,
 );
-const _flaxBinding369 = FlaxInstanceMethod(
-  _flaxBinding13,
+const _flaxBinding395 = FlaxInstanceMethod.signature(
   _flaxBinding7,
   _CurvedAnimation_removeStatusListener,
 );
-const _flaxBinding370 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding396 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _CurvedAnimation_toString,
 );
-const _flaxBinding371 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding397 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _CurvedAnimation_toStringDetails,
 );
-const _flaxBinding372 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding7,
+const _flaxBinding398 = FlaxInstanceMethod.signature(
+  _flaxBinding13,
   _CurvedAnimation_dispose,
 );
-const _flaxBinding373 = <FlaxParameter>[
-  FlaxParameter("parent", _flaxBinding38, required: true),
-  FlaxParameter("curve", _flaxBinding98, required: true),
-  FlaxParameter("reverseCurve", _flaxBinding209, required: false),
+const _flaxBinding399 = <FlaxParameter>[
+  FlaxParameter("parent", _flaxBinding26, required: true),
+  FlaxParameter("curve", _flaxBinding44, required: true),
+  FlaxParameter("reverseCurve", _flaxBinding37, required: false),
 ];
-const _flaxBinding374 = FlaxProxyMember(
+const _flaxBinding400 = FlaxProxyMember(
   "parent",
   1,
-  _flaxBinding151,
+  _flaxBinding27,
   hasSuper: true,
 );
-const _flaxBinding375 = FlaxProxyMember(
+const _flaxBinding401 = FlaxProxyMember(
   "isDisposed",
   1,
-  _flaxBinding31,
+  _flaxBinding12,
   hasSuper: true,
 );
-const _flaxBinding376 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding209,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Curve)->void:",
-);
-const _flaxBinding377 = FlaxProxyMember(
+const _flaxBinding402 = FlaxProxyMember(
   "reverseCurve",
   2,
-  _flaxBinding376,
+  _flaxBinding65,
   hasSuper: true,
 );
-const _flaxBinding378 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding2,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:bool:)->void:",
-);
-const _flaxBinding379 = FlaxProxyMember(
+const _flaxBinding403 = FlaxProxyMember(
   "isDisposed",
   2,
-  _flaxBinding378,
+  _flaxBinding66,
   hasSuper: true,
 );
-const _flaxBinding380 = FlaxObjectBinding(
+const _flaxBinding404 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:CurvedAnimation",
   [
-    _flaxBinding353,
-    _flaxBinding354,
-    _flaxBinding355,
-    _flaxBinding356,
-    _flaxBinding357,
-    _flaxBinding358,
-    _flaxBinding359,
-    _flaxBinding360,
-    _flaxBinding361,
-    _flaxBinding362,
+    _flaxBinding379,
+    _flaxBinding380,
+    _flaxBinding381,
+    _flaxBinding382,
+    _flaxBinding383,
+    _flaxBinding384,
+    _flaxBinding385,
+    _flaxBinding386,
+    _flaxBinding387,
+    _flaxBinding388,
   ],
   {
-    "addListener": _flaxBinding366,
-    "removeListener": _flaxBinding367,
-    "addStatusListener": _flaxBinding368,
-    "removeStatusListener": _flaxBinding369,
+    "addListener": _flaxBinding392,
+    "removeListener": _flaxBinding393,
+    "addStatusListener": _flaxBinding394,
+    "removeStatusListener": _flaxBinding395,
     "drive": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -26733,26 +26635,22 @@ const _flaxBinding380 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_CurvedAnimation_drive,
       ownerTypes: [],
     ),
-    "toString": _flaxBinding370,
-    "toStringDetails": _flaxBinding371,
-    "dispose": _flaxBinding372,
-    "@super:addListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "toString": _flaxBinding396,
+    "toStringDetails": _flaxBinding397,
+    "dispose": _flaxBinding398,
+    "@super:addListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_addListener,
     ),
-    "@super:removeListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "@super:removeListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_removeListener,
     ),
-    "@super:addStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:addStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_addStatusListener,
     ),
-    "@super:removeStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:removeStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_removeStatusListener,
     ),
@@ -26769,91 +26667,78 @@ const _flaxBinding380 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_CurvedAnimation_super_drive,
       ownerTypes: [],
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:toStringDetails": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toStringDetails": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch2_super_call_toStringDetails,
     ),
-    "@super:dispose": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:dispose": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _CurvedAnimation_super_dispose,
     ),
-    "@super:get:parent": FlaxInstanceMethod(
-      [],
-      _flaxBinding38,
+    "@super:get:parent": FlaxInstanceMethod.signature(
+      _flaxBinding27,
       _CurvedAnimation_super_get_parent,
     ),
-    "@super:get:curve": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:curve": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _CurvedAnimation_super_get_curve,
     ),
-    "@super:get:reverseCurve": FlaxInstanceMethod(
-      [],
-      _flaxBinding209,
+    "@super:get:reverseCurve": FlaxInstanceMethod.signature(
+      _flaxBinding38,
       _CurvedAnimation_super_get_reverseCurve,
     ),
-    "@super:get:isDisposed": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isDisposed": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _CurvedAnimation_super_get_isDisposed,
     ),
-    "@super:get:value": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:value": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _CurvedAnimation_super_get_value,
     ),
-    "@super:get:status": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:status": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _FlaxProxyDispatch0_super_get_status,
     ),
-    "@super:get:isDismissed": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isDismissed": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isDismissed,
     ),
-    "@super:get:isCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isCompleted,
     ),
-    "@super:get:isAnimating": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isAnimating": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isAnimating,
     ),
-    "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
     ),
     "@super:set:curve": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding98, required: true)],
+      [FlaxParameter("value", _flaxBinding44, required: true)],
       const FlaxTypeRef("void"),
       _CurvedAnimation_super_set_curve,
     ),
     "@super:set:reverseCurve": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding209, required: true)],
+      [FlaxParameter("value", _flaxBinding37, required: true)],
       const FlaxTypeRef("void"),
       _CurvedAnimation_super_set_reverseCurve,
     ),
     "@super:set:isDisposed": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding2, required: true)],
+      [FlaxParameter("value", _flaxBinding11, required: true)],
       const FlaxTypeRef("void"),
       _CurvedAnimation_super_set_isDisposed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding373},
+  constructors: {"@implementation": _flaxBinding399},
   create: _createCurvedAnimation,
   matches: _isCurvedAnimation,
-  setters: [_flaxBinding363, _flaxBinding364, _flaxBinding365],
+  setters: [_flaxBinding389, _flaxBinding390, _flaxBinding391],
   supertypes: [
     "flax.core/sdk_animation#type:Animation",
     "flax.core/flutter#type:Listenable",
@@ -26864,10 +26749,10 @@ const _flaxBinding380 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding19,
-    _flaxBinding20,
-    _flaxBinding22,
-    _flaxBinding23,
+    _flaxBinding108,
+    _flaxBinding109,
+    _flaxBinding110,
+    _flaxBinding111,
     FlaxProxyMember(
       "drive",
       0,
@@ -26875,12 +26760,12 @@ const _flaxBinding380 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "child",
-            _flaxBinding24,
+            _flaxBinding112,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding25,
+        _flaxBinding113,
         _callback7,
         id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<parameter:>)->object:flax.core/sdk_animation#type:Animation<parameter:>",
         invoke: _callback7Invoke,
@@ -26890,92 +26775,84 @@ const _flaxBinding380 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding27,
-    _flaxBinding28,
+    _flaxBinding114,
+    _flaxBinding115,
+    _flaxBinding189,
+    _flaxBinding400,
+    _flaxBinding376,
+    _flaxBinding295,
+    _flaxBinding401,
+    _flaxBinding218,
+    _flaxBinding116,
+    _flaxBinding117,
+    _flaxBinding118,
     _flaxBinding119,
-    _flaxBinding374,
-    _flaxBinding349,
-    _flaxBinding244,
-    _flaxBinding375,
-    _flaxBinding156,
-    _flaxBinding30,
-    _flaxBinding32,
-    _flaxBinding33,
-    _flaxBinding34,
-    _flaxBinding35,
-    _flaxBinding351,
+    _flaxBinding120,
     _flaxBinding377,
-    _flaxBinding379,
+    _flaxBinding402,
+    _flaxBinding403,
   ]),
 );
-const _flaxBinding381 = FlaxGetter(
+const _flaxBinding405 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _ElasticInCurve_flipped,
 );
-const _flaxBinding382 = FlaxGetter(
+const _flaxBinding406 = FlaxGetter(
   "period",
-  _flaxBinding36,
+  _flaxBinding20,
   _ElasticInCurve_period,
 );
-const _flaxBinding383 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding407 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _ElasticInCurve_transform,
 );
-const _flaxBinding384 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding408 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _ElasticInCurve_transformInternal,
 );
-const _flaxBinding385 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding409 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _ElasticInCurve_toString,
 );
-const _flaxBinding386 = <FlaxParameter>[
-  FlaxParameter("period", _flaxBinding36, required: false, defaultValue: 0.4),
+const _flaxBinding410 = <FlaxParameter>[
+  FlaxParameter("period", _flaxBinding20, required: false, defaultValue: 0.4),
 ];
-const _flaxBinding387 = FlaxProxyMember(
+const _flaxBinding411 = FlaxProxyMember(
   "period",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding388 = FlaxObjectBinding(
+const _flaxBinding412 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:ElasticInCurve",
-  [_flaxBinding381, _flaxBinding382],
+  [_flaxBinding405, _flaxBinding406],
   {
-    "transform": _flaxBinding383,
-    "transformInternal": _flaxBinding384,
-    "toString": _flaxBinding385,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding407,
+    "transformInternal": _flaxBinding408,
+    "toString": _flaxBinding409,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:period": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:period": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _ElasticInCurve_super_get_period,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding386},
+  constructors: {"@implementation": _flaxBinding410},
   create: _createElasticInCurve,
   matches: _isElasticInCurve,
   setters: [],
@@ -26985,72 +26862,64 @@ const _flaxBinding388 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding387,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding411,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding389 = FlaxGetter(
+const _flaxBinding413 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _ElasticInOutCurve_flipped,
 );
-const _flaxBinding390 = FlaxGetter(
+const _flaxBinding414 = FlaxGetter(
   "period",
-  _flaxBinding36,
+  _flaxBinding20,
   _ElasticInOutCurve_period,
 );
-const _flaxBinding391 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding415 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _ElasticInOutCurve_transform,
 );
-const _flaxBinding392 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding416 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _ElasticInOutCurve_transformInternal,
 );
-const _flaxBinding393 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding417 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _ElasticInOutCurve_toString,
 );
-const _flaxBinding394 = FlaxObjectBinding(
+const _flaxBinding418 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:ElasticInOutCurve",
-  [_flaxBinding389, _flaxBinding390],
+  [_flaxBinding413, _flaxBinding414],
   {
-    "transform": _flaxBinding391,
-    "transformInternal": _flaxBinding392,
-    "toString": _flaxBinding393,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding415,
+    "transformInternal": _flaxBinding416,
+    "toString": _flaxBinding417,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:period": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:period": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _ElasticInOutCurve_super_get_period,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding386},
+  constructors: {"@implementation": _flaxBinding410},
   create: _createElasticInOutCurve,
   matches: _isElasticInOutCurve,
   setters: [],
@@ -27060,72 +26929,64 @@ const _flaxBinding394 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding387,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding411,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding395 = FlaxGetter(
+const _flaxBinding419 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _ElasticOutCurve_flipped,
 );
-const _flaxBinding396 = FlaxGetter(
+const _flaxBinding420 = FlaxGetter(
   "period",
-  _flaxBinding36,
+  _flaxBinding20,
   _ElasticOutCurve_period,
 );
-const _flaxBinding397 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding421 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _ElasticOutCurve_transform,
 );
-const _flaxBinding398 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding422 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _ElasticOutCurve_transformInternal,
 );
-const _flaxBinding399 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding423 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _ElasticOutCurve_toString,
 );
-const _flaxBinding400 = FlaxObjectBinding(
+const _flaxBinding424 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:ElasticOutCurve",
-  [_flaxBinding395, _flaxBinding396],
+  [_flaxBinding419, _flaxBinding420],
   {
-    "transform": _flaxBinding397,
-    "transformInternal": _flaxBinding398,
-    "toString": _flaxBinding399,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding421,
+    "transformInternal": _flaxBinding422,
+    "toString": _flaxBinding423,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:period": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:period": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _ElasticOutCurve_super_get_period,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding386},
+  constructors: {"@implementation": _flaxBinding410},
   create: _createElasticOutCurve,
   matches: _isElasticOutCurve,
   setters: [],
@@ -27135,72 +26996,64 @@ const _flaxBinding400 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding387,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding411,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding401 = FlaxGetter(
+const _flaxBinding425 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _FlippedCurve_flipped,
 );
-const _flaxBinding402 = FlaxGetter(
+const _flaxBinding426 = FlaxGetter(
   "curve",
-  _flaxBinding98,
+  _flaxBinding44,
   _FlippedCurve_curve,
 );
-const _flaxBinding403 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding427 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _FlippedCurve_transform,
 );
-const _flaxBinding404 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding428 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _FlippedCurve_transformInternal,
 );
-const _flaxBinding405 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding429 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _FlippedCurve_toString,
 );
-const _flaxBinding406 = FlaxObjectBinding(
+const _flaxBinding430 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:FlippedCurve",
-  [_flaxBinding401, _flaxBinding402],
+  [_flaxBinding425, _flaxBinding426],
   {
-    "transform": _flaxBinding403,
-    "transformInternal": _flaxBinding404,
-    "toString": _flaxBinding405,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding427,
+    "transformInternal": _flaxBinding428,
+    "toString": _flaxBinding429,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:curve": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:curve": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlippedCurve_super_get_curve,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding342},
+  constructors: {"@implementation": _flaxBinding372},
   create: _createFlippedCurve,
   matches: _isFlippedCurve,
   setters: [],
@@ -27210,46 +27063,41 @@ const _flaxBinding406 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding349,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding376,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding407 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding431 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _FlippedTweenSequence_transform,
 );
-const _flaxBinding408 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding432 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _FlippedTweenSequence_toString,
 );
-const _flaxBinding409 = FlaxInstanceMethod(
-  _flaxBinding39,
-  _flaxBinding36,
+const _flaxBinding433 = FlaxInstanceMethod.signature(
+  _flaxBinding61,
   _FlippedTweenSequence_evaluate,
 );
-const _flaxBinding410 = FlaxInstanceMethod(
-  _flaxBinding40,
-  _flaxBinding38,
+const _flaxBinding434 = FlaxInstanceMethod.signature(
+  _flaxBinding62,
   _FlippedTweenSequence_animate,
 );
-const _flaxBinding411 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding41,
+const _flaxBinding435 = FlaxInstanceMethod.signature(
+  _flaxBinding63,
   _FlippedTweenSequence_chain,
 );
-const _flaxBinding412 = FlaxTypeRef(
+const _flaxBinding436 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:TweenSequenceItem",
   dartType: FlaxDartTypes.typeOf<api.TweenSequenceItem<double>>,
 );
-const _flaxBinding413 = FlaxTypeRef(
+const _flaxBinding437 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding412,
+  item: _flaxBinding436,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_animation#type:TweenSequenceItem<double:>]",
     _collection4Create,
@@ -27257,55 +27105,50 @@ const _flaxBinding413 = FlaxTypeRef(
     restore: _collection4Restore,
   ),
 );
-const _flaxBinding414 = FlaxTypeRef(
+const _flaxBinding438 = FlaxTypeRef(
   "list",
-  item: _flaxBinding412,
+  item: _flaxBinding436,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_animation#type:TweenSequenceItem<double:>]",
     _collection3Create,
     _collection3Matches,
   ),
-  iterable: _flaxBinding413,
+  iterable: _flaxBinding437,
 );
-const _flaxBinding415 = <FlaxParameter>[
-  FlaxParameter("items", _flaxBinding414, required: true),
+const _flaxBinding439 = <FlaxParameter>[
+  FlaxParameter("items", _flaxBinding438, required: true),
 ];
-const _flaxBinding416 = FlaxObjectBinding(
+const _flaxBinding440 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:FlippedTweenSequence",
   [],
   {
-    "transform": _flaxBinding407,
-    "toString": _flaxBinding408,
-    "evaluate": _flaxBinding409,
-    "animate": _flaxBinding410,
-    "chain": _flaxBinding411,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding431,
+    "toString": _flaxBinding432,
+    "evaluate": _flaxBinding433,
+    "animate": _flaxBinding434,
+    "chain": _flaxBinding435,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:evaluate": FlaxInstanceMethod(
-      _flaxBinding39,
-      _flaxBinding36,
+    "@super:evaluate": FlaxInstanceMethod.signature(
+      _flaxBinding61,
       _FlaxProxyDispatch13_super_call_evaluate,
     ),
-    "@super:animate": FlaxInstanceMethod(
-      _flaxBinding40,
-      _flaxBinding38,
+    "@super:animate": FlaxInstanceMethod.signature(
+      _flaxBinding62,
       _FlaxProxyDispatch13_super_call_animate,
     ),
-    "@super:chain": FlaxInstanceMethod(
-      _flaxBinding42,
-      _flaxBinding41,
+    "@super:chain": FlaxInstanceMethod.signature(
+      _flaxBinding63,
       _FlaxProxyDispatch13_super_call_chain,
     ),
   },
-  constructors: {"@implementation": _flaxBinding415},
+  constructors: {"@implementation": _flaxBinding439},
   create: _createFlippedTweenSequence,
   matches: _isFlippedTweenSequence,
   setters: [],
@@ -27315,351 +27158,252 @@ const _flaxBinding416 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding27,
-    _flaxBinding344,
-    _flaxBinding346,
-    _flaxBinding348,
+    _flaxBinding305,
+    _flaxBinding114,
+    _flaxBinding373,
+    _flaxBinding374,
+    _flaxBinding375,
   ]),
 );
-const _flaxBinding417 = FlaxGetter("begin", _flaxBinding102, _IntTween_begin);
-const _flaxBinding418 = FlaxGetter("end", _flaxBinding102, _IntTween_end);
-const _flaxBinding419 = FlaxSetter(
+const _flaxBinding441 = FlaxGetter("begin", _flaxBinding73, _IntTween_begin);
+const _flaxBinding442 = FlaxGetter("end", _flaxBinding73, _IntTween_end);
+const _flaxBinding443 = FlaxSetter(
   "begin",
-  _flaxBinding102,
+  _flaxBinding73,
   _IntTween_set_begin,
 );
-const _flaxBinding420 = FlaxSetter("end", _flaxBinding102, _IntTween_set_end);
-const _flaxBinding421 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding266,
+const _flaxBinding444 = FlaxSetter("end", _flaxBinding73, _IntTween_set_end);
+const _flaxBinding445 = FlaxInstanceMethod.signature(
+  _flaxBinding67,
   _IntTween_lerp,
 );
-const _flaxBinding422 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding266,
+const _flaxBinding446 = FlaxInstanceMethod.signature(
+  _flaxBinding67,
   _IntTween_transform,
 );
-const _flaxBinding423 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding447 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _IntTween_toString,
 );
-const _flaxBinding424 = FlaxInstanceMethod(
-  _flaxBinding39,
-  _flaxBinding266,
+const _flaxBinding448 = FlaxInstanceMethod.signature(
+  _flaxBinding68,
   _IntTween_evaluate,
 );
-const _flaxBinding425 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animation",
-  dartType: FlaxDartTypes.typeOf<api.Animation<int>>,
-);
-const _flaxBinding426 = FlaxInstanceMethod(
-  _flaxBinding40,
-  _flaxBinding425,
+const _flaxBinding449 = FlaxInstanceMethod.signature(
+  _flaxBinding70,
   _IntTween_animate,
 );
-const _flaxBinding427 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animatable",
-  dartType: FlaxDartTypes.typeOf<api.Animatable<int>>,
-);
-const _flaxBinding428 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding427,
+const _flaxBinding450 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _IntTween_chain,
 );
-const _flaxBinding429 = <FlaxParameter>[
-  FlaxParameter("begin", _flaxBinding102, required: false),
-  FlaxParameter("end", _flaxBinding102, required: false),
+const _flaxBinding451 = <FlaxParameter>[
+  FlaxParameter("begin", _flaxBinding73, required: false),
+  FlaxParameter("end", _flaxBinding73, required: false),
 ];
-const _flaxBinding430 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "t",
-      _flaxBinding36,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding266,
-  id: "callback:<>(p:r:t:double:)->int:",
-);
-const _flaxBinding431 = FlaxProxyMember(
+const _flaxBinding452 = FlaxProxyMember(
   "lerp",
   0,
-  _flaxBinding430,
+  _flaxBinding67,
   hasSuper: true,
 );
-const _flaxBinding432 = FlaxProxyMember(
+const _flaxBinding453 = FlaxProxyMember(
   "transform",
   0,
-  _flaxBinding430,
+  _flaxBinding67,
   hasSuper: true,
 );
-const _flaxBinding433 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "animation",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding266,
-  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->int:",
-);
-const _flaxBinding434 = FlaxProxyMember(
+const _flaxBinding454 = FlaxProxyMember(
   "evaluate",
   0,
-  _flaxBinding433,
+  _flaxBinding68,
   hasSuper: true,
 );
-const _flaxBinding435 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding425,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<int:>",
-);
-const _flaxBinding436 = FlaxProxyMember(
+const _flaxBinding455 = FlaxProxyMember(
   "animate",
   0,
-  _flaxBinding435,
+  _flaxBinding70,
   hasSuper: true,
 );
-const _flaxBinding437 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding41,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding427,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<int:>",
-);
-const _flaxBinding438 = FlaxProxyMember(
+const _flaxBinding456 = FlaxProxyMember(
   "chain",
   0,
-  _flaxBinding437,
+  _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding439 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding102,
-  id: "callback:<>()->int?:",
-);
-const _flaxBinding440 = FlaxProxyMember(
+const _flaxBinding457 = FlaxProxyMember(
   "begin",
   1,
-  _flaxBinding439,
+  _flaxBinding74,
   hasSuper: true,
 );
-const _flaxBinding441 = FlaxProxyMember(
+const _flaxBinding458 = FlaxProxyMember(
   "end",
   1,
-  _flaxBinding439,
+  _flaxBinding74,
   hasSuper: true,
 );
-const _flaxBinding442 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding102,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:int?:)->void:",
-);
-const _flaxBinding443 = FlaxProxyMember(
+const _flaxBinding459 = FlaxProxyMember(
   "begin",
   2,
-  _flaxBinding442,
+  _flaxBinding75,
   hasSuper: true,
 );
-const _flaxBinding444 = FlaxProxyMember(
+const _flaxBinding460 = FlaxProxyMember(
   "end",
   2,
-  _flaxBinding442,
+  _flaxBinding75,
   hasSuper: true,
 );
-const _flaxBinding445 = FlaxObjectBinding(
+const _flaxBinding461 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:IntTween",
-  [_flaxBinding417, _flaxBinding418],
+  [_flaxBinding441, _flaxBinding442],
   {
-    "lerp": _flaxBinding421,
-    "transform": _flaxBinding422,
-    "toString": _flaxBinding423,
-    "evaluate": _flaxBinding424,
-    "animate": _flaxBinding426,
-    "chain": _flaxBinding428,
-    "@super:lerp": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding266,
+    "lerp": _flaxBinding445,
+    "transform": _flaxBinding446,
+    "toString": _flaxBinding447,
+    "evaluate": _flaxBinding448,
+    "animate": _flaxBinding449,
+    "chain": _flaxBinding450,
+    "@super:lerp": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch18_super_call_lerp,
     ),
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding266,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch18_super_call_transform,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:evaluate": FlaxInstanceMethod(
-      _flaxBinding39,
-      _flaxBinding266,
+    "@super:evaluate": FlaxInstanceMethod.signature(
+      _flaxBinding68,
       _FlaxProxyDispatch18_super_call_evaluate,
     ),
-    "@super:animate": FlaxInstanceMethod(
-      _flaxBinding40,
-      _flaxBinding425,
+    "@super:animate": FlaxInstanceMethod.signature(
+      _flaxBinding70,
       _FlaxProxyDispatch18_super_call_animate,
     ),
-    "@super:chain": FlaxInstanceMethod(
-      _flaxBinding42,
-      _flaxBinding427,
+    "@super:chain": FlaxInstanceMethod.signature(
+      _flaxBinding72,
       _FlaxProxyDispatch18_super_call_chain,
     ),
-    "@super:get:begin": FlaxInstanceMethod(
-      [],
-      _flaxBinding102,
+    "@super:get:begin": FlaxInstanceMethod.signature(
+      _flaxBinding74,
       _FlaxProxyDispatch18_super_get_begin,
     ),
-    "@super:get:end": FlaxInstanceMethod(
-      [],
-      _flaxBinding102,
+    "@super:get:end": FlaxInstanceMethod.signature(
+      _flaxBinding74,
       _FlaxProxyDispatch18_super_get_end,
     ),
     "@super:set:begin": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding102, required: true)],
+      [FlaxParameter("value", _flaxBinding73, required: true)],
       const FlaxTypeRef("void"),
       _FlaxProxyDispatch18_super_set_begin,
     ),
     "@super:set:end": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding102, required: true)],
+      [FlaxParameter("value", _flaxBinding73, required: true)],
       const FlaxTypeRef("void"),
       _FlaxProxyDispatch18_super_set_end,
     ),
   },
-  constructors: {"@implementation": _flaxBinding429},
+  constructors: {"@implementation": _flaxBinding451},
   create: _createIntTween,
   matches: _isIntTween,
-  setters: [_flaxBinding419, _flaxBinding420],
+  setters: [_flaxBinding443, _flaxBinding444],
   supertypes: [
     "flax.core/sdk_animation#type:Tween",
     "flax.core/sdk_animation#type:Animatable",
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding27,
-    _flaxBinding434,
-    _flaxBinding436,
-    _flaxBinding438,
-    _flaxBinding440,
-    _flaxBinding441,
-    _flaxBinding443,
-    _flaxBinding444,
+    _flaxBinding452,
+    _flaxBinding453,
+    _flaxBinding114,
+    _flaxBinding454,
+    _flaxBinding455,
+    _flaxBinding456,
+    _flaxBinding457,
+    _flaxBinding458,
+    _flaxBinding459,
+    _flaxBinding460,
   ]),
 );
-const _flaxBinding446 = FlaxGetter(
+const _flaxBinding462 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _Interval_flipped,
 );
-const _flaxBinding447 = FlaxGetter("begin", _flaxBinding36, _Interval_begin);
-const _flaxBinding448 = FlaxGetter("end", _flaxBinding36, _Interval_end);
-const _flaxBinding449 = FlaxGetter("curve", _flaxBinding98, _Interval_curve);
-const _flaxBinding450 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding463 = FlaxGetter("begin", _flaxBinding20, _Interval_begin);
+const _flaxBinding464 = FlaxGetter("end", _flaxBinding20, _Interval_end);
+const _flaxBinding465 = FlaxGetter("curve", _flaxBinding44, _Interval_curve);
+const _flaxBinding466 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _Interval_transform,
 );
-const _flaxBinding451 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding467 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _Interval_transformInternal,
 );
-const _flaxBinding452 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding468 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _Interval_toString,
 );
-const _flaxBinding453 = <FlaxParameter>[
-  FlaxParameter("begin", _flaxBinding36, required: true),
-  FlaxParameter("end", _flaxBinding36, required: true),
-  FlaxParameter("curve", _flaxBinding98, required: false, omitWhenAbsent: true),
+const _flaxBinding469 = <FlaxParameter>[
+  FlaxParameter("begin", _flaxBinding20, required: true),
+  FlaxParameter("end", _flaxBinding20, required: true),
+  FlaxParameter("curve", _flaxBinding44, required: false, omitWhenAbsent: true),
 ];
-const _flaxBinding454 = FlaxProxyMember(
+const _flaxBinding470 = FlaxProxyMember(
   "begin",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding455 = FlaxProxyMember(
+const _flaxBinding471 = FlaxProxyMember(
   "end",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding456 = FlaxObjectBinding(
+const _flaxBinding472 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:Interval",
-  [_flaxBinding446, _flaxBinding447, _flaxBinding448, _flaxBinding449],
+  [_flaxBinding462, _flaxBinding463, _flaxBinding464, _flaxBinding465],
   {
-    "transform": _flaxBinding450,
-    "transformInternal": _flaxBinding451,
-    "toString": _flaxBinding452,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding466,
+    "transformInternal": _flaxBinding467,
+    "toString": _flaxBinding468,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:begin": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:begin": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _Interval_super_get_begin,
     ),
-    "@super:get:end": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:end": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _Interval_super_get_end,
     ),
-    "@super:get:curve": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:curve": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _Interval_super_get_curve,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding453},
+  constructors: {"@implementation": _flaxBinding469},
   create: _createInterval,
   matches: _isInterval,
   setters: [],
@@ -27669,120 +27413,95 @@ const _flaxBinding456 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding454,
-    _flaxBinding455,
-    _flaxBinding349,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding470,
+    _flaxBinding471,
+    _flaxBinding376,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding457 = FlaxGetter(
+const _flaxBinding473 = FlaxGetter(
   "status",
-  _flaxBinding0,
+  _flaxBinding4,
   _ProxyAnimation_status,
 );
-const _flaxBinding458 = FlaxGetter(
+const _flaxBinding474 = FlaxGetter(
   "value",
-  _flaxBinding36,
+  _flaxBinding20,
   _ProxyAnimation_value,
 );
-const _flaxBinding459 = FlaxGetter(
+const _flaxBinding475 = FlaxGetter(
   "isDismissed",
-  _flaxBinding2,
+  _flaxBinding11,
   _ProxyAnimation_isDismissed,
 );
-const _flaxBinding460 = FlaxGetter(
+const _flaxBinding476 = FlaxGetter(
   "isCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _ProxyAnimation_isCompleted,
 );
-const _flaxBinding461 = FlaxGetter(
+const _flaxBinding477 = FlaxGetter(
   "isAnimating",
-  _flaxBinding2,
+  _flaxBinding11,
   _ProxyAnimation_isAnimating,
 );
-const _flaxBinding462 = FlaxGetter(
+const _flaxBinding478 = FlaxGetter(
   "isForwardOrCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _ProxyAnimation_isForwardOrCompleted,
 );
-const _flaxBinding463 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animation",
-  dartType: FlaxDartTypes.typeOf<api.Animation<double>?>,
-  nullable: true,
-);
-const _flaxBinding464 = FlaxGetter(
+const _flaxBinding479 = FlaxGetter(
   "parent",
-  _flaxBinding463,
+  _flaxBinding76,
   _ProxyAnimation_parent,
 );
-const _flaxBinding465 = FlaxSetter(
+const _flaxBinding480 = FlaxSetter(
   "parent",
-  _flaxBinding463,
+  _flaxBinding76,
   _ProxyAnimation_set_parent,
 );
-const _flaxBinding466 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding481 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _ProxyAnimation_toString,
 );
-const _flaxBinding467 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding482 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _ProxyAnimation_toStringDetails,
 );
-const _flaxBinding468 = <FlaxParameter>[
-  FlaxParameter("animation", _flaxBinding463, required: false),
+const _flaxBinding483 = <FlaxParameter>[
+  FlaxParameter("animation", _flaxBinding76, required: false),
 ];
-const _flaxBinding469 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding463,
-  id: "callback:<>()->object?:flax.core/sdk_animation#type:Animation<double:>",
-);
-const _flaxBinding470 = FlaxProxyMember(
+const _flaxBinding484 = FlaxProxyMember(
   "parent",
   1,
-  _flaxBinding469,
+  _flaxBinding77,
   hasSuper: true,
 );
-const _flaxBinding471 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding463,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:object?:flax.core/sdk_animation#type:Animation<double:>)->void:",
-);
-const _flaxBinding472 = FlaxProxyMember(
+const _flaxBinding485 = FlaxProxyMember(
   "parent",
   2,
-  _flaxBinding471,
+  _flaxBinding78,
   hasSuper: true,
 );
-const _flaxBinding473 = FlaxObjectBinding(
+const _flaxBinding486 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:ProxyAnimation",
   [
-    _flaxBinding457,
-    _flaxBinding458,
-    _flaxBinding459,
-    _flaxBinding460,
-    _flaxBinding461,
-    _flaxBinding462,
-    _flaxBinding166,
-    _flaxBinding464,
+    _flaxBinding473,
+    _flaxBinding474,
+    _flaxBinding475,
+    _flaxBinding476,
+    _flaxBinding477,
+    _flaxBinding478,
+    _flaxBinding226,
+    _flaxBinding479,
   ],
   {
-    "addListener": _flaxBinding74,
-    "removeListener": _flaxBinding75,
-    "addStatusListener": _flaxBinding76,
-    "removeStatusListener": _flaxBinding77,
+    "addListener": _flaxBinding153,
+    "removeListener": _flaxBinding154,
+    "addStatusListener": _flaxBinding155,
+    "removeStatusListener": _flaxBinding156,
     "drive": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -27796,33 +27515,29 @@ const _flaxBinding473 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_ProxyAnimation_drive,
       ownerTypes: [],
     ),
-    "toString": _flaxBinding466,
-    "toStringDetails": _flaxBinding467,
-    "didRegisterListener": _flaxBinding167,
-    "didUnregisterListener": _flaxBinding168,
-    "didStartListening": _flaxBinding169,
-    "didStopListening": _flaxBinding170,
-    "clearListeners": _flaxBinding83,
-    "notifyListeners": _flaxBinding84,
-    "clearStatusListeners": _flaxBinding85,
-    "notifyStatusListeners": _flaxBinding87,
-    "@super:addListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "toString": _flaxBinding481,
+    "toStringDetails": _flaxBinding482,
+    "didRegisterListener": _flaxBinding227,
+    "didUnregisterListener": _flaxBinding228,
+    "didStartListening": _flaxBinding229,
+    "didStopListening": _flaxBinding230,
+    "clearListeners": _flaxBinding162,
+    "notifyListeners": _flaxBinding163,
+    "clearStatusListeners": _flaxBinding164,
+    "notifyStatusListeners": _flaxBinding165,
+    "@super:addListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_addListener,
     ),
-    "@super:removeListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "@super:removeListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_removeListener,
     ),
-    "@super:addStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:addStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_addStatusListener,
     ),
-    "@super:removeStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:removeStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_removeStatusListener,
     ),
@@ -27839,106 +27554,88 @@ const _flaxBinding473 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_ProxyAnimation_super_drive,
       ownerTypes: [],
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:toStringDetails": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toStringDetails": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch2_super_call_toStringDetails,
     ),
-    "@super:didRegisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didRegisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ProxyAnimation_super_didRegisterListener,
     ),
-    "@super:didUnregisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didUnregisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ProxyAnimation_super_didUnregisterListener,
     ),
-    "@super:didStartListening": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didStartListening": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ProxyAnimation_super_didStartListening,
     ),
-    "@super:didStopListening": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didStopListening": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ProxyAnimation_super_didStopListening,
     ),
-    "@super:clearListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ProxyAnimation_super_clearListeners,
     ),
-    "@super:notifyListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:notifyListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ProxyAnimation_super_notifyListeners,
     ),
-    "@super:clearStatusListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ProxyAnimation_super_clearStatusListeners,
     ),
-    "@super:notifyStatusListeners": FlaxInstanceMethod(
-      _flaxBinding86,
-      _flaxBinding7,
+    "@super:notifyStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding14,
       _ProxyAnimation_super_notifyStatusListeners,
     ),
-    "@super:get:parent": FlaxInstanceMethod(
-      [],
-      _flaxBinding463,
+    "@super:get:parent": FlaxInstanceMethod.signature(
+      _flaxBinding77,
       _ProxyAnimation_super_get_parent,
     ),
-    "@super:get:status": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:status": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _FlaxProxyDispatch0_super_get_status,
     ),
-    "@super:get:value": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:value": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _ProxyAnimation_super_get_value,
     ),
-    "@super:get:isDismissed": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isDismissed": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isDismissed,
     ),
-    "@super:get:isCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isCompleted,
     ),
-    "@super:get:isAnimating": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isAnimating": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isAnimating,
     ),
-    "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
     ),
-    "@super:get:isListening": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isListening": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _ProxyAnimation_super_get_isListening,
     ),
     "@super:set:parent": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding463, required: true)],
+      [FlaxParameter("value", _flaxBinding76, required: true)],
       const FlaxTypeRef("void"),
       _ProxyAnimation_super_set_parent,
     ),
   },
-  constructors: {"@implementation": _flaxBinding468},
+  constructors: {"@implementation": _flaxBinding483},
   create: _createProxyAnimation,
   matches: _isProxyAnimation,
-  setters: [_flaxBinding465],
+  setters: [_flaxBinding480],
   supertypes: [
     "flax.core/sdk_animation#type:Animation",
     "flax.core/flutter#type:Listenable",
@@ -27950,10 +27647,10 @@ const _flaxBinding473 = FlaxObjectBinding(
   ],
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding19,
-    _flaxBinding20,
-    _flaxBinding22,
-    _flaxBinding23,
+    _flaxBinding108,
+    _flaxBinding109,
+    _flaxBinding110,
+    _flaxBinding111,
     FlaxProxyMember(
       "drive",
       0,
@@ -27961,12 +27658,12 @@ const _flaxBinding473 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "child",
-            _flaxBinding24,
+            _flaxBinding112,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding25,
+        _flaxBinding113,
         _callback8,
         id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<parameter:>)->object:flax.core/sdk_animation#type:Animation<parameter:>",
         invoke: _callback8Invoke,
@@ -27976,358 +27673,260 @@ const _flaxBinding473 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding27,
-    _flaxBinding28,
+    _flaxBinding114,
+    _flaxBinding115,
+    _flaxBinding187,
+    _flaxBinding188,
+    _flaxBinding246,
+    _flaxBinding247,
+    _flaxBinding190,
+    _flaxBinding191,
+    _flaxBinding192,
+    _flaxBinding193,
+    _flaxBinding484,
+    _flaxBinding116,
+    _flaxBinding218,
     _flaxBinding117,
     _flaxBinding118,
-    _flaxBinding186,
-    _flaxBinding187,
+    _flaxBinding119,
     _flaxBinding120,
-    _flaxBinding121,
-    _flaxBinding122,
-    _flaxBinding124,
-    _flaxBinding470,
-    _flaxBinding30,
-    _flaxBinding156,
-    _flaxBinding32,
-    _flaxBinding33,
-    _flaxBinding34,
-    _flaxBinding35,
-    _flaxBinding188,
-    _flaxBinding472,
+    _flaxBinding248,
+    _flaxBinding485,
   ]),
 );
-const _flaxBinding474 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_dart_ui#type:Rect",
-  nullable: true,
-);
-const _flaxBinding475 = FlaxGetter("begin", _flaxBinding474, _RectTween_begin);
-const _flaxBinding476 = FlaxGetter("end", _flaxBinding474, _RectTween_end);
-const _flaxBinding477 = FlaxSetter(
+const _flaxBinding487 = FlaxGetter("begin", _flaxBinding79, _RectTween_begin);
+const _flaxBinding488 = FlaxGetter("end", _flaxBinding79, _RectTween_end);
+const _flaxBinding489 = FlaxSetter(
   "begin",
-  _flaxBinding474,
+  _flaxBinding79,
   _RectTween_set_begin,
 );
-const _flaxBinding478 = FlaxSetter("end", _flaxBinding474, _RectTween_set_end);
-const _flaxBinding479 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding474,
+const _flaxBinding490 = FlaxSetter("end", _flaxBinding79, _RectTween_set_end);
+const _flaxBinding491 = FlaxInstanceMethod.signature(
+  _flaxBinding80,
   _RectTween_lerp,
 );
-const _flaxBinding480 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding474,
+const _flaxBinding492 = FlaxInstanceMethod.signature(
+  _flaxBinding80,
   _RectTween_transform,
 );
-const _flaxBinding481 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding493 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _RectTween_toString,
 );
-const _flaxBinding482 = FlaxInstanceMethod(
-  _flaxBinding39,
-  _flaxBinding474,
+const _flaxBinding494 = FlaxInstanceMethod.signature(
+  _flaxBinding81,
   _RectTween_evaluate,
 );
-const _flaxBinding483 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animation",
-  dartType: FlaxDartTypes.typeOf<api.Animation<api1.Rect?>>,
-);
-const _flaxBinding484 = FlaxInstanceMethod(
-  _flaxBinding40,
-  _flaxBinding483,
+const _flaxBinding495 = FlaxInstanceMethod.signature(
+  _flaxBinding83,
   _RectTween_animate,
 );
-const _flaxBinding485 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animatable",
-  dartType: FlaxDartTypes.typeOf<api.Animatable<api1.Rect?>>,
-);
-const _flaxBinding486 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding485,
+const _flaxBinding496 = FlaxInstanceMethod.signature(
+  _flaxBinding85,
   _RectTween_chain,
 );
-const _flaxBinding487 = <FlaxParameter>[
-  FlaxParameter("begin", _flaxBinding474, required: false),
-  FlaxParameter("end", _flaxBinding474, required: false),
+const _flaxBinding497 = <FlaxParameter>[
+  FlaxParameter("begin", _flaxBinding79, required: false),
+  FlaxParameter("end", _flaxBinding79, required: false),
 ];
-const _flaxBinding488 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "t",
-      _flaxBinding36,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding474,
-  id: "callback:<>(p:r:t:double:)->object?:flax.core/sdk_dart_ui#type:Rect",
-);
-const _flaxBinding489 = FlaxProxyMember(
+const _flaxBinding498 = FlaxProxyMember(
   "lerp",
   0,
-  _flaxBinding488,
-  hasSuper: true,
-);
-const _flaxBinding490 = FlaxProxyMember(
-  "transform",
-  0,
-  _flaxBinding488,
-  hasSuper: true,
-);
-const _flaxBinding491 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "animation",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding474,
-  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->object?:flax.core/sdk_dart_ui#type:Rect",
-);
-const _flaxBinding492 = FlaxProxyMember(
-  "evaluate",
-  0,
-  _flaxBinding491,
-  hasSuper: true,
-);
-const _flaxBinding493 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding483,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<object?:flax.core/sdk_dart_ui#type:Rect>",
-);
-const _flaxBinding494 = FlaxProxyMember(
-  "animate",
-  0,
-  _flaxBinding493,
-  hasSuper: true,
-);
-const _flaxBinding495 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding41,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding485,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<object?:flax.core/sdk_dart_ui#type:Rect>",
-);
-const _flaxBinding496 = FlaxProxyMember(
-  "chain",
-  0,
-  _flaxBinding495,
-  hasSuper: true,
-);
-const _flaxBinding497 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding474,
-  id: "callback:<>()->object?:flax.core/sdk_dart_ui#type:Rect",
-);
-const _flaxBinding498 = FlaxProxyMember(
-  "begin",
-  1,
-  _flaxBinding497,
+  _flaxBinding80,
   hasSuper: true,
 );
 const _flaxBinding499 = FlaxProxyMember(
-  "end",
-  1,
-  _flaxBinding497,
+  "transform",
+  0,
+  _flaxBinding80,
   hasSuper: true,
 );
-const _flaxBinding500 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding474,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:object?:flax.core/sdk_dart_ui#type:Rect)->void:",
+const _flaxBinding500 = FlaxProxyMember(
+  "evaluate",
+  0,
+  _flaxBinding81,
+  hasSuper: true,
 );
 const _flaxBinding501 = FlaxProxyMember(
-  "begin",
-  2,
-  _flaxBinding500,
+  "animate",
+  0,
+  _flaxBinding83,
   hasSuper: true,
 );
 const _flaxBinding502 = FlaxProxyMember(
-  "end",
-  2,
-  _flaxBinding500,
+  "chain",
+  0,
+  _flaxBinding85,
   hasSuper: true,
 );
-const _flaxBinding503 = FlaxObjectBinding(
+const _flaxBinding503 = FlaxProxyMember(
+  "begin",
+  1,
+  _flaxBinding86,
+  hasSuper: true,
+);
+const _flaxBinding504 = FlaxProxyMember(
+  "end",
+  1,
+  _flaxBinding86,
+  hasSuper: true,
+);
+const _flaxBinding505 = FlaxProxyMember(
+  "begin",
+  2,
+  _flaxBinding87,
+  hasSuper: true,
+);
+const _flaxBinding506 = FlaxProxyMember(
+  "end",
+  2,
+  _flaxBinding87,
+  hasSuper: true,
+);
+const _flaxBinding507 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:RectTween",
-  [_flaxBinding475, _flaxBinding476],
+  [_flaxBinding487, _flaxBinding488],
   {
-    "lerp": _flaxBinding479,
-    "transform": _flaxBinding480,
-    "toString": _flaxBinding481,
-    "evaluate": _flaxBinding482,
-    "animate": _flaxBinding484,
-    "chain": _flaxBinding486,
-    "@super:lerp": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding474,
+    "lerp": _flaxBinding491,
+    "transform": _flaxBinding492,
+    "toString": _flaxBinding493,
+    "evaluate": _flaxBinding494,
+    "animate": _flaxBinding495,
+    "chain": _flaxBinding496,
+    "@super:lerp": FlaxInstanceMethod.signature(
+      _flaxBinding80,
       _RectTween_super_lerp,
     ),
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding474,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding80,
       _RectTween_super_transform,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:evaluate": FlaxInstanceMethod(
-      _flaxBinding39,
-      _flaxBinding474,
+    "@super:evaluate": FlaxInstanceMethod.signature(
+      _flaxBinding81,
       _RectTween_super_evaluate,
     ),
-    "@super:animate": FlaxInstanceMethod(
-      _flaxBinding40,
-      _flaxBinding483,
+    "@super:animate": FlaxInstanceMethod.signature(
+      _flaxBinding83,
       _RectTween_super_animate,
     ),
-    "@super:chain": FlaxInstanceMethod(
-      _flaxBinding42,
-      _flaxBinding485,
+    "@super:chain": FlaxInstanceMethod.signature(
+      _flaxBinding85,
       _RectTween_super_chain,
     ),
-    "@super:get:begin": FlaxInstanceMethod(
-      [],
-      _flaxBinding474,
+    "@super:get:begin": FlaxInstanceMethod.signature(
+      _flaxBinding86,
       _RectTween_super_get_begin,
     ),
-    "@super:get:end": FlaxInstanceMethod(
-      [],
-      _flaxBinding474,
+    "@super:get:end": FlaxInstanceMethod.signature(
+      _flaxBinding86,
       _RectTween_super_get_end,
     ),
     "@super:set:begin": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding474, required: true)],
+      [FlaxParameter("value", _flaxBinding79, required: true)],
       const FlaxTypeRef("void"),
       _RectTween_super_set_begin,
     ),
     "@super:set:end": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding474, required: true)],
+      [FlaxParameter("value", _flaxBinding79, required: true)],
       const FlaxTypeRef("void"),
       _RectTween_super_set_end,
     ),
   },
-  constructors: {"@implementation": _flaxBinding487},
+  constructors: {"@implementation": _flaxBinding497},
   create: _createRectTween,
   matches: _isRectTween,
-  setters: [_flaxBinding477, _flaxBinding478],
+  setters: [_flaxBinding489, _flaxBinding490],
   supertypes: [
     "flax.core/sdk_animation#type:Tween",
     "flax.core/sdk_animation#type:Animatable",
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding489,
-    _flaxBinding490,
-    _flaxBinding27,
-    _flaxBinding492,
-    _flaxBinding494,
-    _flaxBinding496,
     _flaxBinding498,
     _flaxBinding499,
+    _flaxBinding114,
+    _flaxBinding500,
     _flaxBinding501,
     _flaxBinding502,
-  ]),
-);
-const _flaxBinding504 = FlaxGetter(
-  "status",
-  _flaxBinding0,
-  _ReverseAnimation_status,
-);
-const _flaxBinding505 = FlaxGetter(
-  "value",
-  _flaxBinding36,
-  _ReverseAnimation_value,
-);
-const _flaxBinding506 = FlaxGetter(
-  "isDismissed",
-  _flaxBinding2,
-  _ReverseAnimation_isDismissed,
-);
-const _flaxBinding507 = FlaxGetter(
-  "isCompleted",
-  _flaxBinding2,
-  _ReverseAnimation_isCompleted,
-);
-const _flaxBinding508 = FlaxGetter(
-  "isAnimating",
-  _flaxBinding2,
-  _ReverseAnimation_isAnimating,
-);
-const _flaxBinding509 = FlaxGetter(
-  "isForwardOrCompleted",
-  _flaxBinding2,
-  _ReverseAnimation_isForwardOrCompleted,
-);
-const _flaxBinding510 = FlaxGetter(
-  "parent",
-  _flaxBinding38,
-  _ReverseAnimation_parent,
-);
-const _flaxBinding511 = FlaxInstanceMethod(
-  _flaxBinding10,
-  _flaxBinding7,
-  _ReverseAnimation_addListener,
-);
-const _flaxBinding512 = FlaxInstanceMethod(
-  _flaxBinding10,
-  _flaxBinding7,
-  _ReverseAnimation_removeListener,
-);
-const _flaxBinding513 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
-  _ReverseAnimation_toString,
-);
-const _flaxBinding514 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
-  _ReverseAnimation_toStringDetails,
-);
-const _flaxBinding515 = FlaxObjectBinding(
-  "flax.core/sdk_animation#type:ReverseAnimation",
-  [
+    _flaxBinding503,
     _flaxBinding504,
     _flaxBinding505,
     _flaxBinding506,
-    _flaxBinding507,
+  ]),
+);
+const _flaxBinding508 = FlaxGetter(
+  "status",
+  _flaxBinding4,
+  _ReverseAnimation_status,
+);
+const _flaxBinding509 = FlaxGetter(
+  "value",
+  _flaxBinding20,
+  _ReverseAnimation_value,
+);
+const _flaxBinding510 = FlaxGetter(
+  "isDismissed",
+  _flaxBinding11,
+  _ReverseAnimation_isDismissed,
+);
+const _flaxBinding511 = FlaxGetter(
+  "isCompleted",
+  _flaxBinding11,
+  _ReverseAnimation_isCompleted,
+);
+const _flaxBinding512 = FlaxGetter(
+  "isAnimating",
+  _flaxBinding11,
+  _ReverseAnimation_isAnimating,
+);
+const _flaxBinding513 = FlaxGetter(
+  "isForwardOrCompleted",
+  _flaxBinding11,
+  _ReverseAnimation_isForwardOrCompleted,
+);
+const _flaxBinding514 = FlaxGetter(
+  "parent",
+  _flaxBinding26,
+  _ReverseAnimation_parent,
+);
+const _flaxBinding515 = FlaxInstanceMethod.signature(
+  _flaxBinding3,
+  _ReverseAnimation_addListener,
+);
+const _flaxBinding516 = FlaxInstanceMethod.signature(
+  _flaxBinding3,
+  _ReverseAnimation_removeListener,
+);
+const _flaxBinding517 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
+  _ReverseAnimation_toString,
+);
+const _flaxBinding518 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
+  _ReverseAnimation_toStringDetails,
+);
+const _flaxBinding519 = FlaxObjectBinding(
+  "flax.core/sdk_animation#type:ReverseAnimation",
+  [
     _flaxBinding508,
     _flaxBinding509,
-    _flaxBinding166,
     _flaxBinding510,
+    _flaxBinding511,
+    _flaxBinding512,
+    _flaxBinding513,
+    _flaxBinding226,
+    _flaxBinding514,
   ],
   {
-    "addListener": _flaxBinding511,
-    "removeListener": _flaxBinding512,
-    "addStatusListener": _flaxBinding76,
-    "removeStatusListener": _flaxBinding77,
+    "addListener": _flaxBinding515,
+    "removeListener": _flaxBinding516,
+    "addStatusListener": _flaxBinding155,
+    "removeStatusListener": _flaxBinding156,
     "drive": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -28341,31 +27940,27 @@ const _flaxBinding515 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_ReverseAnimation_drive,
       ownerTypes: [],
     ),
-    "toString": _flaxBinding513,
-    "toStringDetails": _flaxBinding514,
-    "didRegisterListener": _flaxBinding167,
-    "didUnregisterListener": _flaxBinding168,
-    "didStartListening": _flaxBinding169,
-    "didStopListening": _flaxBinding170,
-    "clearStatusListeners": _flaxBinding85,
-    "notifyStatusListeners": _flaxBinding87,
-    "@super:addListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "toString": _flaxBinding517,
+    "toStringDetails": _flaxBinding518,
+    "didRegisterListener": _flaxBinding227,
+    "didUnregisterListener": _flaxBinding228,
+    "didStartListening": _flaxBinding229,
+    "didStopListening": _flaxBinding230,
+    "clearStatusListeners": _flaxBinding164,
+    "notifyStatusListeners": _flaxBinding165,
+    "@super:addListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_addListener,
     ),
-    "@super:removeListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "@super:removeListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_removeListener,
     ),
-    "@super:addStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:addStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_addStatusListener,
     ),
-    "@super:removeStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:removeStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_removeStatusListener,
     ),
@@ -28382,88 +27977,72 @@ const _flaxBinding515 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_ReverseAnimation_super_drive,
       ownerTypes: [],
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:toStringDetails": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toStringDetails": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch2_super_call_toStringDetails,
     ),
-    "@super:didRegisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didRegisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ReverseAnimation_super_didRegisterListener,
     ),
-    "@super:didUnregisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didUnregisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ReverseAnimation_super_didUnregisterListener,
     ),
-    "@super:didStartListening": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didStartListening": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ReverseAnimation_super_didStartListening,
     ),
-    "@super:didStopListening": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didStopListening": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ReverseAnimation_super_didStopListening,
     ),
-    "@super:clearStatusListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _ReverseAnimation_super_clearStatusListeners,
     ),
-    "@super:notifyStatusListeners": FlaxInstanceMethod(
-      _flaxBinding86,
-      _flaxBinding7,
+    "@super:notifyStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding14,
       _ReverseAnimation_super_notifyStatusListeners,
     ),
-    "@super:get:parent": FlaxInstanceMethod(
-      [],
-      _flaxBinding38,
+    "@super:get:parent": FlaxInstanceMethod.signature(
+      _flaxBinding27,
       _ReverseAnimation_super_get_parent,
     ),
-    "@super:get:status": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:status": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _FlaxProxyDispatch0_super_get_status,
     ),
-    "@super:get:value": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:value": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _ReverseAnimation_super_get_value,
     ),
-    "@super:get:isDismissed": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isDismissed": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isDismissed,
     ),
-    "@super:get:isCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isCompleted,
     ),
-    "@super:get:isAnimating": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isAnimating": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isAnimating,
     ),
-    "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
     ),
-    "@super:get:isListening": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isListening": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _ReverseAnimation_super_get_isListening,
     ),
   },
-  constructors: {"@implementation": _flaxBinding40},
+  constructors: {"@implementation": _flaxBinding123},
   create: _createReverseAnimation,
   matches: _isReverseAnimation,
   setters: [],
@@ -28477,10 +28056,10 @@ const _flaxBinding515 = FlaxObjectBinding(
   ],
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding19,
-    _flaxBinding20,
-    _flaxBinding22,
-    _flaxBinding23,
+    _flaxBinding108,
+    _flaxBinding109,
+    _flaxBinding110,
+    _flaxBinding111,
     FlaxProxyMember(
       "drive",
       0,
@@ -28488,12 +28067,12 @@ const _flaxBinding515 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "child",
-            _flaxBinding24,
+            _flaxBinding112,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding25,
+        _flaxBinding113,
         _callback9,
         id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<parameter:>)->object:flax.core/sdk_animation#type:Animation<parameter:>",
         invoke: _callback9Invoke,
@@ -28503,96 +28082,88 @@ const _flaxBinding515 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding27,
-    _flaxBinding28,
+    _flaxBinding114,
+    _flaxBinding115,
+    _flaxBinding187,
+    _flaxBinding188,
+    _flaxBinding246,
+    _flaxBinding247,
+    _flaxBinding192,
+    _flaxBinding193,
+    _flaxBinding400,
+    _flaxBinding116,
+    _flaxBinding218,
     _flaxBinding117,
     _flaxBinding118,
-    _flaxBinding186,
-    _flaxBinding187,
-    _flaxBinding122,
-    _flaxBinding124,
-    _flaxBinding374,
-    _flaxBinding30,
-    _flaxBinding156,
-    _flaxBinding32,
-    _flaxBinding33,
-    _flaxBinding34,
-    _flaxBinding35,
-    _flaxBinding188,
+    _flaxBinding119,
+    _flaxBinding120,
+    _flaxBinding248,
   ]),
 );
-const _flaxBinding516 = FlaxTypeRef(
+const _flaxBinding520 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Tween",
   dartType: FlaxDartTypes.typeOf<api.Tween<Object?>>,
 );
-const _flaxBinding517 = <FlaxParameter>[
-  FlaxParameter("parent", _flaxBinding516, required: true),
+const _flaxBinding521 = <FlaxParameter>[
+  FlaxParameter("parent", _flaxBinding520, required: true),
 ];
-const _flaxBinding518 = FlaxGetter(
+const _flaxBinding522 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _SawTooth_flipped,
 );
-const _flaxBinding519 = FlaxGetter("count", _flaxBinding266, _SawTooth_count);
-const _flaxBinding520 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding523 = FlaxGetter("count", _flaxBinding48, _SawTooth_count);
+const _flaxBinding524 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _SawTooth_transform,
 );
-const _flaxBinding521 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding525 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _SawTooth_transformInternal,
 );
-const _flaxBinding522 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding526 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _SawTooth_toString,
 );
-const _flaxBinding523 = <FlaxParameter>[
-  FlaxParameter("count", _flaxBinding266, required: true),
+const _flaxBinding527 = <FlaxParameter>[
+  FlaxParameter("count", _flaxBinding48, required: true),
 ];
-const _flaxBinding524 = FlaxProxyMember(
+const _flaxBinding528 = FlaxProxyMember(
   "count",
   1,
-  _flaxBinding284,
+  _flaxBinding49,
   hasSuper: true,
 );
-const _flaxBinding525 = FlaxObjectBinding(
+const _flaxBinding529 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:SawTooth",
-  [_flaxBinding518, _flaxBinding519],
+  [_flaxBinding522, _flaxBinding523],
   {
-    "transform": _flaxBinding520,
-    "transformInternal": _flaxBinding521,
-    "toString": _flaxBinding522,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding524,
+    "transformInternal": _flaxBinding525,
+    "toString": _flaxBinding526,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:count": FlaxInstanceMethod(
-      [],
-      _flaxBinding266,
+    "@super:get:count": FlaxInstanceMethod.signature(
+      _flaxBinding49,
       _SawTooth_super_get_count,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding523},
+  constructors: {"@implementation": _flaxBinding527},
   create: _createSawTooth,
   matches: _isSawTooth,
   setters: [],
@@ -28602,254 +28173,160 @@ const _flaxBinding525 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding524,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding528,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding526 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Size",
-  nullable: true,
-);
-const _flaxBinding527 = FlaxGetter("begin", _flaxBinding526, _SizeTween_begin);
-const _flaxBinding528 = FlaxGetter("end", _flaxBinding526, _SizeTween_end);
-const _flaxBinding529 = FlaxSetter(
+const _flaxBinding530 = FlaxGetter("begin", _flaxBinding88, _SizeTween_begin);
+const _flaxBinding531 = FlaxGetter("end", _flaxBinding88, _SizeTween_end);
+const _flaxBinding532 = FlaxSetter(
   "begin",
-  _flaxBinding526,
+  _flaxBinding88,
   _SizeTween_set_begin,
 );
-const _flaxBinding530 = FlaxSetter("end", _flaxBinding526, _SizeTween_set_end);
-const _flaxBinding531 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding526,
+const _flaxBinding533 = FlaxSetter("end", _flaxBinding88, _SizeTween_set_end);
+const _flaxBinding534 = FlaxInstanceMethod.signature(
+  _flaxBinding89,
   _SizeTween_lerp,
 );
-const _flaxBinding532 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding526,
+const _flaxBinding535 = FlaxInstanceMethod.signature(
+  _flaxBinding89,
   _SizeTween_transform,
 );
-const _flaxBinding533 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding536 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _SizeTween_toString,
 );
-const _flaxBinding534 = FlaxInstanceMethod(
-  _flaxBinding39,
-  _flaxBinding526,
+const _flaxBinding537 = FlaxInstanceMethod.signature(
+  _flaxBinding90,
   _SizeTween_evaluate,
 );
-const _flaxBinding535 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animation",
-  dartType: FlaxDartTypes.typeOf<api.Animation<api1.Size?>>,
-);
-const _flaxBinding536 = FlaxInstanceMethod(
-  _flaxBinding40,
-  _flaxBinding535,
+const _flaxBinding538 = FlaxInstanceMethod.signature(
+  _flaxBinding92,
   _SizeTween_animate,
 );
-const _flaxBinding537 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:Animatable",
-  dartType: FlaxDartTypes.typeOf<api.Animatable<api1.Size?>>,
-);
-const _flaxBinding538 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding537,
+const _flaxBinding539 = FlaxInstanceMethod.signature(
+  _flaxBinding94,
   _SizeTween_chain,
 );
-const _flaxBinding539 = <FlaxParameter>[
-  FlaxParameter("begin", _flaxBinding526, required: false),
-  FlaxParameter("end", _flaxBinding526, required: false),
+const _flaxBinding540 = <FlaxParameter>[
+  FlaxParameter("begin", _flaxBinding88, required: false),
+  FlaxParameter("end", _flaxBinding88, required: false),
 ];
-const _flaxBinding540 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "t",
-      _flaxBinding36,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding526,
-  id: "callback:<>(p:r:t:double:)->object?:flax.core/flutter#type:Size",
-);
 const _flaxBinding541 = FlaxProxyMember(
   "lerp",
   0,
-  _flaxBinding540,
+  _flaxBinding89,
   hasSuper: true,
 );
 const _flaxBinding542 = FlaxProxyMember(
   "transform",
   0,
-  _flaxBinding540,
+  _flaxBinding89,
   hasSuper: true,
 );
-const _flaxBinding543 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "animation",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding526,
-  id: "callback:<>(p:r:animation:object:flax.core/sdk_animation#type:Animation<double:>)->object?:flax.core/flutter#type:Size",
-);
-const _flaxBinding544 = FlaxProxyMember(
+const _flaxBinding543 = FlaxProxyMember(
   "evaluate",
   0,
-  _flaxBinding543,
+  _flaxBinding90,
   hasSuper: true,
 );
-const _flaxBinding545 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding38,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding535,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animation<double:>)->object:flax.core/sdk_animation#type:Animation<object?:flax.core/flutter#type:Size>",
-);
-const _flaxBinding546 = FlaxProxyMember(
+const _flaxBinding544 = FlaxProxyMember(
   "animate",
   0,
-  _flaxBinding545,
+  _flaxBinding92,
   hasSuper: true,
 );
-const _flaxBinding547 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "parent",
-      _flaxBinding41,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding537,
-  id: "callback:<>(p:r:parent:object:flax.core/sdk_animation#type:Animatable<double:>)->object:flax.core/sdk_animation#type:Animatable<object?:flax.core/flutter#type:Size>",
-);
-const _flaxBinding548 = FlaxProxyMember(
+const _flaxBinding545 = FlaxProxyMember(
   "chain",
   0,
-  _flaxBinding547,
+  _flaxBinding94,
   hasSuper: true,
 );
-const _flaxBinding549 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding526,
-  id: "callback:<>()->object?:flax.core/flutter#type:Size",
-);
-const _flaxBinding550 = FlaxProxyMember(
+const _flaxBinding546 = FlaxProxyMember(
   "begin",
   1,
-  _flaxBinding549,
+  _flaxBinding95,
   hasSuper: true,
 );
-const _flaxBinding551 = FlaxProxyMember(
+const _flaxBinding547 = FlaxProxyMember(
   "end",
   1,
-  _flaxBinding549,
+  _flaxBinding95,
   hasSuper: true,
 );
-const _flaxBinding552 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding526,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:object?:flax.core/flutter#type:Size)->void:",
-);
-const _flaxBinding553 = FlaxProxyMember(
+const _flaxBinding548 = FlaxProxyMember(
   "begin",
   2,
-  _flaxBinding552,
+  _flaxBinding96,
   hasSuper: true,
 );
-const _flaxBinding554 = FlaxProxyMember(
+const _flaxBinding549 = FlaxProxyMember(
   "end",
   2,
-  _flaxBinding552,
+  _flaxBinding96,
   hasSuper: true,
 );
-const _flaxBinding555 = FlaxObjectBinding(
+const _flaxBinding550 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:SizeTween",
-  [_flaxBinding527, _flaxBinding528],
+  [_flaxBinding530, _flaxBinding531],
   {
-    "lerp": _flaxBinding531,
-    "transform": _flaxBinding532,
-    "toString": _flaxBinding533,
-    "evaluate": _flaxBinding534,
-    "animate": _flaxBinding536,
-    "chain": _flaxBinding538,
-    "@super:lerp": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding526,
+    "lerp": _flaxBinding534,
+    "transform": _flaxBinding535,
+    "toString": _flaxBinding536,
+    "evaluate": _flaxBinding537,
+    "animate": _flaxBinding538,
+    "chain": _flaxBinding539,
+    "@super:lerp": FlaxInstanceMethod.signature(
+      _flaxBinding89,
       _SizeTween_super_lerp,
     ),
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding526,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding89,
       _SizeTween_super_transform,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:evaluate": FlaxInstanceMethod(
-      _flaxBinding39,
-      _flaxBinding526,
+    "@super:evaluate": FlaxInstanceMethod.signature(
+      _flaxBinding90,
       _SizeTween_super_evaluate,
     ),
-    "@super:animate": FlaxInstanceMethod(
-      _flaxBinding40,
-      _flaxBinding535,
+    "@super:animate": FlaxInstanceMethod.signature(
+      _flaxBinding92,
       _SizeTween_super_animate,
     ),
-    "@super:chain": FlaxInstanceMethod(
-      _flaxBinding42,
-      _flaxBinding537,
+    "@super:chain": FlaxInstanceMethod.signature(
+      _flaxBinding94,
       _SizeTween_super_chain,
     ),
-    "@super:get:begin": FlaxInstanceMethod(
-      [],
-      _flaxBinding526,
+    "@super:get:begin": FlaxInstanceMethod.signature(
+      _flaxBinding95,
       _SizeTween_super_get_begin,
     ),
-    "@super:get:end": FlaxInstanceMethod(
-      [],
-      _flaxBinding526,
+    "@super:get:end": FlaxInstanceMethod.signature(
+      _flaxBinding95,
       _SizeTween_super_get_end,
     ),
     "@super:set:begin": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding526, required: true)],
+      [FlaxParameter("value", _flaxBinding88, required: true)],
       const FlaxTypeRef("void"),
       _SizeTween_super_set_begin,
     ),
     "@super:set:end": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding526, required: true)],
+      [FlaxParameter("value", _flaxBinding88, required: true)],
       const FlaxTypeRef("void"),
       _SizeTween_super_set_end,
     ),
   },
-  constructors: {"@implementation": _flaxBinding539},
+  constructors: {"@implementation": _flaxBinding540},
   create: _createSizeTween,
   matches: _isSizeTween,
-  setters: [_flaxBinding529, _flaxBinding530],
+  setters: [_flaxBinding532, _flaxBinding533],
   supertypes: [
     "flax.core/sdk_animation#type:Tween",
     "flax.core/sdk_animation#type:Animatable",
@@ -28858,116 +28335,106 @@ const _flaxBinding555 = FlaxObjectBinding(
   proxy: FlaxProxyBinding([
     _flaxBinding541,
     _flaxBinding542,
-    _flaxBinding27,
+    _flaxBinding114,
+    _flaxBinding543,
     _flaxBinding544,
+    _flaxBinding545,
     _flaxBinding546,
+    _flaxBinding547,
     _flaxBinding548,
-    _flaxBinding550,
-    _flaxBinding551,
-    _flaxBinding553,
-    _flaxBinding554,
+    _flaxBinding549,
   ]),
 );
-const _flaxBinding556 = FlaxGetter("flipped", _flaxBinding98, _Split_flipped);
-const _flaxBinding557 = FlaxGetter("split", _flaxBinding36, _Split_split);
-const _flaxBinding558 = FlaxGetter(
+const _flaxBinding551 = FlaxGetter("flipped", _flaxBinding44, _Split_flipped);
+const _flaxBinding552 = FlaxGetter("split", _flaxBinding20, _Split_split);
+const _flaxBinding553 = FlaxGetter(
   "beginCurve",
-  _flaxBinding98,
+  _flaxBinding44,
   _Split_beginCurve,
 );
-const _flaxBinding559 = FlaxGetter("endCurve", _flaxBinding98, _Split_endCurve);
-const _flaxBinding560 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding554 = FlaxGetter("endCurve", _flaxBinding44, _Split_endCurve);
+const _flaxBinding555 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _Split_transform,
 );
-const _flaxBinding561 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding556 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _Split_transformInternal,
 );
-const _flaxBinding562 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding557 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _Split_toString,
 );
-const _flaxBinding563 = <FlaxParameter>[
-  FlaxParameter("split", _flaxBinding36, required: true),
+const _flaxBinding558 = <FlaxParameter>[
+  FlaxParameter("split", _flaxBinding20, required: true),
   FlaxParameter(
     "beginCurve",
-    _flaxBinding98,
+    _flaxBinding44,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "endCurve",
-    _flaxBinding98,
+    _flaxBinding44,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding564 = FlaxProxyMember(
+const _flaxBinding559 = FlaxProxyMember(
   "split",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding565 = FlaxProxyMember(
+const _flaxBinding560 = FlaxProxyMember(
   "beginCurve",
   1,
-  _flaxBinding263,
+  _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding566 = FlaxProxyMember(
+const _flaxBinding561 = FlaxProxyMember(
   "endCurve",
   1,
-  _flaxBinding263,
+  _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding567 = FlaxObjectBinding(
+const _flaxBinding562 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:Split",
-  [_flaxBinding556, _flaxBinding557, _flaxBinding558, _flaxBinding559],
+  [_flaxBinding551, _flaxBinding552, _flaxBinding553, _flaxBinding554],
   {
-    "transform": _flaxBinding560,
-    "transformInternal": _flaxBinding561,
-    "toString": _flaxBinding562,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding555,
+    "transformInternal": _flaxBinding556,
+    "toString": _flaxBinding557,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:split": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:split": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _Split_super_get_split,
     ),
-    "@super:get:beginCurve": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:beginCurve": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _Split_super_get_beginCurve,
     ),
-    "@super:get:endCurve": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:endCurve": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _Split_super_get_endCurve,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding563},
+  constructors: {"@implementation": _flaxBinding558},
   create: _createSplit,
   matches: _isSplit,
   setters: [],
@@ -28977,263 +28444,237 @@ const _flaxBinding567 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding564,
-    _flaxBinding565,
-    _flaxBinding566,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding559,
+    _flaxBinding560,
+    _flaxBinding561,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding568 = FlaxGetter("begin", _flaxBinding102, _StepTween_begin);
-const _flaxBinding569 = FlaxGetter("end", _flaxBinding102, _StepTween_end);
-const _flaxBinding570 = FlaxSetter(
+const _flaxBinding563 = FlaxGetter("begin", _flaxBinding73, _StepTween_begin);
+const _flaxBinding564 = FlaxGetter("end", _flaxBinding73, _StepTween_end);
+const _flaxBinding565 = FlaxSetter(
   "begin",
-  _flaxBinding102,
+  _flaxBinding73,
   _StepTween_set_begin,
 );
-const _flaxBinding571 = FlaxSetter("end", _flaxBinding102, _StepTween_set_end);
-const _flaxBinding572 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding266,
+const _flaxBinding566 = FlaxSetter("end", _flaxBinding73, _StepTween_set_end);
+const _flaxBinding567 = FlaxInstanceMethod.signature(
+  _flaxBinding67,
   _StepTween_lerp,
 );
-const _flaxBinding573 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding266,
+const _flaxBinding568 = FlaxInstanceMethod.signature(
+  _flaxBinding67,
   _StepTween_transform,
 );
-const _flaxBinding574 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding569 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _StepTween_toString,
 );
-const _flaxBinding575 = FlaxInstanceMethod(
-  _flaxBinding39,
-  _flaxBinding266,
+const _flaxBinding570 = FlaxInstanceMethod.signature(
+  _flaxBinding68,
   _StepTween_evaluate,
 );
-const _flaxBinding576 = FlaxInstanceMethod(
-  _flaxBinding40,
-  _flaxBinding425,
+const _flaxBinding571 = FlaxInstanceMethod.signature(
+  _flaxBinding70,
   _StepTween_animate,
 );
-const _flaxBinding577 = FlaxInstanceMethod(
-  _flaxBinding42,
-  _flaxBinding427,
+const _flaxBinding572 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _StepTween_chain,
 );
-const _flaxBinding578 = FlaxObjectBinding(
+const _flaxBinding573 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:StepTween",
-  [_flaxBinding568, _flaxBinding569],
+  [_flaxBinding563, _flaxBinding564],
   {
-    "lerp": _flaxBinding572,
-    "transform": _flaxBinding573,
-    "toString": _flaxBinding574,
-    "evaluate": _flaxBinding575,
-    "animate": _flaxBinding576,
-    "chain": _flaxBinding577,
-    "@super:lerp": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding266,
+    "lerp": _flaxBinding567,
+    "transform": _flaxBinding568,
+    "toString": _flaxBinding569,
+    "evaluate": _flaxBinding570,
+    "animate": _flaxBinding571,
+    "chain": _flaxBinding572,
+    "@super:lerp": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch18_super_call_lerp,
     ),
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding266,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch18_super_call_transform,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:evaluate": FlaxInstanceMethod(
-      _flaxBinding39,
-      _flaxBinding266,
+    "@super:evaluate": FlaxInstanceMethod.signature(
+      _flaxBinding68,
       _FlaxProxyDispatch18_super_call_evaluate,
     ),
-    "@super:animate": FlaxInstanceMethod(
-      _flaxBinding40,
-      _flaxBinding425,
+    "@super:animate": FlaxInstanceMethod.signature(
+      _flaxBinding70,
       _FlaxProxyDispatch18_super_call_animate,
     ),
-    "@super:chain": FlaxInstanceMethod(
-      _flaxBinding42,
-      _flaxBinding427,
+    "@super:chain": FlaxInstanceMethod.signature(
+      _flaxBinding72,
       _FlaxProxyDispatch18_super_call_chain,
     ),
-    "@super:get:begin": FlaxInstanceMethod(
-      [],
-      _flaxBinding102,
+    "@super:get:begin": FlaxInstanceMethod.signature(
+      _flaxBinding74,
       _FlaxProxyDispatch18_super_get_begin,
     ),
-    "@super:get:end": FlaxInstanceMethod(
-      [],
-      _flaxBinding102,
+    "@super:get:end": FlaxInstanceMethod.signature(
+      _flaxBinding74,
       _FlaxProxyDispatch18_super_get_end,
     ),
     "@super:set:begin": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding102, required: true)],
+      [FlaxParameter("value", _flaxBinding73, required: true)],
       const FlaxTypeRef("void"),
       _FlaxProxyDispatch18_super_set_begin,
     ),
     "@super:set:end": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding102, required: true)],
+      [FlaxParameter("value", _flaxBinding73, required: true)],
       const FlaxTypeRef("void"),
       _FlaxProxyDispatch18_super_set_end,
     ),
   },
-  constructors: {"@implementation": _flaxBinding429},
+  constructors: {"@implementation": _flaxBinding451},
   create: _createStepTween,
   matches: _isStepTween,
-  setters: [_flaxBinding570, _flaxBinding571],
+  setters: [_flaxBinding565, _flaxBinding566],
   supertypes: [
     "flax.core/sdk_animation#type:Tween",
     "flax.core/sdk_animation#type:Animatable",
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding27,
-    _flaxBinding434,
-    _flaxBinding436,
-    _flaxBinding438,
-    _flaxBinding440,
-    _flaxBinding441,
-    _flaxBinding443,
-    _flaxBinding444,
+    _flaxBinding452,
+    _flaxBinding453,
+    _flaxBinding114,
+    _flaxBinding454,
+    _flaxBinding455,
+    _flaxBinding456,
+    _flaxBinding457,
+    _flaxBinding458,
+    _flaxBinding459,
+    _flaxBinding460,
   ]),
 );
-const _flaxBinding579 = FlaxGetter(
+const _flaxBinding574 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _ThreePointCubic_flipped,
 );
-const _flaxBinding580 = FlaxGetter("a1", _flaxBinding248, _ThreePointCubic_a1);
-const _flaxBinding581 = FlaxGetter("b1", _flaxBinding248, _ThreePointCubic_b1);
-const _flaxBinding582 = FlaxGetter(
+const _flaxBinding575 = FlaxGetter("a1", _flaxBinding40, _ThreePointCubic_a1);
+const _flaxBinding576 = FlaxGetter("b1", _flaxBinding40, _ThreePointCubic_b1);
+const _flaxBinding577 = FlaxGetter(
   "midpoint",
-  _flaxBinding248,
+  _flaxBinding40,
   _ThreePointCubic_midpoint,
 );
-const _flaxBinding583 = FlaxGetter("a2", _flaxBinding248, _ThreePointCubic_a2);
-const _flaxBinding584 = FlaxGetter("b2", _flaxBinding248, _ThreePointCubic_b2);
-const _flaxBinding585 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding578 = FlaxGetter("a2", _flaxBinding40, _ThreePointCubic_a2);
+const _flaxBinding579 = FlaxGetter("b2", _flaxBinding40, _ThreePointCubic_b2);
+const _flaxBinding580 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _ThreePointCubic_transform,
 );
-const _flaxBinding586 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding581 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _ThreePointCubic_transformInternal,
 );
-const _flaxBinding587 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding582 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _ThreePointCubic_toString,
 );
-const _flaxBinding588 = <FlaxParameter>[
-  FlaxParameter("a1", _flaxBinding248, required: true),
-  FlaxParameter("b1", _flaxBinding248, required: true),
-  FlaxParameter("midpoint", _flaxBinding248, required: true),
-  FlaxParameter("a2", _flaxBinding248, required: true),
-  FlaxParameter("b2", _flaxBinding248, required: true),
+const _flaxBinding583 = <FlaxParameter>[
+  FlaxParameter("a1", _flaxBinding40, required: true),
+  FlaxParameter("b1", _flaxBinding40, required: true),
+  FlaxParameter("midpoint", _flaxBinding40, required: true),
+  FlaxParameter("a2", _flaxBinding40, required: true),
+  FlaxParameter("b2", _flaxBinding40, required: true),
 ];
-const _flaxBinding589 = FlaxProxyMember(
+const _flaxBinding584 = FlaxProxyMember(
   "a1",
   1,
-  _flaxBinding332,
+  _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding590 = FlaxProxyMember(
+const _flaxBinding585 = FlaxProxyMember(
   "b1",
   1,
-  _flaxBinding332,
+  _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding591 = FlaxProxyMember(
+const _flaxBinding586 = FlaxProxyMember(
   "midpoint",
   1,
-  _flaxBinding332,
+  _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding592 = FlaxProxyMember(
+const _flaxBinding587 = FlaxProxyMember(
   "a2",
   1,
-  _flaxBinding332,
+  _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding593 = FlaxProxyMember(
+const _flaxBinding588 = FlaxProxyMember(
   "b2",
   1,
-  _flaxBinding332,
+  _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding594 = FlaxObjectBinding(
+const _flaxBinding589 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:ThreePointCubic",
   [
+    _flaxBinding574,
+    _flaxBinding575,
+    _flaxBinding576,
+    _flaxBinding577,
+    _flaxBinding578,
     _flaxBinding579,
-    _flaxBinding580,
-    _flaxBinding581,
-    _flaxBinding582,
-    _flaxBinding583,
-    _flaxBinding584,
   ],
   {
-    "transform": _flaxBinding585,
-    "transformInternal": _flaxBinding586,
-    "toString": _flaxBinding587,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding580,
+    "transformInternal": _flaxBinding581,
+    "toString": _flaxBinding582,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:a1": FlaxInstanceMethod(
-      [],
-      _flaxBinding248,
+    "@super:get:a1": FlaxInstanceMethod.signature(
+      _flaxBinding60,
       _ThreePointCubic_super_get_a1,
     ),
-    "@super:get:b1": FlaxInstanceMethod(
-      [],
-      _flaxBinding248,
+    "@super:get:b1": FlaxInstanceMethod.signature(
+      _flaxBinding60,
       _ThreePointCubic_super_get_b1,
     ),
-    "@super:get:midpoint": FlaxInstanceMethod(
-      [],
-      _flaxBinding248,
+    "@super:get:midpoint": FlaxInstanceMethod.signature(
+      _flaxBinding60,
       _ThreePointCubic_super_get_midpoint,
     ),
-    "@super:get:a2": FlaxInstanceMethod(
-      [],
-      _flaxBinding248,
+    "@super:get:a2": FlaxInstanceMethod.signature(
+      _flaxBinding60,
       _ThreePointCubic_super_get_a2,
     ),
-    "@super:get:b2": FlaxInstanceMethod(
-      [],
-      _flaxBinding248,
+    "@super:get:b2": FlaxInstanceMethod.signature(
+      _flaxBinding60,
       _ThreePointCubic_super_get_b2,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding588},
+  constructors: {"@implementation": _flaxBinding583},
   create: _createThreePointCubic,
   matches: _isThreePointCubic,
   setters: [],
@@ -29243,85 +28684,77 @@ const _flaxBinding594 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding589,
-    _flaxBinding590,
-    _flaxBinding591,
-    _flaxBinding592,
-    _flaxBinding593,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding584,
+    _flaxBinding585,
+    _flaxBinding586,
+    _flaxBinding587,
+    _flaxBinding588,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding595 = FlaxGetter(
+const _flaxBinding590 = FlaxGetter(
   "flipped",
-  _flaxBinding98,
+  _flaxBinding44,
   _Threshold_flipped,
 );
-const _flaxBinding596 = FlaxGetter(
+const _flaxBinding591 = FlaxGetter(
   "threshold",
-  _flaxBinding36,
+  _flaxBinding20,
   _Threshold_threshold,
 );
-const _flaxBinding597 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding592 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _Threshold_transform,
 );
-const _flaxBinding598 = FlaxInstanceMethod(
-  _flaxBinding37,
-  _flaxBinding36,
+const _flaxBinding593 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _Threshold_transformInternal,
 );
-const _flaxBinding599 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding594 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _Threshold_toString,
 );
-const _flaxBinding600 = <FlaxParameter>[
-  FlaxParameter("threshold", _flaxBinding36, required: true),
+const _flaxBinding595 = <FlaxParameter>[
+  FlaxParameter("threshold", _flaxBinding20, required: true),
 ];
-const _flaxBinding601 = FlaxProxyMember(
+const _flaxBinding596 = FlaxProxyMember(
   "threshold",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding602 = FlaxObjectBinding(
+const _flaxBinding597 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:Threshold",
-  [_flaxBinding595, _flaxBinding596],
+  [_flaxBinding590, _flaxBinding591],
   {
-    "transform": _flaxBinding597,
-    "transformInternal": _flaxBinding598,
-    "toString": _flaxBinding599,
-    "@super:transform": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "transform": _flaxBinding592,
+    "transformInternal": _flaxBinding593,
+    "toString": _flaxBinding594,
+    "@super:transform": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch10_super_call_transform,
     ),
-    "@super:transformInternal": FlaxInstanceMethod(
-      _flaxBinding37,
-      _flaxBinding36,
+    "@super:transformInternal": FlaxInstanceMethod.signature(
+      _flaxBinding39,
       _FlaxProxyDispatch11_super_call_transformInternal,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:get:threshold": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:threshold": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _Threshold_super_get_threshold,
     ),
-    "@super:get:flipped": FlaxInstanceMethod(
-      [],
-      _flaxBinding98,
+    "@super:get:flipped": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _FlaxProxyDispatch11_super_get_flipped,
     ),
   },
-  constructors: {"@implementation": _flaxBinding600},
+  constructors: {"@implementation": _flaxBinding595},
   create: _createThreshold,
   matches: _isThreshold,
   setters: [],
@@ -29331,130 +28764,106 @@ const _flaxBinding602 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding258,
-    _flaxBinding259,
-    _flaxBinding27,
-    _flaxBinding601,
-    _flaxBinding264,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding114,
+    _flaxBinding596,
+    _flaxBinding309,
   ]),
 );
-const _flaxBinding603 = FlaxGetter(
+const _flaxBinding598 = FlaxGetter(
   "status",
-  _flaxBinding0,
+  _flaxBinding4,
   _TrainHoppingAnimation_status,
 );
-const _flaxBinding604 = FlaxGetter(
+const _flaxBinding599 = FlaxGetter(
   "value",
-  _flaxBinding36,
+  _flaxBinding20,
   _TrainHoppingAnimation_value,
 );
-const _flaxBinding605 = FlaxGetter(
+const _flaxBinding600 = FlaxGetter(
   "isDismissed",
-  _flaxBinding2,
+  _flaxBinding11,
   _TrainHoppingAnimation_isDismissed,
 );
-const _flaxBinding606 = FlaxGetter(
+const _flaxBinding601 = FlaxGetter(
   "isCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _TrainHoppingAnimation_isCompleted,
 );
-const _flaxBinding607 = FlaxGetter(
+const _flaxBinding602 = FlaxGetter(
   "isAnimating",
-  _flaxBinding2,
+  _flaxBinding11,
   _TrainHoppingAnimation_isAnimating,
 );
-const _flaxBinding608 = FlaxGetter(
+const _flaxBinding603 = FlaxGetter(
   "isForwardOrCompleted",
-  _flaxBinding2,
+  _flaxBinding11,
   _TrainHoppingAnimation_isForwardOrCompleted,
 );
-const _flaxBinding609 = FlaxGetter(
+const _flaxBinding604 = FlaxGetter(
   "currentTrain",
-  _flaxBinding463,
+  _flaxBinding76,
   _TrainHoppingAnimation_currentTrain,
 );
-const _flaxBinding610 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding8,
-);
-const _flaxBinding611 = FlaxGetter(
+const _flaxBinding605 = FlaxGetter(
   "onSwitchedTrain",
-  _flaxBinding610,
+  _flaxBinding97,
   _TrainHoppingAnimation_onSwitchedTrain,
 );
-const _flaxBinding612 = FlaxSetter(
+const _flaxBinding606 = FlaxSetter(
   "onSwitchedTrain",
-  _flaxBinding610,
+  _flaxBinding97,
   _TrainHoppingAnimation_set_onSwitchedTrain,
 );
-const _flaxBinding613 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding607 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _TrainHoppingAnimation_toString,
 );
-const _flaxBinding614 = FlaxInstanceMethod(
-  _flaxBinding14,
-  _flaxBinding15,
+const _flaxBinding608 = FlaxInstanceMethod.signature(
+  _flaxBinding9,
   _TrainHoppingAnimation_toStringDetails,
 );
-const _flaxBinding615 = <FlaxParameter>[
-  FlaxParameter("_currentTrain", _flaxBinding38, required: true),
-  FlaxParameter("_nextTrain", _flaxBinding463, required: true),
-  FlaxParameter("onSwitchedTrain", _flaxBinding610, required: false),
+const _flaxBinding609 = <FlaxParameter>[
+  FlaxParameter("_currentTrain", _flaxBinding26, required: true),
+  FlaxParameter("_nextTrain", _flaxBinding76, required: true),
+  FlaxParameter("onSwitchedTrain", _flaxBinding97, required: false),
 ];
-const _flaxBinding616 = FlaxProxyMember(
+const _flaxBinding610 = FlaxProxyMember(
   "currentTrain",
   1,
-  _flaxBinding469,
+  _flaxBinding77,
   hasSuper: true,
 );
-const _flaxBinding617 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding610,
-  id: "callback:<>()->callback?:<>()->void:",
-);
-const _flaxBinding618 = FlaxProxyMember(
+const _flaxBinding611 = FlaxProxyMember(
   "onSwitchedTrain",
   1,
-  _flaxBinding617,
+  _flaxBinding98,
   hasSuper: true,
 );
-const _flaxBinding619 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding610,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding7,
-  id: "callback:<>(p:r:value:callback?:<>()->void:)->void:",
-);
-const _flaxBinding620 = FlaxProxyMember(
+const _flaxBinding612 = FlaxProxyMember(
   "onSwitchedTrain",
   2,
-  _flaxBinding619,
+  _flaxBinding99,
   hasSuper: true,
 );
-const _flaxBinding621 = FlaxObjectBinding(
+const _flaxBinding613 = FlaxObjectBinding(
   "flax.core/sdk_animation#type:TrainHoppingAnimation",
   [
+    _flaxBinding598,
+    _flaxBinding599,
+    _flaxBinding600,
+    _flaxBinding601,
+    _flaxBinding602,
     _flaxBinding603,
     _flaxBinding604,
     _flaxBinding605,
-    _flaxBinding606,
-    _flaxBinding607,
-    _flaxBinding608,
-    _flaxBinding609,
-    _flaxBinding611,
   ],
   {
-    "addListener": _flaxBinding74,
-    "removeListener": _flaxBinding75,
-    "addStatusListener": _flaxBinding76,
-    "removeStatusListener": _flaxBinding77,
+    "addListener": _flaxBinding153,
+    "removeListener": _flaxBinding154,
+    "addStatusListener": _flaxBinding155,
+    "removeStatusListener": _flaxBinding156,
     "drive": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -29468,32 +28877,28 @@ const _flaxBinding621 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_TrainHoppingAnimation_drive,
       ownerTypes: [],
     ),
-    "toString": _flaxBinding613,
-    "toStringDetails": _flaxBinding614,
-    "didRegisterListener": _flaxBinding80,
-    "didUnregisterListener": _flaxBinding81,
-    "dispose": _flaxBinding82,
-    "clearListeners": _flaxBinding83,
-    "notifyListeners": _flaxBinding84,
-    "clearStatusListeners": _flaxBinding85,
-    "notifyStatusListeners": _flaxBinding87,
-    "@super:addListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "toString": _flaxBinding607,
+    "toStringDetails": _flaxBinding608,
+    "didRegisterListener": _flaxBinding159,
+    "didUnregisterListener": _flaxBinding160,
+    "dispose": _flaxBinding161,
+    "clearListeners": _flaxBinding162,
+    "notifyListeners": _flaxBinding163,
+    "clearStatusListeners": _flaxBinding164,
+    "notifyStatusListeners": _flaxBinding165,
+    "@super:addListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_addListener,
     ),
-    "@super:removeListener": FlaxInstanceMethod(
-      _flaxBinding10,
-      _flaxBinding7,
+    "@super:removeListener": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch0_super_call_removeListener,
     ),
-    "@super:addStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:addStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_addStatusListener,
     ),
-    "@super:removeStatusListener": FlaxInstanceMethod(
-      _flaxBinding13,
+    "@super:removeStatusListener": FlaxInstanceMethod.signature(
       _flaxBinding7,
       _FlaxProxyDispatch0_super_call_removeStatusListener,
     ),
@@ -29510,101 +28915,84 @@ const _flaxBinding621 = FlaxObjectBinding(
       genericFactory: _flaxGeneric_TrainHoppingAnimation_super_drive,
       ownerTypes: [],
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch1_super_call_toString,
     ),
-    "@super:toStringDetails": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding15,
+    "@super:toStringDetails": FlaxInstanceMethod.signature(
+      _flaxBinding9,
       _FlaxProxyDispatch2_super_call_toStringDetails,
     ),
-    "@super:didRegisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didRegisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _TrainHoppingAnimation_super_didRegisterListener,
     ),
-    "@super:didUnregisterListener": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:didUnregisterListener": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _TrainHoppingAnimation_super_didUnregisterListener,
     ),
-    "@super:dispose": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:dispose": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _TrainHoppingAnimation_super_dispose,
     ),
-    "@super:clearListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _TrainHoppingAnimation_super_clearListeners,
     ),
-    "@super:notifyListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:notifyListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _TrainHoppingAnimation_super_notifyListeners,
     ),
-    "@super:clearStatusListeners": FlaxInstanceMethod(
-      _flaxBinding14,
-      _flaxBinding7,
+    "@super:clearStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding13,
       _TrainHoppingAnimation_super_clearStatusListeners,
     ),
-    "@super:notifyStatusListeners": FlaxInstanceMethod(
-      _flaxBinding86,
-      _flaxBinding7,
+    "@super:notifyStatusListeners": FlaxInstanceMethod.signature(
+      _flaxBinding14,
       _TrainHoppingAnimation_super_notifyStatusListeners,
     ),
-    "@super:get:currentTrain": FlaxInstanceMethod(
-      [],
-      _flaxBinding463,
+    "@super:get:currentTrain": FlaxInstanceMethod.signature(
+      _flaxBinding77,
       _TrainHoppingAnimation_super_get_currentTrain,
     ),
-    "@super:get:onSwitchedTrain": FlaxInstanceMethod(
-      [],
-      _flaxBinding610,
+    "@super:get:onSwitchedTrain": FlaxInstanceMethod.signature(
+      _flaxBinding98,
       _TrainHoppingAnimation_super_get_onSwitchedTrain,
     ),
-    "@super:get:status": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:status": FlaxInstanceMethod.signature(
+      _flaxBinding10,
       _FlaxProxyDispatch0_super_get_status,
     ),
-    "@super:get:value": FlaxInstanceMethod(
-      [],
-      _flaxBinding36,
+    "@super:get:value": FlaxInstanceMethod.signature(
+      _flaxBinding21,
       _TrainHoppingAnimation_super_get_value,
     ),
-    "@super:get:isDismissed": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isDismissed": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isDismissed,
     ),
-    "@super:get:isCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isCompleted,
     ),
-    "@super:get:isAnimating": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isAnimating": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isAnimating,
     ),
-    "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding2,
+    "@super:get:isForwardOrCompleted": FlaxInstanceMethod.signature(
+      _flaxBinding12,
       _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
     ),
     "@super:set:onSwitchedTrain": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding610, required: true)],
+      [FlaxParameter("value", _flaxBinding97, required: true)],
       const FlaxTypeRef("void"),
       _TrainHoppingAnimation_super_set_onSwitchedTrain,
     ),
   },
-  constructors: {"@implementation": _flaxBinding615},
+  constructors: {"@implementation": _flaxBinding609},
   create: _createTrainHoppingAnimation,
   matches: _isTrainHoppingAnimation,
-  setters: [_flaxBinding612],
+  setters: [_flaxBinding606],
   supertypes: [
     "flax.core/sdk_animation#type:Animation",
     "flax.core/flutter#type:Listenable",
@@ -29617,10 +29005,10 @@ const _flaxBinding621 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding19,
-    _flaxBinding20,
-    _flaxBinding22,
-    _flaxBinding23,
+    _flaxBinding108,
+    _flaxBinding109,
+    _flaxBinding110,
+    _flaxBinding111,
     FlaxProxyMember(
       "drive",
       0,
@@ -29628,12 +29016,12 @@ const _flaxBinding621 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "child",
-            _flaxBinding24,
+            _flaxBinding112,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding25,
+        _flaxBinding113,
         _callback10,
         id: "callback:<U:any?:=any?:>(p:r:child:object:flax.core/sdk_animation#type:Animatable<parameter:>)->object:flax.core/sdk_animation#type:Animation<parameter:>",
         invoke: _callback10Invoke,
@@ -29643,38 +29031,38 @@ const _flaxBinding621 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding27,
-    _flaxBinding28,
+    _flaxBinding114,
+    _flaxBinding115,
+    _flaxBinding187,
+    _flaxBinding188,
+    _flaxBinding189,
+    _flaxBinding190,
+    _flaxBinding191,
+    _flaxBinding192,
+    _flaxBinding193,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding116,
+    _flaxBinding218,
     _flaxBinding117,
     _flaxBinding118,
     _flaxBinding119,
     _flaxBinding120,
-    _flaxBinding121,
-    _flaxBinding122,
-    _flaxBinding124,
-    _flaxBinding616,
-    _flaxBinding618,
-    _flaxBinding30,
-    _flaxBinding156,
-    _flaxBinding32,
-    _flaxBinding33,
-    _flaxBinding34,
-    _flaxBinding35,
-    _flaxBinding620,
+    _flaxBinding612,
   ]),
 );
-const _flaxBinding622 = <FlaxParameter>[
-  FlaxParameter("begin", _flaxBinding16, required: false),
-  FlaxParameter("end", _flaxBinding16, required: false),
+const _flaxBinding614 = <FlaxParameter>[
+  FlaxParameter("begin", _flaxBinding106, required: false),
+  FlaxParameter("end", _flaxBinding106, required: false),
 ];
-const _flaxBinding623 = FlaxTypeRef(
+const _flaxBinding615 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:TweenSequenceItem",
   dartType: FlaxDartTypes.typeOf<api.TweenSequenceItem<Object?>>,
 );
-const _flaxBinding624 = FlaxTypeRef(
+const _flaxBinding616 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding623,
+  item: _flaxBinding615,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_animation#type:TweenSequenceItem<any?:>]",
     _collection6Create,
@@ -29682,48 +29070,48 @@ const _flaxBinding624 = FlaxTypeRef(
     restore: _collection6Restore,
   ),
 );
-const _flaxBinding625 = FlaxTypeRef(
+const _flaxBinding617 = FlaxTypeRef(
   "list",
-  item: _flaxBinding623,
+  item: _flaxBinding615,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_animation#type:TweenSequenceItem<any?:>]",
     _collection5Create,
     _collection5Matches,
   ),
-  iterable: _flaxBinding624,
+  iterable: _flaxBinding616,
 );
-const _flaxBinding626 = <FlaxParameter>[
-  FlaxParameter("items", _flaxBinding625, required: true),
+const _flaxBinding618 = <FlaxParameter>[
+  FlaxParameter("items", _flaxBinding617, required: true),
 ];
-const _flaxBinding627 = FlaxGetter(
+const _flaxBinding619 = FlaxGetter(
   "weight",
-  _flaxBinding36,
+  _flaxBinding20,
   _TweenSequenceItem_weight,
 );
-const _flaxBinding628 = <FlaxParameter>[
-  FlaxParameter("tween", _flaxBinding24, required: true),
-  FlaxParameter("weight", _flaxBinding36, required: true),
+const _flaxBinding620 = <FlaxParameter>[
+  FlaxParameter("tween", _flaxBinding112, required: true),
+  FlaxParameter("weight", _flaxBinding20, required: true),
 ];
-const _flaxBinding629 = FlaxProxyMember(
+const _flaxBinding621 = FlaxProxyMember(
   "weight",
   1,
-  _flaxBinding144,
+  _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding630 = FlaxTypeRef(
+const _flaxBinding622 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding248,
+  item: _flaxBinding40,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Offset]",
     _collection0Create,
     _collection0Matches,
   ),
-  iterable: _flaxBinding249,
+  iterable: _flaxBinding41,
 );
-const _flaxBinding631 = FlaxTypeRef(
+const _flaxBinding623 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding15,
+  item: _flaxBinding8,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
     _collection8Create,
@@ -29731,14 +29119,14 @@ const _flaxBinding631 = FlaxTypeRef(
     restore: _collection8Restore,
   ),
 );
-const _flaxBinding632 = FlaxTypeRef(
+const _flaxBinding624 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding15,
+  item: _flaxBinding8,
   collection: FlaxCollectionBinding(
     "list:[String:]",
     _collection7Create,
     _collection7Matches,
   ),
-  iterable: _flaxBinding631,
+  iterable: _flaxBinding623,
 );

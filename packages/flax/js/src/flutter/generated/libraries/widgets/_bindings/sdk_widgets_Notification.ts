@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: Notification;
 
 }
 defineObject("flax.core/sdk_widgets#type:Notification", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:Notification", "object", {"dispatch":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"debugFillDescription":_flaxMemberParameters2}, {}), []);
-const _NotificationProxy = {type: "flax.core/sdk_widgets#type:Notification", parameters: [], constructors: {"":[]}, methods: {"dispatch":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"debugFillDescription":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["dispatch","toString","debugFillDescription"]} as const;
+const _NotificationProxy = {type: "flax.core/sdk_widgets#type:Notification", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"dispatch":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"debugFillDescription":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["dispatch","toString","debugFillDescription"]} as const;
 export interface Notification {
 readonly [_flaxDartTypeValue]: Notification;
 

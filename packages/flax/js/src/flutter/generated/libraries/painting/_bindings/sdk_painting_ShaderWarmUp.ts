@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: ShaderWarmUp;
 
 }
 defineObject("flax.core/sdk_painting#type:ShaderWarmUp", ["size"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ShaderWarmUp", "object", {"warmUpOnCanvas":_flaxMemberParameters0,"execute":_flaxMemberParameters1}, {}), []);
-const _ShaderWarmUpProxy = {type: "flax.core/sdk_painting#type:ShaderWarmUp", parameters: [], constructors: {"":[]}, methods: {"warmUpOnCanvas":_flaxMemberParameters0,"execute":_flaxMemberParameters1}, getters: ["size"], setters: [], contextMembers: [], superMembers: ["get:size","execute"]} as const;
+const _ShaderWarmUpProxy = {type: "flax.core/sdk_painting#type:ShaderWarmUp", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"warmUpOnCanvas":_flaxMemberParameters0,"execute":_flaxMemberParameters1}, getters: ["size"], setters: [], contextMembers: [], superMembers: ["get:size","execute"]} as const;
 export interface ShaderWarmUp {
 readonly [_flaxDartTypeValue]: ShaderWarmUp;
 

@@ -21,11 +21,9 @@ import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/cupertino/_bindings/sdk_cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -46,24 +44,24 @@ toStringDeep(options?: {minLevel?: upstream7.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream9.DiagnosticsTreeStyle | null | undefined}): upstream8.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream8.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", ["child","onPressed","buttonItem","text","key"], [], _flaxBindingMethods("flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", ["child","onPressed","buttonItem","text","key"], [], _flaxBindingMethods("flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:Widget");
 export function _CupertinoTextSelectionToolbarButtonFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; onPressed?: (() => void) | null | undefined; child: Widget }): CupertinoTextSelectionToolbarButton {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", "", [{"name":"key","required":false,"positional":false},{"name":"onPressed","required":false,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as CupertinoTextSelectionToolbarButton;
+return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", "", [{"name":"key"},{"name":"onPressed"},{"name":"child","required":true}], [], options) as CupertinoTextSelectionToolbarButton;
 }
 export namespace _CupertinoTextSelectionToolbarButtonFactory {
 export function text(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; onPressed?: (() => void) | null | undefined; text: string | null }): CupertinoTextSelectionToolbarButton {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", "text", [{"name":"key","required":false,"positional":false},{"name":"onPressed","required":false,"positional":false},{"name":"text","required":true,"positional":false}], [], options) as CupertinoTextSelectionToolbarButton;
+return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", "text", [{"name":"key"},{"name":"onPressed"},{"name":"text","required":true}], [], options) as CupertinoTextSelectionToolbarButton;
 }
 }
 export namespace _CupertinoTextSelectionToolbarButtonFactory {
 export function buttonItem(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; buttonItem: Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }> }): CupertinoTextSelectionToolbarButton {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", "buttonItem", [{"name":"key","required":false,"positional":false},{"name":"buttonItem","required":true,"positional":false}], [], options) as CupertinoTextSelectionToolbarButton;
+return constructObject("object", "flax.core/sdk_cupertino#type:CupertinoTextSelectionToolbarButton", "buttonItem", [{"name":"key"},{"name":"buttonItem","required":true}], [], options) as CupertinoTextSelectionToolbarButton;
 }
 }
 export namespace _CupertinoTextSelectionToolbarButtonFactory { export function getButtonLabel(context: upstream3.BuildContext, buttonItem: Readonly<{ "__flaxBound:package:flutter/src/widgets/context_menu_button_item.dart::ContextMenuButtonItem": readonly [] }>): string {

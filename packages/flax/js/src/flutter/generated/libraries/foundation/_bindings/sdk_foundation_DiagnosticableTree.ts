@@ -11,11 +11,11 @@ import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
 const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
@@ -25,7 +25,7 @@ readonly [_flaxDartTypeValue]: DiagnosticableTree;
 
 }
 defineObject("flax.core/sdk_foundation#type:DiagnosticableTree", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:DiagnosticableTree", "object", {"toStringShallow":_flaxMemberParameters0,"toStringDeep":_flaxMemberParameters1,"debugDescribeChildren":_flaxMemberParameters2}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _DiagnosticableTreeProxy = {type: "flax.core/sdk_foundation#type:DiagnosticableTree", parameters: [], constructors: {"":[]}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"toStringShallow":_flaxMemberParameters0,"toStringDeep":_flaxMemberParameters1,"debugDescribeChildren":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties","toStringShallow","toStringDeep","debugDescribeChildren"]} as const;
+const _DiagnosticableTreeProxy = {type: "flax.core/sdk_foundation#type:DiagnosticableTree", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"toStringShallow":_flaxMemberParameters0,"toStringDeep":_flaxMemberParameters1,"debugDescribeChildren":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties","toStringShallow","toStringDeep","debugDescribeChildren"]} as const;
 export interface DiagnosticableTree {
 readonly [_flaxDartTypeValue]: DiagnosticableTree;
 

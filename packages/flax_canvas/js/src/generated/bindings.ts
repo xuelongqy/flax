@@ -17,7 +17,7 @@ import type * as upstream6 from '@flax/dart/ui';
 import '@flax/dart/ui';
 import type * as upstream7 from '@flax/flutter/foundation';
 import '@flax/flutter/foundation';
-const _flaxMemberParameters0 = [{"name":"nextWidth","required":true,"positional":true},{"name":"nextHeight","required":true,"positional":true},{"name":"reset","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"nextWidth","required":true,"positional":true},{"name":"nextHeight","required":true,"positional":true},{"name":"reset"}] as const;
 const _flaxMemberParameters1 = [] as const;
 const _flaxMemberParameters2 = [{"name":"picture","required":true,"positional":true},{"name":"bytes","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"canvas","required":true,"positional":true},{"name":"size","required":true,"positional":true}] as const;
@@ -78,13 +78,13 @@ defineObject("flax.canvas/canvas#type:FlaxCanvasSurface", ["hasListeners","alpha
 export function _FlaxCanvasSurfaceFactory(width: number, height: number, options: { alpha?: boolean | undefined } = {}): FlaxCanvasSurface {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 3) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.canvas/canvas#type:FlaxCanvasSurface", "", [{"name":"width","required":true,"positional":true},{"name":"height","required":true,"positional":true},{"name":"alpha","required":false,"positional":false}], [width, height], options) as FlaxCanvasSurface;
+return constructObject("object", "flax.canvas/canvas#type:FlaxCanvasSurface", "", [{"name":"width","required":true,"positional":true},{"name":"height","required":true,"positional":true},{"name":"alpha"}], [width, height], options) as FlaxCanvasSurface;
 }
 export interface FlaxCanvasView extends WidgetDescription, Omit<Readonly<{ "__flaxBound:package:flax_canvas/src/view.dart::FlaxCanvasView": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, 'type'>, Omit<Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, 'type'> { readonly type: "flax.canvas/canvas#type:FlaxCanvasView";  }
 export function _FlaxCanvasViewConstruct(canvas: Bindable<Readonly<{ "__flaxBound:package:flax_canvas/src/surface.dart::FlaxCanvasSurface": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>>, options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; width?: Bindable<number | null> | undefined; height?: Bindable<number | null> | undefined } = {}): FlaxCanvasView {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.canvas/canvas#type:FlaxCanvasView", "", [{"name":"canvas","required":true,"positional":true},{"name":"key","required":false,"positional":false},{"name":"width","required":false,"positional":false},{"name":"height","required":false,"positional":false}], [canvas], options) as FlaxCanvasView;
+return construct("widget", "flax.canvas/canvas#type:FlaxCanvasView", "", [{"name":"canvas","required":true,"positional":true},{"name":"key"},{"name":"width"},{"name":"height"}], [canvas], options) as FlaxCanvasView;
 }
 export namespace _FlaxCanvasSurfaceFactory { export declare const pictureLimit: number; }
 export namespace _FlaxCanvasSurfaceFactory { export declare const commandBytesLimit: number; }

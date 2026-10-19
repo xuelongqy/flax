@@ -13,6 +13,7 @@
   "include": [
     "src/flutter/generated/libraries/*/index.ts",
     "src/flutter/generated/libraries/*/_bindings/**/*.ts",
+    "src/dart/generated/libraries/*/index.ts",
     "src/dart/generated/libraries/*/_bindings/**/*.ts"
   ]
 }

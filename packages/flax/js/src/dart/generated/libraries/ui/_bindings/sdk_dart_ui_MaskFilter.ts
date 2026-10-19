@@ -4,6 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_BlurStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_BlurStyle';
 const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"_style","required":true,"positional":true},{"name":"_sigma","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -12,7 +13,7 @@ readonly [_flaxDartTypeValue]: MaskFilter;
 
 }
 defineObject("flax.core/sdk_dart_ui#type:MaskFilter", [], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:MaskFilter", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _MaskFilterProxy = {type: "flax.core/sdk_dart_ui#type:MaskFilter", parameters: [{"name":"_style","required":true,"positional":true},{"name":"_sigma","required":true,"positional":true}], constructors: {"blur":[{"name":"_style","required":true,"positional":true},{"name":"_sigma","required":true,"positional":true}]}, methods: {"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
+const _MaskFilterProxy = {type: "flax.core/sdk_dart_ui#type:MaskFilter", parameters: _flaxMemberParameters1, constructors: {"blur": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
 export interface MaskFilter {
 readonly [_flaxDartTypeValue]: MaskFilter;
 

@@ -3,6 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
+const _flaxMemberParameters0 = [{"name":"data","required":true},{"name":"offset","required":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -11,7 +12,7 @@ readonly [_flaxDartTypeValue]: DragTargetDetails<T>;
 
 }
 defineObject("flax.core/sdk_widgets#type:DragTargetDetails", ["data","offset"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:DragTargetDetails", "object", {}, {}), []);
-const _DragTargetDetailsProxy = {type: "flax.core/sdk_widgets#type:DragTargetDetails", parameters: [{"name":"data","required":true,"positional":false},{"name":"offset","required":true,"positional":false}], constructors: {"":[{"name":"data","required":true,"positional":false},{"name":"offset","required":true,"positional":false}]}, methods: {}, getters: ["data","offset"], setters: [], contextMembers: [], superMembers: ["get:data","get:offset"]} as const;
+const _DragTargetDetailsProxy = {type: "flax.core/sdk_widgets#type:DragTargetDetails", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["data","offset"], setters: [], contextMembers: [], superMembers: ["get:data","get:offset"]} as const;
 export interface DragTargetDetails<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: DragTargetDetails<T>;
 

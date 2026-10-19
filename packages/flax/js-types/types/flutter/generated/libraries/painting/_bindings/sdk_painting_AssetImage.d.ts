@@ -36,6 +36,9 @@ export interface AssetImage extends Omit<upstream0.AssetBundleImageProvider, _fl
 }
 export interface AssetImage {
     readonly [_flaxDartTypeValue]: AssetImage;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream8.ImageStream;
     loadImage(key: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageKey": readonly [];
     }>, decode: ((buffer: upstream6.ImmutableBuffer, options?: {
@@ -106,5 +109,5 @@ export declare namespace AssetImage {
         package?: string | null | undefined;
     }], implementation: {}): AssetImage;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "assetName" | "keyName" | "bundle" | "package" | "loadImage" | "loadBuffer" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "toString" | "__flaxBound:package:flutter/src/painting/image_resolution.dart::AssetImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "assetName" | "keyName" | "bundle" | "package" | "loadImage" | "loadBuffer" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "toString" | "__flaxBound:package:flutter/src/painting/image_resolution.dart::AssetImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 export {};

@@ -7,8 +7,9 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import type * as upstream2 from '@flax/flutter/semantics/_bindings/sdk_semantics_Assertiveness';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_Assertiveness';
-const _flaxMemberParameters0 = [{"name":"nodeId","required":false,"positional":false}] as const;
-const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters0 = [{"name":"message","required":true,"positional":true},{"name":"textDirection","required":true,"positional":true},{"name":"viewId","required":true,"positional":true},{"name":"assertiveness"}] as const;
+const _flaxMemberParameters1 = [{"name":"nodeId"}] as const;
+const _flaxMemberParameters2 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -17,7 +18,7 @@ readonly [_flaxDartTypeValue]: AnnounceSemanticsEvent;
 
 }
 defineObject("flax.core/sdk_semantics#type:AnnounceSemanticsEvent", ["type","viewId","message","textDirection","assertiveness"], [], _flaxBindingMethods("flax.core/sdk_semantics#type:AnnounceSemanticsEvent", "object", {}, {}), [], undefined, "flax.core/sdk_semantics#type:SemanticsEvent");
-const _AnnounceSemanticsEventProxy = {type: "flax.core/sdk_semantics#type:AnnounceSemanticsEvent", parameters: [{"name":"message","required":true,"positional":true},{"name":"textDirection","required":true,"positional":true},{"name":"viewId","required":true,"positional":true},{"name":"assertiveness","required":false,"positional":false}], constructors: {"":[{"name":"message","required":true,"positional":true},{"name":"textDirection","required":true,"positional":true},{"name":"viewId","required":true,"positional":true},{"name":"assertiveness","required":false,"positional":false}]}, methods: {"toMap":_flaxMemberParameters0,"getDataMap":_flaxMemberParameters1,"toString":_flaxMemberParameters1}, getters: ["viewId","message","textDirection","assertiveness","type"], setters: [], contextMembers: [], superMembers: ["get:viewId","get:message","get:textDirection","get:assertiveness","get:type","toMap","getDataMap","toString"]} as const;
+const _AnnounceSemanticsEventProxy = {type: "flax.core/sdk_semantics#type:AnnounceSemanticsEvent", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toMap":_flaxMemberParameters1,"getDataMap":_flaxMemberParameters2,"toString":_flaxMemberParameters2}, getters: ["viewId","message","textDirection","assertiveness","type"], setters: [], contextMembers: [], superMembers: ["get:viewId","get:message","get:textDirection","get:assertiveness","get:type","toMap","getDataMap","toString"]} as const;
 export interface AnnounceSemanticsEvent {
 readonly [_flaxDartTypeValue]: AnnounceSemanticsEvent;
 

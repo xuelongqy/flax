@@ -20,10 +20,10 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 const _flaxMemberParameters0 = [{"name":"states","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"device","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"device","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
@@ -33,7 +33,7 @@ readonly [_flaxDartTypeValue]: WidgetStateMouseCursor;
 
 }
 defineObject("flax.core/sdk_widgets#type:WidgetStateMouseCursor", ["debugDescription"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStateMouseCursor", "object", {"resolve":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:MouseCursor");
-const _WidgetStateMouseCursorProxy = {type: "flax.core/sdk_widgets#type:WidgetStateMouseCursor", parameters: [], constructors: {"":[]}, methods: {"createSession":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"resolve":_flaxMemberParameters0}, getters: ["debugDescription"], setters: [], contextMembers: [], superMembers: ["createSession","toString","toStringShort","toDiagnosticsNode","debugFillProperties"]} as const;
+const _WidgetStateMouseCursorProxy = {type: "flax.core/sdk_widgets#type:WidgetStateMouseCursor", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"createSession":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toStringShort":_flaxMemberParameters1,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"resolve":_flaxMemberParameters0}, getters: ["debugDescription"], setters: [], contextMembers: [], superMembers: ["createSession","toString","toStringShort","toDiagnosticsNode","debugFillProperties"]} as const;
 export interface WidgetStateMouseCursor {
 readonly [_flaxDartTypeValue]: WidgetStateMouseCursor;
 

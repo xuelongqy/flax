@@ -4,7 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_Endian';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_Endian';
 const _flaxMemberParameters0 = [{"name":"byte","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"value","required":true,"positional":true},{"name":"endian","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"value","required":true,"positional":true},{"name":"endian"}] as const;
 const _flaxMemberParameters2 = [{"name":"list","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
@@ -29,6 +29,6 @@ defineObject("flax.core/sdk_foundation#type:WriteBuffer", [], [], _flaxBindingMe
 export function _WriteBufferFactory(options: { startCapacity?: number | undefined } = {}): WriteBuffer {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_foundation#type:WriteBuffer", "", [{"name":"startCapacity","required":false,"positional":false}], [], options) as WriteBuffer;
+return constructObject("object", "flax.core/sdk_foundation#type:WriteBuffer", "", [{"name":"startCapacity"}], [], options) as WriteBuffer;
 }
 export const WriteBuffer: typeof _WriteBufferFactory & _FlaxInstanceType<WriteBuffer> & _FlaxDartType<WriteBuffer, readonly ["class", "flax.core/sdk_foundation#type:WriteBuffer", readonly [], false]> = _flaxBindInstanceType<WriteBuffer, typeof _WriteBufferFactory>(_WriteBufferFactory, "flax.core/sdk_foundation#type:WriteBuffer", ["dart:core::Object"]) as typeof _WriteBufferFactory & _FlaxInstanceType<WriteBuffer> & _FlaxDartType<WriteBuffer, readonly ["class", "flax.core/sdk_foundation#type:WriteBuffer", readonly [], false]>;

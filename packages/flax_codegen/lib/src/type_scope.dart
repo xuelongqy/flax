@@ -527,10 +527,17 @@ final class _FlaxCodegenTypeScope {
     if (name == 'Widget' &&
         element.library.uri.toString() ==
             'package:flutter/src/widgets/framework.dart') {
-      if (exports[name] != element) {
+      if (exports[name] != element && !parser._isPoolType(element)) {
         throw StateError('Selected public libraries must export Widget');
       }
       usesWidget = true;
+      nativeTypes.putIfAbsent(name, () => 'package:flutter/widgets.dart');
+      publicLibraries.putIfAbsent(
+        name,
+        () =>
+            parser._publicLibraryFor(element, name) ??
+            'package:flutter/widgets.dart',
+      );
       return FlaxCodegenTypeRef('widget', nullable: nullable);
     }
     if (config.hasAutomaticSelection &&

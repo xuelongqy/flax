@@ -6,6 +6,7 @@ import '@flax/dart/ui/_bindings/flutter_Offset';
 const _flaxMemberParameters0 = [{"name":"minValue","required":true,"positional":true},{"name":"maxValue","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
 const _flaxMemberParameters2 = [{"name":"other","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"pixelsPerSecond","required":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -14,7 +15,7 @@ readonly [_flaxDartTypeValue]: Velocity;
 
 }
 defineObject("flax.core/sdk_gestures#type:Velocity", ["pixelsPerSecond"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:Velocity", "object", {"clampMagnitude":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"operatorAdd":_flaxMemberParameters2,"operatorSubtract":_flaxMemberParameters2,"operatorNegate":_flaxMemberParameters1}, {}), []);
-const _VelocityProxy = {type: "flax.core/sdk_gestures#type:Velocity", parameters: [{"name":"pixelsPerSecond","required":true,"positional":false}], constructors: {"":[{"name":"pixelsPerSecond","required":true,"positional":false}]}, methods: {"clampMagnitude":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"operatorAdd":_flaxMemberParameters2,"operatorSubtract":_flaxMemberParameters2,"operatorNegate":_flaxMemberParameters1}, getters: ["pixelsPerSecond"], setters: [], contextMembers: [], superMembers: ["get:pixelsPerSecond","clampMagnitude","toString","operatorAdd","operatorSubtract","operatorNegate"]} as const;
+const _VelocityProxy = {type: "flax.core/sdk_gestures#type:Velocity", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"clampMagnitude":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"operatorAdd":_flaxMemberParameters2,"operatorSubtract":_flaxMemberParameters2,"operatorNegate":_flaxMemberParameters1}, getters: ["pixelsPerSecond"], setters: [], contextMembers: [], superMembers: ["get:pixelsPerSecond","clampMagnitude","toString","operatorAdd","operatorSubtract","operatorNegate"]} as const;
 export interface Velocity {
 readonly [_flaxDartTypeValue]: Velocity;
 

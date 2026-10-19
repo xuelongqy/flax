@@ -20,7 +20,7 @@ readonly [_flaxDartTypeValue]: TextParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:TextParentData", ["previousSibling","nextSibling","offset","span"], ["previousSibling","nextSibling","span"], _flaxBindingMethods("flax.core/sdk_rendering#type:TextParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:ParentData");
-const _TextParentDataProxy = {type: "flax.core/sdk_rendering#type:TextParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["offset","span","previousSibling","nextSibling"], setters: ["span","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:offset","get:span","get:previousSibling","get:nextSibling","set:span","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _TextParentDataProxy = {type: "flax.core/sdk_rendering#type:TextParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["offset","span","previousSibling","nextSibling"], setters: ["span","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:offset","get:span","get:previousSibling","get:nextSibling","set:span","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface TextParentData {
 readonly [_flaxDartTypeValue]: TextParentData;
 

@@ -12,7 +12,7 @@ readonly [_flaxDartTypeValue]: MultiPreview;
 
 }
 defineObject("flax.core/sdk_widget_previews#type:MultiPreview", ["previews"], [], _flaxBindingMethods("flax.core/sdk_widget_previews#type:MultiPreview", "object", {"transform":_flaxMemberParameters0}, {}), []);
-const _MultiPreviewProxy = {type: "flax.core/sdk_widget_previews#type:MultiPreview", parameters: [], constructors: {"":[]}, methods: {"transform":_flaxMemberParameters0}, getters: ["previews"], setters: [], contextMembers: [], superMembers: ["transform"]} as const;
+const _MultiPreviewProxy = {type: "flax.core/sdk_widget_previews#type:MultiPreview", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"transform":_flaxMemberParameters0}, getters: ["previews"], setters: [], contextMembers: [], superMembers: ["transform"]} as const;
 export interface MultiPreview {
 readonly [_flaxDartTypeValue]: MultiPreview;
 

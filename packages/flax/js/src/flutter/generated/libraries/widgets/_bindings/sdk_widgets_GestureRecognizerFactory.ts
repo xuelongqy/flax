@@ -13,7 +13,7 @@ readonly [_flaxDartTypeValue]: GestureRecognizerFactory<T>;
 
 }
 defineObject("flax.core/sdk_widgets#type:GestureRecognizerFactory", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:GestureRecognizerFactory", "object", {"constructor":_flaxMemberParameters0,"initializer":_flaxMemberParameters1}, {}), []);
-const _GestureRecognizerFactoryProxy = {type: "flax.core/sdk_widgets#type:GestureRecognizerFactory", parameters: [], constructors: {"":[]}, methods: {"constructor":_flaxMemberParameters0,"initializer":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
+const _GestureRecognizerFactoryProxy = {type: "flax.core/sdk_widgets#type:GestureRecognizerFactory", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"constructor":_flaxMemberParameters0,"initializer":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
 export interface GestureRecognizerFactory<T extends upstream0.GestureRecognizer = upstream0.GestureRecognizer> {
 readonly [_flaxDartTypeValue]: GestureRecognizerFactory<T>;
 

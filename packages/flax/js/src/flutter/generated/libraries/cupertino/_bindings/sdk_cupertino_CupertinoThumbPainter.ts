@@ -10,6 +10,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import type * as upstream3 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 const _flaxMemberParameters0 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"color"},{"name":"shadows"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/cupertino/_bindings/sdk_cupertino.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -18,7 +19,7 @@ readonly [_flaxDartTypeValue]: CupertinoThumbPainter;
 
 }
 defineObject("flax.core/sdk_cupertino#type:CupertinoThumbPainter", ["color","shadows"], [], _flaxBindingMethods("flax.core/sdk_cupertino#type:CupertinoThumbPainter", "object", {"paint":_flaxMemberParameters0}, {}), []);
-const _CupertinoThumbPainterProxy = {type: "flax.core/sdk_cupertino#type:CupertinoThumbPainter", parameters: [{"name":"color","required":false,"positional":false},{"name":"shadows","required":false,"positional":false}], constructors: {"":[{"name":"color","required":false,"positional":false},{"name":"shadows","required":false,"positional":false}]}, methods: {"paint":_flaxMemberParameters0}, getters: ["color","shadows"], setters: [], contextMembers: [], superMembers: ["get:color","get:shadows","paint"]} as const;
+const _CupertinoThumbPainterProxy = {type: "flax.core/sdk_cupertino#type:CupertinoThumbPainter", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"paint":_flaxMemberParameters0}, getters: ["color","shadows"], setters: [], contextMembers: [], superMembers: ["get:color","get:shadows","paint"]} as const;
 export interface CupertinoThumbPainter {
 readonly [_flaxDartTypeValue]: CupertinoThumbPainter;
 

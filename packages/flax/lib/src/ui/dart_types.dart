@@ -1028,6 +1028,7 @@ class FlaxDartTypes {
       FlaxObjectBinding() => binding.instanceMethods,
       FlaxWidgetBinding() => binding.objectView?.instanceMethods,
       FlaxStateBinding() => binding.instanceMethods,
+      FlaxContextBinding() => binding.instanceMethods,
       FlaxStreamTypeBinding() => binding.instanceMethods,
       _ => null,
     };
@@ -1063,7 +1064,7 @@ class FlaxDartTypes {
   }
 
   FlaxFunctionBinding functionById(String id, List<Type> types) => function(
-    _session._functionBindings[id] ??
+    _session._functionBinding(id) ??
         (throw ArgumentError('Unknown generic function: $id')),
     types,
   );

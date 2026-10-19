@@ -10,7 +10,7 @@ import '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteAware';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RouteAware';
 const _flaxMemberParameters0 = [{"name":"route","required":true,"positional":true},{"name":"previousRoute","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"newRoute","required":false,"positional":false},{"name":"oldRoute","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"newRoute"},{"name":"oldRoute"}] as const;
 const _flaxMemberParameters2 = [{"name":"topRoute","required":true,"positional":true},{"name":"previousTopRoute","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [] as const;
 const _flaxMemberParameters4 = [{"name":"routeAware","required":true,"positional":true},{"name":"route","required":true,"positional":true}] as const;
@@ -23,7 +23,7 @@ readonly [_flaxDartTypeValue]: RouteObserver<R>;
 
 }
 defineObject("flax.core/sdk_widgets#type:RouteObserver", ["navigator"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:RouteObserver", "object", {"didPush":_flaxMemberParameters0,"didPop":_flaxMemberParameters0,"didRemove":_flaxMemberParameters0,"didReplace":_flaxMemberParameters1,"didChangeTop":_flaxMemberParameters2,"didStartUserGesture":_flaxMemberParameters0,"didStopUserGesture":_flaxMemberParameters3,"subscribe":_flaxMemberParameters4,"unsubscribe":_flaxMemberParameters5}, {}), []);
-const _RouteObserverProxy = {type: "flax.core/sdk_widgets#type:RouteObserver", parameters: [], constructors: {"":[]}, methods: {"didPush":_flaxMemberParameters0,"didPop":_flaxMemberParameters0,"didRemove":_flaxMemberParameters0,"didReplace":_flaxMemberParameters1,"didChangeTop":_flaxMemberParameters2,"didStartUserGesture":_flaxMemberParameters0,"didStopUserGesture":_flaxMemberParameters3,"subscribe":_flaxMemberParameters4,"unsubscribe":_flaxMemberParameters5}, getters: ["navigator"], setters: [], contextMembers: [], superMembers: ["get:navigator","didPush","didPop","didRemove","didReplace","didChangeTop","didStartUserGesture","didStopUserGesture","subscribe","unsubscribe"]} as const;
+const _RouteObserverProxy = {type: "flax.core/sdk_widgets#type:RouteObserver", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"didPush":_flaxMemberParameters0,"didPop":_flaxMemberParameters0,"didRemove":_flaxMemberParameters0,"didReplace":_flaxMemberParameters1,"didChangeTop":_flaxMemberParameters2,"didStartUserGesture":_flaxMemberParameters0,"didStopUserGesture":_flaxMemberParameters3,"subscribe":_flaxMemberParameters4,"unsubscribe":_flaxMemberParameters5}, getters: ["navigator"], setters: [], contextMembers: [], superMembers: ["get:navigator","didPush","didPop","didRemove","didReplace","didChangeTop","didStartUserGesture","didStopUserGesture","subscribe","unsubscribe"]} as const;
 export interface RouteObserver<R extends upstream0.Route<unknown | null> = upstream0.Route<unknown | null>> {
 readonly [_flaxDartTypeValue]: RouteObserver<R>;
 

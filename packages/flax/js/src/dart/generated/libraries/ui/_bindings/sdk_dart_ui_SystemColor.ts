@@ -18,7 +18,7 @@ defineObject("flax.core/sdk_dart_ui#type:SystemColor", ["name","value","isSuppor
 export function _SystemColorFactory(options: { name: string; value?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | null | undefined }): SystemColor {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_dart_ui#type:SystemColor", "", [{"name":"name","required":true,"positional":false},{"name":"value","required":false,"positional":false}], [], options) as SystemColor;
+return constructObject("object", "flax.core/sdk_dart_ui#type:SystemColor", "", [{"name":"name","required":true},{"name":"value"}], [], options) as SystemColor;
 }
 export namespace _SystemColorFactory { export declare const platformProvidesSystemColors: boolean; }
 export namespace _SystemColorFactory { export declare const light: upstream1.SystemColorPalette; }

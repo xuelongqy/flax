@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import '@flax/dart/core/_bindings/flutter_RegExpMatch';
 import type * as upstream2 from '@flax/dart/core/_bindings/flutter_Match';
 import '@flax/dart/core/_bindings/flutter_Match';
-const _flaxMemberParameters0 = [{"name":"input","required":true,"positional":true},{"name":"start","required":false,"positional":true}] as const;
+const _flaxMemberParameters0 = [{"name":"input","required":true,"positional":true},{"name":"start","positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"input","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -29,7 +29,7 @@ defineObject("flax.core/flutter#type:RegExp", ["pattern","isMultiLine","isCaseSe
 export function _RegExpFactory(source: string, options: { multiLine?: boolean | undefined; caseSensitive?: boolean | undefined; unicode?: boolean | undefined; dotAll?: boolean | undefined } = {}): RegExp {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:RegExp", "", [{"name":"source","required":true,"positional":true},{"name":"multiLine","required":false,"positional":false},{"name":"caseSensitive","required":false,"positional":false},{"name":"unicode","required":false,"positional":false},{"name":"dotAll","required":false,"positional":false}], [source], options) as RegExp;
+return constructObject("object", "flax.core/flutter#type:RegExp", "", [{"name":"source","required":true,"positional":true},{"name":"multiLine"},{"name":"caseSensitive"},{"name":"unicode"},{"name":"dotAll"}], [source], options) as RegExp;
 }
 export namespace _RegExpFactory { export function escape(text: string): string {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

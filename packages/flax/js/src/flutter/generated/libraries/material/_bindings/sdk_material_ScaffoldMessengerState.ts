@@ -35,14 +35,14 @@ import type * as upstream16 from '@flax/flutter/material/_bindings/sdk_material_
 import type * as upstream17 from '@flax/flutter/material/_bindings/sdk_material_MaterialBannerClosedReason';
 import '@flax/flutter/material/_bindings/sdk_material_MaterialBannerClosedReason';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"oldWidget","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"fn","required":true,"positional":true}] as const;
 const _flaxMemberParameters6 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters7 = [{"name":"snackBar","required":true,"positional":true},{"name":"snackBarAnimationStyle","required":false,"positional":false}] as const;
-const _flaxMemberParameters8 = [{"name":"reason","required":false,"positional":false}] as const;
+const _flaxMemberParameters7 = [{"name":"snackBar","required":true,"positional":true},{"name":"snackBarAnimationStyle"}] as const;
+const _flaxMemberParameters8 = [{"name":"reason"}] as const;
 const _flaxMemberParameters9 = [{"name":"materialBanner","required":true,"positional":true}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -79,7 +79,7 @@ defineObject("flax.core/sdk_material#type:ScaffoldMessengerState", ["widget","co
 export function _ScaffoldMessengerStateFactory(): ScaffoldMessengerState {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_material#type:ScaffoldMessengerState", "", [], [], {}) as ScaffoldMessengerState;
+return constructObject("object", "flax.core/sdk_material#type:ScaffoldMessengerState", "", _flaxMemberParameters0, [], {}) as ScaffoldMessengerState;
 }
 export const ScaffoldMessengerState: typeof _ScaffoldMessengerStateFactory & _FlaxInstanceType<ScaffoldMessengerState> & _FlaxDartType<ScaffoldMessengerState, readonly ["class", "flax.core/sdk_material#type:ScaffoldMessengerState", readonly [], false]> = _flaxBindInstanceType<ScaffoldMessengerState, typeof _ScaffoldMessengerStateFactory>(_ScaffoldMessengerStateFactory, "flax.core/sdk_material#type:ScaffoldMessengerState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/sdk_widgets#type:TickerProviderStateMixin","flax.core/flutter#type:TickerProvider"]) as typeof _ScaffoldMessengerStateFactory & _FlaxInstanceType<ScaffoldMessengerState> & _FlaxDartType<ScaffoldMessengerState, readonly ["class", "flax.core/sdk_material#type:ScaffoldMessengerState", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "widget" | "context" | "mounted" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "createTicker" | "activate" | "dispose" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "build" | "didChangeDependencies" | "showSnackBar" | "removeCurrentSnackBar" | "hideCurrentSnackBar" | "clearSnackBars" | "showMaterialBanner" | "removeCurrentMaterialBanner" | "hideCurrentMaterialBanner" | "clearMaterialBanners" | "__flaxBound:package:flutter/src/material/scaffold.dart::ScaffoldMessengerState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin" | "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider";

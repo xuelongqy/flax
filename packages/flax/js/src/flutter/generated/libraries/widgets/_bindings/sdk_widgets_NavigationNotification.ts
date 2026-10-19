@@ -5,9 +5,10 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Not
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Notification';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-const _flaxMemberParameters0 = [{"name":"target","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"description","required":true,"positional":true}] as const;
+const _flaxMemberParameters0 = [{"name":"canHandlePop","required":true}] as const;
+const _flaxMemberParameters1 = [{"name":"target","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
+const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters3 = [{"name":"description","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,7 +17,7 @@ readonly [_flaxDartTypeValue]: NavigationNotification;
 
 }
 defineObject("flax.core/sdk_widgets#type:NavigationNotification", ["canHandlePop"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:NavigationNotification", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:Notification");
-const _NavigationNotificationProxy = {type: "flax.core/sdk_widgets#type:NavigationNotification", parameters: [{"name":"canHandlePop","required":true,"positional":false}], constructors: {"":[{"name":"canHandlePop","required":true,"positional":false}]}, methods: {"dispatch":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"debugFillDescription":_flaxMemberParameters2}, getters: ["canHandlePop"], setters: [], contextMembers: [], superMembers: ["get:canHandlePop","dispatch","toString","debugFillDescription"]} as const;
+const _NavigationNotificationProxy = {type: "flax.core/sdk_widgets#type:NavigationNotification", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"dispatch":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"debugFillDescription":_flaxMemberParameters3}, getters: ["canHandlePop"], setters: [], contextMembers: [], superMembers: ["get:canHandlePop","dispatch","toString","debugFillDescription"]} as const;
 export interface NavigationNotification {
 readonly [_flaxDartTypeValue]: NavigationNotification;
 

@@ -25,8 +25,8 @@ import '@flax/flutter/scheduler/_bindings/sdk_scheduler_Ticker';
 import type * as upstream11 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"oldWidget","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"fn","required":true,"positional":true}] as const;
@@ -59,7 +59,7 @@ defineObject("flax.core/sdk_material#type:TooltipState", ["widget","context","mo
 export function _TooltipStateFactory(): TooltipState {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_material#type:TooltipState", "", [], [], {}) as TooltipState;
+return constructObject("object", "flax.core/sdk_material#type:TooltipState", "", _flaxMemberParameters0, [], {}) as TooltipState;
 }
 export const TooltipState: typeof _TooltipStateFactory & _FlaxInstanceType<TooltipState> & _FlaxDartType<TooltipState, readonly ["class", "flax.core/sdk_material#type:TooltipState", readonly [], false]> = _flaxBindInstanceType<TooltipState, typeof _TooltipStateFactory>(_TooltipStateFactory, "flax.core/sdk_material#type:TooltipState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/sdk_widgets#type:SingleTickerProviderStateMixin","flax.core/flutter#type:TickerProvider"]) as typeof _TooltipStateFactory & _FlaxInstanceType<TooltipState> & _FlaxDartType<TooltipState, readonly ["class", "flax.core/sdk_material#type:TooltipState", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "widget" | "context" | "mounted" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "createTicker" | "dispose" | "activate" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "build" | "didChangeDependencies" | "ensureTooltipVisible" | "__flaxBound:package:flutter/src/material/tooltip.dart::TooltipState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::SingleTickerProviderStateMixin" | "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider";

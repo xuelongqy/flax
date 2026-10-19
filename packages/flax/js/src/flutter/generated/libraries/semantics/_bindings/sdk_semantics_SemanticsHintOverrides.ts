@@ -13,12 +13,13 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-const _flaxMemberParameters0 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"onTapHint"},{"name":"onLongPressHint"}] as const;
+const _flaxMemberParameters1 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+const _flaxMemberParameters3 = [] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"minLevel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/semantics/_bindings/sdk_semantics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -27,7 +28,7 @@ readonly [_flaxDartTypeValue]: SemanticsHintOverrides;
 
 }
 defineObject("flax.core/sdk_semantics#type:SemanticsHintOverrides", ["onTapHint","onLongPressHint","isNotEmpty"], [], _flaxBindingMethods("flax.core/sdk_semantics#type:SemanticsHintOverrides", "object", {}, {}), [], undefined, "flax.core/sdk_foundation#type:DiagnosticableTree");
-const _SemanticsHintOverridesProxy = {type: "flax.core/sdk_semantics#type:SemanticsHintOverrides", parameters: [{"name":"onTapHint","required":false,"positional":false},{"name":"onLongPressHint","required":false,"positional":false}], constructors: {"":[{"name":"onTapHint","required":false,"positional":false},{"name":"onLongPressHint","required":false,"positional":false}]}, methods: {"toStringShallow":_flaxMemberParameters0,"toStringDeep":_flaxMemberParameters1,"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugDescribeChildren":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters4,"toString":_flaxMemberParameters5}, getters: ["onTapHint","onLongPressHint","isNotEmpty"], setters: [], contextMembers: [], superMembers: ["get:onTapHint","get:onLongPressHint","get:isNotEmpty","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties","toString"]} as const;
+const _SemanticsHintOverridesProxy = {type: "flax.core/sdk_semantics#type:SemanticsHintOverrides", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShallow":_flaxMemberParameters1,"toStringDeep":_flaxMemberParameters2,"toStringShort":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters5,"toString":_flaxMemberParameters6}, getters: ["onTapHint","onLongPressHint","isNotEmpty"], setters: [], contextMembers: [], superMembers: ["get:onTapHint","get:onLongPressHint","get:isNotEmpty","toStringShallow","toStringDeep","toStringShort","toDiagnosticsNode","debugDescribeChildren","debugFillProperties","toString"]} as const;
 export interface SemanticsHintOverrides {
 readonly [_flaxDartTypeValue]: SemanticsHintOverrides;
 

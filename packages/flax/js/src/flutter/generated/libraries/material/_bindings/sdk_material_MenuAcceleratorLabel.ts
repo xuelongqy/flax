@@ -20,11 +20,6 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters5 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -46,11 +41,11 @@ toStringDeep(options?: {minLevel?: upstream4.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream8.DiagnosticsTreeStyle | null | undefined}): upstream7.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream7.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_material#type:MenuAcceleratorLabel", ["label","displayLabel","builder","hasAccelerator","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:MenuAcceleratorLabel", "object", {"createState":_flaxMemberParameters0,"toString":_flaxMemberParameters1,"debugFillProperties":_flaxMemberParameters2,"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"toStringShallow":_flaxMemberParameters3,"toStringDeep":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_material#type:MenuAcceleratorLabel", ["label","displayLabel","builder","hasAccelerator","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:MenuAcceleratorLabel", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0}, {}), [], undefined, "flax.core/components#type:StatefulWidget");
 export function _MenuAcceleratorLabelFactory(label: string, options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; builder?: ((context: upstream2.BuildContext, label: string, index: number) => Widget) | undefined } = {}): MenuAcceleratorLabel {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_material#type:MenuAcceleratorLabel", "", [{"name":"label","required":true,"positional":true},{"name":"key","required":false,"positional":false},{"name":"builder","required":false,"positional":false}], [label], options) as MenuAcceleratorLabel;
+return constructObject("object", "flax.core/sdk_material#type:MenuAcceleratorLabel", "", [{"name":"label","required":true,"positional":true},{"name":"key"},{"name":"builder"}], [label], options) as MenuAcceleratorLabel;
 }
 export namespace _MenuAcceleratorLabelFactory { export function defaultLabelBuilder(context: upstream2.BuildContext, label: string, index: number): Widget {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');

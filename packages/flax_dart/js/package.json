@@ -22,6 +22,30 @@
     },
     "./ui/*": {
       "types": "./types/generated/libraries/ui/*.d.ts"
+    },
+    "./convert": {
+      "types": "./types/generated/libraries/convert/index.d.ts"
+    },
+    "./convert/*": {
+      "types": "./types/generated/libraries/convert/*.d.ts"
+    },
+    "./developer": {
+      "types": "./types/generated/libraries/developer/index.d.ts"
+    },
+    "./developer/*": {
+      "types": "./types/generated/libraries/developer/*.d.ts"
+    },
+    "./io": {
+      "types": "./types/generated/libraries/io/index.d.ts"
+    },
+    "./io/*": {
+      "types": "./types/generated/libraries/io/*.d.ts"
+    },
+    "./isolate": {
+      "types": "./types/generated/libraries/isolate/index.d.ts"
+    },
+    "./isolate/*": {
+      "types": "./types/generated/libraries/isolate/*.d.ts"
     }
   },
   "files": [

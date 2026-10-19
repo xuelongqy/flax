@@ -29,6 +29,7 @@ import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoSwitch extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
@@ -55,11 +56,11 @@ export interface CupertinoSwitch extends _FlaxDartWidget, Omit<upstream0.Statefu
     readonly focusColor: upstream2.Color | null;
     readonly onLabelColor: upstream2.Color | null;
     readonly offLabelColor: upstream2.Color | null;
-    readonly activeThumbImage: upstream3.ImageProvider<{}> | null;
+    readonly activeThumbImage: upstream3.ImageProvider<any> | null;
     readonly onActiveThumbImageError: ((exception: {}, stackTrace: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }> | null) => void) | null;
-    readonly inactiveThumbImage: upstream3.ImageProvider<{}> | null;
+    readonly inactiveThumbImage: upstream3.ImageProvider<any> | null;
     readonly onInactiveThumbImageError: ((exception: {}, stackTrace: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }> | null) => void) | null;

@@ -22,7 +22,7 @@ readonly [_flaxDartTypeValue]: WrapParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:WrapParentData", ["offset","previousSibling","nextSibling"], ["offset","previousSibling","nextSibling"], _flaxBindingMethods("flax.core/sdk_rendering#type:WrapParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
-const _WrapParentDataProxy = {type: "flax.core/sdk_rendering#type:WrapParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["offset","previousSibling","nextSibling"], setters: ["offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:offset","get:previousSibling","get:nextSibling","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _WrapParentDataProxy = {type: "flax.core/sdk_rendering#type:WrapParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["offset","previousSibling","nextSibling"], setters: ["offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:offset","get:previousSibling","get:nextSibling","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface WrapParentData {
 readonly [_flaxDartTypeValue]: WrapParentData;
 

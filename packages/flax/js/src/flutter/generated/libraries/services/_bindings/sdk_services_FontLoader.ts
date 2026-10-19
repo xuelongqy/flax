@@ -3,6 +3,7 @@
 import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
 const _flaxMemberParameters0 = [{"name":"bytes","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"family","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -11,7 +12,7 @@ readonly [_flaxDartTypeValue]: FontLoader;
 
 }
 defineObject("flax.core/sdk_services#type:FontLoader", ["family"], [], _flaxBindingMethods("flax.core/sdk_services#type:FontLoader", "object", {"addFont":_flaxMemberParameters0,"load":_flaxMemberParameters1}, {}), []);
-const _FontLoaderProxy = {type: "flax.core/sdk_services#type:FontLoader", parameters: [{"name":"family","required":true,"positional":true}], constructors: {"":[{"name":"family","required":true,"positional":true}]}, methods: {"addFont":_flaxMemberParameters0,"load":_flaxMemberParameters1}, getters: ["family"], setters: [], contextMembers: [], superMembers: ["get:family","addFont","load"]} as const;
+const _FontLoaderProxy = {type: "flax.core/sdk_services#type:FontLoader", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"addFont":_flaxMemberParameters0,"load":_flaxMemberParameters1}, getters: ["family"], setters: [], contextMembers: [], superMembers: ["get:family","addFont","load"]} as const;
 export interface FontLoader {
 readonly [_flaxDartTypeValue]: FontLoader;
 

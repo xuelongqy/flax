@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
 import type * as upstream1 from '@flax/flutter/widget_previews/_bindings/sdk_widget_previews_PreviewThemeData';
@@ -19,9 +19,11 @@ export interface PreviewBuilder extends Readonly<{
     get name(): string | null;
     get size(): upstream0.Size | null;
     get textScaleFactor(): number | null;
+    get wrapper(): ((p0: Widget) => Widget) | null;
     get theme(): (() => upstream1.PreviewThemeData) | null;
     get brightness(): upstream2.Brightness | null;
     get localizations(): (() => upstream3.PreviewLocalizationsData) | null;
+    addWrapper(newWrapper: ((p0: Widget) => Widget)): void;
     build(): upstream4.Preview;
     set group(value: string | null);
     set name(value: string | null);
@@ -31,6 +33,7 @@ export interface PreviewBuilder extends Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>) | null);
     set textScaleFactor(value: number | null);
+    set wrapper(value: ((p0: Widget) => Widget) | null);
     set theme(value: (() => Readonly<{
         "__flaxBound:package:flutter/src/widget_previews/widget_previews.dart::PreviewThemeData": readonly [];
     }>) | null);

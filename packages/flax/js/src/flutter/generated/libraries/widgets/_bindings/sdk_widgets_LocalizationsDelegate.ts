@@ -18,7 +18,7 @@ readonly [_flaxDartTypeValue]: LocalizationsDelegate<T>;
 
 }
 defineObject("flax.core/sdk_widgets#type:LocalizationsDelegate", ["type"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:LocalizationsDelegate", "object", {"isSupported":_flaxMemberParameters0,"load":_flaxMemberParameters0,"shouldReload":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, {}), []);
-const _LocalizationsDelegateProxy = {type: "flax.core/sdk_widgets#type:LocalizationsDelegate", parameters: [], constructors: {"":[]}, methods: {"isSupported":_flaxMemberParameters0,"load":_flaxMemberParameters0,"shouldReload":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["type"], setters: [], contextMembers: [], superMembers: ["get:type","toString"]} as const;
+const _LocalizationsDelegateProxy = {type: "flax.core/sdk_widgets#type:LocalizationsDelegate", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"isSupported":_flaxMemberParameters0,"load":_flaxMemberParameters0,"shouldReload":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["type"], setters: [], contextMembers: [], superMembers: ["get:type","toString"]} as const;
 export interface LocalizationsDelegate<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: LocalizationsDelegate<T>;
 

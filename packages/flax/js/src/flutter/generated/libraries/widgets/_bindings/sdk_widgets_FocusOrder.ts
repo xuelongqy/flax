@@ -15,8 +15,8 @@ import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 const _flaxMemberParameters0 = [{"name":"other","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters3 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
@@ -26,9 +26,10 @@ readonly [_flaxDartTypeValue]: FocusOrder;
 
 }
 defineObject("flax.core/sdk_widgets#type:FocusOrder", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:FocusOrder", "object", {"compareTo":_flaxMemberParameters0,"doCompare":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _FocusOrderProxy = {type: "flax.core/sdk_widgets#type:FocusOrder", parameters: [], constructors: {"":[]}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"doCompare":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
+const _FocusOrderProxy = {type: "flax.core/sdk_widgets#type:FocusOrder", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toStringShort":_flaxMemberParameters1,"toString":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugFillProperties":_flaxMemberParameters4,"doCompare":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toStringShort","toString","toDiagnosticsNode","debugFillProperties"]} as const;
 export interface FocusOrder {
 readonly [_flaxDartTypeValue]: FocusOrder;
+compareTo(other: Readonly<{ "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [FocusOrder] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): number;
 
 toStringShort(): string;
 toString(options?: {minLevel?: upstream2.DiagnosticLevel | undefined}): string;

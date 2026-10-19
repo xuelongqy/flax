@@ -4,6 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 const _flaxMemberParameters0 = [] as const;
+const _flaxMemberParameters1 = [{"name":"mass","required":true},{"name":"stiffness","required":true},{"name":"damping","required":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/physics/_bindings/sdk_physics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -12,7 +13,7 @@ readonly [_flaxDartTypeValue]: SpringDescription;
 
 }
 defineObject("flax.core/sdk_physics#type:SpringDescription", ["mass","stiffness","damping","duration","bounce"], [], _flaxBindingMethods("flax.core/sdk_physics#type:SpringDescription", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _SpringDescriptionProxy = {type: "flax.core/sdk_physics#type:SpringDescription", parameters: [{"name":"mass","required":true,"positional":false},{"name":"stiffness","required":true,"positional":false},{"name":"damping","required":true,"positional":false}], constructors: {"":[{"name":"mass","required":true,"positional":false},{"name":"stiffness","required":true,"positional":false},{"name":"damping","required":true,"positional":false}]}, methods: {"toString":_flaxMemberParameters0}, getters: ["mass","stiffness","damping","duration","bounce"], setters: [], contextMembers: [], superMembers: ["get:mass","get:stiffness","get:damping","get:duration","get:bounce","toString"]} as const;
+const _SpringDescriptionProxy = {type: "flax.core/sdk_physics#type:SpringDescription", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toString":_flaxMemberParameters0}, getters: ["mass","stiffness","damping","duration","bounce"], setters: [], contextMembers: [], superMembers: ["get:mass","get:stiffness","get:damping","get:duration","get:bounce","toString"]} as const;
 export interface SpringDescription {
 readonly [_flaxDartTypeValue]: SpringDescription;
 

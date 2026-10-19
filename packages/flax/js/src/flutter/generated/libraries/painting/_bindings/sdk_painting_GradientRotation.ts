@@ -9,8 +9,9 @@ import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"bounds","required":true,"positional":true},{"name":"textDirection","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"bounds","required":true,"positional":true},{"name":"textDirection"}] as const;
 const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"radians","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -19,7 +20,7 @@ readonly [_flaxDartTypeValue]: GradientRotation;
 
 }
 defineObject("flax.core/sdk_painting#type:GradientRotation", ["radians"], [], _flaxBindingMethods("flax.core/sdk_painting#type:GradientRotation", "object", {"transform":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_painting#type:GradientTransform");
-const _GradientRotationProxy = {type: "flax.core/sdk_painting#type:GradientRotation", parameters: [{"name":"radians","required":true,"positional":true}], constructors: {"":[{"name":"radians","required":true,"positional":true}]}, methods: {"transform":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: ["radians"], setters: [], contextMembers: [], superMembers: ["get:radians","transform","toString"]} as const;
+const _GradientRotationProxy = {type: "flax.core/sdk_painting#type:GradientRotation", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"transform":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: ["radians"], setters: [], contextMembers: [], superMembers: ["get:radians","transform","toString"]} as const;
 export interface GradientRotation {
 readonly [_flaxDartTypeValue]: GradientRotation;
 

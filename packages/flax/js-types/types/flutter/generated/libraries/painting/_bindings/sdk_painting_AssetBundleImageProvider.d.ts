@@ -31,6 +31,9 @@ export interface AssetBundleImageProvider extends Omit<upstream0.ImageProvider<u
 }
 export interface AssetBundleImageProvider {
     readonly [_flaxDartTypeValue]: AssetBundleImageProvider;
+    resolve(configuration: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
+    }>): upstream2.ImageStream;
     createStream(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream2.ImageStream;
@@ -91,5 +94,5 @@ export declare namespace AssetBundleImageProvider {
         }>>);
     }): AssetBundleImageProvider;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::AssetBundleImageProvider" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 export {};

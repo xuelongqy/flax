@@ -15,9 +15,10 @@ import '@flax/dart/core/_bindings/flutter_Duration';
 import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_FrameTiming';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_FrameTiming';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_Priority';
-import type * as upstream8 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
+import '@flax/dart/developer/_bindings/sdk_dependencies_Flow';
+import type * as upstream9 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_PerformanceModeRequestHandle';
-import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
+import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_DartPerformanceMode';
 import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SchedulerBinding extends Omit<upstream0.BindingBase, _flaxOwnMembers0>, Readonly<{
@@ -88,6 +89,9 @@ export interface SchedulerBinding extends Omit<upstream0.BindingBase, _flaxOwnMe
         "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
     }>, options?: {
         debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }): Promise<_FlaxDartOutput<T>>;
     scheduleFrameCallback(callback: ((timeStamp: upstream5.Duration) => void), options?: {
         rescheduling?: boolean | undefined;
@@ -112,8 +116,8 @@ export interface SchedulerBinding extends Omit<upstream0.BindingBase, _flaxOwnMe
     }> & Readonly<{
         "__flaxBound:dart:core::Comparable": readonly [upstream5.Duration];
     }>) | null): void;
-    requestPerformanceMode(mode: upstream9.DartPerformanceMode): upstream8.PerformanceModeRequestHandle | null;
-    debugGetRequestedPerformanceMode(): upstream9.DartPerformanceMode | null;
+    requestPerformanceMode(mode: upstream10.DartPerformanceMode): upstream9.PerformanceModeRequestHandle | null;
+    debugGetRequestedPerformanceMode(): upstream10.DartPerformanceMode | null;
     handleDrawFrame(): void;
     set schedulingStrategy(value: ((options: {
         priority: number;
@@ -133,6 +137,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
         "__flaxBound:package:flutter/src/scheduler/priority.dart::Priority": readonly [];
     }>, options?: {
         debugLabel?: string | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }) => Promise<_Selected0> : never : never;
 }
 export {};

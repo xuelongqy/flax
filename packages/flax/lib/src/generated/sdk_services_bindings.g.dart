@@ -15,11 +15,12 @@ import 'dart:typed_data' as api3;
 import 'package:flutter/cupertino.dart' as api4;
 
 import 'dart:core' as api5;
-import 'dart:async' as api6;
+import 'dart:developer' as api6;
+import 'dart:async' as api7;
 
-import 'package:flutter/rendering.dart' as api7;
-import 'package:flutter/scheduler.dart' as api8;
-import 'package:flutter/gestures.dart' as api9;
+import 'package:vector_math/vector_math_64.dart' as api8;
+import 'package:flutter/scheduler.dart' as api9;
+import 'package:flutter/gestures.dart' as api10;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -213,31 +214,31 @@ final sdk_servicesBindings = FlaxBindingModule(
       {"undo": api.UndoDirection.undo, "redo": api.UndoDirection.redo},
       supertypes: ["flax.core/flutter#type:Enum", "dart:core::Object"],
     ),
-    _flaxBinding48,
-    _flaxBinding69,
-    _flaxBinding76,
-    _flaxBinding128,
-    _flaxBinding141,
-    _flaxBinding150,
-    _flaxBinding181,
-    _flaxBinding193,
-    _flaxBinding203,
-    _flaxBinding215,
-    _flaxBinding233,
-    _flaxBinding234,
-    _flaxBinding251,
-    _flaxBinding252,
-    _flaxBinding272,
+    _flaxBinding295,
+    _flaxBinding316,
+    _flaxBinding323,
+    _flaxBinding363,
+    _flaxBinding375,
+    _flaxBinding381,
+    _flaxBinding401,
+    _flaxBinding406,
+    _flaxBinding414,
+    _flaxBinding421,
+    _flaxBinding436,
+    _flaxBinding437,
+    _flaxBinding444,
+    _flaxBinding445,
+    _flaxBinding453,
     FlaxObjectBinding(
       "flax.core/sdk_services#type:BasicMessageChannel",
       [
-        _flaxBinding273,
+        _flaxBinding454,
         FlaxGetter(
           "codec",
           FlaxTypeRef("object", id: "flax.core/sdk_services#type:MessageCodec"),
           _BasicMessageChannel_codec,
         ),
-        _flaxBinding275,
+        _flaxBinding455,
       ],
       {
         "send": FlaxInstanceMethod(
@@ -250,8 +251,8 @@ final sdk_servicesBindings = FlaxBindingModule(
           ],
           FlaxTypeRef(
             "future",
-            item: _flaxBinding161,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            item: _flaxBinding42,
+            future: FlaxFutureBinding("any?:", _future8Adapt),
           ),
           _BasicMessageChannel_send,
         ),
@@ -266,22 +267,22 @@ final sdk_servicesBindings = FlaxBindingModule(
                   [
                     FlaxCallbackParameter(
                       "message",
-                      _flaxBinding161,
+                      _flaxBinding42,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  _flaxBinding162,
-                  _callback7,
+                  _flaxBinding153,
+                  _callback8,
                   id: "callback:<>(p:r:message:any?:)->future:[any?:]",
-                  invoke: _callback7Invoke,
-                  matches: _callback7Matches,
+                  invoke: _callback8Invoke,
+                  matches: _callback8Matches,
                 ),
               ),
               required: true,
             ),
           ],
-          _flaxBinding82,
+          _flaxBinding24,
           _BasicMessageChannel_setMessageHandler,
         ),
         "@super:send": FlaxInstanceMethod(
@@ -294,8 +295,8 @@ final sdk_servicesBindings = FlaxBindingModule(
           ],
           FlaxTypeRef(
             "future",
-            item: _flaxBinding161,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            item: _flaxBinding42,
+            future: FlaxFutureBinding("any?:", _future8Adapt),
           ),
           _BasicMessageChannel_super_send,
         ),
@@ -310,41 +311,39 @@ final sdk_servicesBindings = FlaxBindingModule(
                   [
                     FlaxCallbackParameter(
                       "message",
-                      _flaxBinding161,
+                      _flaxBinding42,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  _flaxBinding162,
-                  _callback7,
+                  _flaxBinding153,
+                  _callback8,
                   id: "callback:<>(p:r:message:any?:)->future:[any?:]",
-                  invoke: _callback7Invoke,
-                  matches: _callback7Matches,
+                  invoke: _callback8Invoke,
+                  matches: _callback8Matches,
                 ),
               ),
               required: true,
             ),
           ],
-          _flaxBinding82,
+          _flaxBinding24,
           _BasicMessageChannel_super_setMessageHandler,
         ),
-        "@super:get:name": FlaxInstanceMethod(
-          [],
-          _flaxBinding24,
+        "@super:get:name": FlaxInstanceMethod.signature(
+          _flaxBinding1,
           _FlaxProxyDispatch7_super_get_name,
         ),
         "@super:get:codec": FlaxInstanceMethod(
-          [],
+          _flaxBinding332,
           FlaxTypeRef("object", id: "flax.core/sdk_services#type:MessageCodec"),
           _BasicMessageChannel_super_get_codec,
         ),
-        "@super:get:binaryMessenger": FlaxInstanceMethod(
-          [],
-          _flaxBinding274,
+        "@super:get:binaryMessenger": FlaxInstanceMethod.signature(
+          _flaxBinding55,
           _FlaxProxyDispatch7_super_get_binaryMessenger,
         ),
       },
-      constructors: {"@implementation": _flaxBinding278},
+      constructors: {"@implementation": _flaxBinding458},
       create: _createBasicMessageChannel,
       disposeMethod: null,
       listenerPairs: {},
@@ -367,8 +366,8 @@ final sdk_servicesBindings = FlaxBindingModule(
             ],
             FlaxTypeRef(
               "future",
-              item: _flaxBinding161,
-              future: FlaxFutureBinding("any?:", _future5Adapt),
+              item: _flaxBinding42,
+              future: FlaxFutureBinding("any?:", _future8Adapt),
             ),
             id: "callback:<>(p:r:message:any?:)->future:[any?:]",
           ),
@@ -388,28 +387,28 @@ final sdk_servicesBindings = FlaxBindingModule(
                     [
                       FlaxCallbackParameter(
                         "message",
-                        _flaxBinding161,
+                        _flaxBinding42,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    _flaxBinding162,
-                    _callback8,
+                    _flaxBinding153,
+                    _callback9,
                     id: "callback:<>(p:r:message:any?:)->future:[any?:]",
-                    invoke: _callback8Invoke,
-                    matches: _callback8Matches,
+                    invoke: _callback9Invoke,
+                    matches: _callback9Matches,
                   ),
                 ),
                 required: true,
                 positional: true,
               ),
             ],
-            _flaxBinding82,
+            _flaxBinding24,
             id: "callback:<>(p:r:handler:callback?:<>(p:r:message:any?:)->future:[any?:])->void:",
           ),
           hasSuper: true,
         ),
-        _flaxBinding279,
+        _flaxBinding459,
         FlaxProxyMember(
           "codec",
           1,
@@ -423,53 +422,53 @@ final sdk_servicesBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding281,
+        _flaxBinding460,
       ]),
     ),
-    _flaxBinding288,
-    _flaxBinding271,
-    _flaxBinding289,
-    _flaxBinding290,
-    _flaxBinding303,
-    _flaxBinding304,
-    _flaxBinding308,
-    _flaxBinding140,
-    _flaxBinding324,
-    _flaxBinding350,
-    _flaxBinding351,
-    _flaxBinding388,
-    _flaxBinding389,
-    _flaxBinding402,
-    _flaxBinding403,
-    _flaxBinding404,
-    _flaxBinding414,
-    _flaxBinding444,
-    _flaxBinding445,
-    _flaxBinding446,
-    _flaxBinding500,
-    _flaxBinding501,
+    _flaxBinding465,
+    _flaxBinding452,
+    _flaxBinding466,
+    _flaxBinding467,
+    _flaxBinding476,
+    _flaxBinding477,
+    _flaxBinding481,
+    _flaxBinding374,
+    _flaxBinding489,
+    _flaxBinding502,
     _flaxBinding503,
-    _flaxBinding504,
-    _flaxBinding522,
-    _flaxBinding523,
-    _flaxBinding524,
-    _flaxBinding531,
-    _flaxBinding532,
     _flaxBinding538,
     _flaxBinding539,
-    _flaxBinding545,
-    _flaxBinding553,
-    _flaxBinding581,
-    _flaxBinding612,
+    _flaxBinding550,
+    _flaxBinding551,
+    _flaxBinding552,
+    _flaxBinding560,
+    _flaxBinding583,
+    _flaxBinding584,
+    _flaxBinding585,
+    _flaxBinding614,
+    _flaxBinding615,
+    _flaxBinding617,
+    _flaxBinding618,
+    _flaxBinding632,
+    _flaxBinding633,
     _flaxBinding634,
-    _flaxBinding437,
-    _flaxBinding646,
-    _flaxBinding658,
-    _flaxBinding670,
-    _flaxBinding683,
-    _flaxBinding688,
-    _flaxBinding691,
-    _flaxBinding692,
+    _flaxBinding641,
+    _flaxBinding642,
+    _flaxBinding648,
+    _flaxBinding649,
+    _flaxBinding655,
+    _flaxBinding660,
+    _flaxBinding679,
+    _flaxBinding703,
+    _flaxBinding715,
+    _flaxBinding576,
+    _flaxBinding722,
+    _flaxBinding734,
+    _flaxBinding746,
+    _flaxBinding757,
+    _flaxBinding762,
+    _flaxBinding765,
+    _flaxBinding766,
     FlaxObjectBinding(
       "flax.core/sdk_services#type:MessageCodec",
       [],
@@ -482,16 +481,16 @@ final sdk_servicesBindings = FlaxBindingModule(
               required: true,
             ),
           ],
-          _flaxBinding253,
+          _flaxBinding56,
           _MessageCodec_encodeMessage,
         ),
         "decodeMessage": FlaxInstanceMethod(
-          _flaxBinding282,
+          _flaxBinding767,
           FlaxTypeRef("any", nullable: true),
           _MessageCodec_decodeMessage,
         ),
       },
-      constructors: {"@implementation": _flaxBinding23},
+      constructors: {"@implementation": _flaxBinding332},
       create: _createMessageCodec,
       disposeMethod: null,
       listenerPairs: {},
@@ -512,7 +511,7 @@ final sdk_servicesBindings = FlaxBindingModule(
                 positional: true,
               ),
             ],
-            _flaxBinding253,
+            _flaxBinding56,
             id: "callback:<>(p:r:message:any?:)->ByteData?:",
           ),
         ),
@@ -523,7 +522,7 @@ final sdk_servicesBindings = FlaxBindingModule(
             [
               FlaxCallbackParameter(
                 "message",
-                _flaxBinding253,
+                _flaxBinding56,
                 required: true,
                 positional: true,
               ),
@@ -534,1105 +533,473 @@ final sdk_servicesBindings = FlaxBindingModule(
         ),
       ]),
     ),
-    _flaxBinding700,
-    _flaxBinding715,
-    _flaxBinding575,
-    _flaxBinding720,
-    _flaxBinding737,
-    _flaxBinding747,
-    _flaxBinding768,
-    _flaxBinding772,
-    _flaxBinding773,
     _flaxBinding774,
-    _flaxBinding775,
     _flaxBinding785,
-    _flaxBinding101,
-    _flaxBinding787,
-    _flaxBinding788,
-    _flaxBinding797,
-    _flaxBinding803,
-    _flaxBinding321,
-    _flaxBinding817,
-    _flaxBinding839,
+    _flaxBinding673,
+    _flaxBinding790,
+    _flaxBinding798,
+    _flaxBinding808,
+    _flaxBinding821,
+    _flaxBinding825,
+    _flaxBinding826,
+    _flaxBinding827,
+    _flaxBinding828,
     _flaxBinding838,
-    _flaxBinding868,
-    _flaxBinding892,
-    _flaxBinding899,
-    _flaxBinding907,
-    _flaxBinding923,
-    _flaxBinding930,
-    _flaxBinding939,
-    _flaxBinding946,
+    _flaxBinding340,
+    _flaxBinding840,
+    _flaxBinding841,
+    _flaxBinding850,
+    _flaxBinding856,
+    _flaxBinding486,
+    _flaxBinding864,
+    _flaxBinding884,
+    _flaxBinding883,
+    _flaxBinding909,
+    _flaxBinding933,
+    _flaxBinding940,
     _flaxBinding948,
-    _flaxBinding964,
-    _flaxBinding982,
-    _flaxBinding1013,
-    _flaxBinding1028,
-    _flaxBinding1029,
-    _flaxBinding1039,
-    _flaxBinding1057,
-    _flaxBinding1193,
-    _flaxBinding1202,
-    _flaxBinding334,
-    _flaxBinding1226,
-    _flaxBinding1232,
-    _flaxBinding1240,
+    _flaxBinding962,
+    _flaxBinding969,
+    _flaxBinding978,
+    _flaxBinding985,
+    _flaxBinding987,
+    _flaxBinding1003,
+    _flaxBinding1021,
+    _flaxBinding1043,
+    _flaxBinding1052,
+    _flaxBinding1053,
+    _flaxBinding1062,
+    _flaxBinding1073,
+    _flaxBinding1210,
+    _flaxBinding1217,
+    _flaxBinding492,
+    _flaxBinding1230,
+    _flaxBinding1234,
+    _flaxBinding1239,
+    _flaxBinding1246,
+    _flaxBinding1247,
     _flaxBinding1248,
     _flaxBinding1249,
-    _flaxBinding1250,
-    _flaxBinding1251,
-    _flaxBinding1255,
-    _flaxBinding1284,
-    _flaxBinding1285,
-    _flaxBinding1286,
-    _flaxBinding1319,
-    _flaxBinding301,
+    _flaxBinding1253,
+    _flaxBinding1271,
+    _flaxBinding1272,
+    _flaxBinding1273,
+    _flaxBinding1300,
+    _flaxBinding474,
+    _flaxBinding1314,
+    _flaxBinding1321,
+    _flaxBinding1327,
+    _flaxBinding1328,
     _flaxBinding1336,
-    _flaxBinding1343,
-    _flaxBinding1349,
-    _flaxBinding1350,
-    _flaxBinding1358,
-    _flaxBinding1360,
-    _flaxBinding382,
-    _flaxBinding1431,
-    _flaxBinding1458,
-    _flaxBinding1476,
-    _flaxBinding1491,
-    _flaxBinding1501,
-    _flaxBinding1514,
-    _flaxBinding1535,
-    _flaxBinding1536,
-    _flaxBinding1537,
-    _flaxBinding1538,
-    _flaxBinding1546,
+    _flaxBinding1338,
+    _flaxBinding532,
+    _flaxBinding1392,
+    _flaxBinding1420,
+    _flaxBinding1438,
+    _flaxBinding1453,
+    _flaxBinding1463,
+    _flaxBinding1472,
+    _flaxBinding1494,
+    _flaxBinding1495,
+    _flaxBinding1496,
+    _flaxBinding1497,
+    _flaxBinding1505,
   ],
   functions: [
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:appBuildName",
       [],
-      _flaxBinding142,
+      _flaxBinding14,
       _read_appBuildName,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:appBuildNumber",
       [],
-      _flaxBinding142,
+      _flaxBinding14,
       _read_appBuildNumber,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:appFlavor",
       [],
-      _flaxBinding142,
+      _flaxBinding14,
       _read_appFlavor,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:debugKeyEventSimulatorTransitModeOverride",
       [],
-      _flaxBinding1547,
+      _flaxBinding1506,
       _read_debugKeyEventSimulatorTransitModeOverride,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:debugPrintKeyboardEvents",
       [],
-      _flaxBinding78,
+      _flaxBinding36,
       _read_debugPrintKeyboardEvents,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:debugProfilePlatformChannels",
       [],
-      _flaxBinding78,
+      _flaxBinding36,
       _read_debugProfilePlatformChannels,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kAndroidNumPadMap",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kAndroidNumPadMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kAndroidToLogicalKey",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kAndroidToLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kAndroidToPhysicalKey",
       [],
-      _flaxBinding1549,
+      _flaxBinding1508,
       _read_kAndroidToPhysicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kFuchsiaToLogicalKey",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kFuchsiaToLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kFuchsiaToPhysicalKey",
       [],
-      _flaxBinding1549,
+      _flaxBinding1508,
       _read_kFuchsiaToPhysicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kGlfwNumpadMap",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kGlfwNumpadMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kGlfwToLogicalKey",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kGlfwToLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kGtkNumpadMap",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kGtkNumpadMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kGtkToLogicalKey",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kGtkToLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kIosNumPadMap",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kIosNumPadMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kIosSpecialLogicalMap",
       [],
-      _flaxBinding1550,
+      _flaxBinding1509,
       _read_kIosSpecialLogicalMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kIosToLogicalKey",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kIosToLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kIosToPhysicalKey",
       [],
-      _flaxBinding1549,
+      _flaxBinding1508,
       _read_kIosToPhysicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kLinuxToPhysicalKey",
       [],
-      _flaxBinding1549,
+      _flaxBinding1508,
       _read_kLinuxToPhysicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kMacOsFunctionKeyMap",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kMacOsFunctionKeyMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kMacOsNumPadMap",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kMacOsNumPadMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kMacOsToLogicalKey",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kMacOsToLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kMacOsToPhysicalKey",
       [],
-      _flaxBinding1549,
+      _flaxBinding1508,
       _read_kMacOsToPhysicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kProfilePlatformChannels",
       [],
-      _flaxBinding78,
+      _flaxBinding36,
       _read_kProfilePlatformChannels,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kWebLocationMap",
       [],
-      _flaxBinding1553,
+      _flaxBinding1512,
       _read_kWebLocationMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kWebNumPadMap",
       [],
-      _flaxBinding1550,
+      _flaxBinding1509,
       _read_kWebNumPadMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kWebToLogicalKey",
       [],
-      _flaxBinding1550,
+      _flaxBinding1509,
       _read_kWebToLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kWebToPhysicalKey",
       [],
-      _flaxBinding1554,
+      _flaxBinding1513,
       _read_kWebToPhysicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kWindowsNumPadMap",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kWindowsNumPadMap,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kWindowsToLogicalKey",
       [],
-      _flaxBinding1548,
+      _flaxBinding1507,
       _read_kWindowsToLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:kWindowsToPhysicalKey",
       [],
-      _flaxBinding1549,
+      _flaxBinding1508,
       _read_kWindowsToPhysicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:platformViewsRegistry",
       [],
-      _flaxBinding1555,
+      _flaxBinding1514,
       _read_platformViewsRegistry,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:rootBundle",
       [],
-      _flaxBinding1556,
+      _flaxBinding1515,
       _read_rootBundle,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:shouldProfilePlatformChannels",
       [],
-      _flaxBinding78,
+      _flaxBinding36,
       _read_shouldProfilePlatformChannels,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:debugAssertAllServicesVarsUnset",
-      [
-        FlaxParameter(
-          "reason",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding78,
+      [FlaxParameter("reason", _flaxBinding0, required: true)],
+      _flaxBinding36,
       _function_debugAssertAllServicesVarsUnset,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:debugIsSerializableForRestoration",
-      [
-        FlaxParameter(
-          "object",
-          _flaxBinding161,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding78,
+      [FlaxParameter("object", _flaxBinding42, required: true)],
+      _flaxBinding36,
       _function_debugIsSerializableForRestoration,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:runeToLowerCase",
-      [
-        FlaxParameter(
-          "rune",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding0,
+      [FlaxParameter("rune", _flaxBinding2, required: true)],
+      _flaxBinding2,
       _function_runeToLowerCase,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeUnknown",
-      _flaxBinding0,
-      api.AndroidPointerProperties.kToolTypeUnknown,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeFinger",
-      _flaxBinding0,
-      api.AndroidPointerProperties.kToolTypeFinger,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeStylus",
-      _flaxBinding0,
-      api.AndroidPointerProperties.kToolTypeStylus,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeMouse",
-      _flaxBinding0,
-      api.AndroidPointerProperties.kToolTypeMouse,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeEraser",
-      _flaxBinding0,
-      api.AndroidPointerProperties.kToolTypeEraser,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:AndroidViewController.pointerAction",
       [
-        FlaxParameter(
-          "pointerId",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "action",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("pointerId", _flaxBinding2, required: true),
+        FlaxParameter("action", _flaxBinding2, required: true),
       ],
-      _flaxBinding0,
+      _flaxBinding2,
       _AndroidViewController_pointerAction,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kActionDown",
-      _flaxBinding0,
-      api.AndroidViewController.kActionDown,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kActionUp",
-      _flaxBinding0,
-      api.AndroidViewController.kActionUp,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kActionMove",
-      _flaxBinding0,
-      api.AndroidViewController.kActionMove,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kActionCancel",
-      _flaxBinding0,
-      api.AndroidViewController.kActionCancel,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kActionPointerDown",
-      _flaxBinding0,
-      api.AndroidViewController.kActionPointerDown,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kActionPointerUp",
-      _flaxBinding0,
-      api.AndroidViewController.kActionPointerUp,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kAndroidLayoutDirectionLtr",
-      _flaxBinding0,
-      api.AndroidViewController.kAndroidLayoutDirectionLtr,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kAndroidLayoutDirectionRtl",
-      _flaxBinding0,
-      api.AndroidViewController.kAndroidLayoutDirectionRtl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceUnknown",
-      _flaxBinding0,
-      api.AndroidViewController.kInputDeviceSourceUnknown,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceTouchScreen",
-      _flaxBinding0,
-      api.AndroidViewController.kInputDeviceSourceTouchScreen,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceMouse",
-      _flaxBinding0,
-      api.AndroidViewController.kInputDeviceSourceMouse,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceStylus",
-      _flaxBinding0,
-      api.AndroidViewController.kInputDeviceSourceStylus,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceTouchPad",
-      _flaxBinding0,
-      api.AndroidViewController.kInputDeviceSourceTouchPad,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:AssetManifest.loadFromAssetBundle",
-      [
-        FlaxParameter(
-          "bundle",
-          _flaxBinding1556,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding1558,
+      [FlaxParameter("bundle", _flaxBinding1515, required: true)],
+      _flaxBinding1517,
       _AssetManifest_loadFromAssetBundle,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillConfiguration.disabled",
-      _flaxBinding1367,
-      api.AutofillConfiguration.disabled,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.addressCity",
-      _flaxBinding24,
-      api.AutofillHints.addressCity,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.addressCityAndState",
-      _flaxBinding24,
-      api.AutofillHints.addressCityAndState,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.addressState",
-      _flaxBinding24,
-      api.AutofillHints.addressState,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.birthday",
-      _flaxBinding24,
-      api.AutofillHints.birthday,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.birthdayDay",
-      _flaxBinding24,
-      api.AutofillHints.birthdayDay,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.birthdayMonth",
-      _flaxBinding24,
-      api.AutofillHints.birthdayMonth,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.birthdayYear",
-      _flaxBinding24,
-      api.AutofillHints.birthdayYear,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.countryCode",
-      _flaxBinding24,
-      api.AutofillHints.countryCode,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.countryName",
-      _flaxBinding24,
-      api.AutofillHints.countryName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardExpirationDate",
-      _flaxBinding24,
-      api.AutofillHints.creditCardExpirationDate,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardExpirationDay",
-      _flaxBinding24,
-      api.AutofillHints.creditCardExpirationDay,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardExpirationMonth",
-      _flaxBinding24,
-      api.AutofillHints.creditCardExpirationMonth,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardExpirationYear",
-      _flaxBinding24,
-      api.AutofillHints.creditCardExpirationYear,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardFamilyName",
-      _flaxBinding24,
-      api.AutofillHints.creditCardFamilyName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardGivenName",
-      _flaxBinding24,
-      api.AutofillHints.creditCardGivenName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardMiddleName",
-      _flaxBinding24,
-      api.AutofillHints.creditCardMiddleName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardName",
-      _flaxBinding24,
-      api.AutofillHints.creditCardName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardNumber",
-      _flaxBinding24,
-      api.AutofillHints.creditCardNumber,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardSecurityCode",
-      _flaxBinding24,
-      api.AutofillHints.creditCardSecurityCode,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.creditCardType",
-      _flaxBinding24,
-      api.AutofillHints.creditCardType,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.email",
-      _flaxBinding24,
-      api.AutofillHints.email,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.familyName",
-      _flaxBinding24,
-      api.AutofillHints.familyName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.fullStreetAddress",
-      _flaxBinding24,
-      api.AutofillHints.fullStreetAddress,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.gender",
-      _flaxBinding24,
-      api.AutofillHints.gender,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.givenName",
-      _flaxBinding24,
-      api.AutofillHints.givenName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.impp",
-      _flaxBinding24,
-      api.AutofillHints.impp,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.jobTitle",
-      _flaxBinding24,
-      api.AutofillHints.jobTitle,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.language",
-      _flaxBinding24,
-      api.AutofillHints.language,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.location",
-      _flaxBinding24,
-      api.AutofillHints.location,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.middleInitial",
-      _flaxBinding24,
-      api.AutofillHints.middleInitial,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.middleName",
-      _flaxBinding24,
-      api.AutofillHints.middleName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.name",
-      _flaxBinding24,
-      api.AutofillHints.name,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.namePrefix",
-      _flaxBinding24,
-      api.AutofillHints.namePrefix,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.nameSuffix",
-      _flaxBinding24,
-      api.AutofillHints.nameSuffix,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.newPassword",
-      _flaxBinding24,
-      api.AutofillHints.newPassword,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.newUsername",
-      _flaxBinding24,
-      api.AutofillHints.newUsername,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.nickname",
-      _flaxBinding24,
-      api.AutofillHints.nickname,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.oneTimeCode",
-      _flaxBinding24,
-      api.AutofillHints.oneTimeCode,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.organizationName",
-      _flaxBinding24,
-      api.AutofillHints.organizationName,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.password",
-      _flaxBinding24,
-      api.AutofillHints.password,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.photo",
-      _flaxBinding24,
-      api.AutofillHints.photo,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.postalAddress",
-      _flaxBinding24,
-      api.AutofillHints.postalAddress,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.postalAddressExtended",
-      _flaxBinding24,
-      api.AutofillHints.postalAddressExtended,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.postalAddressExtendedPostalCode",
-      _flaxBinding24,
-      api.AutofillHints.postalAddressExtendedPostalCode,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.postalCode",
-      _flaxBinding24,
-      api.AutofillHints.postalCode,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.streetAddressLevel1",
-      _flaxBinding24,
-      api.AutofillHints.streetAddressLevel1,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.streetAddressLevel2",
-      _flaxBinding24,
-      api.AutofillHints.streetAddressLevel2,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.streetAddressLevel3",
-      _flaxBinding24,
-      api.AutofillHints.streetAddressLevel3,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.streetAddressLevel4",
-      _flaxBinding24,
-      api.AutofillHints.streetAddressLevel4,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.streetAddressLine1",
-      _flaxBinding24,
-      api.AutofillHints.streetAddressLine1,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.streetAddressLine2",
-      _flaxBinding24,
-      api.AutofillHints.streetAddressLine2,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.streetAddressLine3",
-      _flaxBinding24,
-      api.AutofillHints.streetAddressLine3,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.sublocality",
-      _flaxBinding24,
-      api.AutofillHints.sublocality,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumber",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumber,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumberAreaCode",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumberAreaCode,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumberCountryCode",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumberCountryCode,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumberDevice",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumberDevice,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumberExtension",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumberExtension,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumberLocal",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumberLocal,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumberLocalPrefix",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumberLocalPrefix,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumberLocalSuffix",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumberLocalSuffix,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.telephoneNumberNational",
-      _flaxBinding24,
-      api.AutofillHints.telephoneNumberNational,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.transactionAmount",
-      _flaxBinding24,
-      api.AutofillHints.transactionAmount,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.transactionCurrency",
-      _flaxBinding24,
-      api.AutofillHints.transactionCurrency,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.url",
-      _flaxBinding24,
-      api.AutofillHints.url,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:AutofillHints.username",
-      _flaxBinding24,
-      api.AutofillHints.username,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:BackgroundIsolateBinaryMessenger.ensureInitialized",
-      [
-        FlaxParameter(
-          "token",
-          _flaxBinding1559,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("token", _flaxBinding1518, required: true)],
+      _flaxBinding24,
       _BackgroundIsolateBinaryMessenger_ensureInitialized,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:BackgroundIsolateBinaryMessenger.instance",
       [],
-      _flaxBinding274,
+      _flaxBinding54,
       _BackgroundIsolateBinaryMessenger_static_get_instance,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:BrowserContextMenu.disableContextMenu",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _BrowserContextMenu_disableContextMenu,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:BrowserContextMenu.enableContextMenu",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _BrowserContextMenu_enableContextMenu,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:BrowserContextMenu.enabled",
       [],
-      _flaxBinding78,
+      _flaxBinding36,
       _BrowserContextMenu_static_get_enabled,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:Clipboard.setData",
-      [
-        FlaxParameter(
-          "data",
-          _flaxBinding1560,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("data", _flaxBinding1519, required: true)],
+      _flaxBinding60,
       _Clipboard_setData,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:Clipboard.getData",
-      [
-        FlaxParameter(
-          "format",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding1562,
+      [FlaxParameter("format", _flaxBinding0, required: true)],
+      _flaxBinding1521,
       _Clipboard_getData,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:Clipboard.hasStrings",
       [],
-      _flaxBinding1047,
+      _flaxBinding208,
       _Clipboard_hasStrings,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:Clipboard.kTextPlain",
-      _flaxBinding24,
-      api.Clipboard.kTextPlain,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:DefaultSpellCheckService.mergeResults",
       [
-        FlaxParameter(
-          "oldResults",
-          _flaxBinding1195,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "newResults",
-          _flaxBinding1195,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("oldResults", _flaxBinding210, required: true),
+        FlaxParameter("newResults", _flaxBinding210, required: true),
       ],
-      _flaxBinding1195,
+      _flaxBinding210,
       _DefaultSpellCheckService_mergeResults,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:DeferredComponent.installDeferredComponent",
-      [
-        FlaxParameter(
-          "componentName",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("componentName", _flaxBinding0, required: true)],
+      _flaxBinding60,
       _DeferredComponent_installDeferredComponent,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:DeferredComponent.uninstallDeferredComponent",
-      [
-        FlaxParameter(
-          "componentName",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("componentName", _flaxBinding0, required: true)],
+      _flaxBinding60,
       _DeferredComponent_uninstallDeferredComponent,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:FlutterVersion.version",
-      _flaxBinding142,
-      api.FlutterVersion.version,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:FlutterVersion.channel",
-      _flaxBinding142,
-      api.FlutterVersion.channel,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:FlutterVersion.gitUrl",
-      _flaxBinding142,
-      api.FlutterVersion.gitUrl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:FlutterVersion.frameworkRevision",
-      _flaxBinding142,
-      api.FlutterVersion.frameworkRevision,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:FlutterVersion.engineRevision",
-      _flaxBinding142,
-      api.FlutterVersion.engineRevision,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:FlutterVersion.dartVersion",
-      _flaxBinding142,
-      api.FlutterVersion.dartVersion,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GLFWKeyHelper.modifierCapsLock",
-      _flaxBinding0,
-      api.GLFWKeyHelper.modifierCapsLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GLFWKeyHelper.modifierShift",
-      _flaxBinding0,
-      api.GLFWKeyHelper.modifierShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GLFWKeyHelper.modifierControl",
-      _flaxBinding0,
-      api.GLFWKeyHelper.modifierControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GLFWKeyHelper.modifierAlt",
-      _flaxBinding0,
-      api.GLFWKeyHelper.modifierAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GLFWKeyHelper.modifierMeta",
-      _flaxBinding0,
-      api.GLFWKeyHelper.modifierMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GLFWKeyHelper.modifierNumericPad",
-      _flaxBinding0,
-      api.GLFWKeyHelper.modifierNumericPad,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GtkKeyHelper.modifierShift",
-      _flaxBinding0,
-      api.GtkKeyHelper.modifierShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GtkKeyHelper.modifierCapsLock",
-      _flaxBinding0,
-      api.GtkKeyHelper.modifierCapsLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GtkKeyHelper.modifierControl",
-      _flaxBinding0,
-      api.GtkKeyHelper.modifierControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GtkKeyHelper.modifierMod1",
-      _flaxBinding0,
-      api.GtkKeyHelper.modifierMod1,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GtkKeyHelper.modifierMod2",
-      _flaxBinding0,
-      api.GtkKeyHelper.modifierMod2,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:GtkKeyHelper.modifierMeta",
-      _flaxBinding0,
-      api.GtkKeyHelper.modifierMeta,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HapticFeedback.vibrate",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _HapticFeedback_vibrate,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HapticFeedback.lightImpact",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _HapticFeedback_lightImpact,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HapticFeedback.mediumImpact",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _HapticFeedback_mediumImpact,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HapticFeedback.heavyImpact",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _HapticFeedback_heavyImpact,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HapticFeedback.selectionClick",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _HapticFeedback_selectionClick,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HapticFeedback.successNotification",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _HapticFeedback_successNotification,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HapticFeedback.warningNotification",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _HapticFeedback_warningNotification,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HapticFeedback.errorNotification",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _HapticFeedback_errorNotification,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:HardwareKeyboard.instance",
       [],
-      _flaxBinding623,
+      _flaxBinding708,
       _HardwareKeyboard_static_get_instance,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:HybridAndroidViewController.checkIfSupported",
       [],
-      _flaxBinding1047,
+      _flaxBinding208,
       _HybridAndroidViewController_checkIfSupported,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:KeyboardLockMode.logicalKey%3Aget",
-      [
-        FlaxParameter(
-          "receiver",
-          _flaxBinding455,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding451,
+      [FlaxParameter("receiver", _flaxBinding116, required: true)],
+      _flaxBinding102,
       _enum_KeyboardLockMode_get_logicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:KeyboardLockMode.findLockByLogicalKey%3Acall",
-      [
-        FlaxParameter(
-          "logicalKey",
-          _flaxBinding451,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding1563,
+      [FlaxParameter("logicalKey", _flaxBinding102, required: true)],
+      _flaxBinding1522,
       _enum_KeyboardLockMode_call_findLockByLogicalKey,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:LiveText.isLiveTextInputAvailable",
       [],
-      _flaxBinding1047,
+      _flaxBinding208,
       _LiveText_isLiveTextInputAvailable,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:LiveText.startLiveTextInput",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _LiveText_startLiveTextInput,
     ),
     FlaxFunctionBinding(
@@ -1640,48 +1007,17 @@ final sdk_servicesBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "creationParams",
-          _flaxBinding161,
+          _flaxBinding42,
           required: false,
-          defaultValue: null,
           omitWhenAbsent: true,
         ),
-        FlaxParameter(
-          "creationParamsCodec",
-          _flaxBinding1564,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "id",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "layoutDirection",
-          _flaxBinding125,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onFocus",
-          _flaxBinding1256,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "viewType",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("creationParamsCodec", _flaxBinding1523, required: false),
+        FlaxParameter("id", _flaxBinding2, required: true),
+        FlaxParameter("layoutDirection", _flaxBinding70, required: true),
+        FlaxParameter("onFocus", _flaxBinding230, required: false),
+        FlaxParameter("viewType", _flaxBinding0, required: true),
       ],
-      _flaxBinding1565,
+      _flaxBinding1524,
       _PlatformViewsService_initAndroidView,
     ),
     FlaxFunctionBinding(
@@ -1689,48 +1025,17 @@ final sdk_servicesBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "creationParams",
-          _flaxBinding161,
+          _flaxBinding42,
           required: false,
-          defaultValue: null,
           omitWhenAbsent: true,
         ),
-        FlaxParameter(
-          "creationParamsCodec",
-          _flaxBinding1564,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "id",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "layoutDirection",
-          _flaxBinding125,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onFocus",
-          _flaxBinding1256,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "viewType",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("creationParamsCodec", _flaxBinding1523, required: false),
+        FlaxParameter("id", _flaxBinding2, required: true),
+        FlaxParameter("layoutDirection", _flaxBinding70, required: true),
+        FlaxParameter("onFocus", _flaxBinding230, required: false),
+        FlaxParameter("viewType", _flaxBinding0, required: true),
       ],
-      _flaxBinding1566,
+      _flaxBinding1525,
       _PlatformViewsService_initSurfaceAndroidView,
     ),
     FlaxFunctionBinding(
@@ -1738,48 +1043,17 @@ final sdk_servicesBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "creationParams",
-          _flaxBinding161,
+          _flaxBinding42,
           required: false,
-          defaultValue: null,
           omitWhenAbsent: true,
         ),
-        FlaxParameter(
-          "creationParamsCodec",
-          _flaxBinding1564,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "id",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "layoutDirection",
-          _flaxBinding125,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onFocus",
-          _flaxBinding1256,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "viewType",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("creationParamsCodec", _flaxBinding1523, required: false),
+        FlaxParameter("id", _flaxBinding2, required: true),
+        FlaxParameter("layoutDirection", _flaxBinding70, required: true),
+        FlaxParameter("onFocus", _flaxBinding230, required: false),
+        FlaxParameter("viewType", _flaxBinding0, required: true),
       ],
-      _flaxBinding1567,
+      _flaxBinding1526,
       _PlatformViewsService_initExpensiveAndroidView,
     ),
     FlaxFunctionBinding(
@@ -1787,48 +1061,17 @@ final sdk_servicesBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "creationParams",
-          _flaxBinding161,
+          _flaxBinding42,
           required: false,
-          defaultValue: null,
           omitWhenAbsent: true,
         ),
-        FlaxParameter(
-          "creationParamsCodec",
-          _flaxBinding1564,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "id",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "layoutDirection",
-          _flaxBinding125,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onFocus",
-          _flaxBinding1256,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "viewType",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("creationParamsCodec", _flaxBinding1523, required: false),
+        FlaxParameter("id", _flaxBinding2, required: true),
+        FlaxParameter("layoutDirection", _flaxBinding70, required: true),
+        FlaxParameter("onFocus", _flaxBinding230, required: false),
+        FlaxParameter("viewType", _flaxBinding0, required: true),
       ],
-      _flaxBinding1568,
+      _flaxBinding1527,
       _PlatformViewsService_initHybridAndroidView,
     ),
     FlaxFunctionBinding(
@@ -1836,56 +1079,24 @@ final sdk_servicesBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "creationParams",
-          _flaxBinding161,
+          _flaxBinding42,
           required: false,
-          defaultValue: null,
           omitWhenAbsent: true,
         ),
-        FlaxParameter(
-          "creationParamsCodec",
-          _flaxBinding1564,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("creationParamsCodec", _flaxBinding1523, required: false),
         FlaxParameter(
           "gestureBlockingPolicy",
-          _flaxBinding1569,
+          _flaxBinding1528,
           required: false,
           defaultValue:
               api.UiKitViewGestureBlockingPolicy.fallbackToPluginDefault,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "id",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "layoutDirection",
-          _flaxBinding125,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onFocus",
-          _flaxBinding1256,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "viewType",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("id", _flaxBinding2, required: true),
+        FlaxParameter("layoutDirection", _flaxBinding70, required: true),
+        FlaxParameter("onFocus", _flaxBinding230, required: false),
+        FlaxParameter("viewType", _flaxBinding0, required: true),
       ],
-      _flaxBinding1571,
+      _flaxBinding1530,
       _PlatformViewsService_initUiKitView,
     ),
     FlaxFunctionBinding(
@@ -1893,920 +1104,183 @@ final sdk_servicesBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "creationParams",
-          _flaxBinding161,
+          _flaxBinding42,
           required: false,
-          defaultValue: null,
           omitWhenAbsent: true,
         ),
-        FlaxParameter(
-          "creationParamsCodec",
-          _flaxBinding1564,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "id",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "layoutDirection",
-          _flaxBinding125,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onFocus",
-          _flaxBinding1256,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "viewType",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("creationParamsCodec", _flaxBinding1523, required: false),
+        FlaxParameter("id", _flaxBinding2, required: true),
+        FlaxParameter("layoutDirection", _flaxBinding70, required: true),
+        FlaxParameter("onFocus", _flaxBinding230, required: false),
+        FlaxParameter("viewType", _flaxBinding0, required: true),
       ],
-      _flaxBinding1573,
+      _flaxBinding1532,
       _PlatformViewsService_initAppKitView,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierNone",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierNone,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierLeftAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierLeftAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierRightAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierRightAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierShift",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierLeftShift",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierLeftShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierRightShift",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierRightShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierSym",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierSym,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierFunction",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierFunction,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierControl",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierLeftControl",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierLeftControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierRightControl",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierRightControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierLeftMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierLeftMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierRightMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierRightMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierCapsLock",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierCapsLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierNumLock",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierNumLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierScrollLock",
-      _flaxBinding0,
-      api.RawKeyEventDataAndroid.modifierScrollLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierNone",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierNone,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierCapsLock",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierCapsLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierLeftShift",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierLeftShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierRightShift",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierRightShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierShift",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierLeftControl",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierLeftControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierRightControl",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierRightControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierControl",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierLeftAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierLeftAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierRightAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierRightAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierLeftMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierLeftMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierRightMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierRightMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataFuchsia.modifierMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierCapsLock",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierCapsLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierShift",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierLeftShift",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierLeftShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierRightShift",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierRightShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierControl",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierLeftControl",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierLeftControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierRightControl",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierRightControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierOption",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierOption,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierLeftOption",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierLeftOption,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierRightOption",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierRightOption,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierCommand",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierCommand,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierLeftCommand",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierLeftCommand,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierRightCommand",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierRightCommand,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierNumericPad",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierNumericPad,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierHelp",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierHelp,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierFunction",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.modifierFunction,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataIos.deviceIndependentMask",
-      _flaxBinding0,
-      api.RawKeyEventDataIos.deviceIndependentMask,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierCapsLock",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierCapsLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierShift",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierLeftShift",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierLeftShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierRightShift",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierRightShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierControl",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierLeftControl",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierLeftControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierRightControl",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierRightControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierOption",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierOption,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierLeftOption",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierLeftOption,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierRightOption",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierRightOption,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierCommand",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierCommand,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierLeftCommand",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierLeftCommand,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierRightCommand",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierRightCommand,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierNumericPad",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierNumericPad,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierHelp",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierHelp,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierFunction",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.modifierFunction,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataMacOs.deviceIndependentMask",
-      _flaxBinding0,
-      api.RawKeyEventDataMacOs.deviceIndependentMask,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierNone",
-      _flaxBinding0,
-      api.RawKeyEventDataWeb.modifierNone,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierShift",
-      _flaxBinding0,
-      api.RawKeyEventDataWeb.modifierShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataWeb.modifierAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierControl",
-      _flaxBinding0,
-      api.RawKeyEventDataWeb.modifierControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataWeb.modifierMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierNumLock",
-      _flaxBinding0,
-      api.RawKeyEventDataWeb.modifierNumLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierCapsLock",
-      _flaxBinding0,
-      api.RawKeyEventDataWeb.modifierCapsLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierScrollLock",
-      _flaxBinding0,
-      api.RawKeyEventDataWeb.modifierScrollLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierShift",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierLeftShift",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierLeftShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierRightShift",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierRightShift,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierControl",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierLeftControl",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierLeftControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierRightControl",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierRightControl,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierLeftAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierLeftAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierRightAlt",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierRightAlt,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierLeftMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierLeftMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierRightMeta",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierRightMeta,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierCaps",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierCaps,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierNumLock",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierNumLock,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierScrollLock",
-      _flaxBinding0,
-      api.RawKeyEventDataWindows.modifierScrollLock,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:RawKeyboard.instance",
       [],
-      _flaxBinding624,
+      _flaxBinding709,
       _RawKeyboard_static_get_instance,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:Scribe.isFeatureAvailable",
       [],
-      _flaxBinding1047,
+      _flaxBinding208,
       _Scribe_isFeatureAvailable,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:Scribe.isStylusHandwritingAvailable",
       [],
-      _flaxBinding1047,
+      _flaxBinding208,
       _Scribe_isStylusHandwritingAvailable,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:Scribe.startStylusHandwriting",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _Scribe_startStylusHandwriting,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SelectionChangedCause.scribble",
-      _flaxBinding1524,
-      api.SelectionChangedCause.scribble,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:ServicesBinding.instance",
       [],
-      _flaxBinding1574,
+      _flaxBinding1533,
       _ServicesBinding_static_get_instance,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:ServicesBinding.rootIsolateToken",
       [],
-      _flaxBinding1575,
+      _flaxBinding1534,
       _ServicesBinding_static_get_rootIsolateToken,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:ServicesBinding.systemContextMenuClient%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding1576,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("value", _flaxBinding1535, required: true)],
+      _flaxBinding24,
       _ServicesBinding_static_set_systemContextMenuClient,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.navigation",
-      _flaxBinding337,
-      api.SystemChannels.navigation,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.backGesture",
-      _flaxBinding337,
-      api.SystemChannels.backGesture,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.platform",
-      _flaxBinding337,
-      api.SystemChannels.platform,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.statusBar",
-      _flaxBinding1577,
-      api.SystemChannels.statusBar,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.processText",
-      _flaxBinding337,
-      api.SystemChannels.processText,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.textInput",
-      _flaxBinding337,
-      api.SystemChannels.textInput,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.scribe",
-      _flaxBinding337,
-      api.SystemChannels.scribe,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.spellCheck",
-      _flaxBinding337,
-      api.SystemChannels.spellCheck,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.undoManager",
-      _flaxBinding337,
-      api.SystemChannels.undoManager,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.keyEvent",
-      _flaxBinding1578,
-      api.SystemChannels.keyEvent,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.lifecycle",
-      _flaxBinding1579,
-      api.SystemChannels.lifecycle,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.system",
-      _flaxBinding1578,
-      api.SystemChannels.system,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.accessibility",
-      _flaxBinding1578,
-      api.SystemChannels.accessibility,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.platform_views",
-      _flaxBinding337,
-      api.SystemChannels.platform_views,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.platform_views_2",
-      _flaxBinding337,
-      api.SystemChannels.platform_views_2,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.skia",
-      _flaxBinding337,
-      api.SystemChannels.skia,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.mouseCursor",
-      _flaxBinding337,
-      api.SystemChannels.mouseCursor,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.restoration",
-      _flaxBinding337,
-      api.SystemChannels.restoration,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.deferredComponent",
-      _flaxBinding337,
-      api.SystemChannels.deferredComponent,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.localization",
-      _flaxBinding337,
-      api.SystemChannels.localization,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.menu",
-      _flaxBinding337,
-      api.SystemChannels.menu,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.contextMenu",
-      _flaxBinding337,
-      api.SystemChannels.contextMenu,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.keyboard",
-      _flaxBinding337,
-      api.SystemChannels.keyboard,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemChannels.sensitiveContent",
-      _flaxBinding337,
-      api.SystemChannels.sensitiveContent,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemChrome.setPreferredOrientations",
-      [
-        FlaxParameter(
-          "orientations",
-          _flaxBinding1582,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("orientations", _flaxBinding1541, required: true)],
+      _flaxBinding60,
       _SystemChrome_setPreferredOrientations,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemChrome.setApplicationSwitcherDescription",
-      [
-        FlaxParameter(
-          "description",
-          _flaxBinding1583,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("description", _flaxBinding1542, required: true)],
+      _flaxBinding60,
       _SystemChrome_setApplicationSwitcherDescription,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemChrome.setEnabledSystemUIMode",
       [
-        FlaxParameter(
-          "mode",
-          _flaxBinding1584,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "overlays",
-          _flaxBinding1587,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("mode", _flaxBinding1543, required: true),
+        FlaxParameter("overlays", _flaxBinding1546, required: false),
       ],
-      _flaxBinding83,
+      _flaxBinding60,
       _SystemChrome_setEnabledSystemUIMode,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemChrome.setSystemUIChangeCallback",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding1189,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("callback", _flaxBinding1206, required: true)],
+      _flaxBinding60,
       _SystemChrome_setSystemUIChangeCallback,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemChrome.restoreSystemUIOverlays",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _SystemChrome_restoreSystemUIOverlays,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemChrome.setSystemUIOverlayStyle",
-      [
-        FlaxParameter(
-          "style",
-          _flaxBinding1303,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("style", _flaxBinding1287, required: true)],
+      _flaxBinding24,
       _SystemChrome_setSystemUIOverlayStyle,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemChrome.handleAppLifecycleStateChanged",
-      [
-        FlaxParameter(
-          "state",
-          _flaxBinding1135,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("state", _flaxBinding1151, required: true)],
+      _flaxBinding24,
       _SystemChrome_handleAppLifecycleStateChanged,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemNavigator.setFrameworkHandlesBack",
-      [
-        FlaxParameter(
-          "frameworkHandlesBack",
-          _flaxBinding78,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("frameworkHandlesBack", _flaxBinding36, required: true)],
+      _flaxBinding60,
       _SystemNavigator_setFrameworkHandlesBack,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemNavigator.pop",
-      [
-        FlaxParameter(
-          "animated",
-          _flaxBinding1292,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("animated", _flaxBinding236, required: false)],
+      _flaxBinding60,
       _SystemNavigator_pop,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemNavigator.selectSingleEntryHistory",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _SystemNavigator_selectSingleEntryHistory,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemNavigator.selectMultiEntryHistory",
       [],
-      _flaxBinding83,
+      _flaxBinding60,
       _SystemNavigator_selectMultiEntryHistory,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemNavigator.routeInformationUpdated",
       [
-        FlaxParameter(
-          "location",
-          _flaxBinding142,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("location", _flaxBinding14, required: false),
         FlaxParameter(
           "replace",
-          _flaxBinding78,
+          _flaxBinding36,
           required: false,
           defaultValue: false,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "state",
-          _flaxBinding161,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "uri",
-          _flaxBinding1588,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("state", _flaxBinding42, required: false),
+        FlaxParameter("uri", _flaxBinding1547, required: false),
       ],
-      _flaxBinding83,
+      _flaxBinding60,
       _SystemNavigator_routeInformationUpdated,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:SystemSound.play",
-      [
-        FlaxParameter(
-          "type",
-          _flaxBinding1589,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding83,
+      [FlaxParameter("type", _flaxBinding1548, required: true)],
+      _flaxBinding60,
       _SystemSound_play,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemUiOverlayStyle.light",
-      _flaxBinding1303,
-      api.SystemUiOverlayStyle.light,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:SystemUiOverlayStyle.dark",
-      _flaxBinding1303,
-      api.SystemUiOverlayStyle.dark,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextInput.setInputControl",
-      [
-        FlaxParameter(
-          "newControl",
-          _flaxBinding374,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("newControl", _flaxBinding524, required: true)],
+      _flaxBinding24,
       _TextInput_setInputControl,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextInput.restorePlatformInputControl",
       [],
-      _flaxBinding82,
+      _flaxBinding24,
       _TextInput_restorePlatformInputControl,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextInput.ensureInitialized",
       [],
-      _flaxBinding82,
+      _flaxBinding24,
       _TextInput_ensureInitialized,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextInput.attach",
       [
-        FlaxParameter(
-          "client",
-          _flaxBinding241,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "configuration",
-          _flaxBinding205,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("client", _flaxBinding48, required: true),
+        FlaxParameter("configuration", _flaxBinding40, required: true),
       ],
-      _flaxBinding243,
+      _flaxBinding49,
       _TextInput_attach,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextInput.updateEditingValue",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding207,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("value", _flaxBinding38, required: true)],
+      _flaxBinding24,
       _TextInput_updateEditingValue,
     ),
     FlaxFunctionBinding(
@@ -2814,146 +1288,39 @@ final sdk_servicesBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "shouldSave",
-          _flaxBinding78,
+          _flaxBinding36,
           required: false,
           defaultValue: true,
-          omitWhenAbsent: false,
         ),
       ],
-      _flaxBinding82,
+      _flaxBinding24,
       _TextInput_finishAutofillContext,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextInput.registerScribbleElement",
       [
-        FlaxParameter(
-          "elementIdentifier",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "scribbleClient",
-          _flaxBinding1590,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("elementIdentifier", _flaxBinding0, required: true),
+        FlaxParameter("scribbleClient", _flaxBinding1549, required: true),
       ],
-      _flaxBinding82,
+      _flaxBinding24,
       _TextInput_registerScribbleElement,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextInput.unregisterScribbleElement",
-      [
-        FlaxParameter(
-          "elementIdentifier",
-          _flaxBinding24,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("elementIdentifier", _flaxBinding0, required: true)],
+      _flaxBinding24,
       _TextInput_unregisterScribbleElement,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.text",
-      _flaxBinding1362,
-      api.TextInputType.text,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.multiline",
-      _flaxBinding1362,
-      api.TextInputType.multiline,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.number",
-      _flaxBinding1362,
-      api.TextInputType.number,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.phone",
-      _flaxBinding1362,
-      api.TextInputType.phone,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.datetime",
-      _flaxBinding1362,
-      api.TextInputType.datetime,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.emailAddress",
-      _flaxBinding1362,
-      api.TextInputType.emailAddress,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.url",
-      _flaxBinding1362,
-      api.TextInputType.url,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.visiblePassword",
-      _flaxBinding1362,
-      api.TextInputType.visiblePassword,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.name",
-      _flaxBinding1362,
-      api.TextInputType.name,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.streetAddress",
-      _flaxBinding1362,
-      api.TextInputType.streetAddress,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.none",
-      _flaxBinding1362,
-      api.TextInputType.none,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.webSearch",
-      _flaxBinding1362,
-      api.TextInputType.webSearch,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.twitter",
-      _flaxBinding1362,
-      api.TextInputType.twitter,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.core/sdk_services#read:TextInputType.values",
-      _flaxBinding1592,
-      api.TextInputType.values,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextLayoutMetrics.isWhitespace",
-      [
-        FlaxParameter(
-          "codeUnit",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding78,
+      [FlaxParameter("codeUnit", _flaxBinding2, required: true)],
+      _flaxBinding36,
       _TextLayoutMetrics_isWhitespace,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:TextLayoutMetrics.isLineTerminator",
-      [
-        FlaxParameter(
-          "codeUnit",
-          _flaxBinding0,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding78,
+      [FlaxParameter("codeUnit", _flaxBinding2, required: true)],
+      _flaxBinding36,
       _TextLayoutMetrics_isLineTerminator,
     ),
     FlaxFunctionBinding(
@@ -2961,89 +1328,541 @@ final sdk_servicesBindings = FlaxBindingModule(
       [
         FlaxParameter(
           "canRedo",
-          _flaxBinding78,
+          _flaxBinding36,
           required: false,
           defaultValue: false,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "canUndo",
-          _flaxBinding78,
+          _flaxBinding36,
           required: false,
           defaultValue: false,
-          omitWhenAbsent: false,
         ),
       ],
-      _flaxBinding82,
+      _flaxBinding24,
       _UndoManager_setUndoState,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#read:UndoManager.client",
       [],
-      _flaxBinding1593,
+      _flaxBinding1552,
       _UndoManager_static_get_client,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:UndoManager.client%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding1593,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("value", _flaxBinding1552, required: true)],
+      _flaxBinding24,
       _UndoManager_static_set_client,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:debugKeyEventSimulatorTransitModeOverride%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding1547,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("value", _flaxBinding1506, required: true)],
+      _flaxBinding24,
       _write_debugKeyEventSimulatorTransitModeOverride,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:debugPrintKeyboardEvents%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding78,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("value", _flaxBinding36, required: true)],
+      _flaxBinding24,
       _write_debugPrintKeyboardEvents,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_services#function:debugProfilePlatformChannels%3D",
-      [
-        FlaxParameter(
-          "value",
-          _flaxBinding78,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding82,
+      [FlaxParameter("value", _flaxBinding36, required: true)],
+      _flaxBinding24,
       _write_debugProfilePlatformChannels,
     ),
+  ],
+  constants: [
+    FlaxConstantGroup(_flaxBinding2, {
+      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeUnknown":
+          api.AndroidPointerProperties.kToolTypeUnknown,
+      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeFinger":
+          api.AndroidPointerProperties.kToolTypeFinger,
+      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeStylus":
+          api.AndroidPointerProperties.kToolTypeStylus,
+      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeMouse":
+          api.AndroidPointerProperties.kToolTypeMouse,
+      "flax.core/sdk_services#read:AndroidPointerProperties.kToolTypeEraser":
+          api.AndroidPointerProperties.kToolTypeEraser,
+      "flax.core/sdk_services#read:AndroidViewController.kActionDown":
+          api.AndroidViewController.kActionDown,
+      "flax.core/sdk_services#read:AndroidViewController.kActionUp":
+          api.AndroidViewController.kActionUp,
+      "flax.core/sdk_services#read:AndroidViewController.kActionMove":
+          api.AndroidViewController.kActionMove,
+      "flax.core/sdk_services#read:AndroidViewController.kActionCancel":
+          api.AndroidViewController.kActionCancel,
+      "flax.core/sdk_services#read:AndroidViewController.kActionPointerDown":
+          api.AndroidViewController.kActionPointerDown,
+      "flax.core/sdk_services#read:AndroidViewController.kActionPointerUp":
+          api.AndroidViewController.kActionPointerUp,
+      "flax.core/sdk_services#read:AndroidViewController.kAndroidLayoutDirectionLtr":
+          api.AndroidViewController.kAndroidLayoutDirectionLtr,
+      "flax.core/sdk_services#read:AndroidViewController.kAndroidLayoutDirectionRtl":
+          api.AndroidViewController.kAndroidLayoutDirectionRtl,
+      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceUnknown":
+          api.AndroidViewController.kInputDeviceSourceUnknown,
+      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceTouchScreen":
+          api.AndroidViewController.kInputDeviceSourceTouchScreen,
+      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceMouse":
+          api.AndroidViewController.kInputDeviceSourceMouse,
+      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceStylus":
+          api.AndroidViewController.kInputDeviceSourceStylus,
+      "flax.core/sdk_services#read:AndroidViewController.kInputDeviceSourceTouchPad":
+          api.AndroidViewController.kInputDeviceSourceTouchPad,
+      "flax.core/sdk_services#read:GLFWKeyHelper.modifierCapsLock":
+          api.GLFWKeyHelper.modifierCapsLock,
+      "flax.core/sdk_services#read:GLFWKeyHelper.modifierShift":
+          api.GLFWKeyHelper.modifierShift,
+      "flax.core/sdk_services#read:GLFWKeyHelper.modifierControl":
+          api.GLFWKeyHelper.modifierControl,
+      "flax.core/sdk_services#read:GLFWKeyHelper.modifierAlt":
+          api.GLFWKeyHelper.modifierAlt,
+      "flax.core/sdk_services#read:GLFWKeyHelper.modifierMeta":
+          api.GLFWKeyHelper.modifierMeta,
+      "flax.core/sdk_services#read:GLFWKeyHelper.modifierNumericPad":
+          api.GLFWKeyHelper.modifierNumericPad,
+      "flax.core/sdk_services#read:GtkKeyHelper.modifierShift":
+          api.GtkKeyHelper.modifierShift,
+      "flax.core/sdk_services#read:GtkKeyHelper.modifierCapsLock":
+          api.GtkKeyHelper.modifierCapsLock,
+      "flax.core/sdk_services#read:GtkKeyHelper.modifierControl":
+          api.GtkKeyHelper.modifierControl,
+      "flax.core/sdk_services#read:GtkKeyHelper.modifierMod1":
+          api.GtkKeyHelper.modifierMod1,
+      "flax.core/sdk_services#read:GtkKeyHelper.modifierMod2":
+          api.GtkKeyHelper.modifierMod2,
+      "flax.core/sdk_services#read:GtkKeyHelper.modifierMeta":
+          api.GtkKeyHelper.modifierMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierNone":
+          api.RawKeyEventDataAndroid.modifierNone,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierAlt":
+          api.RawKeyEventDataAndroid.modifierAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierLeftAlt":
+          api.RawKeyEventDataAndroid.modifierLeftAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierRightAlt":
+          api.RawKeyEventDataAndroid.modifierRightAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierShift":
+          api.RawKeyEventDataAndroid.modifierShift,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierLeftShift":
+          api.RawKeyEventDataAndroid.modifierLeftShift,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierRightShift":
+          api.RawKeyEventDataAndroid.modifierRightShift,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierSym":
+          api.RawKeyEventDataAndroid.modifierSym,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierFunction":
+          api.RawKeyEventDataAndroid.modifierFunction,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierControl":
+          api.RawKeyEventDataAndroid.modifierControl,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierLeftControl":
+          api.RawKeyEventDataAndroid.modifierLeftControl,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierRightControl":
+          api.RawKeyEventDataAndroid.modifierRightControl,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierMeta":
+          api.RawKeyEventDataAndroid.modifierMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierLeftMeta":
+          api.RawKeyEventDataAndroid.modifierLeftMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierRightMeta":
+          api.RawKeyEventDataAndroid.modifierRightMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierCapsLock":
+          api.RawKeyEventDataAndroid.modifierCapsLock,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierNumLock":
+          api.RawKeyEventDataAndroid.modifierNumLock,
+      "flax.core/sdk_services#read:RawKeyEventDataAndroid.modifierScrollLock":
+          api.RawKeyEventDataAndroid.modifierScrollLock,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierNone":
+          api.RawKeyEventDataFuchsia.modifierNone,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierCapsLock":
+          api.RawKeyEventDataFuchsia.modifierCapsLock,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierLeftShift":
+          api.RawKeyEventDataFuchsia.modifierLeftShift,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierRightShift":
+          api.RawKeyEventDataFuchsia.modifierRightShift,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierShift":
+          api.RawKeyEventDataFuchsia.modifierShift,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierLeftControl":
+          api.RawKeyEventDataFuchsia.modifierLeftControl,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierRightControl":
+          api.RawKeyEventDataFuchsia.modifierRightControl,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierControl":
+          api.RawKeyEventDataFuchsia.modifierControl,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierLeftAlt":
+          api.RawKeyEventDataFuchsia.modifierLeftAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierRightAlt":
+          api.RawKeyEventDataFuchsia.modifierRightAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierAlt":
+          api.RawKeyEventDataFuchsia.modifierAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierLeftMeta":
+          api.RawKeyEventDataFuchsia.modifierLeftMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierRightMeta":
+          api.RawKeyEventDataFuchsia.modifierRightMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataFuchsia.modifierMeta":
+          api.RawKeyEventDataFuchsia.modifierMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierCapsLock":
+          api.RawKeyEventDataIos.modifierCapsLock,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierShift":
+          api.RawKeyEventDataIos.modifierShift,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierLeftShift":
+          api.RawKeyEventDataIos.modifierLeftShift,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierRightShift":
+          api.RawKeyEventDataIos.modifierRightShift,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierControl":
+          api.RawKeyEventDataIos.modifierControl,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierLeftControl":
+          api.RawKeyEventDataIos.modifierLeftControl,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierRightControl":
+          api.RawKeyEventDataIos.modifierRightControl,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierOption":
+          api.RawKeyEventDataIos.modifierOption,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierLeftOption":
+          api.RawKeyEventDataIos.modifierLeftOption,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierRightOption":
+          api.RawKeyEventDataIos.modifierRightOption,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierCommand":
+          api.RawKeyEventDataIos.modifierCommand,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierLeftCommand":
+          api.RawKeyEventDataIos.modifierLeftCommand,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierRightCommand":
+          api.RawKeyEventDataIos.modifierRightCommand,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierNumericPad":
+          api.RawKeyEventDataIos.modifierNumericPad,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierHelp":
+          api.RawKeyEventDataIos.modifierHelp,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.modifierFunction":
+          api.RawKeyEventDataIos.modifierFunction,
+      "flax.core/sdk_services#read:RawKeyEventDataIos.deviceIndependentMask":
+          api.RawKeyEventDataIos.deviceIndependentMask,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierCapsLock":
+          api.RawKeyEventDataMacOs.modifierCapsLock,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierShift":
+          api.RawKeyEventDataMacOs.modifierShift,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierLeftShift":
+          api.RawKeyEventDataMacOs.modifierLeftShift,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierRightShift":
+          api.RawKeyEventDataMacOs.modifierRightShift,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierControl":
+          api.RawKeyEventDataMacOs.modifierControl,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierLeftControl":
+          api.RawKeyEventDataMacOs.modifierLeftControl,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierRightControl":
+          api.RawKeyEventDataMacOs.modifierRightControl,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierOption":
+          api.RawKeyEventDataMacOs.modifierOption,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierLeftOption":
+          api.RawKeyEventDataMacOs.modifierLeftOption,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierRightOption":
+          api.RawKeyEventDataMacOs.modifierRightOption,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierCommand":
+          api.RawKeyEventDataMacOs.modifierCommand,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierLeftCommand":
+          api.RawKeyEventDataMacOs.modifierLeftCommand,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierRightCommand":
+          api.RawKeyEventDataMacOs.modifierRightCommand,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierNumericPad":
+          api.RawKeyEventDataMacOs.modifierNumericPad,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierHelp":
+          api.RawKeyEventDataMacOs.modifierHelp,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.modifierFunction":
+          api.RawKeyEventDataMacOs.modifierFunction,
+      "flax.core/sdk_services#read:RawKeyEventDataMacOs.deviceIndependentMask":
+          api.RawKeyEventDataMacOs.deviceIndependentMask,
+      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierNone":
+          api.RawKeyEventDataWeb.modifierNone,
+      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierShift":
+          api.RawKeyEventDataWeb.modifierShift,
+      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierAlt":
+          api.RawKeyEventDataWeb.modifierAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierControl":
+          api.RawKeyEventDataWeb.modifierControl,
+      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierMeta":
+          api.RawKeyEventDataWeb.modifierMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierNumLock":
+          api.RawKeyEventDataWeb.modifierNumLock,
+      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierCapsLock":
+          api.RawKeyEventDataWeb.modifierCapsLock,
+      "flax.core/sdk_services#read:RawKeyEventDataWeb.modifierScrollLock":
+          api.RawKeyEventDataWeb.modifierScrollLock,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierShift":
+          api.RawKeyEventDataWindows.modifierShift,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierLeftShift":
+          api.RawKeyEventDataWindows.modifierLeftShift,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierRightShift":
+          api.RawKeyEventDataWindows.modifierRightShift,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierControl":
+          api.RawKeyEventDataWindows.modifierControl,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierLeftControl":
+          api.RawKeyEventDataWindows.modifierLeftControl,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierRightControl":
+          api.RawKeyEventDataWindows.modifierRightControl,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierAlt":
+          api.RawKeyEventDataWindows.modifierAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierLeftAlt":
+          api.RawKeyEventDataWindows.modifierLeftAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierRightAlt":
+          api.RawKeyEventDataWindows.modifierRightAlt,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierLeftMeta":
+          api.RawKeyEventDataWindows.modifierLeftMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierRightMeta":
+          api.RawKeyEventDataWindows.modifierRightMeta,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierCaps":
+          api.RawKeyEventDataWindows.modifierCaps,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierNumLock":
+          api.RawKeyEventDataWindows.modifierNumLock,
+      "flax.core/sdk_services#read:RawKeyEventDataWindows.modifierScrollLock":
+          api.RawKeyEventDataWindows.modifierScrollLock,
+    }),
+    FlaxConstantGroup(_flaxBinding244, {
+      "flax.core/sdk_services#read:AutofillConfiguration.disabled":
+          api.AutofillConfiguration.disabled,
+    }),
+    FlaxConstantGroup(_flaxBinding0, {
+      "flax.core/sdk_services#read:AutofillHints.addressCity":
+          api.AutofillHints.addressCity,
+      "flax.core/sdk_services#read:AutofillHints.addressCityAndState":
+          api.AutofillHints.addressCityAndState,
+      "flax.core/sdk_services#read:AutofillHints.addressState":
+          api.AutofillHints.addressState,
+      "flax.core/sdk_services#read:AutofillHints.birthday":
+          api.AutofillHints.birthday,
+      "flax.core/sdk_services#read:AutofillHints.birthdayDay":
+          api.AutofillHints.birthdayDay,
+      "flax.core/sdk_services#read:AutofillHints.birthdayMonth":
+          api.AutofillHints.birthdayMonth,
+      "flax.core/sdk_services#read:AutofillHints.birthdayYear":
+          api.AutofillHints.birthdayYear,
+      "flax.core/sdk_services#read:AutofillHints.countryCode":
+          api.AutofillHints.countryCode,
+      "flax.core/sdk_services#read:AutofillHints.countryName":
+          api.AutofillHints.countryName,
+      "flax.core/sdk_services#read:AutofillHints.creditCardExpirationDate":
+          api.AutofillHints.creditCardExpirationDate,
+      "flax.core/sdk_services#read:AutofillHints.creditCardExpirationDay":
+          api.AutofillHints.creditCardExpirationDay,
+      "flax.core/sdk_services#read:AutofillHints.creditCardExpirationMonth":
+          api.AutofillHints.creditCardExpirationMonth,
+      "flax.core/sdk_services#read:AutofillHints.creditCardExpirationYear":
+          api.AutofillHints.creditCardExpirationYear,
+      "flax.core/sdk_services#read:AutofillHints.creditCardFamilyName":
+          api.AutofillHints.creditCardFamilyName,
+      "flax.core/sdk_services#read:AutofillHints.creditCardGivenName":
+          api.AutofillHints.creditCardGivenName,
+      "flax.core/sdk_services#read:AutofillHints.creditCardMiddleName":
+          api.AutofillHints.creditCardMiddleName,
+      "flax.core/sdk_services#read:AutofillHints.creditCardName":
+          api.AutofillHints.creditCardName,
+      "flax.core/sdk_services#read:AutofillHints.creditCardNumber":
+          api.AutofillHints.creditCardNumber,
+      "flax.core/sdk_services#read:AutofillHints.creditCardSecurityCode":
+          api.AutofillHints.creditCardSecurityCode,
+      "flax.core/sdk_services#read:AutofillHints.creditCardType":
+          api.AutofillHints.creditCardType,
+      "flax.core/sdk_services#read:AutofillHints.email":
+          api.AutofillHints.email,
+      "flax.core/sdk_services#read:AutofillHints.familyName":
+          api.AutofillHints.familyName,
+      "flax.core/sdk_services#read:AutofillHints.fullStreetAddress":
+          api.AutofillHints.fullStreetAddress,
+      "flax.core/sdk_services#read:AutofillHints.gender":
+          api.AutofillHints.gender,
+      "flax.core/sdk_services#read:AutofillHints.givenName":
+          api.AutofillHints.givenName,
+      "flax.core/sdk_services#read:AutofillHints.impp": api.AutofillHints.impp,
+      "flax.core/sdk_services#read:AutofillHints.jobTitle":
+          api.AutofillHints.jobTitle,
+      "flax.core/sdk_services#read:AutofillHints.language":
+          api.AutofillHints.language,
+      "flax.core/sdk_services#read:AutofillHints.location":
+          api.AutofillHints.location,
+      "flax.core/sdk_services#read:AutofillHints.middleInitial":
+          api.AutofillHints.middleInitial,
+      "flax.core/sdk_services#read:AutofillHints.middleName":
+          api.AutofillHints.middleName,
+      "flax.core/sdk_services#read:AutofillHints.name": api.AutofillHints.name,
+      "flax.core/sdk_services#read:AutofillHints.namePrefix":
+          api.AutofillHints.namePrefix,
+      "flax.core/sdk_services#read:AutofillHints.nameSuffix":
+          api.AutofillHints.nameSuffix,
+      "flax.core/sdk_services#read:AutofillHints.newPassword":
+          api.AutofillHints.newPassword,
+      "flax.core/sdk_services#read:AutofillHints.newUsername":
+          api.AutofillHints.newUsername,
+      "flax.core/sdk_services#read:AutofillHints.nickname":
+          api.AutofillHints.nickname,
+      "flax.core/sdk_services#read:AutofillHints.oneTimeCode":
+          api.AutofillHints.oneTimeCode,
+      "flax.core/sdk_services#read:AutofillHints.organizationName":
+          api.AutofillHints.organizationName,
+      "flax.core/sdk_services#read:AutofillHints.password":
+          api.AutofillHints.password,
+      "flax.core/sdk_services#read:AutofillHints.photo":
+          api.AutofillHints.photo,
+      "flax.core/sdk_services#read:AutofillHints.postalAddress":
+          api.AutofillHints.postalAddress,
+      "flax.core/sdk_services#read:AutofillHints.postalAddressExtended":
+          api.AutofillHints.postalAddressExtended,
+      "flax.core/sdk_services#read:AutofillHints.postalAddressExtendedPostalCode":
+          api.AutofillHints.postalAddressExtendedPostalCode,
+      "flax.core/sdk_services#read:AutofillHints.postalCode":
+          api.AutofillHints.postalCode,
+      "flax.core/sdk_services#read:AutofillHints.streetAddressLevel1":
+          api.AutofillHints.streetAddressLevel1,
+      "flax.core/sdk_services#read:AutofillHints.streetAddressLevel2":
+          api.AutofillHints.streetAddressLevel2,
+      "flax.core/sdk_services#read:AutofillHints.streetAddressLevel3":
+          api.AutofillHints.streetAddressLevel3,
+      "flax.core/sdk_services#read:AutofillHints.streetAddressLevel4":
+          api.AutofillHints.streetAddressLevel4,
+      "flax.core/sdk_services#read:AutofillHints.streetAddressLine1":
+          api.AutofillHints.streetAddressLine1,
+      "flax.core/sdk_services#read:AutofillHints.streetAddressLine2":
+          api.AutofillHints.streetAddressLine2,
+      "flax.core/sdk_services#read:AutofillHints.streetAddressLine3":
+          api.AutofillHints.streetAddressLine3,
+      "flax.core/sdk_services#read:AutofillHints.sublocality":
+          api.AutofillHints.sublocality,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumber":
+          api.AutofillHints.telephoneNumber,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumberAreaCode":
+          api.AutofillHints.telephoneNumberAreaCode,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumberCountryCode":
+          api.AutofillHints.telephoneNumberCountryCode,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumberDevice":
+          api.AutofillHints.telephoneNumberDevice,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumberExtension":
+          api.AutofillHints.telephoneNumberExtension,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumberLocal":
+          api.AutofillHints.telephoneNumberLocal,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumberLocalPrefix":
+          api.AutofillHints.telephoneNumberLocalPrefix,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumberLocalSuffix":
+          api.AutofillHints.telephoneNumberLocalSuffix,
+      "flax.core/sdk_services#read:AutofillHints.telephoneNumberNational":
+          api.AutofillHints.telephoneNumberNational,
+      "flax.core/sdk_services#read:AutofillHints.transactionAmount":
+          api.AutofillHints.transactionAmount,
+      "flax.core/sdk_services#read:AutofillHints.transactionCurrency":
+          api.AutofillHints.transactionCurrency,
+      "flax.core/sdk_services#read:AutofillHints.url": api.AutofillHints.url,
+      "flax.core/sdk_services#read:AutofillHints.username":
+          api.AutofillHints.username,
+      "flax.core/sdk_services#read:Clipboard.kTextPlain":
+          api.Clipboard.kTextPlain,
+    }),
+    FlaxConstantGroup(_flaxBinding14, {
+      "flax.core/sdk_services#read:FlutterVersion.version":
+          api.FlutterVersion.version,
+      "flax.core/sdk_services#read:FlutterVersion.channel":
+          api.FlutterVersion.channel,
+      "flax.core/sdk_services#read:FlutterVersion.gitUrl":
+          api.FlutterVersion.gitUrl,
+      "flax.core/sdk_services#read:FlutterVersion.frameworkRevision":
+          api.FlutterVersion.frameworkRevision,
+      "flax.core/sdk_services#read:FlutterVersion.engineRevision":
+          api.FlutterVersion.engineRevision,
+      "flax.core/sdk_services#read:FlutterVersion.dartVersion":
+          api.FlutterVersion.dartVersion,
+    }),
+    FlaxConstantGroup(_flaxBinding1482, {
+      "flax.core/sdk_services#read:SelectionChangedCause.scribble":
+          api.SelectionChangedCause.scribble,
+    }),
+    FlaxConstantGroup(_flaxBinding88, {
+      "flax.core/sdk_services#read:SystemChannels.navigation":
+          api.SystemChannels.navigation,
+      "flax.core/sdk_services#read:SystemChannels.backGesture":
+          api.SystemChannels.backGesture,
+      "flax.core/sdk_services#read:SystemChannels.platform":
+          api.SystemChannels.platform,
+      "flax.core/sdk_services#read:SystemChannels.processText":
+          api.SystemChannels.processText,
+      "flax.core/sdk_services#read:SystemChannels.textInput":
+          api.SystemChannels.textInput,
+      "flax.core/sdk_services#read:SystemChannels.scribe":
+          api.SystemChannels.scribe,
+      "flax.core/sdk_services#read:SystemChannels.spellCheck":
+          api.SystemChannels.spellCheck,
+      "flax.core/sdk_services#read:SystemChannels.undoManager":
+          api.SystemChannels.undoManager,
+      "flax.core/sdk_services#read:SystemChannels.platform_views":
+          api.SystemChannels.platform_views,
+      "flax.core/sdk_services#read:SystemChannels.platform_views_2":
+          api.SystemChannels.platform_views_2,
+      "flax.core/sdk_services#read:SystemChannels.skia":
+          api.SystemChannels.skia,
+      "flax.core/sdk_services#read:SystemChannels.mouseCursor":
+          api.SystemChannels.mouseCursor,
+      "flax.core/sdk_services#read:SystemChannels.restoration":
+          api.SystemChannels.restoration,
+      "flax.core/sdk_services#read:SystemChannels.deferredComponent":
+          api.SystemChannels.deferredComponent,
+      "flax.core/sdk_services#read:SystemChannels.localization":
+          api.SystemChannels.localization,
+      "flax.core/sdk_services#read:SystemChannels.menu":
+          api.SystemChannels.menu,
+      "flax.core/sdk_services#read:SystemChannels.contextMenu":
+          api.SystemChannels.contextMenu,
+      "flax.core/sdk_services#read:SystemChannels.keyboard":
+          api.SystemChannels.keyboard,
+      "flax.core/sdk_services#read:SystemChannels.sensitiveContent":
+          api.SystemChannels.sensitiveContent,
+    }),
+    FlaxConstantGroup(_flaxBinding1536, {
+      "flax.core/sdk_services#read:SystemChannels.statusBar":
+          api.SystemChannels.statusBar,
+    }),
+    FlaxConstantGroup(_flaxBinding1537, {
+      "flax.core/sdk_services#read:SystemChannels.keyEvent":
+          api.SystemChannels.keyEvent,
+      "flax.core/sdk_services#read:SystemChannels.system":
+          api.SystemChannels.system,
+      "flax.core/sdk_services#read:SystemChannels.accessibility":
+          api.SystemChannels.accessibility,
+    }),
+    FlaxConstantGroup(_flaxBinding1538, {
+      "flax.core/sdk_services#read:SystemChannels.lifecycle":
+          api.SystemChannels.lifecycle,
+    }),
+    FlaxConstantGroup(_flaxBinding1287, {
+      "flax.core/sdk_services#read:SystemUiOverlayStyle.light":
+          api.SystemUiOverlayStyle.light,
+      "flax.core/sdk_services#read:SystemUiOverlayStyle.dark":
+          api.SystemUiOverlayStyle.dark,
+    }),
+    FlaxConstantGroup(_flaxBinding242, {
+      "flax.core/sdk_services#read:TextInputType.text": api.TextInputType.text,
+      "flax.core/sdk_services#read:TextInputType.multiline":
+          api.TextInputType.multiline,
+      "flax.core/sdk_services#read:TextInputType.number":
+          api.TextInputType.number,
+      "flax.core/sdk_services#read:TextInputType.phone":
+          api.TextInputType.phone,
+      "flax.core/sdk_services#read:TextInputType.datetime":
+          api.TextInputType.datetime,
+      "flax.core/sdk_services#read:TextInputType.emailAddress":
+          api.TextInputType.emailAddress,
+      "flax.core/sdk_services#read:TextInputType.url": api.TextInputType.url,
+      "flax.core/sdk_services#read:TextInputType.visiblePassword":
+          api.TextInputType.visiblePassword,
+      "flax.core/sdk_services#read:TextInputType.name": api.TextInputType.name,
+      "flax.core/sdk_services#read:TextInputType.streetAddress":
+          api.TextInputType.streetAddress,
+      "flax.core/sdk_services#read:TextInputType.none": api.TextInputType.none,
+      "flax.core/sdk_services#read:TextInputType.webSearch":
+          api.TextInputType.webSearch,
+      "flax.core/sdk_services#read:TextInputType.twitter":
+          api.TextInputType.twitter,
+    }),
+    FlaxConstantGroup(_flaxBinding1551, {
+      "flax.core/sdk_services#read:TextInputType.values":
+          api.TextInputType.values,
+    }),
   ],
   moduleId: "flax.core/sdk_services",
   dependencyModules: [
     "flax.core/flutter",
     "flax.core/sdk_dart_ui",
+    "flax.core/sdk_dependencies",
     "flax.core/sdk_foundation",
     "flax.core/sdk_gestures",
     "flax.core/sdk_rendering",
@@ -4325,7 +3144,7 @@ Object? _AssetBundle_loadStructuredBinaryData(
 ) {
   return (receiver as api.AssetBundle).loadStructuredBinaryData<Object?>(
     values["key"] as String,
-    values["parser"] as api6.FutureOr<Object?> Function(api3.ByteData data),
+    values["parser"] as api7.FutureOr<Object?> Function(api3.ByteData data),
   );
 }
 
@@ -4379,7 +3198,7 @@ Object? _AssetBundle_super_loadStructuredBinaryData(
   return (receiver as _AssetBundleProxy)
       ._flaxSuper_loadStructuredBinaryData<Object?>(
         values["key"] as String,
-        values["parser"] as api6.FutureOr<Object?> Function(api3.ByteData data),
+        values["parser"] as api7.FutureOr<Object?> Function(api3.ByteData data),
       );
 }
 
@@ -4800,7 +3619,7 @@ Object? _CachingAssetBundle_loadStructuredBinaryData(
 ) {
   return (receiver as api.CachingAssetBundle).loadStructuredBinaryData<Object?>(
     values["key"] as String,
-    values["parser"] as api6.FutureOr<Object?> Function(api3.ByteData data),
+    values["parser"] as api7.FutureOr<Object?> Function(api3.ByteData data),
   );
 }
 
@@ -4822,7 +3641,7 @@ Object? _CachingAssetBundle_super_loadStructuredBinaryData(
   return (receiver as _CachingAssetBundleProxy)
       ._flaxSuper_loadStructuredBinaryData<Object?>(
         values["key"] as String,
-        values["parser"] as api6.FutureOr<Object?> Function(api3.ByteData data),
+        values["parser"] as api7.FutureOr<Object?> Function(api3.ByteData data),
       );
 }
 
@@ -5161,6 +3980,9 @@ Object? _EventChannel_receiveBroadcastStream(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as api.EventChannel).receiveBroadcastStream();
+  }
   return (receiver as api.EventChannel).receiveBroadcastStream(
     values["arguments"],
   );
@@ -5170,6 +3992,9 @@ Object? _EventChannel_super_receiveBroadcastStream(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as _EventChannelProxy)._flaxSuper_receiveBroadcastStream();
+  }
   return (receiver as _EventChannelProxy)._flaxSuper_receiveBroadcastStream(
     values["arguments"],
   );
@@ -6535,6 +5360,12 @@ Object? _MethodCall_super_get_arguments(
 Object _createMethodCall(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
+      if (!values.containsKey("arguments")) {
+        return _MethodCallProxy(
+          values['@peer'] as FlaxProxyPeer,
+          values["method"] as String,
+        );
+      }
       return _MethodCallProxy(
         values['@peer'] as FlaxProxyPeer,
         values["method"] as String,
@@ -6555,6 +5386,11 @@ Object? _MethodChannel_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as api.MethodChannel).invokeMethod<Object?>(
+      values["method"] as String,
+    );
+  }
   return (receiver as api.MethodChannel).invokeMethod<Object?>(
     values["method"] as String,
     values["arguments"],
@@ -6565,6 +5401,11 @@ Object? _MethodChannel_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as api.MethodChannel).invokeListMethod<Object?>(
+      values["method"] as String,
+    );
+  }
   return (receiver as api.MethodChannel).invokeListMethod<Object?>(
     values["method"] as String,
     values["arguments"],
@@ -6575,6 +5416,11 @@ Object? _MethodChannel_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as api.MethodChannel).invokeMapMethod<Object?, Object?>(
+      values["method"] as String,
+    );
+  }
   return (receiver as api.MethodChannel).invokeMapMethod<Object?, Object?>(
     values["method"] as String,
     values["arguments"],
@@ -6595,6 +5441,11 @@ Object? _MethodChannel_super_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as _MethodChannelProxy)._flaxSuper_invokeMethod<Object?>(
+      values["method"] as String,
+    );
+  }
   return (receiver as _MethodChannelProxy)._flaxSuper_invokeMethod<Object?>(
     values["method"] as String,
     values["arguments"],
@@ -6605,6 +5456,10 @@ Object? _MethodChannel_super_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as _MethodChannelProxy)
+        ._flaxSuper_invokeListMethod<Object?>(values["method"] as String);
+  }
   return (receiver as _MethodChannelProxy)._flaxSuper_invokeListMethod<Object?>(
     values["method"] as String,
     values["arguments"],
@@ -6615,6 +5470,12 @@ Object? _MethodChannel_super_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as _MethodChannelProxy)
+        ._flaxSuper_invokeMapMethod<Object?, Object?>(
+          values["method"] as String,
+        );
+  }
   return (receiver as _MethodChannelProxy)
       ._flaxSuper_invokeMapMethod<Object?, Object?>(
         values["method"] as String,
@@ -6764,7 +5625,7 @@ Object? _MouseCursorManager_handleDeviceCursorUpdate(
 ) {
   (receiver as api.MouseCursorManager).handleDeviceCursorUpdate(
     values["device"] as int,
-    values["triggeringEvent"] as api9.PointerEvent?,
+    values["triggeringEvent"] as api10.PointerEvent?,
     values["cursorCandidates"] as Iterable<api.MouseCursor>,
   );
   return null;
@@ -6784,7 +5645,7 @@ Object? _MouseCursorManager_super_handleDeviceCursorUpdate(
 ) {
   (receiver as _MouseCursorManagerProxy)._flaxSuper_handleDeviceCursorUpdate(
     values["device"] as int,
-    values["triggeringEvent"] as api9.PointerEvent?,
+    values["triggeringEvent"] as api10.PointerEvent?,
     values["cursorCandidates"] as Iterable<api.MouseCursor>,
   );
   return null;
@@ -6913,17 +5774,19 @@ Object _createMouseTrackerAnnotation(String ctor, Map<String, Object?> values) {
         return _MouseTrackerAnnotationProxy(
           values['@peer'] as FlaxProxyPeer,
           onEnter:
-              values["onEnter"] as void Function(api9.PointerEnterEvent event)?,
+              values["onEnter"]
+                  as void Function(api10.PointerEnterEvent event)?,
           onExit:
-              values["onExit"] as void Function(api9.PointerExitEvent event)?,
+              values["onExit"] as void Function(api10.PointerExitEvent event)?,
           validForMouseTracker: values["validForMouseTracker"] as bool,
         );
       }
       return _MouseTrackerAnnotationProxy(
         values['@peer'] as FlaxProxyPeer,
         onEnter:
-            values["onEnter"] as void Function(api9.PointerEnterEvent event)?,
-        onExit: values["onExit"] as void Function(api9.PointerExitEvent event)?,
+            values["onEnter"] as void Function(api10.PointerEnterEvent event)?,
+        onExit:
+            values["onExit"] as void Function(api10.PointerExitEvent event)?,
         cursor: values["cursor"] as api.MouseCursor,
         validForMouseTracker: values["validForMouseTracker"] as bool,
       );
@@ -6949,7 +5812,7 @@ Object? _NetworkAssetBundle_loadStructuredBinaryData(
 ) {
   return (receiver as api.NetworkAssetBundle).loadStructuredBinaryData<Object?>(
     values["key"] as String,
-    values["parser"] as api6.FutureOr<Object?> Function(api3.ByteData data),
+    values["parser"] as api7.FutureOr<Object?> Function(api3.ByteData data),
   );
 }
 
@@ -6980,7 +5843,7 @@ Object? _NetworkAssetBundle_super_loadStructuredBinaryData(
   return (receiver as _NetworkAssetBundleProxy)
       ._flaxSuper_loadStructuredBinaryData<Object?>(
         values["key"] as String,
-        values["parser"] as api6.FutureOr<Object?> Function(api3.ByteData data),
+        values["parser"] as api7.FutureOr<Object?> Function(api3.ByteData data),
       );
 }
 
@@ -7002,6 +5865,11 @@ Object? _OptionalMethodChannel_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as api.OptionalMethodChannel).invokeMethod<Object?>(
+      values["method"] as String,
+    );
+  }
   return (receiver as api.OptionalMethodChannel).invokeMethod<Object?>(
     values["method"] as String,
     values["arguments"],
@@ -7012,6 +5880,11 @@ Object? _OptionalMethodChannel_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as api.OptionalMethodChannel).invokeListMethod<Object?>(
+      values["method"] as String,
+    );
+  }
   return (receiver as api.OptionalMethodChannel).invokeListMethod<Object?>(
     values["method"] as String,
     values["arguments"],
@@ -7022,6 +5895,10 @@ Object? _OptionalMethodChannel_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as api.OptionalMethodChannel)
+        .invokeMapMethod<Object?, Object?>(values["method"] as String);
+  }
   return (receiver as api.OptionalMethodChannel)
       .invokeMapMethod<Object?, Object?>(
         values["method"] as String,
@@ -7033,6 +5910,10 @@ Object? _OptionalMethodChannel_super_invokeMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as _OptionalMethodChannelProxy)
+        ._flaxSuper_invokeMethod<Object?>(values["method"] as String);
+  }
   return (receiver as _OptionalMethodChannelProxy)
       ._flaxSuper_invokeMethod<Object?>(
         values["method"] as String,
@@ -7044,6 +5925,10 @@ Object? _OptionalMethodChannel_super_invokeListMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as _OptionalMethodChannelProxy)
+        ._flaxSuper_invokeListMethod<Object?>(values["method"] as String);
+  }
   return (receiver as _OptionalMethodChannelProxy)
       ._flaxSuper_invokeListMethod<Object?>(
         values["method"] as String,
@@ -7055,6 +5940,12 @@ Object? _OptionalMethodChannel_super_invokeMapMethod(
   Object receiver,
   Map<String, Object?> values,
 ) {
+  if (!values.containsKey("arguments")) {
+    return (receiver as _OptionalMethodChannelProxy)
+        ._flaxSuper_invokeMapMethod<Object?, Object?>(
+          values["method"] as String,
+        );
+  }
   return (receiver as _OptionalMethodChannelProxy)
       ._flaxSuper_invokeMapMethod<Object?, Object?>(
         values["method"] as String,
@@ -7125,7 +6016,7 @@ Object? _PlatformAssetBundle_loadStructuredBinaryData(
   return (receiver as api.PlatformAssetBundle)
       .loadStructuredBinaryData<Object?>(
         values["key"] as String,
-        values["parser"] as api6.FutureOr<Object?> Function(api3.ByteData data),
+        values["parser"] as api7.FutureOr<Object?> Function(api3.ByteData data),
       );
 }
 
@@ -7147,7 +6038,7 @@ Object? _PlatformAssetBundle_super_loadStructuredBinaryData(
   return (receiver as _PlatformAssetBundleProxy)
       ._flaxSuper_loadStructuredBinaryData<Object?>(
         values["key"] as String,
-        values["parser"] as api6.FutureOr<Object?> Function(api3.ByteData data),
+        values["parser"] as api7.FutureOr<Object?> Function(api3.ByteData data),
       );
 }
 
@@ -7222,7 +6113,7 @@ Object? _PlatformViewController_dispatchPointerEvent(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PlatformViewController).dispatchPointerEvent(
-    values["event"] as api9.PointerEvent,
+    values["event"] as api10.PointerEvent,
   );
 }
 
@@ -8983,7 +7874,7 @@ void _ServicesBinding_set_schedulingStrategy(Object receiver, Object? value) {
       value
           as bool Function({
             required int priority,
-            required api8.SchedulerBinding scheduler,
+            required api9.SchedulerBinding scheduler,
           });
 }
 
@@ -9158,9 +8049,10 @@ Object? _ServicesBinding_scheduleTask(
   Map<String, Object?> values,
 ) {
   return (receiver as api.ServicesBinding).scheduleTask<Object?>(
-    values["task"] as api6.FutureOr<Object?> Function(),
-    values["priority"] as api8.Priority,
+    values["task"] as api7.FutureOr<Object?> Function(),
+    values["priority"] as api9.Priority,
     debugLabel: values["debugLabel"] as String?,
+    flow: values["flow"] as api6.Flow?,
   );
 }
 
@@ -11233,7 +10125,7 @@ Object? _TextInputConnection_setEditableSizeAndTransform(
 ) {
   (receiver as api.TextInputConnection).setEditableSizeAndTransform(
     values["editableBoxSize"] as api1.Size,
-    values["transform"] as api7.Matrix4,
+    values["transform"] as api8.Matrix4,
   );
   return null;
 }
@@ -11362,7 +10254,7 @@ Object? _TextInputControl_setEditableSizeAndTransform(
 ) {
   (receiver as api.TextInputControl).setEditableSizeAndTransform(
     values["editableBoxSize"] as api1.Size,
-    values["transform"] as api7.Matrix4,
+    values["transform"] as api8.Matrix4,
   );
   return null;
 }
@@ -13173,7 +12065,7 @@ final class _AssetBundleProxy extends api.AssetBundle
   @override
   Future<T> loadStructuredBinaryData<T extends Object?>(
     String key,
-    api6.FutureOr<T> Function(api3.ByteData data) parser,
+    api7.FutureOr<T> Function(api3.ByteData data) parser,
   ) {
     final _flaxSignature = _flaxPeer.active
         ? _flaxPeer.genericSignature(4, [
@@ -13182,7 +12074,7 @@ final class _AssetBundleProxy extends api.AssetBundle
         : null;
     Future<T> _flaxContextSuper(
       String key,
-      api6.FutureOr<T> Function(api3.ByteData data) parser,
+      api7.FutureOr<T> Function(api3.ByteData data) parser,
     ) {
       return _flaxSuper_loadStructuredBinaryData<T>(key, parser);
     }
@@ -13205,7 +12097,7 @@ final class _AssetBundleProxy extends api.AssetBundle
 
   Future<T> _flaxSuper_loadStructuredBinaryData<T extends Object?>(
     String key,
-    api6.FutureOr<T> Function(api3.ByteData data) parser,
+    api7.FutureOr<T> Function(api3.ByteData data) parser,
   ) {
     return super.loadStructuredBinaryData<T>(key, parser);
   }
@@ -13353,22 +12245,22 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredBinaryData<
     final positional = <Object?>[];
     final named = <String, Object?>{};
     positional.add(p0);
-    return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<T>;
+    return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<T>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<T> Function(api3.ByteData data);
+      value is api7.FutureOr<T> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<T> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<T> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
-      (String p0, api6.FutureOr<T> Function(api3.ByteData data) p1) {
+      (String p0, api7.FutureOr<T> Function(api3.ByteData data) p1) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
@@ -13380,7 +12272,7 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredBinaryData<
       value
           is Future<T> Function(
             String key,
-            api6.FutureOr<T> Function(api3.ByteData data) parser,
+            api7.FutureOr<T> Function(api3.ByteData data) parser,
           );
   Object? _callback1Invoke(
     Object function,
@@ -13390,10 +12282,10 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredBinaryData<
     return (function
         as Future<T> Function(
           String key,
-          api6.FutureOr<T> Function(api3.ByteData data) parser,
+          api7.FutureOr<T> Function(api3.ByteData data) parser,
         ))(
       positional[0] as String,
-      positional[1] as api6.FutureOr<T> Function(api3.ByteData data),
+      positional[1] as api7.FutureOr<T> Function(api3.ByteData data),
     );
   }
 
@@ -13407,7 +12299,7 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredBinaryData<
       ),
       FlaxCallbackParameter(
         "parser",
-        types.define<api6.FutureOr<T> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<T> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -13420,10 +12312,10 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<T>>(withinCallback: true),
+              types.ref<api7.FutureOr<T>>(withinCallback: true),
               _callback0,
               id:
-                  types.key<api6.FutureOr<T> Function(api3.ByteData data)>() +
+                  types.key<api7.FutureOr<T> Function(api3.ByteData data)>() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
@@ -13442,7 +12334,7 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredBinaryData<
             .key<
               Future<T> Function(
                 String key,
-                api6.FutureOr<T> Function(api3.ByteData data) parser,
+                api7.FutureOr<T> Function(api3.ByteData data) parser,
               )
             >() +
         ":callback:<>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[parameter:])->future:[parameter:]",
@@ -13922,7 +12814,7 @@ final class _CachingAssetBundleProxy extends api.CachingAssetBundle
   @override
   Future<T> loadStructuredBinaryData<T extends Object?>(
     String key,
-    api6.FutureOr<T> Function(api3.ByteData data) parser,
+    api7.FutureOr<T> Function(api3.ByteData data) parser,
   ) {
     final _flaxSignature = _flaxPeer.active
         ? _flaxPeer.genericSignature(4, [
@@ -13931,7 +12823,7 @@ final class _CachingAssetBundleProxy extends api.CachingAssetBundle
         : null;
     Future<T> _flaxContextSuper(
       String key,
-      api6.FutureOr<T> Function(api3.ByteData data) parser,
+      api7.FutureOr<T> Function(api3.ByteData data) parser,
     ) {
       return _flaxSuper_loadStructuredBinaryData<T>(key, parser);
     }
@@ -13954,7 +12846,7 @@ final class _CachingAssetBundleProxy extends api.CachingAssetBundle
 
   Future<T> _flaxSuper_loadStructuredBinaryData<T extends Object?>(
     String key,
-    api6.FutureOr<T> Function(api3.ByteData data) parser,
+    api7.FutureOr<T> Function(api3.ByteData data) parser,
   ) {
     return super.loadStructuredBinaryData<T>(key, parser);
   }
@@ -14103,22 +12995,22 @@ _flaxProxySignature_CachingAssetBundle_loadStructuredBinaryData<
     final positional = <Object?>[];
     final named = <String, Object?>{};
     positional.add(p0);
-    return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<T>;
+    return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<T>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<T> Function(api3.ByteData data);
+      value is api7.FutureOr<T> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<T> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<T> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
-      (String p0, api6.FutureOr<T> Function(api3.ByteData data) p1) {
+      (String p0, api7.FutureOr<T> Function(api3.ByteData data) p1) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
@@ -14130,7 +13022,7 @@ _flaxProxySignature_CachingAssetBundle_loadStructuredBinaryData<
       value
           is Future<T> Function(
             String key,
-            api6.FutureOr<T> Function(api3.ByteData data) parser,
+            api7.FutureOr<T> Function(api3.ByteData data) parser,
           );
   Object? _callback1Invoke(
     Object function,
@@ -14140,10 +13032,10 @@ _flaxProxySignature_CachingAssetBundle_loadStructuredBinaryData<
     return (function
         as Future<T> Function(
           String key,
-          api6.FutureOr<T> Function(api3.ByteData data) parser,
+          api7.FutureOr<T> Function(api3.ByteData data) parser,
         ))(
       positional[0] as String,
-      positional[1] as api6.FutureOr<T> Function(api3.ByteData data),
+      positional[1] as api7.FutureOr<T> Function(api3.ByteData data),
     );
   }
 
@@ -14157,7 +13049,7 @@ _flaxProxySignature_CachingAssetBundle_loadStructuredBinaryData<
       ),
       FlaxCallbackParameter(
         "parser",
-        types.define<api6.FutureOr<T> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<T> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -14170,10 +13062,10 @@ _flaxProxySignature_CachingAssetBundle_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<T>>(withinCallback: true),
+              types.ref<api7.FutureOr<T>>(withinCallback: true),
               _callback0,
               id:
-                  types.key<api6.FutureOr<T> Function(api3.ByteData data)>() +
+                  types.key<api7.FutureOr<T> Function(api3.ByteData data)>() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
@@ -14192,7 +13084,7 @@ _flaxProxySignature_CachingAssetBundle_loadStructuredBinaryData<
             .key<
               Future<T> Function(
                 String key,
-                api6.FutureOr<T> Function(api3.ByteData data) parser,
+                api7.FutureOr<T> Function(api3.ByteData data) parser,
               )
             >() +
         ":callback:<>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[parameter:])->future:[parameter:]",
@@ -14509,7 +13401,7 @@ final class _EventChannelProxy extends api.EventChannel
     api.BinaryMessenger? super.binaryMessenger,
   ]);
   @override
-  api6.Stream<Object?> receiveBroadcastStream([
+  api7.Stream<Object?> receiveBroadcastStream([
     Object? arguments = _flaxOmitted,
   ]) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
@@ -14518,11 +13410,11 @@ final class _EventChannelProxy extends api.EventChannel
     if (!_flaxResult.$1) {
       return _flaxSuper_receiveBroadcastStream(arguments);
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api6.Stream<Object?>;
+    final _flaxConvertedResult = _flaxResult.$2 as api7.Stream<Object?>;
     return _flaxConvertedResult;
   }
 
-  api6.Stream<Object?> _flaxSuper_receiveBroadcastStream([
+  api7.Stream<Object?> _flaxSuper_receiveBroadcastStream([
     Object? arguments = _flaxOmitted,
   ]) {
     if (identical(arguments, _flaxOmitted)) {
@@ -16367,7 +15259,7 @@ final class _MouseCursorManagerProxy extends api.MouseCursorManager {
   @override
   void handleDeviceCursorUpdate(
     int device,
-    api9.PointerEvent? triggeringEvent,
+    api10.PointerEvent? triggeringEvent,
     Iterable<api.MouseCursor> cursorCandidates,
   ) {
     final _flaxResult = _flaxPeer.call(1, <Object?>[
@@ -16388,7 +15280,7 @@ final class _MouseCursorManagerProxy extends api.MouseCursorManager {
 
   void _flaxSuper_handleDeviceCursorUpdate(
     int device,
-    api9.PointerEvent? triggeringEvent,
+    api10.PointerEvent? triggeringEvent,
     Iterable<api.MouseCursor> cursorCandidates,
   ) {
     super.handleDeviceCursorUpdate(device, triggeringEvent, cursorCandidates);
@@ -16465,8 +15357,8 @@ final class _MouseTrackerAnnotationProxy extends api.MouseTrackerAnnotation
   bool _flaxCalledSuper = false;
   _MouseTrackerAnnotationProxy(
     this._flaxPeer, {
-    void Function(api9.PointerEnterEvent event)? super.onEnter,
-    void Function(api9.PointerExitEvent event)? super.onExit,
+    void Function(api10.PointerEnterEvent event)? super.onEnter,
+    void Function(api10.PointerExitEvent event)? super.onExit,
     api.MouseCursor super.cursor,
     bool super.validForMouseTracker,
   });
@@ -16541,28 +15433,28 @@ final class _MouseTrackerAnnotationProxy extends api.MouseTrackerAnnotation
   }
 
   @override
-  void Function(api9.PointerEnterEvent event)? get onEnter {
+  void Function(api10.PointerEnterEvent event)? get onEnter {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.onEnter;
     final _flaxConvertedResult =
-        _flaxResult.$2 as void Function(api9.PointerEnterEvent event)?;
+        _flaxResult.$2 as void Function(api10.PointerEnterEvent event)?;
     return _flaxConvertedResult;
   }
 
-  void Function(api9.PointerEnterEvent event)? get _flaxSuperGet_onEnter {
+  void Function(api10.PointerEnterEvent event)? get _flaxSuperGet_onEnter {
     return super.onEnter;
   }
 
   @override
-  void Function(api9.PointerExitEvent event)? get onExit {
+  void Function(api10.PointerExitEvent event)? get onExit {
     final _flaxResult = _flaxPeer.call(5, const [], const {});
     if (!_flaxResult.$1) return super.onExit;
     final _flaxConvertedResult =
-        _flaxResult.$2 as void Function(api9.PointerExitEvent event)?;
+        _flaxResult.$2 as void Function(api10.PointerExitEvent event)?;
     return _flaxConvertedResult;
   }
 
-  void Function(api9.PointerExitEvent event)? get _flaxSuperGet_onExit {
+  void Function(api10.PointerExitEvent event)? get _flaxSuperGet_onExit {
     return super.onExit;
   }
 
@@ -16665,7 +15557,7 @@ final class _NetworkAssetBundleProxy extends api.NetworkAssetBundle
   @override
   Future<T> loadStructuredBinaryData<T extends Object?>(
     String key,
-    api6.FutureOr<T> Function(api3.ByteData data) parser,
+    api7.FutureOr<T> Function(api3.ByteData data) parser,
   ) {
     final _flaxSignature = _flaxPeer.active
         ? _flaxPeer.genericSignature(4, [
@@ -16674,7 +15566,7 @@ final class _NetworkAssetBundleProxy extends api.NetworkAssetBundle
         : null;
     Future<T> _flaxContextSuper(
       String key,
-      api6.FutureOr<T> Function(api3.ByteData data) parser,
+      api7.FutureOr<T> Function(api3.ByteData data) parser,
     ) {
       return _flaxSuper_loadStructuredBinaryData<T>(key, parser);
     }
@@ -16697,7 +15589,7 @@ final class _NetworkAssetBundleProxy extends api.NetworkAssetBundle
 
   Future<T> _flaxSuper_loadStructuredBinaryData<T extends Object?>(
     String key,
-    api6.FutureOr<T> Function(api3.ByteData data) parser,
+    api7.FutureOr<T> Function(api3.ByteData data) parser,
   ) {
     return super.loadStructuredBinaryData<T>(key, parser);
   }
@@ -16846,22 +15738,22 @@ _flaxProxySignature_NetworkAssetBundle_loadStructuredBinaryData<
     final positional = <Object?>[];
     final named = <String, Object?>{};
     positional.add(p0);
-    return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<T>;
+    return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<T>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<T> Function(api3.ByteData data);
+      value is api7.FutureOr<T> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<T> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<T> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
-      (String p0, api6.FutureOr<T> Function(api3.ByteData data) p1) {
+      (String p0, api7.FutureOr<T> Function(api3.ByteData data) p1) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
@@ -16873,7 +15765,7 @@ _flaxProxySignature_NetworkAssetBundle_loadStructuredBinaryData<
       value
           is Future<T> Function(
             String key,
-            api6.FutureOr<T> Function(api3.ByteData data) parser,
+            api7.FutureOr<T> Function(api3.ByteData data) parser,
           );
   Object? _callback1Invoke(
     Object function,
@@ -16883,10 +15775,10 @@ _flaxProxySignature_NetworkAssetBundle_loadStructuredBinaryData<
     return (function
         as Future<T> Function(
           String key,
-          api6.FutureOr<T> Function(api3.ByteData data) parser,
+          api7.FutureOr<T> Function(api3.ByteData data) parser,
         ))(
       positional[0] as String,
-      positional[1] as api6.FutureOr<T> Function(api3.ByteData data),
+      positional[1] as api7.FutureOr<T> Function(api3.ByteData data),
     );
   }
 
@@ -16900,7 +15792,7 @@ _flaxProxySignature_NetworkAssetBundle_loadStructuredBinaryData<
       ),
       FlaxCallbackParameter(
         "parser",
-        types.define<api6.FutureOr<T> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<T> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -16913,10 +15805,10 @@ _flaxProxySignature_NetworkAssetBundle_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<T>>(withinCallback: true),
+              types.ref<api7.FutureOr<T>>(withinCallback: true),
               _callback0,
               id:
-                  types.key<api6.FutureOr<T> Function(api3.ByteData data)>() +
+                  types.key<api7.FutureOr<T> Function(api3.ByteData data)>() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
@@ -16935,7 +15827,7 @@ _flaxProxySignature_NetworkAssetBundle_loadStructuredBinaryData<
             .key<
               Future<T> Function(
                 String key,
-                api6.FutureOr<T> Function(api3.ByteData data) parser,
+                api7.FutureOr<T> Function(api3.ByteData data) parser,
               )
             >() +
         ":callback:<>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[parameter:])->future:[parameter:]",
@@ -17401,7 +16293,7 @@ final class _PlatformAssetBundleProxy extends api.PlatformAssetBundle
   @override
   Future<T> loadStructuredBinaryData<T extends Object?>(
     String key,
-    api6.FutureOr<T> Function(api3.ByteData data) parser,
+    api7.FutureOr<T> Function(api3.ByteData data) parser,
   ) {
     final _flaxSignature = _flaxPeer.active
         ? _flaxPeer.genericSignature(
@@ -17412,7 +16304,7 @@ final class _PlatformAssetBundleProxy extends api.PlatformAssetBundle
         : null;
     Future<T> _flaxContextSuper(
       String key,
-      api6.FutureOr<T> Function(api3.ByteData data) parser,
+      api7.FutureOr<T> Function(api3.ByteData data) parser,
     ) {
       return _flaxSuper_loadStructuredBinaryData<T>(key, parser);
     }
@@ -17435,7 +16327,7 @@ final class _PlatformAssetBundleProxy extends api.PlatformAssetBundle
 
   Future<T> _flaxSuper_loadStructuredBinaryData<T extends Object?>(
     String key,
-    api6.FutureOr<T> Function(api3.ByteData data) parser,
+    api7.FutureOr<T> Function(api3.ByteData data) parser,
   ) {
     return super.loadStructuredBinaryData<T>(key, parser);
   }
@@ -17602,22 +16494,22 @@ _flaxProxySignature_PlatformAssetBundle_loadStructuredBinaryData<
     final positional = <Object?>[];
     final named = <String, Object?>{};
     positional.add(p0);
-    return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<T>;
+    return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<T>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<T> Function(api3.ByteData data);
+      value is api7.FutureOr<T> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<T> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<T> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
-      (String p0, api6.FutureOr<T> Function(api3.ByteData data) p1) {
+      (String p0, api7.FutureOr<T> Function(api3.ByteData data) p1) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
@@ -17629,7 +16521,7 @@ _flaxProxySignature_PlatformAssetBundle_loadStructuredBinaryData<
       value
           is Future<T> Function(
             String key,
-            api6.FutureOr<T> Function(api3.ByteData data) parser,
+            api7.FutureOr<T> Function(api3.ByteData data) parser,
           );
   Object? _callback1Invoke(
     Object function,
@@ -17639,10 +16531,10 @@ _flaxProxySignature_PlatformAssetBundle_loadStructuredBinaryData<
     return (function
         as Future<T> Function(
           String key,
-          api6.FutureOr<T> Function(api3.ByteData data) parser,
+          api7.FutureOr<T> Function(api3.ByteData data) parser,
         ))(
       positional[0] as String,
-      positional[1] as api6.FutureOr<T> Function(api3.ByteData data),
+      positional[1] as api7.FutureOr<T> Function(api3.ByteData data),
     );
   }
 
@@ -17656,7 +16548,7 @@ _flaxProxySignature_PlatformAssetBundle_loadStructuredBinaryData<
       ),
       FlaxCallbackParameter(
         "parser",
-        types.define<api6.FutureOr<T> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<T> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -17669,10 +16561,10 @@ _flaxProxySignature_PlatformAssetBundle_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<T>>(withinCallback: true),
+              types.ref<api7.FutureOr<T>>(withinCallback: true),
               _callback0,
               id:
-                  types.key<api6.FutureOr<T> Function(api3.ByteData data)>() +
+                  types.key<api7.FutureOr<T> Function(api3.ByteData data)>() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
               matches: _callback0Matches,
@@ -17691,7 +16583,7 @@ _flaxProxySignature_PlatformAssetBundle_loadStructuredBinaryData<
             .key<
               Future<T> Function(
                 String key,
-                api6.FutureOr<T> Function(api3.ByteData data) parser,
+                api7.FutureOr<T> Function(api3.ByteData data) parser,
               )
             >() +
         ":callback:<>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[parameter:])->future:[parameter:]",
@@ -17766,7 +16658,7 @@ final class _PlatformViewControllerProxy extends api.PlatformViewController {
   final FlaxProxyPeer _flaxPeer;
   _PlatformViewControllerProxy(this._flaxPeer);
   @override
-  Future<void> dispatchPointerEvent(api9.PointerEvent event) {
+  Future<void> dispatchPointerEvent(api10.PointerEvent event) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       event,
     ], <String, Object?>{});
@@ -23133,7 +22025,7 @@ Function _flaxGeneric_AssetBundle_loadStructuredBinaryData<
   Object? invoke(Object receiver, Map<String, Object?> values) {
     return (receiver as api.AssetBundle).loadStructuredBinaryData<_Method0>(
       values["key"] as String,
-      values["parser"] as api6.FutureOr<_Method0> Function(api3.ByteData data),
+      values["parser"] as api7.FutureOr<_Method0> Function(api3.ByteData data),
     );
   }
 
@@ -23142,16 +22034,16 @@ Function _flaxGeneric_AssetBundle_loadStructuredBinaryData<
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Method0>;
+        as api7.FutureOr<_Method0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Method0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Method0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Method0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Method0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
@@ -23167,7 +22059,7 @@ Function _flaxGeneric_AssetBundle_loadStructuredBinaryData<
       ),
       FlaxParameter(
         "parser",
-        types.define<api6.FutureOr<_Method0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -23180,12 +22072,12 @@ Function _flaxGeneric_AssetBundle_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Method0> Function(api3.ByteData data)
+                        api7.FutureOr<_Method0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -23210,7 +22102,7 @@ Function _flaxGeneric_AssetBundle_super_loadStructuredBinaryData<
         ._flaxSuper_loadStructuredBinaryData<_Method0>(
           values["key"] as String,
           values["parser"]
-              as api6.FutureOr<_Method0> Function(api3.ByteData data),
+              as api7.FutureOr<_Method0> Function(api3.ByteData data),
         );
   }
 
@@ -23219,16 +22111,16 @@ Function _flaxGeneric_AssetBundle_super_loadStructuredBinaryData<
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Method0>;
+        as api7.FutureOr<_Method0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Method0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Method0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Method0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Method0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
@@ -23244,7 +22136,7 @@ Function _flaxGeneric_AssetBundle_super_loadStructuredBinaryData<
       ),
       FlaxParameter(
         "parser",
-        types.define<api6.FutureOr<_Method0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -23257,12 +22149,12 @@ Function _flaxGeneric_AssetBundle_super_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Method0> Function(api3.ByteData data)
+                        api7.FutureOr<_Method0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -23500,17 +22392,17 @@ Function _flaxClass_BasicMessageChannel<
           _BasicMessageChannel_super_setMessageHandler,
         ),
         "@super:get:name": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef("String"),
           _FlaxProxyDispatch7_super_get_name,
         ),
         "@super:get:codec": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           types.ref<api.MessageCodec<_Owner0>>(),
           _BasicMessageChannel_super_get_codec,
         ),
         "@super:get:binaryMessenger": FlaxInstanceMethod(
-          [],
+          <FlaxParameter>[],
           FlaxTypeRef(
             "object",
             id: "flax.core/sdk_services#type:BinaryMessenger",
@@ -23806,7 +22698,7 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredBinaryData<
         .loadStructuredBinaryData<_Method0>(
           values["key"] as String,
           values["parser"]
-              as api6.FutureOr<_Method0> Function(api3.ByteData data),
+              as api7.FutureOr<_Method0> Function(api3.ByteData data),
         );
   }
 
@@ -23815,16 +22707,16 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredBinaryData<
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Method0>;
+        as api7.FutureOr<_Method0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Method0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Method0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Method0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Method0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
@@ -23840,7 +22732,7 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredBinaryData<
       ),
       FlaxParameter(
         "parser",
-        types.define<api6.FutureOr<_Method0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -23853,12 +22745,12 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Method0> Function(api3.ByteData data)
+                        api7.FutureOr<_Method0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -23883,7 +22775,7 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredBinaryData<
         ._flaxSuper_loadStructuredBinaryData<_Method0>(
           values["key"] as String,
           values["parser"]
-              as api6.FutureOr<_Method0> Function(api3.ByteData data),
+              as api7.FutureOr<_Method0> Function(api3.ByteData data),
         );
   }
 
@@ -23892,16 +22784,16 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredBinaryData<
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Method0>;
+        as api7.FutureOr<_Method0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Method0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Method0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Method0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Method0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
@@ -23917,7 +22809,7 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredBinaryData<
       ),
       FlaxParameter(
         "parser",
-        types.define<api6.FutureOr<_Method0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -23930,12 +22822,12 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Method0> Function(api3.ByteData data)
+                        api7.FutureOr<_Method0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -24067,6 +22959,11 @@ Function _flaxClass_MessageCodec<_Owner0 extends Object?>() =>
 Function _flaxGeneric_MethodChannel_invokeMethod<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Object receiver, Map<String, Object?> values) {
+        if (!values.containsKey("arguments")) {
+          return (receiver as api.MethodChannel).invokeMethod<_Method0>(
+            values["method"] as String,
+          );
+        }
         return (receiver as api.MethodChannel).invokeMethod<_Method0>(
           values["method"] as String,
           values["arguments"],
@@ -24087,7 +22984,7 @@ Function _flaxGeneric_MethodChannel_invokeMethod<_Method0 extends Object?>() =>
             FlaxTypeRef("any", nullable: true),
             required: false,
             defaultValue: null,
-            omitWhenAbsent: false,
+            omitWhenAbsent: true,
           ),
         ],
         types.ref<Future<_Method0?>>(),
@@ -24098,6 +22995,10 @@ Function _flaxGeneric_MethodChannel_super_invokeMethod<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as _MethodChannelProxy)
+          ._flaxSuper_invokeMethod<_Method0>(values["method"] as String);
+    }
     return (receiver as _MethodChannelProxy)._flaxSuper_invokeMethod<_Method0>(
       values["method"] as String,
       values["arguments"],
@@ -24118,7 +23019,7 @@ Function _flaxGeneric_MethodChannel_super_invokeMethod<
         FlaxTypeRef("any", nullable: true),
         required: false,
         defaultValue: null,
-        omitWhenAbsent: false,
+        omitWhenAbsent: true,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -24129,6 +23030,11 @@ Function
 _flaxGeneric_MethodChannel_invokeListMethod<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Object receiver, Map<String, Object?> values) {
+        if (!values.containsKey("arguments")) {
+          return (receiver as api.MethodChannel).invokeListMethod<_Method0>(
+            values["method"] as String,
+          );
+        }
         return (receiver as api.MethodChannel).invokeListMethod<_Method0>(
           values["method"] as String,
           values["arguments"],
@@ -24149,50 +23055,58 @@ _flaxGeneric_MethodChannel_invokeListMethod<_Method0 extends Object?>() =>
             FlaxTypeRef("any", nullable: true),
             required: false,
             defaultValue: null,
-            omitWhenAbsent: false,
+            omitWhenAbsent: true,
           ),
         ],
         types.ref<Future<List<_Method0>?>>(),
         invoke,
       );
     };
-Function
-_flaxGeneric_MethodChannel_super_invokeListMethod<_Method0 extends Object?>() =>
-    (FlaxDartTypes types) {
-      Object? invoke(Object receiver, Map<String, Object?> values) {
-        return (receiver as _MethodChannelProxy)
-            ._flaxSuper_invokeListMethod<_Method0>(
-              values["method"] as String,
-              values["arguments"],
-            );
-      }
+Function _flaxGeneric_MethodChannel_super_invokeListMethod<
+  _Method0 extends Object?
+>() => (FlaxDartTypes types) {
+  Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as _MethodChannelProxy)
+          ._flaxSuper_invokeListMethod<_Method0>(values["method"] as String);
+    }
+    return (receiver as _MethodChannelProxy)
+        ._flaxSuper_invokeListMethod<_Method0>(
+          values["method"] as String,
+          values["arguments"],
+        );
+  }
 
-      return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "method",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-        types.ref<Future<List<_Method0>?>>(),
-        invoke,
-      );
-    };
+  return FlaxInstanceMethod(
+    [
+      FlaxParameter(
+        "method",
+        FlaxTypeRef("String"),
+        required: true,
+        defaultValue: null,
+        omitWhenAbsent: false,
+      ),
+      FlaxParameter(
+        "arguments",
+        FlaxTypeRef("any", nullable: true),
+        required: false,
+        defaultValue: null,
+        omitWhenAbsent: true,
+      ),
+    ],
+    types.ref<Future<List<_Method0>?>>(),
+    invoke,
+  );
+};
 Function _flaxGeneric_MethodChannel_invokeMapMethod<
   _Method0 extends Object?,
   _Method1 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as api.MethodChannel)
+          .invokeMapMethod<_Method0, _Method1>(values["method"] as String);
+    }
     return (receiver as api.MethodChannel).invokeMapMethod<_Method0, _Method1>(
       values["method"] as String,
       values["arguments"],
@@ -24213,7 +23127,7 @@ Function _flaxGeneric_MethodChannel_invokeMapMethod<
         FlaxTypeRef("any", nullable: true),
         required: false,
         defaultValue: null,
-        omitWhenAbsent: false,
+        omitWhenAbsent: true,
       ),
     ],
     types.ref<Future<Map<_Method0, _Method1>?>>(),
@@ -24225,6 +23139,12 @@ Function _flaxGeneric_MethodChannel_super_invokeMapMethod<
   _Method1 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as _MethodChannelProxy)
+          ._flaxSuper_invokeMapMethod<_Method0, _Method1>(
+            values["method"] as String,
+          );
+    }
     return (receiver as _MethodChannelProxy)
         ._flaxSuper_invokeMapMethod<_Method0, _Method1>(
           values["method"] as String,
@@ -24246,7 +23166,7 @@ Function _flaxGeneric_MethodChannel_super_invokeMapMethod<
         FlaxTypeRef("any", nullable: true),
         required: false,
         defaultValue: null,
-        omitWhenAbsent: false,
+        omitWhenAbsent: true,
       ),
     ],
     types.ref<Future<Map<_Method0, _Method1>?>>(),
@@ -24406,7 +23326,7 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredBinaryData<
         .loadStructuredBinaryData<_Method0>(
           values["key"] as String,
           values["parser"]
-              as api6.FutureOr<_Method0> Function(api3.ByteData data),
+              as api7.FutureOr<_Method0> Function(api3.ByteData data),
         );
   }
 
@@ -24415,16 +23335,16 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredBinaryData<
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Method0>;
+        as api7.FutureOr<_Method0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Method0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Method0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Method0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Method0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
@@ -24440,7 +23360,7 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredBinaryData<
       ),
       FlaxParameter(
         "parser",
-        types.define<api6.FutureOr<_Method0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -24453,12 +23373,12 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Method0> Function(api3.ByteData data)
+                        api7.FutureOr<_Method0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -24483,7 +23403,7 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredBinaryData<
         ._flaxSuper_loadStructuredBinaryData<_Method0>(
           values["key"] as String,
           values["parser"]
-              as api6.FutureOr<_Method0> Function(api3.ByteData data),
+              as api7.FutureOr<_Method0> Function(api3.ByteData data),
         );
   }
 
@@ -24492,16 +23412,16 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredBinaryData<
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Method0>;
+        as api7.FutureOr<_Method0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Method0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Method0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Method0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Method0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
@@ -24517,7 +23437,7 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredBinaryData<
       ),
       FlaxParameter(
         "parser",
-        types.define<api6.FutureOr<_Method0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -24530,12 +23450,12 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Method0> Function(api3.ByteData data)
+                        api7.FutureOr<_Method0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -24556,6 +23476,11 @@ Function
 _flaxGeneric_OptionalMethodChannel_invokeMethod<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Object receiver, Map<String, Object?> values) {
+        if (!values.containsKey("arguments")) {
+          return (receiver as api.OptionalMethodChannel).invokeMethod<_Method0>(
+            values["method"] as String,
+          );
+        }
         return (receiver as api.OptionalMethodChannel).invokeMethod<_Method0>(
           values["method"] as String,
           values["arguments"],
@@ -24576,7 +23501,7 @@ _flaxGeneric_OptionalMethodChannel_invokeMethod<_Method0 extends Object?>() =>
             FlaxTypeRef("any", nullable: true),
             required: false,
             defaultValue: null,
-            omitWhenAbsent: false,
+            omitWhenAbsent: true,
           ),
         ],
         types.ref<Future<_Method0?>>(),
@@ -24587,6 +23512,10 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeMethod<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as _OptionalMethodChannelProxy)
+          ._flaxSuper_invokeMethod<_Method0>(values["method"] as String);
+    }
     return (receiver as _OptionalMethodChannelProxy)
         ._flaxSuper_invokeMethod<_Method0>(
           values["method"] as String,
@@ -24608,7 +23537,7 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeMethod<
         FlaxTypeRef("any", nullable: true),
         required: false,
         defaultValue: null,
-        omitWhenAbsent: false,
+        omitWhenAbsent: true,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -24619,6 +23548,11 @@ Function _flaxGeneric_OptionalMethodChannel_invokeListMethod<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as api.OptionalMethodChannel).invokeListMethod<_Method0>(
+        values["method"] as String,
+      );
+    }
     return (receiver as api.OptionalMethodChannel).invokeListMethod<_Method0>(
       values["method"] as String,
       values["arguments"],
@@ -24639,7 +23573,7 @@ Function _flaxGeneric_OptionalMethodChannel_invokeListMethod<
         FlaxTypeRef("any", nullable: true),
         required: false,
         defaultValue: null,
-        omitWhenAbsent: false,
+        omitWhenAbsent: true,
       ),
     ],
     types.ref<Future<List<_Method0>?>>(),
@@ -24650,6 +23584,10 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeListMethod<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as _OptionalMethodChannelProxy)
+          ._flaxSuper_invokeListMethod<_Method0>(values["method"] as String);
+    }
     return (receiver as _OptionalMethodChannelProxy)
         ._flaxSuper_invokeListMethod<_Method0>(
           values["method"] as String,
@@ -24671,7 +23609,7 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeListMethod<
         FlaxTypeRef("any", nullable: true),
         required: false,
         defaultValue: null,
-        omitWhenAbsent: false,
+        omitWhenAbsent: true,
       ),
     ],
     types.ref<Future<List<_Method0>?>>(),
@@ -24683,6 +23621,10 @@ Function _flaxGeneric_OptionalMethodChannel_invokeMapMethod<
   _Method1 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as api.OptionalMethodChannel)
+          .invokeMapMethod<_Method0, _Method1>(values["method"] as String);
+    }
     return (receiver as api.OptionalMethodChannel)
         .invokeMapMethod<_Method0, _Method1>(
           values["method"] as String,
@@ -24704,7 +23646,7 @@ Function _flaxGeneric_OptionalMethodChannel_invokeMapMethod<
         FlaxTypeRef("any", nullable: true),
         required: false,
         defaultValue: null,
-        omitWhenAbsent: false,
+        omitWhenAbsent: true,
       ),
     ],
     types.ref<Future<Map<_Method0, _Method1>?>>(),
@@ -24716,6 +23658,12 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeMapMethod<
   _Method1 extends Object?
 >() => (FlaxDartTypes types) {
   Object? invoke(Object receiver, Map<String, Object?> values) {
+    if (!values.containsKey("arguments")) {
+      return (receiver as _OptionalMethodChannelProxy)
+          ._flaxSuper_invokeMapMethod<_Method0, _Method1>(
+            values["method"] as String,
+          );
+    }
     return (receiver as _OptionalMethodChannelProxy)
         ._flaxSuper_invokeMapMethod<_Method0, _Method1>(
           values["method"] as String,
@@ -24737,7 +23685,7 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeMapMethod<
         FlaxTypeRef("any", nullable: true),
         required: false,
         defaultValue: null,
-        omitWhenAbsent: false,
+        omitWhenAbsent: true,
       ),
     ],
     types.ref<Future<Map<_Method0, _Method1>?>>(),
@@ -24897,7 +23845,7 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredBinaryData<
         .loadStructuredBinaryData<_Method0>(
           values["key"] as String,
           values["parser"]
-              as api6.FutureOr<_Method0> Function(api3.ByteData data),
+              as api7.FutureOr<_Method0> Function(api3.ByteData data),
         );
   }
 
@@ -24906,16 +23854,16 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredBinaryData<
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Method0>;
+        as api7.FutureOr<_Method0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Method0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Method0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Method0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Method0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
@@ -24931,7 +23879,7 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredBinaryData<
       ),
       FlaxParameter(
         "parser",
-        types.define<api6.FutureOr<_Method0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -24944,12 +23892,12 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Method0> Function(api3.ByteData data)
+                        api7.FutureOr<_Method0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -24974,7 +23922,7 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredBinaryData<
         ._flaxSuper_loadStructuredBinaryData<_Method0>(
           values["key"] as String,
           values["parser"]
-              as api6.FutureOr<_Method0> Function(api3.ByteData data),
+              as api7.FutureOr<_Method0> Function(api3.ByteData data),
         );
   }
 
@@ -24983,16 +23931,16 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredBinaryData<
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Method0>;
+        as api7.FutureOr<_Method0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Method0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Method0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Method0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Method0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
@@ -25008,7 +23956,7 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredBinaryData<
       ),
       FlaxParameter(
         "parser",
-        types.define<api6.FutureOr<_Method0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -25021,12 +23969,12 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredBinaryData<
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Method0> Function(api3.ByteData data)
+                        api7.FutureOr<_Method0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -25123,9 +24071,10 @@ _flaxGeneric_ServicesBinding_scheduleTask<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Object receiver, Map<String, Object?> values) {
         return (receiver as api.ServicesBinding).scheduleTask<_Method0>(
-          values["task"] as api6.FutureOr<_Method0> Function(),
-          values["priority"] as api8.Priority,
+          values["task"] as api7.FutureOr<_Method0> Function(),
+          values["priority"] as api9.Priority,
           debugLabel: values["debugLabel"] as String?,
+          flow: values["flow"] as api6.Flow?,
         );
       }
 
@@ -25133,32 +24082,32 @@ _flaxGeneric_ServicesBinding_scheduleTask<_Method0 extends Object?>() =>
         final positional = <Object?>[];
         final named = <String, Object?>{};
         return _flaxBridgeCallback.call(positional, named)
-            as api6.FutureOr<_Method0>;
+            as api7.FutureOr<_Method0>;
       };
       bool _callback0Matches(Object value) =>
-          value is api6.FutureOr<_Method0> Function();
+          value is api7.FutureOr<_Method0> Function();
       Object? _callback0Invoke(
         Object function,
         List<Object?> positional,
         Map<String, Object?> named,
       ) {
-        return (function as api6.FutureOr<_Method0> Function())();
+        return (function as api7.FutureOr<_Method0> Function())();
       }
 
       return FlaxInstanceMethod(
         [
           FlaxParameter(
             "task",
-            types.define<api6.FutureOr<_Method0> Function()>(
+            types.define<api7.FutureOr<_Method0> Function()>(
               FlaxTypeRef(
                 "callback",
                 nullable: false,
                 callback: FlaxCallbackBinding(
                   [],
-                  types.ref<api6.FutureOr<_Method0>>(withinCallback: true),
+                  types.ref<api7.FutureOr<_Method0>>(withinCallback: true),
                   _callback0,
                   id:
-                      types.key<api6.FutureOr<_Method0> Function()>() +
+                      types.key<api7.FutureOr<_Method0> Function()>() +
                       ":callback:<>()->futureOr:[parameter:]",
                   invoke: _callback0Invoke,
                   matches: _callback0Matches,
@@ -25183,6 +24132,17 @@ _flaxGeneric_ServicesBinding_scheduleTask<_Method0 extends Object?>() =>
             defaultValue: null,
             omitWhenAbsent: false,
           ),
+          FlaxParameter(
+            "flow",
+            FlaxTypeRef(
+              "object",
+              id: "flax.core/sdk_dependencies#type:Flow",
+              nullable: true,
+            ),
+            required: false,
+            defaultValue: null,
+            omitWhenAbsent: false,
+          ),
         ],
         types.ref<Future<_Method0>>(),
         invoke,
@@ -25198,14 +24158,14 @@ const _flaxDartShapes = <FlaxDartShapeTemplate>[
 ];
 Function _flaxShape0<_Shape0, _Shape1>() =>
     (FlaxDartTypes types, bool withinCallback) {
-      return types.define<_Shape1 Function(_Shape0 position)>(
+      return types.define<_Shape1 Function(_Shape0 data)>(
         FlaxTypeRef(
           "callback",
           nullable: false,
           callback: FlaxCallbackBinding(
             [
               FlaxCallbackParameter(
-                "position",
+                "data",
                 types.ref<_Shape0>(withinCallback: true),
                 required: true,
                 positional: true,
@@ -25214,8 +24174,8 @@ Function _flaxShape0<_Shape0, _Shape1>() =>
             types.ref<_Shape1>(withinCallback: true),
             FlaxCallbackAdapters.wrap1<_Shape0, _Shape1>,
             id:
-                types.key<_Shape1 Function(_Shape0 position)>() +
-                ":callback:<>(p:r:position:parameter:)->parameter:",
+                types.key<_Shape1 Function(_Shape0 data)>() +
+                ":callback:<>(p:r:data:parameter:)->parameter:",
             invoke: FlaxCallbackAdapters.invoke1<_Shape0, _Shape1>,
             matches: FlaxCallbackAdapters.matches1<_Shape0, _Shape1>,
           ),
@@ -25313,40 +24273,44 @@ Function _flaxShape2<_Shape0, _Shape1, _Shape2>() =>
         withinCallback: withinCallback,
       );
     };
-Object _callback0(FlaxCallback _flaxBridgeCallback) => (String p0) {
+Object _callback0(FlaxCallback _flaxBridgeCallback) => (api3.ByteData? p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  final result = _flaxBridgeCallback.call(positional, named);
+  if (result == null) return null;
+  return (result as Future<Object?>).then<api3.ByteData?>(
+    (value) => value as api3.ByteData?,
+  );
+};
+bool _callback0Matches(Object value) =>
+    value is Future<api3.ByteData?>? Function(api3.ByteData? message);
+Object? _callback0Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as Future<api3.ByteData?>? Function(api3.ByteData? message))(
+    positional[0] as api3.ByteData?,
+  );
+}
+
+Object _callback1(FlaxCallback _flaxBridgeCallback) => (api.MethodCall p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
       .then<Object?>((value) => value);
 };
-bool _callback0Matches(Object value) =>
-    value is Future<Object?> Function(String value);
-Object? _callback0Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<Object?> Function(String value))(
-    positional[0] as String,
-  );
-}
-
-Object _callback1(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<Object?>;
-};
 bool _callback1Matches(Object value) =>
-    value is api6.FutureOr<Object?> Function(api3.ByteData data);
+    value is Future<Object?> Function(api.MethodCall call);
 Object? _callback1Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api6.FutureOr<Object?> Function(api3.ByteData data))(
-    positional[0] as api3.ByteData,
+  return (function as Future<Object?> Function(api.MethodCall call))(
+    positional[0] as api.MethodCall,
   );
 }
 
@@ -25369,7 +24333,44 @@ Object? _callback2Invoke(
   );
 }
 
-FlaxCallbackBinding _callback3Types<_Callback0 extends Object?>(
+Object _callback3(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<Object?>;
+};
+bool _callback3Matches(Object value) =>
+    value is api7.FutureOr<Object?> Function(api3.ByteData data);
+Object? _callback3Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as api7.FutureOr<Object?> Function(api3.ByteData data))(
+    positional[0] as api3.ByteData,
+  );
+}
+
+Object _callback4(FlaxCallback _flaxBridgeCallback) => (String p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
+      .then<Object?>((value) => value);
+};
+bool _callback4Matches(Object value) =>
+    value is Future<Object?> Function(String value);
+Object? _callback4Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as Future<Object?> Function(String value))(
+    positional[0] as String,
+  );
+}
+
+FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
   Object _callback0(FlaxCallback _flaxBridgeCallback) => (String p0) {
@@ -25475,7 +24476,7 @@ FlaxCallbackBinding _callback3Types<_Callback0 extends Object?>(
   );
 }
 
-Object _callback3(FlaxCallback _flaxBridgeCallback) =>
+Object _callback5(FlaxCallback _flaxBridgeCallback) =>
     <T extends Object?>(String p0, Future<T> Function(String value) p1) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -25484,13 +24485,13 @@ Object _callback3(FlaxCallback _flaxBridgeCallback) =>
       return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
           .then<T>((value) => _genericCallbackResult<T>(value));
     };
-bool _callback3Matches(Object value) =>
+bool _callback5Matches(Object value) =>
     value
         is Future<T> Function<T extends Object?>(
           String key,
           Future<T> Function(String value) parser,
         );
-Object? _callback3Invoke(
+Object? _callback5Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -25505,25 +24506,25 @@ Object? _callback3Invoke(
   );
 }
 
-Object _callback4(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
+Object _callback6(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<Object?>;
+  return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<Object?>;
 };
-bool _callback4Matches(Object value) =>
-    value is api6.FutureOr<Object?> Function(api3.ByteData data);
-Object? _callback4Invoke(
+bool _callback6Matches(Object value) =>
+    value is api7.FutureOr<Object?> Function(api3.ByteData data);
+Object? _callback6Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api6.FutureOr<Object?> Function(api3.ByteData data))(
+  return (function as api7.FutureOr<Object?> Function(api3.ByteData data))(
     positional[0] as api3.ByteData,
   );
 }
 
-FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
+FlaxCallbackBinding _callback7Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
   Object _callback0(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
@@ -25531,22 +24532,22 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Callback0>;
+        as api7.FutureOr<_Callback0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Callback0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Callback0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Callback0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Callback0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
-      (String p0, api6.FutureOr<_Callback0> Function(api3.ByteData data) p1) {
+      (String p0, api7.FutureOr<_Callback0> Function(api3.ByteData data) p1) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
@@ -25558,7 +24559,7 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
       value
           is Future<_Callback0> Function(
             String key,
-            api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+            api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
           );
   Object? _callback1Invoke(
     Object function,
@@ -25568,10 +24569,10 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
     return (function
         as Future<_Callback0> Function(
           String key,
-          api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+          api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
         ))(
       positional[0] as String,
-      positional[1] as api6.FutureOr<_Callback0> Function(api3.ByteData data),
+      positional[1] as api7.FutureOr<_Callback0> Function(api3.ByteData data),
     );
   }
 
@@ -25585,7 +24586,7 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "parser",
-        types.define<api6.FutureOr<_Callback0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Callback0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -25598,12 +24599,12 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Callback0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Callback0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Callback0> Function(api3.ByteData data)
+                        api7.FutureOr<_Callback0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -25623,7 +24624,7 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
             .key<
               Future<_Callback0> Function(
                 String key,
-                api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+                api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
               )
             >() +
         ":callback:<>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[parameter:])->future:[parameter:]",
@@ -25632,10 +24633,10 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
   );
 }
 
-Object _callback5(FlaxCallback _flaxBridgeCallback) =>
+Object _callback7(FlaxCallback _flaxBridgeCallback) =>
     <T extends Object?>(
       String p0,
-      api6.FutureOr<T> Function(api3.ByteData data) p1,
+      api7.FutureOr<T> Function(api3.ByteData data) p1,
     ) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -25644,13 +24645,13 @@ Object _callback5(FlaxCallback _flaxBridgeCallback) =>
       return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
           .then<T>((value) => _genericCallbackResult<T>(value));
     };
-bool _callback5Matches(Object value) =>
+bool _callback7Matches(Object value) =>
     value
         is Future<T> Function<T extends Object?>(
           String key,
-          api6.FutureOr<T> Function(api3.ByteData data) parser,
+          api7.FutureOr<T> Function(api3.ByteData data) parser,
         );
-Object? _callback5Invoke(
+Object? _callback7Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -25658,50 +24659,11 @@ Object? _callback5Invoke(
   return (function
       as Future<T> Function<T extends Object?>(
         String key,
-        api6.FutureOr<T> Function(api3.ByteData data) parser,
+        api7.FutureOr<T> Function(api3.ByteData data) parser,
       ))<Object?>(
     positional[0] as String,
-    positional[1] as api6.FutureOr<Object?> Function(api3.ByteData data),
+    positional[1] as api7.FutureOr<Object?> Function(api3.ByteData data),
   );
-}
-
-Object _callback6(FlaxCallback _flaxBridgeCallback) => (api3.ByteData? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  final result = _flaxBridgeCallback.call(positional, named);
-  if (result == null) return null;
-  return (result as Future<Object?>).then<api3.ByteData?>(
-    (value) => value as api3.ByteData?,
-  );
-};
-bool _callback6Matches(Object value) =>
-    value is Future<api3.ByteData?>? Function(api3.ByteData? message);
-Object? _callback6Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<api3.ByteData?>? Function(api3.ByteData? message))(
-    positional[0] as api3.ByteData?,
-  );
-}
-
-Object _callback7(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<Object?>((value) => value);
-};
-bool _callback7Matches(Object value) =>
-    value is Future<Object?> Function(Object? message);
-Object? _callback7Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<Object?> Function(Object? message))(positional[0]);
 }
 
 Object _callback8(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
@@ -25721,7 +24683,7 @@ Object? _callback8Invoke(
   return (function as Future<Object?> Function(Object? message))(positional[0]);
 }
 
-Object _callback9(FlaxCallback _flaxBridgeCallback) => (String p0) {
+Object _callback9(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
@@ -25729,8 +24691,25 @@ Object _callback9(FlaxCallback _flaxBridgeCallback) => (String p0) {
       .then<Object?>((value) => value);
 };
 bool _callback9Matches(Object value) =>
-    value is Future<Object?> Function(String value);
+    value is Future<Object?> Function(Object? message);
 Object? _callback9Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as Future<Object?> Function(Object? message))(positional[0]);
+}
+
+Object _callback10(FlaxCallback _flaxBridgeCallback) => (String p0) {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  positional.add(p0);
+  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
+      .then<Object?>((value) => value);
+};
+bool _callback10Matches(Object value) =>
+    value is Future<Object?> Function(String value);
+Object? _callback10Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -25740,25 +24719,25 @@ Object? _callback9Invoke(
   );
 }
 
-Object _callback10(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
+Object _callback11(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<Object?>;
+  return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<Object?>;
 };
-bool _callback10Matches(Object value) =>
-    value is api6.FutureOr<Object?> Function(api3.ByteData data);
-Object? _callback10Invoke(
+bool _callback11Matches(Object value) =>
+    value is api7.FutureOr<Object?> Function(api3.ByteData data);
+Object? _callback11Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api6.FutureOr<Object?> Function(api3.ByteData data))(
+  return (function as api7.FutureOr<Object?> Function(api3.ByteData data))(
     positional[0] as api3.ByteData,
   );
 }
 
-FlaxCallbackBinding _callback11Types<_Callback0 extends Object?>(
+FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
   Object _callback0(FlaxCallback _flaxBridgeCallback) => (String p0) {
@@ -25864,7 +24843,7 @@ FlaxCallbackBinding _callback11Types<_Callback0 extends Object?>(
   );
 }
 
-Object _callback11(FlaxCallback _flaxBridgeCallback) =>
+Object _callback12(FlaxCallback _flaxBridgeCallback) =>
     <T extends Object?>(String p0, Future<T> Function(String value) p1) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -25873,13 +24852,13 @@ Object _callback11(FlaxCallback _flaxBridgeCallback) =>
       return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
           .then<T>((value) => _genericCallbackResult<T>(value));
     };
-bool _callback11Matches(Object value) =>
+bool _callback12Matches(Object value) =>
     value
         is Future<T> Function<T extends Object?>(
           String key,
           Future<T> Function(String value) parser,
         );
-Object? _callback11Invoke(
+Object? _callback12Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -25894,7 +24873,7 @@ Object? _callback11Invoke(
   );
 }
 
-FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
+FlaxCallbackBinding _callback13Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
   Object _callback0(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
@@ -25902,22 +24881,22 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Callback0>;
+        as api7.FutureOr<_Callback0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Callback0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Callback0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Callback0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Callback0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
-      (String p0, api6.FutureOr<_Callback0> Function(api3.ByteData data) p1) {
+      (String p0, api7.FutureOr<_Callback0> Function(api3.ByteData data) p1) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
@@ -25929,7 +24908,7 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
       value
           is Future<_Callback0> Function(
             String key,
-            api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+            api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
           );
   Object? _callback1Invoke(
     Object function,
@@ -25939,10 +24918,10 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
     return (function
         as Future<_Callback0> Function(
           String key,
-          api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+          api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
         ))(
       positional[0] as String,
-      positional[1] as api6.FutureOr<_Callback0> Function(api3.ByteData data),
+      positional[1] as api7.FutureOr<_Callback0> Function(api3.ByteData data),
     );
   }
 
@@ -25956,7 +24935,7 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "parser",
-        types.define<api6.FutureOr<_Callback0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Callback0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -25969,12 +24948,12 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Callback0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Callback0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Callback0> Function(api3.ByteData data)
+                        api7.FutureOr<_Callback0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -25994,7 +24973,7 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
             .key<
               Future<_Callback0> Function(
                 String key,
-                api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+                api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
               )
             >() +
         ":callback:<>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[parameter:])->future:[parameter:]",
@@ -26003,10 +24982,10 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
   );
 }
 
-Object _callback12(FlaxCallback _flaxBridgeCallback) =>
+Object _callback13(FlaxCallback _flaxBridgeCallback) =>
     <T extends Object?>(
       String p0,
-      api6.FutureOr<T> Function(api3.ByteData data) p1,
+      api7.FutureOr<T> Function(api3.ByteData data) p1,
     ) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -26015,13 +24994,13 @@ Object _callback12(FlaxCallback _flaxBridgeCallback) =>
       return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
           .then<T>((value) => _genericCallbackResult<T>(value));
     };
-bool _callback12Matches(Object value) =>
+bool _callback13Matches(Object value) =>
     value
         is Future<T> Function<T extends Object?>(
           String key,
-          api6.FutureOr<T> Function(api3.ByteData data) parser,
+          api7.FutureOr<T> Function(api3.ByteData data) parser,
         );
-Object? _callback12Invoke(
+Object? _callback13Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -26029,29 +25008,10 @@ Object? _callback12Invoke(
   return (function
       as Future<T> Function<T extends Object?>(
         String key,
-        api6.FutureOr<T> Function(api3.ByteData data) parser,
+        api7.FutureOr<T> Function(api3.ByteData data) parser,
       ))<Object?>(
     positional[0] as String,
-    positional[1] as api6.FutureOr<Object?> Function(api3.ByteData data),
-  );
-}
-
-Object _callback13(FlaxCallback _flaxBridgeCallback) => (api.MethodCall p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<Object?>((value) => value);
-};
-bool _callback13Matches(Object value) =>
-    value is Future<Object?> Function(api.MethodCall call);
-Object? _callback13Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<Object?> Function(api.MethodCall call))(
-    positional[0] as api.MethodCall,
+    positional[1] as api7.FutureOr<Object?> Function(api3.ByteData data),
   );
 }
 
@@ -26409,16 +25369,16 @@ Object _callback18(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<Object?>;
+  return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<Object?>;
 };
 bool _callback18Matches(Object value) =>
-    value is api6.FutureOr<Object?> Function(api3.ByteData data);
+    value is api7.FutureOr<Object?> Function(api3.ByteData data);
 Object? _callback18Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api6.FutureOr<Object?> Function(api3.ByteData data))(
+  return (function as api7.FutureOr<Object?> Function(api3.ByteData data))(
     positional[0] as api3.ByteData,
   );
 }
@@ -26567,22 +25527,22 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Callback0>;
+        as api7.FutureOr<_Callback0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Callback0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Callback0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Callback0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Callback0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
-      (String p0, api6.FutureOr<_Callback0> Function(api3.ByteData data) p1) {
+      (String p0, api7.FutureOr<_Callback0> Function(api3.ByteData data) p1) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
@@ -26594,7 +25554,7 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
       value
           is Future<_Callback0> Function(
             String key,
-            api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+            api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
           );
   Object? _callback1Invoke(
     Object function,
@@ -26604,10 +25564,10 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
     return (function
         as Future<_Callback0> Function(
           String key,
-          api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+          api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
         ))(
       positional[0] as String,
-      positional[1] as api6.FutureOr<_Callback0> Function(api3.ByteData data),
+      positional[1] as api7.FutureOr<_Callback0> Function(api3.ByteData data),
     );
   }
 
@@ -26621,7 +25581,7 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "parser",
-        types.define<api6.FutureOr<_Callback0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Callback0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -26634,12 +25594,12 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Callback0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Callback0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Callback0> Function(api3.ByteData data)
+                        api7.FutureOr<_Callback0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -26659,7 +25619,7 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
             .key<
               Future<_Callback0> Function(
                 String key,
-                api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+                api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
               )
             >() +
         ":callback:<>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[parameter:])->future:[parameter:]",
@@ -26671,7 +25631,7 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
 Object _callback20(FlaxCallback _flaxBridgeCallback) =>
     <T extends Object?>(
       String p0,
-      api6.FutureOr<T> Function(api3.ByteData data) p1,
+      api7.FutureOr<T> Function(api3.ByteData data) p1,
     ) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -26684,7 +25644,7 @@ bool _callback20Matches(Object value) =>
     value
         is Future<T> Function<T extends Object?>(
           String key,
-          api6.FutureOr<T> Function(api3.ByteData data) parser,
+          api7.FutureOr<T> Function(api3.ByteData data) parser,
         );
 Object? _callback20Invoke(
   Object function,
@@ -26694,10 +25654,10 @@ Object? _callback20Invoke(
   return (function
       as Future<T> Function<T extends Object?>(
         String key,
-        api6.FutureOr<T> Function(api3.ByteData data) parser,
+        api7.FutureOr<T> Function(api3.ByteData data) parser,
       ))<Object?>(
     positional[0] as String,
-    positional[1] as api6.FutureOr<Object?> Function(api3.ByteData data),
+    positional[1] as api7.FutureOr<Object?> Function(api3.ByteData data),
   );
 }
 
@@ -27055,16 +26015,16 @@ Object _callback25(FlaxCallback _flaxBridgeCallback) => (api3.ByteData p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<Object?>;
+  return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<Object?>;
 };
 bool _callback25Matches(Object value) =>
-    value is api6.FutureOr<Object?> Function(api3.ByteData data);
+    value is api7.FutureOr<Object?> Function(api3.ByteData data);
 Object? _callback25Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api6.FutureOr<Object?> Function(api3.ByteData data))(
+  return (function as api7.FutureOr<Object?> Function(api3.ByteData data))(
     positional[0] as api3.ByteData,
   );
 }
@@ -27213,22 +26173,22 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
     final named = <String, Object?>{};
     positional.add(p0);
     return _flaxBridgeCallback.call(positional, named)
-        as api6.FutureOr<_Callback0>;
+        as api7.FutureOr<_Callback0>;
   };
   bool _callback0Matches(Object value) =>
-      value is api6.FutureOr<_Callback0> Function(api3.ByteData data);
+      value is api7.FutureOr<_Callback0> Function(api3.ByteData data);
   Object? _callback0Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
   ) {
-    return (function as api6.FutureOr<_Callback0> Function(api3.ByteData data))(
+    return (function as api7.FutureOr<_Callback0> Function(api3.ByteData data))(
       positional[0] as api3.ByteData,
     );
   }
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
-      (String p0, api6.FutureOr<_Callback0> Function(api3.ByteData data) p1) {
+      (String p0, api7.FutureOr<_Callback0> Function(api3.ByteData data) p1) {
         final positional = <Object?>[];
         final named = <String, Object?>{};
         positional.add(p0);
@@ -27240,7 +26200,7 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
       value
           is Future<_Callback0> Function(
             String key,
-            api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+            api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
           );
   Object? _callback1Invoke(
     Object function,
@@ -27250,10 +26210,10 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
     return (function
         as Future<_Callback0> Function(
           String key,
-          api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+          api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
         ))(
       positional[0] as String,
-      positional[1] as api6.FutureOr<_Callback0> Function(api3.ByteData data),
+      positional[1] as api7.FutureOr<_Callback0> Function(api3.ByteData data),
     );
   }
 
@@ -27267,7 +26227,7 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "parser",
-        types.define<api6.FutureOr<_Callback0> Function(api3.ByteData data)>(
+        types.define<api7.FutureOr<_Callback0> Function(api3.ByteData data)>(
           FlaxTypeRef(
             "callback",
             nullable: false,
@@ -27280,12 +26240,12 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
                   positional: true,
                 ),
               ],
-              types.ref<api6.FutureOr<_Callback0>>(withinCallback: true),
+              types.ref<api7.FutureOr<_Callback0>>(withinCallback: true),
               _callback0,
               id:
                   types
                       .key<
-                        api6.FutureOr<_Callback0> Function(api3.ByteData data)
+                        api7.FutureOr<_Callback0> Function(api3.ByteData data)
                       >() +
                   ":callback:<>(p:r:data:ByteData:)->futureOr:[parameter:]",
               invoke: _callback0Invoke,
@@ -27305,7 +26265,7 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
             .key<
               Future<_Callback0> Function(
                 String key,
-                api6.FutureOr<_Callback0> Function(api3.ByteData data) parser,
+                api7.FutureOr<_Callback0> Function(api3.ByteData data) parser,
               )
             >() +
         ":callback:<>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[parameter:])->future:[parameter:]",
@@ -27317,7 +26277,7 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
 Object _callback27(FlaxCallback _flaxBridgeCallback) =>
     <T extends Object?>(
       String p0,
-      api6.FutureOr<T> Function(api3.ByteData data) p1,
+      api7.FutureOr<T> Function(api3.ByteData data) p1,
     ) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -27330,7 +26290,7 @@ bool _callback27Matches(Object value) =>
     value
         is Future<T> Function<T extends Object?>(
           String key,
-          api6.FutureOr<T> Function(api3.ByteData data) parser,
+          api7.FutureOr<T> Function(api3.ByteData data) parser,
         );
 Object? _callback27Invoke(
   Object function,
@@ -27340,15 +26300,15 @@ Object? _callback27Invoke(
   return (function
       as Future<T> Function<T extends Object?>(
         String key,
-        api6.FutureOr<T> Function(api3.ByteData data) parser,
+        api7.FutureOr<T> Function(api3.ByteData data) parser,
       ))<Object?>(
     positional[0] as String,
-    positional[1] as api6.FutureOr<Object?> Function(api3.ByteData data),
+    positional[1] as api7.FutureOr<Object?> Function(api3.ByteData data),
   );
 }
 
 Object _callback28(FlaxCallback _flaxBridgeCallback) =>
-    ({required int priority, required api8.SchedulerBinding scheduler}) {
+    ({required int priority, required api9.SchedulerBinding scheduler}) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       named["priority"] = priority;
@@ -27359,7 +26319,7 @@ bool _callback28Matches(Object value) =>
     value
         is bool Function({
           required int priority,
-          required api8.SchedulerBinding scheduler,
+          required api9.SchedulerBinding scheduler,
         });
 Object? _callback28Invoke(
   Object function,
@@ -27369,10 +26329,10 @@ Object? _callback28Invoke(
   return (function
       as bool Function({
         required int priority,
-        required api8.SchedulerBinding scheduler,
+        required api9.SchedulerBinding scheduler,
       }))(
     priority: named["priority"] as int,
-    scheduler: named["scheduler"] as api8.SchedulerBinding,
+    scheduler: named["scheduler"] as api9.SchedulerBinding,
   );
 }
 
@@ -27518,16 +26478,16 @@ Object? _callback36Invoke(
 Object _callback37(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<Object?>;
+  return _flaxBridgeCallback.call(positional, named) as api7.FutureOr<Object?>;
 };
 bool _callback37Matches(Object value) =>
-    value is api6.FutureOr<Object?> Function();
+    value is api7.FutureOr<Object?> Function();
 Object? _callback37Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api6.FutureOr<Object?> Function())();
+  return (function as api7.FutureOr<Object?> Function())();
 }
 
 Object _callback38(FlaxCallback _flaxBridgeCallback) => (bool p0) {
@@ -27597,80 +26557,80 @@ Object _collection13Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.SuggestionSpan>();
 bool _collection13Matches(Object value) =>
     value is Iterable<api.SuggestionSpan>;
-Object _collection14Create() => <api.TextEditingDelta>[];
-bool _collection14Matches(Object value) => value is List<api.TextEditingDelta>;
-Object _collection15Create() => <api.TextEditingDelta>[];
-Object _collection15Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.TextEditingDelta>();
-bool _collection15Matches(Object value) =>
-    value is Iterable<api.TextEditingDelta>;
-Object _collection16Create() => <api.PhysicalKeyboardKey>{};
-bool _collection16Matches(Object value) =>
+Object _collection14Create() => <api.PhysicalKeyboardKey>{};
+bool _collection14Matches(Object value) =>
     value is Set<api.PhysicalKeyboardKey>;
-Object _collection17Create() => <api.PhysicalKeyboardKey>[];
-Object _collection17Restore(Object value) =>
+Object _collection15Create() => <api.PhysicalKeyboardKey>[];
+Object _collection15Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.PhysicalKeyboardKey>();
-bool _collection17Matches(Object value) =>
+bool _collection15Matches(Object value) =>
     value is Iterable<api.PhysicalKeyboardKey>;
-Object _collection18Create() => <api.LogicalKeyboardKey>{};
-bool _collection18Matches(Object value) => value is Set<api.LogicalKeyboardKey>;
-Object _collection19Create() => <api.LogicalKeyboardKey>[];
-Object _collection19Restore(Object value) =>
+Object _collection16Create() => <api.LogicalKeyboardKey>{};
+bool _collection16Matches(Object value) => value is Set<api.LogicalKeyboardKey>;
+Object _collection17Create() => <api.LogicalKeyboardKey>[];
+Object _collection17Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.LogicalKeyboardKey>();
-bool _collection19Matches(Object value) =>
+bool _collection17Matches(Object value) =>
     value is Iterable<api.LogicalKeyboardKey>;
-Object _collection20Create() => <api.KeyboardLockMode>{};
-bool _collection20Matches(Object value) => value is Set<api.KeyboardLockMode>;
-Object _collection21Create() => <api.KeyboardLockMode>[];
-Object _collection21Restore(Object value) =>
+Object _collection18Create() => <api.KeyboardLockMode>{};
+bool _collection18Matches(Object value) => value is Set<api.KeyboardLockMode>;
+Object _collection19Create() => <api.KeyboardLockMode>[];
+Object _collection19Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.KeyboardLockMode>();
-bool _collection21Matches(Object value) =>
+bool _collection19Matches(Object value) =>
     value is Iterable<api.KeyboardLockMode>;
-Object _collection22Create() => <api.KeyEvent>[];
-bool _collection22Matches(Object value) => value is List<api.KeyEvent>;
-Object _collection23Create() => <api.KeyEvent>[];
-Object _collection23Restore(Object value) =>
+Object _collection20Create() => <api.KeyEvent>[];
+bool _collection20Matches(Object value) => value is List<api.KeyEvent>;
+Object _collection21Create() => <api.KeyEvent>[];
+Object _collection21Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.KeyEvent>();
-bool _collection23Matches(Object value) => value is Iterable<api.KeyEvent>;
-Object _collection24Create() => <Object?>[];
-bool _collection24Matches(Object value) => value is List<Object?>;
-Object _collection25Create() => <Object?>[];
-Object _collection25Restore(Object value) =>
-    (value as Iterable<Object?>).cast<Object?>();
-bool _collection25Matches(Object value) => value is Iterable<Object?>;
-Object _collection26Create() => <Object?, Object?>{};
-bool _collection26Matches(Object value) => value is Map<Object?, Object?>;
-Object _collection27Create() => <api.MouseCursor>[];
-Object _collection27Restore(Object value) =>
+bool _collection21Matches(Object value) => value is Iterable<api.KeyEvent>;
+Object _collection22Create() => <api.MouseCursor>[];
+Object _collection22Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.MouseCursor>();
-bool _collection27Matches(Object value) => value is Iterable<api.MouseCursor>;
-Object _collection28Create() => <String?, Object?>{};
-bool _collection28Matches(Object value) => value is Map<String?, Object?>;
-Object _collection29Create() => <api.ModifierKey, api.KeyboardSide>{};
-bool _collection29Matches(Object value) =>
+bool _collection22Matches(Object value) => value is Iterable<api.MouseCursor>;
+Object _collection23Create() => <api.ModifierKey, api.KeyboardSide>{};
+bool _collection23Matches(Object value) =>
     value is Map<api.ModifierKey, api.KeyboardSide>;
-Object _collection30Create() => <String, String>{};
-bool _collection30Matches(Object value) => value is Map<String, String>;
-Object _collection31Create() => <api1.FrameTiming>[];
-bool _collection31Matches(Object value) => value is List<api1.FrameTiming>;
-Object _collection32Create() => <api1.FrameTiming>[];
-Object _collection32Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api1.FrameTiming>();
-bool _collection32Matches(Object value) => value is Iterable<api1.FrameTiming>;
-Object _collection33Create() => <api.IOSSystemContextMenuItemData>[];
-bool _collection33Matches(Object value) =>
+Object _collection24Create() => <api.IOSSystemContextMenuItemData>[];
+bool _collection24Matches(Object value) =>
     value is List<api.IOSSystemContextMenuItemData>;
-Object _collection34Create() => <api.IOSSystemContextMenuItemData>[];
-Object _collection34Restore(Object value) =>
+Object _collection25Create() => <api.IOSSystemContextMenuItemData>[];
+Object _collection25Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.IOSSystemContextMenuItemData>();
-bool _collection34Matches(Object value) =>
+bool _collection25Matches(Object value) =>
     value is Iterable<api.IOSSystemContextMenuItemData>;
-Object _collection35Create() => <api1.Locale>[];
-bool _collection35Matches(Object value) => value is List<api1.Locale>;
-Object _collection36Create() => <api1.Locale>[];
-Object _collection36Restore(Object value) =>
+Object _collection26Create() => <api1.Locale>[];
+bool _collection26Matches(Object value) => value is List<api1.Locale>;
+Object _collection27Create() => <api1.Locale>[];
+Object _collection27Restore(Object value) =>
     (value as Iterable<Object?>).cast<api1.Locale>();
-bool _collection36Matches(Object value) => value is Iterable<api1.Locale>;
+bool _collection27Matches(Object value) => value is Iterable<api1.Locale>;
+Object _collection28Create() => <api.TextEditingDelta>[];
+bool _collection28Matches(Object value) => value is List<api.TextEditingDelta>;
+Object _collection29Create() => <api.TextEditingDelta>[];
+Object _collection29Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api.TextEditingDelta>();
+bool _collection29Matches(Object value) =>
+    value is Iterable<api.TextEditingDelta>;
+Object _collection30Create() => <Object?>[];
+bool _collection30Matches(Object value) => value is List<Object?>;
+Object _collection31Create() => <Object?>[];
+Object _collection31Restore(Object value) =>
+    (value as Iterable<Object?>).cast<Object?>();
+bool _collection31Matches(Object value) => value is Iterable<Object?>;
+Object _collection32Create() => <Object?, Object?>{};
+bool _collection32Matches(Object value) => value is Map<Object?, Object?>;
+Object _collection33Create() => <String?, Object?>{};
+bool _collection33Matches(Object value) => value is Map<String?, Object?>;
+Object _collection34Create() => <String, String>{};
+bool _collection34Matches(Object value) => value is Map<String, String>;
+Object _collection35Create() => <api1.FrameTiming>[];
+bool _collection35Matches(Object value) => value is List<api1.FrameTiming>;
+Object _collection36Create() => <api1.FrameTiming>[];
+Object _collection36Restore(Object value) =>
+    (value as Iterable<Object?>).cast<api1.FrameTiming>();
+bool _collection36Matches(Object value) => value is Iterable<api1.FrameTiming>;
 Object _collection37Create() => <api.SelectionRect>[];
 bool _collection37Matches(Object value) => value is List<api.SelectionRect>;
 Object _collection38Create() => <api.SelectionRect>[];
@@ -27721,40 +26681,40 @@ Object _collection51Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.TextInputType>();
 bool _collection51Matches(Object value) => value is Iterable<api.TextInputType>;
 Future<Object?> _future0Adapt(Future<Object?> value) =>
-    value.then<void>((_) {});
-Future<Object?> _future1Adapt(Future<Object?> value) =>
-    value.then<api1.Size>((value) => value as api1.Size);
-Future<Object?> _future2Adapt(Future<Object?> value) =>
     value.then<api3.ByteData>((value) => value as api3.ByteData);
-Future<Object?> _future3Adapt(Future<Object?> value) =>
+Future<Object?> _future1Adapt(Future<Object?> value) =>
     value.then<api1.ImmutableBuffer>((value) => value as api1.ImmutableBuffer);
-Future<Object?> _future4Adapt(Future<Object?> value) =>
-    value.then<String>((value) => value as String);
-Future<Object?> _future5Adapt(Future<Object?> value) => value;
-Future<Object?> _future6Adapt(Future<Object?> value) =>
+Future<Object?> _future2Adapt(Future<Object?> value) =>
+    value.then<void>((_) {});
+Future<Object?> _future3Adapt(Future<Object?> value) =>
     value.then<api3.ByteData?>((value) => value as api3.ByteData?);
-Future<Object?> _future7Adapt(Future<Object?> value) =>
+Future<Object?> _future4Adapt(Future<Object?> value) =>
     value.then<List<api.ProcessTextAction>>(
       (value) => value as List<api.ProcessTextAction>,
     );
-Future<Object?> _future8Adapt(Future<Object?> value) =>
+Future<Object?> _future5Adapt(Future<Object?> value) =>
     value.then<String?>((value) => value as String?);
-Future<Object?> _future9Adapt(Future<Object?> value) =>
+Future<Object?> _future6Adapt(Future<Object?> value) =>
     value.then<List<api.SuggestionSpan>?>(
       (value) => value as List<api.SuggestionSpan>?,
     );
-Future<Object?> _future10Adapt(Future<Object?> value) =>
+Future<Object?> _future7Adapt(Future<Object?> value) =>
     value.then<Map<String, Object?>>((value) => value as Map<String, Object?>);
-Future<Object?> _future11Adapt(Future<Object?> value) =>
-    value.then<List<Object?>?>((value) => value as List<Object?>?);
-Future<Object?> _future12Adapt(Future<Object?> value) => value
-    .then<Map<Object?, Object?>?>((value) => value as Map<Object?, Object?>?);
-Future<Object?> _future13Adapt(Future<Object?> value) => value
+Future<Object?> _future8Adapt(Future<Object?> value) => value;
+Future<Object?> _future9Adapt(Future<Object?> value) => value
     .then<api.RestorationBucket?>((value) => value as api.RestorationBucket?);
-Future<Object?> _future14Adapt(Future<Object?> value) => value
+Future<Object?> _future10Adapt(Future<Object?> value) => value
     .then<api.ContentSensitivity>((value) => value as api.ContentSensitivity);
-Future<Object?> _future15Adapt(Future<Object?> value) =>
+Future<Object?> _future11Adapt(Future<Object?> value) =>
     value.then<bool>((value) => value as bool);
+Future<Object?> _future12Adapt(Future<Object?> value) =>
+    value.then<api1.Size>((value) => value as api1.Size);
+Future<Object?> _future13Adapt(Future<Object?> value) =>
+    value.then<String>((value) => value as String);
+Future<Object?> _future14Adapt(Future<Object?> value) =>
+    value.then<List<Object?>?>((value) => value as List<Object?>?);
+Future<Object?> _future15Adapt(Future<Object?> value) => value
+    .then<Map<Object?, Object?>?>((value) => value as Map<Object?, Object?>?);
 Future<Object?> _future16Adapt(Future<Object?> value) =>
     value.then<double>((value) => value as double);
 Future<Object?> _future17Adapt(Future<Object?> value) =>
@@ -27769,9 +26729,9 @@ Future<Object?> _future21Adapt(Future<Object?> value) =>
     value.then<api.AppKitViewController>(
       (value) => value as api.AppKitViewController,
     );
-bool _stream0Matches(Object value) => value is api6.Stream<Object?>;
-api6.Stream<Object?> _stream0Adapt(Object value) =>
-    value as api6.Stream<Object?>;
+bool _stream0Matches(Object value) => value is api7.Stream<Object?>;
+api7.Stream<Object?> _stream0Adapt(Object value) =>
+    value as api7.Stream<Object?>;
 T _genericCallbackResult<T>(Object? value) {
   // Test assignability to cover both nullable and non-nullable numeric T.
   // Broad bounds keep their decoded representation; only the Dart use site
@@ -27790,34 +26750,25 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
-const _flaxBinding0 = FlaxTypeRef("int");
-const _flaxBinding1 = FlaxGetter(
-  "downTime",
+const _flaxBinding0 = FlaxTypeRef("String");
+const _flaxBinding1 = FlaxCallbackBinding.signature(
+  [],
   _flaxBinding0,
-  _AndroidMotionEvent_downTime,
+  id: "callback:<>()->String:",
 );
-const _flaxBinding2 = FlaxGetter(
-  "eventTime",
-  _flaxBinding0,
-  _AndroidMotionEvent_eventTime,
+const _flaxBinding2 = FlaxTypeRef("int");
+const _flaxBinding3 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding2,
+  id: "callback:<>()->int:",
 );
-const _flaxBinding3 = FlaxGetter(
-  "action",
-  _flaxBinding0,
-  _AndroidMotionEvent_action,
-);
-const _flaxBinding4 = FlaxGetter(
-  "pointerCount",
-  _flaxBinding0,
-  _AndroidMotionEvent_pointerCount,
-);
-const _flaxBinding5 = FlaxTypeRef(
+const _flaxBinding4 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:AndroidPointerProperties",
 );
-const _flaxBinding6 = FlaxTypeRef(
+const _flaxBinding5 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding5,
+  item: _flaxBinding4,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_services#type:AndroidPointerProperties]",
     _collection1Create,
@@ -27825,28 +26776,28 @@ const _flaxBinding6 = FlaxTypeRef(
     restore: _collection1Restore,
   ),
 );
-const _flaxBinding7 = FlaxTypeRef(
+const _flaxBinding6 = FlaxTypeRef(
   "list",
-  item: _flaxBinding5,
+  item: _flaxBinding4,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_services#type:AndroidPointerProperties]",
     _collection0Create,
     _collection0Matches,
   ),
-  iterable: _flaxBinding6,
+  iterable: _flaxBinding5,
 );
-const _flaxBinding8 = FlaxGetter(
-  "pointerProperties",
-  _flaxBinding7,
-  _AndroidMotionEvent_pointerProperties,
+const _flaxBinding7 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding6,
+  id: "callback:<>()->list:[object:flax.core/sdk_services#type:AndroidPointerProperties]",
 );
-const _flaxBinding9 = FlaxTypeRef(
+const _flaxBinding8 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:AndroidPointerCoords",
 );
-const _flaxBinding10 = FlaxTypeRef(
+const _flaxBinding9 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding9,
+  item: _flaxBinding8,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_services#type:AndroidPointerCoords]",
     _collection3Create,
@@ -27854,811 +26805,507 @@ const _flaxBinding10 = FlaxTypeRef(
     restore: _collection3Restore,
   ),
 );
-const _flaxBinding11 = FlaxTypeRef(
+const _flaxBinding10 = FlaxTypeRef(
   "list",
-  item: _flaxBinding9,
+  item: _flaxBinding8,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_services#type:AndroidPointerCoords]",
     _collection2Create,
     _collection2Matches,
   ),
-  iterable: _flaxBinding10,
+  iterable: _flaxBinding9,
 );
-const _flaxBinding12 = FlaxGetter(
-  "pointerCoords",
-  _flaxBinding11,
-  _AndroidMotionEvent_pointerCoords,
-);
-const _flaxBinding13 = FlaxGetter(
-  "metaState",
-  _flaxBinding0,
-  _AndroidMotionEvent_metaState,
-);
-const _flaxBinding14 = FlaxGetter(
-  "buttonState",
-  _flaxBinding0,
-  _AndroidMotionEvent_buttonState,
-);
-const _flaxBinding15 = FlaxTypeRef("double");
-const _flaxBinding16 = FlaxGetter(
-  "xPrecision",
-  _flaxBinding15,
-  _AndroidMotionEvent_xPrecision,
-);
-const _flaxBinding17 = FlaxGetter(
-  "yPrecision",
-  _flaxBinding15,
-  _AndroidMotionEvent_yPrecision,
-);
-const _flaxBinding18 = FlaxGetter(
-  "deviceId",
-  _flaxBinding0,
-  _AndroidMotionEvent_deviceId,
-);
-const _flaxBinding19 = FlaxGetter(
-  "edgeFlags",
-  _flaxBinding0,
-  _AndroidMotionEvent_edgeFlags,
-);
-const _flaxBinding20 = FlaxGetter(
-  "source",
-  _flaxBinding0,
-  _AndroidMotionEvent_source,
-);
-const _flaxBinding21 = FlaxGetter(
-  "flags",
-  _flaxBinding0,
-  _AndroidMotionEvent_flags,
-);
-const _flaxBinding22 = FlaxGetter(
-  "motionEventId",
-  _flaxBinding0,
-  _AndroidMotionEvent_motionEventId,
-);
-const _flaxBinding23 = <FlaxParameter>[];
-const _flaxBinding24 = FlaxTypeRef("String");
-const _flaxBinding25 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
-  _AndroidMotionEvent_toString,
-);
-const _flaxBinding26 = <FlaxParameter>[
-  FlaxParameter("downTime", _flaxBinding0, required: true),
-  FlaxParameter("eventTime", _flaxBinding0, required: true),
-  FlaxParameter("action", _flaxBinding0, required: true),
-  FlaxParameter("pointerCount", _flaxBinding0, required: true),
-  FlaxParameter("pointerProperties", _flaxBinding7, required: true),
-  FlaxParameter("pointerCoords", _flaxBinding11, required: true),
-  FlaxParameter("metaState", _flaxBinding0, required: true),
-  FlaxParameter("buttonState", _flaxBinding0, required: true),
-  FlaxParameter("xPrecision", _flaxBinding15, required: true),
-  FlaxParameter("yPrecision", _flaxBinding15, required: true),
-  FlaxParameter("deviceId", _flaxBinding0, required: true),
-  FlaxParameter("edgeFlags", _flaxBinding0, required: true),
-  FlaxParameter("source", _flaxBinding0, required: true),
-  FlaxParameter("flags", _flaxBinding0, required: true),
-  FlaxParameter("motionEventId", _flaxBinding0, required: true),
-];
-const _flaxBinding27 = FlaxCallbackBinding.signature(
+const _flaxBinding11 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding24,
-  id: "callback:<>()->String:",
-);
-const _flaxBinding28 = FlaxProxyMember(
-  "toString",
-  0,
-  _flaxBinding27,
-  hasSuper: true,
-);
-const _flaxBinding29 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding0,
-  id: "callback:<>()->int:",
-);
-const _flaxBinding30 = FlaxProxyMember(
-  "downTime",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding31 = FlaxProxyMember(
-  "eventTime",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding32 = FlaxProxyMember(
-  "action",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding33 = FlaxProxyMember(
-  "pointerCount",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding34 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding7,
-  id: "callback:<>()->list:[object:flax.core/sdk_services#type:AndroidPointerProperties]",
-);
-const _flaxBinding35 = FlaxProxyMember(
-  "pointerProperties",
-  1,
-  _flaxBinding34,
-  hasSuper: true,
-);
-const _flaxBinding36 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding11,
+  _flaxBinding10,
   id: "callback:<>()->list:[object:flax.core/sdk_services#type:AndroidPointerCoords]",
 );
-const _flaxBinding37 = FlaxProxyMember(
-  "pointerCoords",
-  1,
-  _flaxBinding36,
-  hasSuper: true,
-);
-const _flaxBinding38 = FlaxProxyMember(
-  "metaState",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding39 = FlaxProxyMember(
-  "buttonState",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding40 = FlaxCallbackBinding.signature(
+const _flaxBinding12 = FlaxTypeRef("double");
+const _flaxBinding13 = FlaxCallbackBinding.signature(
   [],
-  _flaxBinding15,
+  _flaxBinding12,
   id: "callback:<>()->double:",
 );
-const _flaxBinding41 = FlaxProxyMember(
-  "xPrecision",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
+const _flaxBinding14 = FlaxTypeRef("String", nullable: true);
+const _flaxBinding15 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding14,
+  id: "callback:<>()->String?:",
 );
-const _flaxBinding42 = FlaxProxyMember(
-  "yPrecision",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
+const _flaxBinding16 = FlaxTypeRef("int", nullable: true);
+const _flaxBinding17 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding16,
+  id: "callback:<>()->int?:",
 );
-const _flaxBinding43 = FlaxProxyMember(
-  "deviceId",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding44 = FlaxProxyMember(
-  "edgeFlags",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding45 = FlaxProxyMember(
-  "source",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding46 = FlaxProxyMember(
-  "flags",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding47 = FlaxProxyMember(
-  "motionEventId",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding48 = FlaxObjectBinding(
-  "flax.core/sdk_services#type:AndroidMotionEvent",
-  [
-    _flaxBinding1,
-    _flaxBinding2,
-    _flaxBinding3,
-    _flaxBinding4,
-    _flaxBinding8,
-    _flaxBinding12,
-    _flaxBinding13,
-    _flaxBinding14,
-    _flaxBinding16,
-    _flaxBinding17,
-    _flaxBinding18,
-    _flaxBinding19,
-    _flaxBinding20,
-    _flaxBinding21,
-    _flaxBinding22,
-  ],
-  {
-    "toString": _flaxBinding25,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
-      _FlaxProxyDispatch0_super_call_toString,
-    ),
-    "@super:get:downTime": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_downTime,
-    ),
-    "@super:get:eventTime": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_eventTime,
-    ),
-    "@super:get:action": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_action,
-    ),
-    "@super:get:pointerCount": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_pointerCount,
-    ),
-    "@super:get:pointerProperties": FlaxInstanceMethod(
-      [],
-      _flaxBinding7,
-      _AndroidMotionEvent_super_get_pointerProperties,
-    ),
-    "@super:get:pointerCoords": FlaxInstanceMethod(
-      [],
-      _flaxBinding11,
-      _AndroidMotionEvent_super_get_pointerCoords,
-    ),
-    "@super:get:metaState": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_metaState,
-    ),
-    "@super:get:buttonState": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_buttonState,
-    ),
-    "@super:get:xPrecision": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidMotionEvent_super_get_xPrecision,
-    ),
-    "@super:get:yPrecision": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidMotionEvent_super_get_yPrecision,
-    ),
-    "@super:get:deviceId": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_deviceId,
-    ),
-    "@super:get:edgeFlags": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_edgeFlags,
-    ),
-    "@super:get:source": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_source,
-    ),
-    "@super:get:flags": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_flags,
-    ),
-    "@super:get:motionEventId": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidMotionEvent_super_get_motionEventId,
-    ),
-  },
-  constructors: {"@implementation": _flaxBinding26},
-  create: _createAndroidMotionEvent,
-  matches: _isAndroidMotionEvent,
-  setters: [],
-  supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([
-    _flaxBinding28,
-    _flaxBinding30,
-    _flaxBinding31,
-    _flaxBinding32,
-    _flaxBinding33,
-    _flaxBinding35,
-    _flaxBinding37,
-    _flaxBinding38,
-    _flaxBinding39,
-    _flaxBinding41,
-    _flaxBinding42,
-    _flaxBinding43,
-    _flaxBinding44,
-    _flaxBinding45,
-    _flaxBinding46,
-    _flaxBinding47,
-  ]),
-);
-const _flaxBinding49 = FlaxGetter(
-  "orientation",
-  _flaxBinding15,
-  _AndroidPointerCoords_orientation,
-);
-const _flaxBinding50 = FlaxGetter(
-  "pressure",
-  _flaxBinding15,
-  _AndroidPointerCoords_pressure,
-);
-const _flaxBinding51 = FlaxGetter(
-  "size",
-  _flaxBinding15,
-  _AndroidPointerCoords_size,
-);
-const _flaxBinding52 = FlaxGetter(
-  "toolMajor",
-  _flaxBinding15,
-  _AndroidPointerCoords_toolMajor,
-);
-const _flaxBinding53 = FlaxGetter(
-  "toolMinor",
-  _flaxBinding15,
-  _AndroidPointerCoords_toolMinor,
-);
-const _flaxBinding54 = FlaxGetter(
-  "touchMajor",
-  _flaxBinding15,
-  _AndroidPointerCoords_touchMajor,
-);
-const _flaxBinding55 = FlaxGetter(
-  "touchMinor",
-  _flaxBinding15,
-  _AndroidPointerCoords_touchMinor,
-);
-const _flaxBinding56 = FlaxGetter("x", _flaxBinding15, _AndroidPointerCoords_x);
-const _flaxBinding57 = FlaxGetter("y", _flaxBinding15, _AndroidPointerCoords_y);
-const _flaxBinding58 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
-  _AndroidPointerCoords_toString,
-);
-const _flaxBinding59 = <FlaxParameter>[
-  FlaxParameter("orientation", _flaxBinding15, required: true),
-  FlaxParameter("pressure", _flaxBinding15, required: true),
-  FlaxParameter("size", _flaxBinding15, required: true),
-  FlaxParameter("toolMajor", _flaxBinding15, required: true),
-  FlaxParameter("toolMinor", _flaxBinding15, required: true),
-  FlaxParameter("touchMajor", _flaxBinding15, required: true),
-  FlaxParameter("touchMinor", _flaxBinding15, required: true),
-  FlaxParameter("x", _flaxBinding15, required: true),
-  FlaxParameter("y", _flaxBinding15, required: true),
-];
-const _flaxBinding60 = FlaxProxyMember(
-  "orientation",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
-);
-const _flaxBinding61 = FlaxProxyMember(
-  "pressure",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
-);
-const _flaxBinding62 = FlaxProxyMember(
-  "size",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
-);
-const _flaxBinding63 = FlaxProxyMember(
-  "toolMajor",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
-);
-const _flaxBinding64 = FlaxProxyMember(
-  "toolMinor",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
-);
-const _flaxBinding65 = FlaxProxyMember(
-  "touchMajor",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
-);
-const _flaxBinding66 = FlaxProxyMember(
-  "touchMinor",
-  1,
-  _flaxBinding40,
-  hasSuper: true,
-);
-const _flaxBinding67 = FlaxProxyMember("x", 1, _flaxBinding40, hasSuper: true);
-const _flaxBinding68 = FlaxProxyMember("y", 1, _flaxBinding40, hasSuper: true);
-const _flaxBinding69 = FlaxObjectBinding(
-  "flax.core/sdk_services#type:AndroidPointerCoords",
-  [
-    _flaxBinding49,
-    _flaxBinding50,
-    _flaxBinding51,
-    _flaxBinding52,
-    _flaxBinding53,
-    _flaxBinding54,
-    _flaxBinding55,
-    _flaxBinding56,
-    _flaxBinding57,
-  ],
-  {
-    "toString": _flaxBinding58,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
-      _FlaxProxyDispatch0_super_call_toString,
-    ),
-    "@super:get:orientation": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_orientation,
-    ),
-    "@super:get:pressure": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_pressure,
-    ),
-    "@super:get:size": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_size,
-    ),
-    "@super:get:toolMajor": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_toolMajor,
-    ),
-    "@super:get:toolMinor": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_toolMinor,
-    ),
-    "@super:get:touchMajor": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_touchMajor,
-    ),
-    "@super:get:touchMinor": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_touchMinor,
-    ),
-    "@super:get:x": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_x,
-    ),
-    "@super:get:y": FlaxInstanceMethod(
-      [],
-      _flaxBinding15,
-      _AndroidPointerCoords_super_get_y,
-    ),
-  },
-  constructors: {"@implementation": _flaxBinding59},
-  create: _createAndroidPointerCoords,
-  matches: _isAndroidPointerCoords,
-  setters: [],
-  supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([
-    _flaxBinding28,
-    _flaxBinding60,
-    _flaxBinding61,
-    _flaxBinding62,
-    _flaxBinding63,
-    _flaxBinding64,
-    _flaxBinding65,
-    _flaxBinding66,
-    _flaxBinding67,
-    _flaxBinding68,
-  ]),
-);
-const _flaxBinding70 = FlaxGetter(
-  "id",
-  _flaxBinding0,
-  _AndroidPointerProperties_id,
-);
-const _flaxBinding71 = FlaxGetter(
-  "toolType",
-  _flaxBinding0,
-  _AndroidPointerProperties_toolType,
-);
-const _flaxBinding72 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
-  _AndroidPointerProperties_toString,
-);
-const _flaxBinding73 = <FlaxParameter>[
-  FlaxParameter("id", _flaxBinding0, required: true),
-  FlaxParameter("toolType", _flaxBinding0, required: true),
-];
-const _flaxBinding74 = FlaxProxyMember("id", 1, _flaxBinding29, hasSuper: true);
-const _flaxBinding75 = FlaxProxyMember(
-  "toolType",
-  1,
-  _flaxBinding29,
-  hasSuper: true,
-);
-const _flaxBinding76 = FlaxObjectBinding(
-  "flax.core/sdk_services#type:AndroidPointerProperties",
-  [_flaxBinding70, _flaxBinding71],
-  {
-    "toString": _flaxBinding72,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
-      _FlaxProxyDispatch0_super_call_toString,
-    ),
-    "@super:get:id": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _FlaxProxyDispatch3_super_get_id,
-    ),
-    "@super:get:toolType": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
-      _AndroidPointerProperties_super_get_toolType,
-    ),
-  },
-  constructors: {"@implementation": _flaxBinding73},
-  create: _createAndroidPointerProperties,
-  matches: _isAndroidPointerProperties,
-  setters: [],
-  supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding28, _flaxBinding74, _flaxBinding75]),
-);
-const _flaxBinding77 = FlaxGetter(
-  "viewId",
-  _flaxBinding0,
-  _PlatformViewController_viewId,
-);
-const _flaxBinding78 = FlaxTypeRef("bool");
-const _flaxBinding79 = FlaxGetter(
-  "awaitingCreation",
-  _flaxBinding78,
-  _PlatformViewController_awaitingCreation,
-);
-const _flaxBinding80 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:PointerEvent",
-);
-const _flaxBinding81 = <FlaxParameter>[
-  FlaxParameter("event", _flaxBinding80, required: true),
-];
-const _flaxBinding82 = FlaxTypeRef("void");
-const _flaxBinding83 = FlaxTypeRef(
+const _flaxBinding18 = FlaxTypeRef("ByteData");
+const _flaxBinding19 = FlaxTypeRef(
   "future",
-  item: _flaxBinding82,
-  future: FlaxFutureBinding("void:", _future0Adapt),
+  item: _flaxBinding18,
+  future: FlaxFutureBinding("ByteData:", _future0Adapt),
 );
-const _flaxBinding84 = FlaxInstanceMethod(
-  _flaxBinding81,
-  _flaxBinding83,
-  _PlatformViewController_dispatchPointerEvent,
-);
-const _flaxBinding85 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Offset",
-  nullable: true,
-);
-const _flaxBinding86 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Size",
-  nullable: true,
-);
-const _flaxBinding87 = <FlaxParameter>[
-  FlaxParameter("position", _flaxBinding85, required: false),
-  FlaxParameter("size", _flaxBinding86, required: false),
-];
-const _flaxBinding88 = FlaxInstanceMethod(
-  _flaxBinding87,
-  _flaxBinding83,
-  _PlatformViewController_create,
-);
-const _flaxBinding89 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
-  _PlatformViewController_dispose,
-);
-const _flaxBinding90 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
-  _PlatformViewController_clearFocus,
-);
-const _flaxBinding91 = FlaxCallbackBinding.signature(
+const _flaxBinding20 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
-      "event",
-      _flaxBinding80,
+      "key",
+      _flaxBinding0,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding83,
-  id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->future:[void:]",
+  _flaxBinding19,
+  id: "callback:<>(p:r:key:String:)->future:[ByteData:]",
 );
-const _flaxBinding92 = FlaxProxyMember(
-  "dispatchPointerEvent",
-  0,
-  _flaxBinding91,
-);
-const _flaxBinding93 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "size",
-      _flaxBinding86,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter(
-      "position",
-      _flaxBinding85,
-      required: false,
-      positional: false,
-    ),
-  ],
-  _flaxBinding83,
-  id: "callback:<>(n:o:size:object?:flax.core/flutter#type:Size,n:o:position:object?:flax.core/flutter#type:Offset)->future:[void:]",
-);
-const _flaxBinding94 = FlaxProxyMember(
-  "create",
-  0,
-  _flaxBinding93,
-  hasSuper: true,
-);
-const _flaxBinding95 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding83,
-  id: "callback:<>()->future:[void:]",
-);
-const _flaxBinding96 = FlaxProxyMember("dispose", 0, _flaxBinding95);
-const _flaxBinding97 = FlaxProxyMember("clearFocus", 0, _flaxBinding95);
-const _flaxBinding98 = FlaxProxyMember("viewId", 1, _flaxBinding29);
-const _flaxBinding99 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding78,
-  id: "callback:<>()->bool:",
-);
-const _flaxBinding100 = FlaxProxyMember(
-  "awaitingCreation",
-  1,
-  _flaxBinding99,
-  hasSuper: true,
-);
-const _flaxBinding101 = FlaxObjectBinding(
-  "flax.core/sdk_services#type:PlatformViewController",
-  [_flaxBinding77, _flaxBinding79],
-  {
-    "dispatchPointerEvent": _flaxBinding84,
-    "create": _flaxBinding88,
-    "dispose": _flaxBinding89,
-    "clearFocus": _flaxBinding90,
-    "@super:create": FlaxInstanceMethod(
-      _flaxBinding87,
-      _flaxBinding83,
-      _PlatformViewController_super_create,
-    ),
-    "@super:get:awaitingCreation": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
-      _PlatformViewController_super_get_awaitingCreation,
-    ),
-  },
-  constructors: {"@implementation": _flaxBinding23},
-  create: _createPlatformViewController,
-  matches: _isPlatformViewController,
-  setters: [],
-  supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([
-    _flaxBinding92,
-    _flaxBinding94,
-    _flaxBinding96,
-    _flaxBinding97,
-    _flaxBinding98,
-    _flaxBinding100,
-  ]),
-);
-const _flaxBinding102 = FlaxTypeRef("int", nullable: true);
-const _flaxBinding103 = FlaxGetter(
-  "textureId",
-  _flaxBinding102,
-  _AndroidViewController_textureId,
-);
-const _flaxBinding104 = FlaxGetter(
-  "requiresViewComposition",
-  _flaxBinding78,
-  _AndroidViewController_requiresViewComposition,
-);
-const _flaxBinding105 = FlaxTypeRef(
+const _flaxBinding21 = FlaxTypeRef(
   "object",
-  id: "flax.core/flutter#type:Offset",
+  id: "flax.core/sdk_dart_ui#type:ImmutableBuffer",
 );
-const _flaxBinding106 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "position",
-      _flaxBinding105,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding105,
-  FlaxCallbackAdapters.wrap1<api1.Offset, api1.Offset>,
-  id: "callback:<>(p:r:position:object:flax.core/flutter#type:Offset)->object:flax.core/flutter#type:Offset",
-  invoke: FlaxCallbackAdapters.invoke1<api1.Offset, api1.Offset>,
-  matches: FlaxCallbackAdapters.matches1<api1.Offset, api1.Offset>,
-);
-const _flaxBinding107 = FlaxTypeRef("callback", callback: _flaxBinding106);
-const _flaxBinding108 = FlaxGetter(
-  "pointTransformer",
-  _flaxBinding107,
-  _AndroidViewController_pointTransformer,
-);
-const _flaxBinding109 = FlaxGetter(
-  "isCreated",
-  _flaxBinding78,
-  _AndroidViewController_isCreated,
-);
-const _flaxBinding110 = FlaxSetter(
-  "pointTransformer",
-  _flaxBinding107,
-  _AndroidViewController_set_pointTransformer,
-);
-const _flaxBinding111 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Size",
-);
-const _flaxBinding112 = <FlaxParameter>[
-  FlaxParameter("size", _flaxBinding111, required: true),
-];
-const _flaxBinding113 = FlaxTypeRef(
+const _flaxBinding22 = FlaxTypeRef(
   "future",
-  item: _flaxBinding111,
+  item: _flaxBinding21,
   future: FlaxFutureBinding(
-    "object:flax.core/flutter#type:Size",
+    "object:flax.core/sdk_dart_ui#type:ImmutableBuffer",
     _future1Adapt,
   ),
 );
-const _flaxBinding114 = FlaxInstanceMethod(
-  _flaxBinding112,
-  _flaxBinding113,
-  _AndroidViewController_setSize,
+const _flaxBinding23 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "key",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding22,
+  id: "callback:<>(p:r:key:String:)->future:[object:flax.core/sdk_dart_ui#type:ImmutableBuffer]",
 );
-const _flaxBinding115 = <FlaxParameter>[
-  FlaxParameter("off", _flaxBinding105, required: true),
-];
-const _flaxBinding116 = FlaxInstanceMethod(
-  _flaxBinding115,
-  _flaxBinding83,
-  _AndroidViewController_setOffset,
+const _flaxBinding24 = FlaxTypeRef("void");
+const _flaxBinding25 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "key",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:key:String:)->void:",
 );
-const _flaxBinding117 = FlaxTypeRef(
+const _flaxBinding26 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding24,
+  id: "callback:<>()->void:",
+);
+const _flaxBinding27 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding0,
+  collection: FlaxCollectionBinding(
+    "iterable:[String:]",
+    _collection5Create,
+    _collection5Matches,
+    restore: _collection5Restore,
+  ),
+);
+const _flaxBinding28 = FlaxTypeRef(
+  "list",
+  item: _flaxBinding0,
+  collection: FlaxCollectionBinding(
+    "list:[String:]",
+    _collection4Create,
+    _collection4Matches,
+  ),
+  iterable: _flaxBinding27,
+);
+const _flaxBinding29 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding28,
+  id: "callback:<>()->list:[String:]",
+);
+const _flaxBinding30 = FlaxTypeRef(
   "object",
-  id: "flax.core/sdk_services#type:AndroidMotionEvent",
+  id: "flax.core/sdk_services#type:AssetMetadata",
 );
-const _flaxBinding118 = <FlaxParameter>[
-  FlaxParameter("event", _flaxBinding117, required: true),
-];
-const _flaxBinding119 = FlaxInstanceMethod(
-  _flaxBinding118,
-  _flaxBinding83,
-  _AndroidViewController_sendMotionEvent,
+const _flaxBinding31 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding30,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/sdk_services#type:AssetMetadata]",
+    _collection7Create,
+    _collection7Matches,
+    restore: _collection7Restore,
+  ),
 );
-const _flaxBinding120 = FlaxCallbackBinding(
+const _flaxBinding32 = FlaxTypeRef(
+  "list",
+  nullable: true,
+  item: _flaxBinding30,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/sdk_services#type:AssetMetadata]",
+    _collection6Create,
+    _collection6Matches,
+  ),
+  iterable: _flaxBinding31,
+);
+const _flaxBinding33 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "key",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding32,
+  id: "callback:<>(p:r:key:String:)->list?:[object:flax.core/sdk_services#type:AssetMetadata]",
+);
+const _flaxBinding34 = FlaxTypeRef("double", nullable: true);
+const _flaxBinding35 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding34,
+  id: "callback:<>()->double?:",
+);
+const _flaxBinding36 = FlaxTypeRef("bool");
+const _flaxBinding37 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding36,
+  id: "callback:<>()->bool:",
+);
+const _flaxBinding38 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:TextEditingValue",
+);
+const _flaxBinding39 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "newEditingValue",
+      _flaxBinding38,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:newEditingValue:object:flax.core/flutter#type:TextEditingValue)->void:",
+);
+const _flaxBinding40 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:TextInputConfiguration",
+);
+const _flaxBinding41 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding40,
+  id: "callback:<>()->object:flax.core/sdk_services#type:TextInputConfiguration",
+);
+const _flaxBinding42 = FlaxTypeRef("any", nullable: true);
+const _flaxBinding43 = FlaxTypeRef(
+  "map",
+  nullable: true,
+  item: _flaxBinding42,
+  key: _flaxBinding0,
+  collection: FlaxCollectionBinding(
+    "map:[any?:][String:]",
+    _collection8Create,
+    _collection8Matches,
+  ),
+);
+const _flaxBinding44 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding43,
+  id: "callback:<>()->map?:[any?:][String:]",
+);
+const _flaxBinding45 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding38,
+  id: "callback:<>()->object:flax.core/flutter#type:TextEditingValue",
+);
+const _flaxBinding46 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:AutofillClient",
+  nullable: true,
+);
+const _flaxBinding47 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "autofillId",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding46,
+  id: "callback:<>(p:r:autofillId:String:)->object?:flax.core/sdk_services#type:AutofillClient",
+);
+const _flaxBinding48 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:TextInputClient",
+);
+const _flaxBinding49 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:TextInputConnection",
+);
+const _flaxBinding50 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "trigger",
+      _flaxBinding48,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "configuration",
+      _flaxBinding40,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding49,
+  id: "callback:<>(p:r:trigger:object:flax.core/sdk_services#type:TextInputClient,p:r:configuration:object:flax.core/sdk_services#type:TextInputConfiguration)->object:flax.core/sdk_services#type:TextInputConnection",
+);
+const _flaxBinding51 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:AutofillClient",
+);
+const _flaxBinding52 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding51,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/sdk_services#type:AutofillClient]",
+    _collection9Create,
+    _collection9Matches,
+    restore: _collection9Restore,
+  ),
+);
+const _flaxBinding53 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding52,
+  id: "callback:<>()->iterable:[object:flax.core/sdk_services#type:AutofillClient]",
+);
+const _flaxBinding54 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:BinaryMessenger",
+);
+const _flaxBinding55 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding54,
+  id: "callback:<>()->object:flax.core/sdk_services#type:BinaryMessenger",
+);
+const _flaxBinding56 = FlaxTypeRef("ByteData", nullable: true);
+const _flaxBinding57 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding56,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding56,
+  id: "callback:<>(p:r:message:ByteData?:)->ByteData?:",
+);
+const _flaxBinding58 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "data",
+      _flaxBinding56,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  FlaxCallbackAdapters.wrapVoid1<api3.ByteData?>,
+  id: "callback:<>(p:r:data:ByteData?:)->void:",
+  invoke: FlaxCallbackAdapters.invokeVoid1<api3.ByteData?>,
+  matches: FlaxCallbackAdapters.matchesVoid1<api3.ByteData?>,
+);
+const _flaxBinding59 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding58,
+);
+const _flaxBinding60 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding24,
+  future: FlaxFutureBinding("void:", _future2Adapt),
+);
+const _flaxBinding61 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "channel",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "data",
+      _flaxBinding56,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "callback",
+      _flaxBinding59,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding60,
+  id: "callback:<>(p:r:channel:String:,p:r:data:ByteData?:,p:r:callback:callback?:<>(p:r:data:ByteData?:)->void:)->future:[void:]",
+);
+const _flaxBinding62 = FlaxTypeRef(
+  "future",
+  nullable: true,
+  item: _flaxBinding56,
+  future: FlaxFutureBinding("ByteData?:", _future3Adapt),
+);
+const _flaxBinding63 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "channel",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding56,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding62,
+  id: "callback:<>(p:r:channel:String:,p:r:message:ByteData?:)->future?:[ByteData?:]",
+);
+const _flaxBinding64 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding56,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding62,
+  _callback0,
+  id: "callback:<>(p:r:message:ByteData?:)->future?:[ByteData?:]",
+  invoke: _callback0Invoke,
+  matches: _callback0Matches,
+);
+const _flaxBinding65 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding64,
+);
+const _flaxBinding66 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "channel",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "handler",
+      _flaxBinding65,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:channel:String:,p:r:handler:callback?:<>(p:r:message:ByteData?:)->future?:[ByteData?:])->void:",
+);
+const _flaxBinding67 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "position",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding16,
+  id: "callback:<>(p:r:position:int:)->int?:",
+);
+const _flaxBinding68 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:TextRange",
+);
+const _flaxBinding69 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "position",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding68,
+  id: "callback:<>(p:r:position:int:)->object:flax.core/flutter#type:TextRange",
+);
+const _flaxBinding70 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/flutter#type:TextDirection",
+);
+const _flaxBinding71 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "layoutDirection",
+      _flaxBinding70,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding60,
+  id: "callback:<>(p:r:layoutDirection:enum:flax.core/flutter#type:TextDirection)->future:[void:]",
+);
+const _flaxBinding72 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding60,
+  id: "callback:<>()->future:[void:]",
+);
+const _flaxBinding73 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:ProcessTextAction",
+);
+const _flaxBinding74 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding73,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/sdk_services#type:ProcessTextAction]",
+    _collection11Create,
+    _collection11Matches,
+    restore: _collection11Restore,
+  ),
+);
+const _flaxBinding75 = FlaxTypeRef(
+  "list",
+  item: _flaxBinding73,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/sdk_services#type:ProcessTextAction]",
+    _collection10Create,
+    _collection10Matches,
+  ),
+  iterable: _flaxBinding74,
+);
+const _flaxBinding76 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding75,
+  future: FlaxFutureBinding(
+    "list:[object:flax.core/sdk_services#type:ProcessTextAction]",
+    _future4Adapt,
+  ),
+);
+const _flaxBinding77 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding76,
+  id: "callback:<>()->future:[list:[object:flax.core/sdk_services#type:ProcessTextAction]]",
+);
+const _flaxBinding78 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding14,
+  future: FlaxFutureBinding("String?:", _future5Adapt),
+);
+const _flaxBinding79 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "id",
@@ -28666,173 +27313,2268 @@ const _flaxBinding120 = FlaxCallbackBinding(
       required: true,
       positional: true,
     ),
+    FlaxCallbackParameter(
+      "text",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "readOnly",
+      _flaxBinding36,
+      required: true,
+      positional: true,
+    ),
   ],
-  _flaxBinding82,
+  _flaxBinding78,
+  id: "callback:<>(p:r:id:String:,p:r:text:String:,p:r:readOnly:bool:)->future:[String?:]",
+);
+const _flaxBinding80 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_dart_ui#type:Locale",
+);
+const _flaxBinding81 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:SuggestionSpan",
+);
+const _flaxBinding82 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding81,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/sdk_services#type:SuggestionSpan]",
+    _collection13Create,
+    _collection13Matches,
+    restore: _collection13Restore,
+  ),
+);
+const _flaxBinding83 = FlaxTypeRef(
+  "list",
+  nullable: true,
+  item: _flaxBinding81,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/sdk_services#type:SuggestionSpan]",
+    _collection12Create,
+    _collection12Matches,
+  ),
+  iterable: _flaxBinding82,
+);
+const _flaxBinding84 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding83,
+  future: FlaxFutureBinding(
+    "list?:[object:flax.core/sdk_services#type:SuggestionSpan]",
+    _future6Adapt,
+  ),
+);
+const _flaxBinding85 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "locale",
+      _flaxBinding80,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "text",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding84,
+  id: "callback:<>(p:r:locale:object:flax.core/sdk_dart_ui#type:Locale,p:r:text:String:)->future:[list?:[object:flax.core/sdk_services#type:SuggestionSpan]]",
+);
+const _flaxBinding86 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:SpellCheckResults",
+  nullable: true,
+);
+const _flaxBinding87 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding86,
+  id: "callback:<>()->object?:flax.core/sdk_services#type:SpellCheckResults",
+);
+const _flaxBinding88 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:MethodChannel",
+);
+const _flaxBinding89 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding88,
+  id: "callback:<>()->object:flax.core/sdk_services#type:MethodChannel",
+);
+const _flaxBinding90 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding86,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:value:object?:flax.core/sdk_services#type:SpellCheckResults)->void:",
+);
+const _flaxBinding91 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding88,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:value:object:flax.core/sdk_services#type:MethodChannel)->void:",
+);
+const _flaxBinding92 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:MethodCodec",
+);
+const _flaxBinding93 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding92,
+  id: "callback:<>()->object:flax.core/sdk_services#type:MethodCodec",
+);
+const _flaxBinding94 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "bytes",
+      _flaxBinding19,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:bytes:future:[ByteData:])->void:",
+);
+const _flaxBinding95 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:ModifierKey",
+);
+const _flaxBinding96 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:KeyboardSide",
+);
+const _flaxBinding97 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "key",
+      _flaxBinding95,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding96,
+  id: "callback:<>(p:r:key:enum:flax.core/sdk_services#type:ModifierKey)->enum:flax.core/sdk_services#type:KeyboardSide",
+);
+const _flaxBinding98 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:LogicalKeyboardKey",
+  nullable: true,
+);
+const _flaxBinding99 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "keyCode",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding98,
+  id: "callback:<>(p:r:keyCode:int:)->object?:flax.core/flutter#type:LogicalKeyboardKey",
+);
+const _flaxBinding100 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:PhysicalKeyboardKey",
+);
+const _flaxBinding101 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "physicalKey",
+      _flaxBinding100,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding98,
+  id: "callback:<>(p:r:physicalKey:object:flax.core/flutter#type:PhysicalKeyboardKey)->object?:flax.core/flutter#type:LogicalKeyboardKey",
+);
+const _flaxBinding102 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:LogicalKeyboardKey",
+);
+const _flaxBinding103 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "key",
+      _flaxBinding102,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding36,
+  id: "callback:<>(p:r:key:object:flax.core/flutter#type:LogicalKeyboardKey)->bool:",
+);
+const _flaxBinding104 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "key",
+      _flaxBinding100,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding36,
+  id: "callback:<>(p:r:key:object:flax.core/flutter#type:PhysicalKeyboardKey)->bool:",
+);
+const _flaxBinding105 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:KeyEvent",
+);
+const _flaxBinding106 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "event",
+      _flaxBinding105,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding36,
+  FlaxCallbackAdapters.wrap1<api.KeyEvent, bool>,
+  id: "callback:<>(p:r:event:object:flax.core/flutter#type:KeyEvent)->bool:",
+  invoke: FlaxCallbackAdapters.invoke1<api.KeyEvent, bool>,
+  matches: FlaxCallbackAdapters.matches1<api.KeyEvent, bool>,
+);
+const _flaxBinding107 = FlaxTypeRef("callback", callback: _flaxBinding106);
+const _flaxBinding108 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "handler",
+      _flaxBinding107,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:handler:callback:<>(p:r:event:object:flax.core/flutter#type:KeyEvent)->bool:)->void:",
+);
+const _flaxBinding109 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "event",
+      _flaxBinding105,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding36,
+  id: "callback:<>(p:r:event:object:flax.core/flutter#type:KeyEvent)->bool:",
+);
+const _flaxBinding110 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding100,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/flutter#type:PhysicalKeyboardKey]",
+    _collection15Create,
+    _collection15Matches,
+    restore: _collection15Restore,
+  ),
+);
+const _flaxBinding111 = FlaxTypeRef(
+  "set",
+  item: _flaxBinding100,
+  collection: FlaxCollectionBinding(
+    "set:[object:flax.core/flutter#type:PhysicalKeyboardKey]",
+    _collection14Create,
+    _collection14Matches,
+  ),
+  iterable: _flaxBinding110,
+);
+const _flaxBinding112 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding111,
+  id: "callback:<>()->set:[object:flax.core/flutter#type:PhysicalKeyboardKey]",
+);
+const _flaxBinding113 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding102,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/flutter#type:LogicalKeyboardKey]",
+    _collection17Create,
+    _collection17Matches,
+    restore: _collection17Restore,
+  ),
+);
+const _flaxBinding114 = FlaxTypeRef(
+  "set",
+  item: _flaxBinding102,
+  collection: FlaxCollectionBinding(
+    "set:[object:flax.core/flutter#type:LogicalKeyboardKey]",
+    _collection16Create,
+    _collection16Matches,
+  ),
+  iterable: _flaxBinding113,
+);
+const _flaxBinding115 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding114,
+  id: "callback:<>()->set:[object:flax.core/flutter#type:LogicalKeyboardKey]",
+);
+const _flaxBinding116 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:KeyboardLockMode",
+);
+const _flaxBinding117 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding116,
+  collection: FlaxCollectionBinding(
+    "iterable:[enum:flax.core/sdk_services#type:KeyboardLockMode]",
+    _collection19Create,
+    _collection19Matches,
+    restore: _collection19Restore,
+  ),
+);
+const _flaxBinding118 = FlaxTypeRef(
+  "set",
+  item: _flaxBinding116,
+  collection: FlaxCollectionBinding(
+    "set:[enum:flax.core/sdk_services#type:KeyboardLockMode]",
+    _collection18Create,
+    _collection18Matches,
+  ),
+  iterable: _flaxBinding117,
+);
+const _flaxBinding119 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding118,
+  id: "callback:<>()->set:[enum:flax.core/sdk_services#type:KeyboardLockMode]",
+);
+const _flaxBinding120 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding42,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding56,
+  id: "callback:<>(p:r:message:any?:)->ByteData?:",
+);
+const _flaxBinding121 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding56,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding42,
+  id: "callback:<>(p:r:message:ByteData?:)->any?:",
+);
+const _flaxBinding122 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:MethodCall",
+);
+const _flaxBinding123 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "methodCall",
+      _flaxBinding122,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding18,
+  id: "callback:<>(p:r:methodCall:object:flax.core/sdk_services#type:MethodCall)->ByteData:",
+);
+const _flaxBinding124 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "methodCall",
+      _flaxBinding56,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding122,
+  id: "callback:<>(p:r:methodCall:ByteData?:)->object:flax.core/sdk_services#type:MethodCall",
+);
+const _flaxBinding125 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "envelope",
+      _flaxBinding18,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding42,
+  id: "callback:<>(p:r:envelope:ByteData:)->any?:",
+);
+const _flaxBinding126 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "result",
+      _flaxBinding42,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding18,
+  id: "callback:<>(p:r:result:any?:)->ByteData:",
+);
+const _flaxBinding127 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
+);
+const _flaxBinding128 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "properties",
+      _flaxBinding127,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:properties:object:flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder)->void:",
+);
+const _flaxBinding129 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding100,
+  id: "callback:<>()->object:flax.core/flutter#type:PhysicalKeyboardKey",
+);
+const _flaxBinding130 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding102,
+  id: "callback:<>()->object:flax.core/flutter#type:LogicalKeyboardKey",
+);
+const _flaxBinding131 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Duration",
+);
+const _flaxBinding132 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding131,
+  id: "callback:<>()->object:flax.core/flutter#type:Duration",
+);
+const _flaxBinding133 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_dart_ui#type:KeyEventDeviceType",
+);
+const _flaxBinding134 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding133,
+  id: "callback:<>()->enum:flax.core/sdk_dart_ui#type:KeyEventDeviceType",
+);
+const _flaxBinding135 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_dart_ui#type:KeyData",
+);
+const _flaxBinding136 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "data",
+      _flaxBinding135,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding36,
+  id: "callback:<>(p:r:data:object:flax.core/sdk_dart_ui#type:KeyData)->bool:",
+);
+const _flaxBinding137 = FlaxTypeRef(
+  "map",
+  item: _flaxBinding42,
+  key: _flaxBinding0,
+  collection: FlaxCollectionBinding(
+    "map:[any?:][String:]",
+    _collection8Create,
+    _collection8Matches,
+  ),
+);
+const _flaxBinding138 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding137,
+  future: FlaxFutureBinding("map:[any?:][String:]", _future7Adapt),
+);
+const _flaxBinding139 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding42,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding138,
+  id: "callback:<>(p:r:message:any?:)->future:[map:[any?:][String:]]",
+);
+const _flaxBinding140 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:KeyMessage",
+);
+const _flaxBinding141 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding140,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding36,
+  FlaxCallbackAdapters.wrap1<api.KeyMessage, bool>,
+  id: "callback:<>(p:r:message:object:flax.core/sdk_services#type:KeyMessage)->bool:",
+  invoke: FlaxCallbackAdapters.invoke1<api.KeyMessage, bool>,
+  matches: FlaxCallbackAdapters.matches1<api.KeyMessage, bool>,
+);
+const _flaxBinding142 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding141,
+);
+const _flaxBinding143 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding142,
+  id: "callback:<>()->callback?:<>(p:r:message:object:flax.core/sdk_services#type:KeyMessage)->bool:",
+);
+const _flaxBinding144 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding142,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:value:callback?:<>(p:r:message:object:flax.core/sdk_services#type:KeyMessage)->bool:)->void:",
+);
+const _flaxBinding145 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding105,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/flutter#type:KeyEvent]",
+    _collection21Create,
+    _collection21Matches,
+    restore: _collection21Restore,
+  ),
+);
+const _flaxBinding146 = FlaxTypeRef(
+  "list",
+  item: _flaxBinding105,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/flutter#type:KeyEvent]",
+    _collection20Create,
+    _collection20Matches,
+  ),
+  iterable: _flaxBinding145,
+);
+const _flaxBinding147 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding146,
+  id: "callback:<>()->list:[object:flax.core/flutter#type:KeyEvent]",
+);
+const _flaxBinding148 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:RawKeyEvent",
+  nullable: true,
+);
+const _flaxBinding149 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding148,
+  id: "callback:<>()->object?:flax.core/sdk_services#type:RawKeyEvent",
+);
+const _flaxBinding150 = FlaxTypeRef("Uint8List", nullable: true);
+const _flaxBinding151 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding150,
+  id: "callback:<>()->Uint8List?:",
+);
+const _flaxBinding152 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding42,
+  id: "callback:<>()->any?:",
+);
+const _flaxBinding153 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding42,
+  future: FlaxFutureBinding("any?:", _future8Adapt),
+);
+const _flaxBinding154 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "call",
+      _flaxBinding122,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding153,
+  _callback1,
+  id: "callback:<>(p:r:call:object:flax.core/sdk_services#type:MethodCall)->future:[any?:]",
+  invoke: _callback1Invoke,
+  matches: _callback1Matches,
+);
+const _flaxBinding155 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding154,
+);
+const _flaxBinding156 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "handler",
+      _flaxBinding155,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:handler:callback?:<>(p:r:call:object:flax.core/sdk_services#type:MethodCall)->future:[any?:])->void:",
+);
+const _flaxBinding157 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:MouseCursor",
+  nullable: true,
+);
+const _flaxBinding158 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "device",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding157,
+  id: "callback:<>(p:r:device:int:)->object?:flax.core/flutter#type:MouseCursor",
+);
+const _flaxBinding159 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:PointerEvent",
+  nullable: true,
+);
+const _flaxBinding160 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:MouseCursor",
+);
+const _flaxBinding161 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding160,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/flutter#type:MouseCursor]",
+    _collection22Create,
+    _collection22Matches,
+    restore: _collection22Restore,
+  ),
+);
+const _flaxBinding162 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "device",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "triggeringEvent",
+      _flaxBinding159,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "cursorCandidates",
+      _flaxBinding161,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:device:int:,p:r:triggeringEvent:object?:flax.core/flutter#type:PointerEvent,p:r:cursorCandidates:iterable:[object:flax.core/flutter#type:MouseCursor])->void:",
+);
+const _flaxBinding163 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding160,
+  id: "callback:<>()->object:flax.core/flutter#type:MouseCursor",
+);
+const _flaxBinding164 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_gestures#type:PointerEnterEvent",
+);
+const _flaxBinding165 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "event",
+      _flaxBinding164,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  FlaxCallbackAdapters.wrapVoid1<api10.PointerEnterEvent>,
+  id: "callback:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerEnterEvent)->void:",
+  invoke: FlaxCallbackAdapters.invokeVoid1<api10.PointerEnterEvent>,
+  matches: FlaxCallbackAdapters.matchesVoid1<api10.PointerEnterEvent>,
+);
+const _flaxBinding166 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding165,
+);
+const _flaxBinding167 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding166,
+  id: "callback:<>()->callback?:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerEnterEvent)->void:",
+);
+const _flaxBinding168 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_gestures#type:PointerExitEvent",
+);
+const _flaxBinding169 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "event",
+      _flaxBinding168,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  FlaxCallbackAdapters.wrapVoid1<api10.PointerExitEvent>,
+  id: "callback:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerExitEvent)->void:",
+  invoke: FlaxCallbackAdapters.invokeVoid1<api10.PointerExitEvent>,
+  matches: FlaxCallbackAdapters.matchesVoid1<api10.PointerExitEvent>,
+);
+const _flaxBinding170 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding169,
+);
+const _flaxBinding171 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding170,
+  id: "callback:<>()->callback?:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerExitEvent)->void:",
+);
+const _flaxBinding172 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:PointerEvent",
+);
+const _flaxBinding173 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "event",
+      _flaxBinding172,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding60,
+  id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->future:[void:]",
+);
+const _flaxBinding174 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Offset",
+  nullable: true,
+);
+const _flaxBinding175 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding174,
+  id: "callback:<>()->object?:flax.core/flutter#type:Offset",
+);
+const _flaxBinding176 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Offset",
+);
+const _flaxBinding177 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_dart_ui#type:TextPosition",
+);
+const _flaxBinding178 = FlaxTypeRef(
+  "record",
+  nullable: true,
+  record: FlaxRecordBinding(
+    [
+      FlaxRecordFieldBinding("\$1", _flaxBinding176),
+      FlaxRecordFieldBinding("\$2", _flaxBinding177),
+    ],
+    FlaxDartTypes.typeOf<(api1.Offset, api1.TextPosition)>,
+    signature: "record:{p:\$1:object:flax.core/flutter#type:Offset,p:\$2:object:flax.core/sdk_dart_ui#type:TextPosition}",
+  ),
+);
+const _flaxBinding179 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding178,
+  id: "callback:<>()->record?:{p:\$1:object:flax.core/flutter#type:Offset,p:\$2:object:flax.core/sdk_dart_ui#type:TextPosition}",
+);
+const _flaxBinding180 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:FloatingCursorDragState",
+);
+const _flaxBinding181 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding180,
+  id: "callback:<>()->enum:flax.core/sdk_services#type:FloatingCursorDragState",
+);
+const _flaxBinding182 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:RawKeyEventData",
+);
+const _flaxBinding183 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding182,
+  id: "callback:<>()->object:flax.core/sdk_services#type:RawKeyEventData",
+);
+const _flaxBinding184 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:KeyboardSide",
+  nullable: true,
+);
+const _flaxBinding185 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "key",
+      _flaxBinding95,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding184,
+  id: "callback:<>(p:r:key:enum:flax.core/sdk_services#type:ModifierKey)->enum?:flax.core/sdk_services#type:KeyboardSide",
+);
+const _flaxBinding186 = FlaxTypeRef(
+  "map",
+  item: _flaxBinding96,
+  key: _flaxBinding95,
+  collection: FlaxCollectionBinding(
+    "map:[enum:flax.core/sdk_services#type:KeyboardSide][enum:flax.core/sdk_services#type:ModifierKey]",
+    _collection23Create,
+    _collection23Matches,
+  ),
+);
+const _flaxBinding187 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding186,
+  id: "callback:<>()->map:[enum:flax.core/sdk_services#type:KeyboardSide][enum:flax.core/sdk_services#type:ModifierKey]",
+);
+const _flaxBinding188 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:KeyHelper",
+);
+const _flaxBinding189 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding188,
+  id: "callback:<>()->object:flax.core/sdk_services#type:KeyHelper",
+);
+const _flaxBinding190 = FlaxCallbackBinding(
+  [],
+  _flaxBinding24,
+  FlaxCallbackAdapters.wrapVoid0,
+  id: "callback:<>()->void:",
+  invoke: FlaxCallbackAdapters.invokeVoid0,
+  matches: FlaxCallbackAdapters.matchesVoid0,
+);
+const _flaxBinding191 = FlaxTypeRef("callback", callback: _flaxBinding190);
+const _flaxBinding192 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "listener",
+      _flaxBinding191,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
+);
+const _flaxBinding193 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "enabled",
+      _flaxBinding36,
+      required: true,
+      positional: false,
+    ),
+    FlaxCallbackParameter(
+      "data",
+      _flaxBinding150,
+      required: true,
+      positional: false,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(n:r:enabled:bool:,n:r:data:Uint8List?:)->void:",
+);
+const _flaxBinding194 = FlaxTypeRef("Uint8List");
+const _flaxBinding195 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "encodedData",
+      _flaxBinding194,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding60,
+  id: "callback:<>(p:r:encodedData:Uint8List:)->future:[void:]",
+);
+const _flaxBinding196 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:RestorationBucket",
+  nullable: true,
+);
+const _flaxBinding197 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding196,
+  future: FlaxFutureBinding(
+    "object?:flax.core/sdk_services#type:RestorationBucket",
+    _future9Adapt,
+  ),
+);
+const _flaxBinding198 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding197,
+  id: "callback:<>()->future:[object?:flax.core/sdk_services#type:RestorationBucket]",
+);
+const _flaxBinding199 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "offset",
+      _flaxBinding176,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:offset:object:flax.core/flutter#type:Offset)->void:",
+);
+const _flaxBinding200 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_dart_ui#type:Rect",
+);
+const _flaxBinding201 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "rect",
+      _flaxBinding200,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding36,
+  id: "callback:<>(p:r:rect:object:flax.core/sdk_dart_ui#type:Rect)->bool:",
+);
+const _flaxBinding202 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding200,
+  id: "callback:<>()->object:flax.core/sdk_dart_ui#type:Rect",
+);
+const _flaxBinding203 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding70,
+  id: "callback:<>()->enum:flax.core/flutter#type:TextDirection",
+);
+const _flaxBinding204 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:ContentSensitivity",
+);
+const _flaxBinding205 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "contentSensitivity",
+      _flaxBinding204,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding60,
+  id: "callback:<>(p:r:contentSensitivity:enum:flax.core/sdk_services#type:ContentSensitivity)->future:[void:]",
+);
+const _flaxBinding206 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding204,
+  future: FlaxFutureBinding(
+    "enum:flax.core/sdk_services#type:ContentSensitivity",
+    _future10Adapt,
+  ),
+);
+const _flaxBinding207 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding206,
+  id: "callback:<>()->future:[enum:flax.core/sdk_services#type:ContentSensitivity]",
+);
+const _flaxBinding208 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding36,
+  future: FlaxFutureBinding("bool:", _future11Adapt),
+);
+const _flaxBinding209 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding208,
+  id: "callback:<>()->future:[bool:]",
+);
+const _flaxBinding210 = FlaxTypeRef(
+  "list",
+  item: _flaxBinding81,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/sdk_services#type:SuggestionSpan]",
+    _collection12Create,
+    _collection12Matches,
+  ),
+  iterable: _flaxBinding82,
+);
+const _flaxBinding211 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding210,
+  id: "callback:<>()->list:[object:flax.core/sdk_services#type:SuggestionSpan]",
+);
+const _flaxBinding212 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_foundation#type:WriteBuffer",
+);
+const _flaxBinding213 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "buffer",
+      _flaxBinding212,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding42,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:buffer:object:flax.core/sdk_foundation#type:WriteBuffer,p:r:value:any?:)->void:",
+);
+const _flaxBinding214 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_foundation#type:ReadBuffer",
+);
+const _flaxBinding215 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "buffer",
+      _flaxBinding214,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding42,
+  id: "callback:<>(p:r:buffer:object:flax.core/sdk_foundation#type:ReadBuffer)->any?:",
+);
+const _flaxBinding216 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "type",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "buffer",
+      _flaxBinding214,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding42,
+  id: "callback:<>(p:r:type:int:,p:r:buffer:object:flax.core/sdk_foundation#type:ReadBuffer)->any?:",
+);
+const _flaxBinding217 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "buffer",
+      _flaxBinding212,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:buffer:object:flax.core/sdk_foundation#type:WriteBuffer,p:r:value:int:)->void:",
+);
+const _flaxBinding218 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "buffer",
+      _flaxBinding214,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding2,
+  id: "callback:<>(p:r:buffer:object:flax.core/sdk_foundation#type:ReadBuffer)->int:",
+);
+const _flaxBinding219 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:StandardMessageCodec",
+);
+const _flaxBinding220 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding219,
+  id: "callback:<>()->object:flax.core/sdk_services#type:StandardMessageCodec",
+);
+const _flaxBinding221 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding14,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding56,
+  id: "callback:<>(p:r:message:String?:)->ByteData?:",
+);
+const _flaxBinding222 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "message",
+      _flaxBinding56,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding14,
+  id: "callback:<>(p:r:message:ByteData?:)->String?:",
+);
+const _flaxBinding223 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding68,
+  id: "callback:<>()->object:flax.core/flutter#type:TextRange",
+);
+const _flaxBinding224 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "callbackId",
+      _flaxBinding0,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
+  id: "callback:<>(p:r:callbackId:String:)->void:",
+);
+const _flaxBinding225 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "targetRect",
+      _flaxBinding200,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding60,
+  id: "callback:<>(p:r:targetRect:object:flax.core/sdk_dart_ui#type:Rect)->future:[void:]",
+);
+const _flaxBinding226 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:IOSSystemContextMenuItemData",
+);
+const _flaxBinding227 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding226,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/sdk_services#type:IOSSystemContextMenuItemData]",
+    _collection25Create,
+    _collection25Matches,
+    restore: _collection25Restore,
+  ),
+);
+const _flaxBinding228 = FlaxTypeRef(
+  "list",
+  item: _flaxBinding226,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/sdk_services#type:IOSSystemContextMenuItemData]",
+    _collection24Create,
+    _collection24Matches,
+  ),
+  iterable: _flaxBinding227,
+);
+const _flaxBinding229 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "targetRect",
+      _flaxBinding200,
+      required: true,
+      positional: true,
+    ),
+    FlaxCallbackParameter(
+      "items",
+      _flaxBinding228,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding60,
+  id: "callback:<>(p:r:targetRect:object:flax.core/sdk_dart_ui#type:Rect,p:r:items:list:[object:flax.core/sdk_services#type:IOSSystemContextMenuItemData])->future:[void:]",
+);
+const _flaxBinding230 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding190,
+);
+const _flaxBinding231 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding230,
+  id: "callback:<>()->callback?:<>()->void:",
+);
+const _flaxBinding232 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Color",
+  nullable: true,
+);
+const _flaxBinding233 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding232,
+  id: "callback:<>()->object?:flax.core/flutter#type:Color",
+);
+const _flaxBinding234 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_dart_ui#type:Brightness",
+  nullable: true,
+);
+const _flaxBinding235 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding234,
+  id: "callback:<>()->enum?:flax.core/sdk_dart_ui#type:Brightness",
+);
+const _flaxBinding236 = FlaxTypeRef("bool", nullable: true);
+const _flaxBinding237 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding236,
+  id: "callback:<>()->bool?:",
+);
+const _flaxBinding238 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "value",
+      _flaxBinding38,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding38,
+  id: "callback:<>(p:r:value:object:flax.core/flutter#type:TextEditingValue)->object:flax.core/flutter#type:TextEditingValue",
+);
+const _flaxBinding239 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:TextSelection",
+);
+const _flaxBinding240 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding239,
+  id: "callback:<>()->object:flax.core/flutter#type:TextSelection",
+);
+const _flaxBinding241 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding137,
+  id: "callback:<>()->map:[any?:][String:]",
+);
+const _flaxBinding242 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:TextInputType",
+);
+const _flaxBinding243 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding242,
+  id: "callback:<>()->object:flax.core/sdk_services#type:TextInputType",
+);
+const _flaxBinding244 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:AutofillConfiguration",
+);
+const _flaxBinding245 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding244,
+  id: "callback:<>()->object:flax.core/sdk_services#type:AutofillConfiguration",
+);
+const _flaxBinding246 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:SmartDashesType",
+);
+const _flaxBinding247 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding246,
+  id: "callback:<>()->enum:flax.core/sdk_services#type:SmartDashesType",
+);
+const _flaxBinding248 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:SmartQuotesType",
+);
+const _flaxBinding249 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding248,
+  id: "callback:<>()->enum:flax.core/sdk_services#type:SmartQuotesType",
+);
+const _flaxBinding250 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:TextInputAction",
+);
+const _flaxBinding251 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding250,
+  id: "callback:<>()->enum:flax.core/sdk_services#type:TextInputAction",
+);
+const _flaxBinding252 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_services#type:TextCapitalization",
+);
+const _flaxBinding253 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding252,
+  id: "callback:<>()->enum:flax.core/sdk_services#type:TextCapitalization",
+);
+const _flaxBinding254 = FlaxTypeRef(
+  "enum",
+  id: "flax.core/sdk_dart_ui#type:Brightness",
+);
+const _flaxBinding255 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding254,
+  id: "callback:<>()->enum:flax.core/sdk_dart_ui#type:Brightness",
+);
+const _flaxBinding256 = FlaxTypeRef(
+  "iterable",
+  item: _flaxBinding80,
+  collection: FlaxCollectionBinding(
+    "iterable:[object:flax.core/sdk_dart_ui#type:Locale]",
+    _collection27Create,
+    _collection27Matches,
+    restore: _collection27Restore,
+  ),
+);
+const _flaxBinding257 = FlaxTypeRef(
+  "list",
+  nullable: true,
+  item: _flaxBinding80,
+  collection: FlaxCollectionBinding(
+    "list:[object:flax.core/sdk_dart_ui#type:Locale]",
+    _collection26Create,
+    _collection26Matches,
+  ),
+  iterable: _flaxBinding256,
+);
+const _flaxBinding258 = FlaxCallbackBinding.signature(
+  [],
+  _flaxBinding257,
+  id: "callback:<>()->list?:[object:flax.core/sdk_dart_ui#type:Locale]",
+);
+const _flaxBinding259 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "position",
+      _flaxBinding177,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding239,
+  id: "callback:<>(p:r:position:object:flax.core/sdk_dart_ui#type:TextPosition)->object:flax.core/flutter#type:TextSelection",
+);
+const _flaxBinding260 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "position",
+      _flaxBinding177,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding68,
+  id: "callback:<>(p:r:position:object:flax.core/sdk_dart_ui#type:TextPosition)->object:flax.core/flutter#type:TextRange",
+);
+const _flaxBinding261 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "position",
+      _flaxBinding177,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding177,
+  id: "callback:<>(p:r:position:object:flax.core/sdk_dart_ui#type:TextPosition)->object:flax.core/sdk_dart_ui#type:TextPosition",
+);
+const _flaxBinding262 = FlaxGetter(
+  "downTime",
+  _flaxBinding2,
+  _AndroidMotionEvent_downTime,
+);
+const _flaxBinding263 = FlaxGetter(
+  "eventTime",
+  _flaxBinding2,
+  _AndroidMotionEvent_eventTime,
+);
+const _flaxBinding264 = FlaxGetter(
+  "action",
+  _flaxBinding2,
+  _AndroidMotionEvent_action,
+);
+const _flaxBinding265 = FlaxGetter(
+  "pointerCount",
+  _flaxBinding2,
+  _AndroidMotionEvent_pointerCount,
+);
+const _flaxBinding266 = FlaxGetter(
+  "pointerProperties",
+  _flaxBinding6,
+  _AndroidMotionEvent_pointerProperties,
+);
+const _flaxBinding267 = FlaxGetter(
+  "pointerCoords",
+  _flaxBinding10,
+  _AndroidMotionEvent_pointerCoords,
+);
+const _flaxBinding268 = FlaxGetter(
+  "metaState",
+  _flaxBinding2,
+  _AndroidMotionEvent_metaState,
+);
+const _flaxBinding269 = FlaxGetter(
+  "buttonState",
+  _flaxBinding2,
+  _AndroidMotionEvent_buttonState,
+);
+const _flaxBinding270 = FlaxGetter(
+  "xPrecision",
+  _flaxBinding12,
+  _AndroidMotionEvent_xPrecision,
+);
+const _flaxBinding271 = FlaxGetter(
+  "yPrecision",
+  _flaxBinding12,
+  _AndroidMotionEvent_yPrecision,
+);
+const _flaxBinding272 = FlaxGetter(
+  "deviceId",
+  _flaxBinding2,
+  _AndroidMotionEvent_deviceId,
+);
+const _flaxBinding273 = FlaxGetter(
+  "edgeFlags",
+  _flaxBinding2,
+  _AndroidMotionEvent_edgeFlags,
+);
+const _flaxBinding274 = FlaxGetter(
+  "source",
+  _flaxBinding2,
+  _AndroidMotionEvent_source,
+);
+const _flaxBinding275 = FlaxGetter(
+  "flags",
+  _flaxBinding2,
+  _AndroidMotionEvent_flags,
+);
+const _flaxBinding276 = FlaxGetter(
+  "motionEventId",
+  _flaxBinding2,
+  _AndroidMotionEvent_motionEventId,
+);
+const _flaxBinding277 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
+  _AndroidMotionEvent_toString,
+);
+const _flaxBinding278 = <FlaxParameter>[
+  FlaxParameter("downTime", _flaxBinding2, required: true),
+  FlaxParameter("eventTime", _flaxBinding2, required: true),
+  FlaxParameter("action", _flaxBinding2, required: true),
+  FlaxParameter("pointerCount", _flaxBinding2, required: true),
+  FlaxParameter("pointerProperties", _flaxBinding6, required: true),
+  FlaxParameter("pointerCoords", _flaxBinding10, required: true),
+  FlaxParameter("metaState", _flaxBinding2, required: true),
+  FlaxParameter("buttonState", _flaxBinding2, required: true),
+  FlaxParameter("xPrecision", _flaxBinding12, required: true),
+  FlaxParameter("yPrecision", _flaxBinding12, required: true),
+  FlaxParameter("deviceId", _flaxBinding2, required: true),
+  FlaxParameter("edgeFlags", _flaxBinding2, required: true),
+  FlaxParameter("source", _flaxBinding2, required: true),
+  FlaxParameter("flags", _flaxBinding2, required: true),
+  FlaxParameter("motionEventId", _flaxBinding2, required: true),
+];
+const _flaxBinding279 = FlaxProxyMember(
+  "toString",
+  0,
+  _flaxBinding1,
+  hasSuper: true,
+);
+const _flaxBinding280 = FlaxProxyMember(
+  "downTime",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding281 = FlaxProxyMember(
+  "eventTime",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding282 = FlaxProxyMember(
+  "action",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding283 = FlaxProxyMember(
+  "pointerCount",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding284 = FlaxProxyMember(
+  "pointerProperties",
+  1,
+  _flaxBinding7,
+  hasSuper: true,
+);
+const _flaxBinding285 = FlaxProxyMember(
+  "pointerCoords",
+  1,
+  _flaxBinding11,
+  hasSuper: true,
+);
+const _flaxBinding286 = FlaxProxyMember(
+  "metaState",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding287 = FlaxProxyMember(
+  "buttonState",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding288 = FlaxProxyMember(
+  "xPrecision",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding289 = FlaxProxyMember(
+  "yPrecision",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding290 = FlaxProxyMember(
+  "deviceId",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding291 = FlaxProxyMember(
+  "edgeFlags",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding292 = FlaxProxyMember(
+  "source",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding293 = FlaxProxyMember(
+  "flags",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding294 = FlaxProxyMember(
+  "motionEventId",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding295 = FlaxObjectBinding(
+  "flax.core/sdk_services#type:AndroidMotionEvent",
+  [
+    _flaxBinding262,
+    _flaxBinding263,
+    _flaxBinding264,
+    _flaxBinding265,
+    _flaxBinding266,
+    _flaxBinding267,
+    _flaxBinding268,
+    _flaxBinding269,
+    _flaxBinding270,
+    _flaxBinding271,
+    _flaxBinding272,
+    _flaxBinding273,
+    _flaxBinding274,
+    _flaxBinding275,
+    _flaxBinding276,
+  ],
+  {
+    "toString": _flaxBinding277,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
+      _FlaxProxyDispatch0_super_call_toString,
+    ),
+    "@super:get:downTime": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_downTime,
+    ),
+    "@super:get:eventTime": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_eventTime,
+    ),
+    "@super:get:action": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_action,
+    ),
+    "@super:get:pointerCount": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_pointerCount,
+    ),
+    "@super:get:pointerProperties": FlaxInstanceMethod.signature(
+      _flaxBinding7,
+      _AndroidMotionEvent_super_get_pointerProperties,
+    ),
+    "@super:get:pointerCoords": FlaxInstanceMethod.signature(
+      _flaxBinding11,
+      _AndroidMotionEvent_super_get_pointerCoords,
+    ),
+    "@super:get:metaState": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_metaState,
+    ),
+    "@super:get:buttonState": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_buttonState,
+    ),
+    "@super:get:xPrecision": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidMotionEvent_super_get_xPrecision,
+    ),
+    "@super:get:yPrecision": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidMotionEvent_super_get_yPrecision,
+    ),
+    "@super:get:deviceId": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_deviceId,
+    ),
+    "@super:get:edgeFlags": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_edgeFlags,
+    ),
+    "@super:get:source": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_source,
+    ),
+    "@super:get:flags": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_flags,
+    ),
+    "@super:get:motionEventId": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidMotionEvent_super_get_motionEventId,
+    ),
+  },
+  constructors: {"@implementation": _flaxBinding278},
+  create: _createAndroidMotionEvent,
+  matches: _isAndroidMotionEvent,
+  setters: [],
+  supertypes: ["dart:core::Object"],
+  proxy: FlaxProxyBinding([
+    _flaxBinding279,
+    _flaxBinding280,
+    _flaxBinding281,
+    _flaxBinding282,
+    _flaxBinding283,
+    _flaxBinding284,
+    _flaxBinding285,
+    _flaxBinding286,
+    _flaxBinding287,
+    _flaxBinding288,
+    _flaxBinding289,
+    _flaxBinding290,
+    _flaxBinding291,
+    _flaxBinding292,
+    _flaxBinding293,
+    _flaxBinding294,
+  ]),
+);
+const _flaxBinding296 = FlaxGetter(
+  "orientation",
+  _flaxBinding12,
+  _AndroidPointerCoords_orientation,
+);
+const _flaxBinding297 = FlaxGetter(
+  "pressure",
+  _flaxBinding12,
+  _AndroidPointerCoords_pressure,
+);
+const _flaxBinding298 = FlaxGetter(
+  "size",
+  _flaxBinding12,
+  _AndroidPointerCoords_size,
+);
+const _flaxBinding299 = FlaxGetter(
+  "toolMajor",
+  _flaxBinding12,
+  _AndroidPointerCoords_toolMajor,
+);
+const _flaxBinding300 = FlaxGetter(
+  "toolMinor",
+  _flaxBinding12,
+  _AndroidPointerCoords_toolMinor,
+);
+const _flaxBinding301 = FlaxGetter(
+  "touchMajor",
+  _flaxBinding12,
+  _AndroidPointerCoords_touchMajor,
+);
+const _flaxBinding302 = FlaxGetter(
+  "touchMinor",
+  _flaxBinding12,
+  _AndroidPointerCoords_touchMinor,
+);
+const _flaxBinding303 = FlaxGetter(
+  "x",
+  _flaxBinding12,
+  _AndroidPointerCoords_x,
+);
+const _flaxBinding304 = FlaxGetter(
+  "y",
+  _flaxBinding12,
+  _AndroidPointerCoords_y,
+);
+const _flaxBinding305 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
+  _AndroidPointerCoords_toString,
+);
+const _flaxBinding306 = <FlaxParameter>[
+  FlaxParameter("orientation", _flaxBinding12, required: true),
+  FlaxParameter("pressure", _flaxBinding12, required: true),
+  FlaxParameter("size", _flaxBinding12, required: true),
+  FlaxParameter("toolMajor", _flaxBinding12, required: true),
+  FlaxParameter("toolMinor", _flaxBinding12, required: true),
+  FlaxParameter("touchMajor", _flaxBinding12, required: true),
+  FlaxParameter("touchMinor", _flaxBinding12, required: true),
+  FlaxParameter("x", _flaxBinding12, required: true),
+  FlaxParameter("y", _flaxBinding12, required: true),
+];
+const _flaxBinding307 = FlaxProxyMember(
+  "orientation",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding308 = FlaxProxyMember(
+  "pressure",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding309 = FlaxProxyMember(
+  "size",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding310 = FlaxProxyMember(
+  "toolMajor",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding311 = FlaxProxyMember(
+  "toolMinor",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding312 = FlaxProxyMember(
+  "touchMajor",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding313 = FlaxProxyMember(
+  "touchMinor",
+  1,
+  _flaxBinding13,
+  hasSuper: true,
+);
+const _flaxBinding314 = FlaxProxyMember("x", 1, _flaxBinding13, hasSuper: true);
+const _flaxBinding315 = FlaxProxyMember("y", 1, _flaxBinding13, hasSuper: true);
+const _flaxBinding316 = FlaxObjectBinding(
+  "flax.core/sdk_services#type:AndroidPointerCoords",
+  [
+    _flaxBinding296,
+    _flaxBinding297,
+    _flaxBinding298,
+    _flaxBinding299,
+    _flaxBinding300,
+    _flaxBinding301,
+    _flaxBinding302,
+    _flaxBinding303,
+    _flaxBinding304,
+  ],
+  {
+    "toString": _flaxBinding305,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
+      _FlaxProxyDispatch0_super_call_toString,
+    ),
+    "@super:get:orientation": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_orientation,
+    ),
+    "@super:get:pressure": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_pressure,
+    ),
+    "@super:get:size": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_size,
+    ),
+    "@super:get:toolMajor": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_toolMajor,
+    ),
+    "@super:get:toolMinor": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_toolMinor,
+    ),
+    "@super:get:touchMajor": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_touchMajor,
+    ),
+    "@super:get:touchMinor": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_touchMinor,
+    ),
+    "@super:get:x": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_x,
+    ),
+    "@super:get:y": FlaxInstanceMethod.signature(
+      _flaxBinding13,
+      _AndroidPointerCoords_super_get_y,
+    ),
+  },
+  constructors: {"@implementation": _flaxBinding306},
+  create: _createAndroidPointerCoords,
+  matches: _isAndroidPointerCoords,
+  setters: [],
+  supertypes: ["dart:core::Object"],
+  proxy: FlaxProxyBinding([
+    _flaxBinding279,
+    _flaxBinding307,
+    _flaxBinding308,
+    _flaxBinding309,
+    _flaxBinding310,
+    _flaxBinding311,
+    _flaxBinding312,
+    _flaxBinding313,
+    _flaxBinding314,
+    _flaxBinding315,
+  ]),
+);
+const _flaxBinding317 = FlaxGetter(
+  "id",
+  _flaxBinding2,
+  _AndroidPointerProperties_id,
+);
+const _flaxBinding318 = FlaxGetter(
+  "toolType",
+  _flaxBinding2,
+  _AndroidPointerProperties_toolType,
+);
+const _flaxBinding319 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
+  _AndroidPointerProperties_toString,
+);
+const _flaxBinding320 = <FlaxParameter>[
+  FlaxParameter("id", _flaxBinding2, required: true),
+  FlaxParameter("toolType", _flaxBinding2, required: true),
+];
+const _flaxBinding321 = FlaxProxyMember("id", 1, _flaxBinding3, hasSuper: true);
+const _flaxBinding322 = FlaxProxyMember(
+  "toolType",
+  1,
+  _flaxBinding3,
+  hasSuper: true,
+);
+const _flaxBinding323 = FlaxObjectBinding(
+  "flax.core/sdk_services#type:AndroidPointerProperties",
+  [_flaxBinding317, _flaxBinding318],
+  {
+    "toString": _flaxBinding319,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
+      _FlaxProxyDispatch0_super_call_toString,
+    ),
+    "@super:get:id": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _FlaxProxyDispatch3_super_get_id,
+    ),
+    "@super:get:toolType": FlaxInstanceMethod.signature(
+      _flaxBinding3,
+      _AndroidPointerProperties_super_get_toolType,
+    ),
+  },
+  constructors: {"@implementation": _flaxBinding320},
+  create: _createAndroidPointerProperties,
+  matches: _isAndroidPointerProperties,
+  setters: [],
+  supertypes: ["dart:core::Object"],
+  proxy: FlaxProxyBinding([_flaxBinding279, _flaxBinding321, _flaxBinding322]),
+);
+const _flaxBinding324 = FlaxGetter(
+  "viewId",
+  _flaxBinding2,
+  _PlatformViewController_viewId,
+);
+const _flaxBinding325 = FlaxGetter(
+  "awaitingCreation",
+  _flaxBinding36,
+  _PlatformViewController_awaitingCreation,
+);
+const _flaxBinding326 = FlaxInstanceMethod.signature(
+  _flaxBinding173,
+  _PlatformViewController_dispatchPointerEvent,
+);
+const _flaxBinding327 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Size",
+  nullable: true,
+);
+const _flaxBinding328 = <FlaxParameter>[
+  FlaxParameter("position", _flaxBinding174, required: false),
+  FlaxParameter("size", _flaxBinding327, required: false),
+];
+const _flaxBinding329 = FlaxInstanceMethod(
+  _flaxBinding328,
+  _flaxBinding60,
+  _PlatformViewController_create,
+);
+const _flaxBinding330 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
+  _PlatformViewController_dispose,
+);
+const _flaxBinding331 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
+  _PlatformViewController_clearFocus,
+);
+const _flaxBinding332 = <FlaxParameter>[];
+const _flaxBinding333 = FlaxProxyMember(
+  "dispatchPointerEvent",
+  0,
+  _flaxBinding173,
+);
+const _flaxBinding334 = FlaxCallbackBinding.signature(
+  [
+    FlaxCallbackParameter(
+      "size",
+      _flaxBinding327,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter(
+      "position",
+      _flaxBinding174,
+      required: false,
+      positional: false,
+    ),
+  ],
+  _flaxBinding60,
+  id: "callback:<>(n:o:size:object?:flax.core/flutter#type:Size,n:o:position:object?:flax.core/flutter#type:Offset)->future:[void:]",
+);
+const _flaxBinding335 = FlaxProxyMember(
+  "create",
+  0,
+  _flaxBinding334,
+  hasSuper: true,
+);
+const _flaxBinding336 = FlaxProxyMember("dispose", 0, _flaxBinding72);
+const _flaxBinding337 = FlaxProxyMember("clearFocus", 0, _flaxBinding72);
+const _flaxBinding338 = FlaxProxyMember("viewId", 1, _flaxBinding3);
+const _flaxBinding339 = FlaxProxyMember(
+  "awaitingCreation",
+  1,
+  _flaxBinding37,
+  hasSuper: true,
+);
+const _flaxBinding340 = FlaxObjectBinding(
+  "flax.core/sdk_services#type:PlatformViewController",
+  [_flaxBinding324, _flaxBinding325],
+  {
+    "dispatchPointerEvent": _flaxBinding326,
+    "create": _flaxBinding329,
+    "dispose": _flaxBinding330,
+    "clearFocus": _flaxBinding331,
+    "@super:create": FlaxInstanceMethod(
+      _flaxBinding328,
+      _flaxBinding60,
+      _PlatformViewController_super_create,
+    ),
+    "@super:get:awaitingCreation": FlaxInstanceMethod.signature(
+      _flaxBinding37,
+      _PlatformViewController_super_get_awaitingCreation,
+    ),
+  },
+  constructors: {"@implementation": _flaxBinding332},
+  create: _createPlatformViewController,
+  matches: _isPlatformViewController,
+  setters: [],
+  supertypes: ["dart:core::Object"],
+  proxy: FlaxProxyBinding([
+    _flaxBinding333,
+    _flaxBinding335,
+    _flaxBinding336,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding339,
+  ]),
+);
+const _flaxBinding341 = FlaxGetter(
+  "textureId",
+  _flaxBinding16,
+  _AndroidViewController_textureId,
+);
+const _flaxBinding342 = FlaxGetter(
+  "requiresViewComposition",
+  _flaxBinding36,
+  _AndroidViewController_requiresViewComposition,
+);
+const _flaxBinding343 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "position",
+      _flaxBinding176,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding176,
+  FlaxCallbackAdapters.wrap1<api1.Offset, api1.Offset>,
+  id: "callback:<>(p:r:position:object:flax.core/flutter#type:Offset)->object:flax.core/flutter#type:Offset",
+  invoke: FlaxCallbackAdapters.invoke1<api1.Offset, api1.Offset>,
+  matches: FlaxCallbackAdapters.matches1<api1.Offset, api1.Offset>,
+);
+const _flaxBinding344 = FlaxTypeRef("callback", callback: _flaxBinding343);
+const _flaxBinding345 = FlaxGetter(
+  "pointTransformer",
+  _flaxBinding344,
+  _AndroidViewController_pointTransformer,
+);
+const _flaxBinding346 = FlaxGetter(
+  "isCreated",
+  _flaxBinding36,
+  _AndroidViewController_isCreated,
+);
+const _flaxBinding347 = FlaxSetter(
+  "pointTransformer",
+  _flaxBinding344,
+  _AndroidViewController_set_pointTransformer,
+);
+const _flaxBinding348 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:Size",
+);
+const _flaxBinding349 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding348,
+  future: FlaxFutureBinding(
+    "object:flax.core/flutter#type:Size",
+    _future12Adapt,
+  ),
+);
+const _flaxBinding350 = <FlaxParameter>[
+  FlaxParameter("size", _flaxBinding348, required: true),
+];
+const _flaxBinding351 = FlaxInstanceMethod(
+  _flaxBinding350,
+  _flaxBinding349,
+  _AndroidViewController_setSize,
+);
+const _flaxBinding352 = <FlaxParameter>[
+  FlaxParameter("off", _flaxBinding176, required: true),
+];
+const _flaxBinding353 = FlaxInstanceMethod(
+  _flaxBinding352,
+  _flaxBinding60,
+  _AndroidViewController_setOffset,
+);
+const _flaxBinding354 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_services#type:AndroidMotionEvent",
+);
+const _flaxBinding355 = <FlaxParameter>[
+  FlaxParameter("event", _flaxBinding354, required: true),
+];
+const _flaxBinding356 = FlaxInstanceMethod(
+  _flaxBinding355,
+  _flaxBinding60,
+  _AndroidViewController_sendMotionEvent,
+);
+const _flaxBinding357 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter(
+      "id",
+      _flaxBinding2,
+      required: true,
+      positional: true,
+    ),
+  ],
+  _flaxBinding24,
   FlaxCallbackAdapters.wrapVoid1<int>,
   id: "callback:<>(p:r:id:int:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<int>,
   matches: FlaxCallbackAdapters.matchesVoid1<int>,
 );
-const _flaxBinding121 = FlaxTypeRef("callback", callback: _flaxBinding120);
-const _flaxBinding122 = <FlaxParameter>[
-  FlaxParameter("listener", _flaxBinding121, required: true),
+const _flaxBinding358 = FlaxTypeRef("callback", callback: _flaxBinding357);
+const _flaxBinding359 = <FlaxParameter>[
+  FlaxParameter("listener", _flaxBinding358, required: true),
 ];
-const _flaxBinding123 = FlaxInstanceMethod(
-  _flaxBinding122,
-  _flaxBinding82,
+const _flaxBinding360 = FlaxInstanceMethod(
+  _flaxBinding359,
+  _flaxBinding24,
   _AndroidViewController_addOnPlatformViewCreatedListener,
 );
-const _flaxBinding124 = FlaxInstanceMethod(
-  _flaxBinding122,
-  _flaxBinding82,
+const _flaxBinding361 = FlaxInstanceMethod(
+  _flaxBinding359,
+  _flaxBinding24,
   _AndroidViewController_removeOnPlatformViewCreatedListener,
 );
-const _flaxBinding125 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/flutter#type:TextDirection",
-);
-const _flaxBinding126 = <FlaxParameter>[
-  FlaxParameter("layoutDirection", _flaxBinding125, required: true),
-];
-const _flaxBinding127 = FlaxInstanceMethod(
-  _flaxBinding126,
-  _flaxBinding83,
+const _flaxBinding362 = FlaxInstanceMethod.signature(
+  _flaxBinding71,
   _AndroidViewController_setLayoutDirection,
 );
-const _flaxBinding128 = FlaxObjectBinding(
+const _flaxBinding363 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AndroidViewController",
-  [_flaxBinding103, _flaxBinding104, _flaxBinding108, _flaxBinding109],
+  [_flaxBinding341, _flaxBinding342, _flaxBinding345, _flaxBinding346],
   {
-    "setSize": _flaxBinding114,
-    "setOffset": _flaxBinding116,
-    "sendMotionEvent": _flaxBinding119,
-    "addOnPlatformViewCreatedListener": _flaxBinding123,
-    "removeOnPlatformViewCreatedListener": _flaxBinding124,
-    "setLayoutDirection": _flaxBinding127,
+    "setSize": _flaxBinding351,
+    "setOffset": _flaxBinding353,
+    "sendMotionEvent": _flaxBinding356,
+    "addOnPlatformViewCreatedListener": _flaxBinding360,
+    "removeOnPlatformViewCreatedListener": _flaxBinding361,
+    "setLayoutDirection": _flaxBinding362,
   },
   constructors: {},
   create: _createAndroidViewController,
   matches: _isAndroidViewController,
-  setters: [_flaxBinding110],
+  setters: [_flaxBinding347],
   supertypes: [
     "flax.core/sdk_services#type:PlatformViewController",
     "dart:core::Object",
   ],
-  parent: _flaxBinding101,
+  parent: _flaxBinding340,
 );
-const _flaxBinding129 = FlaxGetter(
+const _flaxBinding364 = FlaxGetter(
   "id",
-  _flaxBinding0,
+  _flaxBinding2,
   _DarwinPlatformViewController_id,
 );
-const _flaxBinding130 = FlaxInstanceMethod(
-  _flaxBinding126,
-  _flaxBinding83,
+const _flaxBinding365 = FlaxInstanceMethod.signature(
+  _flaxBinding71,
   _DarwinPlatformViewController_setLayoutDirection,
 );
-const _flaxBinding131 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding366 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _DarwinPlatformViewController_acceptGesture,
 );
-const _flaxBinding132 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding367 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _DarwinPlatformViewController_rejectGesture,
 );
-const _flaxBinding133 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding368 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _DarwinPlatformViewController_dispose,
 );
-const _flaxBinding134 = <FlaxParameter>[
-  FlaxParameter("id", _flaxBinding0, required: true),
-  FlaxParameter("layoutDirection", _flaxBinding125, required: true),
+const _flaxBinding369 = <FlaxParameter>[
+  FlaxParameter("id", _flaxBinding2, required: true),
+  FlaxParameter("layoutDirection", _flaxBinding70, required: true),
 ];
-const _flaxBinding135 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "layoutDirection",
-      _flaxBinding125,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding83,
-  id: "callback:<>(p:r:layoutDirection:enum:flax.core/flutter#type:TextDirection)->future:[void:]",
-);
-const _flaxBinding136 = FlaxProxyMember(
+const _flaxBinding370 = FlaxProxyMember(
   "setLayoutDirection",
   0,
-  _flaxBinding135,
+  _flaxBinding71,
   hasSuper: true,
 );
-const _flaxBinding137 = FlaxProxyMember(
+const _flaxBinding371 = FlaxProxyMember(
   "acceptGesture",
   0,
-  _flaxBinding95,
+  _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding138 = FlaxProxyMember(
+const _flaxBinding372 = FlaxProxyMember(
   "rejectGesture",
   0,
-  _flaxBinding95,
+  _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding139 = FlaxProxyMember(
+const _flaxBinding373 = FlaxProxyMember(
   "dispose",
   0,
-  _flaxBinding95,
+  _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding140 = FlaxObjectBinding(
+const _flaxBinding374 = FlaxObjectBinding(
   "flax.core/sdk_services#type:DarwinPlatformViewController",
-  [_flaxBinding129],
+  [_flaxBinding364],
   {
-    "setLayoutDirection": _flaxBinding130,
-    "acceptGesture": _flaxBinding131,
-    "rejectGesture": _flaxBinding132,
-    "dispose": _flaxBinding133,
-    "@super:setLayoutDirection": FlaxInstanceMethod(
-      _flaxBinding126,
-      _flaxBinding83,
+    "setLayoutDirection": _flaxBinding365,
+    "acceptGesture": _flaxBinding366,
+    "rejectGesture": _flaxBinding367,
+    "dispose": _flaxBinding368,
+    "@super:setLayoutDirection": FlaxInstanceMethod.signature(
+      _flaxBinding71,
       _DarwinPlatformViewController_super_setLayoutDirection,
     ),
-    "@super:acceptGesture": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding83,
+    "@super:acceptGesture": FlaxInstanceMethod.signature(
+      _flaxBinding72,
       _DarwinPlatformViewController_super_acceptGesture,
     ),
-    "@super:rejectGesture": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding83,
+    "@super:rejectGesture": FlaxInstanceMethod.signature(
+      _flaxBinding72,
       _DarwinPlatformViewController_super_rejectGesture,
     ),
-    "@super:dispose": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding83,
+    "@super:dispose": FlaxInstanceMethod.signature(
+      _flaxBinding72,
       _DarwinPlatformViewController_super_dispose,
     ),
-    "@super:get:id": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:id": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch3_super_get_id,
     ),
   },
-  constructors: {"@implementation": _flaxBinding134},
+  constructors: {"@implementation": _flaxBinding369},
   create: _createDarwinPlatformViewController,
   matches: _isDarwinPlatformViewController,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding136,
-    _flaxBinding137,
-    _flaxBinding138,
-    _flaxBinding139,
-    _flaxBinding74,
+    _flaxBinding370,
+    _flaxBinding371,
+    _flaxBinding372,
+    _flaxBinding373,
+    _flaxBinding321,
   ]),
 );
-const _flaxBinding141 = FlaxObjectBinding(
+const _flaxBinding375 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AppKitViewController",
   [],
   {},
@@ -28844,264 +29586,178 @@ const _flaxBinding141 = FlaxObjectBinding(
     "flax.core/sdk_services#type:DarwinPlatformViewController",
     "dart:core::Object",
   ],
-  parent: _flaxBinding140,
+  parent: _flaxBinding374,
 );
-const _flaxBinding142 = FlaxTypeRef("String", nullable: true);
-const _flaxBinding143 = FlaxGetter(
+const _flaxBinding376 = FlaxGetter(
   "label",
-  _flaxBinding142,
+  _flaxBinding14,
   _ApplicationSwitcherDescription_label,
 );
-const _flaxBinding144 = FlaxGetter(
+const _flaxBinding377 = FlaxGetter(
   "primaryColor",
-  _flaxBinding102,
+  _flaxBinding16,
   _ApplicationSwitcherDescription_primaryColor,
 );
-const _flaxBinding145 = <FlaxParameter>[
-  FlaxParameter("label", _flaxBinding142, required: false),
-  FlaxParameter("primaryColor", _flaxBinding102, required: false),
+const _flaxBinding378 = <FlaxParameter>[
+  FlaxParameter("label", _flaxBinding14, required: false),
+  FlaxParameter("primaryColor", _flaxBinding16, required: false),
 ];
-const _flaxBinding146 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding142,
-  id: "callback:<>()->String?:",
-);
-const _flaxBinding147 = FlaxProxyMember(
+const _flaxBinding379 = FlaxProxyMember(
   "label",
   1,
-  _flaxBinding146,
+  _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding148 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding102,
-  id: "callback:<>()->int?:",
-);
-const _flaxBinding149 = FlaxProxyMember(
+const _flaxBinding380 = FlaxProxyMember(
   "primaryColor",
   1,
-  _flaxBinding148,
+  _flaxBinding17,
   hasSuper: true,
 );
-const _flaxBinding150 = FlaxObjectBinding(
+const _flaxBinding381 = FlaxObjectBinding(
   "flax.core/sdk_services#type:ApplicationSwitcherDescription",
-  [_flaxBinding143, _flaxBinding144],
+  [_flaxBinding376, _flaxBinding377],
   {
-    "@super:get:label": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:label": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _ApplicationSwitcherDescription_super_get_label,
     ),
-    "@super:get:primaryColor": FlaxInstanceMethod(
-      [],
-      _flaxBinding102,
+    "@super:get:primaryColor": FlaxInstanceMethod.signature(
+      _flaxBinding17,
       _ApplicationSwitcherDescription_super_get_primaryColor,
     ),
   },
-  constructors: {"@implementation": _flaxBinding145},
+  constructors: {"@implementation": _flaxBinding378},
   create: _createApplicationSwitcherDescription,
   matches: _isApplicationSwitcherDescription,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding147, _flaxBinding149]),
+  proxy: FlaxProxyBinding([_flaxBinding379, _flaxBinding380]),
 );
-const _flaxBinding151 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding24, required: true),
-];
-const _flaxBinding152 = FlaxTypeRef("ByteData");
-const _flaxBinding153 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding152,
-  future: FlaxFutureBinding("ByteData:", _future2Adapt),
-);
-const _flaxBinding154 = FlaxInstanceMethod(
-  _flaxBinding151,
-  _flaxBinding153,
+const _flaxBinding382 = FlaxInstanceMethod.signature(
+  _flaxBinding20,
   _AssetBundle_load,
 );
-const _flaxBinding155 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_dart_ui#type:ImmutableBuffer",
-);
-const _flaxBinding156 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding155,
-  future: FlaxFutureBinding(
-    "object:flax.core/sdk_dart_ui#type:ImmutableBuffer",
-    _future3Adapt,
-  ),
-);
-const _flaxBinding157 = FlaxInstanceMethod(
-  _flaxBinding151,
-  _flaxBinding156,
+const _flaxBinding383 = FlaxInstanceMethod.signature(
+  _flaxBinding23,
   _AssetBundle_loadBuffer,
 );
-const _flaxBinding158 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding24, required: true),
-  FlaxParameter("cache", _flaxBinding78, required: false, defaultValue: true),
+const _flaxBinding384 = <FlaxParameter>[
+  FlaxParameter("key", _flaxBinding0, required: true),
+  FlaxParameter("cache", _flaxBinding36, required: false, defaultValue: true),
 ];
-const _flaxBinding159 = FlaxTypeRef(
+const _flaxBinding385 = FlaxTypeRef(
   "future",
-  item: _flaxBinding24,
-  future: FlaxFutureBinding("String:", _future4Adapt),
+  item: _flaxBinding0,
+  future: FlaxFutureBinding("String:", _future13Adapt),
 );
-const _flaxBinding160 = FlaxInstanceMethod(
-  _flaxBinding158,
-  _flaxBinding159,
+const _flaxBinding386 = FlaxInstanceMethod(
+  _flaxBinding384,
+  _flaxBinding385,
   _AssetBundle_loadString,
 );
-const _flaxBinding161 = FlaxTypeRef("any", nullable: true);
-const _flaxBinding162 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding161,
-  future: FlaxFutureBinding("any?:", _future5Adapt),
-);
-const _flaxBinding163 = FlaxTypeRef(
+const _flaxBinding387 = FlaxTypeRef(
   "futureOr",
-  item: _flaxBinding161,
-  future: FlaxFutureBinding("any?:", _future5Adapt),
+  item: _flaxBinding42,
+  future: FlaxFutureBinding("any?:", _future8Adapt),
 );
-const _flaxBinding164 = FlaxInstanceMethod(
-  _flaxBinding151,
-  _flaxBinding82,
+const _flaxBinding388 = FlaxInstanceMethod.signature(
+  _flaxBinding25,
   _AssetBundle_evict,
 );
-const _flaxBinding165 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding389 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _AssetBundle_clear,
 );
-const _flaxBinding166 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding390 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _AssetBundle_toString,
 );
-const _flaxBinding167 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "key",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding153,
-  id: "callback:<>(p:r:key:String:)->future:[ByteData:]",
-);
-const _flaxBinding168 = FlaxProxyMember("load", 0, _flaxBinding167);
-const _flaxBinding169 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "key",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding156,
-  id: "callback:<>(p:r:key:String:)->future:[object:flax.core/sdk_dart_ui#type:ImmutableBuffer]",
-);
-const _flaxBinding170 = FlaxProxyMember(
+const _flaxBinding391 = FlaxProxyMember("load", 0, _flaxBinding20);
+const _flaxBinding392 = FlaxProxyMember(
   "loadBuffer",
   0,
-  _flaxBinding169,
+  _flaxBinding23,
   hasSuper: true,
 );
-const _flaxBinding171 = FlaxCallbackBinding.signature(
+const _flaxBinding393 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "key",
-      _flaxBinding24,
+      _flaxBinding0,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "cache",
-      _flaxBinding78,
+      _flaxBinding36,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding159,
+  _flaxBinding385,
   id: "callback:<>(p:r:key:String:,n:o:cache:bool:)->future:[String:]",
 );
-const _flaxBinding172 = FlaxProxyMember(
+const _flaxBinding394 = FlaxProxyMember(
   "loadString",
   0,
-  _flaxBinding171,
+  _flaxBinding393,
   hasSuper: true,
 );
-const _flaxBinding173 = FlaxCallbackBinding(
+const _flaxBinding395 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
-      _flaxBinding24,
+      _flaxBinding0,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding162,
-  _callback2,
-  id: "callback:<>(p:r:value:String:)->future:[any?:]",
-  invoke: _callback2Invoke,
-  matches: _callback2Matches,
-);
-const _flaxBinding174 = FlaxTypeRef("callback", callback: _flaxBinding173);
-const _flaxBinding175 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "data",
-      _flaxBinding152,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding163,
+  _flaxBinding153,
   _callback4,
-  id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
+  id: "callback:<>(p:r:value:String:)->future:[any?:]",
   invoke: _callback4Invoke,
   matches: _callback4Matches,
 );
-const _flaxBinding176 = FlaxTypeRef("callback", callback: _flaxBinding175);
-const _flaxBinding177 = FlaxCallbackBinding.signature(
+const _flaxBinding396 = FlaxTypeRef("callback", callback: _flaxBinding395);
+const _flaxBinding397 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
-      "key",
-      _flaxBinding24,
+      "data",
+      _flaxBinding18,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:key:String:)->void:",
+  _flaxBinding387,
+  _callback6,
+  id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
+  invoke: _callback6Invoke,
+  matches: _callback6Matches,
 );
-const _flaxBinding178 = FlaxProxyMember(
+const _flaxBinding398 = FlaxTypeRef("callback", callback: _flaxBinding397);
+const _flaxBinding399 = FlaxProxyMember(
   "evict",
   0,
-  _flaxBinding177,
+  _flaxBinding25,
   hasSuper: true,
 );
-const _flaxBinding179 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding82,
-  id: "callback:<>()->void:",
-);
-const _flaxBinding180 = FlaxProxyMember(
+const _flaxBinding400 = FlaxProxyMember(
   "clear",
   0,
-  _flaxBinding179,
+  _flaxBinding26,
   hasSuper: true,
 );
-const _flaxBinding181 = FlaxObjectBinding(
+const _flaxBinding401 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AssetBundle",
   [],
   {
-    "load": _flaxBinding154,
-    "loadBuffer": _flaxBinding157,
-    "loadString": _flaxBinding160,
+    "load": _flaxBinding382,
+    "loadBuffer": _flaxBinding383,
+    "loadString": _flaxBinding386,
     "loadStructuredData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -29110,16 +29766,16 @@ const _flaxBinding181 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding24,
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding162,
-              _callback0,
+              _flaxBinding153,
+              _callback2,
               id: "callback:<>(p:r:value:String:)->future:[any?:]",
-              invoke: _callback0Invoke,
-              matches: _callback0Matches,
+              invoke: _callback2Invoke,
+              matches: _callback2Matches,
             ),
           ),
           required: true,
@@ -29127,8 +29783,8 @@ const _flaxBinding181 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _AssetBundle_loadStructuredData,
       genericFactory: _flaxGeneric_AssetBundle_loadStructuredData,
@@ -29136,7 +29792,7 @@ const _flaxBinding181 = FlaxObjectBinding(
     ),
     "loadStructuredBinaryData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -29145,16 +29801,16 @@ const _flaxBinding181 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "data",
-                  _flaxBinding152,
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding163,
-              _callback1,
+              _flaxBinding387,
+              _callback3,
               id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
-              invoke: _callback1Invoke,
-              matches: _callback1Matches,
+              invoke: _callback3Invoke,
+              matches: _callback3Matches,
             ),
           ),
           required: true,
@@ -29162,29 +29818,28 @@ const _flaxBinding181 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _AssetBundle_loadStructuredBinaryData,
       genericFactory: _flaxGeneric_AssetBundle_loadStructuredBinaryData,
       ownerTypes: [],
     ),
-    "evict": _flaxBinding164,
-    "clear": _flaxBinding165,
-    "toString": _flaxBinding166,
-    "@super:loadBuffer": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding156,
+    "evict": _flaxBinding388,
+    "clear": _flaxBinding389,
+    "toString": _flaxBinding390,
+    "@super:loadBuffer": FlaxInstanceMethod.signature(
+      _flaxBinding23,
       _FlaxProxyDispatch5_super_call_loadBuffer,
     ),
     "@super:loadString": FlaxInstanceMethod(
-      _flaxBinding158,
-      _flaxBinding159,
+      _flaxBinding384,
+      _flaxBinding385,
       _FlaxProxyDispatch5_super_call_loadString,
     ),
     "@super:loadStructuredData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -29193,16 +29848,16 @@ const _flaxBinding181 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding24,
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding162,
-              _callback0,
+              _flaxBinding153,
+              _callback2,
               id: "callback:<>(p:r:value:String:)->future:[any?:]",
-              invoke: _callback0Invoke,
-              matches: _callback0Matches,
+              invoke: _callback2Invoke,
+              matches: _callback2Matches,
             ),
           ),
           required: true,
@@ -29210,8 +29865,8 @@ const _flaxBinding181 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _AssetBundle_super_loadStructuredData,
       genericFactory: _flaxGeneric_AssetBundle_super_loadStructuredData,
@@ -29219,7 +29874,7 @@ const _flaxBinding181 = FlaxObjectBinding(
     ),
     "@super:loadStructuredBinaryData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -29228,16 +29883,16 @@ const _flaxBinding181 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "data",
-                  _flaxBinding152,
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding163,
-              _callback1,
+              _flaxBinding387,
+              _callback3,
               id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
-              invoke: _callback1Invoke,
-              matches: _callback1Matches,
+              invoke: _callback3Invoke,
+              matches: _callback3Matches,
             ),
           ),
           required: true,
@@ -29245,38 +29900,35 @@ const _flaxBinding181 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _AssetBundle_super_loadStructuredBinaryData,
       genericFactory: _flaxGeneric_AssetBundle_super_loadStructuredBinaryData,
       ownerTypes: [],
     ),
-    "@super:evict": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding82,
+    "@super:evict": FlaxInstanceMethod.signature(
+      _flaxBinding25,
       _FlaxProxyDispatch5_super_call_evict,
     ),
-    "@super:clear": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "@super:clear": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _FlaxProxyDispatch5_super_call_clear,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createAssetBundle,
   matches: _isAssetBundle,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding168,
-    _flaxBinding170,
-    _flaxBinding172,
+    _flaxBinding391,
+    _flaxBinding392,
+    _flaxBinding394,
     FlaxProxyMember(
       "loadStructuredData",
       0,
@@ -29284,23 +29936,23 @@ const _flaxBinding181 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "key",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "parser",
-            _flaxBinding174,
+            _flaxBinding396,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding162,
-        _callback3,
+        _flaxBinding153,
+        _callback5,
         id: "callback:<T:any?:=any?:>(p:r:key:String:,p:r:parser:callback:<>(p:r:value:String:)->future:[any?:])->future:[any?:]",
-        invoke: _callback3Invoke,
-        matches: _callback3Matches,
-        genericFactory: _callback3Types,
+        invoke: _callback5Invoke,
+        matches: _callback5Matches,
+        genericFactory: _callback5Types,
       ),
       hasSuper: true,
       hasCallContext: true,
@@ -29312,403 +29964,271 @@ const _flaxBinding181 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "key",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "parser",
-            _flaxBinding176,
+            _flaxBinding398,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding162,
-        _callback5,
+        _flaxBinding153,
+        _callback7,
         id: "callback:<T:any?:=any?:>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[any?:])->future:[any?:]",
-        invoke: _callback5Invoke,
-        matches: _callback5Matches,
-        genericFactory: _callback5Types,
+        invoke: _callback7Invoke,
+        matches: _callback7Matches,
+        genericFactory: _callback7Types,
       ),
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding178,
-    _flaxBinding180,
-    _flaxBinding28,
+    _flaxBinding399,
+    _flaxBinding400,
+    _flaxBinding279,
   ]),
 );
-const _flaxBinding182 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding24,
-  collection: FlaxCollectionBinding(
-    "iterable:[String:]",
-    _collection5Create,
-    _collection5Matches,
-    restore: _collection5Restore,
-  ),
-);
-const _flaxBinding183 = FlaxTypeRef(
-  "list",
-  item: _flaxBinding24,
-  collection: FlaxCollectionBinding(
-    "list:[String:]",
-    _collection4Create,
-    _collection4Matches,
-  ),
-  iterable: _flaxBinding182,
-);
-const _flaxBinding184 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding183,
+const _flaxBinding402 = FlaxInstanceMethod.signature(
+  _flaxBinding29,
   _AssetManifest_listAssets,
 );
-const _flaxBinding185 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:AssetMetadata",
-);
-const _flaxBinding186 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding185,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/sdk_services#type:AssetMetadata]",
-    _collection7Create,
-    _collection7Matches,
-    restore: _collection7Restore,
-  ),
-);
-const _flaxBinding187 = FlaxTypeRef(
-  "list",
-  nullable: true,
-  item: _flaxBinding185,
-  collection: FlaxCollectionBinding(
-    "list:[object:flax.core/sdk_services#type:AssetMetadata]",
-    _collection6Create,
-    _collection6Matches,
-  ),
-  iterable: _flaxBinding186,
-);
-const _flaxBinding188 = FlaxInstanceMethod(
-  _flaxBinding151,
-  _flaxBinding187,
+const _flaxBinding403 = FlaxInstanceMethod.signature(
+  _flaxBinding33,
   _AssetManifest_getAssetVariants,
 );
-const _flaxBinding189 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding183,
-  id: "callback:<>()->list:[String:]",
-);
-const _flaxBinding190 = FlaxProxyMember("listAssets", 0, _flaxBinding189);
-const _flaxBinding191 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "key",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding187,
-  id: "callback:<>(p:r:key:String:)->list?:[object:flax.core/sdk_services#type:AssetMetadata]",
-);
-const _flaxBinding192 = FlaxProxyMember("getAssetVariants", 0, _flaxBinding191);
-const _flaxBinding193 = FlaxObjectBinding(
+const _flaxBinding404 = FlaxProxyMember("listAssets", 0, _flaxBinding29);
+const _flaxBinding405 = FlaxProxyMember("getAssetVariants", 0, _flaxBinding33);
+const _flaxBinding406 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AssetManifest",
   [],
-  {"listAssets": _flaxBinding184, "getAssetVariants": _flaxBinding188},
-  constructors: {"@implementation": _flaxBinding23},
+  {"listAssets": _flaxBinding402, "getAssetVariants": _flaxBinding403},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createAssetManifest,
   matches: _isAssetManifest,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding190, _flaxBinding192]),
+  proxy: FlaxProxyBinding([_flaxBinding404, _flaxBinding405]),
 );
-const _flaxBinding194 = FlaxTypeRef("double", nullable: true);
-const _flaxBinding195 = FlaxGetter(
+const _flaxBinding407 = FlaxGetter(
   "targetDevicePixelRatio",
-  _flaxBinding194,
+  _flaxBinding34,
   _AssetMetadata_targetDevicePixelRatio,
 );
-const _flaxBinding196 = FlaxGetter("key", _flaxBinding24, _AssetMetadata_key);
-const _flaxBinding197 = FlaxGetter("main", _flaxBinding78, _AssetMetadata_main);
-const _flaxBinding198 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding24, required: true),
-  FlaxParameter("targetDevicePixelRatio", _flaxBinding194, required: true),
-  FlaxParameter("main", _flaxBinding78, required: true),
+const _flaxBinding408 = FlaxGetter("key", _flaxBinding0, _AssetMetadata_key);
+const _flaxBinding409 = FlaxGetter("main", _flaxBinding36, _AssetMetadata_main);
+const _flaxBinding410 = <FlaxParameter>[
+  FlaxParameter("key", _flaxBinding0, required: true),
+  FlaxParameter("targetDevicePixelRatio", _flaxBinding34, required: true),
+  FlaxParameter("main", _flaxBinding36, required: true),
 ];
-const _flaxBinding199 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding194,
-  id: "callback:<>()->double?:",
-);
-const _flaxBinding200 = FlaxProxyMember(
+const _flaxBinding411 = FlaxProxyMember(
   "targetDevicePixelRatio",
   1,
-  _flaxBinding199,
+  _flaxBinding35,
   hasSuper: true,
 );
-const _flaxBinding201 = FlaxProxyMember(
+const _flaxBinding412 = FlaxProxyMember(
   "key",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding202 = FlaxProxyMember(
+const _flaxBinding413 = FlaxProxyMember(
   "main",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding203 = FlaxObjectBinding(
+const _flaxBinding414 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AssetMetadata",
-  [_flaxBinding195, _flaxBinding196, _flaxBinding197],
+  [_flaxBinding407, _flaxBinding408, _flaxBinding409],
   {
-    "@super:get:targetDevicePixelRatio": FlaxInstanceMethod(
-      [],
-      _flaxBinding194,
+    "@super:get:targetDevicePixelRatio": FlaxInstanceMethod.signature(
+      _flaxBinding35,
       _AssetMetadata_super_get_targetDevicePixelRatio,
     ),
-    "@super:get:key": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:key": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _AssetMetadata_super_get_key,
     ),
-    "@super:get:main": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:main": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _AssetMetadata_super_get_main,
     ),
   },
-  constructors: {"@implementation": _flaxBinding198},
+  constructors: {"@implementation": _flaxBinding410},
   create: _createAssetMetadata,
   matches: _isAssetMetadata,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding200, _flaxBinding201, _flaxBinding202]),
+  proxy: FlaxProxyBinding([_flaxBinding411, _flaxBinding412, _flaxBinding413]),
 );
-const _flaxBinding204 = FlaxGetter(
+const _flaxBinding415 = FlaxGetter(
   "autofillId",
-  _flaxBinding24,
+  _flaxBinding0,
   _AutofillClient_autofillId,
 );
-const _flaxBinding205 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:TextInputConfiguration",
-);
-const _flaxBinding206 = FlaxGetter(
+const _flaxBinding416 = FlaxGetter(
   "textInputConfiguration",
-  _flaxBinding205,
+  _flaxBinding40,
   _AutofillClient_textInputConfiguration,
 );
-const _flaxBinding207 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:TextEditingValue",
-);
-const _flaxBinding208 = <FlaxParameter>[
-  FlaxParameter("newEditingValue", _flaxBinding207, required: true),
-];
-const _flaxBinding209 = FlaxInstanceMethod(
-  _flaxBinding208,
-  _flaxBinding82,
+const _flaxBinding417 = FlaxInstanceMethod.signature(
+  _flaxBinding39,
   _AutofillClient_autofill,
 );
-const _flaxBinding210 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "newEditingValue",
-      _flaxBinding207,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:newEditingValue:object:flax.core/flutter#type:TextEditingValue)->void:",
-);
-const _flaxBinding211 = FlaxProxyMember("autofill", 0, _flaxBinding210);
-const _flaxBinding212 = FlaxProxyMember("autofillId", 1, _flaxBinding27);
-const _flaxBinding213 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding205,
-  id: "callback:<>()->object:flax.core/sdk_services#type:TextInputConfiguration",
-);
-const _flaxBinding214 = FlaxProxyMember(
+const _flaxBinding418 = FlaxProxyMember("autofill", 0, _flaxBinding39);
+const _flaxBinding419 = FlaxProxyMember("autofillId", 1, _flaxBinding1);
+const _flaxBinding420 = FlaxProxyMember(
   "textInputConfiguration",
   1,
-  _flaxBinding213,
+  _flaxBinding41,
 );
-const _flaxBinding215 = FlaxObjectBinding(
+const _flaxBinding421 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AutofillClient",
-  [_flaxBinding204, _flaxBinding206],
-  {"autofill": _flaxBinding209},
-  constructors: {"@implementation": _flaxBinding23},
+  [_flaxBinding415, _flaxBinding416],
+  {"autofill": _flaxBinding417},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createAutofillClient,
   matches: _isAutofillClient,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding211, _flaxBinding212, _flaxBinding214]),
+  proxy: FlaxProxyBinding([_flaxBinding418, _flaxBinding419, _flaxBinding420]),
 );
-const _flaxBinding216 = FlaxGetter(
+const _flaxBinding422 = FlaxGetter(
   "enabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _AutofillConfiguration_enabled,
 );
-const _flaxBinding217 = FlaxGetter(
+const _flaxBinding423 = FlaxGetter(
   "uniqueIdentifier",
-  _flaxBinding24,
+  _flaxBinding0,
   _AutofillConfiguration_uniqueIdentifier,
 );
-const _flaxBinding218 = FlaxGetter(
+const _flaxBinding424 = FlaxGetter(
   "autofillHints",
-  _flaxBinding183,
+  _flaxBinding28,
   _AutofillConfiguration_autofillHints,
 );
-const _flaxBinding219 = FlaxGetter(
+const _flaxBinding425 = FlaxGetter(
   "currentEditingValue",
-  _flaxBinding207,
+  _flaxBinding38,
   _AutofillConfiguration_currentEditingValue,
 );
-const _flaxBinding220 = FlaxGetter(
+const _flaxBinding426 = FlaxGetter(
   "hintText",
-  _flaxBinding142,
+  _flaxBinding14,
   _AutofillConfiguration_hintText,
 );
-const _flaxBinding221 = FlaxTypeRef(
-  "map",
-  nullable: true,
-  item: _flaxBinding161,
-  key: _flaxBinding24,
-  collection: FlaxCollectionBinding(
-    "map:[any?:][String:]",
-    _collection8Create,
-    _collection8Matches,
-  ),
-);
-const _flaxBinding222 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding221,
+const _flaxBinding427 = FlaxInstanceMethod.signature(
+  _flaxBinding44,
   _AutofillConfiguration_toJson,
 );
-const _flaxBinding223 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding428 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _AutofillConfiguration_toString,
 );
-const _flaxBinding224 = <FlaxParameter>[
-  FlaxParameter("uniqueIdentifier", _flaxBinding24, required: true),
-  FlaxParameter("autofillHints", _flaxBinding183, required: true),
-  FlaxParameter("currentEditingValue", _flaxBinding207, required: true),
-  FlaxParameter("hintText", _flaxBinding142, required: false),
+const _flaxBinding429 = <FlaxParameter>[
+  FlaxParameter("uniqueIdentifier", _flaxBinding0, required: true),
+  FlaxParameter("autofillHints", _flaxBinding28, required: true),
+  FlaxParameter("currentEditingValue", _flaxBinding38, required: true),
+  FlaxParameter("hintText", _flaxBinding14, required: false),
 ];
-const _flaxBinding225 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding221,
-  id: "callback:<>()->map?:[any?:][String:]",
-);
-const _flaxBinding226 = FlaxProxyMember(
+const _flaxBinding430 = FlaxProxyMember(
   "toJson",
   0,
-  _flaxBinding225,
+  _flaxBinding44,
   hasSuper: true,
 );
-const _flaxBinding227 = FlaxProxyMember(
+const _flaxBinding431 = FlaxProxyMember(
   "enabled",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding228 = FlaxProxyMember(
+const _flaxBinding432 = FlaxProxyMember(
   "uniqueIdentifier",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding229 = FlaxProxyMember(
+const _flaxBinding433 = FlaxProxyMember(
   "autofillHints",
   1,
-  _flaxBinding189,
+  _flaxBinding29,
   hasSuper: true,
 );
-const _flaxBinding230 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding207,
-  id: "callback:<>()->object:flax.core/flutter#type:TextEditingValue",
-);
-const _flaxBinding231 = FlaxProxyMember(
+const _flaxBinding434 = FlaxProxyMember(
   "currentEditingValue",
   1,
-  _flaxBinding230,
+  _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding232 = FlaxProxyMember(
+const _flaxBinding435 = FlaxProxyMember(
   "hintText",
   1,
-  _flaxBinding146,
+  _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding233 = FlaxObjectBinding(
+const _flaxBinding436 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AutofillConfiguration",
   [
-    _flaxBinding216,
-    _flaxBinding217,
-    _flaxBinding218,
-    _flaxBinding219,
-    _flaxBinding220,
+    _flaxBinding422,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
   ],
   {
-    "toJson": _flaxBinding222,
-    "toString": _flaxBinding223,
-    "@super:toJson": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding221,
+    "toJson": _flaxBinding427,
+    "toString": _flaxBinding428,
+    "@super:toJson": FlaxInstanceMethod.signature(
+      _flaxBinding44,
       _AutofillConfiguration_super_toJson,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:enabled": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:enabled": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _AutofillConfiguration_super_get_enabled,
     ),
-    "@super:get:uniqueIdentifier": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:uniqueIdentifier": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _AutofillConfiguration_super_get_uniqueIdentifier,
     ),
-    "@super:get:autofillHints": FlaxInstanceMethod(
-      [],
-      _flaxBinding183,
+    "@super:get:autofillHints": FlaxInstanceMethod.signature(
+      _flaxBinding29,
       _AutofillConfiguration_super_get_autofillHints,
     ),
-    "@super:get:currentEditingValue": FlaxInstanceMethod(
-      [],
-      _flaxBinding207,
+    "@super:get:currentEditingValue": FlaxInstanceMethod.signature(
+      _flaxBinding45,
       _AutofillConfiguration_super_get_currentEditingValue,
     ),
-    "@super:get:hintText": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:hintText": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _AutofillConfiguration_super_get_hintText,
     ),
   },
-  constructors: {"@implementation": _flaxBinding224},
+  constructors: {"@implementation": _flaxBinding429},
   create: _createAutofillConfiguration,
   matches: _isAutofillConfiguration,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding226,
-    _flaxBinding28,
-    _flaxBinding227,
-    _flaxBinding228,
-    _flaxBinding229,
-    _flaxBinding231,
-    _flaxBinding232,
+    _flaxBinding430,
+    _flaxBinding279,
+    _flaxBinding431,
+    _flaxBinding432,
+    _flaxBinding433,
+    _flaxBinding434,
+    _flaxBinding435,
   ]),
 );
-const _flaxBinding234 = FlaxObjectBinding(
+const _flaxBinding437 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AutofillHints",
   [],
   {},
@@ -29718,109 +30238,34 @@ const _flaxBinding234 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding235 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:AutofillClient",
-);
-const _flaxBinding236 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding235,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/sdk_services#type:AutofillClient]",
-    _collection9Create,
-    _collection9Matches,
-    restore: _collection9Restore,
-  ),
-);
-const _flaxBinding237 = FlaxGetter(
+const _flaxBinding438 = FlaxGetter(
   "autofillClients",
-  _flaxBinding236,
+  _flaxBinding52,
   _AutofillScope_autofillClients,
 );
-const _flaxBinding238 = <FlaxParameter>[
-  FlaxParameter("autofillId", _flaxBinding24, required: true),
-];
-const _flaxBinding239 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:AutofillClient",
-  nullable: true,
-);
-const _flaxBinding240 = FlaxInstanceMethod(
-  _flaxBinding238,
-  _flaxBinding239,
+const _flaxBinding439 = FlaxInstanceMethod.signature(
+  _flaxBinding47,
   _AutofillScope_getAutofillClient,
 );
-const _flaxBinding241 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:TextInputClient",
-);
-const _flaxBinding242 = <FlaxParameter>[
-  FlaxParameter("trigger", _flaxBinding241, required: true),
-  FlaxParameter("configuration", _flaxBinding205, required: true),
-];
-const _flaxBinding243 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:TextInputConnection",
-);
-const _flaxBinding244 = FlaxInstanceMethod(
-  _flaxBinding242,
-  _flaxBinding243,
+const _flaxBinding440 = FlaxInstanceMethod.signature(
+  _flaxBinding50,
   _AutofillScope_attach,
 );
-const _flaxBinding245 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "autofillId",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding239,
-  id: "callback:<>(p:r:autofillId:String:)->object?:flax.core/sdk_services#type:AutofillClient",
-);
-const _flaxBinding246 = FlaxProxyMember(
-  "getAutofillClient",
-  0,
-  _flaxBinding245,
-);
-const _flaxBinding247 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "trigger",
-      _flaxBinding241,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "configuration",
-      _flaxBinding205,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding243,
-  id: "callback:<>(p:r:trigger:object:flax.core/sdk_services#type:TextInputClient,p:r:configuration:object:flax.core/sdk_services#type:TextInputConfiguration)->object:flax.core/sdk_services#type:TextInputConnection",
-);
-const _flaxBinding248 = FlaxProxyMember("attach", 0, _flaxBinding247);
-const _flaxBinding249 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding236,
-  id: "callback:<>()->iterable:[object:flax.core/sdk_services#type:AutofillClient]",
-);
-const _flaxBinding250 = FlaxProxyMember("autofillClients", 1, _flaxBinding249);
-const _flaxBinding251 = FlaxObjectBinding(
+const _flaxBinding441 = FlaxProxyMember("getAutofillClient", 0, _flaxBinding47);
+const _flaxBinding442 = FlaxProxyMember("attach", 0, _flaxBinding50);
+const _flaxBinding443 = FlaxProxyMember("autofillClients", 1, _flaxBinding53);
+const _flaxBinding444 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AutofillScope",
-  [_flaxBinding237],
-  {"getAutofillClient": _flaxBinding240, "attach": _flaxBinding244},
-  constructors: {"@implementation": _flaxBinding23},
+  [_flaxBinding438],
+  {"getAutofillClient": _flaxBinding439, "attach": _flaxBinding440},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createAutofillScope,
   matches: _isAutofillScope,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding246, _flaxBinding248, _flaxBinding250]),
+  proxy: FlaxProxyBinding([_flaxBinding441, _flaxBinding442, _flaxBinding443]),
 );
-const _flaxBinding252 = FlaxObjectBinding(
+const _flaxBinding445 = FlaxObjectBinding(
   "flax.core/sdk_services#type:AutofillScopeMixin",
   [],
   {},
@@ -29832,170 +30277,43 @@ const _flaxBinding252 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_services#type:AutofillScope",
   ],
-  parent: _flaxBinding251,
+  parent: _flaxBinding444,
 );
-const _flaxBinding253 = FlaxTypeRef("ByteData", nullable: true);
-const _flaxBinding254 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "data",
-      _flaxBinding253,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  FlaxCallbackAdapters.wrapVoid1<api3.ByteData?>,
-  id: "callback:<>(p:r:data:ByteData?:)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid1<api3.ByteData?>,
-  matches: FlaxCallbackAdapters.matchesVoid1<api3.ByteData?>,
-);
-const _flaxBinding255 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding254,
-);
-const _flaxBinding256 = <FlaxParameter>[
-  FlaxParameter("channel", _flaxBinding24, required: true),
-  FlaxParameter("data", _flaxBinding253, required: true),
-  FlaxParameter("callback", _flaxBinding255, required: true),
-];
-const _flaxBinding257 = FlaxInstanceMethod(
-  _flaxBinding256,
-  _flaxBinding83,
+const _flaxBinding446 = FlaxInstanceMethod.signature(
+  _flaxBinding61,
   _BinaryMessenger_handlePlatformMessage,
 );
-const _flaxBinding258 = <FlaxParameter>[
-  FlaxParameter("channel", _flaxBinding24, required: true),
-  FlaxParameter("message", _flaxBinding253, required: true),
-];
-const _flaxBinding259 = FlaxTypeRef(
-  "future",
-  nullable: true,
-  item: _flaxBinding253,
-  future: FlaxFutureBinding("ByteData?:", _future6Adapt),
-);
-const _flaxBinding260 = FlaxInstanceMethod(
-  _flaxBinding258,
-  _flaxBinding259,
+const _flaxBinding447 = FlaxInstanceMethod.signature(
+  _flaxBinding63,
   _BinaryMessenger_send,
 );
-const _flaxBinding261 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding253,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding259,
-  _callback6,
-  id: "callback:<>(p:r:message:ByteData?:)->future?:[ByteData?:]",
-  invoke: _callback6Invoke,
-  matches: _callback6Matches,
-);
-const _flaxBinding262 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding261,
-);
-const _flaxBinding263 = <FlaxParameter>[
-  FlaxParameter("channel", _flaxBinding24, required: true),
-  FlaxParameter("handler", _flaxBinding262, required: true),
-];
-const _flaxBinding264 = FlaxInstanceMethod(
-  _flaxBinding263,
-  _flaxBinding82,
+const _flaxBinding448 = FlaxInstanceMethod.signature(
+  _flaxBinding66,
   _BinaryMessenger_setMessageHandler,
 );
-const _flaxBinding265 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "channel",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "data",
-      _flaxBinding253,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "callback",
-      _flaxBinding255,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding83,
-  id: "callback:<>(p:r:channel:String:,p:r:data:ByteData?:,p:r:callback:callback?:<>(p:r:data:ByteData?:)->void:)->future:[void:]",
-);
-const _flaxBinding266 = FlaxProxyMember(
+const _flaxBinding449 = FlaxProxyMember(
   "handlePlatformMessage",
   0,
-  _flaxBinding265,
+  _flaxBinding61,
 );
-const _flaxBinding267 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "channel",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding253,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding259,
-  id: "callback:<>(p:r:channel:String:,p:r:message:ByteData?:)->future?:[ByteData?:]",
-);
-const _flaxBinding268 = FlaxProxyMember("send", 0, _flaxBinding267);
-const _flaxBinding269 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "channel",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "handler",
-      _flaxBinding262,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:channel:String:,p:r:handler:callback?:<>(p:r:message:ByteData?:)->future?:[ByteData?:])->void:",
-);
-const _flaxBinding270 = FlaxProxyMember(
-  "setMessageHandler",
-  0,
-  _flaxBinding269,
-);
-const _flaxBinding271 = FlaxObjectBinding(
+const _flaxBinding450 = FlaxProxyMember("send", 0, _flaxBinding63);
+const _flaxBinding451 = FlaxProxyMember("setMessageHandler", 0, _flaxBinding66);
+const _flaxBinding452 = FlaxObjectBinding(
   "flax.core/sdk_services#type:BinaryMessenger",
   [],
   {
-    "handlePlatformMessage": _flaxBinding257,
-    "send": _flaxBinding260,
-    "setMessageHandler": _flaxBinding264,
+    "handlePlatformMessage": _flaxBinding446,
+    "send": _flaxBinding447,
+    "setMessageHandler": _flaxBinding448,
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createBinaryMessenger,
   matches: _isBinaryMessenger,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding266, _flaxBinding268, _flaxBinding270]),
+  proxy: FlaxProxyBinding([_flaxBinding449, _flaxBinding450, _flaxBinding451]),
 );
-const _flaxBinding272 = FlaxObjectBinding(
+const _flaxBinding453 = FlaxObjectBinding(
   "flax.core/sdk_services#type:BackgroundIsolateBinaryMessenger",
   [],
   {},
@@ -30007,116 +30325,88 @@ const _flaxBinding272 = FlaxObjectBinding(
     "flax.core/sdk_services#type:BinaryMessenger",
     "dart:core::Object",
   ],
-  parent: _flaxBinding271,
+  parent: _flaxBinding452,
 );
-const _flaxBinding273 = FlaxGetter(
+const _flaxBinding454 = FlaxGetter(
   "name",
-  _flaxBinding24,
+  _flaxBinding0,
   _BasicMessageChannel_name,
 );
-const _flaxBinding274 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:BinaryMessenger",
-);
-const _flaxBinding275 = FlaxGetter(
+const _flaxBinding455 = FlaxGetter(
   "binaryMessenger",
-  _flaxBinding274,
+  _flaxBinding54,
   _BasicMessageChannel_binaryMessenger,
 );
-const _flaxBinding276 = FlaxTypeRef(
+const _flaxBinding456 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:MessageCodec",
   dartType: FlaxDartTypes.typeOf<api.MessageCodec<Object?>>,
 );
-const _flaxBinding277 = FlaxTypeRef(
+const _flaxBinding457 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:BinaryMessenger",
   nullable: true,
 );
-const _flaxBinding278 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding24, required: true),
-  FlaxParameter("codec", _flaxBinding276, required: true),
-  FlaxParameter("binaryMessenger", _flaxBinding277, required: false),
+const _flaxBinding458 = <FlaxParameter>[
+  FlaxParameter("name", _flaxBinding0, required: true),
+  FlaxParameter("codec", _flaxBinding456, required: true),
+  FlaxParameter("binaryMessenger", _flaxBinding457, required: false),
 ];
-const _flaxBinding279 = FlaxProxyMember(
+const _flaxBinding459 = FlaxProxyMember(
   "name",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding280 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding274,
-  id: "callback:<>()->object:flax.core/sdk_services#type:BinaryMessenger",
-);
-const _flaxBinding281 = FlaxProxyMember(
+const _flaxBinding460 = FlaxProxyMember(
   "binaryMessenger",
   1,
-  _flaxBinding280,
+  _flaxBinding55,
   hasSuper: true,
 );
-const _flaxBinding282 = <FlaxParameter>[
-  FlaxParameter("message", _flaxBinding253, required: true),
-];
-const _flaxBinding283 = FlaxInstanceMethod(
-  _flaxBinding282,
-  _flaxBinding253,
+const _flaxBinding461 = FlaxInstanceMethod.signature(
+  _flaxBinding57,
   _BinaryCodec_encodeMessage,
 );
-const _flaxBinding284 = FlaxInstanceMethod(
-  _flaxBinding282,
-  _flaxBinding253,
+const _flaxBinding462 = FlaxInstanceMethod.signature(
+  _flaxBinding57,
   _BinaryCodec_decodeMessage,
 );
-const _flaxBinding285 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding253,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding253,
-  id: "callback:<>(p:r:message:ByteData?:)->ByteData?:",
-);
-const _flaxBinding286 = FlaxProxyMember(
+const _flaxBinding463 = FlaxProxyMember(
   "encodeMessage",
   0,
-  _flaxBinding285,
+  _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding287 = FlaxProxyMember(
+const _flaxBinding464 = FlaxProxyMember(
   "decodeMessage",
   0,
-  _flaxBinding285,
+  _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding288 = FlaxObjectBinding(
+const _flaxBinding465 = FlaxObjectBinding(
   "flax.core/sdk_services#type:BinaryCodec",
   [],
   {
-    "encodeMessage": _flaxBinding283,
-    "decodeMessage": _flaxBinding284,
-    "@super:encodeMessage": FlaxInstanceMethod(
-      _flaxBinding282,
-      _flaxBinding253,
+    "encodeMessage": _flaxBinding461,
+    "decodeMessage": _flaxBinding462,
+    "@super:encodeMessage": FlaxInstanceMethod.signature(
+      _flaxBinding57,
       _BinaryCodec_super_encodeMessage,
     ),
-    "@super:decodeMessage": FlaxInstanceMethod(
-      _flaxBinding282,
-      _flaxBinding253,
+    "@super:decodeMessage": FlaxInstanceMethod.signature(
+      _flaxBinding57,
       _BinaryCodec_super_decodeMessage,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createBinaryCodec,
   matches: _isBinaryCodec,
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/sdk_services#type:MessageCodec"],
-  proxy: FlaxProxyBinding([_flaxBinding286, _flaxBinding287]),
+  proxy: FlaxProxyBinding([_flaxBinding463, _flaxBinding464]),
 );
-const _flaxBinding289 = FlaxObjectBinding(
+const _flaxBinding466 = FlaxObjectBinding(
   "flax.core/sdk_services#type:BrowserContextMenu",
   [],
   {},
@@ -30126,13 +30416,13 @@ const _flaxBinding289 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding290 = FlaxObjectBinding(
+const _flaxBinding467 = FlaxObjectBinding(
   "flax.core/sdk_services#type:CachingAssetBundle",
   [],
   {
     "loadStructuredData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -30141,16 +30431,16 @@ const _flaxBinding290 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding24,
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding162,
-              _callback9,
+              _flaxBinding153,
+              _callback10,
               id: "callback:<>(p:r:value:String:)->future:[any?:]",
-              invoke: _callback9Invoke,
-              matches: _callback9Matches,
+              invoke: _callback10Invoke,
+              matches: _callback10Matches,
             ),
           ),
           required: true,
@@ -30158,8 +30448,8 @@ const _flaxBinding290 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _CachingAssetBundle_loadStructuredData,
       genericFactory: _flaxGeneric_CachingAssetBundle_loadStructuredData,
@@ -30167,7 +30457,7 @@ const _flaxBinding290 = FlaxObjectBinding(
     ),
     "loadStructuredBinaryData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -30176,16 +30466,16 @@ const _flaxBinding290 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "data",
-                  _flaxBinding152,
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding163,
-              _callback10,
+              _flaxBinding387,
+              _callback11,
               id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
-              invoke: _callback10Invoke,
-              matches: _callback10Matches,
+              invoke: _callback11Invoke,
+              matches: _callback11Matches,
             ),
           ),
           required: true,
@@ -30193,26 +30483,25 @@ const _flaxBinding290 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _CachingAssetBundle_loadStructuredBinaryData,
       genericFactory: _flaxGeneric_CachingAssetBundle_loadStructuredBinaryData,
       ownerTypes: [],
     ),
-    "@super:loadBuffer": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding156,
+    "@super:loadBuffer": FlaxInstanceMethod.signature(
+      _flaxBinding23,
       _FlaxProxyDispatch5_super_call_loadBuffer,
     ),
     "@super:loadString": FlaxInstanceMethod(
-      _flaxBinding158,
-      _flaxBinding159,
+      _flaxBinding384,
+      _flaxBinding385,
       _FlaxProxyDispatch5_super_call_loadString,
     ),
     "@super:loadStructuredData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -30221,49 +30510,14 @@ const _flaxBinding290 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding24,
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding162,
-              _callback9,
-              id: "callback:<>(p:r:value:String:)->future:[any?:]",
-              invoke: _callback9Invoke,
-              matches: _callback9Matches,
-            ),
-          ),
-          required: true,
-        ),
-      ],
-      FlaxTypeRef(
-        "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
-      ),
-      _CachingAssetBundle_super_loadStructuredData,
-      genericFactory: _flaxGeneric_CachingAssetBundle_super_loadStructuredData,
-      ownerTypes: [],
-    ),
-    "@super:loadStructuredBinaryData": FlaxInstanceMethod(
-      <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
-        FlaxParameter(
-          "parser",
-          FlaxTypeRef(
-            "callback",
-            callback: FlaxCallbackBinding(
-              [
-                FlaxCallbackParameter(
-                  "data",
-                  _flaxBinding152,
-                  required: true,
-                  positional: true,
-                ),
-              ],
-              _flaxBinding163,
+              _flaxBinding153,
               _callback10,
-              id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
+              id: "callback:<>(p:r:value:String:)->future:[any?:]",
               invoke: _callback10Invoke,
               matches: _callback10Matches,
             ),
@@ -30273,40 +30527,72 @@ const _flaxBinding290 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
+      ),
+      _CachingAssetBundle_super_loadStructuredData,
+      genericFactory: _flaxGeneric_CachingAssetBundle_super_loadStructuredData,
+      ownerTypes: [],
+    ),
+    "@super:loadStructuredBinaryData": FlaxInstanceMethod(
+      <FlaxParameter>[
+        FlaxParameter("key", _flaxBinding0, required: true),
+        FlaxParameter(
+          "parser",
+          FlaxTypeRef(
+            "callback",
+            callback: FlaxCallbackBinding(
+              [
+                FlaxCallbackParameter(
+                  "data",
+                  _flaxBinding18,
+                  required: true,
+                  positional: true,
+                ),
+              ],
+              _flaxBinding387,
+              _callback11,
+              id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
+              invoke: _callback11Invoke,
+              matches: _callback11Matches,
+            ),
+          ),
+          required: true,
+        ),
+      ],
+      FlaxTypeRef(
+        "future",
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _CachingAssetBundle_super_loadStructuredBinaryData,
       genericFactory:
           _flaxGeneric_CachingAssetBundle_super_loadStructuredBinaryData,
       ownerTypes: [],
     ),
-    "@super:evict": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding82,
+    "@super:evict": FlaxInstanceMethod.signature(
+      _flaxBinding25,
       _FlaxProxyDispatch5_super_call_evict,
     ),
-    "@super:clear": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "@super:clear": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _FlaxProxyDispatch5_super_call_clear,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createCachingAssetBundle,
   matches: _isCachingAssetBundle,
   setters: [],
   supertypes: ["flax.core/sdk_services#type:AssetBundle", "dart:core::Object"],
-  parent: _flaxBinding181,
+  parent: _flaxBinding401,
   proxy: FlaxProxyBinding([
-    _flaxBinding168,
-    _flaxBinding170,
-    _flaxBinding172,
+    _flaxBinding391,
+    _flaxBinding392,
+    _flaxBinding394,
     FlaxProxyMember(
       "loadStructuredData",
       0,
@@ -30314,23 +30600,23 @@ const _flaxBinding290 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "key",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "parser",
-            _flaxBinding174,
+            _flaxBinding396,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding162,
-        _callback11,
+        _flaxBinding153,
+        _callback12,
         id: "callback:<T:any?:=any?:>(p:r:key:String:,p:r:parser:callback:<>(p:r:value:String:)->future:[any?:])->future:[any?:]",
-        invoke: _callback11Invoke,
-        matches: _callback11Matches,
-        genericFactory: _callback11Types,
+        invoke: _callback12Invoke,
+        matches: _callback12Matches,
+        genericFactory: _callback12Types,
       ),
       hasSuper: true,
       hasCallContext: true,
@@ -30342,158 +30628,118 @@ const _flaxBinding290 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "key",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "parser",
-            _flaxBinding176,
+            _flaxBinding398,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding162,
-        _callback12,
+        _flaxBinding153,
+        _callback13,
         id: "callback:<T:any?:=any?:>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[any?:])->future:[any?:]",
-        invoke: _callback12Invoke,
-        matches: _callback12Matches,
-        genericFactory: _callback12Types,
+        invoke: _callback13Invoke,
+        matches: _callback13Matches,
+        genericFactory: _callback13Types,
       ),
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding178,
-    _flaxBinding180,
-    _flaxBinding28,
+    _flaxBinding399,
+    _flaxBinding400,
+    _flaxBinding279,
   ]),
 );
-const _flaxBinding291 = <FlaxParameter>[
-  FlaxParameter("position", _flaxBinding0, required: true),
-];
-const _flaxBinding292 = FlaxInstanceMethod(
-  _flaxBinding291,
-  _flaxBinding102,
+const _flaxBinding468 = FlaxInstanceMethod.signature(
+  _flaxBinding67,
   _TextBoundary_getLeadingTextBoundaryAt,
 );
-const _flaxBinding293 = FlaxInstanceMethod(
-  _flaxBinding291,
-  _flaxBinding102,
+const _flaxBinding469 = FlaxInstanceMethod.signature(
+  _flaxBinding67,
   _TextBoundary_getTrailingTextBoundaryAt,
 );
-const _flaxBinding294 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:TextRange",
-);
-const _flaxBinding295 = FlaxInstanceMethod(
-  _flaxBinding291,
-  _flaxBinding294,
+const _flaxBinding470 = FlaxInstanceMethod.signature(
+  _flaxBinding69,
   _TextBoundary_getTextBoundaryAt,
 );
-const _flaxBinding296 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "position",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding102,
-  id: "callback:<>(p:r:position:int:)->int?:",
-);
-const _flaxBinding297 = FlaxProxyMember(
+const _flaxBinding471 = FlaxProxyMember(
   "getLeadingTextBoundaryAt",
   0,
-  _flaxBinding296,
+  _flaxBinding67,
   hasSuper: true,
 );
-const _flaxBinding298 = FlaxProxyMember(
+const _flaxBinding472 = FlaxProxyMember(
   "getTrailingTextBoundaryAt",
   0,
-  _flaxBinding296,
+  _flaxBinding67,
   hasSuper: true,
 );
-const _flaxBinding299 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "position",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding294,
-  id: "callback:<>(p:r:position:int:)->object:flax.core/flutter#type:TextRange",
-);
-const _flaxBinding300 = FlaxProxyMember(
+const _flaxBinding473 = FlaxProxyMember(
   "getTextBoundaryAt",
   0,
-  _flaxBinding299,
+  _flaxBinding69,
   hasSuper: true,
 );
-const _flaxBinding301 = FlaxObjectBinding(
+const _flaxBinding474 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextBoundary",
   [],
   {
-    "getLeadingTextBoundaryAt": _flaxBinding292,
-    "getTrailingTextBoundaryAt": _flaxBinding293,
-    "getTextBoundaryAt": _flaxBinding295,
-    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "getLeadingTextBoundaryAt": _flaxBinding468,
+    "getTrailingTextBoundaryAt": _flaxBinding469,
+    "getTextBoundaryAt": _flaxBinding470,
+    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getLeadingTextBoundaryAt,
     ),
-    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getTrailingTextBoundaryAt,
     ),
-    "@super:getTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding294,
+    "@super:getTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding69,
       _FlaxProxyDispatch8_super_call_getTextBoundaryAt,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createTextBoundary,
   matches: _isTextBoundary,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding297, _flaxBinding298, _flaxBinding300]),
+  proxy: FlaxProxyBinding([_flaxBinding471, _flaxBinding472, _flaxBinding473]),
 );
-const _flaxBinding302 = <FlaxParameter>[
-  FlaxParameter("_text", _flaxBinding24, required: true),
+const _flaxBinding475 = <FlaxParameter>[
+  FlaxParameter("_text", _flaxBinding0, required: true),
 ];
-const _flaxBinding303 = FlaxObjectBinding(
+const _flaxBinding476 = FlaxObjectBinding(
   "flax.core/sdk_services#type:CharacterBoundary",
   [],
   {
-    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getLeadingTextBoundaryAt,
     ),
-    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getTrailingTextBoundaryAt,
     ),
-    "@super:getTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding294,
+    "@super:getTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding69,
       _FlaxProxyDispatch8_super_call_getTextBoundaryAt,
     ),
   },
-  constructors: {"@implementation": _flaxBinding302},
+  constructors: {"@implementation": _flaxBinding475},
   create: _createCharacterBoundary,
   matches: _isCharacterBoundary,
   setters: [],
   supertypes: ["flax.core/sdk_services#type:TextBoundary", "dart:core::Object"],
-  parent: _flaxBinding301,
-  proxy: FlaxProxyBinding([_flaxBinding297, _flaxBinding298, _flaxBinding300]),
+  parent: _flaxBinding474,
+  proxy: FlaxProxyBinding([_flaxBinding471, _flaxBinding472, _flaxBinding473]),
 );
-const _flaxBinding304 = FlaxObjectBinding(
+const _flaxBinding477 = FlaxObjectBinding(
   "flax.core/sdk_services#type:Clipboard",
   [],
   {},
@@ -30503,163 +30749,79 @@ const _flaxBinding304 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding305 = FlaxGetter(
-  "text",
-  _flaxBinding142,
-  _ClipboardData_text,
-);
-const _flaxBinding306 = <FlaxParameter>[
-  FlaxParameter("text", _flaxBinding24, required: true),
+const _flaxBinding478 = FlaxGetter("text", _flaxBinding14, _ClipboardData_text);
+const _flaxBinding479 = <FlaxParameter>[
+  FlaxParameter("text", _flaxBinding0, required: true),
 ];
-const _flaxBinding307 = FlaxProxyMember(
+const _flaxBinding480 = FlaxProxyMember(
   "text",
   1,
-  _flaxBinding146,
+  _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding308 = FlaxObjectBinding(
+const _flaxBinding481 = FlaxObjectBinding(
   "flax.core/sdk_services#type:ClipboardData",
-  [_flaxBinding305],
+  [_flaxBinding478],
   {
-    "@super:get:text": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:text": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _ClipboardData_super_get_text,
     ),
   },
-  constructors: {"@implementation": _flaxBinding306},
+  constructors: {"@implementation": _flaxBinding479},
   create: _createClipboardData,
   matches: _isClipboardData,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding307]),
+  proxy: FlaxProxyBinding([_flaxBinding480]),
 );
-const _flaxBinding309 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:ProcessTextAction",
-);
-const _flaxBinding310 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding309,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/sdk_services#type:ProcessTextAction]",
-    _collection11Create,
-    _collection11Matches,
-    restore: _collection11Restore,
-  ),
-);
-const _flaxBinding311 = FlaxTypeRef(
-  "list",
-  item: _flaxBinding309,
-  collection: FlaxCollectionBinding(
-    "list:[object:flax.core/sdk_services#type:ProcessTextAction]",
-    _collection10Create,
-    _collection10Matches,
-  ),
-  iterable: _flaxBinding310,
-);
-const _flaxBinding312 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding311,
-  future: FlaxFutureBinding(
-    "list:[object:flax.core/sdk_services#type:ProcessTextAction]",
-    _future7Adapt,
-  ),
-);
-const _flaxBinding313 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding312,
+const _flaxBinding482 = FlaxInstanceMethod.signature(
+  _flaxBinding77,
   _ProcessTextService_queryTextActions,
 );
-const _flaxBinding314 = <FlaxParameter>[
-  FlaxParameter("id", _flaxBinding24, required: true),
-  FlaxParameter("text", _flaxBinding24, required: true),
-  FlaxParameter("readOnly", _flaxBinding78, required: true),
-];
-const _flaxBinding315 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding142,
-  future: FlaxFutureBinding("String?:", _future8Adapt),
-);
-const _flaxBinding316 = FlaxInstanceMethod(
-  _flaxBinding314,
-  _flaxBinding315,
+const _flaxBinding483 = FlaxInstanceMethod.signature(
+  _flaxBinding79,
   _ProcessTextService_processTextAction,
 );
-const _flaxBinding317 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding312,
-  id: "callback:<>()->future:[list:[object:flax.core/sdk_services#type:ProcessTextAction]]",
-);
-const _flaxBinding318 = FlaxProxyMember("queryTextActions", 0, _flaxBinding317);
-const _flaxBinding319 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "id",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "text",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "readOnly",
-      _flaxBinding78,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding315,
-  id: "callback:<>(p:r:id:String:,p:r:text:String:,p:r:readOnly:bool:)->future:[String?:]",
-);
-const _flaxBinding320 = FlaxProxyMember(
-  "processTextAction",
-  0,
-  _flaxBinding319,
-);
-const _flaxBinding321 = FlaxObjectBinding(
+const _flaxBinding484 = FlaxProxyMember("queryTextActions", 0, _flaxBinding77);
+const _flaxBinding485 = FlaxProxyMember("processTextAction", 0, _flaxBinding79);
+const _flaxBinding486 = FlaxObjectBinding(
   "flax.core/sdk_services#type:ProcessTextService",
   [],
-  {"queryTextActions": _flaxBinding313, "processTextAction": _flaxBinding316},
-  constructors: {"@implementation": _flaxBinding23},
+  {"queryTextActions": _flaxBinding482, "processTextAction": _flaxBinding483},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createProcessTextService,
   matches: _isProcessTextService,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding318, _flaxBinding320]),
+  proxy: FlaxProxyBinding([_flaxBinding484, _flaxBinding485]),
 );
-const _flaxBinding322 = FlaxProxyMember(
+const _flaxBinding487 = FlaxProxyMember(
   "queryTextActions",
   0,
-  _flaxBinding317,
+  _flaxBinding77,
   hasSuper: true,
 );
-const _flaxBinding323 = FlaxProxyMember(
+const _flaxBinding488 = FlaxProxyMember(
   "processTextAction",
   0,
-  _flaxBinding319,
+  _flaxBinding79,
   hasSuper: true,
 );
-const _flaxBinding324 = FlaxObjectBinding(
+const _flaxBinding489 = FlaxObjectBinding(
   "flax.core/sdk_services#type:DefaultProcessTextService",
   [],
   {
-    "@super:queryTextActions": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding312,
+    "@super:queryTextActions": FlaxInstanceMethod.signature(
+      _flaxBinding77,
       _DefaultProcessTextService_super_queryTextActions,
     ),
-    "@super:processTextAction": FlaxInstanceMethod(
-      _flaxBinding314,
-      _flaxBinding315,
+    "@super:processTextAction": FlaxInstanceMethod.signature(
+      _flaxBinding79,
       _DefaultProcessTextService_super_processTextAction,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createDefaultProcessTextService,
   matches: _isDefaultProcessTextService,
   setters: [],
@@ -30667,230 +30829,124 @@ const _flaxBinding324 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_services#type:ProcessTextService",
   ],
-  parent: _flaxBinding321,
-  proxy: FlaxProxyBinding([_flaxBinding322, _flaxBinding323]),
+  parent: _flaxBinding486,
+  proxy: FlaxProxyBinding([_flaxBinding487, _flaxBinding488]),
 );
-const _flaxBinding325 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_dart_ui#type:Locale",
-);
-const _flaxBinding326 = <FlaxParameter>[
-  FlaxParameter("locale", _flaxBinding325, required: true),
-  FlaxParameter("text", _flaxBinding24, required: true),
-];
-const _flaxBinding327 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:SuggestionSpan",
-);
-const _flaxBinding328 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding327,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/sdk_services#type:SuggestionSpan]",
-    _collection13Create,
-    _collection13Matches,
-    restore: _collection13Restore,
-  ),
-);
-const _flaxBinding329 = FlaxTypeRef(
-  "list",
-  nullable: true,
-  item: _flaxBinding327,
-  collection: FlaxCollectionBinding(
-    "list:[object:flax.core/sdk_services#type:SuggestionSpan]",
-    _collection12Create,
-    _collection12Matches,
-  ),
-  iterable: _flaxBinding328,
-);
-const _flaxBinding330 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding329,
-  future: FlaxFutureBinding(
-    "list?:[object:flax.core/sdk_services#type:SuggestionSpan]",
-    _future9Adapt,
-  ),
-);
-const _flaxBinding331 = FlaxInstanceMethod(
-  _flaxBinding326,
-  _flaxBinding330,
+const _flaxBinding490 = FlaxInstanceMethod.signature(
+  _flaxBinding85,
   _SpellCheckService_fetchSpellCheckSuggestions,
 );
-const _flaxBinding332 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "locale",
-      _flaxBinding325,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "text",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding330,
-  id: "callback:<>(p:r:locale:object:flax.core/sdk_dart_ui#type:Locale,p:r:text:String:)->future:[list?:[object:flax.core/sdk_services#type:SuggestionSpan]]",
-);
-const _flaxBinding333 = FlaxProxyMember(
+const _flaxBinding491 = FlaxProxyMember(
   "fetchSpellCheckSuggestions",
   0,
-  _flaxBinding332,
+  _flaxBinding85,
 );
-const _flaxBinding334 = FlaxObjectBinding(
+const _flaxBinding492 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SpellCheckService",
   [],
-  {"fetchSpellCheckSuggestions": _flaxBinding331},
-  constructors: {"@implementation": _flaxBinding23},
+  {"fetchSpellCheckSuggestions": _flaxBinding490},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createSpellCheckService,
   matches: _isSpellCheckService,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding333]),
+  proxy: FlaxProxyBinding([_flaxBinding491]),
 );
-const _flaxBinding335 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:SpellCheckResults",
-  nullable: true,
-);
-const _flaxBinding336 = FlaxGetter(
+const _flaxBinding493 = FlaxGetter(
   "lastSavedResults",
-  _flaxBinding335,
+  _flaxBinding86,
   _DefaultSpellCheckService_lastSavedResults,
 );
-const _flaxBinding337 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:MethodChannel",
-);
-const _flaxBinding338 = FlaxGetter(
+const _flaxBinding494 = FlaxGetter(
   "spellCheckChannel",
-  _flaxBinding337,
+  _flaxBinding88,
   _DefaultSpellCheckService_spellCheckChannel,
 );
-const _flaxBinding339 = FlaxSetter(
+const _flaxBinding495 = FlaxSetter(
   "lastSavedResults",
-  _flaxBinding335,
+  _flaxBinding86,
   _DefaultSpellCheckService_set_lastSavedResults,
 );
-const _flaxBinding340 = FlaxSetter(
+const _flaxBinding496 = FlaxSetter(
   "spellCheckChannel",
-  _flaxBinding337,
+  _flaxBinding88,
   _DefaultSpellCheckService_set_spellCheckChannel,
 );
-const _flaxBinding341 = FlaxProxyMember(
+const _flaxBinding497 = FlaxProxyMember(
   "fetchSpellCheckSuggestions",
   0,
-  _flaxBinding332,
+  _flaxBinding85,
   hasSuper: true,
 );
-const _flaxBinding342 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding335,
-  id: "callback:<>()->object?:flax.core/sdk_services#type:SpellCheckResults",
-);
-const _flaxBinding343 = FlaxProxyMember(
+const _flaxBinding498 = FlaxProxyMember(
   "lastSavedResults",
   1,
-  _flaxBinding342,
+  _flaxBinding87,
   hasSuper: true,
 );
-const _flaxBinding344 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding337,
-  id: "callback:<>()->object:flax.core/sdk_services#type:MethodChannel",
-);
-const _flaxBinding345 = FlaxProxyMember(
+const _flaxBinding499 = FlaxProxyMember(
   "spellCheckChannel",
   1,
-  _flaxBinding344,
+  _flaxBinding89,
   hasSuper: true,
 );
-const _flaxBinding346 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding335,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:value:object?:flax.core/sdk_services#type:SpellCheckResults)->void:",
-);
-const _flaxBinding347 = FlaxProxyMember(
+const _flaxBinding500 = FlaxProxyMember(
   "lastSavedResults",
   2,
-  _flaxBinding346,
+  _flaxBinding90,
   hasSuper: true,
 );
-const _flaxBinding348 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding337,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:value:object:flax.core/sdk_services#type:MethodChannel)->void:",
-);
-const _flaxBinding349 = FlaxProxyMember(
+const _flaxBinding501 = FlaxProxyMember(
   "spellCheckChannel",
   2,
-  _flaxBinding348,
+  _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding350 = FlaxObjectBinding(
+const _flaxBinding502 = FlaxObjectBinding(
   "flax.core/sdk_services#type:DefaultSpellCheckService",
-  [_flaxBinding336, _flaxBinding338],
+  [_flaxBinding493, _flaxBinding494],
   {
-    "@super:fetchSpellCheckSuggestions": FlaxInstanceMethod(
-      _flaxBinding326,
-      _flaxBinding330,
+    "@super:fetchSpellCheckSuggestions": FlaxInstanceMethod.signature(
+      _flaxBinding85,
       _DefaultSpellCheckService_super_fetchSpellCheckSuggestions,
     ),
-    "@super:get:lastSavedResults": FlaxInstanceMethod(
-      [],
-      _flaxBinding335,
+    "@super:get:lastSavedResults": FlaxInstanceMethod.signature(
+      _flaxBinding87,
       _DefaultSpellCheckService_super_get_lastSavedResults,
     ),
-    "@super:get:spellCheckChannel": FlaxInstanceMethod(
-      [],
-      _flaxBinding337,
+    "@super:get:spellCheckChannel": FlaxInstanceMethod.signature(
+      _flaxBinding89,
       _DefaultSpellCheckService_super_get_spellCheckChannel,
     ),
     "@super:set:lastSavedResults": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding335, required: true)],
+      [FlaxParameter("value", _flaxBinding86, required: true)],
       const FlaxTypeRef("void"),
       _DefaultSpellCheckService_super_set_lastSavedResults,
     ),
     "@super:set:spellCheckChannel": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding337, required: true)],
+      [FlaxParameter("value", _flaxBinding88, required: true)],
       const FlaxTypeRef("void"),
       _DefaultSpellCheckService_super_set_spellCheckChannel,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createDefaultSpellCheckService,
   matches: _isDefaultSpellCheckService,
-  setters: [_flaxBinding339, _flaxBinding340],
+  setters: [_flaxBinding495, _flaxBinding496],
   supertypes: [
     "dart:core::Object",
     "flax.core/sdk_services#type:SpellCheckService",
   ],
-  parent: _flaxBinding334,
+  parent: _flaxBinding492,
   proxy: FlaxProxyBinding([
-    _flaxBinding341,
-    _flaxBinding343,
-    _flaxBinding345,
-    _flaxBinding347,
-    _flaxBinding349,
+    _flaxBinding497,
+    _flaxBinding498,
+    _flaxBinding499,
+    _flaxBinding500,
+    _flaxBinding501,
   ]),
 );
-const _flaxBinding351 = FlaxObjectBinding(
+const _flaxBinding503 = FlaxObjectBinding(
   "flax.core/sdk_services#type:DeferredComponent",
   [],
   {},
@@ -30900,162 +30956,144 @@ const _flaxBinding351 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding352 = FlaxTypeRef(
+const _flaxBinding504 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:TextEditingValue",
   nullable: true,
 );
-const _flaxBinding353 = FlaxGetter(
+const _flaxBinding505 = FlaxGetter(
   "currentTextEditingValue",
-  _flaxBinding352,
+  _flaxBinding504,
   _TextInputClient_currentTextEditingValue,
 );
-const _flaxBinding354 = FlaxTypeRef(
+const _flaxBinding506 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:AutofillScope",
   nullable: true,
 );
-const _flaxBinding355 = FlaxGetter(
+const _flaxBinding507 = FlaxGetter(
   "currentAutofillScope",
-  _flaxBinding354,
+  _flaxBinding506,
   _TextInputClient_currentAutofillScope,
 );
-const _flaxBinding356 = <FlaxParameter>[
-  FlaxParameter("value", _flaxBinding207, required: true),
+const _flaxBinding508 = <FlaxParameter>[
+  FlaxParameter("value", _flaxBinding38, required: true),
 ];
-const _flaxBinding357 = FlaxInstanceMethod(
-  _flaxBinding356,
-  _flaxBinding82,
+const _flaxBinding509 = FlaxInstanceMethod(
+  _flaxBinding508,
+  _flaxBinding24,
   _TextInputClient_updateEditingValue,
 );
-const _flaxBinding358 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:TextInputAction",
-);
-const _flaxBinding359 = <FlaxParameter>[
-  FlaxParameter("action", _flaxBinding358, required: true),
+const _flaxBinding510 = <FlaxParameter>[
+  FlaxParameter("action", _flaxBinding250, required: true),
 ];
-const _flaxBinding360 = FlaxInstanceMethod(
-  _flaxBinding359,
-  _flaxBinding82,
+const _flaxBinding511 = FlaxInstanceMethod(
+  _flaxBinding510,
+  _flaxBinding24,
   _TextInputClient_performAction,
 );
-const _flaxBinding361 = FlaxTypeRef(
+const _flaxBinding512 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:KeyboardInsertedContent",
 );
-const _flaxBinding362 = <FlaxParameter>[
-  FlaxParameter("content", _flaxBinding361, required: true),
+const _flaxBinding513 = <FlaxParameter>[
+  FlaxParameter("content", _flaxBinding512, required: true),
 ];
-const _flaxBinding363 = FlaxInstanceMethod(
-  _flaxBinding362,
-  _flaxBinding82,
+const _flaxBinding514 = FlaxInstanceMethod(
+  _flaxBinding513,
+  _flaxBinding24,
   _TextInputClient_insertContent,
 );
-const _flaxBinding364 = FlaxTypeRef(
-  "map",
-  item: _flaxBinding161,
-  key: _flaxBinding24,
-  collection: FlaxCollectionBinding(
-    "map:[any?:][String:]",
-    _collection8Create,
-    _collection8Matches,
-  ),
-);
-const _flaxBinding365 = <FlaxParameter>[
-  FlaxParameter("action", _flaxBinding24, required: true),
-  FlaxParameter("data", _flaxBinding364, required: true),
+const _flaxBinding515 = <FlaxParameter>[
+  FlaxParameter("action", _flaxBinding0, required: true),
+  FlaxParameter("data", _flaxBinding137, required: true),
 ];
-const _flaxBinding366 = FlaxInstanceMethod(
-  _flaxBinding365,
-  _flaxBinding82,
+const _flaxBinding516 = FlaxInstanceMethod(
+  _flaxBinding515,
+  _flaxBinding24,
   _TextInputClient_performPrivateCommand,
 );
-const _flaxBinding367 = FlaxTypeRef(
+const _flaxBinding517 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:RawFloatingCursorPoint",
 );
-const _flaxBinding368 = <FlaxParameter>[
-  FlaxParameter("point", _flaxBinding367, required: true),
+const _flaxBinding518 = <FlaxParameter>[
+  FlaxParameter("point", _flaxBinding517, required: true),
 ];
-const _flaxBinding369 = FlaxInstanceMethod(
-  _flaxBinding368,
-  _flaxBinding82,
+const _flaxBinding519 = FlaxInstanceMethod(
+  _flaxBinding518,
+  _flaxBinding24,
   _TextInputClient_updateFloatingCursor,
 );
-const _flaxBinding370 = <FlaxParameter>[
-  FlaxParameter("start", _flaxBinding0, required: true),
-  FlaxParameter("end", _flaxBinding0, required: true),
+const _flaxBinding520 = <FlaxParameter>[
+  FlaxParameter("start", _flaxBinding2, required: true),
+  FlaxParameter("end", _flaxBinding2, required: true),
 ];
-const _flaxBinding371 = FlaxInstanceMethod(
-  _flaxBinding370,
-  _flaxBinding82,
+const _flaxBinding521 = FlaxInstanceMethod(
+  _flaxBinding520,
+  _flaxBinding24,
   _TextInputClient_showAutocorrectionPromptRect,
 );
-const _flaxBinding372 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding78,
+const _flaxBinding522 = FlaxInstanceMethod.signature(
+  _flaxBinding37,
   _TextInputClient_onFocusReceived,
 );
-const _flaxBinding373 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding523 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputClient_connectionClosed,
 );
-const _flaxBinding374 = FlaxTypeRef(
+const _flaxBinding524 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:TextInputControl",
   nullable: true,
 );
-const _flaxBinding375 = <FlaxParameter>[
-  FlaxParameter("oldControl", _flaxBinding374, required: true),
-  FlaxParameter("newControl", _flaxBinding374, required: true),
+const _flaxBinding525 = <FlaxParameter>[
+  FlaxParameter("oldControl", _flaxBinding524, required: true),
+  FlaxParameter("newControl", _flaxBinding524, required: true),
 ];
-const _flaxBinding376 = FlaxInstanceMethod(
-  _flaxBinding375,
-  _flaxBinding82,
+const _flaxBinding526 = FlaxInstanceMethod(
+  _flaxBinding525,
+  _flaxBinding24,
   _TextInputClient_didChangeInputControl,
 );
-const _flaxBinding377 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding527 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputClient_showToolbar,
 );
-const _flaxBinding378 = FlaxInstanceMethod(
-  _flaxBinding112,
-  _flaxBinding82,
+const _flaxBinding528 = FlaxInstanceMethod(
+  _flaxBinding350,
+  _flaxBinding24,
   _TextInputClient_insertTextPlaceholder,
 );
-const _flaxBinding379 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding529 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputClient_removeTextPlaceholder,
 );
-const _flaxBinding380 = <FlaxParameter>[
-  FlaxParameter("selectorName", _flaxBinding24, required: true),
+const _flaxBinding530 = <FlaxParameter>[
+  FlaxParameter("selectorName", _flaxBinding0, required: true),
 ];
-const _flaxBinding381 = FlaxInstanceMethod(
-  _flaxBinding380,
-  _flaxBinding82,
+const _flaxBinding531 = FlaxInstanceMethod(
+  _flaxBinding530,
+  _flaxBinding24,
   _TextInputClient_performSelector,
 );
-const _flaxBinding382 = FlaxObjectBinding(
+const _flaxBinding532 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextInputClient",
-  [_flaxBinding353, _flaxBinding355],
+  [_flaxBinding505, _flaxBinding507],
   {
-    "updateEditingValue": _flaxBinding357,
-    "performAction": _flaxBinding360,
-    "insertContent": _flaxBinding363,
-    "performPrivateCommand": _flaxBinding366,
-    "updateFloatingCursor": _flaxBinding369,
-    "showAutocorrectionPromptRect": _flaxBinding371,
-    "onFocusReceived": _flaxBinding372,
-    "connectionClosed": _flaxBinding373,
-    "didChangeInputControl": _flaxBinding376,
-    "showToolbar": _flaxBinding377,
-    "insertTextPlaceholder": _flaxBinding378,
-    "removeTextPlaceholder": _flaxBinding379,
-    "performSelector": _flaxBinding381,
+    "updateEditingValue": _flaxBinding509,
+    "performAction": _flaxBinding511,
+    "insertContent": _flaxBinding514,
+    "performPrivateCommand": _flaxBinding516,
+    "updateFloatingCursor": _flaxBinding519,
+    "showAutocorrectionPromptRect": _flaxBinding521,
+    "onFocusReceived": _flaxBinding522,
+    "connectionClosed": _flaxBinding523,
+    "didChangeInputControl": _flaxBinding526,
+    "showToolbar": _flaxBinding527,
+    "insertTextPlaceholder": _flaxBinding528,
+    "removeTextPlaceholder": _flaxBinding529,
+    "performSelector": _flaxBinding531,
   },
   constructors: {},
   create: _createTextInputClient,
@@ -31063,42 +31101,42 @@ const _flaxBinding382 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding383 = FlaxTypeRef(
+const _flaxBinding533 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:TextEditingDelta",
 );
-const _flaxBinding384 = FlaxTypeRef(
+const _flaxBinding534 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding383,
+  item: _flaxBinding533,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_services#type:TextEditingDelta]",
-    _collection15Create,
-    _collection15Matches,
-    restore: _collection15Restore,
+    _collection29Create,
+    _collection29Matches,
+    restore: _collection29Restore,
   ),
 );
-const _flaxBinding385 = FlaxTypeRef(
+const _flaxBinding535 = FlaxTypeRef(
   "list",
-  item: _flaxBinding383,
+  item: _flaxBinding533,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_services#type:TextEditingDelta]",
-    _collection14Create,
-    _collection14Matches,
+    _collection28Create,
+    _collection28Matches,
   ),
-  iterable: _flaxBinding384,
+  iterable: _flaxBinding534,
 );
-const _flaxBinding386 = <FlaxParameter>[
-  FlaxParameter("textEditingDeltas", _flaxBinding385, required: true),
+const _flaxBinding536 = <FlaxParameter>[
+  FlaxParameter("textEditingDeltas", _flaxBinding535, required: true),
 ];
-const _flaxBinding387 = FlaxInstanceMethod(
-  _flaxBinding386,
-  _flaxBinding82,
+const _flaxBinding537 = FlaxInstanceMethod(
+  _flaxBinding536,
+  _flaxBinding24,
   _DeltaTextInputClient_updateEditingValueWithDeltas,
 );
-const _flaxBinding388 = FlaxObjectBinding(
+const _flaxBinding538 = FlaxObjectBinding(
   "flax.core/sdk_services#type:DeltaTextInputClient",
   [],
-  {"updateEditingValueWithDeltas": _flaxBinding387},
+  {"updateEditingValueWithDeltas": _flaxBinding537},
   constructors: {},
   create: _createDeltaTextInputClient,
   matches: _isDeltaTextInputClient,
@@ -31107,153 +31145,138 @@ const _flaxBinding388 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_services#type:TextInputClient",
   ],
-  parent: _flaxBinding382,
+  parent: _flaxBinding532,
 );
-const _flaxBinding389 = FlaxObjectBinding(
+const _flaxBinding539 = FlaxObjectBinding(
   "flax.core/sdk_services#type:DocumentBoundary",
   [],
   {
-    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getLeadingTextBoundaryAt,
     ),
-    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getTrailingTextBoundaryAt,
     ),
-    "@super:getTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding294,
+    "@super:getTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding69,
       _FlaxProxyDispatch8_super_call_getTextBoundaryAt,
     ),
   },
-  constructors: {"@implementation": _flaxBinding302},
+  constructors: {"@implementation": _flaxBinding475},
   create: _createDocumentBoundary,
   matches: _isDocumentBoundary,
   setters: [],
   supertypes: ["flax.core/sdk_services#type:TextBoundary", "dart:core::Object"],
-  parent: _flaxBinding301,
-  proxy: FlaxProxyBinding([_flaxBinding297, _flaxBinding298, _flaxBinding300]),
+  parent: _flaxBinding474,
+  proxy: FlaxProxyBinding([_flaxBinding471, _flaxBinding472, _flaxBinding473]),
 );
-const _flaxBinding390 = FlaxGetter("name", _flaxBinding24, _EventChannel_name);
-const _flaxBinding391 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:MethodCodec",
-);
-const _flaxBinding392 = FlaxGetter(
+const _flaxBinding540 = FlaxGetter("name", _flaxBinding0, _EventChannel_name);
+const _flaxBinding541 = FlaxGetter(
   "codec",
-  _flaxBinding391,
+  _flaxBinding92,
   _EventChannel_codec,
 );
-const _flaxBinding393 = FlaxGetter(
+const _flaxBinding542 = FlaxGetter(
   "binaryMessenger",
-  _flaxBinding274,
+  _flaxBinding54,
   _EventChannel_binaryMessenger,
 );
-const _flaxBinding394 = <FlaxParameter>[
-  FlaxParameter("arguments", _flaxBinding161, required: false),
+const _flaxBinding543 = <FlaxParameter>[
+  FlaxParameter(
+    "arguments",
+    _flaxBinding42,
+    required: false,
+    omitWhenAbsent: true,
+  ),
 ];
-const _flaxBinding395 = FlaxTypeRef(
+const _flaxBinding544 = FlaxTypeRef(
   "stream",
   id: "flax.core/flutter#type:Stream",
-  dartType: FlaxDartTypes.typeOf<api6.Stream<Object?>>,
-  item: _flaxBinding161,
+  dartType: FlaxDartTypes.typeOf<api7.Stream<Object?>>,
+  item: _flaxBinding42,
   stream: FlaxStreamBinding(
     "stream:flax.core/flutter#type:Stream[any?:]",
     _stream0Matches,
     _stream0Adapt,
   ),
 );
-const _flaxBinding396 = FlaxInstanceMethod(
-  _flaxBinding394,
-  _flaxBinding395,
+const _flaxBinding545 = FlaxInstanceMethod(
+  _flaxBinding543,
+  _flaxBinding544,
   _EventChannel_receiveBroadcastStream,
 );
-const _flaxBinding397 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding24, required: true),
-  FlaxParameter(
-    "codec",
-    _flaxBinding391,
-    required: false,
-    omitWhenAbsent: true,
-  ),
+const _flaxBinding546 = <FlaxParameter>[
+  FlaxParameter("name", _flaxBinding0, required: true),
+  FlaxParameter("codec", _flaxBinding92, required: false, omitWhenAbsent: true),
   FlaxParameter(
     "binaryMessenger",
-    _flaxBinding277,
+    _flaxBinding457,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding398 = FlaxCallbackBinding.signature(
+const _flaxBinding547 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "arguments",
-      _flaxBinding161,
+      _flaxBinding42,
       required: false,
       positional: true,
     ),
   ],
-  _flaxBinding395,
+  _flaxBinding544,
   id: "callback:<>(p:o:arguments:any?:)->stream:flax.core/flutter#type:Stream[any?:]",
 );
-const _flaxBinding399 = FlaxProxyMember(
+const _flaxBinding548 = FlaxProxyMember(
   "receiveBroadcastStream",
   0,
-  _flaxBinding398,
+  _flaxBinding547,
   hasSuper: true,
 );
-const _flaxBinding400 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding391,
-  id: "callback:<>()->object:flax.core/sdk_services#type:MethodCodec",
-);
-const _flaxBinding401 = FlaxProxyMember(
+const _flaxBinding549 = FlaxProxyMember(
   "codec",
   1,
-  _flaxBinding400,
+  _flaxBinding93,
   hasSuper: true,
 );
-const _flaxBinding402 = FlaxObjectBinding(
+const _flaxBinding550 = FlaxObjectBinding(
   "flax.core/sdk_services#type:EventChannel",
-  [_flaxBinding390, _flaxBinding392, _flaxBinding393],
+  [_flaxBinding540, _flaxBinding541, _flaxBinding542],
   {
-    "receiveBroadcastStream": _flaxBinding396,
+    "receiveBroadcastStream": _flaxBinding545,
     "@super:receiveBroadcastStream": FlaxInstanceMethod(
-      _flaxBinding394,
-      _flaxBinding395,
+      _flaxBinding543,
+      _flaxBinding544,
       _EventChannel_super_receiveBroadcastStream,
     ),
-    "@super:get:name": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:name": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch7_super_get_name,
     ),
-    "@super:get:codec": FlaxInstanceMethod(
-      [],
-      _flaxBinding391,
+    "@super:get:codec": FlaxInstanceMethod.signature(
+      _flaxBinding93,
       _FlaxProxyDispatch9_super_get_codec,
     ),
-    "@super:get:binaryMessenger": FlaxInstanceMethod(
-      [],
-      _flaxBinding274,
+    "@super:get:binaryMessenger": FlaxInstanceMethod.signature(
+      _flaxBinding55,
       _FlaxProxyDispatch7_super_get_binaryMessenger,
     ),
   },
-  constructors: {"@implementation": _flaxBinding397},
+  constructors: {"@implementation": _flaxBinding546},
   create: _createEventChannel,
   matches: _isEventChannel,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding399,
-    _flaxBinding279,
-    _flaxBinding401,
-    _flaxBinding281,
+    _flaxBinding548,
+    _flaxBinding459,
+    _flaxBinding549,
+    _flaxBinding460,
   ]),
 );
-const _flaxBinding403 = FlaxObjectBinding(
+const _flaxBinding551 = FlaxObjectBinding(
   "flax.core/sdk_services#type:ExpensiveAndroidViewController",
   [],
   {},
@@ -31266,9 +31289,9 @@ const _flaxBinding403 = FlaxObjectBinding(
     "flax.core/sdk_services#type:PlatformViewController",
     "dart:core::Object",
   ],
-  parent: _flaxBinding128,
+  parent: _flaxBinding363,
 );
-const _flaxBinding404 = FlaxObjectBinding(
+const _flaxBinding552 = FlaxObjectBinding(
   "flax.core/sdk_services#type:FlutterVersion",
   [],
   {},
@@ -31278,380 +31301,300 @@ const _flaxBinding404 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding405 = FlaxGetter(
-  "family",
-  _flaxBinding24,
-  _FontLoader_family,
-);
-const _flaxBinding406 = <FlaxParameter>[
-  FlaxParameter("bytes", _flaxBinding153, required: true),
-];
-const _flaxBinding407 = FlaxInstanceMethod(
-  _flaxBinding406,
-  _flaxBinding82,
+const _flaxBinding553 = FlaxGetter("family", _flaxBinding0, _FontLoader_family);
+const _flaxBinding554 = FlaxInstanceMethod.signature(
+  _flaxBinding94,
   _FontLoader_addFont,
 );
-const _flaxBinding408 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding555 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _FontLoader_load,
 );
-const _flaxBinding409 = <FlaxParameter>[
-  FlaxParameter("family", _flaxBinding24, required: true),
+const _flaxBinding556 = <FlaxParameter>[
+  FlaxParameter("family", _flaxBinding0, required: true),
 ];
-const _flaxBinding410 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "bytes",
-      _flaxBinding153,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:bytes:future:[ByteData:])->void:",
-);
-const _flaxBinding411 = FlaxProxyMember(
+const _flaxBinding557 = FlaxProxyMember(
   "addFont",
   0,
-  _flaxBinding410,
+  _flaxBinding94,
   hasSuper: true,
 );
-const _flaxBinding412 = FlaxProxyMember(
+const _flaxBinding558 = FlaxProxyMember(
   "load",
   0,
-  _flaxBinding95,
+  _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding413 = FlaxProxyMember(
+const _flaxBinding559 = FlaxProxyMember(
   "family",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding414 = FlaxObjectBinding(
+const _flaxBinding560 = FlaxObjectBinding(
   "flax.core/sdk_services#type:FontLoader",
-  [_flaxBinding405],
+  [_flaxBinding553],
   {
-    "addFont": _flaxBinding407,
-    "load": _flaxBinding408,
-    "@super:addFont": FlaxInstanceMethod(
-      _flaxBinding406,
-      _flaxBinding82,
+    "addFont": _flaxBinding554,
+    "load": _flaxBinding555,
+    "@super:addFont": FlaxInstanceMethod.signature(
+      _flaxBinding94,
       _FontLoader_super_addFont,
     ),
-    "@super:load": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding83,
+    "@super:load": FlaxInstanceMethod.signature(
+      _flaxBinding72,
       _FontLoader_super_load,
     ),
-    "@super:get:family": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:family": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FontLoader_super_get_family,
     ),
   },
-  constructors: {"@implementation": _flaxBinding409},
+  constructors: {"@implementation": _flaxBinding556},
   create: _createFontLoader,
   matches: _isFontLoader,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding411, _flaxBinding412, _flaxBinding413]),
+  proxy: FlaxProxyBinding([_flaxBinding557, _flaxBinding558, _flaxBinding559]),
 );
-const _flaxBinding415 = FlaxGetter(
+const _flaxBinding561 = FlaxGetter(
   "debugToolkit",
-  _flaxBinding24,
+  _flaxBinding0,
   _KeyHelper_debugToolkit,
 );
-const _flaxBinding416 = FlaxGetter(
+const _flaxBinding562 = FlaxGetter(
   "platformPlane",
-  _flaxBinding0,
+  _flaxBinding2,
   _KeyHelper_platformPlane,
 );
-const _flaxBinding417 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:ModifierKey",
-);
-const _flaxBinding418 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding417, required: true),
-];
-const _flaxBinding419 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:KeyboardSide",
-);
-const _flaxBinding420 = FlaxInstanceMethod(
-  _flaxBinding418,
-  _flaxBinding419,
+const _flaxBinding563 = FlaxInstanceMethod.signature(
+  _flaxBinding97,
   _KeyHelper_getModifierSide,
 );
-const _flaxBinding421 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding417, required: true),
-  FlaxParameter("modifiers", _flaxBinding0, required: true),
-  FlaxParameter("isDown", _flaxBinding78, required: true),
-  FlaxParameter("keyCode", _flaxBinding0, required: true),
+const _flaxBinding564 = <FlaxParameter>[
+  FlaxParameter("key", _flaxBinding95, required: true),
+  FlaxParameter("modifiers", _flaxBinding2, required: true),
+  FlaxParameter("isDown", _flaxBinding36, required: true),
+  FlaxParameter("keyCode", _flaxBinding2, required: true),
   FlaxParameter(
     "side",
-    _flaxBinding419,
+    _flaxBinding96,
     required: false,
     defaultValue: api.KeyboardSide.any,
   ),
 ];
-const _flaxBinding422 = FlaxInstanceMethod(
-  _flaxBinding421,
-  _flaxBinding78,
+const _flaxBinding565 = FlaxInstanceMethod(
+  _flaxBinding564,
+  _flaxBinding36,
   _KeyHelper_isModifierPressed,
 );
-const _flaxBinding423 = <FlaxParameter>[
-  FlaxParameter("keyCode", _flaxBinding0, required: true),
-];
-const _flaxBinding424 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:LogicalKeyboardKey",
-  nullable: true,
-);
-const _flaxBinding425 = FlaxInstanceMethod(
-  _flaxBinding423,
-  _flaxBinding424,
+const _flaxBinding566 = FlaxInstanceMethod.signature(
+  _flaxBinding99,
   _KeyHelper_numpadKey,
 );
-const _flaxBinding426 = FlaxInstanceMethod(
-  _flaxBinding423,
-  _flaxBinding424,
+const _flaxBinding567 = FlaxInstanceMethod.signature(
+  _flaxBinding99,
   _KeyHelper_logicalKey,
 );
-const _flaxBinding427 = <FlaxParameter>[
-  FlaxParameter("toolkit", _flaxBinding24, required: true),
+const _flaxBinding568 = <FlaxParameter>[
+  FlaxParameter("toolkit", _flaxBinding0, required: true),
 ];
-const _flaxBinding428 = FlaxCallbackBinding.signature(
+const _flaxBinding569 = FlaxProxyMember("getModifierSide", 0, _flaxBinding97);
+const _flaxBinding570 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "key",
-      _flaxBinding417,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding419,
-  id: "callback:<>(p:r:key:enum:flax.core/sdk_services#type:ModifierKey)->enum:flax.core/sdk_services#type:KeyboardSide",
-);
-const _flaxBinding429 = FlaxProxyMember("getModifierSide", 0, _flaxBinding428);
-const _flaxBinding430 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "key",
-      _flaxBinding417,
+      _flaxBinding95,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "modifiers",
-      _flaxBinding0,
+      _flaxBinding2,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "side",
-      _flaxBinding419,
+      _flaxBinding96,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "keyCode",
-      _flaxBinding0,
+      _flaxBinding2,
       required: true,
       positional: false,
     ),
     FlaxCallbackParameter(
       "isDown",
-      _flaxBinding78,
+      _flaxBinding36,
       required: true,
       positional: false,
     ),
   ],
-  _flaxBinding78,
+  _flaxBinding36,
   id: "callback:<>(p:r:key:enum:flax.core/sdk_services#type:ModifierKey,p:r:modifiers:int:,n:o:side:enum:flax.core/sdk_services#type:KeyboardSide,n:r:keyCode:int:,n:r:isDown:bool:)->bool:",
 );
-const _flaxBinding431 = FlaxProxyMember(
+const _flaxBinding571 = FlaxProxyMember(
   "isModifierPressed",
   0,
-  _flaxBinding430,
+  _flaxBinding570,
 );
-const _flaxBinding432 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "keyCode",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding424,
-  id: "callback:<>(p:r:keyCode:int:)->object?:flax.core/flutter#type:LogicalKeyboardKey",
-);
-const _flaxBinding433 = FlaxProxyMember("numpadKey", 0, _flaxBinding432);
-const _flaxBinding434 = FlaxProxyMember("logicalKey", 0, _flaxBinding432);
-const _flaxBinding435 = FlaxProxyMember("debugToolkit", 1, _flaxBinding27);
-const _flaxBinding436 = FlaxProxyMember("platformPlane", 1, _flaxBinding29);
-const _flaxBinding437 = FlaxObjectBinding(
+const _flaxBinding572 = FlaxProxyMember("numpadKey", 0, _flaxBinding99);
+const _flaxBinding573 = FlaxProxyMember("logicalKey", 0, _flaxBinding99);
+const _flaxBinding574 = FlaxProxyMember("debugToolkit", 1, _flaxBinding1);
+const _flaxBinding575 = FlaxProxyMember("platformPlane", 1, _flaxBinding3);
+const _flaxBinding576 = FlaxObjectBinding(
   "flax.core/sdk_services#type:KeyHelper",
-  [_flaxBinding415, _flaxBinding416],
+  [_flaxBinding561, _flaxBinding562],
   {
-    "getModifierSide": _flaxBinding420,
-    "isModifierPressed": _flaxBinding422,
-    "numpadKey": _flaxBinding425,
-    "logicalKey": _flaxBinding426,
+    "getModifierSide": _flaxBinding563,
+    "isModifierPressed": _flaxBinding565,
+    "numpadKey": _flaxBinding566,
+    "logicalKey": _flaxBinding567,
   },
-  constructors: {"": _flaxBinding427, "@implementation": _flaxBinding23},
+  constructors: {"": _flaxBinding568, "@implementation": _flaxBinding332},
   create: _createKeyHelper,
   matches: _isKeyHelper,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding429,
-    _flaxBinding431,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding436,
+    _flaxBinding569,
+    _flaxBinding571,
+    _flaxBinding572,
+    _flaxBinding573,
+    _flaxBinding574,
+    _flaxBinding575,
   ]),
 );
-const _flaxBinding438 = FlaxProxyMember(
+const _flaxBinding577 = FlaxProxyMember(
   "getModifierSide",
   0,
-  _flaxBinding428,
+  _flaxBinding97,
   hasSuper: true,
 );
-const _flaxBinding439 = FlaxProxyMember(
+const _flaxBinding578 = FlaxProxyMember(
   "isModifierPressed",
   0,
-  _flaxBinding430,
+  _flaxBinding570,
   hasSuper: true,
 );
-const _flaxBinding440 = FlaxProxyMember(
+const _flaxBinding579 = FlaxProxyMember(
   "numpadKey",
   0,
-  _flaxBinding432,
+  _flaxBinding99,
   hasSuper: true,
 );
-const _flaxBinding441 = FlaxProxyMember(
+const _flaxBinding580 = FlaxProxyMember(
   "logicalKey",
   0,
-  _flaxBinding432,
+  _flaxBinding99,
   hasSuper: true,
 );
-const _flaxBinding442 = FlaxProxyMember(
+const _flaxBinding581 = FlaxProxyMember(
   "debugToolkit",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding443 = FlaxProxyMember(
+const _flaxBinding582 = FlaxProxyMember(
   "platformPlane",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding444 = FlaxObjectBinding(
+const _flaxBinding583 = FlaxObjectBinding(
   "flax.core/sdk_services#type:GLFWKeyHelper",
   [],
   {
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding419,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding97,
       _FlaxProxyDispatch10_super_call_getModifierSide,
     ),
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding421,
-      _flaxBinding78,
+      _flaxBinding564,
+      _flaxBinding36,
       _FlaxProxyDispatch11_super_call_isModifierPressed,
     ),
-    "@super:numpadKey": FlaxInstanceMethod(
-      _flaxBinding423,
-      _flaxBinding424,
+    "@super:numpadKey": FlaxInstanceMethod.signature(
+      _flaxBinding99,
       _FlaxProxyDispatch11_super_call_numpadKey,
     ),
-    "@super:logicalKey": FlaxInstanceMethod(
-      _flaxBinding423,
-      _flaxBinding424,
+    "@super:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding99,
       _FlaxProxyDispatch11_super_call_logicalKey,
     ),
-    "@super:get:debugToolkit": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:debugToolkit": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch11_super_get_debugToolkit,
     ),
-    "@super:get:platformPlane": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:platformPlane": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch11_super_get_platformPlane,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createGLFWKeyHelper,
   matches: _isGLFWKeyHelper,
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/sdk_services#type:KeyHelper"],
-  parent: _flaxBinding437,
+  parent: _flaxBinding576,
   proxy: FlaxProxyBinding([
-    _flaxBinding438,
-    _flaxBinding439,
-    _flaxBinding440,
-    _flaxBinding441,
-    _flaxBinding442,
-    _flaxBinding443,
+    _flaxBinding577,
+    _flaxBinding578,
+    _flaxBinding579,
+    _flaxBinding580,
+    _flaxBinding581,
+    _flaxBinding582,
   ]),
 );
-const _flaxBinding445 = FlaxObjectBinding(
+const _flaxBinding584 = FlaxObjectBinding(
   "flax.core/sdk_services#type:GtkKeyHelper",
   [],
   {
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding419,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding97,
       _FlaxProxyDispatch10_super_call_getModifierSide,
     ),
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding421,
-      _flaxBinding78,
+      _flaxBinding564,
+      _flaxBinding36,
       _FlaxProxyDispatch11_super_call_isModifierPressed,
     ),
-    "@super:numpadKey": FlaxInstanceMethod(
-      _flaxBinding423,
-      _flaxBinding424,
+    "@super:numpadKey": FlaxInstanceMethod.signature(
+      _flaxBinding99,
       _FlaxProxyDispatch11_super_call_numpadKey,
     ),
-    "@super:logicalKey": FlaxInstanceMethod(
-      _flaxBinding423,
-      _flaxBinding424,
+    "@super:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding99,
       _FlaxProxyDispatch11_super_call_logicalKey,
     ),
-    "@super:get:debugToolkit": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:debugToolkit": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch11_super_get_debugToolkit,
     ),
-    "@super:get:platformPlane": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:platformPlane": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _FlaxProxyDispatch11_super_get_platformPlane,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createGtkKeyHelper,
   matches: _isGtkKeyHelper,
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/sdk_services#type:KeyHelper"],
-  parent: _flaxBinding437,
+  parent: _flaxBinding576,
   proxy: FlaxProxyBinding([
-    _flaxBinding438,
-    _flaxBinding439,
-    _flaxBinding440,
-    _flaxBinding441,
-    _flaxBinding442,
-    _flaxBinding443,
+    _flaxBinding577,
+    _flaxBinding578,
+    _flaxBinding579,
+    _flaxBinding580,
+    _flaxBinding581,
+    _flaxBinding582,
   ]),
 );
-const _flaxBinding446 = FlaxObjectBinding(
+const _flaxBinding585 = FlaxObjectBinding(
   "flax.core/sdk_services#type:HapticFeedback",
   [],
   {},
@@ -31661,455 +31604,252 @@ const _flaxBinding446 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding447 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:PhysicalKeyboardKey",
-);
-const _flaxBinding448 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding447,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/flutter#type:PhysicalKeyboardKey]",
-    _collection17Create,
-    _collection17Matches,
-    restore: _collection17Restore,
-  ),
-);
-const _flaxBinding449 = FlaxTypeRef(
-  "set",
-  item: _flaxBinding447,
-  collection: FlaxCollectionBinding(
-    "set:[object:flax.core/flutter#type:PhysicalKeyboardKey]",
-    _collection16Create,
-    _collection16Matches,
-  ),
-  iterable: _flaxBinding448,
-);
-const _flaxBinding450 = FlaxGetter(
+const _flaxBinding586 = FlaxGetter(
   "physicalKeysPressed",
-  _flaxBinding449,
+  _flaxBinding111,
   _HardwareKeyboard_physicalKeysPressed,
 );
-const _flaxBinding451 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:LogicalKeyboardKey",
-);
-const _flaxBinding452 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding451,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/flutter#type:LogicalKeyboardKey]",
-    _collection19Create,
-    _collection19Matches,
-    restore: _collection19Restore,
-  ),
-);
-const _flaxBinding453 = FlaxTypeRef(
-  "set",
-  item: _flaxBinding451,
-  collection: FlaxCollectionBinding(
-    "set:[object:flax.core/flutter#type:LogicalKeyboardKey]",
-    _collection18Create,
-    _collection18Matches,
-  ),
-  iterable: _flaxBinding452,
-);
-const _flaxBinding454 = FlaxGetter(
+const _flaxBinding587 = FlaxGetter(
   "logicalKeysPressed",
-  _flaxBinding453,
+  _flaxBinding114,
   _HardwareKeyboard_logicalKeysPressed,
 );
-const _flaxBinding455 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:KeyboardLockMode",
-);
-const _flaxBinding456 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding455,
-  collection: FlaxCollectionBinding(
-    "iterable:[enum:flax.core/sdk_services#type:KeyboardLockMode]",
-    _collection21Create,
-    _collection21Matches,
-    restore: _collection21Restore,
-  ),
-);
-const _flaxBinding457 = FlaxTypeRef(
-  "set",
-  item: _flaxBinding455,
-  collection: FlaxCollectionBinding(
-    "set:[enum:flax.core/sdk_services#type:KeyboardLockMode]",
-    _collection20Create,
-    _collection20Matches,
-  ),
-  iterable: _flaxBinding456,
-);
-const _flaxBinding458 = FlaxGetter(
+const _flaxBinding588 = FlaxGetter(
   "lockModesEnabled",
-  _flaxBinding457,
+  _flaxBinding118,
   _HardwareKeyboard_lockModesEnabled,
 );
-const _flaxBinding459 = FlaxGetter(
+const _flaxBinding589 = FlaxGetter(
   "isControlPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _HardwareKeyboard_isControlPressed,
 );
-const _flaxBinding460 = FlaxGetter(
+const _flaxBinding590 = FlaxGetter(
   "isShiftPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _HardwareKeyboard_isShiftPressed,
 );
-const _flaxBinding461 = FlaxGetter(
+const _flaxBinding591 = FlaxGetter(
   "isAltPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _HardwareKeyboard_isAltPressed,
 );
-const _flaxBinding462 = FlaxGetter(
+const _flaxBinding592 = FlaxGetter(
   "isMetaPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _HardwareKeyboard_isMetaPressed,
 );
-const _flaxBinding463 = <FlaxParameter>[
-  FlaxParameter("physicalKey", _flaxBinding447, required: true),
-];
-const _flaxBinding464 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding424,
+const _flaxBinding593 = FlaxInstanceMethod.signature(
+  _flaxBinding101,
   _HardwareKeyboard_lookUpLayout,
 );
-const _flaxBinding465 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding451, required: true),
-];
-const _flaxBinding466 = FlaxInstanceMethod(
-  _flaxBinding465,
-  _flaxBinding78,
+const _flaxBinding594 = FlaxInstanceMethod.signature(
+  _flaxBinding103,
   _HardwareKeyboard_isLogicalKeyPressed,
 );
-const _flaxBinding467 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding447, required: true),
-];
-const _flaxBinding468 = FlaxInstanceMethod(
-  _flaxBinding467,
-  _flaxBinding78,
+const _flaxBinding595 = FlaxInstanceMethod.signature(
+  _flaxBinding104,
   _HardwareKeyboard_isPhysicalKeyPressed,
 );
-const _flaxBinding469 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:KeyEvent",
-);
-const _flaxBinding470 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding469,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding78,
-  FlaxCallbackAdapters.wrap1<api.KeyEvent, bool>,
-  id: "callback:<>(p:r:event:object:flax.core/flutter#type:KeyEvent)->bool:",
-  invoke: FlaxCallbackAdapters.invoke1<api.KeyEvent, bool>,
-  matches: FlaxCallbackAdapters.matches1<api.KeyEvent, bool>,
-);
-const _flaxBinding471 = FlaxTypeRef("callback", callback: _flaxBinding470);
-const _flaxBinding472 = <FlaxParameter>[
-  FlaxParameter("handler", _flaxBinding471, required: true),
-];
-const _flaxBinding473 = FlaxInstanceMethod(
-  _flaxBinding472,
-  _flaxBinding82,
+const _flaxBinding596 = FlaxInstanceMethod.signature(
+  _flaxBinding108,
   _HardwareKeyboard_addHandler,
 );
-const _flaxBinding474 = FlaxInstanceMethod(
-  _flaxBinding472,
-  _flaxBinding82,
+const _flaxBinding597 = FlaxInstanceMethod.signature(
+  _flaxBinding108,
   _HardwareKeyboard_removeHandler,
 );
-const _flaxBinding475 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding598 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _HardwareKeyboard_syncKeyboardState,
 );
-const _flaxBinding476 = <FlaxParameter>[
-  FlaxParameter("event", _flaxBinding469, required: true),
-];
-const _flaxBinding477 = FlaxInstanceMethod(
-  _flaxBinding476,
-  _flaxBinding78,
+const _flaxBinding599 = FlaxInstanceMethod.signature(
+  _flaxBinding109,
   _HardwareKeyboard_handleKeyEvent,
 );
-const _flaxBinding478 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "physicalKey",
-      _flaxBinding447,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding424,
-  id: "callback:<>(p:r:physicalKey:object:flax.core/flutter#type:PhysicalKeyboardKey)->object?:flax.core/flutter#type:LogicalKeyboardKey",
-);
-const _flaxBinding479 = FlaxProxyMember(
+const _flaxBinding600 = FlaxProxyMember(
   "lookUpLayout",
   0,
-  _flaxBinding478,
+  _flaxBinding101,
   hasSuper: true,
 );
-const _flaxBinding480 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "key",
-      _flaxBinding451,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding78,
-  id: "callback:<>(p:r:key:object:flax.core/flutter#type:LogicalKeyboardKey)->bool:",
-);
-const _flaxBinding481 = FlaxProxyMember(
+const _flaxBinding601 = FlaxProxyMember(
   "isLogicalKeyPressed",
   0,
-  _flaxBinding480,
+  _flaxBinding103,
   hasSuper: true,
 );
-const _flaxBinding482 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "key",
-      _flaxBinding447,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding78,
-  id: "callback:<>(p:r:key:object:flax.core/flutter#type:PhysicalKeyboardKey)->bool:",
-);
-const _flaxBinding483 = FlaxProxyMember(
+const _flaxBinding602 = FlaxProxyMember(
   "isPhysicalKeyPressed",
   0,
-  _flaxBinding482,
+  _flaxBinding104,
   hasSuper: true,
 );
-const _flaxBinding484 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "handler",
-      _flaxBinding471,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:handler:callback:<>(p:r:event:object:flax.core/flutter#type:KeyEvent)->bool:)->void:",
-);
-const _flaxBinding485 = FlaxProxyMember(
+const _flaxBinding603 = FlaxProxyMember(
   "addHandler",
   0,
-  _flaxBinding484,
+  _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding486 = FlaxProxyMember(
+const _flaxBinding604 = FlaxProxyMember(
   "removeHandler",
   0,
-  _flaxBinding484,
+  _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding487 = FlaxProxyMember(
+const _flaxBinding605 = FlaxProxyMember(
   "syncKeyboardState",
   0,
-  _flaxBinding95,
+  _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding488 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding469,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding78,
-  id: "callback:<>(p:r:event:object:flax.core/flutter#type:KeyEvent)->bool:",
-);
-const _flaxBinding489 = FlaxProxyMember(
+const _flaxBinding606 = FlaxProxyMember(
   "handleKeyEvent",
   0,
-  _flaxBinding488,
+  _flaxBinding109,
   hasSuper: true,
 );
-const _flaxBinding490 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding449,
-  id: "callback:<>()->set:[object:flax.core/flutter#type:PhysicalKeyboardKey]",
-);
-const _flaxBinding491 = FlaxProxyMember(
+const _flaxBinding607 = FlaxProxyMember(
   "physicalKeysPressed",
   1,
-  _flaxBinding490,
+  _flaxBinding112,
   hasSuper: true,
 );
-const _flaxBinding492 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding453,
-  id: "callback:<>()->set:[object:flax.core/flutter#type:LogicalKeyboardKey]",
-);
-const _flaxBinding493 = FlaxProxyMember(
+const _flaxBinding608 = FlaxProxyMember(
   "logicalKeysPressed",
   1,
-  _flaxBinding492,
+  _flaxBinding115,
   hasSuper: true,
 );
-const _flaxBinding494 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding457,
-  id: "callback:<>()->set:[enum:flax.core/sdk_services#type:KeyboardLockMode]",
-);
-const _flaxBinding495 = FlaxProxyMember(
+const _flaxBinding609 = FlaxProxyMember(
   "lockModesEnabled",
   1,
-  _flaxBinding494,
+  _flaxBinding119,
   hasSuper: true,
 );
-const _flaxBinding496 = FlaxProxyMember(
+const _flaxBinding610 = FlaxProxyMember(
   "isControlPressed",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding497 = FlaxProxyMember(
+const _flaxBinding611 = FlaxProxyMember(
   "isShiftPressed",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding498 = FlaxProxyMember(
+const _flaxBinding612 = FlaxProxyMember(
   "isAltPressed",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding499 = FlaxProxyMember(
+const _flaxBinding613 = FlaxProxyMember(
   "isMetaPressed",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding500 = FlaxObjectBinding(
+const _flaxBinding614 = FlaxObjectBinding(
   "flax.core/sdk_services#type:HardwareKeyboard",
   [
-    _flaxBinding450,
-    _flaxBinding454,
-    _flaxBinding458,
-    _flaxBinding459,
-    _flaxBinding460,
-    _flaxBinding461,
-    _flaxBinding462,
+    _flaxBinding586,
+    _flaxBinding587,
+    _flaxBinding588,
+    _flaxBinding589,
+    _flaxBinding590,
+    _flaxBinding591,
+    _flaxBinding592,
   ],
   {
-    "lookUpLayout": _flaxBinding464,
-    "isLogicalKeyPressed": _flaxBinding466,
-    "isPhysicalKeyPressed": _flaxBinding468,
-    "addHandler": _flaxBinding473,
-    "removeHandler": _flaxBinding474,
-    "syncKeyboardState": _flaxBinding475,
-    "handleKeyEvent": _flaxBinding477,
-    "@super:lookUpLayout": FlaxInstanceMethod(
-      _flaxBinding463,
-      _flaxBinding424,
+    "lookUpLayout": _flaxBinding593,
+    "isLogicalKeyPressed": _flaxBinding594,
+    "isPhysicalKeyPressed": _flaxBinding595,
+    "addHandler": _flaxBinding596,
+    "removeHandler": _flaxBinding597,
+    "syncKeyboardState": _flaxBinding598,
+    "handleKeyEvent": _flaxBinding599,
+    "@super:lookUpLayout": FlaxInstanceMethod.signature(
+      _flaxBinding101,
       _HardwareKeyboard_super_lookUpLayout,
     ),
-    "@super:isLogicalKeyPressed": FlaxInstanceMethod(
-      _flaxBinding465,
-      _flaxBinding78,
+    "@super:isLogicalKeyPressed": FlaxInstanceMethod.signature(
+      _flaxBinding103,
       _HardwareKeyboard_super_isLogicalKeyPressed,
     ),
-    "@super:isPhysicalKeyPressed": FlaxInstanceMethod(
-      _flaxBinding467,
-      _flaxBinding78,
+    "@super:isPhysicalKeyPressed": FlaxInstanceMethod.signature(
+      _flaxBinding104,
       _HardwareKeyboard_super_isPhysicalKeyPressed,
     ),
-    "@super:addHandler": FlaxInstanceMethod(
-      _flaxBinding472,
-      _flaxBinding82,
+    "@super:addHandler": FlaxInstanceMethod.signature(
+      _flaxBinding108,
       _HardwareKeyboard_super_addHandler,
     ),
-    "@super:removeHandler": FlaxInstanceMethod(
-      _flaxBinding472,
-      _flaxBinding82,
+    "@super:removeHandler": FlaxInstanceMethod.signature(
+      _flaxBinding108,
       _HardwareKeyboard_super_removeHandler,
     ),
-    "@super:syncKeyboardState": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding83,
+    "@super:syncKeyboardState": FlaxInstanceMethod.signature(
+      _flaxBinding72,
       _HardwareKeyboard_super_syncKeyboardState,
     ),
-    "@super:handleKeyEvent": FlaxInstanceMethod(
-      _flaxBinding476,
-      _flaxBinding78,
+    "@super:handleKeyEvent": FlaxInstanceMethod.signature(
+      _flaxBinding109,
       _HardwareKeyboard_super_handleKeyEvent,
     ),
-    "@super:get:physicalKeysPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding449,
+    "@super:get:physicalKeysPressed": FlaxInstanceMethod.signature(
+      _flaxBinding112,
       _HardwareKeyboard_super_get_physicalKeysPressed,
     ),
-    "@super:get:logicalKeysPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding453,
+    "@super:get:logicalKeysPressed": FlaxInstanceMethod.signature(
+      _flaxBinding115,
       _HardwareKeyboard_super_get_logicalKeysPressed,
     ),
-    "@super:get:lockModesEnabled": FlaxInstanceMethod(
-      [],
-      _flaxBinding457,
+    "@super:get:lockModesEnabled": FlaxInstanceMethod.signature(
+      _flaxBinding119,
       _HardwareKeyboard_super_get_lockModesEnabled,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createHardwareKeyboard,
   matches: _isHardwareKeyboard,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding479,
-    _flaxBinding481,
-    _flaxBinding483,
-    _flaxBinding485,
-    _flaxBinding486,
-    _flaxBinding487,
-    _flaxBinding489,
-    _flaxBinding491,
-    _flaxBinding493,
-    _flaxBinding495,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
+    _flaxBinding600,
+    _flaxBinding601,
+    _flaxBinding602,
+    _flaxBinding603,
+    _flaxBinding604,
+    _flaxBinding605,
+    _flaxBinding606,
+    _flaxBinding607,
+    _flaxBinding608,
+    _flaxBinding609,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
   ]),
 );
-const _flaxBinding501 = FlaxObjectBinding(
+const _flaxBinding615 = FlaxObjectBinding(
   "flax.core/sdk_services#type:HybridAndroidViewController",
   [],
   {},
@@ -32122,16 +31862,16 @@ const _flaxBinding501 = FlaxObjectBinding(
     "flax.core/sdk_services#type:PlatformViewController",
     "dart:core::Object",
   ],
-  parent: _flaxBinding128,
+  parent: _flaxBinding363,
 );
-const _flaxBinding502 = FlaxGetter(
+const _flaxBinding616 = FlaxGetter(
   "title",
-  _flaxBinding142,
+  _flaxBinding14,
   _IOSSystemContextMenuItemData_title,
 );
-const _flaxBinding503 = FlaxObjectBinding(
+const _flaxBinding617 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemData",
-  [_flaxBinding502],
+  [_flaxBinding616],
   {},
   constructors: {},
   create: _createIOSSystemContextMenuItemData,
@@ -32139,11 +31879,11 @@ const _flaxBinding503 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding504 = FlaxObjectBinding(
+const _flaxBinding618 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataCopy",
   [],
   {},
-  constructors: {"": _flaxBinding23},
+  constructors: {"": _flaxBinding332},
   create: _createIOSSystemContextMenuItemDataCopy,
   matches: _isIOSSystemContextMenuItemDataCopy,
   setters: [],
@@ -32151,98 +31891,80 @@ const _flaxBinding504 = FlaxObjectBinding(
     "flax.core/sdk_services#type:IOSSystemContextMenuItemData",
     "dart:core::Object",
   ],
-  parent: _flaxBinding503,
+  parent: _flaxBinding617,
 );
-const _flaxBinding505 = FlaxGetter(
+const _flaxBinding619 = FlaxGetter(
   "title",
-  _flaxBinding24,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataCustom_title,
 );
-const _flaxBinding506 = FlaxCallbackBinding(
-  [],
-  _flaxBinding82,
-  FlaxCallbackAdapters.wrapVoid0,
-  id: "callback:<>()->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid0,
-  matches: FlaxCallbackAdapters.matchesVoid0,
-);
-const _flaxBinding507 = FlaxTypeRef("callback", callback: _flaxBinding506);
-const _flaxBinding508 = FlaxGetter(
+const _flaxBinding620 = FlaxGetter(
   "onPressed",
-  _flaxBinding507,
+  _flaxBinding191,
   _IOSSystemContextMenuItemDataCustom_onPressed,
 );
-const _flaxBinding509 = FlaxGetter(
+const _flaxBinding621 = FlaxGetter(
   "callbackId",
-  _flaxBinding24,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataCustom_callbackId,
 );
-const _flaxBinding510 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding622 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _IOSSystemContextMenuItemDataCustom_toStringShort,
 );
-const _flaxBinding511 = FlaxTypeRef(
+const _flaxBinding623 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticLevel",
 );
-const _flaxBinding512 = <FlaxParameter>[
+const _flaxBinding624 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
-    _flaxBinding511,
+    _flaxBinding623,
     required: false,
     defaultValue: api2.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding513 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding625 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataCustom_toString,
 );
-const _flaxBinding514 = FlaxTypeRef(
+const _flaxBinding626 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
   nullable: true,
 );
-const _flaxBinding515 = <FlaxParameter>[
-  FlaxParameter("name", _flaxBinding142, required: false),
-  FlaxParameter("style", _flaxBinding514, required: false),
+const _flaxBinding627 = <FlaxParameter>[
+  FlaxParameter("name", _flaxBinding14, required: false),
+  FlaxParameter("style", _flaxBinding626, required: false),
 ];
-const _flaxBinding516 = FlaxTypeRef(
+const _flaxBinding628 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding517 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding629 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _IOSSystemContextMenuItemDataCustom_toDiagnosticsNode,
 );
-const _flaxBinding518 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-);
-const _flaxBinding519 = <FlaxParameter>[
-  FlaxParameter("properties", _flaxBinding518, required: true),
-];
-const _flaxBinding520 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding630 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _IOSSystemContextMenuItemDataCustom_debugFillProperties,
 );
-const _flaxBinding521 = <FlaxParameter>[
-  FlaxParameter("title", _flaxBinding24, required: true),
-  FlaxParameter("onPressed", _flaxBinding507, required: true),
+const _flaxBinding631 = <FlaxParameter>[
+  FlaxParameter("title", _flaxBinding0, required: true),
+  FlaxParameter("onPressed", _flaxBinding191, required: true),
 ];
-const _flaxBinding522 = FlaxObjectBinding(
+const _flaxBinding632 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataCustom",
-  [_flaxBinding505, _flaxBinding508, _flaxBinding509],
+  [_flaxBinding619, _flaxBinding620, _flaxBinding621],
   {
-    "toStringShort": _flaxBinding510,
-    "toString": _flaxBinding513,
-    "toDiagnosticsNode": _flaxBinding517,
-    "debugFillProperties": _flaxBinding520,
+    "toStringShort": _flaxBinding622,
+    "toString": _flaxBinding625,
+    "toDiagnosticsNode": _flaxBinding629,
+    "debugFillProperties": _flaxBinding630,
   },
-  constructors: {"": _flaxBinding521},
+  constructors: {"": _flaxBinding631},
   create: _createIOSSystemContextMenuItemDataCustom,
   matches: _isIOSSystemContextMenuItemDataCustom,
   setters: [],
@@ -32252,11 +31974,11 @@ const _flaxBinding522 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding523 = FlaxObjectBinding(
+const _flaxBinding633 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataCut",
   [],
   {},
-  constructors: {"": _flaxBinding23},
+  constructors: {"": _flaxBinding332},
   create: _createIOSSystemContextMenuItemDataCut,
   matches: _isIOSSystemContextMenuItemDataCut,
   setters: [],
@@ -32264,13 +31986,13 @@ const _flaxBinding523 = FlaxObjectBinding(
     "flax.core/sdk_services#type:IOSSystemContextMenuItemData",
     "dart:core::Object",
   ],
-  parent: _flaxBinding503,
+  parent: _flaxBinding617,
 );
-const _flaxBinding524 = FlaxObjectBinding(
+const _flaxBinding634 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataLiveText",
   [],
   {},
-  constructors: {"": _flaxBinding23},
+  constructors: {"": _flaxBinding332},
   create: _createIOSSystemContextMenuItemDataLiveText,
   matches: _isIOSSystemContextMenuItemDataLiveText,
   setters: [],
@@ -32278,46 +32000,44 @@ const _flaxBinding524 = FlaxObjectBinding(
     "flax.core/sdk_services#type:IOSSystemContextMenuItemData",
     "dart:core::Object",
   ],
-  parent: _flaxBinding503,
+  parent: _flaxBinding617,
 );
-const _flaxBinding525 = FlaxGetter(
+const _flaxBinding635 = FlaxGetter(
   "title",
-  _flaxBinding24,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataLookUp_title,
 );
-const _flaxBinding526 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding636 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _IOSSystemContextMenuItemDataLookUp_toStringShort,
 );
-const _flaxBinding527 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding637 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataLookUp_toString,
 );
-const _flaxBinding528 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding638 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _IOSSystemContextMenuItemDataLookUp_toDiagnosticsNode,
 );
-const _flaxBinding529 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding639 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _IOSSystemContextMenuItemDataLookUp_debugFillProperties,
 );
-const _flaxBinding530 = <FlaxParameter>[
-  FlaxParameter("title", _flaxBinding24, required: true),
+const _flaxBinding640 = <FlaxParameter>[
+  FlaxParameter("title", _flaxBinding0, required: true),
 ];
-const _flaxBinding531 = FlaxObjectBinding(
+const _flaxBinding641 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataLookUp",
-  [_flaxBinding525],
+  [_flaxBinding635],
   {
-    "toStringShort": _flaxBinding526,
-    "toString": _flaxBinding527,
-    "toDiagnosticsNode": _flaxBinding528,
-    "debugFillProperties": _flaxBinding529,
+    "toStringShort": _flaxBinding636,
+    "toString": _flaxBinding637,
+    "toDiagnosticsNode": _flaxBinding638,
+    "debugFillProperties": _flaxBinding639,
   },
-  constructors: {"": _flaxBinding530},
+  constructors: {"": _flaxBinding640},
   create: _createIOSSystemContextMenuItemDataLookUp,
   matches: _isIOSSystemContextMenuItemDataLookUp,
   setters: [],
@@ -32327,11 +32047,11 @@ const _flaxBinding531 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding532 = FlaxObjectBinding(
+const _flaxBinding642 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataPaste",
   [],
   {},
-  constructors: {"": _flaxBinding23},
+  constructors: {"": _flaxBinding332},
   create: _createIOSSystemContextMenuItemDataPaste,
   matches: _isIOSSystemContextMenuItemDataPaste,
   setters: [],
@@ -32339,43 +32059,41 @@ const _flaxBinding532 = FlaxObjectBinding(
     "flax.core/sdk_services#type:IOSSystemContextMenuItemData",
     "dart:core::Object",
   ],
-  parent: _flaxBinding503,
+  parent: _flaxBinding617,
 );
-const _flaxBinding533 = FlaxGetter(
+const _flaxBinding643 = FlaxGetter(
   "title",
-  _flaxBinding24,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataSearchWeb_title,
 );
-const _flaxBinding534 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding644 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _IOSSystemContextMenuItemDataSearchWeb_toStringShort,
 );
-const _flaxBinding535 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding645 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataSearchWeb_toString,
 );
-const _flaxBinding536 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding646 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _IOSSystemContextMenuItemDataSearchWeb_toDiagnosticsNode,
 );
-const _flaxBinding537 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding647 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _IOSSystemContextMenuItemDataSearchWeb_debugFillProperties,
 );
-const _flaxBinding538 = FlaxObjectBinding(
+const _flaxBinding648 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataSearchWeb",
-  [_flaxBinding533],
+  [_flaxBinding643],
   {
-    "toStringShort": _flaxBinding534,
-    "toString": _flaxBinding535,
-    "toDiagnosticsNode": _flaxBinding536,
-    "debugFillProperties": _flaxBinding537,
+    "toStringShort": _flaxBinding644,
+    "toString": _flaxBinding645,
+    "toDiagnosticsNode": _flaxBinding646,
+    "debugFillProperties": _flaxBinding647,
   },
-  constructors: {"": _flaxBinding530},
+  constructors: {"": _flaxBinding640},
   create: _createIOSSystemContextMenuItemDataSearchWeb,
   matches: _isIOSSystemContextMenuItemDataSearchWeb,
   setters: [],
@@ -32385,11 +32103,11 @@ const _flaxBinding538 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding539 = FlaxObjectBinding(
+const _flaxBinding649 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataSelectAll",
   [],
   {},
-  constructors: {"": _flaxBinding23},
+  constructors: {"": _flaxBinding332},
   create: _createIOSSystemContextMenuItemDataSelectAll,
   matches: _isIOSSystemContextMenuItemDataSelectAll,
   setters: [],
@@ -32397,43 +32115,41 @@ const _flaxBinding539 = FlaxObjectBinding(
     "flax.core/sdk_services#type:IOSSystemContextMenuItemData",
     "dart:core::Object",
   ],
-  parent: _flaxBinding503,
+  parent: _flaxBinding617,
 );
-const _flaxBinding540 = FlaxGetter(
+const _flaxBinding650 = FlaxGetter(
   "title",
-  _flaxBinding24,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataShare_title,
 );
-const _flaxBinding541 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding651 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _IOSSystemContextMenuItemDataShare_toStringShort,
 );
-const _flaxBinding542 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding652 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _IOSSystemContextMenuItemDataShare_toString,
 );
-const _flaxBinding543 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding653 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _IOSSystemContextMenuItemDataShare_toDiagnosticsNode,
 );
-const _flaxBinding544 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding654 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _IOSSystemContextMenuItemDataShare_debugFillProperties,
 );
-const _flaxBinding545 = FlaxObjectBinding(
+const _flaxBinding655 = FlaxObjectBinding(
   "flax.core/sdk_services#type:IOSSystemContextMenuItemDataShare",
-  [_flaxBinding540],
+  [_flaxBinding650],
   {
-    "toStringShort": _flaxBinding541,
-    "toString": _flaxBinding542,
-    "toDiagnosticsNode": _flaxBinding543,
-    "debugFillProperties": _flaxBinding544,
+    "toStringShort": _flaxBinding651,
+    "toString": _flaxBinding652,
+    "toDiagnosticsNode": _flaxBinding653,
+    "debugFillProperties": _flaxBinding654,
   },
-  constructors: {"": _flaxBinding530},
+  constructors: {"": _flaxBinding640},
   create: _createIOSSystemContextMenuItemDataShare,
   matches: _isIOSSystemContextMenuItemDataShare,
   setters: [],
@@ -32443,572 +32159,419 @@ const _flaxBinding545 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding546 = <FlaxParameter>[
-  FlaxParameter("message", _flaxBinding161, required: true),
-];
-const _flaxBinding547 = FlaxInstanceMethod(
-  _flaxBinding546,
-  _flaxBinding253,
+const _flaxBinding656 = FlaxInstanceMethod.signature(
+  _flaxBinding120,
   _JSONMessageCodec_encodeMessage,
 );
-const _flaxBinding548 = FlaxInstanceMethod(
-  _flaxBinding282,
-  _flaxBinding161,
+const _flaxBinding657 = FlaxInstanceMethod.signature(
+  _flaxBinding121,
   _JSONMessageCodec_decodeMessage,
 );
-const _flaxBinding549 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding161,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding253,
-  id: "callback:<>(p:r:message:any?:)->ByteData?:",
-);
-const _flaxBinding550 = FlaxProxyMember(
+const _flaxBinding658 = FlaxProxyMember(
   "encodeMessage",
   0,
-  _flaxBinding549,
+  _flaxBinding120,
   hasSuper: true,
 );
-const _flaxBinding551 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding253,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding161,
-  id: "callback:<>(p:r:message:ByteData?:)->any?:",
-);
-const _flaxBinding552 = FlaxProxyMember(
+const _flaxBinding659 = FlaxProxyMember(
   "decodeMessage",
   0,
-  _flaxBinding551,
+  _flaxBinding121,
   hasSuper: true,
 );
-const _flaxBinding553 = FlaxObjectBinding(
+const _flaxBinding660 = FlaxObjectBinding(
   "flax.core/sdk_services#type:JSONMessageCodec",
   [],
   {
-    "encodeMessage": _flaxBinding547,
-    "decodeMessage": _flaxBinding548,
-    "@super:encodeMessage": FlaxInstanceMethod(
-      _flaxBinding546,
-      _flaxBinding253,
+    "encodeMessage": _flaxBinding656,
+    "decodeMessage": _flaxBinding657,
+    "@super:encodeMessage": FlaxInstanceMethod.signature(
+      _flaxBinding120,
       _FlaxProxyDispatch13_super_call_encodeMessage,
     ),
-    "@super:decodeMessage": FlaxInstanceMethod(
-      _flaxBinding282,
-      _flaxBinding161,
+    "@super:decodeMessage": FlaxInstanceMethod.signature(
+      _flaxBinding121,
       _FlaxProxyDispatch13_super_call_decodeMessage,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createJSONMessageCodec,
   matches: _isJSONMessageCodec,
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/sdk_services#type:MessageCodec"],
-  proxy: FlaxProxyBinding([_flaxBinding550, _flaxBinding552]),
+  proxy: FlaxProxyBinding([_flaxBinding658, _flaxBinding659]),
 );
-const _flaxBinding554 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:MethodCall",
-);
-const _flaxBinding555 = <FlaxParameter>[
-  FlaxParameter("methodCall", _flaxBinding554, required: true),
-];
-const _flaxBinding556 = FlaxInstanceMethod(
-  _flaxBinding555,
-  _flaxBinding152,
+const _flaxBinding661 = FlaxInstanceMethod.signature(
+  _flaxBinding123,
   _MethodCodec_encodeMethodCall,
 );
-const _flaxBinding557 = <FlaxParameter>[
-  FlaxParameter("methodCall", _flaxBinding253, required: true),
-];
-const _flaxBinding558 = FlaxInstanceMethod(
-  _flaxBinding557,
-  _flaxBinding554,
+const _flaxBinding662 = FlaxInstanceMethod.signature(
+  _flaxBinding124,
   _MethodCodec_decodeMethodCall,
 );
-const _flaxBinding559 = <FlaxParameter>[
-  FlaxParameter("envelope", _flaxBinding152, required: true),
-];
-const _flaxBinding560 = FlaxInstanceMethod(
-  _flaxBinding559,
-  _flaxBinding161,
+const _flaxBinding663 = FlaxInstanceMethod.signature(
+  _flaxBinding125,
   _MethodCodec_decodeEnvelope,
 );
-const _flaxBinding561 = <FlaxParameter>[
-  FlaxParameter("result", _flaxBinding161, required: true),
-];
-const _flaxBinding562 = FlaxInstanceMethod(
-  _flaxBinding561,
-  _flaxBinding152,
+const _flaxBinding664 = FlaxInstanceMethod.signature(
+  _flaxBinding126,
   _MethodCodec_encodeSuccessEnvelope,
 );
-const _flaxBinding563 = <FlaxParameter>[
-  FlaxParameter("code", _flaxBinding24, required: true),
-  FlaxParameter("details", _flaxBinding161, required: false),
-  FlaxParameter("message", _flaxBinding142, required: false),
+const _flaxBinding665 = <FlaxParameter>[
+  FlaxParameter("code", _flaxBinding0, required: true),
+  FlaxParameter("details", _flaxBinding42, required: false),
+  FlaxParameter("message", _flaxBinding14, required: false),
 ];
-const _flaxBinding564 = FlaxInstanceMethod(
-  _flaxBinding563,
-  _flaxBinding152,
+const _flaxBinding666 = FlaxInstanceMethod(
+  _flaxBinding665,
+  _flaxBinding18,
   _MethodCodec_encodeErrorEnvelope,
 );
-const _flaxBinding565 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "methodCall",
-      _flaxBinding554,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding152,
-  id: "callback:<>(p:r:methodCall:object:flax.core/sdk_services#type:MethodCall)->ByteData:",
-);
-const _flaxBinding566 = FlaxProxyMember("encodeMethodCall", 0, _flaxBinding565);
-const _flaxBinding567 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "methodCall",
-      _flaxBinding253,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding554,
-  id: "callback:<>(p:r:methodCall:ByteData?:)->object:flax.core/sdk_services#type:MethodCall",
-);
-const _flaxBinding568 = FlaxProxyMember("decodeMethodCall", 0, _flaxBinding567);
-const _flaxBinding569 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "envelope",
-      _flaxBinding152,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding161,
-  id: "callback:<>(p:r:envelope:ByteData:)->any?:",
-);
-const _flaxBinding570 = FlaxProxyMember("decodeEnvelope", 0, _flaxBinding569);
-const _flaxBinding571 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "result",
-      _flaxBinding161,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding152,
-  id: "callback:<>(p:r:result:any?:)->ByteData:",
-);
-const _flaxBinding572 = FlaxProxyMember(
+const _flaxBinding667 = FlaxProxyMember("encodeMethodCall", 0, _flaxBinding123);
+const _flaxBinding668 = FlaxProxyMember("decodeMethodCall", 0, _flaxBinding124);
+const _flaxBinding669 = FlaxProxyMember("decodeEnvelope", 0, _flaxBinding125);
+const _flaxBinding670 = FlaxProxyMember(
   "encodeSuccessEnvelope",
   0,
-  _flaxBinding571,
+  _flaxBinding126,
 );
-const _flaxBinding573 = FlaxCallbackBinding.signature(
+const _flaxBinding671 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "code",
-      _flaxBinding24,
+      _flaxBinding0,
       required: true,
       positional: false,
     ),
     FlaxCallbackParameter(
       "message",
-      _flaxBinding142,
+      _flaxBinding14,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "details",
-      _flaxBinding161,
+      _flaxBinding42,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding152,
+  _flaxBinding18,
   id: "callback:<>(n:r:code:String:,n:o:message:String?:,n:o:details:any?:)->ByteData:",
 );
-const _flaxBinding574 = FlaxProxyMember(
+const _flaxBinding672 = FlaxProxyMember(
   "encodeErrorEnvelope",
   0,
-  _flaxBinding573,
+  _flaxBinding671,
 );
-const _flaxBinding575 = FlaxObjectBinding(
+const _flaxBinding673 = FlaxObjectBinding(
   "flax.core/sdk_services#type:MethodCodec",
   [],
   {
-    "encodeMethodCall": _flaxBinding556,
-    "decodeMethodCall": _flaxBinding558,
-    "decodeEnvelope": _flaxBinding560,
-    "encodeSuccessEnvelope": _flaxBinding562,
-    "encodeErrorEnvelope": _flaxBinding564,
+    "encodeMethodCall": _flaxBinding661,
+    "decodeMethodCall": _flaxBinding662,
+    "decodeEnvelope": _flaxBinding663,
+    "encodeSuccessEnvelope": _flaxBinding664,
+    "encodeErrorEnvelope": _flaxBinding666,
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createMethodCodec,
   matches: _isMethodCodec,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding566,
-    _flaxBinding568,
-    _flaxBinding570,
-    _flaxBinding572,
-    _flaxBinding574,
+    _flaxBinding667,
+    _flaxBinding668,
+    _flaxBinding669,
+    _flaxBinding670,
+    _flaxBinding672,
   ]),
 );
-const _flaxBinding576 = FlaxProxyMember(
+const _flaxBinding674 = FlaxProxyMember(
   "encodeMethodCall",
   0,
-  _flaxBinding565,
+  _flaxBinding123,
   hasSuper: true,
 );
-const _flaxBinding577 = FlaxProxyMember(
+const _flaxBinding675 = FlaxProxyMember(
   "decodeMethodCall",
   0,
-  _flaxBinding567,
+  _flaxBinding124,
   hasSuper: true,
 );
-const _flaxBinding578 = FlaxProxyMember(
+const _flaxBinding676 = FlaxProxyMember(
   "decodeEnvelope",
   0,
-  _flaxBinding569,
+  _flaxBinding125,
   hasSuper: true,
 );
-const _flaxBinding579 = FlaxProxyMember(
+const _flaxBinding677 = FlaxProxyMember(
   "encodeSuccessEnvelope",
   0,
-  _flaxBinding571,
+  _flaxBinding126,
   hasSuper: true,
 );
-const _flaxBinding580 = FlaxProxyMember(
+const _flaxBinding678 = FlaxProxyMember(
   "encodeErrorEnvelope",
   0,
-  _flaxBinding573,
+  _flaxBinding671,
   hasSuper: true,
 );
-const _flaxBinding581 = FlaxObjectBinding(
+const _flaxBinding679 = FlaxObjectBinding(
   "flax.core/sdk_services#type:JSONMethodCodec",
   [],
   {
-    "@super:encodeMethodCall": FlaxInstanceMethod(
-      _flaxBinding555,
-      _flaxBinding152,
+    "@super:encodeMethodCall": FlaxInstanceMethod.signature(
+      _flaxBinding123,
       _FlaxProxyDispatch14_super_call_encodeMethodCall,
     ),
-    "@super:decodeMethodCall": FlaxInstanceMethod(
-      _flaxBinding557,
-      _flaxBinding554,
+    "@super:decodeMethodCall": FlaxInstanceMethod.signature(
+      _flaxBinding124,
       _FlaxProxyDispatch14_super_call_decodeMethodCall,
     ),
-    "@super:decodeEnvelope": FlaxInstanceMethod(
-      _flaxBinding559,
-      _flaxBinding161,
+    "@super:decodeEnvelope": FlaxInstanceMethod.signature(
+      _flaxBinding125,
       _FlaxProxyDispatch14_super_call_decodeEnvelope,
     ),
-    "@super:encodeSuccessEnvelope": FlaxInstanceMethod(
-      _flaxBinding561,
-      _flaxBinding152,
+    "@super:encodeSuccessEnvelope": FlaxInstanceMethod.signature(
+      _flaxBinding126,
       _FlaxProxyDispatch14_super_call_encodeSuccessEnvelope,
     ),
     "@super:encodeErrorEnvelope": FlaxInstanceMethod(
-      _flaxBinding563,
-      _flaxBinding152,
+      _flaxBinding665,
+      _flaxBinding18,
       _FlaxProxyDispatch14_super_call_encodeErrorEnvelope,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createJSONMethodCodec,
   matches: _isJSONMethodCodec,
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/sdk_services#type:MethodCodec"],
-  parent: _flaxBinding575,
+  parent: _flaxBinding673,
   proxy: FlaxProxyBinding([
-    _flaxBinding576,
-    _flaxBinding577,
-    _flaxBinding578,
-    _flaxBinding579,
-    _flaxBinding580,
+    _flaxBinding674,
+    _flaxBinding675,
+    _flaxBinding676,
+    _flaxBinding677,
+    _flaxBinding678,
   ]),
 );
-const _flaxBinding582 = FlaxGetter(
+const _flaxBinding680 = FlaxGetter(
   "physicalKey",
-  _flaxBinding447,
+  _flaxBinding100,
   _KeyDownEvent_physicalKey,
 );
-const _flaxBinding583 = FlaxGetter(
+const _flaxBinding681 = FlaxGetter(
   "logicalKey",
-  _flaxBinding451,
+  _flaxBinding102,
   _KeyDownEvent_logicalKey,
 );
-const _flaxBinding584 = FlaxGetter(
+const _flaxBinding682 = FlaxGetter(
   "character",
-  _flaxBinding142,
+  _flaxBinding14,
   _KeyDownEvent_character,
 );
-const _flaxBinding585 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Duration",
-);
-const _flaxBinding586 = FlaxGetter(
+const _flaxBinding683 = FlaxGetter(
   "timeStamp",
-  _flaxBinding585,
+  _flaxBinding131,
   _KeyDownEvent_timeStamp,
 );
-const _flaxBinding587 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_dart_ui#type:KeyEventDeviceType",
-);
-const _flaxBinding588 = FlaxGetter(
+const _flaxBinding684 = FlaxGetter(
   "deviceType",
-  _flaxBinding587,
+  _flaxBinding133,
   _KeyDownEvent_deviceType,
 );
-const _flaxBinding589 = FlaxGetter(
+const _flaxBinding685 = FlaxGetter(
   "synthesized",
-  _flaxBinding78,
+  _flaxBinding36,
   _KeyDownEvent_synthesized,
 );
-const _flaxBinding590 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding686 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _KeyDownEvent_debugFillProperties,
 );
-const _flaxBinding591 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding687 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _KeyDownEvent_toStringShort,
 );
-const _flaxBinding592 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding688 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _KeyDownEvent_toDiagnosticsNode,
 );
-const _flaxBinding593 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding689 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _KeyDownEvent_toString,
 );
-const _flaxBinding594 = <FlaxParameter>[
-  FlaxParameter("physicalKey", _flaxBinding447, required: true),
-  FlaxParameter("logicalKey", _flaxBinding451, required: true),
-  FlaxParameter("character", _flaxBinding142, required: false),
-  FlaxParameter("timeStamp", _flaxBinding585, required: true),
+const _flaxBinding690 = <FlaxParameter>[
+  FlaxParameter("physicalKey", _flaxBinding100, required: true),
+  FlaxParameter("logicalKey", _flaxBinding102, required: true),
+  FlaxParameter("character", _flaxBinding14, required: false),
+  FlaxParameter("timeStamp", _flaxBinding131, required: true),
   FlaxParameter(
     "synthesized",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "deviceType",
-    _flaxBinding587,
+    _flaxBinding133,
     required: false,
     defaultValue: api1.KeyEventDeviceType.keyboard,
   ),
 ];
-const _flaxBinding595 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "properties",
-      _flaxBinding518,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:properties:object:flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder)->void:",
-);
-const _flaxBinding596 = FlaxProxyMember(
+const _flaxBinding691 = FlaxProxyMember(
   "debugFillProperties",
   0,
-  _flaxBinding595,
+  _flaxBinding128,
   hasSuper: true,
 );
-const _flaxBinding597 = FlaxProxyMember(
+const _flaxBinding692 = FlaxProxyMember(
   "toStringShort",
   0,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding598 = FlaxCallbackBinding.signature(
+const _flaxBinding693 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "name",
-      _flaxBinding142,
+      _flaxBinding14,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "style",
-      _flaxBinding514,
+      _flaxBinding626,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding516,
+  _flaxBinding628,
   id: "callback:<>(n:o:name:String?:,n:o:style:enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle)->object:flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding599 = FlaxProxyMember(
+const _flaxBinding694 = FlaxProxyMember(
   "toDiagnosticsNode",
   0,
-  _flaxBinding598,
+  _flaxBinding693,
   hasSuper: true,
 );
-const _flaxBinding600 = FlaxCallbackBinding.signature(
+const _flaxBinding695 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "minLevel",
-      _flaxBinding511,
+      _flaxBinding623,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding24,
+  _flaxBinding0,
   id: "callback:<>(n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding601 = FlaxProxyMember(
+const _flaxBinding696 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding600,
+  _flaxBinding695,
   hasSuper: true,
 );
-const _flaxBinding602 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding447,
-  id: "callback:<>()->object:flax.core/flutter#type:PhysicalKeyboardKey",
-);
-const _flaxBinding603 = FlaxProxyMember(
+const _flaxBinding697 = FlaxProxyMember(
   "physicalKey",
   1,
-  _flaxBinding602,
+  _flaxBinding129,
   hasSuper: true,
 );
-const _flaxBinding604 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding451,
-  id: "callback:<>()->object:flax.core/flutter#type:LogicalKeyboardKey",
-);
-const _flaxBinding605 = FlaxProxyMember(
+const _flaxBinding698 = FlaxProxyMember(
   "logicalKey",
   1,
-  _flaxBinding604,
+  _flaxBinding130,
   hasSuper: true,
 );
-const _flaxBinding606 = FlaxProxyMember(
+const _flaxBinding699 = FlaxProxyMember(
   "character",
   1,
-  _flaxBinding146,
+  _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding607 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding585,
-  id: "callback:<>()->object:flax.core/flutter#type:Duration",
-);
-const _flaxBinding608 = FlaxProxyMember(
+const _flaxBinding700 = FlaxProxyMember(
   "timeStamp",
   1,
-  _flaxBinding607,
+  _flaxBinding132,
   hasSuper: true,
 );
-const _flaxBinding609 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding587,
-  id: "callback:<>()->enum:flax.core/sdk_dart_ui#type:KeyEventDeviceType",
-);
-const _flaxBinding610 = FlaxProxyMember(
+const _flaxBinding701 = FlaxProxyMember(
   "deviceType",
   1,
-  _flaxBinding609,
+  _flaxBinding134,
   hasSuper: true,
 );
-const _flaxBinding611 = FlaxProxyMember(
+const _flaxBinding702 = FlaxProxyMember(
   "synthesized",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding612 = FlaxObjectBinding(
+const _flaxBinding703 = FlaxObjectBinding(
   "flax.core/sdk_services#type:KeyDownEvent",
   [
-    _flaxBinding582,
-    _flaxBinding583,
-    _flaxBinding584,
-    _flaxBinding586,
-    _flaxBinding588,
-    _flaxBinding589,
+    _flaxBinding680,
+    _flaxBinding681,
+    _flaxBinding682,
+    _flaxBinding683,
+    _flaxBinding684,
+    _flaxBinding685,
   ],
   {
-    "debugFillProperties": _flaxBinding590,
-    "toStringShort": _flaxBinding591,
-    "toDiagnosticsNode": _flaxBinding592,
-    "toString": _flaxBinding593,
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "debugFillProperties": _flaxBinding686,
+    "toStringShort": _flaxBinding687,
+    "toDiagnosticsNode": _flaxBinding688,
+    "toString": _flaxBinding689,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:character": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:character": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _KeyDownEvent_super_get_character,
     ),
-    "@super:get:timeStamp": FlaxInstanceMethod(
-      [],
-      _flaxBinding585,
+    "@super:get:timeStamp": FlaxInstanceMethod.signature(
+      _flaxBinding132,
       _FlaxProxyDispatch18_super_get_timeStamp,
     ),
-    "@super:get:deviceType": FlaxInstanceMethod(
-      [],
-      _flaxBinding587,
+    "@super:get:deviceType": FlaxInstanceMethod.signature(
+      _flaxBinding134,
       _FlaxProxyDispatch18_super_get_deviceType,
     ),
-    "@super:get:synthesized": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:synthesized": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch18_super_get_synthesized,
     ),
   },
-  constructors: {"@implementation": _flaxBinding594},
+  constructors: {"@implementation": _flaxBinding690},
   create: _createKeyDownEvent,
   matches: _isKeyDownEvent,
   setters: [],
@@ -33018,413 +32581,282 @@ const _flaxBinding612 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding596,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding601,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding606,
-    _flaxBinding608,
-    _flaxBinding610,
-    _flaxBinding611,
+    _flaxBinding691,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding696,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding699,
+    _flaxBinding700,
+    _flaxBinding701,
+    _flaxBinding702,
   ]),
 );
-const _flaxBinding613 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:KeyMessage",
-);
-const _flaxBinding614 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding613,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding78,
-  FlaxCallbackAdapters.wrap1<api.KeyMessage, bool>,
-  id: "callback:<>(p:r:message:object:flax.core/sdk_services#type:KeyMessage)->bool:",
-  invoke: FlaxCallbackAdapters.invoke1<api.KeyMessage, bool>,
-  matches: FlaxCallbackAdapters.matches1<api.KeyMessage, bool>,
-);
-const _flaxBinding615 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding614,
-);
-const _flaxBinding616 = FlaxGetter(
+const _flaxBinding704 = FlaxGetter(
   "keyMessageHandler",
-  _flaxBinding615,
+  _flaxBinding142,
   _KeyEventManager_keyMessageHandler,
 );
-const _flaxBinding617 = FlaxSetter(
+const _flaxBinding705 = FlaxSetter(
   "keyMessageHandler",
-  _flaxBinding615,
+  _flaxBinding142,
   _KeyEventManager_set_keyMessageHandler,
 );
-const _flaxBinding618 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_dart_ui#type:KeyData",
-);
-const _flaxBinding619 = <FlaxParameter>[
-  FlaxParameter("data", _flaxBinding618, required: true),
-];
-const _flaxBinding620 = FlaxInstanceMethod(
-  _flaxBinding619,
-  _flaxBinding78,
+const _flaxBinding706 = FlaxInstanceMethod.signature(
+  _flaxBinding136,
   _KeyEventManager_handleKeyData,
 );
-const _flaxBinding621 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding364,
-  future: FlaxFutureBinding("map:[any?:][String:]", _future10Adapt),
-);
-const _flaxBinding622 = FlaxInstanceMethod(
-  _flaxBinding546,
-  _flaxBinding621,
+const _flaxBinding707 = FlaxInstanceMethod.signature(
+  _flaxBinding139,
   _KeyEventManager_handleRawKeyMessage,
 );
-const _flaxBinding623 = FlaxTypeRef(
+const _flaxBinding708 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:HardwareKeyboard",
 );
-const _flaxBinding624 = FlaxTypeRef(
+const _flaxBinding709 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:RawKeyboard",
 );
-const _flaxBinding625 = <FlaxParameter>[
-  FlaxParameter("_hardwareKeyboard", _flaxBinding623, required: true),
-  FlaxParameter("_rawKeyboard", _flaxBinding624, required: true),
+const _flaxBinding710 = <FlaxParameter>[
+  FlaxParameter("_hardwareKeyboard", _flaxBinding708, required: true),
+  FlaxParameter("_rawKeyboard", _flaxBinding709, required: true),
 ];
-const _flaxBinding626 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "data",
-      _flaxBinding618,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding78,
-  id: "callback:<>(p:r:data:object:flax.core/sdk_dart_ui#type:KeyData)->bool:",
-);
-const _flaxBinding627 = FlaxProxyMember(
+const _flaxBinding711 = FlaxProxyMember(
   "handleKeyData",
   0,
-  _flaxBinding626,
+  _flaxBinding136,
   hasSuper: true,
 );
-const _flaxBinding628 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding161,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding621,
-  id: "callback:<>(p:r:message:any?:)->future:[map:[any?:][String:]]",
-);
-const _flaxBinding629 = FlaxProxyMember(
+const _flaxBinding712 = FlaxProxyMember(
   "handleRawKeyMessage",
   0,
-  _flaxBinding628,
+  _flaxBinding139,
   hasSuper: true,
 );
-const _flaxBinding630 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding615,
-  id: "callback:<>()->callback?:<>(p:r:message:object:flax.core/sdk_services#type:KeyMessage)->bool:",
-);
-const _flaxBinding631 = FlaxProxyMember(
+const _flaxBinding713 = FlaxProxyMember(
   "keyMessageHandler",
   1,
-  _flaxBinding630,
+  _flaxBinding143,
   hasSuper: true,
 );
-const _flaxBinding632 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding615,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:value:callback?:<>(p:r:message:object:flax.core/sdk_services#type:KeyMessage)->bool:)->void:",
-);
-const _flaxBinding633 = FlaxProxyMember(
+const _flaxBinding714 = FlaxProxyMember(
   "keyMessageHandler",
   2,
-  _flaxBinding632,
+  _flaxBinding144,
   hasSuper: true,
 );
-const _flaxBinding634 = FlaxObjectBinding(
+const _flaxBinding715 = FlaxObjectBinding(
   "flax.core/sdk_services#type:KeyEventManager",
-  [_flaxBinding616],
+  [_flaxBinding704],
   {
-    "handleKeyData": _flaxBinding620,
-    "handleRawKeyMessage": _flaxBinding622,
-    "@super:handleKeyData": FlaxInstanceMethod(
-      _flaxBinding619,
-      _flaxBinding78,
+    "handleKeyData": _flaxBinding706,
+    "handleRawKeyMessage": _flaxBinding707,
+    "@super:handleKeyData": FlaxInstanceMethod.signature(
+      _flaxBinding136,
       _KeyEventManager_super_handleKeyData,
     ),
-    "@super:handleRawKeyMessage": FlaxInstanceMethod(
-      _flaxBinding546,
-      _flaxBinding621,
+    "@super:handleRawKeyMessage": FlaxInstanceMethod.signature(
+      _flaxBinding139,
       _KeyEventManager_super_handleRawKeyMessage,
     ),
-    "@super:get:keyMessageHandler": FlaxInstanceMethod(
-      [],
-      _flaxBinding615,
+    "@super:get:keyMessageHandler": FlaxInstanceMethod.signature(
+      _flaxBinding143,
       _KeyEventManager_super_get_keyMessageHandler,
     ),
     "@super:set:keyMessageHandler": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding615, required: true)],
+      [FlaxParameter("value", _flaxBinding142, required: true)],
       const FlaxTypeRef("void"),
       _KeyEventManager_super_set_keyMessageHandler,
     ),
   },
-  constructors: {"@implementation": _flaxBinding625},
+  constructors: {"@implementation": _flaxBinding710},
   create: _createKeyEventManager,
   matches: _isKeyEventManager,
-  setters: [_flaxBinding617],
+  setters: [_flaxBinding705],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding627,
-    _flaxBinding629,
-    _flaxBinding631,
-    _flaxBinding633,
+    _flaxBinding711,
+    _flaxBinding712,
+    _flaxBinding713,
+    _flaxBinding714,
   ]),
 );
-const _flaxBinding635 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding469,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/flutter#type:KeyEvent]",
-    _collection23Create,
-    _collection23Matches,
-    restore: _collection23Restore,
-  ),
-);
-const _flaxBinding636 = FlaxTypeRef(
-  "list",
-  item: _flaxBinding469,
-  collection: FlaxCollectionBinding(
-    "list:[object:flax.core/flutter#type:KeyEvent]",
-    _collection22Create,
-    _collection22Matches,
-  ),
-  iterable: _flaxBinding635,
-);
-const _flaxBinding637 = FlaxGetter(
+const _flaxBinding716 = FlaxGetter(
   "events",
-  _flaxBinding636,
+  _flaxBinding146,
   _KeyMessage_events,
 );
-const _flaxBinding638 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:RawKeyEvent",
-  nullable: true,
-);
-const _flaxBinding639 = FlaxGetter(
+const _flaxBinding717 = FlaxGetter(
   "rawEvent",
-  _flaxBinding638,
+  _flaxBinding148,
   _KeyMessage_rawEvent,
 );
-const _flaxBinding640 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding718 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _KeyMessage_toString,
 );
-const _flaxBinding641 = <FlaxParameter>[
-  FlaxParameter("events", _flaxBinding636, required: true),
-  FlaxParameter("rawEvent", _flaxBinding638, required: true),
+const _flaxBinding719 = <FlaxParameter>[
+  FlaxParameter("events", _flaxBinding146, required: true),
+  FlaxParameter("rawEvent", _flaxBinding148, required: true),
 ];
-const _flaxBinding642 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding636,
-  id: "callback:<>()->list:[object:flax.core/flutter#type:KeyEvent]",
-);
-const _flaxBinding643 = FlaxProxyMember(
+const _flaxBinding720 = FlaxProxyMember(
   "events",
   1,
-  _flaxBinding642,
+  _flaxBinding147,
   hasSuper: true,
 );
-const _flaxBinding644 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding638,
-  id: "callback:<>()->object?:flax.core/sdk_services#type:RawKeyEvent",
-);
-const _flaxBinding645 = FlaxProxyMember(
+const _flaxBinding721 = FlaxProxyMember(
   "rawEvent",
   1,
-  _flaxBinding644,
+  _flaxBinding149,
   hasSuper: true,
 );
-const _flaxBinding646 = FlaxObjectBinding(
+const _flaxBinding722 = FlaxObjectBinding(
   "flax.core/sdk_services#type:KeyMessage",
-  [_flaxBinding637, _flaxBinding639],
+  [_flaxBinding716, _flaxBinding717],
   {
-    "toString": _flaxBinding640,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toString": _flaxBinding718,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:events": FlaxInstanceMethod(
-      [],
-      _flaxBinding636,
+    "@super:get:events": FlaxInstanceMethod.signature(
+      _flaxBinding147,
       _KeyMessage_super_get_events,
     ),
-    "@super:get:rawEvent": FlaxInstanceMethod(
-      [],
-      _flaxBinding638,
+    "@super:get:rawEvent": FlaxInstanceMethod.signature(
+      _flaxBinding149,
       _KeyMessage_super_get_rawEvent,
     ),
   },
-  constructors: {"@implementation": _flaxBinding641},
+  constructors: {"@implementation": _flaxBinding719},
   create: _createKeyMessage,
   matches: _isKeyMessage,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding28, _flaxBinding643, _flaxBinding645]),
+  proxy: FlaxProxyBinding([_flaxBinding279, _flaxBinding720, _flaxBinding721]),
 );
-const _flaxBinding647 = FlaxGetter(
+const _flaxBinding723 = FlaxGetter(
   "physicalKey",
-  _flaxBinding447,
+  _flaxBinding100,
   _KeyRepeatEvent_physicalKey,
 );
-const _flaxBinding648 = FlaxGetter(
+const _flaxBinding724 = FlaxGetter(
   "logicalKey",
-  _flaxBinding451,
+  _flaxBinding102,
   _KeyRepeatEvent_logicalKey,
 );
-const _flaxBinding649 = FlaxGetter(
+const _flaxBinding725 = FlaxGetter(
   "character",
-  _flaxBinding142,
+  _flaxBinding14,
   _KeyRepeatEvent_character,
 );
-const _flaxBinding650 = FlaxGetter(
+const _flaxBinding726 = FlaxGetter(
   "timeStamp",
-  _flaxBinding585,
+  _flaxBinding131,
   _KeyRepeatEvent_timeStamp,
 );
-const _flaxBinding651 = FlaxGetter(
+const _flaxBinding727 = FlaxGetter(
   "deviceType",
-  _flaxBinding587,
+  _flaxBinding133,
   _KeyRepeatEvent_deviceType,
 );
-const _flaxBinding652 = FlaxGetter(
+const _flaxBinding728 = FlaxGetter(
   "synthesized",
-  _flaxBinding78,
+  _flaxBinding36,
   _KeyRepeatEvent_synthesized,
 );
-const _flaxBinding653 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding729 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _KeyRepeatEvent_debugFillProperties,
 );
-const _flaxBinding654 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding730 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _KeyRepeatEvent_toStringShort,
 );
-const _flaxBinding655 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding731 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _KeyRepeatEvent_toDiagnosticsNode,
 );
-const _flaxBinding656 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding732 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _KeyRepeatEvent_toString,
 );
-const _flaxBinding657 = <FlaxParameter>[
-  FlaxParameter("physicalKey", _flaxBinding447, required: true),
-  FlaxParameter("logicalKey", _flaxBinding451, required: true),
-  FlaxParameter("character", _flaxBinding142, required: false),
-  FlaxParameter("timeStamp", _flaxBinding585, required: true),
+const _flaxBinding733 = <FlaxParameter>[
+  FlaxParameter("physicalKey", _flaxBinding100, required: true),
+  FlaxParameter("logicalKey", _flaxBinding102, required: true),
+  FlaxParameter("character", _flaxBinding14, required: false),
+  FlaxParameter("timeStamp", _flaxBinding131, required: true),
   FlaxParameter(
     "deviceType",
-    _flaxBinding587,
+    _flaxBinding133,
     required: false,
     defaultValue: api1.KeyEventDeviceType.keyboard,
   ),
 ];
-const _flaxBinding658 = FlaxObjectBinding(
+const _flaxBinding734 = FlaxObjectBinding(
   "flax.core/sdk_services#type:KeyRepeatEvent",
   [
-    _flaxBinding647,
-    _flaxBinding648,
-    _flaxBinding649,
-    _flaxBinding650,
-    _flaxBinding651,
-    _flaxBinding652,
+    _flaxBinding723,
+    _flaxBinding724,
+    _flaxBinding725,
+    _flaxBinding726,
+    _flaxBinding727,
+    _flaxBinding728,
   ],
   {
-    "debugFillProperties": _flaxBinding653,
-    "toStringShort": _flaxBinding654,
-    "toDiagnosticsNode": _flaxBinding655,
-    "toString": _flaxBinding656,
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "debugFillProperties": _flaxBinding729,
+    "toStringShort": _flaxBinding730,
+    "toDiagnosticsNode": _flaxBinding731,
+    "toString": _flaxBinding732,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:character": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:character": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _KeyRepeatEvent_super_get_character,
     ),
-    "@super:get:timeStamp": FlaxInstanceMethod(
-      [],
-      _flaxBinding585,
+    "@super:get:timeStamp": FlaxInstanceMethod.signature(
+      _flaxBinding132,
       _FlaxProxyDispatch18_super_get_timeStamp,
     ),
-    "@super:get:deviceType": FlaxInstanceMethod(
-      [],
-      _flaxBinding587,
+    "@super:get:deviceType": FlaxInstanceMethod.signature(
+      _flaxBinding134,
       _FlaxProxyDispatch18_super_get_deviceType,
     ),
-    "@super:get:synthesized": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:synthesized": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch18_super_get_synthesized,
     ),
   },
-  constructors: {"@implementation": _flaxBinding657},
+  constructors: {"@implementation": _flaxBinding733},
   create: _createKeyRepeatEvent,
   matches: _isKeyRepeatEvent,
   setters: [],
@@ -33434,152 +32866,142 @@ const _flaxBinding658 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding596,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding601,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding606,
-    _flaxBinding608,
-    _flaxBinding610,
-    _flaxBinding611,
+    _flaxBinding691,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding696,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding699,
+    _flaxBinding700,
+    _flaxBinding701,
+    _flaxBinding702,
   ]),
 );
-const _flaxBinding659 = FlaxGetter(
+const _flaxBinding735 = FlaxGetter(
   "physicalKey",
-  _flaxBinding447,
+  _flaxBinding100,
   _KeyUpEvent_physicalKey,
 );
-const _flaxBinding660 = FlaxGetter(
+const _flaxBinding736 = FlaxGetter(
   "logicalKey",
-  _flaxBinding451,
+  _flaxBinding102,
   _KeyUpEvent_logicalKey,
 );
-const _flaxBinding661 = FlaxGetter(
+const _flaxBinding737 = FlaxGetter(
   "character",
-  _flaxBinding142,
+  _flaxBinding14,
   _KeyUpEvent_character,
 );
-const _flaxBinding662 = FlaxGetter(
+const _flaxBinding738 = FlaxGetter(
   "timeStamp",
-  _flaxBinding585,
+  _flaxBinding131,
   _KeyUpEvent_timeStamp,
 );
-const _flaxBinding663 = FlaxGetter(
+const _flaxBinding739 = FlaxGetter(
   "deviceType",
-  _flaxBinding587,
+  _flaxBinding133,
   _KeyUpEvent_deviceType,
 );
-const _flaxBinding664 = FlaxGetter(
+const _flaxBinding740 = FlaxGetter(
   "synthesized",
-  _flaxBinding78,
+  _flaxBinding36,
   _KeyUpEvent_synthesized,
 );
-const _flaxBinding665 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding741 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _KeyUpEvent_debugFillProperties,
 );
-const _flaxBinding666 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding742 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _KeyUpEvent_toStringShort,
 );
-const _flaxBinding667 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding743 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _KeyUpEvent_toDiagnosticsNode,
 );
-const _flaxBinding668 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding744 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _KeyUpEvent_toString,
 );
-const _flaxBinding669 = <FlaxParameter>[
-  FlaxParameter("physicalKey", _flaxBinding447, required: true),
-  FlaxParameter("logicalKey", _flaxBinding451, required: true),
-  FlaxParameter("timeStamp", _flaxBinding585, required: true),
+const _flaxBinding745 = <FlaxParameter>[
+  FlaxParameter("physicalKey", _flaxBinding100, required: true),
+  FlaxParameter("logicalKey", _flaxBinding102, required: true),
+  FlaxParameter("timeStamp", _flaxBinding131, required: true),
   FlaxParameter(
     "synthesized",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "deviceType",
-    _flaxBinding587,
+    _flaxBinding133,
     required: false,
     defaultValue: api1.KeyEventDeviceType.keyboard,
   ),
 ];
-const _flaxBinding670 = FlaxObjectBinding(
+const _flaxBinding746 = FlaxObjectBinding(
   "flax.core/sdk_services#type:KeyUpEvent",
   [
-    _flaxBinding659,
-    _flaxBinding660,
-    _flaxBinding661,
-    _flaxBinding662,
-    _flaxBinding663,
-    _flaxBinding664,
+    _flaxBinding735,
+    _flaxBinding736,
+    _flaxBinding737,
+    _flaxBinding738,
+    _flaxBinding739,
+    _flaxBinding740,
   ],
   {
-    "debugFillProperties": _flaxBinding665,
-    "toStringShort": _flaxBinding666,
-    "toDiagnosticsNode": _flaxBinding667,
-    "toString": _flaxBinding668,
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "debugFillProperties": _flaxBinding741,
+    "toStringShort": _flaxBinding742,
+    "toDiagnosticsNode": _flaxBinding743,
+    "toString": _flaxBinding744,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:character": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:character": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _KeyUpEvent_super_get_character,
     ),
-    "@super:get:timeStamp": FlaxInstanceMethod(
-      [],
-      _flaxBinding585,
+    "@super:get:timeStamp": FlaxInstanceMethod.signature(
+      _flaxBinding132,
       _FlaxProxyDispatch18_super_get_timeStamp,
     ),
-    "@super:get:deviceType": FlaxInstanceMethod(
-      [],
-      _flaxBinding587,
+    "@super:get:deviceType": FlaxInstanceMethod.signature(
+      _flaxBinding134,
       _FlaxProxyDispatch18_super_get_deviceType,
     ),
-    "@super:get:synthesized": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:synthesized": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch18_super_get_synthesized,
     ),
   },
-  constructors: {"@implementation": _flaxBinding669},
+  constructors: {"@implementation": _flaxBinding745},
   create: _createKeyUpEvent,
   matches: _isKeyUpEvent,
   setters: [],
@@ -33589,172 +33011,156 @@ const _flaxBinding670 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding596,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding601,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding606,
-    _flaxBinding608,
-    _flaxBinding610,
-    _flaxBinding611,
+    _flaxBinding691,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding696,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding699,
+    _flaxBinding700,
+    _flaxBinding701,
+    _flaxBinding702,
   ]),
 );
-const _flaxBinding671 = FlaxGetter(
+const _flaxBinding747 = FlaxGetter(
   "mimeType",
-  _flaxBinding24,
+  _flaxBinding0,
   _KeyboardInsertedContent_mimeType,
 );
-const _flaxBinding672 = FlaxGetter(
+const _flaxBinding748 = FlaxGetter(
   "uri",
-  _flaxBinding24,
+  _flaxBinding0,
   _KeyboardInsertedContent_uri,
 );
-const _flaxBinding673 = FlaxTypeRef("Uint8List", nullable: true);
-const _flaxBinding674 = FlaxGetter(
+const _flaxBinding749 = FlaxGetter(
   "data",
-  _flaxBinding673,
+  _flaxBinding150,
   _KeyboardInsertedContent_data,
 );
-const _flaxBinding675 = FlaxGetter(
+const _flaxBinding750 = FlaxGetter(
   "hasData",
-  _flaxBinding78,
+  _flaxBinding36,
   _KeyboardInsertedContent_hasData,
 );
-const _flaxBinding676 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding751 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _KeyboardInsertedContent_toString,
 );
-const _flaxBinding677 = <FlaxParameter>[
-  FlaxParameter("mimeType", _flaxBinding24, required: true),
-  FlaxParameter("uri", _flaxBinding24, required: true),
-  FlaxParameter("data", _flaxBinding673, required: false),
+const _flaxBinding752 = <FlaxParameter>[
+  FlaxParameter("mimeType", _flaxBinding0, required: true),
+  FlaxParameter("uri", _flaxBinding0, required: true),
+  FlaxParameter("data", _flaxBinding150, required: false),
 ];
-const _flaxBinding678 = FlaxProxyMember(
+const _flaxBinding753 = FlaxProxyMember(
   "mimeType",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding679 = FlaxProxyMember(
+const _flaxBinding754 = FlaxProxyMember(
   "uri",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding680 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding673,
-  id: "callback:<>()->Uint8List?:",
-);
-const _flaxBinding681 = FlaxProxyMember(
+const _flaxBinding755 = FlaxProxyMember(
   "data",
   1,
-  _flaxBinding680,
+  _flaxBinding151,
   hasSuper: true,
 );
-const _flaxBinding682 = FlaxProxyMember(
+const _flaxBinding756 = FlaxProxyMember(
   "hasData",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding683 = FlaxObjectBinding(
+const _flaxBinding757 = FlaxObjectBinding(
   "flax.core/sdk_services#type:KeyboardInsertedContent",
-  [_flaxBinding671, _flaxBinding672, _flaxBinding674, _flaxBinding675],
+  [_flaxBinding747, _flaxBinding748, _flaxBinding749, _flaxBinding750],
   {
-    "toString": _flaxBinding676,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toString": _flaxBinding751,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:mimeType": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:mimeType": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _KeyboardInsertedContent_super_get_mimeType,
     ),
-    "@super:get:uri": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:uri": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _KeyboardInsertedContent_super_get_uri,
     ),
-    "@super:get:data": FlaxInstanceMethod(
-      [],
-      _flaxBinding673,
+    "@super:get:data": FlaxInstanceMethod.signature(
+      _flaxBinding151,
       _KeyboardInsertedContent_super_get_data,
     ),
-    "@super:get:hasData": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:hasData": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _KeyboardInsertedContent_super_get_hasData,
     ),
   },
-  constructors: {"@implementation": _flaxBinding677},
+  constructors: {"@implementation": _flaxBinding752},
   create: _createKeyboardInsertedContent,
   matches: _isKeyboardInsertedContent,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding28,
-    _flaxBinding678,
-    _flaxBinding679,
-    _flaxBinding681,
-    _flaxBinding682,
+    _flaxBinding279,
+    _flaxBinding753,
+    _flaxBinding754,
+    _flaxBinding755,
+    _flaxBinding756,
   ]),
 );
-const _flaxBinding684 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding758 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _KeyboardKey_toStringShort,
 );
-const _flaxBinding685 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding759 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _KeyboardKey_toString,
 );
-const _flaxBinding686 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding760 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _KeyboardKey_toDiagnosticsNode,
 );
-const _flaxBinding687 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding761 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _KeyboardKey_debugFillProperties,
 );
-const _flaxBinding688 = FlaxObjectBinding(
+const _flaxBinding762 = FlaxObjectBinding(
   "flax.core/sdk_services#type:KeyboardKey",
   [],
   {
-    "toStringShort": _flaxBinding684,
-    "toString": _flaxBinding685,
-    "toDiagnosticsNode": _flaxBinding686,
-    "debugFillProperties": _flaxBinding687,
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toStringShort": _flaxBinding758,
+    "toString": _flaxBinding759,
+    "toDiagnosticsNode": _flaxBinding760,
+    "debugFillProperties": _flaxBinding761,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createKeyboardKey,
   matches: _isKeyboardKey,
   setters: [],
@@ -33763,48 +33169,45 @@ const _flaxBinding688 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding597,
-    _flaxBinding601,
-    _flaxBinding599,
-    _flaxBinding596,
+    _flaxBinding692,
+    _flaxBinding696,
+    _flaxBinding694,
+    _flaxBinding691,
   ]),
 );
-const _flaxBinding689 = FlaxTypeRef(
+const _flaxBinding763 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:TextLayoutMetrics",
 );
-const _flaxBinding690 = <FlaxParameter>[
-  FlaxParameter("_textLayout", _flaxBinding689, required: true),
+const _flaxBinding764 = <FlaxParameter>[
+  FlaxParameter("_textLayout", _flaxBinding763, required: true),
 ];
-const _flaxBinding691 = FlaxObjectBinding(
+const _flaxBinding765 = FlaxObjectBinding(
   "flax.core/sdk_services#type:LineBoundary",
   [],
   {
-    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getLeadingTextBoundaryAt,
     ),
-    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getTrailingTextBoundaryAt,
     ),
-    "@super:getTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding294,
+    "@super:getTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding69,
       _FlaxProxyDispatch8_super_call_getTextBoundaryAt,
     ),
   },
-  constructors: {"@implementation": _flaxBinding690},
+  constructors: {"@implementation": _flaxBinding764},
   create: _createLineBoundary,
   matches: _isLineBoundary,
   setters: [],
   supertypes: ["flax.core/sdk_services#type:TextBoundary", "dart:core::Object"],
-  parent: _flaxBinding301,
-  proxy: FlaxProxyBinding([_flaxBinding297, _flaxBinding298, _flaxBinding300]),
+  parent: _flaxBinding474,
+  proxy: FlaxProxyBinding([_flaxBinding471, _flaxBinding472, _flaxBinding473]),
 );
-const _flaxBinding692 = FlaxObjectBinding(
+const _flaxBinding766 = FlaxObjectBinding(
   "flax.core/sdk_services#type:LiveText",
   [],
   {},
@@ -33814,262 +33217,217 @@ const _flaxBinding692 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding693 = FlaxGetter(
-  "method",
-  _flaxBinding24,
-  _MethodCall_method,
-);
-const _flaxBinding694 = FlaxGetter(
+const _flaxBinding767 = <FlaxParameter>[
+  FlaxParameter("message", _flaxBinding56, required: true),
+];
+const _flaxBinding768 = FlaxGetter("method", _flaxBinding0, _MethodCall_method);
+const _flaxBinding769 = FlaxGetter(
   "arguments",
-  _flaxBinding161,
+  _flaxBinding42,
   _MethodCall_arguments,
 );
-const _flaxBinding695 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding770 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _MethodCall_toString,
 );
-const _flaxBinding696 = <FlaxParameter>[
-  FlaxParameter("method", _flaxBinding24, required: true),
-  FlaxParameter("arguments", _flaxBinding161, required: false),
+const _flaxBinding771 = <FlaxParameter>[
+  FlaxParameter("method", _flaxBinding0, required: true),
+  FlaxParameter(
+    "arguments",
+    _flaxBinding42,
+    required: false,
+    omitWhenAbsent: true,
+  ),
 ];
-const _flaxBinding697 = FlaxProxyMember(
+const _flaxBinding772 = FlaxProxyMember(
   "method",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding698 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding161,
-  id: "callback:<>()->any?:",
-);
-const _flaxBinding699 = FlaxProxyMember(
+const _flaxBinding773 = FlaxProxyMember(
   "arguments",
   1,
-  _flaxBinding698,
+  _flaxBinding152,
   hasSuper: true,
 );
-const _flaxBinding700 = FlaxObjectBinding(
+const _flaxBinding774 = FlaxObjectBinding(
   "flax.core/sdk_services#type:MethodCall",
-  [_flaxBinding693, _flaxBinding694],
+  [_flaxBinding768, _flaxBinding769],
   {
-    "toString": _flaxBinding695,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toString": _flaxBinding770,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:method": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:method": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _MethodCall_super_get_method,
     ),
-    "@super:get:arguments": FlaxInstanceMethod(
-      [],
-      _flaxBinding161,
+    "@super:get:arguments": FlaxInstanceMethod.signature(
+      _flaxBinding152,
       _MethodCall_super_get_arguments,
     ),
   },
-  constructors: {"@implementation": _flaxBinding696},
+  constructors: {"@implementation": _flaxBinding771},
   create: _createMethodCall,
   matches: _isMethodCall,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding28, _flaxBinding697, _flaxBinding699]),
+  proxy: FlaxProxyBinding([_flaxBinding279, _flaxBinding772, _flaxBinding773]),
 );
-const _flaxBinding701 = FlaxGetter("name", _flaxBinding24, _MethodChannel_name);
-const _flaxBinding702 = FlaxGetter(
+const _flaxBinding775 = FlaxGetter("name", _flaxBinding0, _MethodChannel_name);
+const _flaxBinding776 = FlaxGetter(
   "codec",
-  _flaxBinding391,
+  _flaxBinding92,
   _MethodChannel_codec,
 );
-const _flaxBinding703 = FlaxGetter(
+const _flaxBinding777 = FlaxGetter(
   "binaryMessenger",
-  _flaxBinding274,
+  _flaxBinding54,
   _MethodChannel_binaryMessenger,
 );
-const _flaxBinding704 = FlaxTypeRef(
+const _flaxBinding778 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding161,
+  item: _flaxBinding42,
   collection: FlaxCollectionBinding(
     "iterable:[any?:]",
-    _collection25Create,
-    _collection25Matches,
-    restore: _collection25Restore,
+    _collection31Create,
+    _collection31Matches,
+    restore: _collection31Restore,
   ),
 );
-const _flaxBinding705 = FlaxTypeRef(
+const _flaxBinding779 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding161,
+  item: _flaxBinding42,
   collection: FlaxCollectionBinding(
     "list:[any?:]",
-    _collection24Create,
-    _collection24Matches,
+    _collection30Create,
+    _collection30Matches,
   ),
-  iterable: _flaxBinding704,
+  iterable: _flaxBinding778,
 );
-const _flaxBinding706 = FlaxTypeRef(
+const _flaxBinding780 = FlaxTypeRef(
   "map",
   nullable: true,
-  item: _flaxBinding161,
-  key: _flaxBinding161,
+  item: _flaxBinding42,
+  key: _flaxBinding42,
   collection: FlaxCollectionBinding(
     "map:[any?:][any?:]",
-    _collection26Create,
-    _collection26Matches,
+    _collection32Create,
+    _collection32Matches,
   ),
 );
-const _flaxBinding707 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "call",
-      _flaxBinding554,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding162,
-  _callback13,
-  id: "callback:<>(p:r:call:object:flax.core/sdk_services#type:MethodCall)->future:[any?:]",
-  invoke: _callback13Invoke,
-  matches: _callback13Matches,
-);
-const _flaxBinding708 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding707,
-);
-const _flaxBinding709 = <FlaxParameter>[
-  FlaxParameter("handler", _flaxBinding708, required: true),
-];
-const _flaxBinding710 = FlaxInstanceMethod(
-  _flaxBinding709,
-  _flaxBinding82,
+const _flaxBinding781 = FlaxInstanceMethod.signature(
+  _flaxBinding156,
   _MethodChannel_setMethodCallHandler,
 );
-const _flaxBinding711 = FlaxTypeRef(
+const _flaxBinding782 = FlaxTypeRef(
   "future",
-  item: _flaxBinding705,
-  future: FlaxFutureBinding("list?:[any?:]", _future11Adapt),
+  item: _flaxBinding779,
+  future: FlaxFutureBinding("list?:[any?:]", _future14Adapt),
 );
-const _flaxBinding712 = FlaxTypeRef(
+const _flaxBinding783 = FlaxTypeRef(
   "future",
-  item: _flaxBinding706,
-  future: FlaxFutureBinding("map?:[any?:][any?:]", _future12Adapt),
+  item: _flaxBinding780,
+  future: FlaxFutureBinding("map?:[any?:][any?:]", _future15Adapt),
 );
-const _flaxBinding713 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "handler",
-      _flaxBinding708,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:handler:callback?:<>(p:r:call:object:flax.core/sdk_services#type:MethodCall)->future:[any?:])->void:",
-);
-const _flaxBinding714 = FlaxProxyMember(
+const _flaxBinding784 = FlaxProxyMember(
   "setMethodCallHandler",
   0,
-  _flaxBinding713,
+  _flaxBinding156,
   hasSuper: true,
 );
-const _flaxBinding715 = FlaxObjectBinding(
+const _flaxBinding785 = FlaxObjectBinding(
   "flax.core/sdk_services#type:MethodChannel",
-  [_flaxBinding701, _flaxBinding702, _flaxBinding703],
+  [_flaxBinding775, _flaxBinding776, _flaxBinding777],
   {
     "invokeMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _MethodChannel_invokeMethod,
       genericFactory: _flaxGeneric_MethodChannel_invokeMethod,
       ownerTypes: [],
     ),
     "invokeListMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding705,
-        future: FlaxFutureBinding("list?:[any?:]", _future11Adapt),
+        item: _flaxBinding779,
+        future: FlaxFutureBinding("list?:[any?:]", _future14Adapt),
       ),
       _MethodChannel_invokeListMethod,
       genericFactory: _flaxGeneric_MethodChannel_invokeListMethod,
       ownerTypes: [],
     ),
     "invokeMapMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding706,
-        future: FlaxFutureBinding("map?:[any?:][any?:]", _future12Adapt),
+        item: _flaxBinding780,
+        future: FlaxFutureBinding("map?:[any?:][any?:]", _future15Adapt),
       ),
       _MethodChannel_invokeMapMethod,
       genericFactory: _flaxGeneric_MethodChannel_invokeMapMethod,
       ownerTypes: [],
     ),
-    "setMethodCallHandler": _flaxBinding710,
+    "setMethodCallHandler": _flaxBinding781,
     "@super:invokeMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _MethodChannel_super_invokeMethod,
       genericFactory: _flaxGeneric_MethodChannel_super_invokeMethod,
       ownerTypes: [],
     ),
     "@super:invokeListMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding705,
-        future: FlaxFutureBinding("list?:[any?:]", _future11Adapt),
+        item: _flaxBinding779,
+        future: FlaxFutureBinding("list?:[any?:]", _future14Adapt),
       ),
       _MethodChannel_super_invokeListMethod,
       genericFactory: _flaxGeneric_MethodChannel_super_invokeListMethod,
       ownerTypes: [],
     ),
     "@super:invokeMapMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding706,
-        future: FlaxFutureBinding("map?:[any?:][any?:]", _future12Adapt),
+        item: _flaxBinding780,
+        future: FlaxFutureBinding("map?:[any?:][any?:]", _future15Adapt),
       ),
       _MethodChannel_super_invokeMapMethod,
       genericFactory: _flaxGeneric_MethodChannel_super_invokeMapMethod,
       ownerTypes: [],
     ),
-    "@super:setMethodCallHandler": FlaxInstanceMethod(
-      _flaxBinding709,
-      _flaxBinding82,
+    "@super:setMethodCallHandler": FlaxInstanceMethod.signature(
+      _flaxBinding156,
       _FlaxProxyDispatch19_super_call_setMethodCallHandler,
     ),
-    "@super:get:name": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:name": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch7_super_get_name,
     ),
-    "@super:get:codec": FlaxInstanceMethod(
-      [],
-      _flaxBinding391,
+    "@super:get:codec": FlaxInstanceMethod.signature(
+      _flaxBinding93,
       _FlaxProxyDispatch9_super_get_codec,
     ),
-    "@super:get:binaryMessenger": FlaxInstanceMethod(
-      [],
-      _flaxBinding274,
+    "@super:get:binaryMessenger": FlaxInstanceMethod.signature(
+      _flaxBinding55,
       _FlaxProxyDispatch7_super_get_binaryMessenger,
     ),
   },
-  constructors: {"@implementation": _flaxBinding397},
+  constructors: {"@implementation": _flaxBinding546},
   create: _createMethodChannel,
   matches: _isMethodChannel,
   setters: [],
@@ -34082,18 +33440,18 @@ const _flaxBinding715 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "method",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "arguments",
-            _flaxBinding161,
+            _flaxBinding42,
             required: false,
             positional: true,
           ),
         ],
-        _flaxBinding162,
+        _flaxBinding153,
         _callback14,
         id: "callback:<T:any?:=any?:>(p:r:method:String:,p:o:arguments:any?:)->future:[any?:]",
         invoke: _callback14Invoke,
@@ -34110,18 +33468,18 @@ const _flaxBinding715 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "method",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "arguments",
-            _flaxBinding161,
+            _flaxBinding42,
             required: false,
             positional: true,
           ),
         ],
-        _flaxBinding711,
+        _flaxBinding782,
         _callback15,
         id: "callback:<T:any?:=any?:>(p:r:method:String:,p:o:arguments:any?:)->future:[list?:[any?:]]",
         invoke: _callback15Invoke,
@@ -34138,18 +33496,18 @@ const _flaxBinding715 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "method",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "arguments",
-            _flaxBinding161,
+            _flaxBinding42,
             required: false,
             positional: true,
           ),
         ],
-        _flaxBinding712,
+        _flaxBinding783,
         _callback16,
         id: "callback:<K:any?:=any?:,V:any?:=any?:>(p:r:method:String:,p:o:arguments:any?:)->future:[map?:[any?:][any?:]]",
         invoke: _callback16Invoke,
@@ -34159,442 +33517,291 @@ const _flaxBinding715 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding714,
-    _flaxBinding279,
-    _flaxBinding401,
-    _flaxBinding281,
+    _flaxBinding784,
+    _flaxBinding459,
+    _flaxBinding549,
+    _flaxBinding460,
   ]),
 );
-const _flaxBinding716 = FlaxGetter(
+const _flaxBinding786 = FlaxGetter(
   "message",
-  _flaxBinding142,
+  _flaxBinding14,
   _MissingPluginException_message,
 );
-const _flaxBinding717 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding787 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _MissingPluginException_toString,
 );
-const _flaxBinding718 = <FlaxParameter>[
-  FlaxParameter("message", _flaxBinding142, required: false),
+const _flaxBinding788 = <FlaxParameter>[
+  FlaxParameter("message", _flaxBinding14, required: false),
 ];
-const _flaxBinding719 = FlaxProxyMember(
+const _flaxBinding789 = FlaxProxyMember(
   "message",
   1,
-  _flaxBinding146,
+  _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding720 = FlaxObjectBinding(
+const _flaxBinding790 = FlaxObjectBinding(
   "flax.core/sdk_services#type:MissingPluginException",
-  [_flaxBinding716],
+  [_flaxBinding786],
   {
-    "toString": _flaxBinding717,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toString": _flaxBinding787,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:message": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:message": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _FlaxProxyDispatch20_super_get_message,
     ),
   },
-  constructors: {"@implementation": _flaxBinding718},
+  constructors: {"@implementation": _flaxBinding788},
   create: _createMissingPluginException,
   matches: _isMissingPluginException,
   setters: [],
   supertypes: ["dart:core::Object", "dart:core::Exception"],
-  proxy: FlaxProxyBinding([_flaxBinding28, _flaxBinding719]),
+  proxy: FlaxProxyBinding([_flaxBinding279, _flaxBinding789]),
 );
-const _flaxBinding721 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:MouseCursor",
-);
-const _flaxBinding722 = FlaxGetter(
+const _flaxBinding791 = FlaxGetter(
   "fallbackMouseCursor",
-  _flaxBinding721,
+  _flaxBinding160,
   _MouseCursorManager_fallbackMouseCursor,
 );
-const _flaxBinding723 = <FlaxParameter>[
-  FlaxParameter("device", _flaxBinding0, required: true),
-];
-const _flaxBinding724 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:MouseCursor",
-  nullable: true,
-);
-const _flaxBinding725 = FlaxInstanceMethod(
-  _flaxBinding723,
-  _flaxBinding724,
+const _flaxBinding792 = FlaxInstanceMethod.signature(
+  _flaxBinding158,
   _MouseCursorManager_debugDeviceActiveCursor,
 );
-const _flaxBinding726 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:PointerEvent",
-  nullable: true,
-);
-const _flaxBinding727 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding721,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/flutter#type:MouseCursor]",
-    _collection27Create,
-    _collection27Matches,
-    restore: _collection27Restore,
-  ),
-);
-const _flaxBinding728 = <FlaxParameter>[
-  FlaxParameter("device", _flaxBinding0, required: true),
-  FlaxParameter("triggeringEvent", _flaxBinding726, required: true),
-  FlaxParameter("cursorCandidates", _flaxBinding727, required: true),
-];
-const _flaxBinding729 = FlaxInstanceMethod(
-  _flaxBinding728,
-  _flaxBinding82,
+const _flaxBinding793 = FlaxInstanceMethod.signature(
+  _flaxBinding162,
   _MouseCursorManager_handleDeviceCursorUpdate,
 );
-const _flaxBinding730 = <FlaxParameter>[
-  FlaxParameter("fallbackMouseCursor", _flaxBinding721, required: true),
+const _flaxBinding794 = <FlaxParameter>[
+  FlaxParameter("fallbackMouseCursor", _flaxBinding160, required: true),
 ];
-const _flaxBinding731 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "device",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding724,
-  id: "callback:<>(p:r:device:int:)->object?:flax.core/flutter#type:MouseCursor",
-);
-const _flaxBinding732 = FlaxProxyMember(
+const _flaxBinding795 = FlaxProxyMember(
   "debugDeviceActiveCursor",
   0,
-  _flaxBinding731,
+  _flaxBinding158,
   hasSuper: true,
 );
-const _flaxBinding733 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "device",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "triggeringEvent",
-      _flaxBinding726,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "cursorCandidates",
-      _flaxBinding727,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:device:int:,p:r:triggeringEvent:object?:flax.core/flutter#type:PointerEvent,p:r:cursorCandidates:iterable:[object:flax.core/flutter#type:MouseCursor])->void:",
-);
-const _flaxBinding734 = FlaxProxyMember(
+const _flaxBinding796 = FlaxProxyMember(
   "handleDeviceCursorUpdate",
   0,
-  _flaxBinding733,
+  _flaxBinding162,
   hasSuper: true,
 );
-const _flaxBinding735 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding721,
-  id: "callback:<>()->object:flax.core/flutter#type:MouseCursor",
-);
-const _flaxBinding736 = FlaxProxyMember(
+const _flaxBinding797 = FlaxProxyMember(
   "fallbackMouseCursor",
   1,
-  _flaxBinding735,
+  _flaxBinding163,
   hasSuper: true,
 );
-const _flaxBinding737 = FlaxObjectBinding(
+const _flaxBinding798 = FlaxObjectBinding(
   "flax.core/sdk_services#type:MouseCursorManager",
-  [_flaxBinding722],
+  [_flaxBinding791],
   {
-    "debugDeviceActiveCursor": _flaxBinding725,
-    "handleDeviceCursorUpdate": _flaxBinding729,
-    "@super:debugDeviceActiveCursor": FlaxInstanceMethod(
-      _flaxBinding723,
-      _flaxBinding724,
+    "debugDeviceActiveCursor": _flaxBinding792,
+    "handleDeviceCursorUpdate": _flaxBinding793,
+    "@super:debugDeviceActiveCursor": FlaxInstanceMethod.signature(
+      _flaxBinding158,
       _MouseCursorManager_super_debugDeviceActiveCursor,
     ),
-    "@super:handleDeviceCursorUpdate": FlaxInstanceMethod(
-      _flaxBinding728,
-      _flaxBinding82,
+    "@super:handleDeviceCursorUpdate": FlaxInstanceMethod.signature(
+      _flaxBinding162,
       _MouseCursorManager_super_handleDeviceCursorUpdate,
     ),
-    "@super:get:fallbackMouseCursor": FlaxInstanceMethod(
-      [],
-      _flaxBinding721,
+    "@super:get:fallbackMouseCursor": FlaxInstanceMethod.signature(
+      _flaxBinding163,
       _MouseCursorManager_super_get_fallbackMouseCursor,
     ),
   },
-  constructors: {"@implementation": _flaxBinding730},
+  constructors: {"@implementation": _flaxBinding794},
   create: _createMouseCursorManager,
   matches: _isMouseCursorManager,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding732, _flaxBinding734, _flaxBinding736]),
+  proxy: FlaxProxyBinding([_flaxBinding795, _flaxBinding796, _flaxBinding797]),
 );
-const _flaxBinding738 = FlaxGetter(
+const _flaxBinding799 = FlaxGetter(
   "cursor",
-  _flaxBinding721,
+  _flaxBinding160,
   _MouseCursorSession_cursor,
 );
-const _flaxBinding739 = FlaxGetter(
+const _flaxBinding800 = FlaxGetter(
   "device",
-  _flaxBinding0,
+  _flaxBinding2,
   _MouseCursorSession_device,
 );
-const _flaxBinding740 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding801 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _MouseCursorSession_activate,
 );
-const _flaxBinding741 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding802 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _MouseCursorSession_dispose,
 );
-const _flaxBinding742 = <FlaxParameter>[
-  FlaxParameter("cursor", _flaxBinding721, required: true),
-  FlaxParameter("device", _flaxBinding0, required: true),
+const _flaxBinding803 = <FlaxParameter>[
+  FlaxParameter("cursor", _flaxBinding160, required: true),
+  FlaxParameter("device", _flaxBinding2, required: true),
 ];
-const _flaxBinding743 = FlaxProxyMember("activate", 0, _flaxBinding95);
-const _flaxBinding744 = FlaxProxyMember("dispose", 0, _flaxBinding179);
-const _flaxBinding745 = FlaxProxyMember(
+const _flaxBinding804 = FlaxProxyMember("activate", 0, _flaxBinding72);
+const _flaxBinding805 = FlaxProxyMember("dispose", 0, _flaxBinding26);
+const _flaxBinding806 = FlaxProxyMember(
   "cursor",
   1,
-  _flaxBinding735,
+  _flaxBinding163,
   hasSuper: true,
 );
-const _flaxBinding746 = FlaxProxyMember(
+const _flaxBinding807 = FlaxProxyMember(
   "device",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding747 = FlaxObjectBinding(
+const _flaxBinding808 = FlaxObjectBinding(
   "flax.core/sdk_services#type:MouseCursorSession",
-  [_flaxBinding738, _flaxBinding739],
+  [_flaxBinding799, _flaxBinding800],
   {
-    "activate": _flaxBinding740,
-    "dispose": _flaxBinding741,
-    "@super:get:cursor": FlaxInstanceMethod(
-      [],
-      _flaxBinding721,
+    "activate": _flaxBinding801,
+    "dispose": _flaxBinding802,
+    "@super:get:cursor": FlaxInstanceMethod.signature(
+      _flaxBinding163,
       _FlaxProxyDispatch21_super_get_cursor,
     ),
-    "@super:get:device": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:device": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _MouseCursorSession_super_get_device,
     ),
   },
-  constructors: {"@implementation": _flaxBinding742},
+  constructors: {"@implementation": _flaxBinding803},
   create: _createMouseCursorSession,
   matches: _isMouseCursorSession,
   setters: [],
   supertypes: ["dart:core::Object"],
   disposeMethod: "dispose",
   proxy: FlaxProxyBinding([
-    _flaxBinding743,
-    _flaxBinding744,
-    _flaxBinding745,
-    _flaxBinding746,
+    _flaxBinding804,
+    _flaxBinding805,
+    _flaxBinding806,
+    _flaxBinding807,
   ]),
 );
-const _flaxBinding748 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_gestures#type:PointerEnterEvent",
-);
-const _flaxBinding749 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding748,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  FlaxCallbackAdapters.wrapVoid1<api9.PointerEnterEvent>,
-  id: "callback:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerEnterEvent)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid1<api9.PointerEnterEvent>,
-  matches: FlaxCallbackAdapters.matchesVoid1<api9.PointerEnterEvent>,
-);
-const _flaxBinding750 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding749,
-);
-const _flaxBinding751 = FlaxGetter(
+const _flaxBinding809 = FlaxGetter(
   "onEnter",
-  _flaxBinding750,
+  _flaxBinding166,
   _MouseTrackerAnnotation_onEnter,
 );
-const _flaxBinding752 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_gestures#type:PointerExitEvent",
-);
-const _flaxBinding753 = FlaxCallbackBinding(
-  [
-    FlaxCallbackParameter(
-      "event",
-      _flaxBinding752,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  FlaxCallbackAdapters.wrapVoid1<api9.PointerExitEvent>,
-  id: "callback:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerExitEvent)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid1<api9.PointerExitEvent>,
-  matches: FlaxCallbackAdapters.matchesVoid1<api9.PointerExitEvent>,
-);
-const _flaxBinding754 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding753,
-);
-const _flaxBinding755 = FlaxGetter(
+const _flaxBinding810 = FlaxGetter(
   "onExit",
-  _flaxBinding754,
+  _flaxBinding170,
   _MouseTrackerAnnotation_onExit,
 );
-const _flaxBinding756 = FlaxGetter(
+const _flaxBinding811 = FlaxGetter(
   "cursor",
-  _flaxBinding721,
+  _flaxBinding160,
   _MouseTrackerAnnotation_cursor,
 );
-const _flaxBinding757 = FlaxGetter(
+const _flaxBinding812 = FlaxGetter(
   "validForMouseTracker",
-  _flaxBinding78,
+  _flaxBinding36,
   _MouseTrackerAnnotation_validForMouseTracker,
 );
-const _flaxBinding758 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding813 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _MouseTrackerAnnotation_toStringShort,
 );
-const _flaxBinding759 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding814 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _MouseTrackerAnnotation_toString,
 );
-const _flaxBinding760 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding815 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _MouseTrackerAnnotation_toDiagnosticsNode,
 );
-const _flaxBinding761 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding816 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _MouseTrackerAnnotation_debugFillProperties,
 );
-const _flaxBinding762 = <FlaxParameter>[
-  FlaxParameter("onEnter", _flaxBinding750, required: false),
-  FlaxParameter("onExit", _flaxBinding754, required: false),
+const _flaxBinding817 = <FlaxParameter>[
+  FlaxParameter("onEnter", _flaxBinding166, required: false),
+  FlaxParameter("onExit", _flaxBinding170, required: false),
   FlaxParameter(
     "cursor",
-    _flaxBinding721,
+    _flaxBinding160,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "validForMouseTracker",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: true,
   ),
 ];
-const _flaxBinding763 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding750,
-  id: "callback:<>()->callback?:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerEnterEvent)->void:",
-);
-const _flaxBinding764 = FlaxProxyMember(
+const _flaxBinding818 = FlaxProxyMember(
   "onEnter",
   1,
-  _flaxBinding763,
+  _flaxBinding167,
   hasSuper: true,
 );
-const _flaxBinding765 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding754,
-  id: "callback:<>()->callback?:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerExitEvent)->void:",
-);
-const _flaxBinding766 = FlaxProxyMember(
+const _flaxBinding819 = FlaxProxyMember(
   "onExit",
   1,
-  _flaxBinding765,
+  _flaxBinding171,
   hasSuper: true,
 );
-const _flaxBinding767 = FlaxProxyMember(
+const _flaxBinding820 = FlaxProxyMember(
   "validForMouseTracker",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding768 = FlaxObjectBinding(
+const _flaxBinding821 = FlaxObjectBinding(
   "flax.core/sdk_services#type:MouseTrackerAnnotation",
-  [_flaxBinding751, _flaxBinding755, _flaxBinding756, _flaxBinding757],
+  [_flaxBinding809, _flaxBinding810, _flaxBinding811, _flaxBinding812],
   {
-    "toStringShort": _flaxBinding758,
-    "toString": _flaxBinding759,
-    "toDiagnosticsNode": _flaxBinding760,
-    "debugFillProperties": _flaxBinding761,
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toStringShort": _flaxBinding813,
+    "toString": _flaxBinding814,
+    "toDiagnosticsNode": _flaxBinding815,
+    "debugFillProperties": _flaxBinding816,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:get:onEnter": FlaxInstanceMethod(
-      [],
-      _flaxBinding750,
+    "@super:get:onEnter": FlaxInstanceMethod.signature(
+      _flaxBinding167,
       _MouseTrackerAnnotation_super_get_onEnter,
     ),
-    "@super:get:onExit": FlaxInstanceMethod(
-      [],
-      _flaxBinding754,
+    "@super:get:onExit": FlaxInstanceMethod.signature(
+      _flaxBinding171,
       _MouseTrackerAnnotation_super_get_onExit,
     ),
-    "@super:get:cursor": FlaxInstanceMethod(
-      [],
-      _flaxBinding721,
+    "@super:get:cursor": FlaxInstanceMethod.signature(
+      _flaxBinding163,
       _FlaxProxyDispatch21_super_get_cursor,
     ),
-    "@super:get:validForMouseTracker": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:validForMouseTracker": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _MouseTrackerAnnotation_super_get_validForMouseTracker,
     ),
   },
-  constructors: {"@implementation": _flaxBinding762},
+  constructors: {"@implementation": _flaxBinding817},
   create: _createMouseTrackerAnnotation,
   matches: _isMouseTrackerAnnotation,
   setters: [],
@@ -34603,33 +33810,33 @@ const _flaxBinding768 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding597,
-    _flaxBinding601,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding764,
-    _flaxBinding766,
-    _flaxBinding745,
-    _flaxBinding767,
+    _flaxBinding692,
+    _flaxBinding696,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding818,
+    _flaxBinding819,
+    _flaxBinding806,
+    _flaxBinding820,
   ]),
 );
-const _flaxBinding769 = FlaxTypeRef("object", id: "flax.core/flutter#type:Uri");
-const _flaxBinding770 = <FlaxParameter>[
-  FlaxParameter("baseUrl", _flaxBinding769, required: true),
+const _flaxBinding822 = FlaxTypeRef("object", id: "flax.core/flutter#type:Uri");
+const _flaxBinding823 = <FlaxParameter>[
+  FlaxParameter("baseUrl", _flaxBinding822, required: true),
 ];
-const _flaxBinding771 = FlaxProxyMember(
+const _flaxBinding824 = FlaxProxyMember(
   "load",
   0,
-  _flaxBinding167,
+  _flaxBinding20,
   hasSuper: true,
 );
-const _flaxBinding772 = FlaxObjectBinding(
+const _flaxBinding825 = FlaxObjectBinding(
   "flax.core/sdk_services#type:NetworkAssetBundle",
   [],
   {
     "loadStructuredData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -34638,12 +33845,12 @@ const _flaxBinding772 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding24,
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding162,
+              _flaxBinding153,
               _callback17,
               id: "callback:<>(p:r:value:String:)->future:[any?:]",
               invoke: _callback17Invoke,
@@ -34655,8 +33862,8 @@ const _flaxBinding772 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _NetworkAssetBundle_loadStructuredData,
       genericFactory: _flaxGeneric_NetworkAssetBundle_loadStructuredData,
@@ -34664,7 +33871,7 @@ const _flaxBinding772 = FlaxObjectBinding(
     ),
     "loadStructuredBinaryData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -34673,12 +33880,12 @@ const _flaxBinding772 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "data",
-                  _flaxBinding152,
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding163,
+              _flaxBinding387,
               _callback18,
               id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
               invoke: _callback18Invoke,
@@ -34690,31 +33897,29 @@ const _flaxBinding772 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _NetworkAssetBundle_loadStructuredBinaryData,
       genericFactory: _flaxGeneric_NetworkAssetBundle_loadStructuredBinaryData,
       ownerTypes: [],
     ),
-    "@super:load": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding153,
+    "@super:load": FlaxInstanceMethod.signature(
+      _flaxBinding20,
       _FlaxProxyDispatch22_super_call_load,
     ),
-    "@super:loadBuffer": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding156,
+    "@super:loadBuffer": FlaxInstanceMethod.signature(
+      _flaxBinding23,
       _FlaxProxyDispatch5_super_call_loadBuffer,
     ),
     "@super:loadString": FlaxInstanceMethod(
-      _flaxBinding158,
-      _flaxBinding159,
+      _flaxBinding384,
+      _flaxBinding385,
       _FlaxProxyDispatch5_super_call_loadString,
     ),
     "@super:loadStructuredData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -34723,12 +33928,12 @@ const _flaxBinding772 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding24,
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding162,
+              _flaxBinding153,
               _callback17,
               id: "callback:<>(p:r:value:String:)->future:[any?:]",
               invoke: _callback17Invoke,
@@ -34740,8 +33945,8 @@ const _flaxBinding772 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _NetworkAssetBundle_super_loadStructuredData,
       genericFactory: _flaxGeneric_NetworkAssetBundle_super_loadStructuredData,
@@ -34749,7 +33954,7 @@ const _flaxBinding772 = FlaxObjectBinding(
     ),
     "@super:loadStructuredBinaryData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -34758,12 +33963,12 @@ const _flaxBinding772 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "data",
-                  _flaxBinding152,
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding163,
+              _flaxBinding387,
               _callback18,
               id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
               invoke: _callback18Invoke,
@@ -34775,40 +33980,37 @@ const _flaxBinding772 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _NetworkAssetBundle_super_loadStructuredBinaryData,
       genericFactory:
           _flaxGeneric_NetworkAssetBundle_super_loadStructuredBinaryData,
       ownerTypes: [],
     ),
-    "@super:evict": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding82,
+    "@super:evict": FlaxInstanceMethod.signature(
+      _flaxBinding25,
       _FlaxProxyDispatch5_super_call_evict,
     ),
-    "@super:clear": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "@super:clear": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _FlaxProxyDispatch5_super_call_clear,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
   },
-  constructors: {"@implementation": _flaxBinding770},
+  constructors: {"@implementation": _flaxBinding823},
   create: _createNetworkAssetBundle,
   matches: _isNetworkAssetBundle,
   setters: [],
   supertypes: ["flax.core/sdk_services#type:AssetBundle", "dart:core::Object"],
-  parent: _flaxBinding181,
+  parent: _flaxBinding401,
   proxy: FlaxProxyBinding([
-    _flaxBinding771,
-    _flaxBinding170,
-    _flaxBinding172,
+    _flaxBinding824,
+    _flaxBinding392,
+    _flaxBinding394,
     FlaxProxyMember(
       "loadStructuredData",
       0,
@@ -34816,18 +34018,18 @@ const _flaxBinding772 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "key",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "parser",
-            _flaxBinding174,
+            _flaxBinding396,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding162,
+        _flaxBinding153,
         _callback19,
         id: "callback:<T:any?:=any?:>(p:r:key:String:,p:r:parser:callback:<>(p:r:value:String:)->future:[any?:])->future:[any?:]",
         invoke: _callback19Invoke,
@@ -34844,18 +34046,18 @@ const _flaxBinding772 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "key",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "parser",
-            _flaxBinding176,
+            _flaxBinding398,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding162,
+        _flaxBinding153,
         _callback20,
         id: "callback:<T:any?:=any?:>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[any?:])->future:[any?:]",
         invoke: _callback20Invoke,
@@ -34865,103 +34067,99 @@ const _flaxBinding772 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding178,
-    _flaxBinding180,
-    _flaxBinding28,
+    _flaxBinding399,
+    _flaxBinding400,
+    _flaxBinding279,
   ]),
 );
-const _flaxBinding773 = FlaxObjectBinding(
+const _flaxBinding826 = FlaxObjectBinding(
   "flax.core/sdk_services#type:OptionalMethodChannel",
   [],
   {
     "invokeMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _OptionalMethodChannel_invokeMethod,
       genericFactory: _flaxGeneric_OptionalMethodChannel_invokeMethod,
       ownerTypes: [],
     ),
     "invokeListMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding705,
-        future: FlaxFutureBinding("list?:[any?:]", _future11Adapt),
+        item: _flaxBinding779,
+        future: FlaxFutureBinding("list?:[any?:]", _future14Adapt),
       ),
       _OptionalMethodChannel_invokeListMethod,
       genericFactory: _flaxGeneric_OptionalMethodChannel_invokeListMethod,
       ownerTypes: [],
     ),
     "invokeMapMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding706,
-        future: FlaxFutureBinding("map?:[any?:][any?:]", _future12Adapt),
+        item: _flaxBinding780,
+        future: FlaxFutureBinding("map?:[any?:][any?:]", _future15Adapt),
       ),
       _OptionalMethodChannel_invokeMapMethod,
       genericFactory: _flaxGeneric_OptionalMethodChannel_invokeMapMethod,
       ownerTypes: [],
     ),
     "@super:invokeMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _OptionalMethodChannel_super_invokeMethod,
       genericFactory: _flaxGeneric_OptionalMethodChannel_super_invokeMethod,
       ownerTypes: [],
     ),
     "@super:invokeListMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding705,
-        future: FlaxFutureBinding("list?:[any?:]", _future11Adapt),
+        item: _flaxBinding779,
+        future: FlaxFutureBinding("list?:[any?:]", _future14Adapt),
       ),
       _OptionalMethodChannel_super_invokeListMethod,
       genericFactory: _flaxGeneric_OptionalMethodChannel_super_invokeListMethod,
       ownerTypes: [],
     ),
     "@super:invokeMapMethod": FlaxInstanceMethod(
-      _flaxBinding696,
+      _flaxBinding771,
       FlaxTypeRef(
         "future",
-        item: _flaxBinding706,
-        future: FlaxFutureBinding("map?:[any?:][any?:]", _future12Adapt),
+        item: _flaxBinding780,
+        future: FlaxFutureBinding("map?:[any?:][any?:]", _future15Adapt),
       ),
       _OptionalMethodChannel_super_invokeMapMethod,
       genericFactory: _flaxGeneric_OptionalMethodChannel_super_invokeMapMethod,
       ownerTypes: [],
     ),
-    "@super:setMethodCallHandler": FlaxInstanceMethod(
-      _flaxBinding709,
-      _flaxBinding82,
+    "@super:setMethodCallHandler": FlaxInstanceMethod.signature(
+      _flaxBinding156,
       _FlaxProxyDispatch19_super_call_setMethodCallHandler,
     ),
-    "@super:get:name": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:name": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch7_super_get_name,
     ),
-    "@super:get:codec": FlaxInstanceMethod(
-      [],
-      _flaxBinding391,
+    "@super:get:codec": FlaxInstanceMethod.signature(
+      _flaxBinding93,
       _FlaxProxyDispatch9_super_get_codec,
     ),
-    "@super:get:binaryMessenger": FlaxInstanceMethod(
-      [],
-      _flaxBinding274,
+    "@super:get:binaryMessenger": FlaxInstanceMethod.signature(
+      _flaxBinding55,
       _FlaxProxyDispatch7_super_get_binaryMessenger,
     ),
   },
-  constructors: {"@implementation": _flaxBinding397},
+  constructors: {"@implementation": _flaxBinding546},
   create: _createOptionalMethodChannel,
   matches: _isOptionalMethodChannel,
   setters: [],
@@ -34969,7 +34167,7 @@ const _flaxBinding773 = FlaxObjectBinding(
     "flax.core/sdk_services#type:MethodChannel",
     "dart:core::Object",
   ],
-  parent: _flaxBinding715,
+  parent: _flaxBinding785,
   proxy: FlaxProxyBinding([
     FlaxProxyMember(
       "invokeMethod",
@@ -34978,18 +34176,18 @@ const _flaxBinding773 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "method",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "arguments",
-            _flaxBinding161,
+            _flaxBinding42,
             required: false,
             positional: true,
           ),
         ],
-        _flaxBinding162,
+        _flaxBinding153,
         _callback21,
         id: "callback:<T:any?:=any?:>(p:r:method:String:,p:o:arguments:any?:)->future:[any?:]",
         invoke: _callback21Invoke,
@@ -35006,18 +34204,18 @@ const _flaxBinding773 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "method",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "arguments",
-            _flaxBinding161,
+            _flaxBinding42,
             required: false,
             positional: true,
           ),
         ],
-        _flaxBinding711,
+        _flaxBinding782,
         _callback22,
         id: "callback:<T:any?:=any?:>(p:r:method:String:,p:o:arguments:any?:)->future:[list?:[any?:]]",
         invoke: _callback22Invoke,
@@ -35034,18 +34232,18 @@ const _flaxBinding773 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "method",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "arguments",
-            _flaxBinding161,
+            _flaxBinding42,
             required: false,
             positional: true,
           ),
         ],
-        _flaxBinding712,
+        _flaxBinding783,
         _callback23,
         id: "callback:<K:any?:=any?:,V:any?:=any?:>(p:r:method:String:,p:o:arguments:any?:)->future:[map?:[any?:][any?:]]",
         invoke: _callback23Invoke,
@@ -35055,47 +34253,44 @@ const _flaxBinding773 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding714,
-    _flaxBinding279,
-    _flaxBinding401,
-    _flaxBinding281,
+    _flaxBinding784,
+    _flaxBinding459,
+    _flaxBinding549,
+    _flaxBinding460,
   ]),
 );
-const _flaxBinding774 = FlaxObjectBinding(
+const _flaxBinding827 = FlaxObjectBinding(
   "flax.core/sdk_services#type:ParagraphBoundary",
   [],
   {
-    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getLeadingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getLeadingTextBoundaryAt,
     ),
-    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding102,
+    "@super:getTrailingTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding67,
       _FlaxProxyDispatch8_super_call_getTrailingTextBoundaryAt,
     ),
-    "@super:getTextBoundaryAt": FlaxInstanceMethod(
-      _flaxBinding291,
-      _flaxBinding294,
+    "@super:getTextBoundaryAt": FlaxInstanceMethod.signature(
+      _flaxBinding69,
       _FlaxProxyDispatch8_super_call_getTextBoundaryAt,
     ),
   },
-  constructors: {"@implementation": _flaxBinding302},
+  constructors: {"@implementation": _flaxBinding475},
   create: _createParagraphBoundary,
   matches: _isParagraphBoundary,
   setters: [],
   supertypes: ["flax.core/sdk_services#type:TextBoundary", "dart:core::Object"],
-  parent: _flaxBinding301,
-  proxy: FlaxProxyBinding([_flaxBinding297, _flaxBinding298, _flaxBinding300]),
+  parent: _flaxBinding474,
+  proxy: FlaxProxyBinding([_flaxBinding471, _flaxBinding472, _flaxBinding473]),
 );
-const _flaxBinding775 = FlaxObjectBinding(
+const _flaxBinding828 = FlaxObjectBinding(
   "flax.core/sdk_services#type:PlatformAssetBundle",
   [],
   {
     "loadStructuredData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -35104,12 +34299,12 @@ const _flaxBinding775 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding24,
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding162,
+              _flaxBinding153,
               _callback24,
               id: "callback:<>(p:r:value:String:)->future:[any?:]",
               invoke: _callback24Invoke,
@@ -35121,8 +34316,8 @@ const _flaxBinding775 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _PlatformAssetBundle_loadStructuredData,
       genericFactory: _flaxGeneric_PlatformAssetBundle_loadStructuredData,
@@ -35130,7 +34325,7 @@ const _flaxBinding775 = FlaxObjectBinding(
     ),
     "loadStructuredBinaryData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -35139,12 +34334,12 @@ const _flaxBinding775 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "data",
-                  _flaxBinding152,
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding163,
+              _flaxBinding387,
               _callback25,
               id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
               invoke: _callback25Invoke,
@@ -35156,21 +34351,21 @@ const _flaxBinding775 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _PlatformAssetBundle_loadStructuredBinaryData,
       genericFactory: _flaxGeneric_PlatformAssetBundle_loadStructuredBinaryData,
       ownerTypes: [],
     ),
     "@super:loadString": FlaxInstanceMethod(
-      _flaxBinding158,
-      _flaxBinding159,
+      _flaxBinding384,
+      _flaxBinding385,
       _FlaxProxyDispatch5_super_call_loadString,
     ),
     "@super:loadStructuredData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -35179,12 +34374,12 @@ const _flaxBinding775 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "value",
-                  _flaxBinding24,
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding162,
+              _flaxBinding153,
               _callback24,
               id: "callback:<>(p:r:value:String:)->future:[any?:]",
               invoke: _callback24Invoke,
@@ -35196,8 +34391,8 @@ const _flaxBinding775 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _PlatformAssetBundle_super_loadStructuredData,
       genericFactory: _flaxGeneric_PlatformAssetBundle_super_loadStructuredData,
@@ -35205,7 +34400,7 @@ const _flaxBinding775 = FlaxObjectBinding(
     ),
     "@super:loadStructuredBinaryData": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("key", _flaxBinding24, required: true),
+        FlaxParameter("key", _flaxBinding0, required: true),
         FlaxParameter(
           "parser",
           FlaxTypeRef(
@@ -35214,12 +34409,12 @@ const _flaxBinding775 = FlaxObjectBinding(
               [
                 FlaxCallbackParameter(
                   "data",
-                  _flaxBinding152,
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding163,
+              _flaxBinding387,
               _callback25,
               id: "callback:<>(p:r:data:ByteData:)->futureOr:[any?:]",
               invoke: _callback25Invoke,
@@ -35231,41 +34426,36 @@ const _flaxBinding775 = FlaxObjectBinding(
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _PlatformAssetBundle_super_loadStructuredBinaryData,
       genericFactory:
           _flaxGeneric_PlatformAssetBundle_super_loadStructuredBinaryData,
       ownerTypes: [],
     ),
-    "@super:evict": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding82,
+    "@super:evict": FlaxInstanceMethod.signature(
+      _flaxBinding25,
       _FlaxProxyDispatch5_super_call_evict,
     ),
-    "@super:clear": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "@super:clear": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _FlaxProxyDispatch5_super_call_clear,
     ),
-    "@super:loadBuffer": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding156,
+    "@super:loadBuffer": FlaxInstanceMethod.signature(
+      _flaxBinding23,
       _FlaxProxyDispatch5_super_call_loadBuffer,
     ),
-    "@super:load": FlaxInstanceMethod(
-      _flaxBinding151,
-      _flaxBinding153,
+    "@super:load": FlaxInstanceMethod.signature(
+      _flaxBinding20,
       _FlaxProxyDispatch22_super_call_load,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createPlatformAssetBundle,
   matches: _isPlatformAssetBundle,
   setters: [],
@@ -35274,9 +34464,9 @@ const _flaxBinding775 = FlaxObjectBinding(
     "flax.core/sdk_services#type:AssetBundle",
     "dart:core::Object",
   ],
-  parent: _flaxBinding290,
+  parent: _flaxBinding467,
   proxy: FlaxProxyBinding([
-    _flaxBinding172,
+    _flaxBinding394,
     FlaxProxyMember(
       "loadStructuredData",
       0,
@@ -35284,18 +34474,18 @@ const _flaxBinding775 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "key",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "parser",
-            _flaxBinding174,
+            _flaxBinding396,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding162,
+        _flaxBinding153,
         _callback26,
         id: "callback:<T:any?:=any?:>(p:r:key:String:,p:r:parser:callback:<>(p:r:value:String:)->future:[any?:])->future:[any?:]",
         invoke: _callback26Invoke,
@@ -35312,18 +34502,18 @@ const _flaxBinding775 = FlaxObjectBinding(
         [
           FlaxCallbackParameter(
             "key",
-            _flaxBinding24,
+            _flaxBinding0,
             required: true,
             positional: true,
           ),
           FlaxCallbackParameter(
             "parser",
-            _flaxBinding176,
+            _flaxBinding398,
             required: true,
             positional: true,
           ),
         ],
-        _flaxBinding162,
+        _flaxBinding153,
         _callback27,
         id: "callback:<T:any?:=any?:>(p:r:key:String:,p:r:parser:callback:<>(p:r:data:ByteData:)->futureOr:[any?:])->future:[any?:]",
         invoke: _callback27Invoke,
@@ -35333,127 +34523,120 @@ const _flaxBinding775 = FlaxObjectBinding(
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding178,
-    _flaxBinding180,
-    _flaxBinding170,
-    _flaxBinding771,
-    _flaxBinding28,
+    _flaxBinding399,
+    _flaxBinding400,
+    _flaxBinding392,
+    _flaxBinding824,
+    _flaxBinding279,
   ]),
 );
-const _flaxBinding776 = FlaxGetter(
+const _flaxBinding829 = FlaxGetter(
   "code",
-  _flaxBinding24,
+  _flaxBinding0,
   _PlatformException_code,
 );
-const _flaxBinding777 = FlaxGetter(
+const _flaxBinding830 = FlaxGetter(
   "message",
-  _flaxBinding142,
+  _flaxBinding14,
   _PlatformException_message,
 );
-const _flaxBinding778 = FlaxGetter(
+const _flaxBinding831 = FlaxGetter(
   "details",
-  _flaxBinding161,
+  _flaxBinding42,
   _PlatformException_details,
 );
-const _flaxBinding779 = FlaxGetter(
+const _flaxBinding832 = FlaxGetter(
   "stacktrace",
-  _flaxBinding142,
+  _flaxBinding14,
   _PlatformException_stacktrace,
 );
-const _flaxBinding780 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding833 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _PlatformException_toString,
 );
-const _flaxBinding781 = <FlaxParameter>[
-  FlaxParameter("code", _flaxBinding24, required: true),
-  FlaxParameter("message", _flaxBinding142, required: false),
+const _flaxBinding834 = <FlaxParameter>[
+  FlaxParameter("code", _flaxBinding0, required: true),
+  FlaxParameter("message", _flaxBinding14, required: false),
   FlaxParameter(
     "details",
-    _flaxBinding161,
+    _flaxBinding42,
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("stacktrace", _flaxBinding142, required: false),
+  FlaxParameter("stacktrace", _flaxBinding14, required: false),
 ];
-const _flaxBinding782 = FlaxProxyMember(
+const _flaxBinding835 = FlaxProxyMember(
   "code",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding783 = FlaxProxyMember(
+const _flaxBinding836 = FlaxProxyMember(
   "details",
   1,
-  _flaxBinding698,
+  _flaxBinding152,
   hasSuper: true,
 );
-const _flaxBinding784 = FlaxProxyMember(
+const _flaxBinding837 = FlaxProxyMember(
   "stacktrace",
   1,
-  _flaxBinding146,
+  _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding785 = FlaxObjectBinding(
+const _flaxBinding838 = FlaxObjectBinding(
   "flax.core/sdk_services#type:PlatformException",
-  [_flaxBinding776, _flaxBinding777, _flaxBinding778, _flaxBinding779],
+  [_flaxBinding829, _flaxBinding830, _flaxBinding831, _flaxBinding832],
   {
-    "toString": _flaxBinding780,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toString": _flaxBinding833,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:code": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:code": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _PlatformException_super_get_code,
     ),
-    "@super:get:message": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:message": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _FlaxProxyDispatch20_super_get_message,
     ),
-    "@super:get:details": FlaxInstanceMethod(
-      [],
-      _flaxBinding161,
+    "@super:get:details": FlaxInstanceMethod.signature(
+      _flaxBinding152,
       _PlatformException_super_get_details,
     ),
-    "@super:get:stacktrace": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:stacktrace": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _PlatformException_super_get_stacktrace,
     ),
   },
-  constructors: {"@implementation": _flaxBinding781},
+  constructors: {"@implementation": _flaxBinding834},
   create: _createPlatformException,
   matches: _isPlatformException,
   setters: [],
   supertypes: ["dart:core::Object", "dart:core::Exception"],
   proxy: FlaxProxyBinding([
-    _flaxBinding28,
-    _flaxBinding782,
-    _flaxBinding719,
-    _flaxBinding783,
-    _flaxBinding784,
+    _flaxBinding279,
+    _flaxBinding835,
+    _flaxBinding789,
+    _flaxBinding836,
+    _flaxBinding837,
   ]),
 );
-const _flaxBinding786 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding0,
+const _flaxBinding839 = FlaxInstanceMethod.signature(
+  _flaxBinding3,
   _PlatformViewsRegistry_getNextPlatformViewId,
 );
-const _flaxBinding787 = FlaxObjectBinding(
+const _flaxBinding840 = FlaxObjectBinding(
   "flax.core/sdk_services#type:PlatformViewsRegistry",
   [],
-  {"getNextPlatformViewId": _flaxBinding786},
+  {"getNextPlatformViewId": _flaxBinding839},
   constructors: {},
   create: _createPlatformViewsRegistry,
   matches: _isPlatformViewsRegistry,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding788 = FlaxObjectBinding(
+const _flaxBinding841 = FlaxObjectBinding(
   "flax.core/sdk_services#type:PlatformViewsService",
   [],
   {},
@@ -35463,391 +34646,321 @@ const _flaxBinding788 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding789 = FlaxGetter(
+const _flaxBinding842 = FlaxGetter(
   "touchOffset",
-  _flaxBinding85,
+  _flaxBinding174,
   _PredictiveBackEvent_touchOffset,
 );
-const _flaxBinding790 = FlaxGetter(
+const _flaxBinding843 = FlaxGetter(
   "progress",
-  _flaxBinding15,
+  _flaxBinding12,
   _PredictiveBackEvent_progress,
 );
-const _flaxBinding791 = FlaxTypeRef(
+const _flaxBinding844 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SwipeEdge",
 );
-const _flaxBinding792 = FlaxGetter(
+const _flaxBinding845 = FlaxGetter(
   "swipeEdge",
-  _flaxBinding791,
+  _flaxBinding844,
   _PredictiveBackEvent_swipeEdge,
 );
-const _flaxBinding793 = FlaxGetter(
+const _flaxBinding846 = FlaxGetter(
   "isButtonEvent",
-  _flaxBinding78,
+  _flaxBinding36,
   _PredictiveBackEvent_isButtonEvent,
 );
-const _flaxBinding794 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding847 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _PredictiveBackEvent_toString,
 );
-const _flaxBinding795 = FlaxTypeRef(
+const _flaxBinding848 = FlaxTypeRef(
   "map",
-  item: _flaxBinding161,
-  key: _flaxBinding142,
+  item: _flaxBinding42,
+  key: _flaxBinding14,
   collection: FlaxCollectionBinding(
     "map:[any?:][String?:]",
-    _collection28Create,
-    _collection28Matches,
+    _collection33Create,
+    _collection33Matches,
   ),
 );
-const _flaxBinding796 = <FlaxParameter>[
-  FlaxParameter("map", _flaxBinding795, required: true),
+const _flaxBinding849 = <FlaxParameter>[
+  FlaxParameter("map", _flaxBinding848, required: true),
 ];
-const _flaxBinding797 = FlaxObjectBinding(
+const _flaxBinding850 = FlaxObjectBinding(
   "flax.core/sdk_services#type:PredictiveBackEvent",
-  [_flaxBinding789, _flaxBinding790, _flaxBinding792, _flaxBinding793],
-  {"toString": _flaxBinding794},
-  constructors: {"fromMap": _flaxBinding796},
+  [_flaxBinding842, _flaxBinding843, _flaxBinding845, _flaxBinding846],
+  {"toString": _flaxBinding847},
+  constructors: {"fromMap": _flaxBinding849},
   create: _createPredictiveBackEvent,
   matches: _isPredictiveBackEvent,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding798 = FlaxGetter("id", _flaxBinding24, _ProcessTextAction_id);
-const _flaxBinding799 = FlaxGetter(
+const _flaxBinding851 = FlaxGetter("id", _flaxBinding0, _ProcessTextAction_id);
+const _flaxBinding852 = FlaxGetter(
   "label",
-  _flaxBinding24,
+  _flaxBinding0,
   _ProcessTextAction_label,
 );
-const _flaxBinding800 = <FlaxParameter>[
-  FlaxParameter("id", _flaxBinding24, required: true),
-  FlaxParameter("label", _flaxBinding24, required: true),
+const _flaxBinding853 = <FlaxParameter>[
+  FlaxParameter("id", _flaxBinding0, required: true),
+  FlaxParameter("label", _flaxBinding0, required: true),
 ];
-const _flaxBinding801 = FlaxProxyMember(
-  "id",
-  1,
-  _flaxBinding27,
-  hasSuper: true,
-);
-const _flaxBinding802 = FlaxProxyMember(
+const _flaxBinding854 = FlaxProxyMember("id", 1, _flaxBinding1, hasSuper: true);
+const _flaxBinding855 = FlaxProxyMember(
   "label",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding803 = FlaxObjectBinding(
+const _flaxBinding856 = FlaxObjectBinding(
   "flax.core/sdk_services#type:ProcessTextAction",
-  [_flaxBinding798, _flaxBinding799],
+  [_flaxBinding851, _flaxBinding852],
   {
-    "@super:get:id": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:id": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _ProcessTextAction_super_get_id,
     ),
-    "@super:get:label": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:label": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _ProcessTextAction_super_get_label,
     ),
   },
-  constructors: {"@implementation": _flaxBinding800},
+  constructors: {"@implementation": _flaxBinding853},
   create: _createProcessTextAction,
   matches: _isProcessTextAction,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding801, _flaxBinding802]),
+  proxy: FlaxProxyBinding([_flaxBinding854, _flaxBinding855]),
 );
-const _flaxBinding804 = FlaxGetter(
+const _flaxBinding857 = FlaxGetter(
   "offset",
-  _flaxBinding85,
+  _flaxBinding174,
   _RawFloatingCursorPoint_offset,
 );
-const _flaxBinding805 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_dart_ui#type:TextPosition",
-);
-const _flaxBinding806 = FlaxTypeRef(
-  "record",
-  nullable: true,
-  record: FlaxRecordBinding(
-    [
-      FlaxRecordFieldBinding("\$1", _flaxBinding105),
-      FlaxRecordFieldBinding("\$2", _flaxBinding805),
-    ],
-    FlaxDartTypes.typeOf<(api1.Offset, api1.TextPosition)>,
-    signature: "record:{p:\$1:object:flax.core/flutter#type:Offset,p:\$2:object:flax.core/sdk_dart_ui#type:TextPosition}",
-  ),
-);
-const _flaxBinding807 = FlaxGetter(
+const _flaxBinding858 = FlaxGetter(
   "startLocation",
-  _flaxBinding806,
+  _flaxBinding178,
   _RawFloatingCursorPoint_startLocation,
 );
-const _flaxBinding808 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:FloatingCursorDragState",
-);
-const _flaxBinding809 = FlaxGetter(
+const _flaxBinding859 = FlaxGetter(
   "state",
-  _flaxBinding808,
+  _flaxBinding180,
   _RawFloatingCursorPoint_state,
 );
-const _flaxBinding810 = <FlaxParameter>[
-  FlaxParameter("offset", _flaxBinding85, required: false),
-  FlaxParameter("startLocation", _flaxBinding806, required: false),
-  FlaxParameter("state", _flaxBinding808, required: true),
+const _flaxBinding860 = <FlaxParameter>[
+  FlaxParameter("offset", _flaxBinding174, required: false),
+  FlaxParameter("startLocation", _flaxBinding178, required: false),
+  FlaxParameter("state", _flaxBinding180, required: true),
 ];
-const _flaxBinding811 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding85,
-  id: "callback:<>()->object?:flax.core/flutter#type:Offset",
-);
-const _flaxBinding812 = FlaxProxyMember(
+const _flaxBinding861 = FlaxProxyMember(
   "offset",
   1,
-  _flaxBinding811,
+  _flaxBinding175,
   hasSuper: true,
 );
-const _flaxBinding813 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding806,
-  id: "callback:<>()->record?:{p:\$1:object:flax.core/flutter#type:Offset,p:\$2:object:flax.core/sdk_dart_ui#type:TextPosition}",
-);
-const _flaxBinding814 = FlaxProxyMember(
+const _flaxBinding862 = FlaxProxyMember(
   "startLocation",
   1,
-  _flaxBinding813,
+  _flaxBinding179,
   hasSuper: true,
 );
-const _flaxBinding815 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding808,
-  id: "callback:<>()->enum:flax.core/sdk_services#type:FloatingCursorDragState",
-);
-const _flaxBinding816 = FlaxProxyMember(
+const _flaxBinding863 = FlaxProxyMember(
   "state",
   1,
-  _flaxBinding815,
+  _flaxBinding181,
   hasSuper: true,
 );
-const _flaxBinding817 = FlaxObjectBinding(
+const _flaxBinding864 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawFloatingCursorPoint",
-  [_flaxBinding804, _flaxBinding807, _flaxBinding809],
+  [_flaxBinding857, _flaxBinding858, _flaxBinding859],
   {
-    "@super:get:offset": FlaxInstanceMethod(
-      [],
-      _flaxBinding85,
+    "@super:get:offset": FlaxInstanceMethod.signature(
+      _flaxBinding175,
       _RawFloatingCursorPoint_super_get_offset,
     ),
-    "@super:get:startLocation": FlaxInstanceMethod(
-      [],
-      _flaxBinding806,
+    "@super:get:startLocation": FlaxInstanceMethod.signature(
+      _flaxBinding179,
       _RawFloatingCursorPoint_super_get_startLocation,
     ),
-    "@super:get:state": FlaxInstanceMethod(
-      [],
-      _flaxBinding808,
+    "@super:get:state": FlaxInstanceMethod.signature(
+      _flaxBinding181,
       _RawFloatingCursorPoint_super_get_state,
     ),
   },
-  constructors: {"@implementation": _flaxBinding810},
+  constructors: {"@implementation": _flaxBinding860},
   create: _createRawFloatingCursorPoint,
   matches: _isRawFloatingCursorPoint,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding812, _flaxBinding814, _flaxBinding816]),
+  proxy: FlaxProxyBinding([_flaxBinding861, _flaxBinding862, _flaxBinding863]),
 );
-const _flaxBinding818 = FlaxGetter(
+const _flaxBinding865 = FlaxGetter(
   "isControlPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEvent_isControlPressed,
 );
-const _flaxBinding819 = FlaxGetter(
+const _flaxBinding866 = FlaxGetter(
   "isShiftPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEvent_isShiftPressed,
 );
-const _flaxBinding820 = FlaxGetter(
+const _flaxBinding867 = FlaxGetter(
   "isAltPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEvent_isAltPressed,
 );
-const _flaxBinding821 = FlaxGetter(
+const _flaxBinding868 = FlaxGetter(
   "isMetaPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEvent_isMetaPressed,
 );
-const _flaxBinding822 = FlaxGetter(
+const _flaxBinding869 = FlaxGetter(
   "physicalKey",
-  _flaxBinding447,
+  _flaxBinding100,
   _RawKeyEvent_physicalKey,
 );
-const _flaxBinding823 = FlaxGetter(
+const _flaxBinding870 = FlaxGetter(
   "logicalKey",
-  _flaxBinding451,
+  _flaxBinding102,
   _RawKeyEvent_logicalKey,
 );
-const _flaxBinding824 = FlaxGetter(
+const _flaxBinding871 = FlaxGetter(
   "character",
-  _flaxBinding142,
+  _flaxBinding14,
   _RawKeyEvent_character,
 );
-const _flaxBinding825 = FlaxGetter(
+const _flaxBinding872 = FlaxGetter(
   "repeat",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEvent_repeat,
 );
-const _flaxBinding826 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:RawKeyEventData",
-);
-const _flaxBinding827 = FlaxGetter("data", _flaxBinding826, _RawKeyEvent_data);
-const _flaxBinding828 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding873 = FlaxGetter("data", _flaxBinding182, _RawKeyEvent_data);
+const _flaxBinding874 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _RawKeyEvent_toStringShort,
 );
-const _flaxBinding829 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding875 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _RawKeyEvent_toString,
 );
-const _flaxBinding830 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding876 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _RawKeyEvent_toDiagnosticsNode,
 );
-const _flaxBinding831 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding877 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _RawKeyEvent_debugFillProperties,
 );
-const _flaxBinding832 = FlaxInstanceMethod(
-  _flaxBinding465,
-  _flaxBinding78,
+const _flaxBinding878 = FlaxInstanceMethod.signature(
+  _flaxBinding103,
   _RawKeyEvent_isKeyPressed,
 );
-const _flaxBinding833 = <FlaxParameter>[
-  FlaxParameter("data", _flaxBinding826, required: true),
-  FlaxParameter("character", _flaxBinding142, required: false),
-  FlaxParameter("repeat", _flaxBinding78, required: false, defaultValue: false),
+const _flaxBinding879 = <FlaxParameter>[
+  FlaxParameter("data", _flaxBinding182, required: true),
+  FlaxParameter("character", _flaxBinding14, required: false),
+  FlaxParameter("repeat", _flaxBinding36, required: false, defaultValue: false),
 ];
-const _flaxBinding834 = FlaxProxyMember(
+const _flaxBinding880 = FlaxProxyMember(
   "isKeyPressed",
   0,
-  _flaxBinding480,
+  _flaxBinding103,
   hasSuper: true,
 );
-const _flaxBinding835 = FlaxProxyMember(
+const _flaxBinding881 = FlaxProxyMember(
   "repeat",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding836 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding826,
-  id: "callback:<>()->object:flax.core/sdk_services#type:RawKeyEventData",
-);
-const _flaxBinding837 = FlaxProxyMember(
+const _flaxBinding882 = FlaxProxyMember(
   "data",
   1,
-  _flaxBinding836,
+  _flaxBinding183,
   hasSuper: true,
 );
-const _flaxBinding838 = FlaxObjectBinding(
+const _flaxBinding883 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEvent",
   [
-    _flaxBinding818,
-    _flaxBinding819,
-    _flaxBinding820,
-    _flaxBinding821,
-    _flaxBinding822,
-    _flaxBinding823,
-    _flaxBinding824,
-    _flaxBinding825,
-    _flaxBinding827,
+    _flaxBinding865,
+    _flaxBinding866,
+    _flaxBinding867,
+    _flaxBinding868,
+    _flaxBinding869,
+    _flaxBinding870,
+    _flaxBinding871,
+    _flaxBinding872,
+    _flaxBinding873,
   ],
   {
-    "toStringShort": _flaxBinding828,
-    "toString": _flaxBinding829,
-    "toDiagnosticsNode": _flaxBinding830,
-    "debugFillProperties": _flaxBinding831,
-    "isKeyPressed": _flaxBinding832,
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toStringShort": _flaxBinding874,
+    "toString": _flaxBinding875,
+    "toDiagnosticsNode": _flaxBinding876,
+    "debugFillProperties": _flaxBinding877,
+    "isKeyPressed": _flaxBinding878,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:isKeyPressed": FlaxInstanceMethod(
-      _flaxBinding465,
-      _flaxBinding78,
+    "@super:isKeyPressed": FlaxInstanceMethod.signature(
+      _flaxBinding103,
       _RawKeyEvent_super_isKeyPressed,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:character": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:character": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _RawKeyEvent_super_get_character,
     ),
-    "@super:get:repeat": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:repeat": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEvent_super_get_repeat,
     ),
-    "@super:get:data": FlaxInstanceMethod(
-      [],
-      _flaxBinding826,
+    "@super:get:data": FlaxInstanceMethod.signature(
+      _flaxBinding183,
       _RawKeyEvent_super_get_data,
     ),
   },
-  constructors: {"@implementation": _flaxBinding833},
+  constructors: {"@implementation": _flaxBinding879},
   create: _createRawKeyEvent,
   matches: _isRawKeyEvent,
   setters: [],
@@ -35856,98 +34969,86 @@ const _flaxBinding838 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding597,
-    _flaxBinding601,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding834,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding606,
-    _flaxBinding835,
-    _flaxBinding837,
+    _flaxBinding692,
+    _flaxBinding696,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding880,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding699,
+    _flaxBinding881,
+    _flaxBinding882,
   ]),
 );
-const _flaxBinding839 = FlaxObjectBinding(
+const _flaxBinding884 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyDownEvent",
   [],
   {
-    "@super:isKeyPressed": FlaxInstanceMethod(
-      _flaxBinding465,
-      _flaxBinding78,
+    "@super:isKeyPressed": FlaxInstanceMethod.signature(
+      _flaxBinding103,
       _RawKeyDownEvent_super_isKeyPressed,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:character": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:character": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _RawKeyDownEvent_super_get_character,
     ),
-    "@super:get:repeat": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:repeat": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyDownEvent_super_get_repeat,
     ),
-    "@super:get:data": FlaxInstanceMethod(
-      [],
-      _flaxBinding826,
+    "@super:get:data": FlaxInstanceMethod.signature(
+      _flaxBinding183,
       _RawKeyDownEvent_super_get_data,
     ),
   },
-  constructors: {"@implementation": _flaxBinding833},
+  constructors: {"@implementation": _flaxBinding879},
   create: _createRawKeyDownEvent,
   matches: _isRawKeyDownEvent,
   setters: [],
@@ -35956,251 +35057,207 @@ const _flaxBinding839 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding838,
+  parent: _flaxBinding883,
   proxy: FlaxProxyBinding([
-    _flaxBinding834,
-    _flaxBinding596,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding601,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding606,
-    _flaxBinding835,
-    _flaxBinding837,
+    _flaxBinding880,
+    _flaxBinding691,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding696,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding699,
+    _flaxBinding881,
+    _flaxBinding882,
   ]),
 );
-const _flaxBinding840 = FlaxGetter(
+const _flaxBinding885 = FlaxGetter(
   "isControlPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEventData_isControlPressed,
 );
-const _flaxBinding841 = FlaxGetter(
+const _flaxBinding886 = FlaxGetter(
   "isShiftPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEventData_isShiftPressed,
 );
-const _flaxBinding842 = FlaxGetter(
+const _flaxBinding887 = FlaxGetter(
   "isAltPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEventData_isAltPressed,
 );
-const _flaxBinding843 = FlaxGetter(
+const _flaxBinding888 = FlaxGetter(
   "isMetaPressed",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEventData_isMetaPressed,
 );
-const _flaxBinding844 = FlaxTypeRef(
-  "map",
-  item: _flaxBinding419,
-  key: _flaxBinding417,
-  collection: FlaxCollectionBinding(
-    "map:[enum:flax.core/sdk_services#type:KeyboardSide][enum:flax.core/sdk_services#type:ModifierKey]",
-    _collection29Create,
-    _collection29Matches,
-  ),
-);
-const _flaxBinding845 = FlaxGetter(
+const _flaxBinding889 = FlaxGetter(
   "modifiersPressed",
-  _flaxBinding844,
+  _flaxBinding186,
   _RawKeyEventData_modifiersPressed,
 );
-const _flaxBinding846 = FlaxGetter(
+const _flaxBinding890 = FlaxGetter(
   "physicalKey",
-  _flaxBinding447,
+  _flaxBinding100,
   _RawKeyEventData_physicalKey,
 );
-const _flaxBinding847 = FlaxGetter(
+const _flaxBinding891 = FlaxGetter(
   "logicalKey",
-  _flaxBinding451,
+  _flaxBinding102,
   _RawKeyEventData_logicalKey,
 );
-const _flaxBinding848 = FlaxGetter(
+const _flaxBinding892 = FlaxGetter(
   "keyLabel",
-  _flaxBinding24,
+  _flaxBinding0,
   _RawKeyEventData_keyLabel,
 );
-const _flaxBinding849 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding893 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _RawKeyEventData_toStringShort,
 );
-const _flaxBinding850 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding894 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _RawKeyEventData_toString,
 );
-const _flaxBinding851 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding895 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _RawKeyEventData_toDiagnosticsNode,
 );
-const _flaxBinding852 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding896 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _RawKeyEventData_debugFillProperties,
 );
-const _flaxBinding853 = <FlaxParameter>[
-  FlaxParameter("key", _flaxBinding417, required: true),
+const _flaxBinding897 = <FlaxParameter>[
+  FlaxParameter("key", _flaxBinding95, required: true),
   FlaxParameter(
     "side",
-    _flaxBinding419,
+    _flaxBinding96,
     required: false,
     defaultValue: api.KeyboardSide.any,
   ),
 ];
-const _flaxBinding854 = FlaxInstanceMethod(
-  _flaxBinding853,
-  _flaxBinding78,
+const _flaxBinding898 = FlaxInstanceMethod(
+  _flaxBinding897,
+  _flaxBinding36,
   _RawKeyEventData_isModifierPressed,
 );
-const _flaxBinding855 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:KeyboardSide",
-  nullable: true,
-);
-const _flaxBinding856 = FlaxInstanceMethod(
-  _flaxBinding418,
-  _flaxBinding855,
+const _flaxBinding899 = FlaxInstanceMethod.signature(
+  _flaxBinding185,
   _RawKeyEventData_getModifierSide,
 );
-const _flaxBinding857 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding78,
+const _flaxBinding900 = FlaxInstanceMethod.signature(
+  _flaxBinding37,
   _RawKeyEventData_shouldDispatchEvent,
 );
-const _flaxBinding858 = FlaxCallbackBinding.signature(
+const _flaxBinding901 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "key",
-      _flaxBinding417,
+      _flaxBinding95,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "side",
-      _flaxBinding419,
+      _flaxBinding96,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding78,
+  _flaxBinding36,
   id: "callback:<>(p:r:key:enum:flax.core/sdk_services#type:ModifierKey,n:o:side:enum:flax.core/sdk_services#type:KeyboardSide)->bool:",
 );
-const _flaxBinding859 = FlaxProxyMember(
+const _flaxBinding902 = FlaxProxyMember(
   "isModifierPressed",
   0,
-  _flaxBinding858,
+  _flaxBinding901,
 );
-const _flaxBinding860 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "key",
-      _flaxBinding417,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding855,
-  id: "callback:<>(p:r:key:enum:flax.core/sdk_services#type:ModifierKey)->enum?:flax.core/sdk_services#type:KeyboardSide",
-);
-const _flaxBinding861 = FlaxProxyMember("getModifierSide", 0, _flaxBinding860);
-const _flaxBinding862 = FlaxProxyMember(
+const _flaxBinding903 = FlaxProxyMember("getModifierSide", 0, _flaxBinding185);
+const _flaxBinding904 = FlaxProxyMember(
   "shouldDispatchEvent",
   0,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding863 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding844,
-  id: "callback:<>()->map:[enum:flax.core/sdk_services#type:KeyboardSide][enum:flax.core/sdk_services#type:ModifierKey]",
-);
-const _flaxBinding864 = FlaxProxyMember(
+const _flaxBinding905 = FlaxProxyMember(
   "modifiersPressed",
   1,
-  _flaxBinding863,
+  _flaxBinding187,
   hasSuper: true,
 );
-const _flaxBinding865 = FlaxProxyMember("physicalKey", 1, _flaxBinding602);
-const _flaxBinding866 = FlaxProxyMember("logicalKey", 1, _flaxBinding604);
-const _flaxBinding867 = FlaxProxyMember("keyLabel", 1, _flaxBinding27);
-const _flaxBinding868 = FlaxObjectBinding(
+const _flaxBinding906 = FlaxProxyMember("physicalKey", 1, _flaxBinding129);
+const _flaxBinding907 = FlaxProxyMember("logicalKey", 1, _flaxBinding130);
+const _flaxBinding908 = FlaxProxyMember("keyLabel", 1, _flaxBinding1);
+const _flaxBinding909 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEventData",
   [
-    _flaxBinding840,
-    _flaxBinding841,
-    _flaxBinding842,
-    _flaxBinding843,
-    _flaxBinding845,
-    _flaxBinding846,
-    _flaxBinding847,
-    _flaxBinding848,
+    _flaxBinding885,
+    _flaxBinding886,
+    _flaxBinding887,
+    _flaxBinding888,
+    _flaxBinding889,
+    _flaxBinding890,
+    _flaxBinding891,
+    _flaxBinding892,
   ],
   {
-    "toStringShort": _flaxBinding849,
-    "toString": _flaxBinding850,
-    "toDiagnosticsNode": _flaxBinding851,
-    "debugFillProperties": _flaxBinding852,
-    "isModifierPressed": _flaxBinding854,
-    "getModifierSide": _flaxBinding856,
-    "shouldDispatchEvent": _flaxBinding857,
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toStringShort": _flaxBinding893,
+    "toString": _flaxBinding894,
+    "toDiagnosticsNode": _flaxBinding895,
+    "debugFillProperties": _flaxBinding896,
+    "isModifierPressed": _flaxBinding898,
+    "getModifierSide": _flaxBinding899,
+    "shouldDispatchEvent": _flaxBinding900,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:shouldDispatchEvent": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding78,
+    "@super:shouldDispatchEvent": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventData_super_shouldDispatchEvent,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:modifiersPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding844,
+    "@super:get:modifiersPressed": FlaxInstanceMethod.signature(
+      _flaxBinding187,
       _RawKeyEventData_super_get_modifiersPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createRawKeyEventData,
   matches: _isRawKeyEventData,
   setters: [],
@@ -36209,310 +35266,287 @@ const _flaxBinding868 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding597,
-    _flaxBinding601,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding859,
-    _flaxBinding861,
-    _flaxBinding862,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding864,
-    _flaxBinding865,
-    _flaxBinding866,
-    _flaxBinding867,
+    _flaxBinding692,
+    _flaxBinding696,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding902,
+    _flaxBinding903,
+    _flaxBinding904,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding905,
+    _flaxBinding906,
+    _flaxBinding907,
+    _flaxBinding908,
   ]),
 );
-const _flaxBinding869 = FlaxGetter(
+const _flaxBinding910 = FlaxGetter(
   "flags",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_flags,
 );
-const _flaxBinding870 = FlaxGetter(
+const _flaxBinding911 = FlaxGetter(
   "codePoint",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_codePoint,
 );
-const _flaxBinding871 = FlaxGetter(
+const _flaxBinding912 = FlaxGetter(
   "plainCodePoint",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_plainCodePoint,
 );
-const _flaxBinding872 = FlaxGetter(
+const _flaxBinding913 = FlaxGetter(
   "keyCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_keyCode,
 );
-const _flaxBinding873 = FlaxGetter(
+const _flaxBinding914 = FlaxGetter(
   "scanCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_scanCode,
 );
-const _flaxBinding874 = FlaxGetter(
+const _flaxBinding915 = FlaxGetter(
   "metaState",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_metaState,
 );
-const _flaxBinding875 = FlaxGetter(
+const _flaxBinding916 = FlaxGetter(
   "eventSource",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_eventSource,
 );
-const _flaxBinding876 = FlaxGetter(
+const _flaxBinding917 = FlaxGetter(
   "vendorId",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_vendorId,
 );
-const _flaxBinding877 = FlaxGetter(
+const _flaxBinding918 = FlaxGetter(
   "productId",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_productId,
 );
-const _flaxBinding878 = FlaxGetter(
+const _flaxBinding919 = FlaxGetter(
   "deviceId",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_deviceId,
 );
-const _flaxBinding879 = FlaxGetter(
+const _flaxBinding920 = FlaxGetter(
   "repeatCount",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataAndroid_repeatCount,
 );
-const _flaxBinding880 = <FlaxParameter>[
-  FlaxParameter("flags", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("codePoint", _flaxBinding0, required: false, defaultValue: 0),
+const _flaxBinding921 = <FlaxParameter>[
+  FlaxParameter("flags", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("codePoint", _flaxBinding2, required: false, defaultValue: 0),
   FlaxParameter(
     "plainCodePoint",
-    _flaxBinding0,
+    _flaxBinding2,
     required: false,
     defaultValue: 0,
   ),
-  FlaxParameter("keyCode", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("scanCode", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("metaState", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("eventSource", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("vendorId", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("productId", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("deviceId", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("repeatCount", _flaxBinding0, required: false, defaultValue: 0),
+  FlaxParameter("keyCode", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("scanCode", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("metaState", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("eventSource", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("vendorId", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("productId", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("deviceId", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("repeatCount", _flaxBinding2, required: false, defaultValue: 0),
 ];
-const _flaxBinding881 = FlaxProxyMember(
+const _flaxBinding922 = FlaxProxyMember(
   "isModifierPressed",
   0,
-  _flaxBinding858,
+  _flaxBinding901,
   hasSuper: true,
 );
-const _flaxBinding882 = FlaxProxyMember(
+const _flaxBinding923 = FlaxProxyMember(
   "getModifierSide",
   0,
-  _flaxBinding860,
+  _flaxBinding185,
   hasSuper: true,
 );
-const _flaxBinding883 = FlaxProxyMember(
+const _flaxBinding924 = FlaxProxyMember(
   "codePoint",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding884 = FlaxProxyMember(
+const _flaxBinding925 = FlaxProxyMember(
   "plainCodePoint",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding885 = FlaxProxyMember(
+const _flaxBinding926 = FlaxProxyMember(
   "keyCode",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding886 = FlaxProxyMember(
+const _flaxBinding927 = FlaxProxyMember(
   "scanCode",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding887 = FlaxProxyMember(
+const _flaxBinding928 = FlaxProxyMember(
   "eventSource",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding888 = FlaxProxyMember(
+const _flaxBinding929 = FlaxProxyMember(
   "vendorId",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding889 = FlaxProxyMember(
+const _flaxBinding930 = FlaxProxyMember(
   "productId",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding890 = FlaxProxyMember(
+const _flaxBinding931 = FlaxProxyMember(
   "repeatCount",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding891 = FlaxProxyMember(
+const _flaxBinding932 = FlaxProxyMember(
   "keyLabel",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding892 = FlaxObjectBinding(
+const _flaxBinding933 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEventDataAndroid",
   [
-    _flaxBinding869,
-    _flaxBinding870,
-    _flaxBinding871,
-    _flaxBinding872,
-    _flaxBinding873,
-    _flaxBinding874,
-    _flaxBinding875,
-    _flaxBinding876,
-    _flaxBinding877,
-    _flaxBinding878,
-    _flaxBinding879,
+    _flaxBinding910,
+    _flaxBinding911,
+    _flaxBinding912,
+    _flaxBinding913,
+    _flaxBinding914,
+    _flaxBinding915,
+    _flaxBinding916,
+    _flaxBinding917,
+    _flaxBinding918,
+    _flaxBinding919,
+    _flaxBinding920,
   ],
   {
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding853,
-      _flaxBinding78,
+      _flaxBinding897,
+      _flaxBinding36,
       _RawKeyEventDataAndroid_super_isModifierPressed,
     ),
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding855,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding185,
       _RawKeyEventDataAndroid_super_getModifierSide,
     ),
-    "@super:shouldDispatchEvent": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding78,
+    "@super:shouldDispatchEvent": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventDataAndroid_super_shouldDispatchEvent,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:flags": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:flags": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_flags,
     ),
-    "@super:get:codePoint": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:codePoint": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_codePoint,
     ),
-    "@super:get:plainCodePoint": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:plainCodePoint": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_plainCodePoint,
     ),
-    "@super:get:keyCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:keyCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_keyCode,
     ),
-    "@super:get:scanCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:scanCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_scanCode,
     ),
-    "@super:get:metaState": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:metaState": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_metaState,
     ),
-    "@super:get:eventSource": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:eventSource": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_eventSource,
     ),
-    "@super:get:vendorId": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:vendorId": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_vendorId,
     ),
-    "@super:get:productId": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:productId": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_productId,
     ),
-    "@super:get:deviceId": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:deviceId": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_deviceId,
     ),
-    "@super:get:repeatCount": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:repeatCount": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataAndroid_super_get_repeatCount,
     ),
-    "@super:get:keyLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:keyLabel": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataAndroid_super_get_keyLabel,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:modifiersPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding844,
+    "@super:get:modifiersPressed": FlaxInstanceMethod.signature(
+      _flaxBinding187,
       _RawKeyEventDataAndroid_super_get_modifiersPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding880},
+  constructors: {"@implementation": _flaxBinding921},
   create: _createRawKeyEventDataAndroid,
   matches: _isRawKeyEventDataAndroid,
   setters: [],
@@ -36521,164 +35555,149 @@ const _flaxBinding892 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding868,
+  parent: _flaxBinding909,
   proxy: FlaxProxyBinding([
-    _flaxBinding881,
-    _flaxBinding882,
-    _flaxBinding862,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding46,
-    _flaxBinding883,
-    _flaxBinding884,
-    _flaxBinding885,
-    _flaxBinding886,
-    _flaxBinding38,
-    _flaxBinding887,
-    _flaxBinding888,
-    _flaxBinding889,
-    _flaxBinding43,
-    _flaxBinding890,
-    _flaxBinding891,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding864,
+    _flaxBinding922,
+    _flaxBinding923,
+    _flaxBinding904,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding293,
+    _flaxBinding924,
+    _flaxBinding925,
+    _flaxBinding926,
+    _flaxBinding927,
+    _flaxBinding286,
+    _flaxBinding928,
+    _flaxBinding929,
+    _flaxBinding930,
+    _flaxBinding290,
+    _flaxBinding931,
+    _flaxBinding932,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding905,
   ]),
 );
-const _flaxBinding893 = FlaxGetter(
+const _flaxBinding934 = FlaxGetter(
   "hidUsage",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataFuchsia_hidUsage,
 );
-const _flaxBinding894 = FlaxGetter(
+const _flaxBinding935 = FlaxGetter(
   "codePoint",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataFuchsia_codePoint,
 );
-const _flaxBinding895 = FlaxGetter(
+const _flaxBinding936 = FlaxGetter(
   "modifiers",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataFuchsia_modifiers,
 );
-const _flaxBinding896 = <FlaxParameter>[
-  FlaxParameter("hidUsage", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("codePoint", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("modifiers", _flaxBinding0, required: false, defaultValue: 0),
+const _flaxBinding937 = <FlaxParameter>[
+  FlaxParameter("hidUsage", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("codePoint", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("modifiers", _flaxBinding2, required: false, defaultValue: 0),
 ];
-const _flaxBinding897 = FlaxProxyMember(
+const _flaxBinding938 = FlaxProxyMember(
   "hidUsage",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding898 = FlaxProxyMember(
+const _flaxBinding939 = FlaxProxyMember(
   "modifiers",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding899 = FlaxObjectBinding(
+const _flaxBinding940 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEventDataFuchsia",
-  [_flaxBinding893, _flaxBinding894, _flaxBinding895],
+  [_flaxBinding934, _flaxBinding935, _flaxBinding936],
   {
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding853,
-      _flaxBinding78,
+      _flaxBinding897,
+      _flaxBinding36,
       _RawKeyEventDataFuchsia_super_isModifierPressed,
     ),
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding855,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding185,
       _RawKeyEventDataFuchsia_super_getModifierSide,
     ),
-    "@super:shouldDispatchEvent": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding78,
+    "@super:shouldDispatchEvent": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventDataFuchsia_super_shouldDispatchEvent,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:hidUsage": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:hidUsage": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataFuchsia_super_get_hidUsage,
     ),
-    "@super:get:codePoint": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:codePoint": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataFuchsia_super_get_codePoint,
     ),
-    "@super:get:modifiers": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:modifiers": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataFuchsia_super_get_modifiers,
     ),
-    "@super:get:keyLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:keyLabel": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataFuchsia_super_get_keyLabel,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:modifiersPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding844,
+    "@super:get:modifiersPressed": FlaxInstanceMethod.signature(
+      _flaxBinding187,
       _RawKeyEventDataFuchsia_super_get_modifiersPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding896},
+  constructors: {"@implementation": _flaxBinding937},
   create: _createRawKeyEventDataFuchsia,
   matches: _isRawKeyEventDataFuchsia,
   setters: [],
@@ -36687,177 +35706,156 @@ const _flaxBinding899 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding868,
+  parent: _flaxBinding909,
   proxy: FlaxProxyBinding([
-    _flaxBinding881,
-    _flaxBinding882,
-    _flaxBinding862,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding897,
-    _flaxBinding883,
-    _flaxBinding898,
-    _flaxBinding891,
-    _flaxBinding605,
-    _flaxBinding603,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding864,
+    _flaxBinding922,
+    _flaxBinding923,
+    _flaxBinding904,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding938,
+    _flaxBinding924,
+    _flaxBinding939,
+    _flaxBinding932,
+    _flaxBinding698,
+    _flaxBinding697,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding905,
   ]),
 );
-const _flaxBinding900 = FlaxGetter(
+const _flaxBinding941 = FlaxGetter(
   "characters",
-  _flaxBinding24,
+  _flaxBinding0,
   _RawKeyEventDataIos_characters,
 );
-const _flaxBinding901 = FlaxGetter(
+const _flaxBinding942 = FlaxGetter(
   "charactersIgnoringModifiers",
-  _flaxBinding24,
+  _flaxBinding0,
   _RawKeyEventDataIos_charactersIgnoringModifiers,
 );
-const _flaxBinding902 = FlaxGetter(
+const _flaxBinding943 = FlaxGetter(
   "keyCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataIos_keyCode,
 );
-const _flaxBinding903 = FlaxGetter(
+const _flaxBinding944 = FlaxGetter(
   "modifiers",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataIos_modifiers,
 );
-const _flaxBinding904 = <FlaxParameter>[
-  FlaxParameter(
-    "characters",
-    _flaxBinding24,
-    required: false,
-    defaultValue: '',
-  ),
+const _flaxBinding945 = <FlaxParameter>[
+  FlaxParameter("characters", _flaxBinding0, required: false, defaultValue: ''),
   FlaxParameter(
     "charactersIgnoringModifiers",
-    _flaxBinding24,
+    _flaxBinding0,
     required: false,
     defaultValue: '',
   ),
-  FlaxParameter("keyCode", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("modifiers", _flaxBinding0, required: false, defaultValue: 0),
+  FlaxParameter("keyCode", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("modifiers", _flaxBinding2, required: false, defaultValue: 0),
 ];
-const _flaxBinding905 = FlaxProxyMember(
+const _flaxBinding946 = FlaxProxyMember(
   "characters",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding906 = FlaxProxyMember(
+const _flaxBinding947 = FlaxProxyMember(
   "charactersIgnoringModifiers",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding907 = FlaxObjectBinding(
+const _flaxBinding948 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEventDataIos",
-  [_flaxBinding900, _flaxBinding901, _flaxBinding902, _flaxBinding903],
+  [_flaxBinding941, _flaxBinding942, _flaxBinding943, _flaxBinding944],
   {
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding853,
-      _flaxBinding78,
+      _flaxBinding897,
+      _flaxBinding36,
       _RawKeyEventDataIos_super_isModifierPressed,
     ),
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding855,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding185,
       _RawKeyEventDataIos_super_getModifierSide,
     ),
-    "@super:shouldDispatchEvent": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding78,
+    "@super:shouldDispatchEvent": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventDataIos_super_shouldDispatchEvent,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:characters": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:characters": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataIos_super_get_characters,
     ),
-    "@super:get:charactersIgnoringModifiers": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:charactersIgnoringModifiers": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataIos_super_get_charactersIgnoringModifiers,
     ),
-    "@super:get:keyCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:keyCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataIos_super_get_keyCode,
     ),
-    "@super:get:modifiers": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:modifiers": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataIos_super_get_modifiers,
     ),
-    "@super:get:keyLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:keyLabel": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataIos_super_get_keyLabel,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:modifiersPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding844,
+    "@super:get:modifiersPressed": FlaxInstanceMethod.signature(
+      _flaxBinding187,
       _RawKeyEventDataIos_super_get_modifiersPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding904},
+  constructors: {"@implementation": _flaxBinding945},
   create: _createRawKeyEventDataIos,
   matches: _isRawKeyEventDataIos,
   setters: [],
@@ -36866,241 +35864,212 @@ const _flaxBinding907 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding868,
+  parent: _flaxBinding909,
   proxy: FlaxProxyBinding([
-    _flaxBinding881,
-    _flaxBinding882,
-    _flaxBinding862,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
+    _flaxBinding922,
+    _flaxBinding923,
+    _flaxBinding904,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding946,
+    _flaxBinding947,
+    _flaxBinding926,
+    _flaxBinding939,
+    _flaxBinding932,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
     _flaxBinding905,
-    _flaxBinding906,
-    _flaxBinding885,
-    _flaxBinding898,
-    _flaxBinding891,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding864,
   ]),
 );
-const _flaxBinding908 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:KeyHelper",
-);
-const _flaxBinding909 = FlaxGetter(
+const _flaxBinding949 = FlaxGetter(
   "keyHelper",
-  _flaxBinding908,
+  _flaxBinding188,
   _RawKeyEventDataLinux_keyHelper,
 );
-const _flaxBinding910 = FlaxGetter(
+const _flaxBinding950 = FlaxGetter(
   "unicodeScalarValues",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataLinux_unicodeScalarValues,
 );
-const _flaxBinding911 = FlaxGetter(
+const _flaxBinding951 = FlaxGetter(
   "scanCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataLinux_scanCode,
 );
-const _flaxBinding912 = FlaxGetter(
+const _flaxBinding952 = FlaxGetter(
   "keyCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataLinux_keyCode,
 );
-const _flaxBinding913 = FlaxGetter(
+const _flaxBinding953 = FlaxGetter(
   "modifiers",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataLinux_modifiers,
 );
-const _flaxBinding914 = FlaxGetter(
+const _flaxBinding954 = FlaxGetter(
   "isDown",
-  _flaxBinding78,
+  _flaxBinding36,
   _RawKeyEventDataLinux_isDown,
 );
-const _flaxBinding915 = FlaxGetter(
+const _flaxBinding955 = FlaxGetter(
   "specifiedLogicalKey",
-  _flaxBinding102,
+  _flaxBinding16,
   _RawKeyEventDataLinux_specifiedLogicalKey,
 );
-const _flaxBinding916 = FlaxInstanceMethod(
-  _flaxBinding418,
-  _flaxBinding419,
+const _flaxBinding956 = FlaxInstanceMethod.signature(
+  _flaxBinding97,
   _RawKeyEventDataLinux_getModifierSide,
 );
-const _flaxBinding917 = <FlaxParameter>[
-  FlaxParameter("keyHelper", _flaxBinding908, required: true),
+const _flaxBinding957 = <FlaxParameter>[
+  FlaxParameter("keyHelper", _flaxBinding188, required: true),
   FlaxParameter(
     "unicodeScalarValues",
-    _flaxBinding0,
+    _flaxBinding2,
     required: false,
     defaultValue: 0,
   ),
-  FlaxParameter("scanCode", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("keyCode", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("modifiers", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("isDown", _flaxBinding78, required: true),
-  FlaxParameter("specifiedLogicalKey", _flaxBinding102, required: false),
+  FlaxParameter("scanCode", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("keyCode", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("modifiers", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("isDown", _flaxBinding36, required: true),
+  FlaxParameter("specifiedLogicalKey", _flaxBinding16, required: false),
 ];
-const _flaxBinding918 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding908,
-  id: "callback:<>()->object:flax.core/sdk_services#type:KeyHelper",
-);
-const _flaxBinding919 = FlaxProxyMember(
+const _flaxBinding958 = FlaxProxyMember(
   "keyHelper",
   1,
-  _flaxBinding918,
+  _flaxBinding189,
   hasSuper: true,
 );
-const _flaxBinding920 = FlaxProxyMember(
+const _flaxBinding959 = FlaxProxyMember(
   "unicodeScalarValues",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding921 = FlaxProxyMember(
+const _flaxBinding960 = FlaxProxyMember(
   "isDown",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding922 = FlaxProxyMember(
+const _flaxBinding961 = FlaxProxyMember(
   "specifiedLogicalKey",
   1,
-  _flaxBinding148,
+  _flaxBinding17,
   hasSuper: true,
 );
-const _flaxBinding923 = FlaxObjectBinding(
+const _flaxBinding962 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEventDataLinux",
   [
-    _flaxBinding909,
-    _flaxBinding910,
-    _flaxBinding911,
-    _flaxBinding912,
-    _flaxBinding913,
-    _flaxBinding914,
-    _flaxBinding915,
+    _flaxBinding949,
+    _flaxBinding950,
+    _flaxBinding951,
+    _flaxBinding952,
+    _flaxBinding953,
+    _flaxBinding954,
+    _flaxBinding955,
   ],
   {
-    "getModifierSide": _flaxBinding916,
+    "getModifierSide": _flaxBinding956,
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding853,
-      _flaxBinding78,
+      _flaxBinding897,
+      _flaxBinding36,
       _RawKeyEventDataLinux_super_isModifierPressed,
     ),
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding419,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding97,
       _RawKeyEventDataLinux_super_getModifierSide,
     ),
-    "@super:shouldDispatchEvent": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding78,
+    "@super:shouldDispatchEvent": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventDataLinux_super_shouldDispatchEvent,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:keyHelper": FlaxInstanceMethod(
-      [],
-      _flaxBinding908,
+    "@super:get:keyHelper": FlaxInstanceMethod.signature(
+      _flaxBinding189,
       _RawKeyEventDataLinux_super_get_keyHelper,
     ),
-    "@super:get:unicodeScalarValues": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:unicodeScalarValues": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataLinux_super_get_unicodeScalarValues,
     ),
-    "@super:get:scanCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:scanCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataLinux_super_get_scanCode,
     ),
-    "@super:get:keyCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:keyCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataLinux_super_get_keyCode,
     ),
-    "@super:get:modifiers": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:modifiers": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataLinux_super_get_modifiers,
     ),
-    "@super:get:isDown": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isDown": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventDataLinux_super_get_isDown,
     ),
-    "@super:get:specifiedLogicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding102,
+    "@super:get:specifiedLogicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding17,
       _RawKeyEventDataLinux_super_get_specifiedLogicalKey,
     ),
-    "@super:get:keyLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:keyLabel": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataLinux_super_get_keyLabel,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:modifiersPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding844,
+    "@super:get:modifiersPressed": FlaxInstanceMethod.signature(
+      _flaxBinding187,
       _RawKeyEventDataLinux_super_get_modifiersPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding917},
+  constructors: {"@implementation": _flaxBinding957},
   create: _createRawKeyEventDataLinux,
   matches: _isRawKeyEventDataLinux,
   setters: [],
@@ -37109,186 +36078,164 @@ const _flaxBinding923 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding868,
+  parent: _flaxBinding909,
   proxy: FlaxProxyBinding([
-    _flaxBinding881,
-    _flaxBinding438,
-    _flaxBinding862,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding919,
-    _flaxBinding920,
-    _flaxBinding886,
-    _flaxBinding885,
-    _flaxBinding898,
-    _flaxBinding921,
     _flaxBinding922,
-    _flaxBinding891,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding864,
+    _flaxBinding577,
+    _flaxBinding904,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding958,
+    _flaxBinding959,
+    _flaxBinding927,
+    _flaxBinding926,
+    _flaxBinding939,
+    _flaxBinding960,
+    _flaxBinding961,
+    _flaxBinding932,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding905,
   ]),
 );
-const _flaxBinding924 = FlaxGetter(
+const _flaxBinding963 = FlaxGetter(
   "characters",
-  _flaxBinding24,
+  _flaxBinding0,
   _RawKeyEventDataMacOs_characters,
 );
-const _flaxBinding925 = FlaxGetter(
+const _flaxBinding964 = FlaxGetter(
   "charactersIgnoringModifiers",
-  _flaxBinding24,
+  _flaxBinding0,
   _RawKeyEventDataMacOs_charactersIgnoringModifiers,
 );
-const _flaxBinding926 = FlaxGetter(
+const _flaxBinding965 = FlaxGetter(
   "keyCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataMacOs_keyCode,
 );
-const _flaxBinding927 = FlaxGetter(
+const _flaxBinding966 = FlaxGetter(
   "modifiers",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataMacOs_modifiers,
 );
-const _flaxBinding928 = FlaxGetter(
+const _flaxBinding967 = FlaxGetter(
   "specifiedLogicalKey",
-  _flaxBinding102,
+  _flaxBinding16,
   _RawKeyEventDataMacOs_specifiedLogicalKey,
 );
-const _flaxBinding929 = <FlaxParameter>[
-  FlaxParameter(
-    "characters",
-    _flaxBinding24,
-    required: false,
-    defaultValue: '',
-  ),
+const _flaxBinding968 = <FlaxParameter>[
+  FlaxParameter("characters", _flaxBinding0, required: false, defaultValue: ''),
   FlaxParameter(
     "charactersIgnoringModifiers",
-    _flaxBinding24,
+    _flaxBinding0,
     required: false,
     defaultValue: '',
   ),
-  FlaxParameter("keyCode", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("modifiers", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("specifiedLogicalKey", _flaxBinding102, required: false),
+  FlaxParameter("keyCode", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("modifiers", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("specifiedLogicalKey", _flaxBinding16, required: false),
 ];
-const _flaxBinding930 = FlaxObjectBinding(
+const _flaxBinding969 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEventDataMacOs",
   [
-    _flaxBinding924,
-    _flaxBinding925,
-    _flaxBinding926,
-    _flaxBinding927,
-    _flaxBinding928,
+    _flaxBinding963,
+    _flaxBinding964,
+    _flaxBinding965,
+    _flaxBinding966,
+    _flaxBinding967,
   ],
   {
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding853,
-      _flaxBinding78,
+      _flaxBinding897,
+      _flaxBinding36,
       _RawKeyEventDataMacOs_super_isModifierPressed,
     ),
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding855,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding185,
       _RawKeyEventDataMacOs_super_getModifierSide,
     ),
-    "@super:shouldDispatchEvent": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding78,
+    "@super:shouldDispatchEvent": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventDataMacOs_super_shouldDispatchEvent,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:characters": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:characters": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataMacOs_super_get_characters,
     ),
-    "@super:get:charactersIgnoringModifiers": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:charactersIgnoringModifiers": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataMacOs_super_get_charactersIgnoringModifiers,
     ),
-    "@super:get:keyCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:keyCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataMacOs_super_get_keyCode,
     ),
-    "@super:get:modifiers": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:modifiers": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataMacOs_super_get_modifiers,
     ),
-    "@super:get:specifiedLogicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding102,
+    "@super:get:specifiedLogicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding17,
       _RawKeyEventDataMacOs_super_get_specifiedLogicalKey,
     ),
-    "@super:get:keyLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:keyLabel": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataMacOs_super_get_keyLabel,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:modifiersPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding844,
+    "@super:get:modifiersPressed": FlaxInstanceMethod.signature(
+      _flaxBinding187,
       _RawKeyEventDataMacOs_super_get_modifiersPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding929},
+  constructors: {"@implementation": _flaxBinding968},
   create: _createRawKeyEventDataMacOs,
   matches: _isRawKeyEventDataMacOs,
   setters: [],
@@ -37297,186 +36244,168 @@ const _flaxBinding930 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding868,
+  parent: _flaxBinding909,
   proxy: FlaxProxyBinding([
-    _flaxBinding881,
-    _flaxBinding882,
-    _flaxBinding862,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding905,
-    _flaxBinding906,
-    _flaxBinding885,
-    _flaxBinding898,
     _flaxBinding922,
-    _flaxBinding891,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding864,
+    _flaxBinding923,
+    _flaxBinding904,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding946,
+    _flaxBinding947,
+    _flaxBinding926,
+    _flaxBinding939,
+    _flaxBinding961,
+    _flaxBinding932,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding905,
   ]),
 );
-const _flaxBinding931 = FlaxGetter(
+const _flaxBinding970 = FlaxGetter(
   "code",
-  _flaxBinding24,
+  _flaxBinding0,
   _RawKeyEventDataWeb_code,
 );
-const _flaxBinding932 = FlaxGetter(
+const _flaxBinding971 = FlaxGetter(
   "key",
-  _flaxBinding24,
+  _flaxBinding0,
   _RawKeyEventDataWeb_key,
 );
-const _flaxBinding933 = FlaxGetter(
+const _flaxBinding972 = FlaxGetter(
   "location",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataWeb_location,
 );
-const _flaxBinding934 = FlaxGetter(
+const _flaxBinding973 = FlaxGetter(
   "metaState",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataWeb_metaState,
 );
-const _flaxBinding935 = FlaxGetter(
+const _flaxBinding974 = FlaxGetter(
   "keyCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataWeb_keyCode,
 );
-const _flaxBinding936 = FlaxInstanceMethod(
-  _flaxBinding418,
-  _flaxBinding419,
+const _flaxBinding975 = FlaxInstanceMethod.signature(
+  _flaxBinding97,
   _RawKeyEventDataWeb_getModifierSide,
 );
-const _flaxBinding937 = <FlaxParameter>[
-  FlaxParameter("code", _flaxBinding24, required: true),
-  FlaxParameter("key", _flaxBinding24, required: true),
-  FlaxParameter("location", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("metaState", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("keyCode", _flaxBinding0, required: false, defaultValue: 0),
+const _flaxBinding976 = <FlaxParameter>[
+  FlaxParameter("code", _flaxBinding0, required: true),
+  FlaxParameter("key", _flaxBinding0, required: true),
+  FlaxParameter("location", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("metaState", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("keyCode", _flaxBinding2, required: false, defaultValue: 0),
 ];
-const _flaxBinding938 = FlaxProxyMember(
+const _flaxBinding977 = FlaxProxyMember(
   "location",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding939 = FlaxObjectBinding(
+const _flaxBinding978 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEventDataWeb",
   [
-    _flaxBinding931,
-    _flaxBinding932,
-    _flaxBinding933,
-    _flaxBinding934,
-    _flaxBinding935,
+    _flaxBinding970,
+    _flaxBinding971,
+    _flaxBinding972,
+    _flaxBinding973,
+    _flaxBinding974,
   ],
   {
-    "getModifierSide": _flaxBinding936,
+    "getModifierSide": _flaxBinding975,
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding853,
-      _flaxBinding78,
+      _flaxBinding897,
+      _flaxBinding36,
       _RawKeyEventDataWeb_super_isModifierPressed,
     ),
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding419,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding97,
       _RawKeyEventDataWeb_super_getModifierSide,
     ),
-    "@super:shouldDispatchEvent": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding78,
+    "@super:shouldDispatchEvent": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventDataWeb_super_shouldDispatchEvent,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:code": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:code": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataWeb_super_get_code,
     ),
-    "@super:get:key": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:key": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataWeb_super_get_key,
     ),
-    "@super:get:location": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:location": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataWeb_super_get_location,
     ),
-    "@super:get:metaState": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:metaState": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataWeb_super_get_metaState,
     ),
-    "@super:get:keyCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:keyCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataWeb_super_get_keyCode,
     ),
-    "@super:get:keyLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:keyLabel": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataWeb_super_get_keyLabel,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:modifiersPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding844,
+    "@super:get:modifiersPressed": FlaxInstanceMethod.signature(
+      _flaxBinding187,
       _RawKeyEventDataWeb_super_get_modifiersPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding937},
+  constructors: {"@implementation": _flaxBinding976},
   create: _createRawKeyEventDataWeb,
   matches: _isRawKeyEventDataWeb,
   setters: [],
@@ -37485,168 +36414,152 @@ const _flaxBinding939 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding868,
+  parent: _flaxBinding909,
   proxy: FlaxProxyBinding([
-    _flaxBinding881,
-    _flaxBinding438,
-    _flaxBinding862,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding782,
-    _flaxBinding201,
-    _flaxBinding938,
-    _flaxBinding38,
-    _flaxBinding885,
-    _flaxBinding891,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding864,
+    _flaxBinding922,
+    _flaxBinding577,
+    _flaxBinding904,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding835,
+    _flaxBinding412,
+    _flaxBinding977,
+    _flaxBinding286,
+    _flaxBinding926,
+    _flaxBinding932,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding905,
   ]),
 );
-const _flaxBinding940 = FlaxGetter(
+const _flaxBinding979 = FlaxGetter(
   "keyCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataWindows_keyCode,
 );
-const _flaxBinding941 = FlaxGetter(
+const _flaxBinding980 = FlaxGetter(
   "scanCode",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataWindows_scanCode,
 );
-const _flaxBinding942 = FlaxGetter(
+const _flaxBinding981 = FlaxGetter(
   "characterCodePoint",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataWindows_characterCodePoint,
 );
-const _flaxBinding943 = FlaxGetter(
+const _flaxBinding982 = FlaxGetter(
   "modifiers",
-  _flaxBinding0,
+  _flaxBinding2,
   _RawKeyEventDataWindows_modifiers,
 );
-const _flaxBinding944 = <FlaxParameter>[
-  FlaxParameter("keyCode", _flaxBinding0, required: false, defaultValue: 0),
-  FlaxParameter("scanCode", _flaxBinding0, required: false, defaultValue: 0),
+const _flaxBinding983 = <FlaxParameter>[
+  FlaxParameter("keyCode", _flaxBinding2, required: false, defaultValue: 0),
+  FlaxParameter("scanCode", _flaxBinding2, required: false, defaultValue: 0),
   FlaxParameter(
     "characterCodePoint",
-    _flaxBinding0,
+    _flaxBinding2,
     required: false,
     defaultValue: 0,
   ),
-  FlaxParameter("modifiers", _flaxBinding0, required: false, defaultValue: 0),
+  FlaxParameter("modifiers", _flaxBinding2, required: false, defaultValue: 0),
 ];
-const _flaxBinding945 = FlaxProxyMember(
+const _flaxBinding984 = FlaxProxyMember(
   "characterCodePoint",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding946 = FlaxObjectBinding(
+const _flaxBinding985 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyEventDataWindows",
-  [_flaxBinding940, _flaxBinding941, _flaxBinding942, _flaxBinding943],
+  [_flaxBinding979, _flaxBinding980, _flaxBinding981, _flaxBinding982],
   {
     "@super:isModifierPressed": FlaxInstanceMethod(
-      _flaxBinding853,
-      _flaxBinding78,
+      _flaxBinding897,
+      _flaxBinding36,
       _RawKeyEventDataWindows_super_isModifierPressed,
     ),
-    "@super:getModifierSide": FlaxInstanceMethod(
-      _flaxBinding418,
-      _flaxBinding855,
+    "@super:getModifierSide": FlaxInstanceMethod.signature(
+      _flaxBinding185,
       _RawKeyEventDataWindows_super_getModifierSide,
     ),
-    "@super:shouldDispatchEvent": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding78,
+    "@super:shouldDispatchEvent": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyEventDataWindows_super_shouldDispatchEvent,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:keyCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:keyCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataWindows_super_get_keyCode,
     ),
-    "@super:get:scanCode": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:scanCode": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataWindows_super_get_scanCode,
     ),
-    "@super:get:characterCodePoint": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:characterCodePoint": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataWindows_super_get_characterCodePoint,
     ),
-    "@super:get:modifiers": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:modifiers": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _RawKeyEventDataWindows_super_get_modifiers,
     ),
-    "@super:get:keyLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:keyLabel": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _RawKeyEventDataWindows_super_get_keyLabel,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:modifiersPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding844,
+    "@super:get:modifiersPressed": FlaxInstanceMethod.signature(
+      _flaxBinding187,
       _RawKeyEventDataWindows_super_get_modifiersPressed,
     ),
   },
-  constructors: {"@implementation": _flaxBinding944},
+  constructors: {"@implementation": _flaxBinding983},
   create: _createRawKeyEventDataWindows,
   matches: _isRawKeyEventDataWindows,
   setters: [],
@@ -37655,109 +36568,97 @@ const _flaxBinding946 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding868,
+  parent: _flaxBinding909,
   proxy: FlaxProxyBinding([
-    _flaxBinding881,
-    _flaxBinding882,
-    _flaxBinding862,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding885,
-    _flaxBinding886,
-    _flaxBinding945,
-    _flaxBinding898,
-    _flaxBinding891,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding864,
+    _flaxBinding922,
+    _flaxBinding923,
+    _flaxBinding904,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding926,
+    _flaxBinding927,
+    _flaxBinding984,
+    _flaxBinding939,
+    _flaxBinding932,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding905,
   ]),
 );
-const _flaxBinding947 = <FlaxParameter>[
-  FlaxParameter("data", _flaxBinding826, required: true),
-  FlaxParameter("character", _flaxBinding142, required: false),
+const _flaxBinding986 = <FlaxParameter>[
+  FlaxParameter("data", _flaxBinding182, required: true),
+  FlaxParameter("character", _flaxBinding14, required: false),
 ];
-const _flaxBinding948 = FlaxObjectBinding(
+const _flaxBinding987 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyUpEvent",
   [],
   {
-    "@super:isKeyPressed": FlaxInstanceMethod(
-      _flaxBinding465,
-      _flaxBinding78,
+    "@super:isKeyPressed": FlaxInstanceMethod.signature(
+      _flaxBinding103,
       _RawKeyUpEvent_super_isKeyPressed,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:isControlPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isControlPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isControlPressed,
     ),
-    "@super:get:isShiftPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isShiftPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isShiftPressed,
     ),
-    "@super:get:isAltPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isAltPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isAltPressed,
     ),
-    "@super:get:isMetaPressed": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isMetaPressed": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _FlaxProxyDispatch12_super_get_isMetaPressed,
     ),
-    "@super:get:physicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding447,
+    "@super:get:physicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding129,
       _FlaxProxyDispatch16_super_get_physicalKey,
     ),
-    "@super:get:logicalKey": FlaxInstanceMethod(
-      [],
-      _flaxBinding451,
+    "@super:get:logicalKey": FlaxInstanceMethod.signature(
+      _flaxBinding130,
       _FlaxProxyDispatch16_super_get_logicalKey,
     ),
-    "@super:get:character": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:character": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _RawKeyUpEvent_super_get_character,
     ),
-    "@super:get:repeat": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:repeat": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RawKeyUpEvent_super_get_repeat,
     ),
-    "@super:get:data": FlaxInstanceMethod(
-      [],
-      _flaxBinding826,
+    "@super:get:data": FlaxInstanceMethod.signature(
+      _flaxBinding183,
       _RawKeyUpEvent_super_get_data,
     ),
   },
-  constructors: {"@implementation": _flaxBinding947},
+  constructors: {"@implementation": _flaxBinding986},
   create: _createRawKeyUpEvent,
   matches: _isRawKeyUpEvent,
   setters: [],
@@ -37766,206 +36667,203 @@ const _flaxBinding948 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding838,
+  parent: _flaxBinding883,
   proxy: FlaxProxyBinding([
-    _flaxBinding834,
-    _flaxBinding596,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding601,
-    _flaxBinding496,
-    _flaxBinding497,
-    _flaxBinding498,
-    _flaxBinding499,
-    _flaxBinding603,
-    _flaxBinding605,
-    _flaxBinding606,
-    _flaxBinding835,
-    _flaxBinding837,
+    _flaxBinding880,
+    _flaxBinding691,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding696,
+    _flaxBinding610,
+    _flaxBinding611,
+    _flaxBinding612,
+    _flaxBinding613,
+    _flaxBinding697,
+    _flaxBinding698,
+    _flaxBinding699,
+    _flaxBinding881,
+    _flaxBinding882,
   ]),
 );
-const _flaxBinding949 = FlaxTypeRef(
+const _flaxBinding988 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:RawKeyEvent",
 );
-const _flaxBinding950 = FlaxCallbackBinding(
+const _flaxBinding989 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "event",
-      _flaxBinding949,
+      _flaxBinding988,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding78,
+  _flaxBinding36,
   FlaxCallbackAdapters.wrap1<api.RawKeyEvent, bool>,
   id: "callback:<>(p:r:event:object:flax.core/sdk_services#type:RawKeyEvent)->bool:",
   invoke: FlaxCallbackAdapters.invoke1<api.RawKeyEvent, bool>,
   matches: FlaxCallbackAdapters.matches1<api.RawKeyEvent, bool>,
 );
-const _flaxBinding951 = FlaxTypeRef(
+const _flaxBinding990 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding950,
+  callback: _flaxBinding989,
 );
-const _flaxBinding952 = FlaxGetter(
+const _flaxBinding991 = FlaxGetter(
   "keyEventHandler",
-  _flaxBinding951,
+  _flaxBinding990,
   _RawKeyboard_keyEventHandler,
 );
-const _flaxBinding953 = FlaxGetter(
+const _flaxBinding992 = FlaxGetter(
   "keysPressed",
-  _flaxBinding453,
+  _flaxBinding114,
   _RawKeyboard_keysPressed,
 );
-const _flaxBinding954 = FlaxGetter(
+const _flaxBinding993 = FlaxGetter(
   "physicalKeysPressed",
-  _flaxBinding449,
+  _flaxBinding111,
   _RawKeyboard_physicalKeysPressed,
 );
-const _flaxBinding955 = FlaxSetter(
+const _flaxBinding994 = FlaxSetter(
   "keyEventHandler",
-  _flaxBinding951,
+  _flaxBinding990,
   _RawKeyboard_set_keyEventHandler,
 );
-const _flaxBinding956 = FlaxCallbackBinding(
+const _flaxBinding995 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
-      _flaxBinding949,
+      _flaxBinding988,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding82,
+  _flaxBinding24,
   FlaxCallbackAdapters.wrapVoid1<api.RawKeyEvent>,
   id: "callback:<>(p:r:value:object:flax.core/sdk_services#type:RawKeyEvent)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api.RawKeyEvent>,
   matches: FlaxCallbackAdapters.matchesVoid1<api.RawKeyEvent>,
 );
-const _flaxBinding957 = FlaxTypeRef("callback", callback: _flaxBinding956);
-const _flaxBinding958 = <FlaxParameter>[
-  FlaxParameter("listener", _flaxBinding957, required: true),
+const _flaxBinding996 = FlaxTypeRef("callback", callback: _flaxBinding995);
+const _flaxBinding997 = <FlaxParameter>[
+  FlaxParameter("listener", _flaxBinding996, required: true),
 ];
-const _flaxBinding959 = FlaxInstanceMethod(
-  _flaxBinding958,
-  _flaxBinding82,
+const _flaxBinding998 = FlaxInstanceMethod(
+  _flaxBinding997,
+  _flaxBinding24,
   _RawKeyboard_addListener,
 );
-const _flaxBinding960 = FlaxInstanceMethod(
-  _flaxBinding958,
-  _flaxBinding82,
+const _flaxBinding999 = FlaxInstanceMethod(
+  _flaxBinding997,
+  _flaxBinding24,
   _RawKeyboard_removeListener,
 );
-const _flaxBinding961 = <FlaxParameter>[
-  FlaxParameter("event", _flaxBinding949, required: true),
+const _flaxBinding1000 = <FlaxParameter>[
+  FlaxParameter("event", _flaxBinding988, required: true),
 ];
-const _flaxBinding962 = FlaxInstanceMethod(
-  _flaxBinding961,
-  _flaxBinding78,
+const _flaxBinding1001 = FlaxInstanceMethod(
+  _flaxBinding1000,
+  _flaxBinding36,
   _RawKeyboard_handleRawKeyEvent,
 );
-const _flaxBinding963 = FlaxInstanceMethod(
-  _flaxBinding463,
-  _flaxBinding424,
+const _flaxBinding1002 = FlaxInstanceMethod.signature(
+  _flaxBinding101,
   _RawKeyboard_lookUpLayout,
 );
-const _flaxBinding964 = FlaxObjectBinding(
+const _flaxBinding1003 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RawKeyboard",
-  [_flaxBinding952, _flaxBinding953, _flaxBinding954],
+  [_flaxBinding991, _flaxBinding992, _flaxBinding993],
   {
-    "addListener": _flaxBinding959,
-    "removeListener": _flaxBinding960,
-    "handleRawKeyEvent": _flaxBinding962,
-    "lookUpLayout": _flaxBinding963,
+    "addListener": _flaxBinding998,
+    "removeListener": _flaxBinding999,
+    "handleRawKeyEvent": _flaxBinding1001,
+    "lookUpLayout": _flaxBinding1002,
   },
   constructors: {},
   create: _createRawKeyboard,
   matches: _isRawKeyboard,
-  setters: [_flaxBinding955],
+  setters: [_flaxBinding994],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding965 = FlaxGetter(
+const _flaxBinding1004 = FlaxGetter(
   "debugOwner",
-  _flaxBinding161,
+  _flaxBinding42,
   _RestorationBucket_debugOwner,
 );
-const _flaxBinding966 = FlaxGetter(
+const _flaxBinding1005 = FlaxGetter(
   "isReplacing",
-  _flaxBinding78,
+  _flaxBinding36,
   _RestorationBucket_isReplacing,
 );
-const _flaxBinding967 = FlaxGetter(
+const _flaxBinding1006 = FlaxGetter(
   "restorationId",
-  _flaxBinding24,
+  _flaxBinding0,
   _RestorationBucket_restorationId,
 );
-const _flaxBinding968 = <FlaxParameter>[
-  FlaxParameter("restorationId", _flaxBinding24, required: true),
+const _flaxBinding1007 = <FlaxParameter>[
+  FlaxParameter("restorationId", _flaxBinding0, required: true),
 ];
-const _flaxBinding969 = FlaxInstanceMethod(
-  _flaxBinding968,
-  _flaxBinding78,
+const _flaxBinding1008 = FlaxInstanceMethod(
+  _flaxBinding1007,
+  _flaxBinding36,
   _RestorationBucket_contains,
 );
-const _flaxBinding970 = <FlaxParameter>[
-  FlaxParameter("restorationId", _flaxBinding24, required: true),
-  FlaxParameter("debugOwner", _flaxBinding161, required: true),
-];
-const _flaxBinding971 = FlaxTypeRef(
+const _flaxBinding1009 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:RestorationBucket",
 );
-const _flaxBinding972 = FlaxInstanceMethod(
-  _flaxBinding970,
-  _flaxBinding971,
+const _flaxBinding1010 = <FlaxParameter>[
+  FlaxParameter("restorationId", _flaxBinding0, required: true),
+  FlaxParameter("debugOwner", _flaxBinding42, required: true),
+];
+const _flaxBinding1011 = FlaxInstanceMethod(
+  _flaxBinding1010,
+  _flaxBinding1009,
   _RestorationBucket_claimChild,
 );
-const _flaxBinding973 = <FlaxParameter>[
-  FlaxParameter("child", _flaxBinding971, required: true),
+const _flaxBinding1012 = <FlaxParameter>[
+  FlaxParameter("child", _flaxBinding1009, required: true),
 ];
-const _flaxBinding974 = FlaxInstanceMethod(
-  _flaxBinding973,
-  _flaxBinding82,
+const _flaxBinding1013 = FlaxInstanceMethod(
+  _flaxBinding1012,
+  _flaxBinding24,
   _RestorationBucket_adoptChild,
 );
-const _flaxBinding975 = <FlaxParameter>[
-  FlaxParameter("newRestorationId", _flaxBinding24, required: true),
+const _flaxBinding1014 = <FlaxParameter>[
+  FlaxParameter("newRestorationId", _flaxBinding0, required: true),
 ];
-const _flaxBinding976 = FlaxInstanceMethod(
-  _flaxBinding975,
-  _flaxBinding82,
+const _flaxBinding1015 = FlaxInstanceMethod(
+  _flaxBinding1014,
+  _flaxBinding24,
   _RestorationBucket_rename,
 );
-const _flaxBinding977 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1016 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _RestorationBucket_dispose,
 );
-const _flaxBinding978 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1017 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _RestorationBucket_toString,
 );
-const _flaxBinding979 = FlaxTypeRef(
+const _flaxBinding1018 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:RestorationManager",
 );
-const _flaxBinding980 = <FlaxParameter>[
-  FlaxParameter("manager", _flaxBinding979, required: true),
-  FlaxParameter("rawData", _flaxBinding706, required: true),
+const _flaxBinding1019 = <FlaxParameter>[
+  FlaxParameter("manager", _flaxBinding1018, required: true),
+  FlaxParameter("rawData", _flaxBinding780, required: true),
 ];
-const _flaxBinding981 = <FlaxParameter>[
-  FlaxParameter("restorationId", _flaxBinding24, required: true),
-  FlaxParameter("parent", _flaxBinding971, required: true),
-  FlaxParameter("debugOwner", _flaxBinding161, required: true),
+const _flaxBinding1020 = <FlaxParameter>[
+  FlaxParameter("restorationId", _flaxBinding0, required: true),
+  FlaxParameter("parent", _flaxBinding1009, required: true),
+  FlaxParameter("debugOwner", _flaxBinding42, required: true),
 ];
-const _flaxBinding982 = FlaxObjectBinding(
+const _flaxBinding1021 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RestorationBucket",
-  [_flaxBinding965, _flaxBinding966, _flaxBinding967],
+  [_flaxBinding1004, _flaxBinding1005, _flaxBinding1006],
   {
     "read": FlaxInstanceMethod(
-      _flaxBinding968,
+      _flaxBinding1007,
       FlaxTypeRef("any", nullable: true),
       _RestorationBucket_read,
       genericFactory: _flaxGeneric_RestorationBucket_read,
@@ -37973,36 +36871,36 @@ const _flaxBinding982 = FlaxObjectBinding(
     ),
     "write": FlaxInstanceMethod(
       <FlaxParameter>[
-        FlaxParameter("restorationId", _flaxBinding24, required: true),
+        FlaxParameter("restorationId", _flaxBinding0, required: true),
         FlaxParameter(
           "value",
           FlaxTypeRef("any", nullable: true),
           required: true,
         ),
       ],
-      _flaxBinding82,
+      _flaxBinding24,
       _RestorationBucket_write,
       genericFactory: _flaxGeneric_RestorationBucket_write,
       ownerTypes: [],
     ),
     "remove": FlaxInstanceMethod(
-      _flaxBinding968,
+      _flaxBinding1007,
       FlaxTypeRef("any", nullable: true),
       _RestorationBucket_remove,
       genericFactory: _flaxGeneric_RestorationBucket_remove,
       ownerTypes: [],
     ),
-    "contains": _flaxBinding969,
-    "claimChild": _flaxBinding972,
-    "adoptChild": _flaxBinding974,
-    "rename": _flaxBinding976,
-    "dispose": _flaxBinding977,
-    "toString": _flaxBinding978,
+    "contains": _flaxBinding1008,
+    "claimChild": _flaxBinding1011,
+    "adoptChild": _flaxBinding1013,
+    "rename": _flaxBinding1015,
+    "dispose": _flaxBinding1016,
+    "toString": _flaxBinding1017,
   },
   constructors: {
-    "empty": _flaxBinding970,
-    "root": _flaxBinding980,
-    "child": _flaxBinding981,
+    "empty": _flaxBinding1010,
+    "root": _flaxBinding1019,
+    "child": _flaxBinding1020,
   },
   create: _createRestorationBucket,
   matches: _isRestorationBucket,
@@ -38010,250 +36908,168 @@ const _flaxBinding982 = FlaxObjectBinding(
   supertypes: ["dart:core::Object"],
   disposeMethod: "dispose",
 );
-const _flaxBinding983 = FlaxGetter(
+const _flaxBinding1022 = FlaxGetter(
   "hasListeners",
-  _flaxBinding78,
+  _flaxBinding36,
   _RestorationManager_hasListeners,
 );
-const _flaxBinding984 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:RestorationBucket",
-  nullable: true,
-);
-const _flaxBinding985 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding984,
-  future: FlaxFutureBinding(
-    "object?:flax.core/sdk_services#type:RestorationBucket",
-    _future13Adapt,
-  ),
-);
-const _flaxBinding986 = FlaxGetter(
+const _flaxBinding1023 = FlaxGetter(
   "rootBucket",
-  _flaxBinding985,
+  _flaxBinding197,
   _RestorationManager_rootBucket,
 );
-const _flaxBinding987 = FlaxGetter(
+const _flaxBinding1024 = FlaxGetter(
   "isReplacing",
-  _flaxBinding78,
+  _flaxBinding36,
   _RestorationManager_isReplacing,
 );
-const _flaxBinding988 = <FlaxParameter>[
-  FlaxParameter("listener", _flaxBinding507, required: true),
-];
-const _flaxBinding989 = FlaxInstanceMethod(
-  _flaxBinding988,
-  _flaxBinding82,
+const _flaxBinding1025 = FlaxInstanceMethod.signature(
+  _flaxBinding192,
   _RestorationManager_addListener,
 );
-const _flaxBinding990 = FlaxInstanceMethod(
-  _flaxBinding988,
-  _flaxBinding82,
+const _flaxBinding1026 = FlaxInstanceMethod.signature(
+  _flaxBinding192,
   _RestorationManager_removeListener,
 );
-const _flaxBinding991 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1027 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _RestorationManager_dispose,
 );
-const _flaxBinding992 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1028 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _RestorationManager_initChannels,
 );
-const _flaxBinding993 = <FlaxParameter>[
-  FlaxParameter("data", _flaxBinding673, required: true),
-  FlaxParameter("enabled", _flaxBinding78, required: true),
+const _flaxBinding1029 = <FlaxParameter>[
+  FlaxParameter("data", _flaxBinding150, required: true),
+  FlaxParameter("enabled", _flaxBinding36, required: true),
 ];
-const _flaxBinding994 = FlaxInstanceMethod(
-  _flaxBinding993,
-  _flaxBinding82,
+const _flaxBinding1030 = FlaxInstanceMethod(
+  _flaxBinding1029,
+  _flaxBinding24,
   _RestorationManager_handleRestorationUpdateFromEngine,
 );
-const _flaxBinding995 = FlaxTypeRef("Uint8List");
-const _flaxBinding996 = <FlaxParameter>[
-  FlaxParameter("encodedData", _flaxBinding995, required: true),
-];
-const _flaxBinding997 = FlaxInstanceMethod(
-  _flaxBinding996,
-  _flaxBinding83,
+const _flaxBinding1031 = FlaxInstanceMethod.signature(
+  _flaxBinding195,
   _RestorationManager_sendToEngine,
 );
-const _flaxBinding998 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1032 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _RestorationManager_flushData,
 );
-const _flaxBinding999 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "listener",
-      _flaxBinding507,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:listener:callback:<>()->void:)->void:",
-);
-const _flaxBinding1000 = FlaxProxyMember(
+const _flaxBinding1033 = FlaxProxyMember(
   "addListener",
   0,
-  _flaxBinding999,
+  _flaxBinding192,
   hasSuper: true,
 );
-const _flaxBinding1001 = FlaxProxyMember(
+const _flaxBinding1034 = FlaxProxyMember(
   "removeListener",
   0,
-  _flaxBinding999,
+  _flaxBinding192,
   hasSuper: true,
 );
-const _flaxBinding1002 = FlaxProxyMember(
+const _flaxBinding1035 = FlaxProxyMember(
   "dispose",
   0,
-  _flaxBinding179,
+  _flaxBinding26,
   hasSuper: true,
 );
-const _flaxBinding1003 = FlaxProxyMember(
+const _flaxBinding1036 = FlaxProxyMember(
   "initChannels",
   0,
-  _flaxBinding179,
+  _flaxBinding26,
   hasSuper: true,
 );
-const _flaxBinding1004 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "enabled",
-      _flaxBinding78,
-      required: true,
-      positional: false,
-    ),
-    FlaxCallbackParameter(
-      "data",
-      _flaxBinding673,
-      required: true,
-      positional: false,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(n:r:enabled:bool:,n:r:data:Uint8List?:)->void:",
-);
-const _flaxBinding1005 = FlaxProxyMember(
+const _flaxBinding1037 = FlaxProxyMember(
   "handleRestorationUpdateFromEngine",
   0,
-  _flaxBinding1004,
+  _flaxBinding193,
   hasSuper: true,
 );
-const _flaxBinding1006 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "encodedData",
-      _flaxBinding995,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding83,
-  id: "callback:<>(p:r:encodedData:Uint8List:)->future:[void:]",
-);
-const _flaxBinding1007 = FlaxProxyMember(
+const _flaxBinding1038 = FlaxProxyMember(
   "sendToEngine",
   0,
-  _flaxBinding1006,
+  _flaxBinding195,
   hasSuper: true,
 );
-const _flaxBinding1008 = FlaxProxyMember(
+const _flaxBinding1039 = FlaxProxyMember(
   "flushData",
   0,
-  _flaxBinding179,
+  _flaxBinding26,
   hasSuper: true,
 );
-const _flaxBinding1009 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding985,
-  id: "callback:<>()->future:[object?:flax.core/sdk_services#type:RestorationBucket]",
-);
-const _flaxBinding1010 = FlaxProxyMember(
+const _flaxBinding1040 = FlaxProxyMember(
   "rootBucket",
   1,
-  _flaxBinding1009,
+  _flaxBinding198,
   hasSuper: true,
 );
-const _flaxBinding1011 = FlaxProxyMember(
+const _flaxBinding1041 = FlaxProxyMember(
   "isReplacing",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1012 = FlaxProxyMember(
+const _flaxBinding1042 = FlaxProxyMember(
   "hasListeners",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1013 = FlaxObjectBinding(
+const _flaxBinding1043 = FlaxObjectBinding(
   "flax.core/sdk_services#type:RestorationManager",
-  [_flaxBinding983, _flaxBinding986, _flaxBinding987],
+  [_flaxBinding1022, _flaxBinding1023, _flaxBinding1024],
   {
-    "addListener": _flaxBinding989,
-    "removeListener": _flaxBinding990,
-    "dispose": _flaxBinding991,
-    "initChannels": _flaxBinding992,
-    "handleRestorationUpdateFromEngine": _flaxBinding994,
-    "sendToEngine": _flaxBinding997,
-    "flushData": _flaxBinding998,
-    "@super:addListener": FlaxInstanceMethod(
-      _flaxBinding988,
-      _flaxBinding82,
+    "addListener": _flaxBinding1025,
+    "removeListener": _flaxBinding1026,
+    "dispose": _flaxBinding1027,
+    "initChannels": _flaxBinding1028,
+    "handleRestorationUpdateFromEngine": _flaxBinding1030,
+    "sendToEngine": _flaxBinding1031,
+    "flushData": _flaxBinding1032,
+    "@super:addListener": FlaxInstanceMethod.signature(
+      _flaxBinding192,
       _RestorationManager_super_addListener,
     ),
-    "@super:removeListener": FlaxInstanceMethod(
-      _flaxBinding988,
-      _flaxBinding82,
+    "@super:removeListener": FlaxInstanceMethod.signature(
+      _flaxBinding192,
       _RestorationManager_super_removeListener,
     ),
-    "@super:dispose": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "@super:dispose": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _RestorationManager_super_dispose,
     ),
-    "@super:initChannels": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "@super:initChannels": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _RestorationManager_super_initChannels,
     ),
     "@super:handleRestorationUpdateFromEngine": FlaxInstanceMethod(
-      _flaxBinding993,
-      _flaxBinding82,
+      _flaxBinding1029,
+      _flaxBinding24,
       _RestorationManager_super_handleRestorationUpdateFromEngine,
     ),
-    "@super:sendToEngine": FlaxInstanceMethod(
-      _flaxBinding996,
-      _flaxBinding83,
+    "@super:sendToEngine": FlaxInstanceMethod.signature(
+      _flaxBinding195,
       _RestorationManager_super_sendToEngine,
     ),
-    "@super:flushData": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "@super:flushData": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _RestorationManager_super_flushData,
     ),
-    "@super:get:rootBucket": FlaxInstanceMethod(
-      [],
-      _flaxBinding985,
+    "@super:get:rootBucket": FlaxInstanceMethod.signature(
+      _flaxBinding198,
       _RestorationManager_super_get_rootBucket,
     ),
-    "@super:get:isReplacing": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:isReplacing": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RestorationManager_super_get_isReplacing,
     ),
-    "@super:get:hasListeners": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:hasListeners": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _RestorationManager_super_get_hasListeners,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createRestorationManager,
   matches: _isRestorationManager,
   setters: [],
@@ -38265,110 +37081,61 @@ const _flaxBinding1013 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding1000,
-    _flaxBinding1001,
-    _flaxBinding1002,
-    _flaxBinding1003,
-    _flaxBinding1005,
-    _flaxBinding1007,
-    _flaxBinding1008,
-    _flaxBinding1010,
-    _flaxBinding1011,
-    _flaxBinding1012,
+    _flaxBinding1033,
+    _flaxBinding1034,
+    _flaxBinding1035,
+    _flaxBinding1036,
+    _flaxBinding1037,
+    _flaxBinding1038,
+    _flaxBinding1039,
+    _flaxBinding1040,
+    _flaxBinding1041,
+    _flaxBinding1042,
   ]),
 );
-const _flaxBinding1014 = FlaxGetter(
+const _flaxBinding1044 = FlaxGetter(
   "elementIdentifier",
-  _flaxBinding24,
+  _flaxBinding0,
   _ScribbleClient_elementIdentifier,
 );
-const _flaxBinding1015 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_dart_ui#type:Rect",
-);
-const _flaxBinding1016 = FlaxGetter(
+const _flaxBinding1045 = FlaxGetter(
   "bounds",
-  _flaxBinding1015,
+  _flaxBinding200,
   _ScribbleClient_bounds,
 );
-const _flaxBinding1017 = <FlaxParameter>[
-  FlaxParameter("offset", _flaxBinding105, required: true),
-];
-const _flaxBinding1018 = FlaxInstanceMethod(
-  _flaxBinding1017,
-  _flaxBinding82,
+const _flaxBinding1046 = FlaxInstanceMethod.signature(
+  _flaxBinding199,
   _ScribbleClient_onScribbleFocus,
 );
-const _flaxBinding1019 = <FlaxParameter>[
-  FlaxParameter("rect", _flaxBinding1015, required: true),
-];
-const _flaxBinding1020 = FlaxInstanceMethod(
-  _flaxBinding1019,
-  _flaxBinding78,
+const _flaxBinding1047 = FlaxInstanceMethod.signature(
+  _flaxBinding201,
   _ScribbleClient_isInScribbleRect,
 );
-const _flaxBinding1021 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "offset",
-      _flaxBinding105,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:offset:object:flax.core/flutter#type:Offset)->void:",
-);
-const _flaxBinding1022 = FlaxProxyMember(
-  "onScribbleFocus",
-  0,
-  _flaxBinding1021,
-);
-const _flaxBinding1023 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "rect",
-      _flaxBinding1015,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding78,
-  id: "callback:<>(p:r:rect:object:flax.core/sdk_dart_ui#type:Rect)->bool:",
-);
-const _flaxBinding1024 = FlaxProxyMember(
+const _flaxBinding1048 = FlaxProxyMember("onScribbleFocus", 0, _flaxBinding199);
+const _flaxBinding1049 = FlaxProxyMember(
   "isInScribbleRect",
   0,
-  _flaxBinding1023,
+  _flaxBinding201,
 );
-const _flaxBinding1025 = FlaxProxyMember(
-  "elementIdentifier",
-  1,
-  _flaxBinding27,
-);
-const _flaxBinding1026 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1015,
-  id: "callback:<>()->object:flax.core/sdk_dart_ui#type:Rect",
-);
-const _flaxBinding1027 = FlaxProxyMember("bounds", 1, _flaxBinding1026);
-const _flaxBinding1028 = FlaxObjectBinding(
+const _flaxBinding1050 = FlaxProxyMember("elementIdentifier", 1, _flaxBinding1);
+const _flaxBinding1051 = FlaxProxyMember("bounds", 1, _flaxBinding202);
+const _flaxBinding1052 = FlaxObjectBinding(
   "flax.core/sdk_services#type:ScribbleClient",
-  [_flaxBinding1014, _flaxBinding1016],
-  {"onScribbleFocus": _flaxBinding1018, "isInScribbleRect": _flaxBinding1020},
-  constructors: {"@implementation": _flaxBinding23},
+  [_flaxBinding1044, _flaxBinding1045],
+  {"onScribbleFocus": _flaxBinding1046, "isInScribbleRect": _flaxBinding1047},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createScribbleClient,
   matches: _isScribbleClient,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding1022,
-    _flaxBinding1024,
-    _flaxBinding1025,
-    _flaxBinding1027,
+    _flaxBinding1048,
+    _flaxBinding1049,
+    _flaxBinding1050,
+    _flaxBinding1051,
   ]),
 );
-const _flaxBinding1029 = FlaxObjectBinding(
+const _flaxBinding1053 = FlaxObjectBinding(
   "flax.core/sdk_services#type:Scribe",
   [],
   {},
@@ -38378,994 +37145,922 @@ const _flaxBinding1029 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1030 = FlaxGetter(
+const _flaxBinding1054 = FlaxGetter(
   "position",
-  _flaxBinding0,
+  _flaxBinding2,
   _SelectionRect_position,
 );
-const _flaxBinding1031 = FlaxGetter(
+const _flaxBinding1055 = FlaxGetter(
   "bounds",
-  _flaxBinding1015,
+  _flaxBinding200,
   _SelectionRect_bounds,
 );
-const _flaxBinding1032 = FlaxGetter(
+const _flaxBinding1056 = FlaxGetter(
   "direction",
-  _flaxBinding125,
+  _flaxBinding70,
   _SelectionRect_direction,
 );
-const _flaxBinding1033 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1057 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _SelectionRect_toString,
 );
-const _flaxBinding1034 = <FlaxParameter>[
-  FlaxParameter("position", _flaxBinding0, required: true),
-  FlaxParameter("bounds", _flaxBinding1015, required: true),
+const _flaxBinding1058 = <FlaxParameter>[
+  FlaxParameter("position", _flaxBinding2, required: true),
+  FlaxParameter("bounds", _flaxBinding200, required: true),
   FlaxParameter(
     "direction",
-    _flaxBinding125,
+    _flaxBinding70,
     required: false,
     defaultValue: api1.TextDirection.ltr,
   ),
 ];
-const _flaxBinding1035 = FlaxProxyMember(
+const _flaxBinding1059 = FlaxProxyMember(
   "position",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding1036 = FlaxProxyMember(
+const _flaxBinding1060 = FlaxProxyMember(
   "bounds",
   1,
-  _flaxBinding1026,
+  _flaxBinding202,
   hasSuper: true,
 );
-const _flaxBinding1037 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding125,
-  id: "callback:<>()->enum:flax.core/flutter#type:TextDirection",
-);
-const _flaxBinding1038 = FlaxProxyMember(
+const _flaxBinding1061 = FlaxProxyMember(
   "direction",
   1,
-  _flaxBinding1037,
+  _flaxBinding203,
   hasSuper: true,
 );
-const _flaxBinding1039 = FlaxObjectBinding(
+const _flaxBinding1062 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SelectionRect",
-  [_flaxBinding1030, _flaxBinding1031, _flaxBinding1032],
+  [_flaxBinding1054, _flaxBinding1055, _flaxBinding1056],
   {
-    "toString": _flaxBinding1033,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toString": _flaxBinding1057,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:position": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:position": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _SelectionRect_super_get_position,
     ),
-    "@super:get:bounds": FlaxInstanceMethod(
-      [],
-      _flaxBinding1015,
+    "@super:get:bounds": FlaxInstanceMethod.signature(
+      _flaxBinding202,
       _SelectionRect_super_get_bounds,
     ),
-    "@super:get:direction": FlaxInstanceMethod(
-      [],
-      _flaxBinding125,
+    "@super:get:direction": FlaxInstanceMethod.signature(
+      _flaxBinding203,
       _SelectionRect_super_get_direction,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1034},
+  constructors: {"@implementation": _flaxBinding1058},
   create: _createSelectionRect,
   matches: _isSelectionRect,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding28,
-    _flaxBinding1035,
-    _flaxBinding1036,
-    _flaxBinding1038,
+    _flaxBinding279,
+    _flaxBinding1059,
+    _flaxBinding1060,
+    _flaxBinding1061,
   ]),
 );
-const _flaxBinding1040 = FlaxGetter(
+const _flaxBinding1063 = FlaxGetter(
   "sensitiveContentChannel",
-  _flaxBinding337,
+  _flaxBinding88,
   _SensitiveContentService_sensitiveContentChannel,
 );
-const _flaxBinding1041 = FlaxSetter(
+const _flaxBinding1064 = FlaxSetter(
   "sensitiveContentChannel",
-  _flaxBinding337,
+  _flaxBinding88,
   _SensitiveContentService_set_sensitiveContentChannel,
 );
-const _flaxBinding1042 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:ContentSensitivity",
-);
-const _flaxBinding1043 = <FlaxParameter>[
-  FlaxParameter("contentSensitivity", _flaxBinding1042, required: true),
-];
-const _flaxBinding1044 = FlaxInstanceMethod(
-  _flaxBinding1043,
-  _flaxBinding83,
+const _flaxBinding1065 = FlaxInstanceMethod.signature(
+  _flaxBinding205,
   _SensitiveContentService_setContentSensitivity,
 );
-const _flaxBinding1045 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding1042,
-  future: FlaxFutureBinding(
-    "enum:flax.core/sdk_services#type:ContentSensitivity",
-    _future14Adapt,
-  ),
-);
-const _flaxBinding1046 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding1045,
+const _flaxBinding1066 = FlaxInstanceMethod.signature(
+  _flaxBinding207,
   _SensitiveContentService_getContentSensitivity,
 );
-const _flaxBinding1047 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding78,
-  future: FlaxFutureBinding("bool:", _future15Adapt),
-);
-const _flaxBinding1048 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding1047,
+const _flaxBinding1067 = FlaxInstanceMethod.signature(
+  _flaxBinding209,
   _SensitiveContentService_isSupported,
 );
-const _flaxBinding1049 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "contentSensitivity",
-      _flaxBinding1042,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding83,
-  id: "callback:<>(p:r:contentSensitivity:enum:flax.core/sdk_services#type:ContentSensitivity)->future:[void:]",
-);
-const _flaxBinding1050 = FlaxProxyMember(
+const _flaxBinding1068 = FlaxProxyMember(
   "setContentSensitivity",
   0,
-  _flaxBinding1049,
+  _flaxBinding205,
   hasSuper: true,
 );
-const _flaxBinding1051 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1045,
-  id: "callback:<>()->future:[enum:flax.core/sdk_services#type:ContentSensitivity]",
-);
-const _flaxBinding1052 = FlaxProxyMember(
+const _flaxBinding1069 = FlaxProxyMember(
   "getContentSensitivity",
   0,
-  _flaxBinding1051,
+  _flaxBinding207,
   hasSuper: true,
 );
-const _flaxBinding1053 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1047,
-  id: "callback:<>()->future:[bool:]",
-);
-const _flaxBinding1054 = FlaxProxyMember(
+const _flaxBinding1070 = FlaxProxyMember(
   "isSupported",
   0,
-  _flaxBinding1053,
+  _flaxBinding209,
   hasSuper: true,
 );
-const _flaxBinding1055 = FlaxProxyMember(
+const _flaxBinding1071 = FlaxProxyMember(
   "sensitiveContentChannel",
   1,
-  _flaxBinding344,
+  _flaxBinding89,
   hasSuper: true,
 );
-const _flaxBinding1056 = FlaxProxyMember(
+const _flaxBinding1072 = FlaxProxyMember(
   "sensitiveContentChannel",
   2,
-  _flaxBinding348,
+  _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding1057 = FlaxObjectBinding(
+const _flaxBinding1073 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SensitiveContentService",
-  [_flaxBinding1040],
+  [_flaxBinding1063],
   {
-    "setContentSensitivity": _flaxBinding1044,
-    "getContentSensitivity": _flaxBinding1046,
-    "isSupported": _flaxBinding1048,
-    "@super:setContentSensitivity": FlaxInstanceMethod(
-      _flaxBinding1043,
-      _flaxBinding83,
+    "setContentSensitivity": _flaxBinding1065,
+    "getContentSensitivity": _flaxBinding1066,
+    "isSupported": _flaxBinding1067,
+    "@super:setContentSensitivity": FlaxInstanceMethod.signature(
+      _flaxBinding205,
       _SensitiveContentService_super_setContentSensitivity,
     ),
-    "@super:getContentSensitivity": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding1045,
+    "@super:getContentSensitivity": FlaxInstanceMethod.signature(
+      _flaxBinding207,
       _SensitiveContentService_super_getContentSensitivity,
     ),
-    "@super:isSupported": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding1047,
+    "@super:isSupported": FlaxInstanceMethod.signature(
+      _flaxBinding209,
       _SensitiveContentService_super_isSupported,
     ),
-    "@super:get:sensitiveContentChannel": FlaxInstanceMethod(
-      [],
-      _flaxBinding337,
+    "@super:get:sensitiveContentChannel": FlaxInstanceMethod.signature(
+      _flaxBinding89,
       _SensitiveContentService_super_get_sensitiveContentChannel,
     ),
     "@super:set:sensitiveContentChannel": FlaxInstanceMethod(
-      [FlaxParameter("value", _flaxBinding337, required: true)],
+      [FlaxParameter("value", _flaxBinding88, required: true)],
       const FlaxTypeRef("void"),
       _SensitiveContentService_super_set_sensitiveContentChannel,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createSensitiveContentService,
   matches: _isSensitiveContentService,
-  setters: [_flaxBinding1041],
+  setters: [_flaxBinding1064],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding1050,
-    _flaxBinding1052,
-    _flaxBinding1054,
-    _flaxBinding1055,
-    _flaxBinding1056,
+    _flaxBinding1068,
+    _flaxBinding1069,
+    _flaxBinding1070,
+    _flaxBinding1071,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1058 = FlaxTypeRef(
+const _flaxBinding1074 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:SingletonFlutterWindow",
 );
-const _flaxBinding1059 = FlaxGetter(
+const _flaxBinding1075 = FlaxGetter(
   "window",
-  _flaxBinding1058,
+  _flaxBinding1074,
   _ServicesBinding_window,
 );
-const _flaxBinding1060 = FlaxTypeRef(
+const _flaxBinding1076 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:PlatformDispatcher",
 );
-const _flaxBinding1061 = FlaxGetter(
+const _flaxBinding1077 = FlaxGetter(
   "platformDispatcher",
-  _flaxBinding1060,
+  _flaxBinding1076,
   _ServicesBinding_platformDispatcher,
 );
-const _flaxBinding1062 = FlaxGetter(
+const _flaxBinding1078 = FlaxGetter(
   "locked",
-  _flaxBinding78,
+  _flaxBinding36,
   _ServicesBinding_locked,
 );
-const _flaxBinding1063 = FlaxTypeRef(
+const _flaxBinding1079 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:AppLifecycleState",
   nullable: true,
 );
-const _flaxBinding1064 = FlaxGetter(
+const _flaxBinding1080 = FlaxGetter(
   "lifecycleState",
-  _flaxBinding1063,
+  _flaxBinding1079,
   _ServicesBinding_lifecycleState,
 );
-const _flaxBinding1065 = FlaxTypeRef(
+const _flaxBinding1081 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:SchedulerBinding",
 );
-const _flaxBinding1066 = FlaxCallbackBinding(
+const _flaxBinding1082 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "priority",
-      _flaxBinding0,
+      _flaxBinding2,
       required: true,
       positional: false,
     ),
     FlaxCallbackParameter(
       "scheduler",
-      _flaxBinding1065,
+      _flaxBinding1081,
       required: true,
       positional: false,
     ),
   ],
-  _flaxBinding78,
+  _flaxBinding36,
   _callback28,
   id: "callback:<>(n:r:priority:int:,n:r:scheduler:object:flax.core/flutter#type:SchedulerBinding)->bool:",
   invoke: _callback28Invoke,
   matches: _callback28Matches,
 );
-const _flaxBinding1067 = FlaxTypeRef("callback", callback: _flaxBinding1066);
-const _flaxBinding1068 = FlaxGetter(
+const _flaxBinding1083 = FlaxTypeRef("callback", callback: _flaxBinding1082);
+const _flaxBinding1084 = FlaxGetter(
   "schedulingStrategy",
-  _flaxBinding1067,
+  _flaxBinding1083,
   _ServicesBinding_schedulingStrategy,
 );
-const _flaxBinding1069 = FlaxGetter(
+const _flaxBinding1085 = FlaxGetter(
   "transientCallbackCount",
-  _flaxBinding0,
+  _flaxBinding2,
   _ServicesBinding_transientCallbackCount,
 );
-const _flaxBinding1070 = FlaxGetter(
+const _flaxBinding1086 = FlaxGetter(
   "endOfFrame",
-  _flaxBinding83,
+  _flaxBinding60,
   _ServicesBinding_endOfFrame,
 );
-const _flaxBinding1071 = FlaxGetter(
+const _flaxBinding1087 = FlaxGetter(
   "hasScheduledFrame",
-  _flaxBinding78,
+  _flaxBinding36,
   _ServicesBinding_hasScheduledFrame,
 );
-const _flaxBinding1072 = FlaxTypeRef(
+const _flaxBinding1088 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_scheduler#type:SchedulerPhase",
 );
-const _flaxBinding1073 = FlaxGetter(
+const _flaxBinding1089 = FlaxGetter(
   "schedulerPhase",
-  _flaxBinding1072,
+  _flaxBinding1088,
   _ServicesBinding_schedulerPhase,
 );
-const _flaxBinding1074 = FlaxGetter(
+const _flaxBinding1090 = FlaxGetter(
   "framesEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _ServicesBinding_framesEnabled,
 );
-const _flaxBinding1075 = FlaxGetter(
+const _flaxBinding1091 = FlaxGetter(
   "currentFrameTimeStamp",
-  _flaxBinding585,
+  _flaxBinding131,
   _ServicesBinding_currentFrameTimeStamp,
 );
-const _flaxBinding1076 = FlaxGetter(
+const _flaxBinding1092 = FlaxGetter(
   "currentSystemFrameTimeStamp",
-  _flaxBinding585,
+  _flaxBinding131,
   _ServicesBinding_currentSystemFrameTimeStamp,
 );
-const _flaxBinding1077 = FlaxGetter(
+const _flaxBinding1093 = FlaxGetter(
   "keyboard",
-  _flaxBinding623,
+  _flaxBinding708,
   _ServicesBinding_keyboard,
 );
-const _flaxBinding1078 = FlaxTypeRef(
+const _flaxBinding1094 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:KeyEventManager",
 );
-const _flaxBinding1079 = FlaxGetter(
+const _flaxBinding1095 = FlaxGetter(
   "keyEventManager",
-  _flaxBinding1078,
+  _flaxBinding1094,
   _ServicesBinding_keyEventManager,
 );
-const _flaxBinding1080 = FlaxGetter(
+const _flaxBinding1096 = FlaxGetter(
   "defaultBinaryMessenger",
-  _flaxBinding274,
+  _flaxBinding54,
   _ServicesBinding_defaultBinaryMessenger,
 );
-const _flaxBinding1081 = FlaxTypeRef(
+const _flaxBinding1097 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:ChannelBuffers",
 );
-const _flaxBinding1082 = FlaxGetter(
+const _flaxBinding1098 = FlaxGetter(
   "channelBuffers",
-  _flaxBinding1081,
+  _flaxBinding1097,
   _ServicesBinding_channelBuffers,
 );
-const _flaxBinding1083 = FlaxTypeRef(
+const _flaxBinding1099 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:ValueNotifier",
   dartType: FlaxDartTypes.typeOf<api2.ValueNotifier<int?>>,
 );
-const _flaxBinding1084 = FlaxGetter(
+const _flaxBinding1100 = FlaxGetter(
   "accessibilityFocus",
-  _flaxBinding1083,
+  _flaxBinding1099,
   _ServicesBinding_accessibilityFocus,
 );
-const _flaxBinding1085 = FlaxGetter(
+const _flaxBinding1101 = FlaxGetter(
   "restorationManager",
-  _flaxBinding979,
+  _flaxBinding1018,
   _ServicesBinding_restorationManager,
 );
-const _flaxBinding1086 = FlaxSetter(
+const _flaxBinding1102 = FlaxSetter(
   "schedulingStrategy",
-  _flaxBinding1067,
+  _flaxBinding1083,
   _ServicesBinding_set_schedulingStrategy,
 );
-const _flaxBinding1087 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1103 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_initInstances,
 );
-const _flaxBinding1088 = <FlaxParameter>[
-  FlaxParameter("entryPoint", _flaxBinding24, required: true),
+const _flaxBinding1104 = <FlaxParameter>[
+  FlaxParameter("entryPoint", _flaxBinding0, required: true),
 ];
-const _flaxBinding1089 = FlaxInstanceMethod(
-  _flaxBinding1088,
-  _flaxBinding78,
+const _flaxBinding1105 = FlaxInstanceMethod(
+  _flaxBinding1104,
+  _flaxBinding36,
   _ServicesBinding_debugCheckZone,
 );
-const _flaxBinding1090 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1106 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_initServiceExtensions,
 );
-const _flaxBinding1091 = FlaxCallbackBinding(
+const _flaxBinding1107 = FlaxCallbackBinding(
   [],
-  _flaxBinding83,
+  _flaxBinding60,
   _callback29,
   id: "callback:<>()->future:[void:]",
   invoke: _callback29Invoke,
   matches: _callback29Matches,
 );
-const _flaxBinding1092 = FlaxTypeRef("callback", callback: _flaxBinding1091);
-const _flaxBinding1093 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding1092, required: true),
+const _flaxBinding1108 = FlaxTypeRef("callback", callback: _flaxBinding1107);
+const _flaxBinding1109 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding1108, required: true),
 ];
-const _flaxBinding1094 = FlaxInstanceMethod(
-  _flaxBinding1093,
-  _flaxBinding83,
+const _flaxBinding1110 = FlaxInstanceMethod(
+  _flaxBinding1109,
+  _flaxBinding60,
   _ServicesBinding_lockEvents,
 );
-const _flaxBinding1095 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1111 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_unlocked,
 );
-const _flaxBinding1096 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding1112 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _ServicesBinding_reassembleApplication,
 );
-const _flaxBinding1097 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding1113 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _ServicesBinding_performReassemble,
 );
-const _flaxBinding1098 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding1092, required: true),
-  FlaxParameter("name", _flaxBinding24, required: true),
+const _flaxBinding1114 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding1108, required: true),
+  FlaxParameter("name", _flaxBinding0, required: true),
 ];
-const _flaxBinding1099 = FlaxInstanceMethod(
-  _flaxBinding1098,
-  _flaxBinding82,
+const _flaxBinding1115 = FlaxInstanceMethod(
+  _flaxBinding1114,
+  _flaxBinding24,
   _ServicesBinding_registerSignalServiceExtension,
 );
-const _flaxBinding1100 = FlaxCallbackBinding(
+const _flaxBinding1116 = FlaxCallbackBinding(
   [],
-  _flaxBinding1047,
+  _flaxBinding208,
   _callback30,
   id: "callback:<>()->future:[bool:]",
   invoke: _callback30Invoke,
   matches: _callback30Matches,
 );
-const _flaxBinding1101 = FlaxTypeRef("callback", callback: _flaxBinding1100);
-const _flaxBinding1102 = FlaxCallbackBinding(
+const _flaxBinding1117 = FlaxTypeRef("callback", callback: _flaxBinding1116);
+const _flaxBinding1118 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
-      _flaxBinding78,
+      _flaxBinding36,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding83,
+  _flaxBinding60,
   _callback31,
   id: "callback:<>(p:r:value:bool:)->future:[void:]",
   invoke: _callback31Invoke,
   matches: _callback31Matches,
 );
-const _flaxBinding1103 = FlaxTypeRef("callback", callback: _flaxBinding1102);
-const _flaxBinding1104 = <FlaxParameter>[
-  FlaxParameter("getter", _flaxBinding1101, required: true),
-  FlaxParameter("name", _flaxBinding24, required: true),
-  FlaxParameter("setter", _flaxBinding1103, required: true),
+const _flaxBinding1119 = FlaxTypeRef("callback", callback: _flaxBinding1118);
+const _flaxBinding1120 = <FlaxParameter>[
+  FlaxParameter("getter", _flaxBinding1117, required: true),
+  FlaxParameter("name", _flaxBinding0, required: true),
+  FlaxParameter("setter", _flaxBinding1119, required: true),
 ];
-const _flaxBinding1105 = FlaxInstanceMethod(
-  _flaxBinding1104,
-  _flaxBinding82,
+const _flaxBinding1121 = FlaxInstanceMethod(
+  _flaxBinding1120,
+  _flaxBinding24,
   _ServicesBinding_registerBoolServiceExtension,
 );
-const _flaxBinding1106 = FlaxTypeRef(
+const _flaxBinding1122 = FlaxTypeRef(
   "future",
-  item: _flaxBinding15,
+  item: _flaxBinding12,
   future: FlaxFutureBinding("double:", _future16Adapt),
 );
-const _flaxBinding1107 = FlaxCallbackBinding(
+const _flaxBinding1123 = FlaxCallbackBinding(
   [],
-  _flaxBinding1106,
+  _flaxBinding1122,
   _callback32,
   id: "callback:<>()->future:[double:]",
   invoke: _callback32Invoke,
   matches: _callback32Matches,
 );
-const _flaxBinding1108 = FlaxTypeRef("callback", callback: _flaxBinding1107);
-const _flaxBinding1109 = FlaxCallbackBinding(
+const _flaxBinding1124 = FlaxTypeRef("callback", callback: _flaxBinding1123);
+const _flaxBinding1125 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
-      _flaxBinding15,
+      _flaxBinding12,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding83,
+  _flaxBinding60,
   _callback33,
   id: "callback:<>(p:r:value:double:)->future:[void:]",
   invoke: _callback33Invoke,
   matches: _callback33Matches,
 );
-const _flaxBinding1110 = FlaxTypeRef("callback", callback: _flaxBinding1109);
-const _flaxBinding1111 = <FlaxParameter>[
-  FlaxParameter("getter", _flaxBinding1108, required: true),
-  FlaxParameter("name", _flaxBinding24, required: true),
-  FlaxParameter("setter", _flaxBinding1110, required: true),
+const _flaxBinding1126 = FlaxTypeRef("callback", callback: _flaxBinding1125);
+const _flaxBinding1127 = <FlaxParameter>[
+  FlaxParameter("getter", _flaxBinding1124, required: true),
+  FlaxParameter("name", _flaxBinding0, required: true),
+  FlaxParameter("setter", _flaxBinding1126, required: true),
 ];
-const _flaxBinding1112 = FlaxInstanceMethod(
-  _flaxBinding1111,
-  _flaxBinding82,
+const _flaxBinding1128 = FlaxInstanceMethod(
+  _flaxBinding1127,
+  _flaxBinding24,
   _ServicesBinding_registerNumericServiceExtension,
 );
-const _flaxBinding1113 = <FlaxParameter>[
-  FlaxParameter("eventKind", _flaxBinding24, required: true),
-  FlaxParameter("eventData", _flaxBinding364, required: true),
+const _flaxBinding1129 = <FlaxParameter>[
+  FlaxParameter("eventKind", _flaxBinding0, required: true),
+  FlaxParameter("eventData", _flaxBinding137, required: true),
 ];
-const _flaxBinding1114 = FlaxInstanceMethod(
-  _flaxBinding1113,
-  _flaxBinding82,
+const _flaxBinding1130 = FlaxInstanceMethod(
+  _flaxBinding1129,
+  _flaxBinding24,
   _ServicesBinding_postEvent,
 );
-const _flaxBinding1115 = FlaxCallbackBinding(
+const _flaxBinding1131 = FlaxCallbackBinding(
   [],
-  _flaxBinding159,
+  _flaxBinding385,
   _callback34,
   id: "callback:<>()->future:[String:]",
   invoke: _callback34Invoke,
   matches: _callback34Matches,
 );
-const _flaxBinding1116 = FlaxTypeRef("callback", callback: _flaxBinding1115);
-const _flaxBinding1117 = FlaxCallbackBinding(
+const _flaxBinding1132 = FlaxTypeRef("callback", callback: _flaxBinding1131);
+const _flaxBinding1133 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
-      _flaxBinding24,
+      _flaxBinding0,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding83,
+  _flaxBinding60,
   _callback35,
   id: "callback:<>(p:r:value:String:)->future:[void:]",
   invoke: _callback35Invoke,
   matches: _callback35Matches,
 );
-const _flaxBinding1118 = FlaxTypeRef("callback", callback: _flaxBinding1117);
-const _flaxBinding1119 = <FlaxParameter>[
-  FlaxParameter("getter", _flaxBinding1116, required: true),
-  FlaxParameter("name", _flaxBinding24, required: true),
-  FlaxParameter("setter", _flaxBinding1118, required: true),
+const _flaxBinding1134 = FlaxTypeRef("callback", callback: _flaxBinding1133);
+const _flaxBinding1135 = <FlaxParameter>[
+  FlaxParameter("getter", _flaxBinding1132, required: true),
+  FlaxParameter("name", _flaxBinding0, required: true),
+  FlaxParameter("setter", _flaxBinding1134, required: true),
 ];
-const _flaxBinding1120 = FlaxInstanceMethod(
-  _flaxBinding1119,
-  _flaxBinding82,
+const _flaxBinding1136 = FlaxInstanceMethod(
+  _flaxBinding1135,
+  _flaxBinding24,
   _ServicesBinding_registerStringServiceExtension,
 );
-const _flaxBinding1121 = FlaxTypeRef(
+const _flaxBinding1137 = FlaxTypeRef(
   "map",
-  item: _flaxBinding24,
-  key: _flaxBinding24,
+  item: _flaxBinding0,
+  key: _flaxBinding0,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
-    _collection30Create,
-    _collection30Matches,
+    _collection34Create,
+    _collection34Matches,
   ),
 );
-const _flaxBinding1122 = FlaxCallbackBinding(
+const _flaxBinding1138 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "parameters",
-      _flaxBinding1121,
+      _flaxBinding1137,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding621,
+  _flaxBinding138,
   _callback36,
   id: "callback:<>(p:r:parameters:map:[String:][String:])->future:[map:[any?:][String:]]",
   invoke: _callback36Invoke,
   matches: _callback36Matches,
 );
-const _flaxBinding1123 = FlaxTypeRef("callback", callback: _flaxBinding1122);
-const _flaxBinding1124 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding1123, required: true),
-  FlaxParameter("name", _flaxBinding24, required: true),
+const _flaxBinding1139 = FlaxTypeRef("callback", callback: _flaxBinding1138);
+const _flaxBinding1140 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding1139, required: true),
+  FlaxParameter("name", _flaxBinding0, required: true),
 ];
-const _flaxBinding1125 = FlaxInstanceMethod(
-  _flaxBinding1124,
-  _flaxBinding82,
+const _flaxBinding1141 = FlaxInstanceMethod(
+  _flaxBinding1140,
+  _flaxBinding24,
   _ServicesBinding_registerServiceExtension,
 );
-const _flaxBinding1126 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1142 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _ServicesBinding_toString,
 );
-const _flaxBinding1127 = FlaxTypeRef(
+const _flaxBinding1143 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:FrameTiming",
 );
-const _flaxBinding1128 = FlaxTypeRef(
+const _flaxBinding1144 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1127,
+  item: _flaxBinding1143,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:FrameTiming]",
-    _collection32Create,
-    _collection32Matches,
-    restore: _collection32Restore,
+    _collection36Create,
+    _collection36Matches,
+    restore: _collection36Restore,
   ),
 );
-const _flaxBinding1129 = FlaxTypeRef(
+const _flaxBinding1145 = FlaxTypeRef(
   "list",
-  item: _flaxBinding1127,
+  item: _flaxBinding1143,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:FrameTiming]",
-    _collection31Create,
-    _collection31Matches,
+    _collection35Create,
+    _collection35Matches,
   ),
-  iterable: _flaxBinding1128,
+  iterable: _flaxBinding1144,
 );
-const _flaxBinding1130 = FlaxCallbackBinding(
+const _flaxBinding1146 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "timings",
-      _flaxBinding1129,
+      _flaxBinding1145,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding82,
+  _flaxBinding24,
   FlaxCallbackAdapters.wrapVoid1<List<api1.FrameTiming>>,
   id: "callback:<>(p:r:timings:list:[object:flax.core/sdk_dart_ui#type:FrameTiming])->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<List<api1.FrameTiming>>,
   matches: FlaxCallbackAdapters.matchesVoid1<List<api1.FrameTiming>>,
 );
-const _flaxBinding1131 = FlaxTypeRef("callback", callback: _flaxBinding1130);
-const _flaxBinding1132 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding1131, required: true),
+const _flaxBinding1147 = FlaxTypeRef("callback", callback: _flaxBinding1146);
+const _flaxBinding1148 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding1147, required: true),
 ];
-const _flaxBinding1133 = FlaxInstanceMethod(
-  _flaxBinding1132,
-  _flaxBinding82,
+const _flaxBinding1149 = FlaxInstanceMethod(
+  _flaxBinding1148,
+  _flaxBinding24,
   _ServicesBinding_addTimingsCallback,
 );
-const _flaxBinding1134 = FlaxInstanceMethod(
-  _flaxBinding1132,
-  _flaxBinding82,
+const _flaxBinding1150 = FlaxInstanceMethod(
+  _flaxBinding1148,
+  _flaxBinding24,
   _ServicesBinding_removeTimingsCallback,
 );
-const _flaxBinding1135 = FlaxTypeRef(
+const _flaxBinding1151 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:AppLifecycleState",
 );
-const _flaxBinding1136 = <FlaxParameter>[
-  FlaxParameter("state", _flaxBinding1135, required: true),
+const _flaxBinding1152 = <FlaxParameter>[
+  FlaxParameter("state", _flaxBinding1151, required: true),
 ];
-const _flaxBinding1137 = FlaxInstanceMethod(
-  _flaxBinding1136,
-  _flaxBinding82,
+const _flaxBinding1153 = FlaxInstanceMethod(
+  _flaxBinding1152,
+  _flaxBinding24,
   _ServicesBinding_handleAppLifecycleStateChanged,
 );
-const _flaxBinding1138 = FlaxTypeRef(
+const _flaxBinding1154 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_scheduler#type:Priority",
 );
-const _flaxBinding1139 = FlaxCallbackBinding(
+const _flaxBinding1155 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_dependencies#type:Flow",
+  nullable: true,
+);
+const _flaxBinding1156 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "timeStamp",
-      _flaxBinding585,
+      _flaxBinding131,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding82,
+  _flaxBinding24,
   FlaxCallbackAdapters.wrapVoid1<api5.Duration>,
   id: "callback:<>(p:r:timeStamp:object:flax.core/flutter#type:Duration)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api5.Duration>,
   matches: FlaxCallbackAdapters.matchesVoid1<api5.Duration>,
 );
-const _flaxBinding1140 = FlaxTypeRef("callback", callback: _flaxBinding1139);
-const _flaxBinding1141 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding1140, required: true),
+const _flaxBinding1157 = FlaxTypeRef("callback", callback: _flaxBinding1156);
+const _flaxBinding1158 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding1157, required: true),
   FlaxParameter(
     "rescheduling",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "scheduleNewFrame",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: true,
   ),
 ];
-const _flaxBinding1142 = FlaxInstanceMethod(
-  _flaxBinding1141,
-  _flaxBinding0,
+const _flaxBinding1159 = FlaxInstanceMethod(
+  _flaxBinding1158,
+  _flaxBinding2,
   _ServicesBinding_scheduleFrameCallback,
 );
-const _flaxBinding1143 = <FlaxParameter>[
-  FlaxParameter("id", _flaxBinding0, required: true),
+const _flaxBinding1160 = <FlaxParameter>[
+  FlaxParameter("id", _flaxBinding2, required: true),
 ];
-const _flaxBinding1144 = FlaxInstanceMethod(
-  _flaxBinding1143,
-  _flaxBinding82,
+const _flaxBinding1161 = FlaxInstanceMethod(
+  _flaxBinding1160,
+  _flaxBinding24,
   _ServicesBinding_cancelFrameCallbackWithId,
 );
-const _flaxBinding1145 = <FlaxParameter>[
-  FlaxParameter("reason", _flaxBinding24, required: true),
+const _flaxBinding1162 = <FlaxParameter>[
+  FlaxParameter("reason", _flaxBinding0, required: true),
 ];
-const _flaxBinding1146 = FlaxInstanceMethod(
-  _flaxBinding1145,
-  _flaxBinding78,
+const _flaxBinding1163 = FlaxInstanceMethod(
+  _flaxBinding1162,
+  _flaxBinding36,
   _ServicesBinding_debugAssertNoTransientCallbacks,
 );
-const _flaxBinding1147 = FlaxInstanceMethod(
-  _flaxBinding1145,
-  _flaxBinding78,
+const _flaxBinding1164 = FlaxInstanceMethod(
+  _flaxBinding1162,
+  _flaxBinding36,
   _ServicesBinding_debugAssertNoPendingPerformanceModeRequests,
 );
-const _flaxBinding1148 = FlaxInstanceMethod(
-  _flaxBinding1145,
-  _flaxBinding78,
+const _flaxBinding1165 = FlaxInstanceMethod(
+  _flaxBinding1162,
+  _flaxBinding36,
   _ServicesBinding_debugAssertNoTimeDilation,
 );
-const _flaxBinding1149 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding1140, required: true),
+const _flaxBinding1166 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding1157, required: true),
 ];
-const _flaxBinding1150 = FlaxInstanceMethod(
-  _flaxBinding1149,
-  _flaxBinding82,
+const _flaxBinding1167 = FlaxInstanceMethod(
+  _flaxBinding1166,
+  _flaxBinding24,
   _ServicesBinding_addPersistentFrameCallback,
 );
-const _flaxBinding1151 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding1140, required: true),
+const _flaxBinding1168 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding1157, required: true),
   FlaxParameter(
     "debugLabel",
-    _flaxBinding24,
+    _flaxBinding0,
     required: false,
     defaultValue: 'callback',
   ),
 ];
-const _flaxBinding1152 = FlaxInstanceMethod(
-  _flaxBinding1151,
-  _flaxBinding82,
+const _flaxBinding1169 = FlaxInstanceMethod(
+  _flaxBinding1168,
+  _flaxBinding24,
   _ServicesBinding_addPostFrameCallback,
 );
-const _flaxBinding1153 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1170 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_ensureFrameCallbacksRegistered,
 );
-const _flaxBinding1154 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1171 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_ensureVisualUpdate,
 );
-const _flaxBinding1155 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1172 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_scheduleFrame,
 );
-const _flaxBinding1156 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1173 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_scheduleForcedFrame,
 );
-const _flaxBinding1157 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1174 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_scheduleWarmUpFrame,
 );
-const _flaxBinding1158 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1175 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_resetEpoch,
 );
-const _flaxBinding1159 = FlaxTypeRef(
+const _flaxBinding1176 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Duration",
   nullable: true,
 );
-const _flaxBinding1160 = <FlaxParameter>[
-  FlaxParameter("rawTimeStamp", _flaxBinding1159, required: true),
+const _flaxBinding1177 = <FlaxParameter>[
+  FlaxParameter("rawTimeStamp", _flaxBinding1176, required: true),
 ];
-const _flaxBinding1161 = FlaxInstanceMethod(
-  _flaxBinding1160,
-  _flaxBinding82,
+const _flaxBinding1178 = FlaxInstanceMethod(
+  _flaxBinding1177,
+  _flaxBinding24,
   _ServicesBinding_handleBeginFrame,
 );
-const _flaxBinding1162 = FlaxTypeRef(
+const _flaxBinding1179 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:DartPerformanceMode",
 );
-const _flaxBinding1163 = <FlaxParameter>[
-  FlaxParameter("mode", _flaxBinding1162, required: true),
-];
-const _flaxBinding1164 = FlaxTypeRef(
+const _flaxBinding1180 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_scheduler#type:PerformanceModeRequestHandle",
   nullable: true,
 );
-const _flaxBinding1165 = FlaxInstanceMethod(
-  _flaxBinding1163,
-  _flaxBinding1164,
+const _flaxBinding1181 = <FlaxParameter>[
+  FlaxParameter("mode", _flaxBinding1179, required: true),
+];
+const _flaxBinding1182 = FlaxInstanceMethod(
+  _flaxBinding1181,
+  _flaxBinding1180,
   _ServicesBinding_requestPerformanceMode,
 );
-const _flaxBinding1166 = FlaxTypeRef(
+const _flaxBinding1183 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:DartPerformanceMode",
   nullable: true,
 );
-const _flaxBinding1167 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding1166,
+const _flaxBinding1184 = FlaxInstanceMethod(
+  _flaxBinding332,
+  _flaxBinding1183,
   _ServicesBinding_debugGetRequestedPerformanceMode,
 );
-const _flaxBinding1168 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1185 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_handleDrawFrame,
 );
-const _flaxBinding1169 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding274,
+const _flaxBinding1186 = FlaxInstanceMethod.signature(
+  _flaxBinding55,
   _ServicesBinding_createBinaryMessenger,
 );
-const _flaxBinding1170 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1187 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_handleMemoryPressure,
 );
-const _flaxBinding1171 = FlaxTypeRef("any");
-const _flaxBinding1172 = <FlaxParameter>[
-  FlaxParameter("systemMessage", _flaxBinding1171, required: true),
+const _flaxBinding1188 = FlaxTypeRef("any");
+const _flaxBinding1189 = <FlaxParameter>[
+  FlaxParameter("systemMessage", _flaxBinding1188, required: true),
 ];
-const _flaxBinding1173 = FlaxInstanceMethod(
-  _flaxBinding1172,
-  _flaxBinding83,
+const _flaxBinding1190 = FlaxInstanceMethod(
+  _flaxBinding1189,
+  _flaxBinding60,
   _ServicesBinding_handleSystemMessage,
 );
-const _flaxBinding1174 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1191 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_initLicenses,
 );
-const _flaxBinding1175 = <FlaxParameter>[
-  FlaxParameter("asset", _flaxBinding24, required: true),
+const _flaxBinding1192 = <FlaxParameter>[
+  FlaxParameter("asset", _flaxBinding0, required: true),
 ];
-const _flaxBinding1176 = FlaxInstanceMethod(
-  _flaxBinding1175,
-  _flaxBinding82,
+const _flaxBinding1193 = FlaxInstanceMethod(
+  _flaxBinding1192,
+  _flaxBinding24,
   _ServicesBinding_evict,
 );
-const _flaxBinding1177 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1194 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _ServicesBinding_readInitialLifecycleStateFromNativeWindow,
 );
-const _flaxBinding1178 = FlaxTypeRef(
+const _flaxBinding1195 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:ViewFocusEvent",
 );
-const _flaxBinding1179 = <FlaxParameter>[
-  FlaxParameter("event", _flaxBinding1178, required: true),
+const _flaxBinding1196 = <FlaxParameter>[
+  FlaxParameter("event", _flaxBinding1195, required: true),
 ];
-const _flaxBinding1180 = FlaxInstanceMethod(
-  _flaxBinding1179,
-  _flaxBinding82,
+const _flaxBinding1197 = FlaxInstanceMethod(
+  _flaxBinding1196,
+  _flaxBinding24,
   _ServicesBinding_handleViewFocusChanged,
 );
-const _flaxBinding1181 = FlaxTypeRef(
+const _flaxBinding1198 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:AppExitResponse",
 );
-const _flaxBinding1182 = FlaxTypeRef(
+const _flaxBinding1199 = FlaxTypeRef(
   "future",
-  item: _flaxBinding1181,
+  item: _flaxBinding1198,
   future: FlaxFutureBinding(
     "enum:flax.core/sdk_dart_ui#type:AppExitResponse",
     _future17Adapt,
   ),
 );
-const _flaxBinding1183 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding1182,
+const _flaxBinding1200 = FlaxInstanceMethod(
+  _flaxBinding332,
+  _flaxBinding1199,
   _ServicesBinding_handleRequestAppExit,
 );
-const _flaxBinding1184 = FlaxTypeRef(
+const _flaxBinding1201 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:AppExitType",
 );
-const _flaxBinding1185 = <FlaxParameter>[
-  FlaxParameter("exitType", _flaxBinding1184, required: true),
-  FlaxParameter("exitCode", _flaxBinding0, required: false, defaultValue: 0),
+const _flaxBinding1202 = <FlaxParameter>[
+  FlaxParameter("exitType", _flaxBinding1201, required: true),
+  FlaxParameter("exitCode", _flaxBinding2, required: false, defaultValue: 0),
 ];
-const _flaxBinding1186 = FlaxInstanceMethod(
-  _flaxBinding1185,
-  _flaxBinding1182,
+const _flaxBinding1203 = FlaxInstanceMethod(
+  _flaxBinding1202,
+  _flaxBinding1199,
   _ServicesBinding_exitApplication,
 );
-const _flaxBinding1187 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding979,
+const _flaxBinding1204 = FlaxInstanceMethod(
+  _flaxBinding332,
+  _flaxBinding1018,
   _ServicesBinding_createRestorationManager,
 );
-const _flaxBinding1188 = FlaxCallbackBinding(
+const _flaxBinding1205 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "systemOverlaysAreVisible",
-      _flaxBinding78,
+      _flaxBinding36,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding83,
+  _flaxBinding60,
   _callback38,
   id: "callback:<>(p:r:systemOverlaysAreVisible:bool:)->future:[void:]",
   invoke: _callback38Invoke,
   matches: _callback38Matches,
 );
-const _flaxBinding1189 = FlaxTypeRef(
+const _flaxBinding1206 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1188,
+  callback: _flaxBinding1205,
 );
-const _flaxBinding1190 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding1189, required: true),
+const _flaxBinding1207 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding1206, required: true),
 ];
-const _flaxBinding1191 = FlaxInstanceMethod(
-  _flaxBinding1190,
-  _flaxBinding82,
+const _flaxBinding1208 = FlaxInstanceMethod(
+  _flaxBinding1207,
+  _flaxBinding24,
   _ServicesBinding_setSystemUiChangeCallback,
 );
-const _flaxBinding1192 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding1209 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _ServicesBinding_initializationComplete,
 );
-const _flaxBinding1193 = FlaxObjectBinding(
+const _flaxBinding1210 = FlaxObjectBinding(
   "flax.core/sdk_services#type:ServicesBinding",
   [
-    _flaxBinding1059,
-    _flaxBinding1061,
-    _flaxBinding1062,
-    _flaxBinding1064,
-    _flaxBinding1068,
-    _flaxBinding1069,
-    _flaxBinding1070,
-    _flaxBinding1071,
-    _flaxBinding1073,
-    _flaxBinding1074,
     _flaxBinding1075,
-    _flaxBinding1076,
     _flaxBinding1077,
-    _flaxBinding1079,
+    _flaxBinding1078,
     _flaxBinding1080,
-    _flaxBinding1082,
     _flaxBinding1084,
     _flaxBinding1085,
+    _flaxBinding1086,
+    _flaxBinding1087,
+    _flaxBinding1089,
+    _flaxBinding1090,
+    _flaxBinding1091,
+    _flaxBinding1092,
+    _flaxBinding1093,
+    _flaxBinding1095,
+    _flaxBinding1096,
+    _flaxBinding1098,
+    _flaxBinding1100,
+    _flaxBinding1101,
   ],
   {
-    "initInstances": _flaxBinding1087,
-    "debugCheckZone": _flaxBinding1089,
-    "initServiceExtensions": _flaxBinding1090,
-    "lockEvents": _flaxBinding1094,
-    "unlocked": _flaxBinding1095,
-    "reassembleApplication": _flaxBinding1096,
-    "performReassemble": _flaxBinding1097,
-    "registerSignalServiceExtension": _flaxBinding1099,
-    "registerBoolServiceExtension": _flaxBinding1105,
-    "registerNumericServiceExtension": _flaxBinding1112,
-    "postEvent": _flaxBinding1114,
-    "registerStringServiceExtension": _flaxBinding1120,
-    "registerServiceExtension": _flaxBinding1125,
-    "toString": _flaxBinding1126,
-    "addTimingsCallback": _flaxBinding1133,
-    "removeTimingsCallback": _flaxBinding1134,
-    "handleAppLifecycleStateChanged": _flaxBinding1137,
+    "initInstances": _flaxBinding1103,
+    "debugCheckZone": _flaxBinding1105,
+    "initServiceExtensions": _flaxBinding1106,
+    "lockEvents": _flaxBinding1110,
+    "unlocked": _flaxBinding1111,
+    "reassembleApplication": _flaxBinding1112,
+    "performReassemble": _flaxBinding1113,
+    "registerSignalServiceExtension": _flaxBinding1115,
+    "registerBoolServiceExtension": _flaxBinding1121,
+    "registerNumericServiceExtension": _flaxBinding1128,
+    "postEvent": _flaxBinding1130,
+    "registerStringServiceExtension": _flaxBinding1136,
+    "registerServiceExtension": _flaxBinding1141,
+    "toString": _flaxBinding1142,
+    "addTimingsCallback": _flaxBinding1149,
+    "removeTimingsCallback": _flaxBinding1150,
+    "handleAppLifecycleStateChanged": _flaxBinding1153,
     "scheduleTask": FlaxInstanceMethod(
       <FlaxParameter>[
         FlaxParameter(
@@ -39374,7 +38069,7 @@ const _flaxBinding1193 = FlaxObjectBinding(
             "callback",
             callback: FlaxCallbackBinding(
               [],
-              _flaxBinding163,
+              _flaxBinding387,
               _callback37,
               id: "callback:<>()->futureOr:[any?:]",
               invoke: _callback37Invoke,
@@ -39383,576 +38078,397 @@ const _flaxBinding1193 = FlaxObjectBinding(
           ),
           required: true,
         ),
-        FlaxParameter("priority", _flaxBinding1138, required: true),
-        FlaxParameter("debugLabel", _flaxBinding142, required: false),
+        FlaxParameter("priority", _flaxBinding1154, required: true),
+        FlaxParameter("debugLabel", _flaxBinding14, required: false),
+        FlaxParameter("flow", _flaxBinding1155, required: false),
       ],
       FlaxTypeRef(
         "future",
-        item: _flaxBinding161,
-        future: FlaxFutureBinding("any?:", _future5Adapt),
+        item: _flaxBinding42,
+        future: FlaxFutureBinding("any?:", _future8Adapt),
       ),
       _ServicesBinding_scheduleTask,
       genericFactory: _flaxGeneric_ServicesBinding_scheduleTask,
       ownerTypes: [],
     ),
-    "scheduleFrameCallback": _flaxBinding1142,
-    "cancelFrameCallbackWithId": _flaxBinding1144,
-    "debugAssertNoTransientCallbacks": _flaxBinding1146,
-    "debugAssertNoPendingPerformanceModeRequests": _flaxBinding1147,
-    "debugAssertNoTimeDilation": _flaxBinding1148,
-    "addPersistentFrameCallback": _flaxBinding1150,
-    "addPostFrameCallback": _flaxBinding1152,
-    "ensureFrameCallbacksRegistered": _flaxBinding1153,
-    "ensureVisualUpdate": _flaxBinding1154,
-    "scheduleFrame": _flaxBinding1155,
-    "scheduleForcedFrame": _flaxBinding1156,
-    "scheduleWarmUpFrame": _flaxBinding1157,
-    "resetEpoch": _flaxBinding1158,
-    "handleBeginFrame": _flaxBinding1161,
-    "requestPerformanceMode": _flaxBinding1165,
-    "debugGetRequestedPerformanceMode": _flaxBinding1167,
-    "handleDrawFrame": _flaxBinding1168,
-    "createBinaryMessenger": _flaxBinding1169,
-    "handleMemoryPressure": _flaxBinding1170,
-    "handleSystemMessage": _flaxBinding1173,
-    "initLicenses": _flaxBinding1174,
-    "evict": _flaxBinding1176,
-    "readInitialLifecycleStateFromNativeWindow": _flaxBinding1177,
-    "handleViewFocusChanged": _flaxBinding1180,
-    "handleRequestAppExit": _flaxBinding1183,
-    "exitApplication": _flaxBinding1186,
-    "createRestorationManager": _flaxBinding1187,
-    "setSystemUiChangeCallback": _flaxBinding1191,
-    "initializationComplete": _flaxBinding1192,
+    "scheduleFrameCallback": _flaxBinding1159,
+    "cancelFrameCallbackWithId": _flaxBinding1161,
+    "debugAssertNoTransientCallbacks": _flaxBinding1163,
+    "debugAssertNoPendingPerformanceModeRequests": _flaxBinding1164,
+    "debugAssertNoTimeDilation": _flaxBinding1165,
+    "addPersistentFrameCallback": _flaxBinding1167,
+    "addPostFrameCallback": _flaxBinding1169,
+    "ensureFrameCallbacksRegistered": _flaxBinding1170,
+    "ensureVisualUpdate": _flaxBinding1171,
+    "scheduleFrame": _flaxBinding1172,
+    "scheduleForcedFrame": _flaxBinding1173,
+    "scheduleWarmUpFrame": _flaxBinding1174,
+    "resetEpoch": _flaxBinding1175,
+    "handleBeginFrame": _flaxBinding1178,
+    "requestPerformanceMode": _flaxBinding1182,
+    "debugGetRequestedPerformanceMode": _flaxBinding1184,
+    "handleDrawFrame": _flaxBinding1185,
+    "createBinaryMessenger": _flaxBinding1186,
+    "handleMemoryPressure": _flaxBinding1187,
+    "handleSystemMessage": _flaxBinding1190,
+    "initLicenses": _flaxBinding1191,
+    "evict": _flaxBinding1193,
+    "readInitialLifecycleStateFromNativeWindow": _flaxBinding1194,
+    "handleViewFocusChanged": _flaxBinding1197,
+    "handleRequestAppExit": _flaxBinding1200,
+    "exitApplication": _flaxBinding1203,
+    "createRestorationManager": _flaxBinding1204,
+    "setSystemUiChangeCallback": _flaxBinding1208,
+    "initializationComplete": _flaxBinding1209,
   },
   constructors: {},
   create: _createServicesBinding,
   matches: _isServicesBinding,
-  setters: [_flaxBinding1086],
+  setters: [_flaxBinding1102],
   supertypes: [
     "flax.core/sdk_foundation#type:BindingBase",
     "dart:core::Object",
     "flax.core/flutter#type:SchedulerBinding",
   ],
 );
-const _flaxBinding1194 = FlaxGetter(
+const _flaxBinding1211 = FlaxGetter(
   "spellCheckedText",
-  _flaxBinding24,
+  _flaxBinding0,
   _SpellCheckResults_spellCheckedText,
 );
-const _flaxBinding1195 = FlaxTypeRef(
-  "list",
-  item: _flaxBinding327,
-  collection: FlaxCollectionBinding(
-    "list:[object:flax.core/sdk_services#type:SuggestionSpan]",
-    _collection12Create,
-    _collection12Matches,
-  ),
-  iterable: _flaxBinding328,
-);
-const _flaxBinding1196 = FlaxGetter(
+const _flaxBinding1212 = FlaxGetter(
   "suggestionSpans",
-  _flaxBinding1195,
+  _flaxBinding210,
   _SpellCheckResults_suggestionSpans,
 );
-const _flaxBinding1197 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1213 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _SpellCheckResults_toString,
 );
-const _flaxBinding1198 = <FlaxParameter>[
-  FlaxParameter("spellCheckedText", _flaxBinding24, required: true),
-  FlaxParameter("suggestionSpans", _flaxBinding1195, required: true),
+const _flaxBinding1214 = <FlaxParameter>[
+  FlaxParameter("spellCheckedText", _flaxBinding0, required: true),
+  FlaxParameter("suggestionSpans", _flaxBinding210, required: true),
 ];
-const _flaxBinding1199 = FlaxProxyMember(
+const _flaxBinding1215 = FlaxProxyMember(
   "spellCheckedText",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding1200 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1195,
-  id: "callback:<>()->list:[object:flax.core/sdk_services#type:SuggestionSpan]",
-);
-const _flaxBinding1201 = FlaxProxyMember(
+const _flaxBinding1216 = FlaxProxyMember(
   "suggestionSpans",
   1,
-  _flaxBinding1200,
+  _flaxBinding211,
   hasSuper: true,
 );
-const _flaxBinding1202 = FlaxObjectBinding(
+const _flaxBinding1217 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SpellCheckResults",
-  [_flaxBinding1194, _flaxBinding1196],
+  [_flaxBinding1211, _flaxBinding1212],
   {
-    "toString": _flaxBinding1197,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toString": _flaxBinding1213,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:spellCheckedText": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:spellCheckedText": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _SpellCheckResults_super_get_spellCheckedText,
     ),
-    "@super:get:suggestionSpans": FlaxInstanceMethod(
-      [],
-      _flaxBinding1195,
+    "@super:get:suggestionSpans": FlaxInstanceMethod.signature(
+      _flaxBinding211,
       _SpellCheckResults_super_get_suggestionSpans,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1198},
+  constructors: {"@implementation": _flaxBinding1214},
   create: _createSpellCheckResults,
   matches: _isSpellCheckResults,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding28, _flaxBinding1199, _flaxBinding1201]),
+  proxy: FlaxProxyBinding([
+    _flaxBinding279,
+    _flaxBinding1215,
+    _flaxBinding1216,
+  ]),
 );
-const _flaxBinding1203 = FlaxInstanceMethod(
-  _flaxBinding546,
-  _flaxBinding253,
+const _flaxBinding1218 = FlaxInstanceMethod.signature(
+  _flaxBinding120,
   _StandardMessageCodec_encodeMessage,
 );
-const _flaxBinding1204 = FlaxInstanceMethod(
-  _flaxBinding282,
-  _flaxBinding161,
+const _flaxBinding1219 = FlaxInstanceMethod.signature(
+  _flaxBinding121,
   _StandardMessageCodec_decodeMessage,
 );
-const _flaxBinding1205 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_foundation#type:WriteBuffer",
-);
-const _flaxBinding1206 = <FlaxParameter>[
-  FlaxParameter("buffer", _flaxBinding1205, required: true),
-  FlaxParameter("value", _flaxBinding161, required: true),
-];
-const _flaxBinding1207 = FlaxInstanceMethod(
-  _flaxBinding1206,
-  _flaxBinding82,
+const _flaxBinding1220 = FlaxInstanceMethod.signature(
+  _flaxBinding213,
   _StandardMessageCodec_writeValue,
 );
-const _flaxBinding1208 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_foundation#type:ReadBuffer",
-);
-const _flaxBinding1209 = <FlaxParameter>[
-  FlaxParameter("buffer", _flaxBinding1208, required: true),
-];
-const _flaxBinding1210 = FlaxInstanceMethod(
-  _flaxBinding1209,
-  _flaxBinding161,
+const _flaxBinding1221 = FlaxInstanceMethod.signature(
+  _flaxBinding215,
   _StandardMessageCodec_readValue,
 );
-const _flaxBinding1211 = <FlaxParameter>[
-  FlaxParameter("type", _flaxBinding0, required: true),
-  FlaxParameter("buffer", _flaxBinding1208, required: true),
-];
-const _flaxBinding1212 = FlaxInstanceMethod(
-  _flaxBinding1211,
-  _flaxBinding161,
+const _flaxBinding1222 = FlaxInstanceMethod.signature(
+  _flaxBinding216,
   _StandardMessageCodec_readValueOfType,
 );
-const _flaxBinding1213 = <FlaxParameter>[
-  FlaxParameter("buffer", _flaxBinding1205, required: true),
-  FlaxParameter("value", _flaxBinding0, required: true),
-];
-const _flaxBinding1214 = FlaxInstanceMethod(
-  _flaxBinding1213,
-  _flaxBinding82,
+const _flaxBinding1223 = FlaxInstanceMethod.signature(
+  _flaxBinding217,
   _StandardMessageCodec_writeSize,
 );
-const _flaxBinding1215 = FlaxInstanceMethod(
-  _flaxBinding1209,
-  _flaxBinding0,
+const _flaxBinding1224 = FlaxInstanceMethod.signature(
+  _flaxBinding218,
   _StandardMessageCodec_readSize,
 );
-const _flaxBinding1216 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "buffer",
-      _flaxBinding1205,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding161,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:buffer:object:flax.core/sdk_foundation#type:WriteBuffer,p:r:value:any?:)->void:",
-);
-const _flaxBinding1217 = FlaxProxyMember(
+const _flaxBinding1225 = FlaxProxyMember(
   "writeValue",
   0,
-  _flaxBinding1216,
+  _flaxBinding213,
   hasSuper: true,
 );
-const _flaxBinding1218 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "buffer",
-      _flaxBinding1208,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding161,
-  id: "callback:<>(p:r:buffer:object:flax.core/sdk_foundation#type:ReadBuffer)->any?:",
-);
-const _flaxBinding1219 = FlaxProxyMember(
+const _flaxBinding1226 = FlaxProxyMember(
   "readValue",
   0,
-  _flaxBinding1218,
+  _flaxBinding215,
   hasSuper: true,
 );
-const _flaxBinding1220 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "type",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "buffer",
-      _flaxBinding1208,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding161,
-  id: "callback:<>(p:r:type:int:,p:r:buffer:object:flax.core/sdk_foundation#type:ReadBuffer)->any?:",
-);
-const _flaxBinding1221 = FlaxProxyMember(
+const _flaxBinding1227 = FlaxProxyMember(
   "readValueOfType",
   0,
-  _flaxBinding1220,
+  _flaxBinding216,
   hasSuper: true,
 );
-const _flaxBinding1222 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "buffer",
-      _flaxBinding1205,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding0,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:buffer:object:flax.core/sdk_foundation#type:WriteBuffer,p:r:value:int:)->void:",
-);
-const _flaxBinding1223 = FlaxProxyMember(
+const _flaxBinding1228 = FlaxProxyMember(
   "writeSize",
   0,
-  _flaxBinding1222,
+  _flaxBinding217,
   hasSuper: true,
 );
-const _flaxBinding1224 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "buffer",
-      _flaxBinding1208,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding0,
-  id: "callback:<>(p:r:buffer:object:flax.core/sdk_foundation#type:ReadBuffer)->int:",
-);
-const _flaxBinding1225 = FlaxProxyMember(
+const _flaxBinding1229 = FlaxProxyMember(
   "readSize",
   0,
-  _flaxBinding1224,
+  _flaxBinding218,
   hasSuper: true,
 );
-const _flaxBinding1226 = FlaxObjectBinding(
+const _flaxBinding1230 = FlaxObjectBinding(
   "flax.core/sdk_services#type:StandardMessageCodec",
   [],
   {
-    "encodeMessage": _flaxBinding1203,
-    "decodeMessage": _flaxBinding1204,
-    "writeValue": _flaxBinding1207,
-    "readValue": _flaxBinding1210,
-    "readValueOfType": _flaxBinding1212,
-    "writeSize": _flaxBinding1214,
-    "readSize": _flaxBinding1215,
-    "@super:encodeMessage": FlaxInstanceMethod(
-      _flaxBinding546,
-      _flaxBinding253,
+    "encodeMessage": _flaxBinding1218,
+    "decodeMessage": _flaxBinding1219,
+    "writeValue": _flaxBinding1220,
+    "readValue": _flaxBinding1221,
+    "readValueOfType": _flaxBinding1222,
+    "writeSize": _flaxBinding1223,
+    "readSize": _flaxBinding1224,
+    "@super:encodeMessage": FlaxInstanceMethod.signature(
+      _flaxBinding120,
       _FlaxProxyDispatch13_super_call_encodeMessage,
     ),
-    "@super:decodeMessage": FlaxInstanceMethod(
-      _flaxBinding282,
-      _flaxBinding161,
+    "@super:decodeMessage": FlaxInstanceMethod.signature(
+      _flaxBinding121,
       _FlaxProxyDispatch13_super_call_decodeMessage,
     ),
-    "@super:writeValue": FlaxInstanceMethod(
-      _flaxBinding1206,
-      _flaxBinding82,
+    "@super:writeValue": FlaxInstanceMethod.signature(
+      _flaxBinding213,
       _StandardMessageCodec_super_writeValue,
     ),
-    "@super:readValue": FlaxInstanceMethod(
-      _flaxBinding1209,
-      _flaxBinding161,
+    "@super:readValue": FlaxInstanceMethod.signature(
+      _flaxBinding215,
       _StandardMessageCodec_super_readValue,
     ),
-    "@super:readValueOfType": FlaxInstanceMethod(
-      _flaxBinding1211,
-      _flaxBinding161,
+    "@super:readValueOfType": FlaxInstanceMethod.signature(
+      _flaxBinding216,
       _StandardMessageCodec_super_readValueOfType,
     ),
-    "@super:writeSize": FlaxInstanceMethod(
-      _flaxBinding1213,
-      _flaxBinding82,
+    "@super:writeSize": FlaxInstanceMethod.signature(
+      _flaxBinding217,
       _StandardMessageCodec_super_writeSize,
     ),
-    "@super:readSize": FlaxInstanceMethod(
-      _flaxBinding1209,
-      _flaxBinding0,
+    "@super:readSize": FlaxInstanceMethod.signature(
+      _flaxBinding218,
       _StandardMessageCodec_super_readSize,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createStandardMessageCodec,
   matches: _isStandardMessageCodec,
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/sdk_services#type:MessageCodec"],
   proxy: FlaxProxyBinding([
-    _flaxBinding550,
-    _flaxBinding552,
-    _flaxBinding1217,
-    _flaxBinding1219,
-    _flaxBinding1221,
-    _flaxBinding1223,
+    _flaxBinding658,
+    _flaxBinding659,
     _flaxBinding1225,
+    _flaxBinding1226,
+    _flaxBinding1227,
+    _flaxBinding1228,
+    _flaxBinding1229,
   ]),
 );
-const _flaxBinding1227 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:StandardMessageCodec",
-);
-const _flaxBinding1228 = FlaxGetter(
+const _flaxBinding1231 = FlaxGetter(
   "messageCodec",
-  _flaxBinding1227,
+  _flaxBinding219,
   _StandardMethodCodec_messageCodec,
 );
-const _flaxBinding1229 = <FlaxParameter>[
+const _flaxBinding1232 = <FlaxParameter>[
   FlaxParameter(
     "messageCodec",
-    _flaxBinding1227,
+    _flaxBinding219,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding1230 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1227,
-  id: "callback:<>()->object:flax.core/sdk_services#type:StandardMessageCodec",
-);
-const _flaxBinding1231 = FlaxProxyMember(
+const _flaxBinding1233 = FlaxProxyMember(
   "messageCodec",
   1,
-  _flaxBinding1230,
+  _flaxBinding220,
   hasSuper: true,
 );
-const _flaxBinding1232 = FlaxObjectBinding(
+const _flaxBinding1234 = FlaxObjectBinding(
   "flax.core/sdk_services#type:StandardMethodCodec",
-  [_flaxBinding1228],
+  [_flaxBinding1231],
   {
-    "@super:encodeMethodCall": FlaxInstanceMethod(
-      _flaxBinding555,
-      _flaxBinding152,
+    "@super:encodeMethodCall": FlaxInstanceMethod.signature(
+      _flaxBinding123,
       _FlaxProxyDispatch14_super_call_encodeMethodCall,
     ),
-    "@super:decodeMethodCall": FlaxInstanceMethod(
-      _flaxBinding557,
-      _flaxBinding554,
+    "@super:decodeMethodCall": FlaxInstanceMethod.signature(
+      _flaxBinding124,
       _FlaxProxyDispatch14_super_call_decodeMethodCall,
     ),
-    "@super:decodeEnvelope": FlaxInstanceMethod(
-      _flaxBinding559,
-      _flaxBinding161,
+    "@super:decodeEnvelope": FlaxInstanceMethod.signature(
+      _flaxBinding125,
       _FlaxProxyDispatch14_super_call_decodeEnvelope,
     ),
-    "@super:encodeSuccessEnvelope": FlaxInstanceMethod(
-      _flaxBinding561,
-      _flaxBinding152,
+    "@super:encodeSuccessEnvelope": FlaxInstanceMethod.signature(
+      _flaxBinding126,
       _FlaxProxyDispatch14_super_call_encodeSuccessEnvelope,
     ),
     "@super:encodeErrorEnvelope": FlaxInstanceMethod(
-      _flaxBinding563,
-      _flaxBinding152,
+      _flaxBinding665,
+      _flaxBinding18,
       _FlaxProxyDispatch14_super_call_encodeErrorEnvelope,
     ),
-    "@super:get:messageCodec": FlaxInstanceMethod(
-      [],
-      _flaxBinding1227,
+    "@super:get:messageCodec": FlaxInstanceMethod.signature(
+      _flaxBinding220,
       _StandardMethodCodec_super_get_messageCodec,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1229},
+  constructors: {"@implementation": _flaxBinding1232},
   create: _createStandardMethodCodec,
   matches: _isStandardMethodCodec,
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/sdk_services#type:MethodCodec"],
-  parent: _flaxBinding575,
+  parent: _flaxBinding673,
   proxy: FlaxProxyBinding([
-    _flaxBinding576,
-    _flaxBinding577,
-    _flaxBinding578,
-    _flaxBinding579,
-    _flaxBinding580,
-    _flaxBinding1231,
+    _flaxBinding674,
+    _flaxBinding675,
+    _flaxBinding676,
+    _flaxBinding677,
+    _flaxBinding678,
+    _flaxBinding1233,
   ]),
 );
-const _flaxBinding1233 = <FlaxParameter>[
-  FlaxParameter("message", _flaxBinding142, required: true),
-];
-const _flaxBinding1234 = FlaxInstanceMethod(
-  _flaxBinding1233,
-  _flaxBinding253,
+const _flaxBinding1235 = FlaxInstanceMethod.signature(
+  _flaxBinding221,
   _StringCodec_encodeMessage,
 );
-const _flaxBinding1235 = FlaxInstanceMethod(
-  _flaxBinding282,
-  _flaxBinding142,
+const _flaxBinding1236 = FlaxInstanceMethod.signature(
+  _flaxBinding222,
   _StringCodec_decodeMessage,
-);
-const _flaxBinding1236 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding142,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding253,
-  id: "callback:<>(p:r:message:String?:)->ByteData?:",
 );
 const _flaxBinding1237 = FlaxProxyMember(
   "encodeMessage",
   0,
-  _flaxBinding1236,
+  _flaxBinding221,
   hasSuper: true,
 );
-const _flaxBinding1238 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "message",
-      _flaxBinding253,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding142,
-  id: "callback:<>(p:r:message:ByteData?:)->String?:",
-);
-const _flaxBinding1239 = FlaxProxyMember(
+const _flaxBinding1238 = FlaxProxyMember(
   "decodeMessage",
   0,
-  _flaxBinding1238,
+  _flaxBinding222,
   hasSuper: true,
 );
-const _flaxBinding1240 = FlaxObjectBinding(
+const _flaxBinding1239 = FlaxObjectBinding(
   "flax.core/sdk_services#type:StringCodec",
   [],
   {
-    "encodeMessage": _flaxBinding1234,
-    "decodeMessage": _flaxBinding1235,
-    "@super:encodeMessage": FlaxInstanceMethod(
-      _flaxBinding1233,
-      _flaxBinding253,
+    "encodeMessage": _flaxBinding1235,
+    "decodeMessage": _flaxBinding1236,
+    "@super:encodeMessage": FlaxInstanceMethod.signature(
+      _flaxBinding221,
       _StringCodec_super_encodeMessage,
     ),
-    "@super:decodeMessage": FlaxInstanceMethod(
-      _flaxBinding282,
-      _flaxBinding142,
+    "@super:decodeMessage": FlaxInstanceMethod.signature(
+      _flaxBinding222,
       _StringCodec_super_decodeMessage,
     ),
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createStringCodec,
   matches: _isStringCodec,
   setters: [],
   supertypes: ["dart:core::Object", "flax.core/sdk_services#type:MessageCodec"],
-  proxy: FlaxProxyBinding([_flaxBinding1237, _flaxBinding1239]),
+  proxy: FlaxProxyBinding([_flaxBinding1237, _flaxBinding1238]),
 );
-const _flaxBinding1241 = FlaxGetter(
+const _flaxBinding1240 = FlaxGetter(
   "range",
-  _flaxBinding294,
+  _flaxBinding68,
   _SuggestionSpan_range,
 );
-const _flaxBinding1242 = FlaxGetter(
+const _flaxBinding1241 = FlaxGetter(
   "suggestions",
-  _flaxBinding183,
+  _flaxBinding28,
   _SuggestionSpan_suggestions,
 );
-const _flaxBinding1243 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1242 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _SuggestionSpan_toString,
 );
-const _flaxBinding1244 = <FlaxParameter>[
-  FlaxParameter("range", _flaxBinding294, required: true),
-  FlaxParameter("suggestions", _flaxBinding183, required: true),
+const _flaxBinding1243 = <FlaxParameter>[
+  FlaxParameter("range", _flaxBinding68, required: true),
+  FlaxParameter("suggestions", _flaxBinding28, required: true),
 ];
-const _flaxBinding1245 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding294,
-  id: "callback:<>()->object:flax.core/flutter#type:TextRange",
-);
-const _flaxBinding1246 = FlaxProxyMember(
+const _flaxBinding1244 = FlaxProxyMember(
   "range",
   1,
-  _flaxBinding1245,
+  _flaxBinding223,
   hasSuper: true,
 );
-const _flaxBinding1247 = FlaxProxyMember(
+const _flaxBinding1245 = FlaxProxyMember(
   "suggestions",
   1,
-  _flaxBinding189,
+  _flaxBinding29,
   hasSuper: true,
 );
-const _flaxBinding1248 = FlaxObjectBinding(
+const _flaxBinding1246 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SuggestionSpan",
-  [_flaxBinding1241, _flaxBinding1242],
+  [_flaxBinding1240, _flaxBinding1241],
   {
-    "toString": _flaxBinding1243,
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toString": _flaxBinding1242,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:range": FlaxInstanceMethod(
-      [],
-      _flaxBinding294,
+    "@super:get:range": FlaxInstanceMethod.signature(
+      _flaxBinding223,
       _SuggestionSpan_super_get_range,
     ),
-    "@super:get:suggestions": FlaxInstanceMethod(
-      [],
-      _flaxBinding183,
+    "@super:get:suggestions": FlaxInstanceMethod.signature(
+      _flaxBinding29,
       _SuggestionSpan_super_get_suggestions,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1244},
+  constructors: {"@implementation": _flaxBinding1243},
   create: _createSuggestionSpan,
   matches: _isSuggestionSpan,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding28, _flaxBinding1246, _flaxBinding1247]),
+  proxy: FlaxProxyBinding([
+    _flaxBinding279,
+    _flaxBinding1244,
+    _flaxBinding1245,
+  ]),
 );
-const _flaxBinding1249 = FlaxObjectBinding(
+const _flaxBinding1247 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SurfaceAndroidViewController",
   [],
   {},
@@ -39965,9 +38481,9 @@ const _flaxBinding1249 = FlaxObjectBinding(
     "flax.core/sdk_services#type:PlatformViewController",
     "dart:core::Object",
   ],
-  parent: _flaxBinding128,
+  parent: _flaxBinding363,
 );
-const _flaxBinding1250 = FlaxObjectBinding(
+const _flaxBinding1248 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SystemChannels",
   [],
   {},
@@ -39977,7 +38493,7 @@ const _flaxBinding1250 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1251 = FlaxObjectBinding(
+const _flaxBinding1249 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SystemChrome",
   [],
   {},
@@ -39987,25 +38503,24 @@ const _flaxBinding1251 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1252 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1250 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _SystemContextMenuClient_handleSystemHide,
 );
-const _flaxBinding1253 = <FlaxParameter>[
-  FlaxParameter("actionId", _flaxBinding24, required: true),
+const _flaxBinding1251 = <FlaxParameter>[
+  FlaxParameter("actionId", _flaxBinding0, required: true),
 ];
-const _flaxBinding1254 = FlaxInstanceMethod(
-  _flaxBinding1253,
-  _flaxBinding82,
+const _flaxBinding1252 = FlaxInstanceMethod(
+  _flaxBinding1251,
+  _flaxBinding24,
   _SystemContextMenuClient_handleCustomContextMenuAction,
 );
-const _flaxBinding1255 = FlaxObjectBinding(
+const _flaxBinding1253 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SystemContextMenuClient",
   [],
   {
-    "handleSystemHide": _flaxBinding1252,
-    "handleCustomContextMenuAction": _flaxBinding1254,
+    "handleSystemHide": _flaxBinding1250,
+    "handleCustomContextMenuAction": _flaxBinding1252,
   },
   constructors: {},
   create: _createSystemContextMenuClient,
@@ -40013,252 +38528,150 @@ const _flaxBinding1255 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1256 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding506,
-);
-const _flaxBinding1257 = FlaxGetter(
+const _flaxBinding1254 = FlaxGetter(
   "onSystemHide",
-  _flaxBinding1256,
+  _flaxBinding230,
   _SystemContextMenuController_onSystemHide,
 );
-const _flaxBinding1258 = <FlaxParameter>[
-  FlaxParameter("callbackId", _flaxBinding24, required: true),
-];
-const _flaxBinding1259 = FlaxInstanceMethod(
-  _flaxBinding1258,
-  _flaxBinding82,
+const _flaxBinding1255 = FlaxInstanceMethod.signature(
+  _flaxBinding224,
   _SystemContextMenuController_handleCustomContextMenuAction,
 );
-const _flaxBinding1260 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1256 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _SystemContextMenuController_toStringShort,
 );
-const _flaxBinding1261 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding1257 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _SystemContextMenuController_toString,
 );
-const _flaxBinding1262 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding1258 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _SystemContextMenuController_toDiagnosticsNode,
 );
-const _flaxBinding1263 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding1259 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _SystemContextMenuController_debugFillProperties,
 );
-const _flaxBinding1264 = <FlaxParameter>[
-  FlaxParameter("targetRect", _flaxBinding1015, required: true),
-];
-const _flaxBinding1265 = FlaxInstanceMethod(
-  _flaxBinding1264,
-  _flaxBinding83,
+const _flaxBinding1260 = FlaxInstanceMethod.signature(
+  _flaxBinding225,
   _SystemContextMenuController_show,
 );
-const _flaxBinding1266 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:IOSSystemContextMenuItemData",
-);
-const _flaxBinding1267 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding1266,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/sdk_services#type:IOSSystemContextMenuItemData]",
-    _collection34Create,
-    _collection34Matches,
-    restore: _collection34Restore,
-  ),
-);
-const _flaxBinding1268 = FlaxTypeRef(
-  "list",
-  item: _flaxBinding1266,
-  collection: FlaxCollectionBinding(
-    "list:[object:flax.core/sdk_services#type:IOSSystemContextMenuItemData]",
-    _collection33Create,
-    _collection33Matches,
-  ),
-  iterable: _flaxBinding1267,
-);
-const _flaxBinding1269 = <FlaxParameter>[
-  FlaxParameter("targetRect", _flaxBinding1015, required: true),
-  FlaxParameter("items", _flaxBinding1268, required: true),
-];
-const _flaxBinding1270 = FlaxInstanceMethod(
-  _flaxBinding1269,
-  _flaxBinding83,
+const _flaxBinding1261 = FlaxInstanceMethod.signature(
+  _flaxBinding229,
   _SystemContextMenuController_showWithItems,
 );
-const _flaxBinding1271 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding83,
+const _flaxBinding1262 = FlaxInstanceMethod.signature(
+  _flaxBinding72,
   _SystemContextMenuController_hide,
 );
-const _flaxBinding1272 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1263 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _SystemContextMenuController_dispose,
 );
-const _flaxBinding1273 = <FlaxParameter>[
-  FlaxParameter("onSystemHide", _flaxBinding1256, required: false),
+const _flaxBinding1264 = <FlaxParameter>[
+  FlaxParameter("onSystemHide", _flaxBinding230, required: false),
 ];
-const _flaxBinding1274 = FlaxProxyMember(
+const _flaxBinding1265 = FlaxProxyMember(
   "handleSystemHide",
   0,
-  _flaxBinding179,
+  _flaxBinding26,
   hasSuper: true,
 );
-const _flaxBinding1275 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "callbackId",
-      _flaxBinding24,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding82,
-  id: "callback:<>(p:r:callbackId:String:)->void:",
-);
-const _flaxBinding1276 = FlaxProxyMember(
+const _flaxBinding1266 = FlaxProxyMember(
   "handleCustomContextMenuAction",
   0,
-  _flaxBinding1275,
+  _flaxBinding224,
   hasSuper: true,
 );
-const _flaxBinding1277 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "targetRect",
-      _flaxBinding1015,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding83,
-  id: "callback:<>(p:r:targetRect:object:flax.core/sdk_dart_ui#type:Rect)->future:[void:]",
-);
-const _flaxBinding1278 = FlaxProxyMember(
+const _flaxBinding1267 = FlaxProxyMember(
   "show",
   0,
-  _flaxBinding1277,
+  _flaxBinding225,
   hasSuper: true,
 );
-const _flaxBinding1279 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "targetRect",
-      _flaxBinding1015,
-      required: true,
-      positional: true,
-    ),
-    FlaxCallbackParameter(
-      "items",
-      _flaxBinding1268,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding83,
-  id: "callback:<>(p:r:targetRect:object:flax.core/sdk_dart_ui#type:Rect,p:r:items:list:[object:flax.core/sdk_services#type:IOSSystemContextMenuItemData])->future:[void:]",
-);
-const _flaxBinding1280 = FlaxProxyMember(
+const _flaxBinding1268 = FlaxProxyMember(
   "showWithItems",
   0,
-  _flaxBinding1279,
+  _flaxBinding229,
   hasSuper: true,
 );
-const _flaxBinding1281 = FlaxProxyMember(
+const _flaxBinding1269 = FlaxProxyMember(
   "hide",
   0,
-  _flaxBinding95,
+  _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding1282 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1256,
-  id: "callback:<>()->callback?:<>()->void:",
-);
-const _flaxBinding1283 = FlaxProxyMember(
+const _flaxBinding1270 = FlaxProxyMember(
   "onSystemHide",
   1,
-  _flaxBinding1282,
+  _flaxBinding231,
   hasSuper: true,
 );
-const _flaxBinding1284 = FlaxObjectBinding(
+const _flaxBinding1271 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SystemContextMenuController",
-  [_flaxBinding1257],
+  [_flaxBinding1254],
   {
-    "handleSystemHide": _flaxBinding1252,
-    "handleCustomContextMenuAction": _flaxBinding1259,
-    "toStringShort": _flaxBinding1260,
-    "toString": _flaxBinding1261,
-    "toDiagnosticsNode": _flaxBinding1262,
-    "debugFillProperties": _flaxBinding1263,
-    "show": _flaxBinding1265,
-    "showWithItems": _flaxBinding1270,
-    "hide": _flaxBinding1271,
-    "dispose": _flaxBinding1272,
-    "@super:handleSystemHide": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "handleSystemHide": _flaxBinding1250,
+    "handleCustomContextMenuAction": _flaxBinding1255,
+    "toStringShort": _flaxBinding1256,
+    "toString": _flaxBinding1257,
+    "toDiagnosticsNode": _flaxBinding1258,
+    "debugFillProperties": _flaxBinding1259,
+    "show": _flaxBinding1260,
+    "showWithItems": _flaxBinding1261,
+    "hide": _flaxBinding1262,
+    "dispose": _flaxBinding1263,
+    "@super:handleSystemHide": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _SystemContextMenuController_super_handleSystemHide,
     ),
-    "@super:handleCustomContextMenuAction": FlaxInstanceMethod(
-      _flaxBinding1258,
-      _flaxBinding82,
+    "@super:handleCustomContextMenuAction": FlaxInstanceMethod.signature(
+      _flaxBinding224,
       _SystemContextMenuController_super_handleCustomContextMenuAction,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:show": FlaxInstanceMethod(
-      _flaxBinding1264,
-      _flaxBinding83,
+    "@super:show": FlaxInstanceMethod.signature(
+      _flaxBinding225,
       _SystemContextMenuController_super_show,
     ),
-    "@super:showWithItems": FlaxInstanceMethod(
-      _flaxBinding1269,
-      _flaxBinding83,
+    "@super:showWithItems": FlaxInstanceMethod.signature(
+      _flaxBinding229,
       _SystemContextMenuController_super_showWithItems,
     ),
-    "@super:hide": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding83,
+    "@super:hide": FlaxInstanceMethod.signature(
+      _flaxBinding72,
       _SystemContextMenuController_super_hide,
     ),
-    "@super:dispose": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding82,
+    "@super:dispose": FlaxInstanceMethod.signature(
+      _flaxBinding26,
       _SystemContextMenuController_super_dispose,
     ),
-    "@super:get:onSystemHide": FlaxInstanceMethod(
-      [],
-      _flaxBinding1256,
+    "@super:get:onSystemHide": FlaxInstanceMethod.signature(
+      _flaxBinding231,
       _SystemContextMenuController_super_get_onSystemHide,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1273},
+  constructors: {"@implementation": _flaxBinding1264},
   create: _createSystemContextMenuController,
   matches: _isSystemContextMenuController,
   setters: [],
@@ -40269,20 +38682,20 @@ const _flaxBinding1284 = FlaxObjectBinding(
   ],
   disposeMethod: "dispose",
   proxy: FlaxProxyBinding([
-    _flaxBinding1274,
-    _flaxBinding1276,
-    _flaxBinding597,
-    _flaxBinding601,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding1278,
-    _flaxBinding1280,
-    _flaxBinding1281,
-    _flaxBinding1002,
-    _flaxBinding1283,
+    _flaxBinding1265,
+    _flaxBinding1266,
+    _flaxBinding692,
+    _flaxBinding696,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding1267,
+    _flaxBinding1268,
+    _flaxBinding1269,
+    _flaxBinding1035,
+    _flaxBinding1270,
   ]),
 );
-const _flaxBinding1285 = FlaxObjectBinding(
+const _flaxBinding1272 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SystemNavigator",
   [],
   {},
@@ -40292,7 +38705,7 @@ const _flaxBinding1285 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1286 = FlaxObjectBinding(
+const _flaxBinding1273 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SystemSound",
   [],
   {},
@@ -40302,346 +38715,310 @@ const _flaxBinding1286 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1287 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Color",
-  nullable: true,
-);
-const _flaxBinding1288 = FlaxGetter(
+const _flaxBinding1274 = FlaxGetter(
   "systemNavigationBarColor",
-  _flaxBinding1287,
+  _flaxBinding232,
   _SystemUiOverlayStyle_systemNavigationBarColor,
 );
-const _flaxBinding1289 = FlaxGetter(
+const _flaxBinding1275 = FlaxGetter(
   "systemNavigationBarDividerColor",
-  _flaxBinding1287,
+  _flaxBinding232,
   _SystemUiOverlayStyle_systemNavigationBarDividerColor,
 );
-const _flaxBinding1290 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_dart_ui#type:Brightness",
-  nullable: true,
-);
-const _flaxBinding1291 = FlaxGetter(
+const _flaxBinding1276 = FlaxGetter(
   "systemNavigationBarIconBrightness",
-  _flaxBinding1290,
+  _flaxBinding234,
   _SystemUiOverlayStyle_systemNavigationBarIconBrightness,
 );
-const _flaxBinding1292 = FlaxTypeRef("bool", nullable: true);
-const _flaxBinding1293 = FlaxGetter(
+const _flaxBinding1277 = FlaxGetter(
   "systemNavigationBarContrastEnforced",
-  _flaxBinding1292,
+  _flaxBinding236,
   _SystemUiOverlayStyle_systemNavigationBarContrastEnforced,
 );
-const _flaxBinding1294 = FlaxGetter(
+const _flaxBinding1278 = FlaxGetter(
   "statusBarColor",
-  _flaxBinding1287,
+  _flaxBinding232,
   _SystemUiOverlayStyle_statusBarColor,
 );
-const _flaxBinding1295 = FlaxGetter(
+const _flaxBinding1279 = FlaxGetter(
   "statusBarBrightness",
-  _flaxBinding1290,
+  _flaxBinding234,
   _SystemUiOverlayStyle_statusBarBrightness,
 );
-const _flaxBinding1296 = FlaxGetter(
+const _flaxBinding1280 = FlaxGetter(
   "statusBarIconBrightness",
-  _flaxBinding1290,
+  _flaxBinding234,
   _SystemUiOverlayStyle_statusBarIconBrightness,
 );
-const _flaxBinding1297 = FlaxGetter(
+const _flaxBinding1281 = FlaxGetter(
   "systemStatusBarContrastEnforced",
-  _flaxBinding1292,
+  _flaxBinding236,
   _SystemUiOverlayStyle_systemStatusBarContrastEnforced,
 );
-const _flaxBinding1298 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1282 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _SystemUiOverlayStyle_toStringShort,
 );
-const _flaxBinding1299 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding1283 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _SystemUiOverlayStyle_toString,
 );
-const _flaxBinding1300 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding1284 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _SystemUiOverlayStyle_toDiagnosticsNode,
 );
-const _flaxBinding1301 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding1285 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _SystemUiOverlayStyle_debugFillProperties,
 );
-const _flaxBinding1302 = <FlaxParameter>[
-  FlaxParameter("statusBarBrightness", _flaxBinding1290, required: false),
-  FlaxParameter("statusBarColor", _flaxBinding1287, required: false),
-  FlaxParameter("statusBarIconBrightness", _flaxBinding1290, required: false),
-  FlaxParameter("systemNavigationBarColor", _flaxBinding1287, required: false),
+const _flaxBinding1286 = <FlaxParameter>[
+  FlaxParameter("statusBarBrightness", _flaxBinding234, required: false),
+  FlaxParameter("statusBarColor", _flaxBinding232, required: false),
+  FlaxParameter("statusBarIconBrightness", _flaxBinding234, required: false),
+  FlaxParameter("systemNavigationBarColor", _flaxBinding232, required: false),
   FlaxParameter(
     "systemNavigationBarContrastEnforced",
-    _flaxBinding1292,
+    _flaxBinding236,
     required: false,
   ),
   FlaxParameter(
     "systemNavigationBarDividerColor",
-    _flaxBinding1287,
+    _flaxBinding232,
     required: false,
   ),
   FlaxParameter(
     "systemNavigationBarIconBrightness",
-    _flaxBinding1290,
+    _flaxBinding234,
     required: false,
   ),
   FlaxParameter(
     "systemStatusBarContrastEnforced",
-    _flaxBinding1292,
+    _flaxBinding236,
     required: false,
   ),
 ];
-const _flaxBinding1303 = FlaxTypeRef(
+const _flaxBinding1287 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:SystemUiOverlayStyle",
 );
-const _flaxBinding1304 = FlaxInstanceMethod(
-  _flaxBinding1302,
-  _flaxBinding1303,
+const _flaxBinding1288 = FlaxInstanceMethod(
+  _flaxBinding1286,
+  _flaxBinding1287,
   _SystemUiOverlayStyle_copyWith,
 );
-const _flaxBinding1305 = <FlaxParameter>[
-  FlaxParameter("systemNavigationBarColor", _flaxBinding1287, required: false),
+const _flaxBinding1289 = <FlaxParameter>[
+  FlaxParameter("systemNavigationBarColor", _flaxBinding232, required: false),
   FlaxParameter(
     "systemNavigationBarDividerColor",
-    _flaxBinding1287,
+    _flaxBinding232,
     required: false,
   ),
   FlaxParameter(
     "systemNavigationBarIconBrightness",
-    _flaxBinding1290,
+    _flaxBinding234,
     required: false,
   ),
   FlaxParameter(
     "systemNavigationBarContrastEnforced",
-    _flaxBinding1292,
+    _flaxBinding236,
     required: false,
   ),
-  FlaxParameter("statusBarColor", _flaxBinding1287, required: false),
-  FlaxParameter("statusBarBrightness", _flaxBinding1290, required: false),
-  FlaxParameter("statusBarIconBrightness", _flaxBinding1290, required: false),
+  FlaxParameter("statusBarColor", _flaxBinding232, required: false),
+  FlaxParameter("statusBarBrightness", _flaxBinding234, required: false),
+  FlaxParameter("statusBarIconBrightness", _flaxBinding234, required: false),
   FlaxParameter(
     "systemStatusBarContrastEnforced",
-    _flaxBinding1292,
+    _flaxBinding236,
     required: false,
   ),
 ];
-const _flaxBinding1306 = FlaxCallbackBinding.signature(
+const _flaxBinding1290 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "systemNavigationBarColor",
-      _flaxBinding1287,
+      _flaxBinding232,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "systemNavigationBarDividerColor",
-      _flaxBinding1287,
+      _flaxBinding232,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "systemNavigationBarContrastEnforced",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "statusBarColor",
-      _flaxBinding1287,
+      _flaxBinding232,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "statusBarBrightness",
-      _flaxBinding1290,
+      _flaxBinding234,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "statusBarIconBrightness",
-      _flaxBinding1290,
+      _flaxBinding234,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "systemStatusBarContrastEnforced",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "systemNavigationBarIconBrightness",
-      _flaxBinding1290,
+      _flaxBinding234,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding1303,
+  _flaxBinding1287,
   id: "callback:<>(n:o:systemNavigationBarColor:object?:flax.core/flutter#type:Color,n:o:systemNavigationBarDividerColor:object?:flax.core/flutter#type:Color,n:o:systemNavigationBarContrastEnforced:bool?:,n:o:statusBarColor:object?:flax.core/flutter#type:Color,n:o:statusBarBrightness:enum?:flax.core/sdk_dart_ui#type:Brightness,n:o:statusBarIconBrightness:enum?:flax.core/sdk_dart_ui#type:Brightness,n:o:systemStatusBarContrastEnforced:bool?:,n:o:systemNavigationBarIconBrightness:enum?:flax.core/sdk_dart_ui#type:Brightness)->object:flax.core/sdk_services#type:SystemUiOverlayStyle",
 );
-const _flaxBinding1307 = FlaxProxyMember(
+const _flaxBinding1291 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1306,
+  _flaxBinding1290,
   hasSuper: true,
 );
-const _flaxBinding1308 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1287,
-  id: "callback:<>()->object?:flax.core/flutter#type:Color",
-);
-const _flaxBinding1309 = FlaxProxyMember(
+const _flaxBinding1292 = FlaxProxyMember(
   "systemNavigationBarColor",
   1,
-  _flaxBinding1308,
+  _flaxBinding233,
   hasSuper: true,
 );
-const _flaxBinding1310 = FlaxProxyMember(
+const _flaxBinding1293 = FlaxProxyMember(
   "systemNavigationBarDividerColor",
   1,
-  _flaxBinding1308,
+  _flaxBinding233,
   hasSuper: true,
 );
-const _flaxBinding1311 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1290,
-  id: "callback:<>()->enum?:flax.core/sdk_dart_ui#type:Brightness",
-);
-const _flaxBinding1312 = FlaxProxyMember(
+const _flaxBinding1294 = FlaxProxyMember(
   "systemNavigationBarIconBrightness",
   1,
-  _flaxBinding1311,
+  _flaxBinding235,
   hasSuper: true,
 );
-const _flaxBinding1313 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1292,
-  id: "callback:<>()->bool?:",
-);
-const _flaxBinding1314 = FlaxProxyMember(
+const _flaxBinding1295 = FlaxProxyMember(
   "systemNavigationBarContrastEnforced",
   1,
-  _flaxBinding1313,
+  _flaxBinding237,
   hasSuper: true,
 );
-const _flaxBinding1315 = FlaxProxyMember(
+const _flaxBinding1296 = FlaxProxyMember(
   "statusBarColor",
   1,
-  _flaxBinding1308,
+  _flaxBinding233,
   hasSuper: true,
 );
-const _flaxBinding1316 = FlaxProxyMember(
+const _flaxBinding1297 = FlaxProxyMember(
   "statusBarBrightness",
   1,
-  _flaxBinding1311,
+  _flaxBinding235,
   hasSuper: true,
 );
-const _flaxBinding1317 = FlaxProxyMember(
+const _flaxBinding1298 = FlaxProxyMember(
   "statusBarIconBrightness",
   1,
-  _flaxBinding1311,
+  _flaxBinding235,
   hasSuper: true,
 );
-const _flaxBinding1318 = FlaxProxyMember(
+const _flaxBinding1299 = FlaxProxyMember(
   "systemStatusBarContrastEnforced",
   1,
-  _flaxBinding1313,
+  _flaxBinding237,
   hasSuper: true,
 );
-const _flaxBinding1319 = FlaxObjectBinding(
+const _flaxBinding1300 = FlaxObjectBinding(
   "flax.core/sdk_services#type:SystemUiOverlayStyle",
   [
-    _flaxBinding1288,
-    _flaxBinding1289,
-    _flaxBinding1291,
-    _flaxBinding1293,
-    _flaxBinding1294,
-    _flaxBinding1295,
-    _flaxBinding1296,
-    _flaxBinding1297,
+    _flaxBinding1274,
+    _flaxBinding1275,
+    _flaxBinding1276,
+    _flaxBinding1277,
+    _flaxBinding1278,
+    _flaxBinding1279,
+    _flaxBinding1280,
+    _flaxBinding1281,
   ],
   {
-    "toStringShort": _flaxBinding1298,
-    "toString": _flaxBinding1299,
-    "toDiagnosticsNode": _flaxBinding1300,
-    "debugFillProperties": _flaxBinding1301,
-    "copyWith": _flaxBinding1304,
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toStringShort": _flaxBinding1282,
+    "toString": _flaxBinding1283,
+    "toDiagnosticsNode": _flaxBinding1284,
+    "debugFillProperties": _flaxBinding1285,
+    "copyWith": _flaxBinding1288,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:copyWith": FlaxInstanceMethod(
-      _flaxBinding1302,
-      _flaxBinding1303,
+      _flaxBinding1286,
+      _flaxBinding1287,
       _SystemUiOverlayStyle_super_copyWith,
     ),
-    "@super:get:systemNavigationBarColor": FlaxInstanceMethod(
-      [],
-      _flaxBinding1287,
+    "@super:get:systemNavigationBarColor": FlaxInstanceMethod.signature(
+      _flaxBinding233,
       _SystemUiOverlayStyle_super_get_systemNavigationBarColor,
     ),
-    "@super:get:systemNavigationBarDividerColor": FlaxInstanceMethod(
-      [],
-      _flaxBinding1287,
+    "@super:get:systemNavigationBarDividerColor": FlaxInstanceMethod.signature(
+      _flaxBinding233,
       _SystemUiOverlayStyle_super_get_systemNavigationBarDividerColor,
     ),
-    "@super:get:systemNavigationBarIconBrightness": FlaxInstanceMethod(
-      [],
-      _flaxBinding1290,
-      _SystemUiOverlayStyle_super_get_systemNavigationBarIconBrightness,
-    ),
-    "@super:get:systemNavigationBarContrastEnforced": FlaxInstanceMethod(
-      [],
-      _flaxBinding1292,
-      _SystemUiOverlayStyle_super_get_systemNavigationBarContrastEnforced,
-    ),
-    "@super:get:statusBarColor": FlaxInstanceMethod(
-      [],
-      _flaxBinding1287,
+    "@super:get:systemNavigationBarIconBrightness":
+        FlaxInstanceMethod.signature(
+          _flaxBinding235,
+          _SystemUiOverlayStyle_super_get_systemNavigationBarIconBrightness,
+        ),
+    "@super:get:systemNavigationBarContrastEnforced":
+        FlaxInstanceMethod.signature(
+          _flaxBinding237,
+          _SystemUiOverlayStyle_super_get_systemNavigationBarContrastEnforced,
+        ),
+    "@super:get:statusBarColor": FlaxInstanceMethod.signature(
+      _flaxBinding233,
       _SystemUiOverlayStyle_super_get_statusBarColor,
     ),
-    "@super:get:statusBarBrightness": FlaxInstanceMethod(
-      [],
-      _flaxBinding1290,
+    "@super:get:statusBarBrightness": FlaxInstanceMethod.signature(
+      _flaxBinding235,
       _SystemUiOverlayStyle_super_get_statusBarBrightness,
     ),
-    "@super:get:statusBarIconBrightness": FlaxInstanceMethod(
-      [],
-      _flaxBinding1290,
+    "@super:get:statusBarIconBrightness": FlaxInstanceMethod.signature(
+      _flaxBinding235,
       _SystemUiOverlayStyle_super_get_statusBarIconBrightness,
     ),
-    "@super:get:systemStatusBarContrastEnforced": FlaxInstanceMethod(
-      [],
-      _flaxBinding1292,
+    "@super:get:systemStatusBarContrastEnforced": FlaxInstanceMethod.signature(
+      _flaxBinding237,
       _SystemUiOverlayStyle_super_get_systemStatusBarContrastEnforced,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1305},
+  constructors: {"@implementation": _flaxBinding1289},
   create: _createSystemUiOverlayStyle,
   matches: _isSystemUiOverlayStyle,
   setters: [],
@@ -40650,152 +39027,123 @@ const _flaxBinding1319 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding597,
-    _flaxBinding601,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding1307,
-    _flaxBinding1309,
-    _flaxBinding1310,
-    _flaxBinding1312,
-    _flaxBinding1314,
-    _flaxBinding1315,
-    _flaxBinding1316,
-    _flaxBinding1317,
-    _flaxBinding1318,
+    _flaxBinding692,
+    _flaxBinding696,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding1291,
+    _flaxBinding1292,
+    _flaxBinding1293,
+    _flaxBinding1294,
+    _flaxBinding1295,
+    _flaxBinding1296,
+    _flaxBinding1297,
+    _flaxBinding1298,
+    _flaxBinding1299,
   ]),
 );
-const _flaxBinding1320 = FlaxGetter(
+const _flaxBinding1301 = FlaxGetter(
   "oldText",
-  _flaxBinding24,
+  _flaxBinding0,
   _TextEditingDelta_oldText,
 );
-const _flaxBinding1321 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:TextSelection",
-);
-const _flaxBinding1322 = FlaxGetter(
+const _flaxBinding1302 = FlaxGetter(
   "selection",
-  _flaxBinding1321,
+  _flaxBinding239,
   _TextEditingDelta_selection,
 );
-const _flaxBinding1323 = FlaxGetter(
+const _flaxBinding1303 = FlaxGetter(
   "composing",
-  _flaxBinding294,
+  _flaxBinding68,
   _TextEditingDelta_composing,
 );
-const _flaxBinding1324 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1304 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _TextEditingDelta_toStringShort,
 );
-const _flaxBinding1325 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding1305 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _TextEditingDelta_toString,
 );
-const _flaxBinding1326 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding1306 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _TextEditingDelta_toDiagnosticsNode,
 );
-const _flaxBinding1327 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding1307 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _TextEditingDelta_debugFillProperties,
 );
-const _flaxBinding1328 = FlaxInstanceMethod(
-  _flaxBinding356,
-  _flaxBinding207,
+const _flaxBinding1308 = FlaxInstanceMethod.signature(
+  _flaxBinding238,
   _TextEditingDelta_apply,
 );
-const _flaxBinding1329 = <FlaxParameter>[
-  FlaxParameter("oldText", _flaxBinding24, required: true),
-  FlaxParameter("selection", _flaxBinding1321, required: true),
-  FlaxParameter("composing", _flaxBinding294, required: true),
+const _flaxBinding1309 = <FlaxParameter>[
+  FlaxParameter("oldText", _flaxBinding0, required: true),
+  FlaxParameter("selection", _flaxBinding239, required: true),
+  FlaxParameter("composing", _flaxBinding68, required: true),
 ];
-const _flaxBinding1330 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "value",
-      _flaxBinding207,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding207,
-  id: "callback:<>(p:r:value:object:flax.core/flutter#type:TextEditingValue)->object:flax.core/flutter#type:TextEditingValue",
-);
-const _flaxBinding1331 = FlaxProxyMember("apply", 0, _flaxBinding1330);
-const _flaxBinding1332 = FlaxProxyMember(
+const _flaxBinding1310 = FlaxProxyMember("apply", 0, _flaxBinding238);
+const _flaxBinding1311 = FlaxProxyMember(
   "oldText",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding1333 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1321,
-  id: "callback:<>()->object:flax.core/flutter#type:TextSelection",
-);
-const _flaxBinding1334 = FlaxProxyMember(
+const _flaxBinding1312 = FlaxProxyMember(
   "selection",
   1,
-  _flaxBinding1333,
+  _flaxBinding240,
   hasSuper: true,
 );
-const _flaxBinding1335 = FlaxProxyMember(
+const _flaxBinding1313 = FlaxProxyMember(
   "composing",
   1,
-  _flaxBinding1245,
+  _flaxBinding223,
   hasSuper: true,
 );
-const _flaxBinding1336 = FlaxObjectBinding(
+const _flaxBinding1314 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextEditingDelta",
-  [_flaxBinding1320, _flaxBinding1322, _flaxBinding1323],
+  [_flaxBinding1301, _flaxBinding1302, _flaxBinding1303],
   {
-    "toStringShort": _flaxBinding1324,
-    "toString": _flaxBinding1325,
-    "toDiagnosticsNode": _flaxBinding1326,
-    "debugFillProperties": _flaxBinding1327,
-    "apply": _flaxBinding1328,
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "toStringShort": _flaxBinding1304,
+    "toString": _flaxBinding1305,
+    "toDiagnosticsNode": _flaxBinding1306,
+    "debugFillProperties": _flaxBinding1307,
+    "apply": _flaxBinding1308,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
-    "@super:get:oldText": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:oldText": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch34_super_get_oldText,
     ),
-    "@super:get:selection": FlaxInstanceMethod(
-      [],
-      _flaxBinding1321,
+    "@super:get:selection": FlaxInstanceMethod.signature(
+      _flaxBinding240,
       _FlaxProxyDispatch34_super_get_selection,
     ),
-    "@super:get:composing": FlaxInstanceMethod(
-      [],
-      _flaxBinding294,
+    "@super:get:composing": FlaxInstanceMethod.signature(
+      _flaxBinding223,
       _FlaxProxyDispatch34_super_get_composing,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1329},
+  constructors: {"@implementation": _flaxBinding1309},
   create: _createTextEditingDelta,
   matches: _isTextEditingDelta,
   setters: [],
@@ -40804,106 +39152,98 @@ const _flaxBinding1336 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding597,
-    _flaxBinding601,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding1331,
-    _flaxBinding1332,
-    _flaxBinding1334,
-    _flaxBinding1335,
+    _flaxBinding692,
+    _flaxBinding696,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding1310,
+    _flaxBinding1311,
+    _flaxBinding1312,
+    _flaxBinding1313,
   ]),
 );
-const _flaxBinding1337 = FlaxGetter(
+const _flaxBinding1315 = FlaxGetter(
   "deletedRange",
-  _flaxBinding294,
+  _flaxBinding68,
   _TextEditingDeltaDeletion_deletedRange,
 );
-const _flaxBinding1338 = FlaxGetter(
+const _flaxBinding1316 = FlaxGetter(
   "textDeleted",
-  _flaxBinding24,
+  _flaxBinding0,
   _TextEditingDeltaDeletion_textDeleted,
 );
-const _flaxBinding1339 = <FlaxParameter>[
-  FlaxParameter("oldText", _flaxBinding24, required: true),
-  FlaxParameter("deletedRange", _flaxBinding294, required: true),
-  FlaxParameter("selection", _flaxBinding1321, required: true),
-  FlaxParameter("composing", _flaxBinding294, required: true),
+const _flaxBinding1317 = <FlaxParameter>[
+  FlaxParameter("oldText", _flaxBinding0, required: true),
+  FlaxParameter("deletedRange", _flaxBinding68, required: true),
+  FlaxParameter("selection", _flaxBinding239, required: true),
+  FlaxParameter("composing", _flaxBinding68, required: true),
 ];
-const _flaxBinding1340 = FlaxProxyMember(
+const _flaxBinding1318 = FlaxProxyMember(
   "apply",
   0,
-  _flaxBinding1330,
+  _flaxBinding238,
   hasSuper: true,
 );
-const _flaxBinding1341 = FlaxProxyMember(
+const _flaxBinding1319 = FlaxProxyMember(
   "deletedRange",
   1,
-  _flaxBinding1245,
+  _flaxBinding223,
   hasSuper: true,
 );
-const _flaxBinding1342 = FlaxProxyMember(
+const _flaxBinding1320 = FlaxProxyMember(
   "textDeleted",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding1343 = FlaxObjectBinding(
+const _flaxBinding1321 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextEditingDeltaDeletion",
-  [_flaxBinding1337, _flaxBinding1338],
+  [_flaxBinding1315, _flaxBinding1316],
   {
-    "@super:apply": FlaxInstanceMethod(
-      _flaxBinding356,
-      _flaxBinding207,
+    "@super:apply": FlaxInstanceMethod.signature(
+      _flaxBinding238,
       _FlaxProxyDispatch35_super_call_apply,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:deletedRange": FlaxInstanceMethod(
-      [],
-      _flaxBinding294,
+    "@super:get:deletedRange": FlaxInstanceMethod.signature(
+      _flaxBinding223,
       _TextEditingDeltaDeletion_super_get_deletedRange,
     ),
-    "@super:get:textDeleted": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:textDeleted": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _TextEditingDeltaDeletion_super_get_textDeleted,
     ),
-    "@super:get:oldText": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:oldText": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch34_super_get_oldText,
     ),
-    "@super:get:selection": FlaxInstanceMethod(
-      [],
-      _flaxBinding1321,
+    "@super:get:selection": FlaxInstanceMethod.signature(
+      _flaxBinding240,
       _FlaxProxyDispatch34_super_get_selection,
     ),
-    "@super:get:composing": FlaxInstanceMethod(
-      [],
-      _flaxBinding294,
+    "@super:get:composing": FlaxInstanceMethod.signature(
+      _flaxBinding223,
       _FlaxProxyDispatch34_super_get_composing,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1339},
+  constructors: {"@implementation": _flaxBinding1317},
   create: _createTextEditingDeltaDeletion,
   matches: _isTextEditingDeltaDeletion,
   setters: [],
@@ -40912,105 +39252,97 @@ const _flaxBinding1343 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding1336,
+  parent: _flaxBinding1314,
   proxy: FlaxProxyBinding([
-    _flaxBinding1340,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding1341,
-    _flaxBinding1342,
-    _flaxBinding1332,
-    _flaxBinding1334,
-    _flaxBinding1335,
+    _flaxBinding1318,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding1319,
+    _flaxBinding1320,
+    _flaxBinding1311,
+    _flaxBinding1312,
+    _flaxBinding1313,
   ]),
 );
-const _flaxBinding1344 = FlaxGetter(
+const _flaxBinding1322 = FlaxGetter(
   "textInserted",
-  _flaxBinding24,
+  _flaxBinding0,
   _TextEditingDeltaInsertion_textInserted,
 );
-const _flaxBinding1345 = FlaxGetter(
+const _flaxBinding1323 = FlaxGetter(
   "insertionOffset",
-  _flaxBinding0,
+  _flaxBinding2,
   _TextEditingDeltaInsertion_insertionOffset,
 );
-const _flaxBinding1346 = <FlaxParameter>[
-  FlaxParameter("oldText", _flaxBinding24, required: true),
-  FlaxParameter("textInserted", _flaxBinding24, required: true),
-  FlaxParameter("insertionOffset", _flaxBinding0, required: true),
-  FlaxParameter("selection", _flaxBinding1321, required: true),
-  FlaxParameter("composing", _flaxBinding294, required: true),
+const _flaxBinding1324 = <FlaxParameter>[
+  FlaxParameter("oldText", _flaxBinding0, required: true),
+  FlaxParameter("textInserted", _flaxBinding0, required: true),
+  FlaxParameter("insertionOffset", _flaxBinding2, required: true),
+  FlaxParameter("selection", _flaxBinding239, required: true),
+  FlaxParameter("composing", _flaxBinding68, required: true),
 ];
-const _flaxBinding1347 = FlaxProxyMember(
+const _flaxBinding1325 = FlaxProxyMember(
   "textInserted",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding1348 = FlaxProxyMember(
+const _flaxBinding1326 = FlaxProxyMember(
   "insertionOffset",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding1349 = FlaxObjectBinding(
+const _flaxBinding1327 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextEditingDeltaInsertion",
-  [_flaxBinding1344, _flaxBinding1345],
+  [_flaxBinding1322, _flaxBinding1323],
   {
-    "@super:apply": FlaxInstanceMethod(
-      _flaxBinding356,
-      _flaxBinding207,
+    "@super:apply": FlaxInstanceMethod.signature(
+      _flaxBinding238,
       _FlaxProxyDispatch35_super_call_apply,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:textInserted": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:textInserted": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _TextEditingDeltaInsertion_super_get_textInserted,
     ),
-    "@super:get:insertionOffset": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:insertionOffset": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _TextEditingDeltaInsertion_super_get_insertionOffset,
     ),
-    "@super:get:oldText": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:oldText": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch34_super_get_oldText,
     ),
-    "@super:get:selection": FlaxInstanceMethod(
-      [],
-      _flaxBinding1321,
+    "@super:get:selection": FlaxInstanceMethod.signature(
+      _flaxBinding240,
       _FlaxProxyDispatch34_super_get_selection,
     ),
-    "@super:get:composing": FlaxInstanceMethod(
-      [],
-      _flaxBinding294,
+    "@super:get:composing": FlaxInstanceMethod.signature(
+      _flaxBinding223,
       _FlaxProxyDispatch34_super_get_composing,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1346},
+  constructors: {"@implementation": _flaxBinding1324},
   create: _createTextEditingDeltaInsertion,
   matches: _isTextEditingDeltaInsertion,
   setters: [],
@@ -41019,66 +39351,60 @@ const _flaxBinding1349 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding1336,
+  parent: _flaxBinding1314,
   proxy: FlaxProxyBinding([
-    _flaxBinding1340,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding1347,
-    _flaxBinding1348,
-    _flaxBinding1332,
-    _flaxBinding1334,
-    _flaxBinding1335,
+    _flaxBinding1318,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding1325,
+    _flaxBinding1326,
+    _flaxBinding1311,
+    _flaxBinding1312,
+    _flaxBinding1313,
   ]),
 );
-const _flaxBinding1350 = FlaxObjectBinding(
+const _flaxBinding1328 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextEditingDeltaNonTextUpdate",
   [],
   {
-    "@super:apply": FlaxInstanceMethod(
-      _flaxBinding356,
-      _flaxBinding207,
+    "@super:apply": FlaxInstanceMethod.signature(
+      _flaxBinding238,
       _FlaxProxyDispatch35_super_call_apply,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:oldText": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:oldText": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch34_super_get_oldText,
     ),
-    "@super:get:selection": FlaxInstanceMethod(
-      [],
-      _flaxBinding1321,
+    "@super:get:selection": FlaxInstanceMethod.signature(
+      _flaxBinding240,
       _FlaxProxyDispatch34_super_get_selection,
     ),
-    "@super:get:composing": FlaxInstanceMethod(
-      [],
-      _flaxBinding294,
+    "@super:get:composing": FlaxInstanceMethod.signature(
+      _flaxBinding223,
       _FlaxProxyDispatch34_super_get_composing,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1329},
+  constructors: {"@implementation": _flaxBinding1309},
   create: _createTextEditingDeltaNonTextUpdate,
   matches: _isTextEditingDeltaNonTextUpdate,
   setters: [],
@@ -41087,119 +39413,110 @@ const _flaxBinding1350 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding1336,
+  parent: _flaxBinding1314,
   proxy: FlaxProxyBinding([
-    _flaxBinding1340,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding1332,
-    _flaxBinding1334,
-    _flaxBinding1335,
+    _flaxBinding1318,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding1311,
+    _flaxBinding1312,
+    _flaxBinding1313,
   ]),
 );
-const _flaxBinding1351 = FlaxGetter(
+const _flaxBinding1329 = FlaxGetter(
   "replacementText",
-  _flaxBinding24,
+  _flaxBinding0,
   _TextEditingDeltaReplacement_replacementText,
 );
-const _flaxBinding1352 = FlaxGetter(
+const _flaxBinding1330 = FlaxGetter(
   "replacedRange",
-  _flaxBinding294,
+  _flaxBinding68,
   _TextEditingDeltaReplacement_replacedRange,
 );
-const _flaxBinding1353 = FlaxGetter(
+const _flaxBinding1331 = FlaxGetter(
   "textReplaced",
-  _flaxBinding24,
+  _flaxBinding0,
   _TextEditingDeltaReplacement_textReplaced,
 );
-const _flaxBinding1354 = <FlaxParameter>[
-  FlaxParameter("oldText", _flaxBinding24, required: true),
-  FlaxParameter("replacementText", _flaxBinding24, required: true),
-  FlaxParameter("replacedRange", _flaxBinding294, required: true),
-  FlaxParameter("selection", _flaxBinding1321, required: true),
-  FlaxParameter("composing", _flaxBinding294, required: true),
+const _flaxBinding1332 = <FlaxParameter>[
+  FlaxParameter("oldText", _flaxBinding0, required: true),
+  FlaxParameter("replacementText", _flaxBinding0, required: true),
+  FlaxParameter("replacedRange", _flaxBinding68, required: true),
+  FlaxParameter("selection", _flaxBinding239, required: true),
+  FlaxParameter("composing", _flaxBinding68, required: true),
 ];
-const _flaxBinding1355 = FlaxProxyMember(
+const _flaxBinding1333 = FlaxProxyMember(
   "replacementText",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding1356 = FlaxProxyMember(
+const _flaxBinding1334 = FlaxProxyMember(
   "replacedRange",
   1,
-  _flaxBinding1245,
+  _flaxBinding223,
   hasSuper: true,
 );
-const _flaxBinding1357 = FlaxProxyMember(
+const _flaxBinding1335 = FlaxProxyMember(
   "textReplaced",
   1,
-  _flaxBinding27,
+  _flaxBinding1,
   hasSuper: true,
 );
-const _flaxBinding1358 = FlaxObjectBinding(
+const _flaxBinding1336 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextEditingDeltaReplacement",
-  [_flaxBinding1351, _flaxBinding1352, _flaxBinding1353],
+  [_flaxBinding1329, _flaxBinding1330, _flaxBinding1331],
   {
-    "@super:apply": FlaxInstanceMethod(
-      _flaxBinding356,
-      _flaxBinding207,
+    "@super:apply": FlaxInstanceMethod.signature(
+      _flaxBinding238,
       _FlaxProxyDispatch35_super_call_apply,
     ),
-    "@super:toStringShort": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toStringShort": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch15_super_call_toStringShort,
     ),
     "@super:toDiagnosticsNode": FlaxInstanceMethod(
-      _flaxBinding515,
-      _flaxBinding516,
+      _flaxBinding627,
+      _flaxBinding628,
       _FlaxProxyDispatch15_super_call_toDiagnosticsNode,
     ),
-    "@super:debugFillProperties": FlaxInstanceMethod(
-      _flaxBinding519,
-      _flaxBinding82,
+    "@super:debugFillProperties": FlaxInstanceMethod.signature(
+      _flaxBinding128,
       _FlaxProxyDispatch15_super_call_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod(
-      _flaxBinding512,
-      _flaxBinding24,
+      _flaxBinding624,
+      _flaxBinding0,
       _FlaxProxyDispatch15_super_call_toString,
     ),
-    "@super:get:replacementText": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:replacementText": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _TextEditingDeltaReplacement_super_get_replacementText,
     ),
-    "@super:get:replacedRange": FlaxInstanceMethod(
-      [],
-      _flaxBinding294,
+    "@super:get:replacedRange": FlaxInstanceMethod.signature(
+      _flaxBinding223,
       _TextEditingDeltaReplacement_super_get_replacedRange,
     ),
-    "@super:get:textReplaced": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:textReplaced": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _TextEditingDeltaReplacement_super_get_textReplaced,
     ),
-    "@super:get:oldText": FlaxInstanceMethod(
-      [],
-      _flaxBinding24,
+    "@super:get:oldText": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch34_super_get_oldText,
     ),
-    "@super:get:selection": FlaxInstanceMethod(
-      [],
-      _flaxBinding1321,
+    "@super:get:selection": FlaxInstanceMethod.signature(
+      _flaxBinding240,
       _FlaxProxyDispatch34_super_get_selection,
     ),
-    "@super:get:composing": FlaxInstanceMethod(
-      [],
-      _flaxBinding294,
+    "@super:get:composing": FlaxInstanceMethod.signature(
+      _flaxBinding223,
       _FlaxProxyDispatch34_super_get_composing,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1354},
+  constructors: {"@implementation": _flaxBinding1332},
   create: _createTextEditingDeltaReplacement,
   matches: _isTextEditingDeltaReplacement,
   setters: [],
@@ -41208,29 +39525,29 @@ const _flaxBinding1358 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding1336,
+  parent: _flaxBinding1314,
   proxy: FlaxProxyBinding([
-    _flaxBinding1340,
-    _flaxBinding597,
-    _flaxBinding599,
-    _flaxBinding596,
-    _flaxBinding601,
-    _flaxBinding1355,
-    _flaxBinding1356,
-    _flaxBinding1357,
-    _flaxBinding1332,
+    _flaxBinding1318,
+    _flaxBinding692,
+    _flaxBinding694,
+    _flaxBinding691,
+    _flaxBinding696,
+    _flaxBinding1333,
     _flaxBinding1334,
     _flaxBinding1335,
+    _flaxBinding1311,
+    _flaxBinding1312,
+    _flaxBinding1313,
   ]),
 );
-const _flaxBinding1359 = FlaxGetter(
+const _flaxBinding1337 = FlaxGetter(
   "scribbleInProgress",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInput_scribbleInProgress,
 );
-const _flaxBinding1360 = FlaxObjectBinding(
+const _flaxBinding1338 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextInput",
-  [_flaxBinding1359],
+  [_flaxBinding1337],
   {},
   constructors: {},
   create: _createTextInput,
@@ -41238,844 +39555,728 @@ const _flaxBinding1360 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1361 = FlaxGetter(
+const _flaxBinding1339 = FlaxGetter(
   "viewId",
-  _flaxBinding102,
+  _flaxBinding16,
   _TextInputConfiguration_viewId,
 );
-const _flaxBinding1362 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:TextInputType",
-);
-const _flaxBinding1363 = FlaxGetter(
+const _flaxBinding1340 = FlaxGetter(
   "inputType",
-  _flaxBinding1362,
+  _flaxBinding242,
   _TextInputConfiguration_inputType,
 );
-const _flaxBinding1364 = FlaxGetter(
+const _flaxBinding1341 = FlaxGetter(
   "readOnly",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConfiguration_readOnly,
 );
-const _flaxBinding1365 = FlaxGetter(
+const _flaxBinding1342 = FlaxGetter(
   "obscureText",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConfiguration_obscureText,
 );
-const _flaxBinding1366 = FlaxGetter(
+const _flaxBinding1343 = FlaxGetter(
   "autocorrect",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConfiguration_autocorrect,
 );
-const _flaxBinding1367 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_services#type:AutofillConfiguration",
-);
-const _flaxBinding1368 = FlaxGetter(
+const _flaxBinding1344 = FlaxGetter(
   "autofillConfiguration",
-  _flaxBinding1367,
+  _flaxBinding244,
   _TextInputConfiguration_autofillConfiguration,
 );
-const _flaxBinding1369 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:SmartDashesType",
-);
-const _flaxBinding1370 = FlaxGetter(
+const _flaxBinding1345 = FlaxGetter(
   "smartDashesType",
-  _flaxBinding1369,
+  _flaxBinding246,
   _TextInputConfiguration_smartDashesType,
 );
-const _flaxBinding1371 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:SmartQuotesType",
-);
-const _flaxBinding1372 = FlaxGetter(
+const _flaxBinding1346 = FlaxGetter(
   "smartQuotesType",
-  _flaxBinding1371,
+  _flaxBinding248,
   _TextInputConfiguration_smartQuotesType,
 );
-const _flaxBinding1373 = FlaxGetter(
+const _flaxBinding1347 = FlaxGetter(
   "enableSuggestions",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConfiguration_enableSuggestions,
 );
-const _flaxBinding1374 = FlaxGetter(
+const _flaxBinding1348 = FlaxGetter(
   "enableInteractiveSelection",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConfiguration_enableInteractiveSelection,
 );
-const _flaxBinding1375 = FlaxGetter(
+const _flaxBinding1349 = FlaxGetter(
   "actionLabel",
-  _flaxBinding142,
+  _flaxBinding14,
   _TextInputConfiguration_actionLabel,
 );
-const _flaxBinding1376 = FlaxGetter(
+const _flaxBinding1350 = FlaxGetter(
   "inputAction",
-  _flaxBinding358,
+  _flaxBinding250,
   _TextInputConfiguration_inputAction,
 );
-const _flaxBinding1377 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_services#type:TextCapitalization",
-);
-const _flaxBinding1378 = FlaxGetter(
+const _flaxBinding1351 = FlaxGetter(
   "textCapitalization",
-  _flaxBinding1377,
+  _flaxBinding252,
   _TextInputConfiguration_textCapitalization,
 );
-const _flaxBinding1379 = FlaxTypeRef(
-  "enum",
-  id: "flax.core/sdk_dart_ui#type:Brightness",
-);
-const _flaxBinding1380 = FlaxGetter(
+const _flaxBinding1352 = FlaxGetter(
   "keyboardAppearance",
-  _flaxBinding1379,
+  _flaxBinding254,
   _TextInputConfiguration_keyboardAppearance,
 );
-const _flaxBinding1381 = FlaxGetter(
+const _flaxBinding1353 = FlaxGetter(
   "enableIMEPersonalizedLearning",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConfiguration_enableIMEPersonalizedLearning,
 );
-const _flaxBinding1382 = FlaxGetter(
+const _flaxBinding1354 = FlaxGetter(
   "allowedMimeTypes",
-  _flaxBinding183,
+  _flaxBinding28,
   _TextInputConfiguration_allowedMimeTypes,
 );
-const _flaxBinding1383 = FlaxTypeRef(
-  "iterable",
-  item: _flaxBinding325,
-  collection: FlaxCollectionBinding(
-    "iterable:[object:flax.core/sdk_dart_ui#type:Locale]",
-    _collection36Create,
-    _collection36Matches,
-    restore: _collection36Restore,
-  ),
-);
-const _flaxBinding1384 = FlaxTypeRef(
-  "list",
-  nullable: true,
-  item: _flaxBinding325,
-  collection: FlaxCollectionBinding(
-    "list:[object:flax.core/sdk_dart_ui#type:Locale]",
-    _collection35Create,
-    _collection35Matches,
-  ),
-  iterable: _flaxBinding1383,
-);
-const _flaxBinding1385 = FlaxGetter(
+const _flaxBinding1355 = FlaxGetter(
   "hintLocales",
-  _flaxBinding1384,
+  _flaxBinding257,
   _TextInputConfiguration_hintLocales,
 );
-const _flaxBinding1386 = FlaxGetter(
+const _flaxBinding1356 = FlaxGetter(
   "enableInlinePrediction",
-  _flaxBinding1292,
+  _flaxBinding236,
   _TextInputConfiguration_enableInlinePrediction,
 );
-const _flaxBinding1387 = FlaxGetter(
+const _flaxBinding1357 = FlaxGetter(
   "enableDeltaModel",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConfiguration_enableDeltaModel,
 );
-const _flaxBinding1388 = FlaxTypeRef(
+const _flaxBinding1358 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding24,
+  item: _flaxBinding0,
   collection: FlaxCollectionBinding(
     "list:[String:]",
     _collection4Create,
     _collection4Matches,
   ),
-  iterable: _flaxBinding182,
+  iterable: _flaxBinding27,
 );
-const _flaxBinding1389 = FlaxTypeRef(
+const _flaxBinding1359 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:AutofillConfiguration",
   nullable: true,
 );
-const _flaxBinding1390 = FlaxTypeRef(
+const _flaxBinding1360 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:TextInputAction",
   nullable: true,
 );
-const _flaxBinding1391 = FlaxTypeRef(
+const _flaxBinding1361 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:TextInputType",
   nullable: true,
 );
-const _flaxBinding1392 = FlaxTypeRef(
+const _flaxBinding1362 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SmartDashesType",
   nullable: true,
 );
-const _flaxBinding1393 = FlaxTypeRef(
+const _flaxBinding1363 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SmartQuotesType",
   nullable: true,
 );
-const _flaxBinding1394 = FlaxTypeRef(
+const _flaxBinding1364 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:TextCapitalization",
   nullable: true,
 );
-const _flaxBinding1395 = <FlaxParameter>[
-  FlaxParameter("actionLabel", _flaxBinding142, required: false),
-  FlaxParameter("allowedMimeTypes", _flaxBinding1388, required: false),
-  FlaxParameter("autocorrect", _flaxBinding1292, required: false),
-  FlaxParameter("autofillConfiguration", _flaxBinding1389, required: false),
-  FlaxParameter("enableDeltaModel", _flaxBinding1292, required: false),
+const _flaxBinding1365 = <FlaxParameter>[
+  FlaxParameter("actionLabel", _flaxBinding14, required: false),
+  FlaxParameter("allowedMimeTypes", _flaxBinding1358, required: false),
+  FlaxParameter("autocorrect", _flaxBinding236, required: false),
+  FlaxParameter("autofillConfiguration", _flaxBinding1359, required: false),
+  FlaxParameter("enableDeltaModel", _flaxBinding236, required: false),
   FlaxParameter(
     "enableIMEPersonalizedLearning",
-    _flaxBinding1292,
+    _flaxBinding236,
     required: false,
   ),
-  FlaxParameter("enableInlinePrediction", _flaxBinding1292, required: false),
-  FlaxParameter(
-    "enableInteractiveSelection",
-    _flaxBinding1292,
-    required: false,
-  ),
-  FlaxParameter("enableSuggestions", _flaxBinding1292, required: false),
-  FlaxParameter("hintLocales", _flaxBinding1384, required: false),
-  FlaxParameter("inputAction", _flaxBinding1390, required: false),
-  FlaxParameter("inputType", _flaxBinding1391, required: false),
-  FlaxParameter("keyboardAppearance", _flaxBinding1290, required: false),
-  FlaxParameter("obscureText", _flaxBinding1292, required: false),
-  FlaxParameter("readOnly", _flaxBinding1292, required: false),
-  FlaxParameter("smartDashesType", _flaxBinding1392, required: false),
-  FlaxParameter("smartQuotesType", _flaxBinding1393, required: false),
-  FlaxParameter("textCapitalization", _flaxBinding1394, required: false),
-  FlaxParameter("viewId", _flaxBinding102, required: false),
+  FlaxParameter("enableInlinePrediction", _flaxBinding236, required: false),
+  FlaxParameter("enableInteractiveSelection", _flaxBinding236, required: false),
+  FlaxParameter("enableSuggestions", _flaxBinding236, required: false),
+  FlaxParameter("hintLocales", _flaxBinding257, required: false),
+  FlaxParameter("inputAction", _flaxBinding1360, required: false),
+  FlaxParameter("inputType", _flaxBinding1361, required: false),
+  FlaxParameter("keyboardAppearance", _flaxBinding234, required: false),
+  FlaxParameter("obscureText", _flaxBinding236, required: false),
+  FlaxParameter("readOnly", _flaxBinding236, required: false),
+  FlaxParameter("smartDashesType", _flaxBinding1362, required: false),
+  FlaxParameter("smartQuotesType", _flaxBinding1363, required: false),
+  FlaxParameter("textCapitalization", _flaxBinding1364, required: false),
+  FlaxParameter("viewId", _flaxBinding16, required: false),
 ];
-const _flaxBinding1396 = FlaxInstanceMethod(
-  _flaxBinding1395,
-  _flaxBinding205,
+const _flaxBinding1366 = FlaxInstanceMethod(
+  _flaxBinding1365,
+  _flaxBinding40,
   _TextInputConfiguration_copyWith,
 );
-const _flaxBinding1397 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding364,
+const _flaxBinding1367 = FlaxInstanceMethod.signature(
+  _flaxBinding241,
   _TextInputConfiguration_toJson,
 );
-const _flaxBinding1398 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1368 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _TextInputConfiguration_toString,
 );
-const _flaxBinding1399 = <FlaxParameter>[
-  FlaxParameter("viewId", _flaxBinding102, required: false),
+const _flaxBinding1369 = <FlaxParameter>[
+  FlaxParameter("viewId", _flaxBinding16, required: false),
   FlaxParameter(
     "inputType",
-    _flaxBinding1362,
+    _flaxBinding242,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "readOnly",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "obscureText",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "autocorrect",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: true,
   ),
-  FlaxParameter("smartDashesType", _flaxBinding1392, required: false),
-  FlaxParameter("smartQuotesType", _flaxBinding1393, required: false),
+  FlaxParameter("smartDashesType", _flaxBinding1362, required: false),
+  FlaxParameter("smartQuotesType", _flaxBinding1363, required: false),
   FlaxParameter(
     "enableSuggestions",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: true,
   ),
   FlaxParameter(
     "enableInteractiveSelection",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: true,
   ),
-  FlaxParameter("actionLabel", _flaxBinding142, required: false),
+  FlaxParameter("actionLabel", _flaxBinding14, required: false),
   FlaxParameter(
     "inputAction",
-    _flaxBinding358,
+    _flaxBinding250,
     required: false,
     defaultValue: api.TextInputAction.done,
   ),
   FlaxParameter(
     "keyboardAppearance",
-    _flaxBinding1379,
+    _flaxBinding254,
     required: false,
     defaultValue: api1.Brightness.light,
   ),
   FlaxParameter(
     "textCapitalization",
-    _flaxBinding1377,
+    _flaxBinding252,
     required: false,
     defaultValue: api.TextCapitalization.none,
   ),
   FlaxParameter(
     "autofillConfiguration",
-    _flaxBinding1367,
+    _flaxBinding244,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "enableIMEPersonalizedLearning",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: true,
   ),
   FlaxParameter(
     "allowedMimeTypes",
-    _flaxBinding183,
+    _flaxBinding28,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "enableDeltaModel",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "hintLocales",
-    _flaxBinding1384,
+    _flaxBinding257,
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("enableInlinePrediction", _flaxBinding1292, required: false),
+  FlaxParameter("enableInlinePrediction", _flaxBinding236, required: false),
 ];
-const _flaxBinding1400 = FlaxCallbackBinding.signature(
+const _flaxBinding1370 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter(
       "viewId",
-      _flaxBinding102,
+      _flaxBinding16,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "inputType",
-      _flaxBinding1391,
+      _flaxBinding1361,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "readOnly",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "obscureText",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "autocorrect",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "smartDashesType",
-      _flaxBinding1392,
+      _flaxBinding1362,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "smartQuotesType",
-      _flaxBinding1393,
+      _flaxBinding1363,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "enableSuggestions",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "enableInteractiveSelection",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "actionLabel",
-      _flaxBinding142,
+      _flaxBinding14,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "inputAction",
-      _flaxBinding1390,
+      _flaxBinding1360,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "keyboardAppearance",
-      _flaxBinding1290,
+      _flaxBinding234,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "textCapitalization",
-      _flaxBinding1394,
+      _flaxBinding1364,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "enableIMEPersonalizedLearning",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "allowedMimeTypes",
-      _flaxBinding1388,
+      _flaxBinding1358,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "autofillConfiguration",
-      _flaxBinding1389,
+      _flaxBinding1359,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "enableDeltaModel",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "hintLocales",
-      _flaxBinding1384,
+      _flaxBinding257,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter(
       "enableInlinePrediction",
-      _flaxBinding1292,
+      _flaxBinding236,
       required: false,
       positional: false,
     ),
   ],
-  _flaxBinding205,
+  _flaxBinding40,
   id: "callback:<>(n:o:viewId:int?:,n:o:inputType:object?:flax.core/sdk_services#type:TextInputType,n:o:readOnly:bool?:,n:o:obscureText:bool?:,n:o:autocorrect:bool?:,n:o:smartDashesType:enum?:flax.core/sdk_services#type:SmartDashesType,n:o:smartQuotesType:enum?:flax.core/sdk_services#type:SmartQuotesType,n:o:enableSuggestions:bool?:,n:o:enableInteractiveSelection:bool?:,n:o:actionLabel:String?:,n:o:inputAction:enum?:flax.core/sdk_services#type:TextInputAction,n:o:keyboardAppearance:enum?:flax.core/sdk_dart_ui#type:Brightness,n:o:textCapitalization:enum?:flax.core/sdk_services#type:TextCapitalization,n:o:enableIMEPersonalizedLearning:bool?:,n:o:allowedMimeTypes:list?:[String:],n:o:autofillConfiguration:object?:flax.core/sdk_services#type:AutofillConfiguration,n:o:enableDeltaModel:bool?:,n:o:hintLocales:list?:[object:flax.core/sdk_dart_ui#type:Locale],n:o:enableInlinePrediction:bool?:)->object:flax.core/sdk_services#type:TextInputConfiguration",
 );
-const _flaxBinding1401 = FlaxProxyMember(
+const _flaxBinding1371 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1400,
+  _flaxBinding1370,
   hasSuper: true,
 );
-const _flaxBinding1402 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding364,
-  id: "callback:<>()->map:[any?:][String:]",
-);
-const _flaxBinding1403 = FlaxProxyMember(
+const _flaxBinding1372 = FlaxProxyMember(
   "toJson",
   0,
-  _flaxBinding1402,
+  _flaxBinding241,
   hasSuper: true,
 );
-const _flaxBinding1404 = FlaxProxyMember(
+const _flaxBinding1373 = FlaxProxyMember(
   "viewId",
   1,
-  _flaxBinding148,
+  _flaxBinding17,
   hasSuper: true,
 );
-const _flaxBinding1405 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1362,
-  id: "callback:<>()->object:flax.core/sdk_services#type:TextInputType",
-);
-const _flaxBinding1406 = FlaxProxyMember(
+const _flaxBinding1374 = FlaxProxyMember(
   "inputType",
   1,
-  _flaxBinding1405,
+  _flaxBinding243,
   hasSuper: true,
 );
-const _flaxBinding1407 = FlaxProxyMember(
+const _flaxBinding1375 = FlaxProxyMember(
   "readOnly",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1408 = FlaxProxyMember(
+const _flaxBinding1376 = FlaxProxyMember(
   "obscureText",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1409 = FlaxProxyMember(
+const _flaxBinding1377 = FlaxProxyMember(
   "autocorrect",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1410 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1367,
-  id: "callback:<>()->object:flax.core/sdk_services#type:AutofillConfiguration",
-);
-const _flaxBinding1411 = FlaxProxyMember(
+const _flaxBinding1378 = FlaxProxyMember(
   "autofillConfiguration",
   1,
-  _flaxBinding1410,
+  _flaxBinding245,
   hasSuper: true,
 );
-const _flaxBinding1412 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1369,
-  id: "callback:<>()->enum:flax.core/sdk_services#type:SmartDashesType",
-);
-const _flaxBinding1413 = FlaxProxyMember(
+const _flaxBinding1379 = FlaxProxyMember(
   "smartDashesType",
   1,
-  _flaxBinding1412,
+  _flaxBinding247,
   hasSuper: true,
 );
-const _flaxBinding1414 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1371,
-  id: "callback:<>()->enum:flax.core/sdk_services#type:SmartQuotesType",
-);
-const _flaxBinding1415 = FlaxProxyMember(
+const _flaxBinding1380 = FlaxProxyMember(
   "smartQuotesType",
   1,
-  _flaxBinding1414,
+  _flaxBinding249,
   hasSuper: true,
 );
-const _flaxBinding1416 = FlaxProxyMember(
+const _flaxBinding1381 = FlaxProxyMember(
   "enableSuggestions",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1417 = FlaxProxyMember(
+const _flaxBinding1382 = FlaxProxyMember(
   "enableInteractiveSelection",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1418 = FlaxProxyMember(
+const _flaxBinding1383 = FlaxProxyMember(
   "actionLabel",
   1,
-  _flaxBinding146,
+  _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding1419 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding358,
-  id: "callback:<>()->enum:flax.core/sdk_services#type:TextInputAction",
-);
-const _flaxBinding1420 = FlaxProxyMember(
+const _flaxBinding1384 = FlaxProxyMember(
   "inputAction",
   1,
-  _flaxBinding1419,
+  _flaxBinding251,
   hasSuper: true,
 );
-const _flaxBinding1421 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1377,
-  id: "callback:<>()->enum:flax.core/sdk_services#type:TextCapitalization",
-);
-const _flaxBinding1422 = FlaxProxyMember(
+const _flaxBinding1385 = FlaxProxyMember(
   "textCapitalization",
   1,
-  _flaxBinding1421,
+  _flaxBinding253,
   hasSuper: true,
 );
-const _flaxBinding1423 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1379,
-  id: "callback:<>()->enum:flax.core/sdk_dart_ui#type:Brightness",
-);
-const _flaxBinding1424 = FlaxProxyMember(
+const _flaxBinding1386 = FlaxProxyMember(
   "keyboardAppearance",
   1,
-  _flaxBinding1423,
+  _flaxBinding255,
   hasSuper: true,
 );
-const _flaxBinding1425 = FlaxProxyMember(
+const _flaxBinding1387 = FlaxProxyMember(
   "enableIMEPersonalizedLearning",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1426 = FlaxProxyMember(
+const _flaxBinding1388 = FlaxProxyMember(
   "allowedMimeTypes",
   1,
-  _flaxBinding189,
+  _flaxBinding29,
   hasSuper: true,
 );
-const _flaxBinding1427 = FlaxCallbackBinding.signature(
-  [],
-  _flaxBinding1384,
-  id: "callback:<>()->list?:[object:flax.core/sdk_dart_ui#type:Locale]",
-);
-const _flaxBinding1428 = FlaxProxyMember(
+const _flaxBinding1389 = FlaxProxyMember(
   "hintLocales",
   1,
-  _flaxBinding1427,
+  _flaxBinding258,
   hasSuper: true,
 );
-const _flaxBinding1429 = FlaxProxyMember(
+const _flaxBinding1390 = FlaxProxyMember(
   "enableInlinePrediction",
   1,
-  _flaxBinding1313,
+  _flaxBinding237,
   hasSuper: true,
 );
-const _flaxBinding1430 = FlaxProxyMember(
+const _flaxBinding1391 = FlaxProxyMember(
   "enableDeltaModel",
   1,
-  _flaxBinding99,
+  _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding1431 = FlaxObjectBinding(
+const _flaxBinding1392 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextInputConfiguration",
   [
-    _flaxBinding1361,
-    _flaxBinding1363,
-    _flaxBinding1364,
-    _flaxBinding1365,
-    _flaxBinding1366,
-    _flaxBinding1368,
-    _flaxBinding1370,
-    _flaxBinding1372,
-    _flaxBinding1373,
-    _flaxBinding1374,
-    _flaxBinding1375,
-    _flaxBinding1376,
-    _flaxBinding1378,
-    _flaxBinding1380,
-    _flaxBinding1381,
-    _flaxBinding1382,
-    _flaxBinding1385,
-    _flaxBinding1386,
-    _flaxBinding1387,
+    _flaxBinding1339,
+    _flaxBinding1340,
+    _flaxBinding1341,
+    _flaxBinding1342,
+    _flaxBinding1343,
+    _flaxBinding1344,
+    _flaxBinding1345,
+    _flaxBinding1346,
+    _flaxBinding1347,
+    _flaxBinding1348,
+    _flaxBinding1349,
+    _flaxBinding1350,
+    _flaxBinding1351,
+    _flaxBinding1352,
+    _flaxBinding1353,
+    _flaxBinding1354,
+    _flaxBinding1355,
+    _flaxBinding1356,
+    _flaxBinding1357,
   ],
   {
-    "copyWith": _flaxBinding1396,
-    "toJson": _flaxBinding1397,
-    "toString": _flaxBinding1398,
+    "copyWith": _flaxBinding1366,
+    "toJson": _flaxBinding1367,
+    "toString": _flaxBinding1368,
     "@super:copyWith": FlaxInstanceMethod(
-      _flaxBinding1395,
-      _flaxBinding205,
+      _flaxBinding1365,
+      _flaxBinding40,
       _TextInputConfiguration_super_copyWith,
     ),
-    "@super:toJson": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding364,
+    "@super:toJson": FlaxInstanceMethod.signature(
+      _flaxBinding241,
       _FlaxProxyDispatch36_super_call_toJson,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:viewId": FlaxInstanceMethod(
-      [],
-      _flaxBinding102,
+    "@super:get:viewId": FlaxInstanceMethod.signature(
+      _flaxBinding17,
       _TextInputConfiguration_super_get_viewId,
     ),
-    "@super:get:inputType": FlaxInstanceMethod(
-      [],
-      _flaxBinding1362,
+    "@super:get:inputType": FlaxInstanceMethod.signature(
+      _flaxBinding243,
       _TextInputConfiguration_super_get_inputType,
     ),
-    "@super:get:readOnly": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:readOnly": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _TextInputConfiguration_super_get_readOnly,
     ),
-    "@super:get:obscureText": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:obscureText": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _TextInputConfiguration_super_get_obscureText,
     ),
-    "@super:get:autocorrect": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:autocorrect": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _TextInputConfiguration_super_get_autocorrect,
     ),
-    "@super:get:autofillConfiguration": FlaxInstanceMethod(
-      [],
-      _flaxBinding1367,
+    "@super:get:autofillConfiguration": FlaxInstanceMethod.signature(
+      _flaxBinding245,
       _TextInputConfiguration_super_get_autofillConfiguration,
     ),
-    "@super:get:smartDashesType": FlaxInstanceMethod(
-      [],
-      _flaxBinding1369,
+    "@super:get:smartDashesType": FlaxInstanceMethod.signature(
+      _flaxBinding247,
       _TextInputConfiguration_super_get_smartDashesType,
     ),
-    "@super:get:smartQuotesType": FlaxInstanceMethod(
-      [],
-      _flaxBinding1371,
+    "@super:get:smartQuotesType": FlaxInstanceMethod.signature(
+      _flaxBinding249,
       _TextInputConfiguration_super_get_smartQuotesType,
     ),
-    "@super:get:enableSuggestions": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:enableSuggestions": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _TextInputConfiguration_super_get_enableSuggestions,
     ),
-    "@super:get:enableInteractiveSelection": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:enableInteractiveSelection": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _TextInputConfiguration_super_get_enableInteractiveSelection,
     ),
-    "@super:get:actionLabel": FlaxInstanceMethod(
-      [],
-      _flaxBinding142,
+    "@super:get:actionLabel": FlaxInstanceMethod.signature(
+      _flaxBinding15,
       _TextInputConfiguration_super_get_actionLabel,
     ),
-    "@super:get:inputAction": FlaxInstanceMethod(
-      [],
-      _flaxBinding358,
+    "@super:get:inputAction": FlaxInstanceMethod.signature(
+      _flaxBinding251,
       _TextInputConfiguration_super_get_inputAction,
     ),
-    "@super:get:textCapitalization": FlaxInstanceMethod(
-      [],
-      _flaxBinding1377,
+    "@super:get:textCapitalization": FlaxInstanceMethod.signature(
+      _flaxBinding253,
       _TextInputConfiguration_super_get_textCapitalization,
     ),
-    "@super:get:keyboardAppearance": FlaxInstanceMethod(
-      [],
-      _flaxBinding1379,
+    "@super:get:keyboardAppearance": FlaxInstanceMethod.signature(
+      _flaxBinding255,
       _TextInputConfiguration_super_get_keyboardAppearance,
     ),
-    "@super:get:enableIMEPersonalizedLearning": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:enableIMEPersonalizedLearning": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _TextInputConfiguration_super_get_enableIMEPersonalizedLearning,
     ),
-    "@super:get:allowedMimeTypes": FlaxInstanceMethod(
-      [],
-      _flaxBinding183,
+    "@super:get:allowedMimeTypes": FlaxInstanceMethod.signature(
+      _flaxBinding29,
       _TextInputConfiguration_super_get_allowedMimeTypes,
     ),
-    "@super:get:hintLocales": FlaxInstanceMethod(
-      [],
-      _flaxBinding1384,
+    "@super:get:hintLocales": FlaxInstanceMethod.signature(
+      _flaxBinding258,
       _TextInputConfiguration_super_get_hintLocales,
     ),
-    "@super:get:enableInlinePrediction": FlaxInstanceMethod(
-      [],
-      _flaxBinding1292,
+    "@super:get:enableInlinePrediction": FlaxInstanceMethod.signature(
+      _flaxBinding237,
       _TextInputConfiguration_super_get_enableInlinePrediction,
     ),
-    "@super:get:enableDeltaModel": FlaxInstanceMethod(
-      [],
-      _flaxBinding78,
+    "@super:get:enableDeltaModel": FlaxInstanceMethod.signature(
+      _flaxBinding37,
       _TextInputConfiguration_super_get_enableDeltaModel,
     ),
   },
-  constructors: {"@implementation": _flaxBinding1399},
+  constructors: {"@implementation": _flaxBinding1369},
   create: _createTextInputConfiguration,
   matches: _isTextInputConfiguration,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding1401,
-    _flaxBinding1403,
-    _flaxBinding28,
-    _flaxBinding1404,
-    _flaxBinding1406,
-    _flaxBinding1407,
-    _flaxBinding1408,
-    _flaxBinding1409,
-    _flaxBinding1411,
-    _flaxBinding1413,
-    _flaxBinding1415,
-    _flaxBinding1416,
-    _flaxBinding1417,
-    _flaxBinding1418,
-    _flaxBinding1420,
-    _flaxBinding1422,
-    _flaxBinding1424,
-    _flaxBinding1425,
-    _flaxBinding1426,
-    _flaxBinding1428,
-    _flaxBinding1429,
-    _flaxBinding1430,
+    _flaxBinding1371,
+    _flaxBinding1372,
+    _flaxBinding279,
+    _flaxBinding1373,
+    _flaxBinding1374,
+    _flaxBinding1375,
+    _flaxBinding1376,
+    _flaxBinding1377,
+    _flaxBinding1378,
+    _flaxBinding1379,
+    _flaxBinding1380,
+    _flaxBinding1381,
+    _flaxBinding1382,
+    _flaxBinding1383,
+    _flaxBinding1384,
+    _flaxBinding1385,
+    _flaxBinding1386,
+    _flaxBinding1387,
+    _flaxBinding1388,
+    _flaxBinding1389,
+    _flaxBinding1390,
+    _flaxBinding1391,
   ]),
 );
-const _flaxBinding1432 = FlaxGetter(
+const _flaxBinding1393 = FlaxGetter(
   "attached",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConnection_attached,
 );
-const _flaxBinding1433 = FlaxGetter(
+const _flaxBinding1394 = FlaxGetter(
   "scribbleInProgress",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextInputConnection_scribbleInProgress,
 );
-const _flaxBinding1434 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1395 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputConnection_show,
 );
-const _flaxBinding1435 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1396 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputConnection_requestAutofill,
 );
-const _flaxBinding1436 = <FlaxParameter>[
-  FlaxParameter("configuration", _flaxBinding205, required: true),
+const _flaxBinding1397 = <FlaxParameter>[
+  FlaxParameter("configuration", _flaxBinding40, required: true),
 ];
-const _flaxBinding1437 = FlaxInstanceMethod(
-  _flaxBinding1436,
-  _flaxBinding82,
+const _flaxBinding1398 = FlaxInstanceMethod(
+  _flaxBinding1397,
+  _flaxBinding24,
   _TextInputConnection_updateConfig,
 );
-const _flaxBinding1438 = FlaxInstanceMethod(
-  _flaxBinding356,
-  _flaxBinding82,
+const _flaxBinding1399 = FlaxInstanceMethod(
+  _flaxBinding508,
+  _flaxBinding24,
   _TextInputConnection_setEditingState,
 );
-const _flaxBinding1439 = FlaxTypeRef(
+const _flaxBinding1400 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_rendering#type:Matrix4",
 );
-const _flaxBinding1440 = <FlaxParameter>[
-  FlaxParameter("editableBoxSize", _flaxBinding111, required: true),
-  FlaxParameter("transform", _flaxBinding1439, required: true),
+const _flaxBinding1401 = <FlaxParameter>[
+  FlaxParameter("editableBoxSize", _flaxBinding348, required: true),
+  FlaxParameter("transform", _flaxBinding1400, required: true),
 ];
-const _flaxBinding1441 = FlaxInstanceMethod(
-  _flaxBinding1440,
-  _flaxBinding82,
+const _flaxBinding1402 = FlaxInstanceMethod(
+  _flaxBinding1401,
+  _flaxBinding24,
   _TextInputConnection_setEditableSizeAndTransform,
 );
-const _flaxBinding1442 = FlaxInstanceMethod(
-  _flaxBinding1019,
-  _flaxBinding82,
+const _flaxBinding1403 = <FlaxParameter>[
+  FlaxParameter("rect", _flaxBinding200, required: true),
+];
+const _flaxBinding1404 = FlaxInstanceMethod(
+  _flaxBinding1403,
+  _flaxBinding24,
   _TextInputConnection_setComposingRect,
 );
-const _flaxBinding1443 = FlaxInstanceMethod(
-  _flaxBinding1019,
-  _flaxBinding82,
+const _flaxBinding1405 = FlaxInstanceMethod(
+  _flaxBinding1403,
+  _flaxBinding24,
   _TextInputConnection_setCaretRect,
 );
-const _flaxBinding1444 = FlaxTypeRef(
+const _flaxBinding1406 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:SelectionRect",
 );
-const _flaxBinding1445 = FlaxTypeRef(
+const _flaxBinding1407 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1444,
+  item: _flaxBinding1406,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_services#type:SelectionRect]",
     _collection38Create,
@@ -42083,83 +40284,81 @@ const _flaxBinding1445 = FlaxTypeRef(
     restore: _collection38Restore,
   ),
 );
-const _flaxBinding1446 = FlaxTypeRef(
+const _flaxBinding1408 = FlaxTypeRef(
   "list",
-  item: _flaxBinding1444,
+  item: _flaxBinding1406,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_services#type:SelectionRect]",
     _collection37Create,
     _collection37Matches,
   ),
-  iterable: _flaxBinding1445,
+  iterable: _flaxBinding1407,
 );
-const _flaxBinding1447 = <FlaxParameter>[
-  FlaxParameter("selectionRects", _flaxBinding1446, required: true),
+const _flaxBinding1409 = <FlaxParameter>[
+  FlaxParameter("selectionRects", _flaxBinding1408, required: true),
 ];
-const _flaxBinding1448 = FlaxInstanceMethod(
-  _flaxBinding1447,
-  _flaxBinding82,
+const _flaxBinding1410 = FlaxInstanceMethod(
+  _flaxBinding1409,
+  _flaxBinding24,
   _TextInputConnection_setSelectionRects,
 );
-const _flaxBinding1449 = FlaxTypeRef(
+const _flaxBinding1411 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:FontWeight",
   nullable: true,
 );
-const _flaxBinding1450 = FlaxTypeRef(
+const _flaxBinding1412 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TextAlign",
 );
-const _flaxBinding1451 = <FlaxParameter>[
-  FlaxParameter("fontFamily", _flaxBinding142, required: true),
-  FlaxParameter("fontSize", _flaxBinding194, required: true),
-  FlaxParameter("fontWeight", _flaxBinding1449, required: true),
-  FlaxParameter("textAlign", _flaxBinding1450, required: true),
-  FlaxParameter("textDirection", _flaxBinding125, required: true),
+const _flaxBinding1413 = <FlaxParameter>[
+  FlaxParameter("fontFamily", _flaxBinding14, required: true),
+  FlaxParameter("fontSize", _flaxBinding34, required: true),
+  FlaxParameter("fontWeight", _flaxBinding1411, required: true),
+  FlaxParameter("textAlign", _flaxBinding1412, required: true),
+  FlaxParameter("textDirection", _flaxBinding70, required: true),
 ];
-const _flaxBinding1452 = FlaxInstanceMethod(
-  _flaxBinding1451,
-  _flaxBinding82,
+const _flaxBinding1414 = FlaxInstanceMethod(
+  _flaxBinding1413,
+  _flaxBinding24,
   _TextInputConnection_setStyle,
 );
-const _flaxBinding1453 = FlaxTypeRef(
+const _flaxBinding1415 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:TextInputStyle",
 );
-const _flaxBinding1454 = <FlaxParameter>[
-  FlaxParameter("style", _flaxBinding1453, required: true),
+const _flaxBinding1416 = <FlaxParameter>[
+  FlaxParameter("style", _flaxBinding1415, required: true),
 ];
-const _flaxBinding1455 = FlaxInstanceMethod(
-  _flaxBinding1454,
-  _flaxBinding82,
+const _flaxBinding1417 = FlaxInstanceMethod(
+  _flaxBinding1416,
+  _flaxBinding24,
   _TextInputConnection_updateStyle,
 );
-const _flaxBinding1456 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1418 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputConnection_close,
 );
-const _flaxBinding1457 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1419 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputConnection_connectionClosedReceived,
 );
-const _flaxBinding1458 = FlaxObjectBinding(
+const _flaxBinding1420 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextInputConnection",
-  [_flaxBinding1432, _flaxBinding1433],
+  [_flaxBinding1393, _flaxBinding1394],
   {
-    "show": _flaxBinding1434,
-    "requestAutofill": _flaxBinding1435,
-    "updateConfig": _flaxBinding1437,
-    "setEditingState": _flaxBinding1438,
-    "setEditableSizeAndTransform": _flaxBinding1441,
-    "setComposingRect": _flaxBinding1442,
-    "setCaretRect": _flaxBinding1443,
-    "setSelectionRects": _flaxBinding1448,
-    "setStyle": _flaxBinding1452,
-    "updateStyle": _flaxBinding1455,
-    "close": _flaxBinding1456,
-    "connectionClosedReceived": _flaxBinding1457,
+    "show": _flaxBinding1395,
+    "requestAutofill": _flaxBinding1396,
+    "updateConfig": _flaxBinding1398,
+    "setEditingState": _flaxBinding1399,
+    "setEditableSizeAndTransform": _flaxBinding1402,
+    "setComposingRect": _flaxBinding1404,
+    "setCaretRect": _flaxBinding1405,
+    "setSelectionRects": _flaxBinding1410,
+    "setStyle": _flaxBinding1414,
+    "updateStyle": _flaxBinding1417,
+    "close": _flaxBinding1418,
+    "connectionClosedReceived": _flaxBinding1419,
   },
   constructors: {},
   create: _createTextInputConnection,
@@ -42167,109 +40366,106 @@ const _flaxBinding1458 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1459 = <FlaxParameter>[
-  FlaxParameter("client", _flaxBinding241, required: true),
-  FlaxParameter("configuration", _flaxBinding205, required: true),
+const _flaxBinding1421 = <FlaxParameter>[
+  FlaxParameter("client", _flaxBinding48, required: true),
+  FlaxParameter("configuration", _flaxBinding40, required: true),
 ];
-const _flaxBinding1460 = FlaxInstanceMethod(
-  _flaxBinding1459,
-  _flaxBinding82,
+const _flaxBinding1422 = FlaxInstanceMethod(
+  _flaxBinding1421,
+  _flaxBinding24,
   _TextInputControl_attach,
 );
-const _flaxBinding1461 = <FlaxParameter>[
-  FlaxParameter("client", _flaxBinding241, required: true),
+const _flaxBinding1423 = <FlaxParameter>[
+  FlaxParameter("client", _flaxBinding48, required: true),
 ];
-const _flaxBinding1462 = FlaxInstanceMethod(
-  _flaxBinding1461,
-  _flaxBinding82,
+const _flaxBinding1424 = FlaxInstanceMethod(
+  _flaxBinding1423,
+  _flaxBinding24,
   _TextInputControl_detach,
 );
-const _flaxBinding1463 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1425 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputControl_show,
 );
-const _flaxBinding1464 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1426 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputControl_hide,
 );
-const _flaxBinding1465 = FlaxInstanceMethod(
-  _flaxBinding1436,
-  _flaxBinding82,
+const _flaxBinding1427 = FlaxInstanceMethod(
+  _flaxBinding1397,
+  _flaxBinding24,
   _TextInputControl_updateConfig,
 );
-const _flaxBinding1466 = FlaxInstanceMethod(
-  _flaxBinding356,
-  _flaxBinding82,
+const _flaxBinding1428 = FlaxInstanceMethod(
+  _flaxBinding508,
+  _flaxBinding24,
   _TextInputControl_setEditingState,
 );
-const _flaxBinding1467 = FlaxInstanceMethod(
-  _flaxBinding1440,
-  _flaxBinding82,
+const _flaxBinding1429 = FlaxInstanceMethod(
+  _flaxBinding1401,
+  _flaxBinding24,
   _TextInputControl_setEditableSizeAndTransform,
 );
-const _flaxBinding1468 = FlaxInstanceMethod(
-  _flaxBinding1019,
-  _flaxBinding82,
+const _flaxBinding1430 = FlaxInstanceMethod(
+  _flaxBinding1403,
+  _flaxBinding24,
   _TextInputControl_setComposingRect,
 );
-const _flaxBinding1469 = FlaxInstanceMethod(
-  _flaxBinding1019,
-  _flaxBinding82,
+const _flaxBinding1431 = FlaxInstanceMethod(
+  _flaxBinding1403,
+  _flaxBinding24,
   _TextInputControl_setCaretRect,
 );
-const _flaxBinding1470 = FlaxInstanceMethod(
-  _flaxBinding1447,
-  _flaxBinding82,
+const _flaxBinding1432 = FlaxInstanceMethod(
+  _flaxBinding1409,
+  _flaxBinding24,
   _TextInputControl_setSelectionRects,
 );
-const _flaxBinding1471 = FlaxInstanceMethod(
-  _flaxBinding1451,
-  _flaxBinding82,
+const _flaxBinding1433 = FlaxInstanceMethod(
+  _flaxBinding1413,
+  _flaxBinding24,
   _TextInputControl_setStyle,
 );
-const _flaxBinding1472 = FlaxInstanceMethod(
-  _flaxBinding1454,
-  _flaxBinding82,
+const _flaxBinding1434 = FlaxInstanceMethod(
+  _flaxBinding1416,
+  _flaxBinding24,
   _TextInputControl_updateStyle,
 );
-const _flaxBinding1473 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1435 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _TextInputControl_requestAutofill,
 );
-const _flaxBinding1474 = <FlaxParameter>[
+const _flaxBinding1436 = <FlaxParameter>[
   FlaxParameter(
     "shouldSave",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: true,
   ),
 ];
-const _flaxBinding1475 = FlaxInstanceMethod(
-  _flaxBinding1474,
-  _flaxBinding82,
+const _flaxBinding1437 = FlaxInstanceMethod(
+  _flaxBinding1436,
+  _flaxBinding24,
   _TextInputControl_finishAutofillContext,
 );
-const _flaxBinding1476 = FlaxObjectBinding(
+const _flaxBinding1438 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextInputControl",
   [],
   {
-    "attach": _flaxBinding1460,
-    "detach": _flaxBinding1462,
-    "show": _flaxBinding1463,
-    "hide": _flaxBinding1464,
-    "updateConfig": _flaxBinding1465,
-    "setEditingState": _flaxBinding1466,
-    "setEditableSizeAndTransform": _flaxBinding1467,
-    "setComposingRect": _flaxBinding1468,
-    "setCaretRect": _flaxBinding1469,
-    "setSelectionRects": _flaxBinding1470,
-    "setStyle": _flaxBinding1471,
-    "updateStyle": _flaxBinding1472,
-    "requestAutofill": _flaxBinding1473,
-    "finishAutofillContext": _flaxBinding1475,
+    "attach": _flaxBinding1422,
+    "detach": _flaxBinding1424,
+    "show": _flaxBinding1425,
+    "hide": _flaxBinding1426,
+    "updateConfig": _flaxBinding1427,
+    "setEditingState": _flaxBinding1428,
+    "setEditableSizeAndTransform": _flaxBinding1429,
+    "setComposingRect": _flaxBinding1430,
+    "setCaretRect": _flaxBinding1431,
+    "setSelectionRects": _flaxBinding1432,
+    "setStyle": _flaxBinding1433,
+    "updateStyle": _flaxBinding1434,
+    "requestAutofill": _flaxBinding1435,
+    "finishAutofillContext": _flaxBinding1437,
   },
   constructors: {},
   create: _createTextInputControl,
@@ -42277,101 +40473,98 @@ const _flaxBinding1476 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1477 = FlaxGetter(
+const _flaxBinding1439 = FlaxGetter(
   "fontFamily",
-  _flaxBinding142,
+  _flaxBinding14,
   _TextInputStyle_fontFamily,
 );
-const _flaxBinding1478 = FlaxGetter(
+const _flaxBinding1440 = FlaxGetter(
   "fontSize",
-  _flaxBinding194,
+  _flaxBinding34,
   _TextInputStyle_fontSize,
 );
-const _flaxBinding1479 = FlaxGetter(
+const _flaxBinding1441 = FlaxGetter(
   "fontWeight",
-  _flaxBinding1449,
+  _flaxBinding1411,
   _TextInputStyle_fontWeight,
 );
-const _flaxBinding1480 = FlaxGetter(
+const _flaxBinding1442 = FlaxGetter(
   "textDirection",
-  _flaxBinding125,
+  _flaxBinding70,
   _TextInputStyle_textDirection,
 );
-const _flaxBinding1481 = FlaxGetter(
+const _flaxBinding1443 = FlaxGetter(
   "textAlign",
-  _flaxBinding1450,
+  _flaxBinding1412,
   _TextInputStyle_textAlign,
 );
-const _flaxBinding1482 = FlaxGetter(
+const _flaxBinding1444 = FlaxGetter(
   "letterSpacing",
-  _flaxBinding194,
+  _flaxBinding34,
   _TextInputStyle_letterSpacing,
 );
-const _flaxBinding1483 = FlaxGetter(
+const _flaxBinding1445 = FlaxGetter(
   "wordSpacing",
-  _flaxBinding194,
+  _flaxBinding34,
   _TextInputStyle_wordSpacing,
 );
-const _flaxBinding1484 = FlaxGetter(
+const _flaxBinding1446 = FlaxGetter(
   "lineHeight",
-  _flaxBinding194,
+  _flaxBinding34,
   _TextInputStyle_lineHeight,
 );
-const _flaxBinding1485 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1447 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _TextInputStyle_toStringShort,
 );
-const _flaxBinding1486 = FlaxInstanceMethod(
-  _flaxBinding512,
-  _flaxBinding24,
+const _flaxBinding1448 = FlaxInstanceMethod(
+  _flaxBinding624,
+  _flaxBinding0,
   _TextInputStyle_toString,
 );
-const _flaxBinding1487 = FlaxInstanceMethod(
-  _flaxBinding515,
-  _flaxBinding516,
+const _flaxBinding1449 = FlaxInstanceMethod(
+  _flaxBinding627,
+  _flaxBinding628,
   _TextInputStyle_toDiagnosticsNode,
 );
-const _flaxBinding1488 = FlaxInstanceMethod(
-  _flaxBinding519,
-  _flaxBinding82,
+const _flaxBinding1450 = FlaxInstanceMethod.signature(
+  _flaxBinding128,
   _TextInputStyle_debugFillProperties,
 );
-const _flaxBinding1489 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding364,
+const _flaxBinding1451 = FlaxInstanceMethod.signature(
+  _flaxBinding241,
   _TextInputStyle_toJson,
 );
-const _flaxBinding1490 = <FlaxParameter>[
-  FlaxParameter("fontFamily", _flaxBinding142, required: false),
-  FlaxParameter("fontSize", _flaxBinding194, required: false),
-  FlaxParameter("fontWeight", _flaxBinding1449, required: false),
-  FlaxParameter("textDirection", _flaxBinding125, required: true),
-  FlaxParameter("textAlign", _flaxBinding1450, required: true),
-  FlaxParameter("letterSpacing", _flaxBinding194, required: false),
-  FlaxParameter("wordSpacing", _flaxBinding194, required: false),
-  FlaxParameter("lineHeight", _flaxBinding194, required: false),
+const _flaxBinding1452 = <FlaxParameter>[
+  FlaxParameter("fontFamily", _flaxBinding14, required: false),
+  FlaxParameter("fontSize", _flaxBinding34, required: false),
+  FlaxParameter("fontWeight", _flaxBinding1411, required: false),
+  FlaxParameter("textDirection", _flaxBinding70, required: true),
+  FlaxParameter("textAlign", _flaxBinding1412, required: true),
+  FlaxParameter("letterSpacing", _flaxBinding34, required: false),
+  FlaxParameter("wordSpacing", _flaxBinding34, required: false),
+  FlaxParameter("lineHeight", _flaxBinding34, required: false),
 ];
-const _flaxBinding1491 = FlaxObjectBinding(
+const _flaxBinding1453 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextInputStyle",
   [
-    _flaxBinding1477,
-    _flaxBinding1478,
-    _flaxBinding1479,
-    _flaxBinding1480,
-    _flaxBinding1481,
-    _flaxBinding1482,
-    _flaxBinding1483,
-    _flaxBinding1484,
+    _flaxBinding1439,
+    _flaxBinding1440,
+    _flaxBinding1441,
+    _flaxBinding1442,
+    _flaxBinding1443,
+    _flaxBinding1444,
+    _flaxBinding1445,
+    _flaxBinding1446,
   ],
   {
-    "toStringShort": _flaxBinding1485,
-    "toString": _flaxBinding1486,
-    "toDiagnosticsNode": _flaxBinding1487,
-    "debugFillProperties": _flaxBinding1488,
-    "toJson": _flaxBinding1489,
+    "toStringShort": _flaxBinding1447,
+    "toString": _flaxBinding1448,
+    "toDiagnosticsNode": _flaxBinding1449,
+    "debugFillProperties": _flaxBinding1450,
+    "toJson": _flaxBinding1451,
   },
-  constructors: {"": _flaxBinding1490},
+  constructors: {"": _flaxBinding1452},
   create: _createTextInputStyle,
   matches: _isTextInputStyle,
   setters: [],
@@ -42380,331 +40573,276 @@ const _flaxBinding1491 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1492 = FlaxGetter(
+const _flaxBinding1454 = FlaxGetter(
   "index",
-  _flaxBinding0,
+  _flaxBinding2,
   _TextInputType_index,
 );
-const _flaxBinding1493 = FlaxGetter(
+const _flaxBinding1455 = FlaxGetter(
   "signed",
-  _flaxBinding1292,
+  _flaxBinding236,
   _TextInputType_signed,
 );
-const _flaxBinding1494 = FlaxGetter(
+const _flaxBinding1456 = FlaxGetter(
   "decimal",
-  _flaxBinding1292,
+  _flaxBinding236,
   _TextInputType_decimal,
 );
-const _flaxBinding1495 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding364,
+const _flaxBinding1457 = FlaxInstanceMethod.signature(
+  _flaxBinding241,
   _TextInputType_toJson,
 );
-const _flaxBinding1496 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding24,
+const _flaxBinding1458 = FlaxInstanceMethod.signature(
+  _flaxBinding1,
   _TextInputType_toString,
 );
-const _flaxBinding1497 = <FlaxParameter>[
+const _flaxBinding1459 = <FlaxParameter>[
   FlaxParameter(
     "signed",
-    _flaxBinding1292,
+    _flaxBinding236,
     required: false,
     defaultValue: false,
   ),
   FlaxParameter(
     "decimal",
-    _flaxBinding1292,
+    _flaxBinding236,
     required: false,
     defaultValue: false,
   ),
 ];
-const _flaxBinding1498 = FlaxProxyMember(
+const _flaxBinding1460 = FlaxProxyMember(
   "index",
   1,
-  _flaxBinding29,
+  _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding1499 = FlaxProxyMember(
+const _flaxBinding1461 = FlaxProxyMember(
   "signed",
   1,
-  _flaxBinding1313,
+  _flaxBinding237,
   hasSuper: true,
 );
-const _flaxBinding1500 = FlaxProxyMember(
+const _flaxBinding1462 = FlaxProxyMember(
   "decimal",
   1,
-  _flaxBinding1313,
+  _flaxBinding237,
   hasSuper: true,
 );
-const _flaxBinding1501 = FlaxObjectBinding(
+const _flaxBinding1463 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextInputType",
-  [_flaxBinding1492, _flaxBinding1493, _flaxBinding1494],
+  [_flaxBinding1454, _flaxBinding1455, _flaxBinding1456],
   {
-    "toJson": _flaxBinding1495,
-    "toString": _flaxBinding1496,
-    "@super:toJson": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding364,
+    "toJson": _flaxBinding1457,
+    "toString": _flaxBinding1458,
+    "@super:toJson": FlaxInstanceMethod.signature(
+      _flaxBinding241,
       _FlaxProxyDispatch36_super_call_toJson,
     ),
-    "@super:toString": FlaxInstanceMethod(
-      _flaxBinding23,
-      _flaxBinding24,
+    "@super:toString": FlaxInstanceMethod.signature(
+      _flaxBinding1,
       _FlaxProxyDispatch0_super_call_toString,
     ),
-    "@super:get:index": FlaxInstanceMethod(
-      [],
-      _flaxBinding0,
+    "@super:get:index": FlaxInstanceMethod.signature(
+      _flaxBinding3,
       _TextInputType_super_get_index,
     ),
-    "@super:get:signed": FlaxInstanceMethod(
-      [],
-      _flaxBinding1292,
+    "@super:get:signed": FlaxInstanceMethod.signature(
+      _flaxBinding237,
       _TextInputType_super_get_signed,
     ),
-    "@super:get:decimal": FlaxInstanceMethod(
-      [],
-      _flaxBinding1292,
+    "@super:get:decimal": FlaxInstanceMethod.signature(
+      _flaxBinding237,
       _TextInputType_super_get_decimal,
     ),
   },
   constructors: {
-    "@implementation": _flaxBinding1497,
-    "@implementation:numberWithOptions": _flaxBinding1497,
+    "@implementation": _flaxBinding1459,
+    "@implementation:numberWithOptions": _flaxBinding1459,
   },
   create: _createTextInputType,
   matches: _isTextInputType,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding1403,
-    _flaxBinding28,
-    _flaxBinding1498,
-    _flaxBinding1499,
-    _flaxBinding1500,
+    _flaxBinding1372,
+    _flaxBinding279,
+    _flaxBinding1460,
+    _flaxBinding1461,
+    _flaxBinding1462,
   ]),
 );
-const _flaxBinding1502 = <FlaxParameter>[
-  FlaxParameter("position", _flaxBinding805, required: true),
-];
-const _flaxBinding1503 = FlaxInstanceMethod(
-  _flaxBinding1502,
-  _flaxBinding1321,
+const _flaxBinding1464 = FlaxInstanceMethod.signature(
+  _flaxBinding259,
   _TextLayoutMetrics_getLineAtOffset,
 );
-const _flaxBinding1504 = FlaxInstanceMethod(
-  _flaxBinding1502,
-  _flaxBinding294,
+const _flaxBinding1465 = FlaxInstanceMethod.signature(
+  _flaxBinding260,
   _TextLayoutMetrics_getWordBoundary,
 );
-const _flaxBinding1505 = FlaxInstanceMethod(
-  _flaxBinding1502,
-  _flaxBinding805,
+const _flaxBinding1466 = FlaxInstanceMethod.signature(
+  _flaxBinding261,
   _TextLayoutMetrics_getTextPositionAbove,
 );
-const _flaxBinding1506 = FlaxInstanceMethod(
-  _flaxBinding1502,
-  _flaxBinding805,
+const _flaxBinding1467 = FlaxInstanceMethod.signature(
+  _flaxBinding261,
   _TextLayoutMetrics_getTextPositionBelow,
 );
-const _flaxBinding1507 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "position",
-      _flaxBinding805,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding1321,
-  id: "callback:<>(p:r:position:object:flax.core/sdk_dart_ui#type:TextPosition)->object:flax.core/flutter#type:TextSelection",
-);
-const _flaxBinding1508 = FlaxProxyMember(
-  "getLineAtOffset",
-  0,
-  _flaxBinding1507,
-);
-const _flaxBinding1509 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "position",
-      _flaxBinding805,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding294,
-  id: "callback:<>(p:r:position:object:flax.core/sdk_dart_ui#type:TextPosition)->object:flax.core/flutter#type:TextRange",
-);
-const _flaxBinding1510 = FlaxProxyMember(
-  "getWordBoundary",
-  0,
-  _flaxBinding1509,
-);
-const _flaxBinding1511 = FlaxCallbackBinding.signature(
-  [
-    FlaxCallbackParameter(
-      "position",
-      _flaxBinding805,
-      required: true,
-      positional: true,
-    ),
-  ],
-  _flaxBinding805,
-  id: "callback:<>(p:r:position:object:flax.core/sdk_dart_ui#type:TextPosition)->object:flax.core/sdk_dart_ui#type:TextPosition",
-);
-const _flaxBinding1512 = FlaxProxyMember(
+const _flaxBinding1468 = FlaxProxyMember("getLineAtOffset", 0, _flaxBinding259);
+const _flaxBinding1469 = FlaxProxyMember("getWordBoundary", 0, _flaxBinding260);
+const _flaxBinding1470 = FlaxProxyMember(
   "getTextPositionAbove",
   0,
-  _flaxBinding1511,
+  _flaxBinding261,
 );
-const _flaxBinding1513 = FlaxProxyMember(
+const _flaxBinding1471 = FlaxProxyMember(
   "getTextPositionBelow",
   0,
-  _flaxBinding1511,
+  _flaxBinding261,
 );
-const _flaxBinding1514 = FlaxObjectBinding(
+const _flaxBinding1472 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextLayoutMetrics",
   [],
   {
-    "getLineAtOffset": _flaxBinding1503,
-    "getWordBoundary": _flaxBinding1504,
-    "getTextPositionAbove": _flaxBinding1505,
-    "getTextPositionBelow": _flaxBinding1506,
+    "getLineAtOffset": _flaxBinding1464,
+    "getWordBoundary": _flaxBinding1465,
+    "getTextPositionAbove": _flaxBinding1466,
+    "getTextPositionBelow": _flaxBinding1467,
   },
-  constructors: {"@implementation": _flaxBinding23},
+  constructors: {"@implementation": _flaxBinding332},
   create: _createTextLayoutMetrics,
   matches: _isTextLayoutMetrics,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding1508,
-    _flaxBinding1510,
-    _flaxBinding1512,
-    _flaxBinding1513,
+    _flaxBinding1468,
+    _flaxBinding1469,
+    _flaxBinding1470,
+    _flaxBinding1471,
   ]),
 );
-const _flaxBinding1515 = FlaxGetter(
+const _flaxBinding1473 = FlaxGetter(
   "textEditingValue",
-  _flaxBinding207,
+  _flaxBinding38,
   _TextSelectionDelegate_textEditingValue,
 );
-const _flaxBinding1516 = FlaxGetter(
+const _flaxBinding1474 = FlaxGetter(
   "cutEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextSelectionDelegate_cutEnabled,
 );
-const _flaxBinding1517 = FlaxGetter(
+const _flaxBinding1475 = FlaxGetter(
   "copyEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextSelectionDelegate_copyEnabled,
 );
-const _flaxBinding1518 = FlaxGetter(
+const _flaxBinding1476 = FlaxGetter(
   "pasteEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextSelectionDelegate_pasteEnabled,
 );
-const _flaxBinding1519 = FlaxGetter(
+const _flaxBinding1477 = FlaxGetter(
   "selectAllEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextSelectionDelegate_selectAllEnabled,
 );
-const _flaxBinding1520 = FlaxGetter(
+const _flaxBinding1478 = FlaxGetter(
   "lookUpEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextSelectionDelegate_lookUpEnabled,
 );
-const _flaxBinding1521 = FlaxGetter(
+const _flaxBinding1479 = FlaxGetter(
   "searchWebEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextSelectionDelegate_searchWebEnabled,
 );
-const _flaxBinding1522 = FlaxGetter(
+const _flaxBinding1480 = FlaxGetter(
   "shareEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextSelectionDelegate_shareEnabled,
 );
-const _flaxBinding1523 = FlaxGetter(
+const _flaxBinding1481 = FlaxGetter(
   "liveTextInputEnabled",
-  _flaxBinding78,
+  _flaxBinding36,
   _TextSelectionDelegate_liveTextInputEnabled,
 );
-const _flaxBinding1524 = FlaxTypeRef(
+const _flaxBinding1482 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SelectionChangedCause",
 );
-const _flaxBinding1525 = <FlaxParameter>[
-  FlaxParameter("value", _flaxBinding207, required: true),
-  FlaxParameter("cause", _flaxBinding1524, required: true),
+const _flaxBinding1483 = <FlaxParameter>[
+  FlaxParameter("value", _flaxBinding38, required: true),
+  FlaxParameter("cause", _flaxBinding1482, required: true),
 ];
-const _flaxBinding1526 = FlaxInstanceMethod(
-  _flaxBinding1525,
-  _flaxBinding82,
+const _flaxBinding1484 = FlaxInstanceMethod(
+  _flaxBinding1483,
+  _flaxBinding24,
   _TextSelectionDelegate_userUpdateTextEditingValue,
 );
-const _flaxBinding1527 = <FlaxParameter>[
+const _flaxBinding1485 = <FlaxParameter>[
   FlaxParameter(
     "hideHandles",
-    _flaxBinding78,
+    _flaxBinding36,
     required: false,
     defaultValue: true,
   ),
 ];
-const _flaxBinding1528 = FlaxInstanceMethod(
-  _flaxBinding1527,
-  _flaxBinding82,
+const _flaxBinding1486 = FlaxInstanceMethod(
+  _flaxBinding1485,
+  _flaxBinding24,
   _TextSelectionDelegate_hideToolbar,
 );
-const _flaxBinding1529 = FlaxInstanceMethod(
-  _flaxBinding1502,
-  _flaxBinding82,
+const _flaxBinding1487 = <FlaxParameter>[
+  FlaxParameter("position", _flaxBinding177, required: true),
+];
+const _flaxBinding1488 = FlaxInstanceMethod(
+  _flaxBinding1487,
+  _flaxBinding24,
   _TextSelectionDelegate_bringIntoView,
 );
-const _flaxBinding1530 = <FlaxParameter>[
-  FlaxParameter("cause", _flaxBinding1524, required: true),
+const _flaxBinding1489 = <FlaxParameter>[
+  FlaxParameter("cause", _flaxBinding1482, required: true),
 ];
-const _flaxBinding1531 = FlaxInstanceMethod(
-  _flaxBinding1530,
-  _flaxBinding82,
+const _flaxBinding1490 = FlaxInstanceMethod(
+  _flaxBinding1489,
+  _flaxBinding24,
   _TextSelectionDelegate_cutSelection,
 );
-const _flaxBinding1532 = FlaxInstanceMethod(
-  _flaxBinding1530,
-  _flaxBinding83,
+const _flaxBinding1491 = FlaxInstanceMethod(
+  _flaxBinding1489,
+  _flaxBinding60,
   _TextSelectionDelegate_pasteText,
 );
-const _flaxBinding1533 = FlaxInstanceMethod(
-  _flaxBinding1530,
-  _flaxBinding82,
+const _flaxBinding1492 = FlaxInstanceMethod(
+  _flaxBinding1489,
+  _flaxBinding24,
   _TextSelectionDelegate_selectAll,
 );
-const _flaxBinding1534 = FlaxInstanceMethod(
-  _flaxBinding1530,
-  _flaxBinding82,
+const _flaxBinding1493 = FlaxInstanceMethod(
+  _flaxBinding1489,
+  _flaxBinding24,
   _TextSelectionDelegate_copySelection,
 );
-const _flaxBinding1535 = FlaxObjectBinding(
+const _flaxBinding1494 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextSelectionDelegate",
   [
-    _flaxBinding1515,
-    _flaxBinding1516,
-    _flaxBinding1517,
-    _flaxBinding1518,
-    _flaxBinding1519,
-    _flaxBinding1520,
-    _flaxBinding1521,
-    _flaxBinding1522,
-    _flaxBinding1523,
+    _flaxBinding1473,
+    _flaxBinding1474,
+    _flaxBinding1475,
+    _flaxBinding1476,
+    _flaxBinding1477,
+    _flaxBinding1478,
+    _flaxBinding1479,
+    _flaxBinding1480,
+    _flaxBinding1481,
   ],
   {
-    "userUpdateTextEditingValue": _flaxBinding1526,
-    "hideToolbar": _flaxBinding1528,
-    "bringIntoView": _flaxBinding1529,
-    "cutSelection": _flaxBinding1531,
-    "pasteText": _flaxBinding1532,
-    "selectAll": _flaxBinding1533,
-    "copySelection": _flaxBinding1534,
+    "userUpdateTextEditingValue": _flaxBinding1484,
+    "hideToolbar": _flaxBinding1486,
+    "bringIntoView": _flaxBinding1488,
+    "cutSelection": _flaxBinding1490,
+    "pasteText": _flaxBinding1491,
+    "selectAll": _flaxBinding1492,
+    "copySelection": _flaxBinding1493,
   },
   constructors: {},
   create: _createTextSelectionDelegate,
@@ -42712,7 +40850,7 @@ const _flaxBinding1535 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1536 = FlaxObjectBinding(
+const _flaxBinding1495 = FlaxObjectBinding(
   "flax.core/sdk_services#type:TextureAndroidViewController",
   [],
   {},
@@ -42725,9 +40863,9 @@ const _flaxBinding1536 = FlaxObjectBinding(
     "flax.core/sdk_services#type:PlatformViewController",
     "dart:core::Object",
   ],
-  parent: _flaxBinding128,
+  parent: _flaxBinding363,
 );
-const _flaxBinding1537 = FlaxObjectBinding(
+const _flaxBinding1496 = FlaxObjectBinding(
   "flax.core/sdk_services#type:UiKitViewController",
   [],
   {},
@@ -42739,9 +40877,9 @@ const _flaxBinding1537 = FlaxObjectBinding(
     "flax.core/sdk_services#type:DarwinPlatformViewController",
     "dart:core::Object",
   ],
-  parent: _flaxBinding140,
+  parent: _flaxBinding374,
 );
-const _flaxBinding1538 = FlaxObjectBinding(
+const _flaxBinding1497 = FlaxObjectBinding(
   "flax.core/sdk_services#type:UndoManager",
   [],
   {},
@@ -42751,45 +40889,43 @@ const _flaxBinding1538 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1539 = FlaxGetter(
+const _flaxBinding1498 = FlaxGetter(
   "canUndo",
-  _flaxBinding78,
+  _flaxBinding36,
   _UndoManagerClient_canUndo,
 );
-const _flaxBinding1540 = FlaxGetter(
+const _flaxBinding1499 = FlaxGetter(
   "canRedo",
-  _flaxBinding78,
+  _flaxBinding36,
   _UndoManagerClient_canRedo,
 );
-const _flaxBinding1541 = FlaxTypeRef(
+const _flaxBinding1500 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:UndoDirection",
 );
-const _flaxBinding1542 = <FlaxParameter>[
-  FlaxParameter("direction", _flaxBinding1541, required: true),
+const _flaxBinding1501 = <FlaxParameter>[
+  FlaxParameter("direction", _flaxBinding1500, required: true),
 ];
-const _flaxBinding1543 = FlaxInstanceMethod(
-  _flaxBinding1542,
-  _flaxBinding82,
+const _flaxBinding1502 = FlaxInstanceMethod(
+  _flaxBinding1501,
+  _flaxBinding24,
   _UndoManagerClient_handlePlatformUndo,
 );
-const _flaxBinding1544 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1503 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _UndoManagerClient_undo,
 );
-const _flaxBinding1545 = FlaxInstanceMethod(
-  _flaxBinding23,
-  _flaxBinding82,
+const _flaxBinding1504 = FlaxInstanceMethod.signature(
+  _flaxBinding26,
   _UndoManagerClient_redo,
 );
-const _flaxBinding1546 = FlaxObjectBinding(
+const _flaxBinding1505 = FlaxObjectBinding(
   "flax.core/sdk_services#type:UndoManagerClient",
-  [_flaxBinding1539, _flaxBinding1540],
+  [_flaxBinding1498, _flaxBinding1499],
   {
-    "handlePlatformUndo": _flaxBinding1543,
-    "undo": _flaxBinding1544,
-    "redo": _flaxBinding1545,
+    "handlePlatformUndo": _flaxBinding1502,
+    "undo": _flaxBinding1503,
+    "redo": _flaxBinding1504,
   },
   constructors: {},
   create: _createUndoManagerClient,
@@ -42797,44 +40933,44 @@ const _flaxBinding1546 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1547 = FlaxTypeRef(
+const _flaxBinding1506 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:KeyDataTransitMode",
   nullable: true,
 );
-const _flaxBinding1548 = FlaxTypeRef(
+const _flaxBinding1507 = FlaxTypeRef(
   "map",
-  item: _flaxBinding451,
-  key: _flaxBinding0,
+  item: _flaxBinding102,
+  key: _flaxBinding2,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/flutter#type:LogicalKeyboardKey][int:]",
     _collection39Create,
     _collection39Matches,
   ),
 );
-const _flaxBinding1549 = FlaxTypeRef(
+const _flaxBinding1508 = FlaxTypeRef(
   "map",
-  item: _flaxBinding447,
-  key: _flaxBinding0,
+  item: _flaxBinding100,
+  key: _flaxBinding2,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/flutter#type:PhysicalKeyboardKey][int:]",
     _collection40Create,
     _collection40Matches,
   ),
 );
-const _flaxBinding1550 = FlaxTypeRef(
+const _flaxBinding1509 = FlaxTypeRef(
   "map",
-  item: _flaxBinding451,
-  key: _flaxBinding24,
+  item: _flaxBinding102,
+  key: _flaxBinding0,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/flutter#type:LogicalKeyboardKey][String:]",
     _collection41Create,
     _collection41Matches,
   ),
 );
-const _flaxBinding1551 = FlaxTypeRef(
+const _flaxBinding1510 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding424,
+  item: _flaxBinding98,
   collection: FlaxCollectionBinding(
     "iterable:[object?:flax.core/flutter#type:LogicalKeyboardKey]",
     _collection43Create,
@@ -42842,167 +40978,167 @@ const _flaxBinding1551 = FlaxTypeRef(
     restore: _collection43Restore,
   ),
 );
-const _flaxBinding1552 = FlaxTypeRef(
+const _flaxBinding1511 = FlaxTypeRef(
   "list",
-  item: _flaxBinding424,
+  item: _flaxBinding98,
   collection: FlaxCollectionBinding(
     "list:[object?:flax.core/flutter#type:LogicalKeyboardKey]",
     _collection42Create,
     _collection42Matches,
   ),
-  iterable: _flaxBinding1551,
+  iterable: _flaxBinding1510,
 );
-const _flaxBinding1553 = FlaxTypeRef(
+const _flaxBinding1512 = FlaxTypeRef(
   "map",
-  item: _flaxBinding1552,
-  key: _flaxBinding24,
+  item: _flaxBinding1511,
+  key: _flaxBinding0,
   collection: FlaxCollectionBinding(
     "map:[list:[object?:flax.core/flutter#type:LogicalKeyboardKey]][String:]",
     _collection44Create,
     _collection44Matches,
   ),
 );
-const _flaxBinding1554 = FlaxTypeRef(
+const _flaxBinding1513 = FlaxTypeRef(
   "map",
-  item: _flaxBinding447,
-  key: _flaxBinding24,
+  item: _flaxBinding100,
+  key: _flaxBinding0,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/flutter#type:PhysicalKeyboardKey][String:]",
     _collection45Create,
     _collection45Matches,
   ),
 );
-const _flaxBinding1555 = FlaxTypeRef(
+const _flaxBinding1514 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:PlatformViewsRegistry",
 );
-const _flaxBinding1556 = FlaxTypeRef(
+const _flaxBinding1515 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:AssetBundle",
 );
-const _flaxBinding1557 = FlaxTypeRef(
+const _flaxBinding1516 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:AssetManifest",
 );
-const _flaxBinding1558 = FlaxTypeRef(
+const _flaxBinding1517 = FlaxTypeRef(
   "future",
-  item: _flaxBinding1557,
+  item: _flaxBinding1516,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_services#type:AssetManifest",
     _future18Adapt,
   ),
 );
-const _flaxBinding1559 = FlaxTypeRef(
+const _flaxBinding1518 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:RootIsolateToken",
 );
-const _flaxBinding1560 = FlaxTypeRef(
+const _flaxBinding1519 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:ClipboardData",
 );
-const _flaxBinding1561 = FlaxTypeRef(
+const _flaxBinding1520 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:ClipboardData",
   nullable: true,
 );
-const _flaxBinding1562 = FlaxTypeRef(
+const _flaxBinding1521 = FlaxTypeRef(
   "future",
-  item: _flaxBinding1561,
+  item: _flaxBinding1520,
   future: FlaxFutureBinding(
     "object?:flax.core/sdk_services#type:ClipboardData",
     _future19Adapt,
   ),
 );
-const _flaxBinding1563 = FlaxTypeRef(
+const _flaxBinding1522 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:KeyboardLockMode",
   nullable: true,
 );
-const _flaxBinding1564 = FlaxTypeRef(
+const _flaxBinding1523 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:MessageCodec",
   dartType: FlaxDartTypes.typeOf<api.MessageCodec<Object?>?>,
   nullable: true,
 );
-const _flaxBinding1565 = FlaxTypeRef(
+const _flaxBinding1524 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:AndroidViewController",
 );
-const _flaxBinding1566 = FlaxTypeRef(
+const _flaxBinding1525 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:SurfaceAndroidViewController",
 );
-const _flaxBinding1567 = FlaxTypeRef(
+const _flaxBinding1526 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:ExpensiveAndroidViewController",
 );
-const _flaxBinding1568 = FlaxTypeRef(
+const _flaxBinding1527 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:HybridAndroidViewController",
 );
-const _flaxBinding1569 = FlaxTypeRef(
+const _flaxBinding1528 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:UiKitViewGestureBlockingPolicy",
 );
-const _flaxBinding1570 = FlaxTypeRef(
+const _flaxBinding1529 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:UiKitViewController",
 );
-const _flaxBinding1571 = FlaxTypeRef(
+const _flaxBinding1530 = FlaxTypeRef(
   "future",
-  item: _flaxBinding1570,
+  item: _flaxBinding1529,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_services#type:UiKitViewController",
     _future20Adapt,
   ),
 );
-const _flaxBinding1572 = FlaxTypeRef(
+const _flaxBinding1531 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:AppKitViewController",
 );
-const _flaxBinding1573 = FlaxTypeRef(
+const _flaxBinding1532 = FlaxTypeRef(
   "future",
-  item: _flaxBinding1572,
+  item: _flaxBinding1531,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_services#type:AppKitViewController",
     _future21Adapt,
   ),
 );
-const _flaxBinding1574 = FlaxTypeRef(
+const _flaxBinding1533 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:ServicesBinding",
 );
-const _flaxBinding1575 = FlaxTypeRef(
+const _flaxBinding1534 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:RootIsolateToken",
   nullable: true,
 );
-const _flaxBinding1576 = FlaxTypeRef(
+const _flaxBinding1535 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:SystemContextMenuClient",
   nullable: true,
 );
-const _flaxBinding1577 = FlaxTypeRef(
+const _flaxBinding1536 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:OptionalMethodChannel",
 );
-const _flaxBinding1578 = FlaxTypeRef(
+const _flaxBinding1537 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:BasicMessageChannel",
   dartType: FlaxDartTypes.typeOf<api.BasicMessageChannel<Object?>>,
 );
-const _flaxBinding1579 = FlaxTypeRef(
+const _flaxBinding1538 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:BasicMessageChannel",
   dartType: FlaxDartTypes.typeOf<api.BasicMessageChannel<String?>>,
 );
-const _flaxBinding1580 = FlaxTypeRef(
+const _flaxBinding1539 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:DeviceOrientation",
 );
-const _flaxBinding1581 = FlaxTypeRef(
+const _flaxBinding1540 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1580,
+  item: _flaxBinding1539,
   collection: FlaxCollectionBinding(
     "iterable:[enum:flax.core/sdk_services#type:DeviceOrientation]",
     _collection47Create,
@@ -43010,31 +41146,31 @@ const _flaxBinding1581 = FlaxTypeRef(
     restore: _collection47Restore,
   ),
 );
-const _flaxBinding1582 = FlaxTypeRef(
+const _flaxBinding1541 = FlaxTypeRef(
   "list",
-  item: _flaxBinding1580,
+  item: _flaxBinding1539,
   collection: FlaxCollectionBinding(
     "list:[enum:flax.core/sdk_services#type:DeviceOrientation]",
     _collection46Create,
     _collection46Matches,
   ),
-  iterable: _flaxBinding1581,
+  iterable: _flaxBinding1540,
 );
-const _flaxBinding1583 = FlaxTypeRef(
+const _flaxBinding1542 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:ApplicationSwitcherDescription",
 );
-const _flaxBinding1584 = FlaxTypeRef(
+const _flaxBinding1543 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SystemUiMode",
 );
-const _flaxBinding1585 = FlaxTypeRef(
+const _flaxBinding1544 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SystemUiOverlay",
 );
-const _flaxBinding1586 = FlaxTypeRef(
+const _flaxBinding1545 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1585,
+  item: _flaxBinding1544,
   collection: FlaxCollectionBinding(
     "iterable:[enum:flax.core/sdk_services#type:SystemUiOverlay]",
     _collection49Create,
@@ -43042,33 +41178,33 @@ const _flaxBinding1586 = FlaxTypeRef(
     restore: _collection49Restore,
   ),
 );
-const _flaxBinding1587 = FlaxTypeRef(
+const _flaxBinding1546 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding1585,
+  item: _flaxBinding1544,
   collection: FlaxCollectionBinding(
     "list:[enum:flax.core/sdk_services#type:SystemUiOverlay]",
     _collection48Create,
     _collection48Matches,
   ),
-  iterable: _flaxBinding1586,
+  iterable: _flaxBinding1545,
 );
-const _flaxBinding1588 = FlaxTypeRef(
+const _flaxBinding1547 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Uri",
   nullable: true,
 );
-const _flaxBinding1589 = FlaxTypeRef(
+const _flaxBinding1548 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SystemSoundType",
 );
-const _flaxBinding1590 = FlaxTypeRef(
+const _flaxBinding1549 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:ScribbleClient",
 );
-const _flaxBinding1591 = FlaxTypeRef(
+const _flaxBinding1550 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1362,
+  item: _flaxBinding242,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_services#type:TextInputType]",
     _collection51Create,
@@ -43076,17 +41212,17 @@ const _flaxBinding1591 = FlaxTypeRef(
     restore: _collection51Restore,
   ),
 );
-const _flaxBinding1592 = FlaxTypeRef(
+const _flaxBinding1551 = FlaxTypeRef(
   "list",
-  item: _flaxBinding1362,
+  item: _flaxBinding242,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_services#type:TextInputType]",
     _collection50Create,
     _collection50Matches,
   ),
-  iterable: _flaxBinding1591,
+  iterable: _flaxBinding1550,
 );
-const _flaxBinding1593 = FlaxTypeRef(
+const _flaxBinding1552 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:UndoManagerClient",
   nullable: true,

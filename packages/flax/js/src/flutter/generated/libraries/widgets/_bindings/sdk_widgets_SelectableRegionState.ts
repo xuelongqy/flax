@@ -37,10 +37,10 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 import type * as upstream17 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionGeometry';
 const _flaxMemberParameters0 = [{"name":"selectable","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"value","required":true,"positional":true},{"name":"cause","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"hideHandles","required":false,"positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"hideHandles","positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"position","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"cause","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"cause","required":false,"positional":true}] as const;
+const _flaxMemberParameters5 = [{"name":"cause","positional":true}] as const;
 const _flaxMemberParameters6 = [] as const;
 const _flaxMemberParameters7 = [{"name":"oldWidget","required":true,"positional":true}] as const;
 const _flaxMemberParameters8 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
@@ -96,7 +96,7 @@ defineObject("flax.core/sdk_widgets#type:SelectableRegionState", ["textEditingVa
 export function _SelectableRegionStateFactory(): SelectableRegionState {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:SelectableRegionState", "", [], [], {}) as SelectableRegionState;
+return constructObject("object", "flax.core/sdk_widgets#type:SelectableRegionState", "", _flaxMemberParameters6, [], {}) as SelectableRegionState;
 }
 export const SelectableRegionState: typeof _SelectableRegionStateFactory & _FlaxInstanceType<SelectableRegionState> & _FlaxDartType<SelectableRegionState, readonly ["class", "flax.core/sdk_widgets#type:SelectableRegionState", readonly [], false]> = _flaxBindInstanceType<SelectableRegionState, typeof _SelectableRegionStateFactory>(_SelectableRegionStateFactory, "flax.core/sdk_widgets#type:SelectableRegionState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/sdk_rendering#type:SelectionRegistrar","flax.core/sdk_services#type:TextSelectionDelegate"]) as typeof _SelectableRegionStateFactory & _FlaxInstanceType<SelectableRegionState> & _FlaxDartType<SelectableRegionState, readonly ["class", "flax.core/sdk_widgets#type:SelectableRegionState", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "textEditingValue" | "cutEnabled" | "copyEnabled" | "pasteEnabled" | "selectAllEnabled" | "lookUpEnabled" | "searchWebEnabled" | "shareEnabled" | "liveTextInputEnabled" | "contextMenuAnchors" | "contextMenuButtonItems" | "startGlyphHeight" | "endGlyphHeight" | "selectionEndpoints" | "widget" | "context" | "mounted" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "add" | "remove" | "userUpdateTextEditingValue" | "hideToolbar" | "bringIntoView" | "cutSelection" | "pasteText" | "selectAll" | "copySelection" | "initState" | "didChangeDependencies" | "didUpdateWidget" | "clearSelection" | "dispose" | "build" | "reassemble" | "setState" | "deactivate" | "activate" | "__flaxBound:package:flutter/src/widgets/selectable_region.dart::SelectableRegionState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar" | "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate";

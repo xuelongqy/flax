@@ -10,13 +10,14 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_ColorSpace';
 import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 const _flaxMemberParameters0 = [{"name":"states","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"alpha","required":false,"positional":false},{"name":"blue","required":false,"positional":false},{"name":"colorSpace","required":false,"positional":false},{"name":"green","required":false,"positional":false},{"name":"red","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"a","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [{"name":"opacity","required":true,"positional":true}] as const;
-const _flaxMemberParameters5 = [{"name":"r","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"g","required":true,"positional":true}] as const;
-const _flaxMemberParameters7 = [{"name":"b","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"defaultValue","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters3 = [{"name":"alpha"},{"name":"blue"},{"name":"colorSpace"},{"name":"green"},{"name":"red"}] as const;
+const _flaxMemberParameters4 = [{"name":"a","required":true,"positional":true}] as const;
+const _flaxMemberParameters5 = [{"name":"opacity","required":true,"positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"r","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [{"name":"g","required":true,"positional":true}] as const;
+const _flaxMemberParameters8 = [{"name":"b","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,7 +26,7 @@ readonly [_flaxDartTypeValue]: WidgetStateColor;
 
 }
 defineObject("flax.core/sdk_widgets#type:WidgetStateColor", ["a","r","g","b","colorSpace","value","alpha","opacity","red","green","blue"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStateColor", "object", {"resolve":_flaxMemberParameters0}, {}), [], undefined, "flax.core/flutter#type:Color");
-const _WidgetStateColorProxy = {type: "flax.core/sdk_widgets#type:WidgetStateColor", parameters: [{"name":"defaultValue","required":true,"positional":true}], constructors: {"":[{"name":"defaultValue","required":true,"positional":true}]}, methods: {"toARGB32":_flaxMemberParameters1,"withValues":_flaxMemberParameters2,"withAlpha":_flaxMemberParameters3,"withOpacity":_flaxMemberParameters4,"withRed":_flaxMemberParameters5,"withGreen":_flaxMemberParameters6,"withBlue":_flaxMemberParameters7,"computeLuminance":_flaxMemberParameters1,"toString":_flaxMemberParameters1,"resolve":_flaxMemberParameters0}, getters: ["a","r","g","b","colorSpace","value","alpha","opacity","red","green","blue"], setters: [], contextMembers: [], superMembers: ["get:a","get:r","get:g","get:b","get:colorSpace","get:value","get:alpha","get:opacity","get:red","get:green","get:blue","toARGB32","withValues","withAlpha","withOpacity","withRed","withGreen","withBlue","computeLuminance","toString"]} as const;
+const _WidgetStateColorProxy = {type: "flax.core/sdk_widgets#type:WidgetStateColor", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"toARGB32":_flaxMemberParameters2,"withValues":_flaxMemberParameters3,"withAlpha":_flaxMemberParameters4,"withOpacity":_flaxMemberParameters5,"withRed":_flaxMemberParameters6,"withGreen":_flaxMemberParameters7,"withBlue":_flaxMemberParameters8,"computeLuminance":_flaxMemberParameters2,"toString":_flaxMemberParameters2,"resolve":_flaxMemberParameters0}, getters: ["a","r","g","b","colorSpace","value","alpha","opacity","red","green","blue"], setters: [], contextMembers: [], superMembers: ["get:a","get:r","get:g","get:b","get:colorSpace","get:value","get:alpha","get:opacity","get:red","get:green","get:blue","toARGB32","withValues","withAlpha","withOpacity","withRed","withGreen","withBlue","computeLuminance","toString"]} as const;
 export interface WidgetStateColor {
 readonly [_flaxDartTypeValue]: WidgetStateColor;
 

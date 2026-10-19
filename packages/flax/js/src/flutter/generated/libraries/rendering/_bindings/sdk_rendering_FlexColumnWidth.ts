@@ -6,8 +6,9 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_TableColumnWidth';
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 const _flaxMemberParameters0 = [{"name":"cells","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"cells","required":true,"positional":true},{"name":"containerWidth","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters1 = [{"name":"value","positional":true}] as const;
+const _flaxMemberParameters2 = [{"name":"cells","required":true,"positional":true},{"name":"containerWidth","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,7 +17,7 @@ readonly [_flaxDartTypeValue]: FlexColumnWidth;
 
 }
 defineObject("flax.core/sdk_rendering#type:FlexColumnWidth", ["value"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:FlexColumnWidth", "object", {"flex":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_rendering#type:TableColumnWidth");
-const _FlexColumnWidthProxy = {type: "flax.core/sdk_rendering#type:FlexColumnWidth", parameters: [{"name":"value","required":false,"positional":true}], constructors: {"":[{"name":"value","required":false,"positional":true}]}, methods: {"minIntrinsicWidth":_flaxMemberParameters1,"maxIntrinsicWidth":_flaxMemberParameters1,"flex":_flaxMemberParameters0,"toString":_flaxMemberParameters2}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","minIntrinsicWidth","maxIntrinsicWidth","flex","toString"]} as const;
+const _FlexColumnWidthProxy = {type: "flax.core/sdk_rendering#type:FlexColumnWidth", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"minIntrinsicWidth":_flaxMemberParameters2,"maxIntrinsicWidth":_flaxMemberParameters2,"flex":_flaxMemberParameters0,"toString":_flaxMemberParameters3}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","minIntrinsicWidth","maxIntrinsicWidth","flex","toString"]} as const;
 export interface FlexColumnWidth {
 readonly [_flaxDartTypeValue]: FlexColumnWidth;
 

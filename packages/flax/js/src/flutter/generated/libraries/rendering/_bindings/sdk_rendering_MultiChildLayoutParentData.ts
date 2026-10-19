@@ -22,7 +22,7 @@ readonly [_flaxDartTypeValue]: MultiChildLayoutParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:MultiChildLayoutParentData", ["offset","previousSibling","nextSibling","id"], ["offset","previousSibling","nextSibling","id"], _flaxBindingMethods("flax.core/sdk_rendering#type:MultiChildLayoutParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
-const _MultiChildLayoutParentDataProxy = {type: "flax.core/sdk_rendering#type:MultiChildLayoutParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["id","offset","previousSibling","nextSibling"], setters: ["id","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:id","get:offset","get:previousSibling","get:nextSibling","set:id","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _MultiChildLayoutParentDataProxy = {type: "flax.core/sdk_rendering#type:MultiChildLayoutParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["id","offset","previousSibling","nextSibling"], setters: ["id","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:id","get:offset","get:previousSibling","get:nextSibling","set:id","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface MultiChildLayoutParentData {
 readonly [_flaxDartTypeValue]: MultiChildLayoutParentData;
 

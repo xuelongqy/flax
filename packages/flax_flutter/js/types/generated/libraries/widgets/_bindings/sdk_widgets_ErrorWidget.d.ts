@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_LeafRenderObjectWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_LeafRenderObjectWidget';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_FlutterError';
 import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_Key';

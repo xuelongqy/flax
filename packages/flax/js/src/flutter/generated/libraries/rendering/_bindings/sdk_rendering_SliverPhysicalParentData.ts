@@ -17,7 +17,7 @@ readonly [_flaxDartTypeValue]: SliverPhysicalParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:SliverPhysicalParentData", ["paintOffset","crossAxisFlex"], ["paintOffset","crossAxisFlex"], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverPhysicalParentData", "object", {"applyPaintTransform":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_rendering#type:ParentData");
-const _SliverPhysicalParentDataProxy = {type: "flax.core/sdk_rendering#type:SliverPhysicalParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters1,"toString":_flaxMemberParameters1,"applyPaintTransform":_flaxMemberParameters0}, getters: ["paintOffset","crossAxisFlex"], setters: ["paintOffset","crossAxisFlex"], contextMembers: [], superMembers: ["get:paintOffset","get:crossAxisFlex","set:paintOffset","set:crossAxisFlex","detach","toString","applyPaintTransform"]} as const;
+const _SliverPhysicalParentDataProxy = {type: "flax.core/sdk_rendering#type:SliverPhysicalParentData", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"detach":_flaxMemberParameters1,"toString":_flaxMemberParameters1,"applyPaintTransform":_flaxMemberParameters0}, getters: ["paintOffset","crossAxisFlex"], setters: ["paintOffset","crossAxisFlex"], contextMembers: [], superMembers: ["get:paintOffset","get:crossAxisFlex","set:paintOffset","set:crossAxisFlex","detach","toString","applyPaintTransform"]} as const;
 export interface SliverPhysicalParentData {
 readonly [_flaxDartTypeValue]: SliverPhysicalParentData;
 

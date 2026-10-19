@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show mustCallSuper;
+import 'package:flutter/widgets.dart';
 
 typedef ClosedCallback = num Function(num value);
 
@@ -75,4 +75,45 @@ class SharedRestricted extends SharedBase {}
 class SharedGeneric<T> extends SharedBase {
   T? held;
   T echo(T value) => value;
+}
+
+class SharedWidgetBase extends StatelessWidget {
+  const SharedWidgetBase({super.key});
+
+  num get value => 1;
+  num get narrowed => value;
+  @mustCallSuper
+  num scale(num input) => input + value;
+  num narrow(covariant num input) => input;
+  int defaulted({int amount = 1}) => amount;
+  num callWith(num Function(num) callback) => callback(value);
+
+  @override
+  Widget build(BuildContext context) => const SizedBox();
+}
+
+class SharedWidgetChild extends SharedWidgetBase {
+  const SharedWidgetChild({super.key});
+
+  @override
+  num get value => 2;
+  @override
+  double get narrowed => value.toDouble();
+  @override
+  num scale(num input) => super.scale(input) + 10;
+  @override
+  double narrow(double input) => input + 0.5;
+  @override
+  int defaulted({int amount = 2}) => amount;
+}
+
+class SharedWidgetLeaf extends SharedWidgetChild {
+  const SharedWidgetLeaf({super.key});
+
+  @override
+  num scale(num input) => super.scale(input) + 100;
+}
+
+class SharedRestrictedWidget extends SharedWidgetBase {
+  const SharedRestrictedWidget({super.key});
 }

@@ -28,15 +28,15 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import type * as upstream12 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 const _flaxMemberParameters0 = [{"name":"states","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"borderRadius","required":false,"positional":false},{"name":"borderSide","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"paint","required":true,"positional":true},{"name":"textDirection","required":false,"positional":false}] as const;
-const _flaxMemberParameters5 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters7 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"gapExtent","required":false,"positional":false},{"name":"gapPercentage","required":false,"positional":false},{"name":"gapStart","required":false,"positional":false},{"name":"textDirection","required":false,"positional":false}] as const;
-const _flaxMemberParameters8 = [{"name":"other","required":true,"positional":true},{"name":"reversed","required":false,"positional":false}] as const;
-const _flaxMemberParameters9 = [] as const;
+const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"borderRadius"},{"name":"borderSide"}] as const;
+const _flaxMemberParameters3 = [{"name":"t","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"rect","required":true,"positional":true},{"name":"textDirection"}] as const;
+const _flaxMemberParameters5 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"paint","required":true,"positional":true},{"name":"textDirection"}] as const;
+const _flaxMemberParameters6 = [{"name":"a","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [{"name":"b","required":true,"positional":true},{"name":"t","required":true,"positional":true}] as const;
+const _flaxMemberParameters8 = [{"name":"canvas","required":true,"positional":true},{"name":"rect","required":true,"positional":true},{"name":"gapExtent"},{"name":"gapPercentage"},{"name":"gapStart"},{"name":"textDirection"}] as const;
+const _flaxMemberParameters9 = [{"name":"other","required":true,"positional":true},{"name":"reversed"}] as const;
 const _flaxMemberParameters10 = [{"name":"other","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
@@ -46,7 +46,7 @@ readonly [_flaxDartTypeValue]: MaterialStateUnderlineInputBorder;
 
 }
 defineObject("flax.core/sdk_material#type:MaterialStateUnderlineInputBorder", ["borderRadius","isOutline","dimensions","preferPaintInterior","borderSide"], [], _flaxBindingMethods("flax.core/sdk_material#type:MaterialStateUnderlineInputBorder", "object", {"resolve":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_material#type:UnderlineInputBorder");
-const _MaterialStateUnderlineInputBorderProxy = {type: "flax.core/sdk_material#type:MaterialStateUnderlineInputBorder", parameters: [], constructors: {"":[]}, methods: {"copyWith":_flaxMemberParameters1,"scale":_flaxMemberParameters2,"getInnerPath":_flaxMemberParameters3,"getOuterPath":_flaxMemberParameters3,"paintInterior":_flaxMemberParameters4,"lerpFrom":_flaxMemberParameters5,"lerpTo":_flaxMemberParameters6,"paint":_flaxMemberParameters7,"add":_flaxMemberParameters8,"toString":_flaxMemberParameters9,"resolve":_flaxMemberParameters0,"operatorAdd":_flaxMemberParameters10}, getters: ["borderRadius","isOutline","dimensions","preferPaintInterior","borderSide"], setters: [], contextMembers: [], superMembers: ["get:borderRadius","get:isOutline","get:dimensions","get:preferPaintInterior","get:borderSide","copyWith","scale","getInnerPath","getOuterPath","paintInterior","lerpFrom","lerpTo","paint","add","toString","operatorAdd"]} as const;
+const _MaterialStateUnderlineInputBorderProxy = {type: "flax.core/sdk_material#type:MaterialStateUnderlineInputBorder", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"copyWith":_flaxMemberParameters2,"scale":_flaxMemberParameters3,"getInnerPath":_flaxMemberParameters4,"getOuterPath":_flaxMemberParameters4,"paintInterior":_flaxMemberParameters5,"lerpFrom":_flaxMemberParameters6,"lerpTo":_flaxMemberParameters7,"paint":_flaxMemberParameters8,"add":_flaxMemberParameters9,"toString":_flaxMemberParameters1,"resolve":_flaxMemberParameters0,"operatorAdd":_flaxMemberParameters10}, getters: ["borderRadius","isOutline","dimensions","preferPaintInterior","borderSide"], setters: [], contextMembers: [], superMembers: ["get:borderRadius","get:isOutline","get:dimensions","get:preferPaintInterior","get:borderSide","copyWith","scale","getInnerPath","getOuterPath","paintInterior","lerpFrom","lerpTo","paint","add","toString","operatorAdd"]} as const;
 export interface MaterialStateUnderlineInputBorder {
 readonly [_flaxDartTypeValue]: MaterialStateUnderlineInputBorder;
 

@@ -26,7 +26,8 @@ import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream14 from '@flax/flutter/widgets/_bindings/sdk_widgets_SelectableRegion';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_SelectableRegion';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface SelectionArea extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
@@ -48,7 +49,7 @@ export interface SelectionArea extends _FlaxDartWidget, Omit<upstream0.StatefulW
     readonly contextMenuBuilder: ((context: upstream4.BuildContext, selectableRegionState: Readonly<{
         "__flaxBound:package:flutter/src/widgets/selectable_region.dart::SelectableRegionState": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream14.SelectableRegion];
+        "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [upstream15.SelectableRegion];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{

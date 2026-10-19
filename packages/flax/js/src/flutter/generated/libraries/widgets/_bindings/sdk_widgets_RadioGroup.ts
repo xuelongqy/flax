@@ -24,9 +24,9 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 const _flaxMemberParameters0 = [] as const;
 const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -52,7 +52,7 @@ export function _RadioGroupFactory(options: { key?: Readonly<{ "__flaxBound:pack
 export function _RadioGroupFactory(options: Record<string, unknown>): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:RadioGroup", "", [{"name":"key","required":false,"positional":false},{"name":"groupValue","required":false,"positional":false},{"name":"onChanged","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as RadioGroup<unknown | null>;
+return constructObject("object", "flax.core/sdk_widgets#type:RadioGroup", "", [{"name":"key"},{"name":"groupValue"},{"name":"onChanged","required":true},{"name":"child","required":true}], [], options) as RadioGroup<unknown | null>;
 }
 export namespace _RadioGroupFactory { function _flaxDefault_maybeOf<T extends unknown | null = unknown | null>(context: upstream3.BuildContext): upstream2.RadioGroupRegistry<_FlaxDartOutput<T>> | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

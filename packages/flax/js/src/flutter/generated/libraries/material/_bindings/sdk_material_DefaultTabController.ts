@@ -23,11 +23,9 @@ import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream11 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -48,11 +46,11 @@ toStringDeep(options?: {minLevel?: upstream8.DiagnosticLevel | undefined; prefix
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream10.DiagnosticsTreeStyle | null | undefined}): upstream9.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream9.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_material#type:DefaultTabController", ["length","initialIndex","animationDuration","child","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:DefaultTabController", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_material#type:DefaultTabController", ["length","initialIndex","animationDuration","child","key"], [], _flaxBindingMethods("flax.core/sdk_material#type:DefaultTabController", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:Widget");
 export function _DefaultTabControllerFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; length: number; initialIndex?: number | undefined; child: Widget; animationDuration?: Readonly<{ "__flaxBound:dart:core::Duration": readonly [] }> & Readonly<{ "__flaxBound:dart:core::Comparable": readonly [upstream2.Duration] }> | null | undefined }): DefaultTabController {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_material#type:DefaultTabController", "", [{"name":"key","required":false,"positional":false},{"name":"length","required":true,"positional":false},{"name":"initialIndex","required":false,"positional":false},{"name":"child","required":true,"positional":false},{"name":"animationDuration","required":false,"positional":false}], [], options) as DefaultTabController;
+return constructObject("object", "flax.core/sdk_material#type:DefaultTabController", "", [{"name":"key"},{"name":"length","required":true},{"name":"initialIndex"},{"name":"child","required":true},{"name":"animationDuration"}], [], options) as DefaultTabController;
 }
 export namespace _DefaultTabControllerFactory { export function maybeOf(context: upstream4.BuildContext): upstream3.TabController | null {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

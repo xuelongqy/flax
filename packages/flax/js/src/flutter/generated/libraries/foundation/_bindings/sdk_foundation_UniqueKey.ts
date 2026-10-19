@@ -14,7 +14,7 @@ readonly [_flaxDartTypeValue]: UniqueKey;
 
 }
 defineObject("flax.core/sdk_foundation#type:UniqueKey", [], [], _flaxBindingMethods("flax.core/sdk_foundation#type:UniqueKey", "object", {"toString":_flaxMemberParameters0}, {}), []);
-const _UniqueKeyProxy = {type: "flax.core/sdk_foundation#type:UniqueKey", parameters: [], constructors: {"":[]}, methods: {"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
+const _UniqueKeyProxy = {type: "flax.core/sdk_foundation#type:UniqueKey", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toString":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["toString"]} as const;
 export interface UniqueKey {
 readonly [_flaxDartTypeValue]: UniqueKey;
 

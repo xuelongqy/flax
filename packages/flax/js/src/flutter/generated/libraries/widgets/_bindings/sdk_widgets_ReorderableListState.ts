@@ -20,7 +20,7 @@ import type * as upstream8 from '@flax/flutter/gestures/_bindings/sdk_gestures_P
 import '@flax/flutter/gestures/_bindings/sdk_gestures_PointerDownEvent';
 import type * as upstream9 from '@flax/flutter/gestures/_bindings/sdk_gestures_MultiDragGestureRecognizer';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_MultiDragGestureRecognizer';
-const _flaxMemberParameters0 = [{"name":"event","required":true,"positional":false},{"name":"index","required":true,"positional":false},{"name":"recognizer","required":true,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"event","required":true},{"name":"index","required":true},{"name":"recognizer","required":true}] as const;
 const _flaxMemberParameters1 = [] as const;
 const _flaxMemberParameters2 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
 const _flaxMemberParameters3 = [{"name":"oldWidget","required":true,"positional":true}] as const;
@@ -53,7 +53,7 @@ defineObject("flax.core/sdk_widgets#type:ReorderableListState", ["widget","conte
 export function _ReorderableListStateFactory(): ReorderableListState {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:ReorderableListState", "", [], [], {}) as ReorderableListState;
+return constructObject("object", "flax.core/sdk_widgets#type:ReorderableListState", "", _flaxMemberParameters1, [], {}) as ReorderableListState;
 }
 export const ReorderableListState: typeof _ReorderableListStateFactory & _FlaxInstanceType<ReorderableListState> & _FlaxDartType<ReorderableListState, readonly ["class", "flax.core/sdk_widgets#type:ReorderableListState", readonly [], false]> = _flaxBindInstanceType<ReorderableListState, typeof _ReorderableListStateFactory>(_ReorderableListStateFactory, "flax.core/sdk_widgets#type:ReorderableListState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ReorderableListStateFactory & _FlaxInstanceType<ReorderableListState> & _FlaxDartType<ReorderableListState, readonly ["class", "flax.core/sdk_widgets#type:ReorderableListState", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "widget" | "context" | "mounted" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "startItemDragReorder" | "cancelReorder" | "build" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "activate" | "dispose" | "didChangeDependencies" | "__flaxBound:package:flutter/src/widgets/reorderable_list.dart::ReorderableListState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

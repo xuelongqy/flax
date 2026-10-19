@@ -4,7 +4,7 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_ColorSpace';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ColorSpace';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"alpha","required":false,"positional":false},{"name":"blue","required":false,"positional":false},{"name":"colorSpace","required":false,"positional":false},{"name":"green","required":false,"positional":false},{"name":"red","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"alpha"},{"name":"blue"},{"name":"colorSpace"},{"name":"green"},{"name":"red"}] as const;
 const _flaxMemberParameters2 = [{"name":"a","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"opacity","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"r","required":true,"positional":true}] as const;
@@ -46,7 +46,7 @@ export namespace _ColorFactory {
 export function from(options: { alpha: number; red: number; green: number; blue: number; colorSpace?: upstream0.ColorSpace | undefined }): Color {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Color", "from", [{"name":"alpha","required":true,"positional":false},{"name":"red","required":true,"positional":false},{"name":"green","required":true,"positional":false},{"name":"blue","required":true,"positional":false},{"name":"colorSpace","required":false,"positional":false}], [], options) as Color;
+return constructObject("object", "flax.core/flutter#type:Color", "from", [{"name":"alpha","required":true},{"name":"red","required":true},{"name":"green","required":true},{"name":"blue","required":true},{"name":"colorSpace"}], [], options) as Color;
 }
 }
 export namespace _ColorFactory {

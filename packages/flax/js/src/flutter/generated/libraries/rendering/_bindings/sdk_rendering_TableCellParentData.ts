@@ -18,7 +18,7 @@ readonly [_flaxDartTypeValue]: TableCellParentData;
 
 }
 defineObject("flax.core/sdk_rendering#type:TableCellParentData", ["offset","verticalAlignment","x","y"], ["offset","verticalAlignment","x","y"], _flaxBindingMethods("flax.core/sdk_rendering#type:TableCellParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
-const _TableCellParentDataProxy = {type: "flax.core/sdk_rendering#type:TableCellParentData", parameters: [], constructors: {"":[]}, methods: {"toString":_flaxMemberParameters0,"detach":_flaxMemberParameters0}, getters: ["verticalAlignment","x","y","offset"], setters: ["verticalAlignment","x","y","offset"], contextMembers: [], superMembers: ["get:verticalAlignment","get:x","get:y","get:offset","set:verticalAlignment","set:x","set:y","set:offset","toString","detach"]} as const;
+const _TableCellParentDataProxy = {type: "flax.core/sdk_rendering#type:TableCellParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toString":_flaxMemberParameters0,"detach":_flaxMemberParameters0}, getters: ["verticalAlignment","x","y","offset"], setters: ["verticalAlignment","x","y","offset"], contextMembers: [], superMembers: ["get:verticalAlignment","get:x","get:y","get:offset","set:verticalAlignment","set:x","set:y","set:offset","toString","detach"]} as const;
 export interface TableCellParentData {
 readonly [_flaxDartTypeValue]: TableCellParentData;
 

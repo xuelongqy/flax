@@ -22,7 +22,7 @@ defineObject("flax.core/flutter#type:LengthLimitingTextInputFormatter", ["maxLen
 export function _LengthLimitingTextInputFormatterFactory(maxLength: number | null, options: { maxLengthEnforcement?: upstream1.MaxLengthEnforcement | null | undefined } = {}): LengthLimitingTextInputFormatter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:LengthLimitingTextInputFormatter", "", [{"name":"maxLength","required":true,"positional":true},{"name":"maxLengthEnforcement","required":false,"positional":false}], [maxLength], options) as LengthLimitingTextInputFormatter;
+return constructObject("object", "flax.core/flutter#type:LengthLimitingTextInputFormatter", "", [{"name":"maxLength","required":true,"positional":true},{"name":"maxLengthEnforcement"}], [maxLength], options) as LengthLimitingTextInputFormatter;
 }
 export namespace _LengthLimitingTextInputFormatterFactory { export function getDefaultMaxLengthEnforcement(platform?: upstream2.TargetPlatform | null): upstream1.MaxLengthEnforcement {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

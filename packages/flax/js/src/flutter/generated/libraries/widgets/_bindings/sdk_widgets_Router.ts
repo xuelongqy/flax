@@ -33,9 +33,9 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream14 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
 const _flaxMemberParameters0 = [] as const;
 const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -63,7 +63,7 @@ export function _RouterFactory(options: { key?: Readonly<{ "__flaxBound:package:
 export function _RouterFactory(options: Record<string, unknown>): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:Router", "", [{"name":"key","required":false,"positional":false},{"name":"routeInformationProvider","required":false,"positional":false},{"name":"routeInformationParser","required":false,"positional":false},{"name":"routerDelegate","required":true,"positional":false},{"name":"backButtonDispatcher","required":false,"positional":false},{"name":"restorationScopeId","required":false,"positional":false}], [], options) as Router<unknown | null>;
+return constructObject("object", "flax.core/sdk_widgets#type:Router", "", [{"name":"key"},{"name":"routeInformationProvider"},{"name":"routeInformationParser"},{"name":"routerDelegate","required":true},{"name":"backButtonDispatcher"},{"name":"restorationScopeId"}], [], options) as Router<unknown | null>;
 }
 export namespace _RouterFactory {
 export function withConfig<T extends unknown | null = unknown | null>(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; config: Readonly<{ "__flaxBound:package:flutter/src/widgets/router.dart::RouterConfig": readonly [_FlaxDartOutput<T>] }>; restorationScopeId?: string | null | undefined }): Router<T>;
@@ -71,7 +71,7 @@ export function withConfig(options: { key?: Readonly<{ "__flaxBound:package:flut
 export function withConfig(options: Record<string, unknown>): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:Router", "withConfig", [{"name":"key","required":false,"positional":false},{"name":"config","required":true,"positional":false},{"name":"restorationScopeId","required":false,"positional":false}], [], options) as Router<unknown | null>;
+return constructObject("object", "flax.core/sdk_widgets#type:Router", "withConfig", [{"name":"key"},{"name":"config","required":true},{"name":"restorationScopeId"}], [], options) as Router<unknown | null>;
 }
 }
 export namespace _RouterFactory { function _flaxDefault_of<T extends unknown | null = unknown | null>(context: upstream7.BuildContext): Router<_FlaxDartOutput<T>> {

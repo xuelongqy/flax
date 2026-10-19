@@ -1,0 +1,72 @@
+format: 2
+name: sdk_dependencies
+library: package:vector_math/vector_math_64.dart
+additionalLibraries:
+  - dart:core
+  - dart:convert
+  - dart:developer
+  - dart:io
+  - dart:isolate
+jsPackage: '@flax/flutter/vector_math'
+dartOutput: lib/src/generated/sdk_dependencies_bindings.g.dart
+tsOutput: js/src/flutter/generated/libraries/vector_math/index.ts
+# Public dependencies needed by the selected Flutter signatures, not whole SDKs.
+classes:
+  - Vector2
+  - Vector3
+  - Vector4
+  - Matrix2
+  - Matrix3
+  - Quad
+  - Quaternion
+  - Encoding
+  - Utf8Codec
+  - Latin1Codec
+  - AsciiCodec
+  - Flow
+  - Stopwatch
+  - SendPort
+  - File
+  - FileSystemEntity
+  - FileSystemEntityType
+  - FileStat
+  - FileMode
+  - FileLock
+  - RandomAccessFile
+  - Directory
+  - Link
+  - HttpClient
+  - HttpClientRequest
+  - HttpClientResponse
+  - HttpClientResponseCompressionState
+  - RedirectInfo
+  - HttpHeaders
+  - Cookie
+  - X509Certificate
+  - HttpConnectionInfo
+  - Socket
+  - InternetAddress
+  - InternetAddressType
+  - SocketOption
+  - RawSocketOption
+  - SecureSocket
+  - SecurityContext
+publicLibraries:
+  package:vector_math/vector_math_64.dart:
+    jsPackage: '@flax/flutter/vector_math'
+    tsOutput: js/src/flutter/generated/libraries/vector_math/index.ts
+  dart:core:
+    jsPackage: '@flax/dart/core'
+    tsOutput: js/src/dart/generated/libraries/core/index.ts
+  dart:convert:
+    jsPackage: '@flax/dart/convert'
+    tsOutput: js/src/dart/generated/libraries/convert/index.ts
+  dart:developer:
+    jsPackage: '@flax/dart/developer'
+    tsOutput: js/src/dart/generated/libraries/developer/index.ts
+  dart:io:
+    jsPackage: '@flax/dart/io'
+    tsOutput: js/src/dart/generated/libraries/io/index.ts
+  dart:isolate:
+    jsPackage: '@flax/dart/isolate'
+    tsOutput: js/src/dart/generated/libraries/isolate/index.ts

@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: SliverOverlapAbsorberHandle;
 
 }
 defineObject("flax.core/sdk_widgets#type:SliverOverlapAbsorberHandle", ["hasListeners","layoutExtent","scrollExtent"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SliverOverlapAbsorberHandle", "object", {"toString":_flaxMemberParameters0}, {}), ["removeListener"], undefined, "flax.core/sdk_foundation#type:ChangeNotifier");
-const _SliverOverlapAbsorberHandleProxy = {type: "flax.core/sdk_widgets#type:SliverOverlapAbsorberHandle", parameters: [], constructors: {"":[]}, methods: {"addListener":_flaxMemberParameters1,"removeListener":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["layoutExtent","scrollExtent","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:layoutExtent","get:scrollExtent","get:hasListeners","addListener","removeListener","dispose","toString"]} as const;
+const _SliverOverlapAbsorberHandleProxy = {type: "flax.core/sdk_widgets#type:SliverOverlapAbsorberHandle", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"addListener":_flaxMemberParameters1,"removeListener":_flaxMemberParameters1,"dispose":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["layoutExtent","scrollExtent","hasListeners"], setters: [], contextMembers: [], superMembers: ["get:layoutExtent","get:scrollExtent","get:hasListeners","addListener","removeListener","dispose","toString"]} as const;
 export interface SliverOverlapAbsorberHandle {
 readonly [_flaxDartTypeValue]: SliverOverlapAbsorberHandle;
 

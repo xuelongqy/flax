@@ -12,6 +12,7 @@ const exampleBindings = FlaxBindingModule(
   'example',
   [_flaxBinding7],
   functions: [],
+  constants: [],
   moduleId: "vendor.example/example",
   dependencyModules: [],
   uiProtocol: 24,

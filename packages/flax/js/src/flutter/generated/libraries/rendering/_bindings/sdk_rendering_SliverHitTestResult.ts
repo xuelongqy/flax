@@ -11,11 +11,11 @@ import type * as upstream3 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-const _flaxMemberParameters0 = [{"name":"crossAxisOffset","required":true,"positional":false},{"name":"crossAxisPosition","required":true,"positional":false},{"name":"hitTest","required":true,"positional":false},{"name":"mainAxisOffset","required":true,"positional":false},{"name":"mainAxisPosition","required":true,"positional":false},{"name":"paintOffset","required":true,"positional":false}] as const;
-const _flaxMemberParameters1 = [{"name":"entry","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"transform","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"offset","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [] as const;
+const _flaxMemberParameters0 = [{"name":"crossAxisOffset","required":true},{"name":"crossAxisPosition","required":true},{"name":"hitTest","required":true},{"name":"mainAxisOffset","required":true},{"name":"mainAxisPosition","required":true},{"name":"paintOffset","required":true}] as const;
+const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"entry","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"transform","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"offset","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -24,7 +24,7 @@ readonly [_flaxDartTypeValue]: SliverHitTestResult;
 
 }
 defineObject("flax.core/sdk_rendering#type:SliverHitTestResult", ["path"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:SliverHitTestResult", "object", {"addWithAxisOffset":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_gestures#type:HitTestResult");
-const _SliverHitTestResultProxy = {type: "flax.core/sdk_rendering#type:SliverHitTestResult", parameters: [], constructors: {"":[]}, methods: {"add":_flaxMemberParameters1,"pushTransform":_flaxMemberParameters2,"pushOffset":_flaxMemberParameters3,"popTransform":_flaxMemberParameters4,"toString":_flaxMemberParameters4,"addWithAxisOffset":_flaxMemberParameters0}, getters: ["path"], setters: [], contextMembers: [], superMembers: ["get:path","add","pushTransform","pushOffset","popTransform","toString","addWithAxisOffset"]} as const;
+const _SliverHitTestResultProxy = {type: "flax.core/sdk_rendering#type:SliverHitTestResult", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"add":_flaxMemberParameters2,"pushTransform":_flaxMemberParameters3,"pushOffset":_flaxMemberParameters4,"popTransform":_flaxMemberParameters1,"toString":_flaxMemberParameters1,"addWithAxisOffset":_flaxMemberParameters0}, getters: ["path"], setters: [], contextMembers: [], superMembers: ["get:path","add","pushTransform","pushOffset","popTransform","toString","addWithAxisOffset"]} as const;
 export interface SliverHitTestResult {
 readonly [_flaxDartTypeValue]: SliverHitTestResult;
 

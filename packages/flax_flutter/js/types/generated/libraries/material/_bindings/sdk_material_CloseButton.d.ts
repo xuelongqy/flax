@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/material/_bindings/sdk_material_IconButton';
+import '@flax/flutter/material/_bindings/sdk_material_IconButton';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessWidget';
 import type * as upstream2 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';

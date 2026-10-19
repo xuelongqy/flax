@@ -53,7 +53,7 @@ export interface Draggable<T extends {} = {}> extends _FlaxDartWidget, Omit<upst
     readonly childWhenDragging: Widget | null;
     readonly feedback: Widget;
     readonly feedbackOffset: upstream3.Offset;
-    readonly dragAnchorStrategy: ((draggable: Draggable<{}>, context: upstream4.BuildContext, position: Readonly<{
+    readonly dragAnchorStrategy: ((draggable: Draggable<any>, context: upstream4.BuildContext, position: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
@@ -124,7 +124,7 @@ export declare function _DraggableFactory<T extends {} = {}>(options: {
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>) | undefined;
-    dragAnchorStrategy?: ((draggable: Draggable<{}>, context: upstream4.BuildContext, position: upstream3.Offset) => Readonly<{
+    dragAnchorStrategy?: ((draggable: Draggable<any>, context: upstream4.BuildContext, position: upstream3.Offset) => Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
@@ -156,7 +156,7 @@ export declare function _DraggableFactory(options: {
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>) | undefined;
-    dragAnchorStrategy?: ((draggable: Draggable<{}>, context: upstream4.BuildContext, position: upstream3.Offset) => Readonly<{
+    dragAnchorStrategy?: ((draggable: Draggable<any>, context: upstream4.BuildContext, position: upstream3.Offset) => Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
@@ -192,7 +192,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             }> & Readonly<{
                 "__flaxBound:dart:ui::OffsetBase": readonly [];
             }>) | undefined;
-            dragAnchorStrategy?: ((draggable: Draggable<{}>, context: upstream4.BuildContext, position: upstream3.Offset) => Readonly<{
+            dragAnchorStrategy?: ((draggable: Draggable<any>, context: upstream4.BuildContext, position: upstream3.Offset) => Readonly<{
                 "__flaxBound:dart:ui::Offset": readonly [];
             }> & Readonly<{
                 "__flaxBound:dart:ui::OffsetBase": readonly [];

@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartInput } from '@flax/core/bindings';
-import type * as upstream0 from '@flax/dart/core/_bindings/flutter_UriData';
+import '@flax/dart/convert/_bindings/sdk_dependencies_Encoding';
+import type * as upstream1 from '@flax/dart/core/_bindings/flutter_UriData';
 import '@flax/dart/core/_bindings/flutter_UriData';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Uri extends Readonly<{
@@ -27,7 +28,7 @@ export interface Uri extends Readonly<{
     readonly hasEmptyPath: boolean;
     readonly hasAbsolutePath: boolean;
     readonly origin: string;
-    readonly data: upstream0.UriData | null;
+    readonly data: upstream1.UriData | null;
     isScheme(scheme: string): boolean;
     toFilePath(options?: {
         windows?: boolean | null | undefined;
@@ -81,6 +82,11 @@ export declare namespace _UriFactory {
 export declare namespace _UriFactory {
     function dataFromString(content: string, options?: {
         mimeType?: string | null | undefined;
+        encoding?: (Readonly<{
+            "__flaxBound:dart:convert::Encoding": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>];
+        }>) | null | undefined;
         parameters?: DartMapInput<string, string, string, string> | null | undefined;
         base64?: boolean | undefined;
     }): Uri;
@@ -105,13 +111,25 @@ export declare namespace _UriFactory {
     function encodeComponent(component: string): string;
 }
 export declare namespace _UriFactory {
-    function encodeQueryComponent(component: string): string;
+    function encodeQueryComponent(component: string, options?: {
+        encoding?: (Readonly<{
+            "__flaxBound:dart:convert::Encoding": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>];
+        }>) | undefined;
+    }): string;
 }
 export declare namespace _UriFactory {
     function decodeComponent(encodedComponent: string): string;
 }
 export declare namespace _UriFactory {
-    function decodeQueryComponent(encodedComponent: string): string;
+    function decodeQueryComponent(encodedComponent: string, options?: {
+        encoding?: (Readonly<{
+            "__flaxBound:dart:convert::Encoding": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>];
+        }>) | undefined;
+    }): string;
 }
 export declare namespace _UriFactory {
     function encodeFull(uri: string): string;
@@ -120,7 +138,13 @@ export declare namespace _UriFactory {
     function decodeFull(uri: string): string;
 }
 export declare namespace _UriFactory {
-    function splitQueryString(query: string): DartMap<string, string>;
+    function splitQueryString(query: string, options?: {
+        encoding?: (Readonly<{
+            "__flaxBound:dart:convert::Encoding": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>];
+        }>) | undefined;
+    }): DartMap<string, string>;
 }
 export declare namespace _UriFactory {
     function parseIPv4Address(host: string, start?: number, end?: number | null): DartList<number>;

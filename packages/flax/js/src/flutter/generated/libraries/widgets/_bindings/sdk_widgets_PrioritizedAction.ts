@@ -25,14 +25,14 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-const _flaxMemberParameters0 = [{"name":"intent","required":true,"positional":true},{"name":"context","required":false,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
+const _flaxMemberParameters0 = [{"name":"intent","required":true,"positional":true},{"name":"context","positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
 const _flaxMemberParameters1 = [{"name":"intent","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"intent","required":true,"positional":true},{"name":"invokeResult","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [{"name":"listener","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [] as const;
-const _flaxMemberParameters5 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters5 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters6 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters7 = [{"name":"minLevel","required":false,"positional":false}] as const;
+const _flaxMemberParameters7 = [{"name":"minLevel"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -41,7 +41,7 @@ readonly [_flaxDartTypeValue]: PrioritizedAction;
 
 }
 defineObject("flax.core/sdk_widgets#type:PrioritizedAction", ["callingAction","intentType","isActionEnabled"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:PrioritizedAction", "object", {"isEnabled":_flaxMemberParameters0,"invoke":_flaxMemberParameters0,"consumesKey":_flaxMemberParameters1,"toKeyEventResult":_flaxMemberParameters2,"addActionListener":_flaxMemberParameters3,"removeActionListener":_flaxMemberParameters3}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _PrioritizedActionProxy = {type: "flax.core/sdk_widgets#type:PrioritizedAction", parameters: [], constructors: {"":[]}, methods: {"isEnabled":_flaxMemberParameters0,"invoke":_flaxMemberParameters0,"consumesKey":_flaxMemberParameters1,"toKeyEventResult":_flaxMemberParameters2,"addActionListener":_flaxMemberParameters3,"removeActionListener":_flaxMemberParameters3,"toStringShort":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugFillProperties":_flaxMemberParameters6,"toString":_flaxMemberParameters7}, getters: ["callingAction","intentType","isActionEnabled"], setters: [], contextMembers: [], superMembers: ["get:callingAction","get:intentType","get:isActionEnabled","isEnabled","invoke","consumesKey","toKeyEventResult","addActionListener","removeActionListener","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
+const _PrioritizedActionProxy = {type: "flax.core/sdk_widgets#type:PrioritizedAction", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"isEnabled":_flaxMemberParameters0,"invoke":_flaxMemberParameters0,"consumesKey":_flaxMemberParameters1,"toKeyEventResult":_flaxMemberParameters2,"addActionListener":_flaxMemberParameters3,"removeActionListener":_flaxMemberParameters3,"toStringShort":_flaxMemberParameters4,"toDiagnosticsNode":_flaxMemberParameters5,"debugFillProperties":_flaxMemberParameters6,"toString":_flaxMemberParameters7}, getters: ["callingAction","intentType","isActionEnabled"], setters: [], contextMembers: [], superMembers: ["get:callingAction","get:intentType","get:isActionEnabled","isEnabled","invoke","consumesKey","toKeyEventResult","addActionListener","removeActionListener","toStringShort","toDiagnosticsNode","debugFillProperties","toString"]} as const;
 export interface PrioritizedAction {
 readonly [_flaxDartTypeValue]: PrioritizedAction;
 

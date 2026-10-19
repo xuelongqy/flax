@@ -14,9 +14,10 @@ import '@flax/flutter/material/_bindings/sdk_material_MaterialPointArcTween';
 import type * as upstream5 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 const _flaxMemberParameters0 = [{"name":"t","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"animation","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"parent","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [] as const;
+const _flaxMemberParameters1 = [{"name":"begin"},{"name":"end"}] as const;
+const _flaxMemberParameters2 = [{"name":"animation","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [{"name":"parent","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -25,7 +26,7 @@ readonly [_flaxDartTypeValue]: MaterialRectCenterArcTween;
 
 }
 defineObject("flax.core/sdk_material#type:MaterialRectCenterArcTween", ["begin","end","centerArc"], ["begin","end"], _flaxBindingMethods("flax.core/sdk_material#type:MaterialRectCenterArcTween", "object", {"lerp":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_animation#type:RectTween");
-const _MaterialRectCenterArcTweenProxy = {type: "flax.core/sdk_material#type:MaterialRectCenterArcTween", parameters: [{"name":"begin","required":false,"positional":false},{"name":"end","required":false,"positional":false}], constructors: {"":[{"name":"begin","required":false,"positional":false},{"name":"end","required":false,"positional":false}]}, methods: {"lerp":_flaxMemberParameters0,"transform":_flaxMemberParameters0,"evaluate":_flaxMemberParameters1,"animate":_flaxMemberParameters2,"chain":_flaxMemberParameters2,"toString":_flaxMemberParameters3}, getters: ["centerArc","begin","end"], setters: ["begin","end"], contextMembers: [], superMembers: ["get:centerArc","get:begin","get:end","set:begin","set:end","lerp","transform","evaluate","animate","chain","toString"]} as const;
+const _MaterialRectCenterArcTweenProxy = {type: "flax.core/sdk_material#type:MaterialRectCenterArcTween", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"lerp":_flaxMemberParameters0,"transform":_flaxMemberParameters0,"evaluate":_flaxMemberParameters2,"animate":_flaxMemberParameters3,"chain":_flaxMemberParameters3,"toString":_flaxMemberParameters4}, getters: ["centerArc","begin","end"], setters: ["begin","end"], contextMembers: [], superMembers: ["get:centerArc","get:begin","get:end","set:begin","set:end","lerp","transform","evaluate","animate","chain","toString"]} as const;
 export interface MaterialRectCenterArcTween {
 readonly [_flaxDartTypeValue]: MaterialRectCenterArcTween;
 

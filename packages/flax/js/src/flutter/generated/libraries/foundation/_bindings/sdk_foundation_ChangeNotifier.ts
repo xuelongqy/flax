@@ -13,7 +13,7 @@ readonly [_flaxDartTypeValue]: ChangeNotifier;
 
 }
 defineObject("flax.core/sdk_foundation#type:ChangeNotifier", ["hasListeners"], [], _flaxBindingMethods("flax.core/sdk_foundation#type:ChangeNotifier", "object", {"dispose":_flaxMemberParameters0}, {}), ["removeListener"], undefined, "flax.core/flutter#type:Listenable");
-const _ChangeNotifierProxy = {type: "flax.core/sdk_foundation#type:ChangeNotifier", parameters: [], constructors: {"":[]}, methods: {"addListener":_flaxMemberParameters1,"removeListener":_flaxMemberParameters1,"dispose":_flaxMemberParameters0}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
+const _ChangeNotifierProxy = {type: "flax.core/sdk_foundation#type:ChangeNotifier", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"addListener":_flaxMemberParameters1,"removeListener":_flaxMemberParameters1,"dispose":_flaxMemberParameters0}, getters: ["hasListeners"], setters: [], contextMembers: [], superMembers: ["get:hasListeners","addListener","removeListener","dispose"]} as const;
 export interface ChangeNotifier {
 readonly [_flaxDartTypeValue]: ChangeNotifier;
 

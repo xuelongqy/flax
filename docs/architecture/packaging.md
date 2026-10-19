@@ -141,7 +141,7 @@ ordinary module type imports at shared boundaries.
 ## Binding manifests
 
 Every implemented binding package commits `bindings/manifest.json`. The writer and
-reader accept Manifest **26** only. The manifest carries the current cross-package
+reader accept Manifest **27** only. The manifest carries the current cross-package
 semantic model: declaration ownership, stable identities, JS exports, recursive types,
 generic scopes, selected members, public-library routing, State variants, conversion
 semantics, and each module's UI protocol and required capabilities. It does not copy
@@ -150,10 +150,13 @@ no compatibility reader or normalization path. See
 [ADR 0037](../decisions/0037-package-scoped-binding-providers.md) and
 [External Binding Verification](external-binding-verification.md).
 
-The canonical file stores repeated recursive type descriptions once in `typeTable`, with
-backward-only `{"$type": index}` references. This is a storage encoding of the same
-semantic model. Dart expands it before strict semantic validation; JavaScript delivery
-projects declaration ownership and operation IDs directly without expanding types.
+The canonical file stores repeated recursive types in `typeTable` and identical member
+descriptions in `memberTable`, using `{"$type": index}` and `{"$member": index}`
+references. Every member row retains its defaults, conversion policy and generic
+declarations. These tables encode the same semantic model. Dart expands them before
+strict semantic validation with fresh lexical scopes. JavaScript delivery expands member
+references for ownership and operation projection without expanding types. Both readers
+bound member expansion and reject invalid, cyclic, duplicate or unused table entries.
 Generated JS APIs, UI protocol 24 and native ABI 2 are independent of this file format.
 
 A configuration imports a Dart package by name:
@@ -190,7 +193,7 @@ Implementation delivery uses a versioned `flax_modules.json`, separate from the 
 Manifest. It records public specifiers, the physical npm package and source entry,
 delivery dependencies, and the Dart binding requirements needed if that module is
 actually injected into a session. `tool/module_delivery.mjs` derives official delivery
-metadata from Manifest 26 rather than duplicating binding ownership by hand.
+metadata from Manifest 27 rather than duplicating binding ownership by hand.
 
 An application prepares the modules it can provide, for example:
 

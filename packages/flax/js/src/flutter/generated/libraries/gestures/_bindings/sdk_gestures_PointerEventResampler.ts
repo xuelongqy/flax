@@ -8,6 +8,7 @@ import '@flax/dart/core/_bindings/flutter_Duration';
 const _flaxMemberParameters0 = [{"name":"event","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"sampleTime","required":true,"positional":true},{"name":"nextSampleTime","required":true,"positional":true},{"name":"callback","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"callback","required":true,"positional":true}] as const;
+const _flaxMemberParameters3 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/gestures/_bindings/sdk_gestures.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -16,7 +17,7 @@ readonly [_flaxDartTypeValue]: PointerEventResampler;
 
 }
 defineObject("flax.core/sdk_gestures#type:PointerEventResampler", ["hasPendingEvents","isTracked","isDown"], [], _flaxBindingMethods("flax.core/sdk_gestures#type:PointerEventResampler", "object", {"addEvent":_flaxMemberParameters0,"sample":_flaxMemberParameters1,"stop":_flaxMemberParameters2}, {}), []);
-const _PointerEventResamplerProxy = {type: "flax.core/sdk_gestures#type:PointerEventResampler", parameters: [], constructors: {"":[]}, methods: {"addEvent":_flaxMemberParameters0,"sample":_flaxMemberParameters1,"stop":_flaxMemberParameters2}, getters: ["hasPendingEvents","isTracked","isDown"], setters: [], contextMembers: [], superMembers: ["get:hasPendingEvents","get:isTracked","get:isDown","addEvent","sample","stop"]} as const;
+const _PointerEventResamplerProxy = {type: "flax.core/sdk_gestures#type:PointerEventResampler", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"addEvent":_flaxMemberParameters0,"sample":_flaxMemberParameters1,"stop":_flaxMemberParameters2}, getters: ["hasPendingEvents","isTracked","isDown"], setters: [], contextMembers: [], superMembers: ["get:hasPendingEvents","get:isTracked","get:isDown","addEvent","sample","stop"]} as const;
 export interface PointerEventResampler {
 readonly [_flaxDartTypeValue]: PointerEventResampler;
 

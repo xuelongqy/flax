@@ -155,6 +155,7 @@ export { GradientRotation } from "@flax/flutter/painting/_bindings/sdk_painting_
 export { GradientTransform } from "@flax/flutter/painting/_bindings/sdk_painting_GradientTransform";
 export { HSLColor } from "@flax/flutter/painting/_bindings/sdk_painting_HSLColor";
 export { HSVColor } from "@flax/flutter/painting/_bindings/sdk_painting_HSVColor";
+export type { HttpClientProvider, HttpClientProviderInput } from "@flax/flutter/painting/_bindings/sdk_painting_HttpClientProvider";
 export { ImageCache } from "@flax/flutter/painting/_bindings/sdk_painting_ImageCache_cx";
 export { ImageCacheStatus } from "@flax/flutter/painting/_bindings/sdk_painting_ImageCacheStatus";
 export { ImageChunkEvent } from "@flax/flutter/painting/_bindings/sdk_painting_ImageChunkEvent";
@@ -221,6 +222,7 @@ export { debugDescribeTransform } from "@flax/flutter/painting/_bindings/sdk_pai
 export { getDebugDisableShadows, setDebugDisableShadows } from "@flax/flutter/painting/_bindings/sdk_painting_debugDisableShadows";
 export { getDebugImageOverheadAllowance, setDebugImageOverheadAllowance } from "@flax/flutter/painting/_bindings/sdk_painting_debugImageOverheadAllowance";
 export { getDebugInvertOversizedImages, setDebugInvertOversizedImages } from "@flax/flutter/painting/_bindings/sdk_painting_debugInvertOversizedImages";
+export { getDebugNetworkImageHttpClientProvider, setDebugNetworkImageHttpClientProvider } from "@flax/flutter/painting/_bindings/sdk_painting_debugNetworkImageHttpClientProvider";
 export { getDebugOnPaintImage, setDebugOnPaintImage } from "@flax/flutter/painting/_bindings/sdk_painting_debugOnPaintImage";
 export { decodeImageFromList } from "@flax/flutter/painting/_bindings/sdk_painting_decodeImageFromList";
 export { flipAxis } from "@flax/flutter/painting/_bindings/sdk_painting_flipAxis";

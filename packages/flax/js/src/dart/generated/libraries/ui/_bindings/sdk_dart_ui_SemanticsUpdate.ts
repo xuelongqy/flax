@@ -10,7 +10,7 @@ readonly [_flaxDartTypeValue]: SemanticsUpdate;
 dispose(): void;
 }
 defineObject("flax.core/sdk_dart_ui#type:SemanticsUpdate", [], [], _flaxBindingMethods("flax.core/sdk_dart_ui#type:SemanticsUpdate", "object", {"dispose":_flaxMemberParameters0}, {}), []);
-const _SemanticsUpdateProxy = {type: "flax.core/sdk_dart_ui#type:SemanticsUpdate", parameters: [], constructors: {}, methods: {"dispose":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
+const _SemanticsUpdateProxy = {type: "flax.core/sdk_dart_ui#type:SemanticsUpdate", parameters: _flaxMemberParameters0, constructors: {}, methods: {"dispose":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: []} as const;
 export namespace _SemanticsUpdateFactory { export function implement(args: [], implementation: {dispose: (() => void)}): SemanticsUpdate {
 return constructProxy(_SemanticsUpdateProxy, args, implementation) as SemanticsUpdate; } }
 export const SemanticsUpdate: typeof _SemanticsUpdateFactory & _FlaxInstanceType<SemanticsUpdate> & _FlaxDartType<SemanticsUpdate, readonly ["class", "flax.core/sdk_dart_ui#type:SemanticsUpdate", readonly [], false]> = _flaxBindInstanceType<SemanticsUpdate, typeof _SemanticsUpdateFactory>(_SemanticsUpdateFactory, "flax.core/sdk_dart_ui#type:SemanticsUpdate", ["dart:core::Object"]) as typeof _SemanticsUpdateFactory & _FlaxInstanceType<SemanticsUpdate> & _FlaxDartType<SemanticsUpdate, readonly ["class", "flax.core/sdk_dart_ui#type:SemanticsUpdate", readonly [], false]>;

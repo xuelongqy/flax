@@ -23,8 +23,8 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_RestorableProperty';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RestorableProperty';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"oldBucket","required":true,"positional":true},{"name":"initialRestore","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"oldBucket","required":true,"positional":true}] as const;
@@ -81,7 +81,7 @@ export function _FormFieldStateFactory(): FormFieldState<unknown | null>;
 export function _FormFieldStateFactory(): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:FormFieldState", "", [], [], {}) as FormFieldState<unknown | null>;
+return constructObject("object", "flax.core/sdk_widgets#type:FormFieldState", "", _flaxMemberParameters0, [], {}) as FormFieldState<unknown | null>;
 }
 export const FormFieldState: typeof _FormFieldStateFactory & _FlaxInstanceType<FormFieldState<unknown | null>> & _FlaxDartType<FormFieldState<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:FormFieldState", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<FormFieldState<unknown | null>, typeof _FormFieldStateFactory>(_FormFieldStateFactory, "flax.core/sdk_widgets#type:FormFieldState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/sdk_widgets#type:RestorationMixin"]) as typeof _FormFieldStateFactory & _FlaxInstanceType<FormFieldState<unknown | null>> & _FlaxDartType<FormFieldState<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:FormFieldState", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 _flaxDefineDartTypes(FormFieldState, "flax.core/sdk_widgets#type:FormFieldState", {"category":"object","constructors":{"":[]}});

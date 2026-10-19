@@ -5,7 +5,7 @@ import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer';
 const _flaxMemberParameters0 = [{"name":"key","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true},{"name":"cache","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"key","required":true,"positional":true},{"name":"cache"}] as const;
 const _flaxMemberParameters2 = [{"name":"key","required":true,"positional":true},{"name":"parser","required":true,"positional":true}] as const;
 const _flaxMemberParameters3 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -16,7 +16,7 @@ readonly [_flaxDartTypeValue]: AssetBundle;
 readonly [_flaxDartMethodCases]?: {loadStructuredData: _FlaxSignature0;loadStructuredBinaryData: _FlaxSignature1;};
 }
 defineObject("flax.core/sdk_services#type:AssetBundle", [], [], _flaxBindingMethods("flax.core/sdk_services#type:AssetBundle", "object", {"load":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters0,"loadString":_flaxMemberParameters1,"loadStructuredData":_flaxMemberParameters2,"loadStructuredBinaryData":_flaxMemberParameters2,"evict":_flaxMemberParameters0,"clear":_flaxMemberParameters3,"toString":_flaxMemberParameters3}, {"loadStructuredData":{"id":"loadStructuredData","parameters":[{"name":"key","required":true,"positional":true},{"name":"parser","required":true,"positional":true}]},"loadStructuredBinaryData":{"id":"loadStructuredBinaryData","parameters":[{"name":"key","required":true,"positional":true},{"name":"parser","required":true,"positional":true}]}}), []);
-const _AssetBundleProxy = {type: "flax.core/sdk_services#type:AssetBundle", parameters: [], constructors: {"":[]}, methods: {"load":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters0,"loadString":_flaxMemberParameters1,"loadStructuredData":_flaxMemberParameters2,"loadStructuredBinaryData":_flaxMemberParameters2,"evict":_flaxMemberParameters0,"clear":_flaxMemberParameters3,"toString":_flaxMemberParameters3}, getters: [], setters: [], contextMembers: ["loadStructuredData","loadStructuredBinaryData"], superMembers: ["loadBuffer","loadString","loadStructuredData","loadStructuredBinaryData","evict","clear","toString"]} as const;
+const _AssetBundleProxy = {type: "flax.core/sdk_services#type:AssetBundle", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"load":_flaxMemberParameters0,"loadBuffer":_flaxMemberParameters0,"loadString":_flaxMemberParameters1,"loadStructuredData":_flaxMemberParameters2,"loadStructuredBinaryData":_flaxMemberParameters2,"evict":_flaxMemberParameters0,"clear":_flaxMemberParameters3,"toString":_flaxMemberParameters3}, getters: [], setters: [], contextMembers: ["loadStructuredData","loadStructuredBinaryData"], superMembers: ["loadBuffer","loadString","loadStructuredData","loadStructuredBinaryData","evict","clear","toString"]} as const;
 export interface AssetBundle {
 readonly [_flaxDartTypeValue]: AssetBundle;
 readonly [_flaxDartMethodCases]?: {loadStructuredData: _FlaxSignature2;loadStructuredBinaryData: _FlaxSignature3;};

@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: DefaultProcessTextService;
 
 }
 defineObject("flax.core/sdk_services#type:DefaultProcessTextService", [], [], _flaxBindingMethods("flax.core/sdk_services#type:DefaultProcessTextService", "object", {}, {}), [], undefined, "flax.core/sdk_services#type:ProcessTextService");
-const _DefaultProcessTextServiceProxy = {type: "flax.core/sdk_services#type:DefaultProcessTextService", parameters: [], constructors: {"":[]}, methods: {"queryTextActions":_flaxMemberParameters0,"processTextAction":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["queryTextActions","processTextAction"]} as const;
+const _DefaultProcessTextServiceProxy = {type: "flax.core/sdk_services#type:DefaultProcessTextService", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"queryTextActions":_flaxMemberParameters0,"processTextAction":_flaxMemberParameters1}, getters: [], setters: [], contextMembers: [], superMembers: ["queryTextActions","processTextAction"]} as const;
 export interface DefaultProcessTextService {
 readonly [_flaxDartTypeValue]: DefaultProcessTextService;
 

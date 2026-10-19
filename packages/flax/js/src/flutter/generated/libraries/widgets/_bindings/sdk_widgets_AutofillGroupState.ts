@@ -29,8 +29,8 @@ import '@flax/flutter/services/_bindings/sdk_services_TextInputClient';
 import type * as upstream13 from '@flax/flutter/services/_bindings/sdk_services_TextInputConfiguration';
 import '@flax/flutter/services/_bindings/sdk_services_TextInputConfiguration';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"client","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"autofillId","required":true,"positional":true}] as const;
@@ -68,7 +68,7 @@ defineObject("flax.core/sdk_widgets#type:AutofillGroupState", ["autofillClients"
 export function _AutofillGroupStateFactory(): AutofillGroupState {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:AutofillGroupState", "", [], [], {}) as AutofillGroupState;
+return constructObject("object", "flax.core/sdk_widgets#type:AutofillGroupState", "", _flaxMemberParameters0, [], {}) as AutofillGroupState;
 }
 export const AutofillGroupState: typeof _AutofillGroupStateFactory & _FlaxInstanceType<AutofillGroupState> & _FlaxDartType<AutofillGroupState, readonly ["class", "flax.core/sdk_widgets#type:AutofillGroupState", readonly [], false]> = _flaxBindInstanceType<AutofillGroupState, typeof _AutofillGroupStateFactory>(_AutofillGroupStateFactory, "flax.core/sdk_widgets#type:AutofillGroupState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable","flax.core/sdk_services#type:AutofillScopeMixin","flax.core/sdk_services#type:AutofillScope"]) as typeof _AutofillGroupStateFactory & _FlaxInstanceType<AutofillGroupState> & _FlaxDartType<AutofillGroupState, readonly ["class", "flax.core/sdk_widgets#type:AutofillGroupState", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "autofillClients" | "widget" | "context" | "mounted" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "attach" | "getAutofillClient" | "register" | "unregister" | "didChangeDependencies" | "build" | "dispose" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "activate" | "__flaxBound:package:flutter/src/widgets/autofill.dart::AutofillGroupState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/services/autofill.dart::AutofillScopeMixin" | "__flaxBound:package:flutter/src/services/autofill.dart::AutofillScope";

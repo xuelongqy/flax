@@ -36,7 +36,7 @@ defineObject("flax.core/flutter#type:Duration", ["inMicroseconds","inDays","inHo
 export function _DurationFactory(options: { days?: number | undefined; hours?: number | undefined; minutes?: number | undefined; seconds?: number | undefined; milliseconds?: number | undefined; microseconds?: number | undefined } = {}): Duration {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:Duration", "", [{"name":"days","required":false,"positional":false},{"name":"hours","required":false,"positional":false},{"name":"minutes","required":false,"positional":false},{"name":"seconds","required":false,"positional":false},{"name":"milliseconds","required":false,"positional":false},{"name":"microseconds","required":false,"positional":false}], [], options) as Duration;
+return constructObject("object", "flax.core/flutter#type:Duration", "", [{"name":"days"},{"name":"hours"},{"name":"minutes"},{"name":"seconds"},{"name":"milliseconds"},{"name":"microseconds"}], [], options) as Duration;
 }
 export namespace _DurationFactory { export declare const microsecondsPerMillisecond: number; }
 export namespace _DurationFactory { export declare const millisecondsPerSecond: number; }

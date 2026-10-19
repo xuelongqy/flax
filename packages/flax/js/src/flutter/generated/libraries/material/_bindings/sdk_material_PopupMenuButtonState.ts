@@ -17,8 +17,8 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
 const _flaxMemberParameters5 = [{"name":"oldWidget","required":true,"positional":true}] as const;
@@ -52,7 +52,7 @@ export function _PopupMenuButtonStateFactory(): PopupMenuButtonState<unknown | n
 export function _PopupMenuButtonStateFactory(): unknown {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_material#type:PopupMenuButtonState", "", [], [], {}) as PopupMenuButtonState<unknown | null>;
+return constructObject("object", "flax.core/sdk_material#type:PopupMenuButtonState", "", _flaxMemberParameters0, [], {}) as PopupMenuButtonState<unknown | null>;
 }
 export const PopupMenuButtonState: typeof _PopupMenuButtonStateFactory & _FlaxInstanceType<PopupMenuButtonState<unknown | null>> & _FlaxDartType<PopupMenuButtonState<unknown | null>, readonly ["class", "flax.core/sdk_material#type:PopupMenuButtonState", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<PopupMenuButtonState<unknown | null>, typeof _PopupMenuButtonStateFactory>(_PopupMenuButtonStateFactory, "flax.core/sdk_material#type:PopupMenuButtonState", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _PopupMenuButtonStateFactory & _FlaxInstanceType<PopupMenuButtonState<unknown | null>> & _FlaxDartType<PopupMenuButtonState<unknown | null>, readonly ["class", "flax.core/sdk_material#type:PopupMenuButtonState", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 _flaxDefineDartTypes(PopupMenuButtonState, "flax.core/sdk_material#type:PopupMenuButtonState", {"category":"object","constructors":{"":[]}});

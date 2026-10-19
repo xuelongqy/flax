@@ -15,7 +15,7 @@ readonly [_flaxDartTypeValue]: SensitiveContentService;
 
 }
 defineObject("flax.core/sdk_services#type:SensitiveContentService", ["sensitiveContentChannel"], ["sensitiveContentChannel"], _flaxBindingMethods("flax.core/sdk_services#type:SensitiveContentService", "object", {"setContentSensitivity":_flaxMemberParameters0,"getContentSensitivity":_flaxMemberParameters1,"isSupported":_flaxMemberParameters1}, {}), []);
-const _SensitiveContentServiceProxy = {type: "flax.core/sdk_services#type:SensitiveContentService", parameters: [], constructors: {"":[]}, methods: {"setContentSensitivity":_flaxMemberParameters0,"getContentSensitivity":_flaxMemberParameters1,"isSupported":_flaxMemberParameters1}, getters: ["sensitiveContentChannel"], setters: ["sensitiveContentChannel"], contextMembers: [], superMembers: ["get:sensitiveContentChannel","set:sensitiveContentChannel","setContentSensitivity","getContentSensitivity","isSupported"]} as const;
+const _SensitiveContentServiceProxy = {type: "flax.core/sdk_services#type:SensitiveContentService", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"setContentSensitivity":_flaxMemberParameters0,"getContentSensitivity":_flaxMemberParameters1,"isSupported":_flaxMemberParameters1}, getters: ["sensitiveContentChannel"], setters: ["sensitiveContentChannel"], contextMembers: [], superMembers: ["get:sensitiveContentChannel","set:sensitiveContentChannel","setContentSensitivity","getContentSensitivity","isSupported"]} as const;
 export interface SensitiveContentService {
 readonly [_flaxDartTypeValue]: SensitiveContentService;
 

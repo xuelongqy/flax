@@ -5,8 +5,9 @@ import type * as upstream0 from '@flax/flutter/physics/_bindings/sdk_physics_Sim
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import type * as upstream1 from '@flax/flutter/physics/_bindings/sdk_physics_Tolerance';
 import '@flax/flutter/physics/_bindings/sdk_physics_Tolerance';
-const _flaxMemberParameters0 = [{"name":"time","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters0 = [{"name":"simulation","required":true,"positional":true},{"name":"xMin"},{"name":"xMax"},{"name":"dxMin"},{"name":"dxMax"}] as const;
+const _flaxMemberParameters1 = [{"name":"time","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/physics/_bindings/sdk_physics.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,7 +16,7 @@ readonly [_flaxDartTypeValue]: ClampedSimulation;
 
 }
 defineObject("flax.core/sdk_physics#type:ClampedSimulation", ["tolerance","simulation","xMin","xMax","dxMin","dxMax"], ["tolerance"], _flaxBindingMethods("flax.core/sdk_physics#type:ClampedSimulation", "object", {}, {}), [], undefined, "flax.core/sdk_physics#type:Simulation");
-const _ClampedSimulationProxy = {type: "flax.core/sdk_physics#type:ClampedSimulation", parameters: [{"name":"simulation","required":true,"positional":true},{"name":"xMin","required":false,"positional":false},{"name":"xMax","required":false,"positional":false},{"name":"dxMin","required":false,"positional":false},{"name":"dxMax","required":false,"positional":false}], constructors: {"":[{"name":"simulation","required":true,"positional":true},{"name":"xMin","required":false,"positional":false},{"name":"xMax","required":false,"positional":false},{"name":"dxMin","required":false,"positional":false},{"name":"dxMax","required":false,"positional":false}]}, methods: {"x":_flaxMemberParameters0,"dx":_flaxMemberParameters0,"isDone":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: ["simulation","xMin","xMax","dxMin","dxMax","tolerance"], setters: ["tolerance"], contextMembers: [], superMembers: ["get:simulation","get:xMin","get:xMax","get:dxMin","get:dxMax","get:tolerance","set:tolerance","x","dx","isDone","toString"]} as const;
+const _ClampedSimulationProxy = {type: "flax.core/sdk_physics#type:ClampedSimulation", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"x":_flaxMemberParameters1,"dx":_flaxMemberParameters1,"isDone":_flaxMemberParameters1,"toString":_flaxMemberParameters2}, getters: ["simulation","xMin","xMax","dxMin","dxMax","tolerance"], setters: ["tolerance"], contextMembers: [], superMembers: ["get:simulation","get:xMin","get:xMax","get:dxMin","get:dxMax","get:tolerance","set:tolerance","x","dx","isDone","toString"]} as const;
 export interface ClampedSimulation {
 readonly [_flaxDartTypeValue]: ClampedSimulation;
 

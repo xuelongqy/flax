@@ -7,6 +7,7 @@ import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_WidgetS
 import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 const _flaxMemberParameters0 = [{"name":"states","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [] as const;
+const _flaxMemberParameters2 = [{"name":"value","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,7 +16,7 @@ readonly [_flaxDartTypeValue]: WidgetStatePropertyAll<T>;
 
 }
 defineObject("flax.core/sdk_widgets#type:WidgetStatePropertyAll", ["value"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:WidgetStatePropertyAll", "object", {"resolve":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, {}), []);
-const _WidgetStatePropertyAllProxy = {type: "flax.core/sdk_widgets#type:WidgetStatePropertyAll", parameters: [{"name":"value","required":true,"positional":true}], constructors: {"":[{"name":"value","required":true,"positional":true}]}, methods: {"resolve":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","resolve","toString"]} as const;
+const _WidgetStatePropertyAllProxy = {type: "flax.core/sdk_widgets#type:WidgetStatePropertyAll", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"resolve":_flaxMemberParameters0,"toString":_flaxMemberParameters1}, getters: ["value"], setters: [], contextMembers: [], superMembers: ["get:value","resolve","toString"]} as const;
 export interface WidgetStatePropertyAll<T extends unknown | null = unknown | null> {
 readonly [_flaxDartTypeValue]: WidgetStatePropertyAll<T>;
 

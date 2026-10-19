@@ -7,6 +7,7 @@ import type * as upstream1 from '@flax/flutter/painting/_bindings/sdk_painting_I
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageChunkEvent';
 import type * as upstream2 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
+const _flaxMemberParameters0 = [{"name":"onImage","required":true,"positional":true},{"name":"onChunk"},{"name":"onError"},{"name":"reportErrors"}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/painting/_bindings/sdk_painting.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,7 +16,7 @@ readonly [_flaxDartTypeValue]: ImageStreamListener;
 
 }
 defineObject("flax.core/sdk_painting#type:ImageStreamListener", ["onImage","onChunk","onError","reportErrors"], [], _flaxBindingMethods("flax.core/sdk_painting#type:ImageStreamListener", "object", {}, {}), []);
-const _ImageStreamListenerProxy = {type: "flax.core/sdk_painting#type:ImageStreamListener", parameters: [{"name":"onImage","required":true,"positional":true},{"name":"onChunk","required":false,"positional":false},{"name":"onError","required":false,"positional":false},{"name":"reportErrors","required":false,"positional":false}], constructors: {"":[{"name":"onImage","required":true,"positional":true},{"name":"onChunk","required":false,"positional":false},{"name":"onError","required":false,"positional":false},{"name":"reportErrors","required":false,"positional":false}]}, methods: {}, getters: ["onImage","onChunk","onError","reportErrors"], setters: [], contextMembers: [], superMembers: ["get:onImage","get:onChunk","get:onError","get:reportErrors"]} as const;
+const _ImageStreamListenerProxy = {type: "flax.core/sdk_painting#type:ImageStreamListener", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {}, getters: ["onImage","onChunk","onError","reportErrors"], setters: [], contextMembers: [], superMembers: ["get:onImage","get:onChunk","get:onError","get:reportErrors"]} as const;
 export interface ImageStreamListener {
 readonly [_flaxDartTypeValue]: ImageStreamListener;
 

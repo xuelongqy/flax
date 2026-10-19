@@ -1,6 +1,8 @@
 import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/dart/core/_bindings/flutter_DateTime';
 import '@flax/dart/core/_bindings/flutter_DateTime';
+import type * as upstream1 from '@flax/dart/core/_bindings/sdk_dependencies_Stopwatch';
+import '@flax/dart/core/_bindings/sdk_dependencies_Stopwatch';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
 export interface SamplingClock extends Readonly<{
@@ -12,6 +14,7 @@ export interface SamplingClock extends Readonly<{
 export interface SamplingClock {
     readonly [_flaxDartTypeValue]: SamplingClock;
     now(): upstream0.DateTime;
+    stopwatch(): upstream1.Stopwatch;
 }
 export declare abstract class SamplingClock extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<SamplingClock>[typeof globalThis.Symbol.hasInstance];

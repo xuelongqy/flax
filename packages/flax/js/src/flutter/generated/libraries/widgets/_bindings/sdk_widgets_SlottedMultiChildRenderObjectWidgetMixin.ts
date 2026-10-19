@@ -1,0 +1,57 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream2 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream3 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_SlottedContainerRenderObjectMixin';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_SlottedContainerRenderObjectMixin';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/sdk_widgets_SlottedRenderObjectElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_SlottedRenderObjectElement';
+const _flaxMemberParameters0 = [{"name":"joiner"},{"name":"minLevel"}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"},{"name":"prefixLineOne"},{"name":"prefixOtherLines"},{"name":"wrapWidth"}] as const;
+const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters3 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters4 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters5 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters6 = [{"name":"slot","required":true,"positional":true}] as const;
+const _flaxMemberParameters7 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"}] as const;
+const _flaxMemberParameters8 = [{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"renderObject","required":true,"positional":true}] as const;
+const _flaxMemberParameters9 = [{"name":"renderObject","required":true,"positional":true}] as const;
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface SlottedMultiChildRenderObjectWidgetMixin<SlotType extends unknown | null = unknown | null, ChildType extends upstream0.RenderObject = upstream0.RenderObject> extends _FlaxDartWidget, Omit<Widget, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/widgets/slotted_render_object_widget.dart::SlottedMultiChildRenderObjectWidgetMixin": readonly [SlotType, ChildType] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __SlottedMultiChildRenderObjectWidgetMixin: unique symbol;
+readonly [_flaxDartTypeValue]: SlottedMultiChildRenderObjectWidgetMixin<SlotType, ChildType>;
+
+readonly slots: DartIterable<SlotType>;
+readonly key: upstream1.Key | null;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream2.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {minLevel?: upstream2.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toStringShort(): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream4.DiagnosticsTreeStyle | null | undefined}): upstream3.DiagnosticsNode;
+debugDescribeChildren(): DartList<upstream3.DiagnosticsNode>;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+toString(options?: {minLevel?: upstream2.DiagnosticLevel | undefined}): string;
+childForSlot(slot: (SlotType | DartInput<SlotType>)): Widget | null;
+createRenderObject(context: upstream7.BuildContext): upstream6.SlottedContainerRenderObjectMixin<SlotType, ChildType>;
+updateRenderObject(context: upstream7.BuildContext, renderObject: Readonly<{ "__flaxBound:package:flutter/src/widgets/slotted_render_object_widget.dart::SlottedContainerRenderObjectMixin": readonly [SlotType, ChildType] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): void;
+createElement(): upstream8.SlottedRenderObjectElement<SlotType, ChildType>;
+didUnmountRenderObject(renderObject: Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>): void;
+}
+defineObject("flax.core/sdk_widgets#type:SlottedMultiChildRenderObjectWidgetMixin", ["slots","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SlottedMultiChildRenderObjectWidgetMixin", "object", {"toStringShallow":_flaxMemberParameters0,"toStringDeep":_flaxMemberParameters1,"toStringShort":_flaxMemberParameters2,"toDiagnosticsNode":_flaxMemberParameters3,"debugDescribeChildren":_flaxMemberParameters2,"debugFillProperties":_flaxMemberParameters4,"toString":_flaxMemberParameters5,"childForSlot":_flaxMemberParameters6,"createRenderObject":_flaxMemberParameters7,"updateRenderObject":_flaxMemberParameters8,"createElement":_flaxMemberParameters2,"didUnmountRenderObject":_flaxMemberParameters9}, {}), []);
+export const SlottedMultiChildRenderObjectWidgetMixin: object & _FlaxInstanceType<SlottedMultiChildRenderObjectWidgetMixin<unknown | null, upstream0.RenderObject>> & _FlaxDartType<SlottedMultiChildRenderObjectWidgetMixin<unknown | null, upstream0.RenderObject>, readonly ["class", "flax.core/sdk_widgets#type:SlottedMultiChildRenderObjectWidgetMixin", readonly [readonly ["any", null, readonly [], true], readonly ["class", "flax.core/sdk_rendering#type:RenderObject", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<SlottedMultiChildRenderObjectWidgetMixin<unknown | null, upstream0.RenderObject>, object>({}, "flax.core/sdk_widgets#type:SlottedMultiChildRenderObjectWidgetMixin", ["flax.core/sdk_widgets#type:RenderObjectWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as object & _FlaxInstanceType<SlottedMultiChildRenderObjectWidgetMixin<unknown | null, upstream0.RenderObject>> & _FlaxDartType<SlottedMultiChildRenderObjectWidgetMixin<unknown | null, upstream0.RenderObject>, readonly ["class", "flax.core/sdk_widgets#type:SlottedMultiChildRenderObjectWidgetMixin", readonly [readonly ["any", null, readonly [], true], readonly ["class", "flax.core/sdk_rendering#type:RenderObject", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+_flaxDefineDartTypes(SlottedMultiChildRenderObjectWidgetMixin, "flax.core/sdk_widgets#type:SlottedMultiChildRenderObjectWidgetMixin", {"category":"object","constructors":{}});
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "slots" | "key" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "toString" | "childForSlot" | "createRenderObject" | "updateRenderObject" | "createElement" | "didUnmountRenderObject" | "__flaxBound:package:flutter/src/widgets/slotted_render_object_widget.dart::SlottedMultiChildRenderObjectWidgetMixin" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0, infer _Selected1] ? [_Selected0] extends [unknown | null] ? [_Selected1] extends [upstream0.RenderObject] ? {readonly prototype: SlottedMultiChildRenderObjectWidgetMixin<_Selected0, _Selected1>;} & _FlaxInstanceType<SlottedMultiChildRenderObjectWidgetMixin<_Selected0, _Selected1>> & _FlaxDartType<SlottedMultiChildRenderObjectWidgetMixin<_Selected0, _Selected1>> : never : never : never; }

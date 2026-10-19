@@ -21,6 +21,7 @@ final _defaultBindingModules = <FlaxBindingModule>[
   sdk_animationBindings,
   sdk_cupertinoBindings,
   sdk_dart_uiBindings,
+  sdk_dependenciesBindings,
   sdk_foundationBindings,
   sdk_gesturesBindings,
   sdk_materialBindings,

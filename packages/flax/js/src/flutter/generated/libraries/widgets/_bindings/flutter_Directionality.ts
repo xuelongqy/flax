@@ -13,7 +13,7 @@ export interface Directionality extends WidgetDescription, Omit<Readonly<{ "__fl
 export function _DirectionalityFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; textDirection: Bindable<upstream1.TextDirection>; child: Bindable<Widget> }): Directionality {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Directionality", "", [{"name":"key","required":false,"positional":false},{"name":"textDirection","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Directionality;
+return construct("widget", "flax.core/flutter#type:Directionality", "", [{"name":"key"},{"name":"textDirection","required":true},{"name":"child","required":true}], [], options) as Directionality;
 }
 export namespace _DirectionalityFactory { export function of(context: upstream2.BuildContext): upstream1.TextDirection {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

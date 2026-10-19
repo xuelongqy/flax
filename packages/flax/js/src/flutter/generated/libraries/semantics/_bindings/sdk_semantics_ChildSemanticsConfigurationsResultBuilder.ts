@@ -16,7 +16,7 @@ readonly [_flaxDartTypeValue]: ChildSemanticsConfigurationsResultBuilder;
 
 }
 defineObject("flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", [], [], _flaxBindingMethods("flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", "object", {"markAsMergeUp":_flaxMemberParameters0,"markAsSiblingMergeGroup":_flaxMemberParameters1,"build":_flaxMemberParameters2}, {}), []);
-const _ChildSemanticsConfigurationsResultBuilderProxy = {type: "flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", parameters: [], constructors: {"":[]}, methods: {"markAsMergeUp":_flaxMemberParameters0,"markAsSiblingMergeGroup":_flaxMemberParameters1,"build":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["markAsMergeUp","markAsSiblingMergeGroup","build"]} as const;
+const _ChildSemanticsConfigurationsResultBuilderProxy = {type: "flax.core/sdk_semantics#type:ChildSemanticsConfigurationsResultBuilder", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"markAsMergeUp":_flaxMemberParameters0,"markAsSiblingMergeGroup":_flaxMemberParameters1,"build":_flaxMemberParameters2}, getters: [], setters: [], contextMembers: [], superMembers: ["markAsMergeUp","markAsSiblingMergeGroup","build"]} as const;
 export interface ChildSemanticsConfigurationsResultBuilder {
 readonly [_flaxDartTypeValue]: ChildSemanticsConfigurationsResultBuilder;
 

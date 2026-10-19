@@ -1,6 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartMapInput, type DartInput } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
-import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_AggregatedTimings';
+import '@flax/dart/developer/_bindings/sdk_dependencies_Flow';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundation_AggregatedTimings';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_AggregatedTimings';
 import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FlutterTimeline extends Readonly<{
@@ -21,6 +22,9 @@ export declare namespace _FlutterTimelineFactory {
 export declare namespace _FlutterTimelineFactory {
     function startSync(name: string, options?: {
         arguments?: DartMapInput<string, unknown | null, string, unknown | null> | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }): void;
 }
 export declare namespace _FlutterTimelineFactory {
@@ -34,12 +38,15 @@ export declare namespace _FlutterTimelineFactory {
 export declare namespace _FlutterTimelineFactory {
     function _flaxDefault_timeSync<T extends unknown | null = unknown | null>(name: string, _flaxArg_66756e6374696f6e: (() => (T | _FlaxDartOutput<T>)), options?: {
         arguments?: DartMapInput<string, unknown | null, string, unknown | null> | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }): _FlaxDartOutput<T>;
     export const timeSync: _FlaxDartCallable<typeof _flaxDefault_timeSync, _FlaxSignature0>;
     export {};
 }
 export declare namespace _FlutterTimelineFactory {
-    function debugCollect(): upstream0.AggregatedTimings;
+    function debugCollect(): upstream1.AggregatedTimings;
 }
 export declare namespace _FlutterTimelineFactory {
     function debugReset(): void;
@@ -48,6 +55,9 @@ export declare const FlutterTimeline: typeof _FlutterTimelineFactory & _FlaxInst
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (name: string, _flaxArg_66756e6374696f6e: (() => (_Selected0 | DartInput<_Selected0>)), options?: {
         arguments?: DartMapInput<string, unknown | null, string, unknown | null> | null | undefined;
+        flow?: Readonly<{
+            "__flaxBound:dart:developer::Flow": readonly [];
+        }> | null | undefined;
     }) => _Selected0 : never : never;
 }
 export {};

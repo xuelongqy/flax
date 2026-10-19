@@ -1,0 +1,807 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/vector_math/_bindings/sdk_dependencies_Vector2';
+import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Vector2';
+import type * as upstream1 from '@flax/flutter/vector_math/_bindings/sdk_dependencies_Vector4';
+import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Vector4';
+import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Matrix3';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import '@flax/flutter/vector_math/_bindings/sdk_dependencies_Quaternion';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface Vector3 extends Readonly<{
+    "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+}> {
+    readonly __Vector3: unique symbol;
+    readonly [_flaxDartTypeValue]: Vector3;
+    readonly storage: globalThis.Float64Array;
+    get length(): number;
+    readonly length2: number;
+    readonly isInfinite: boolean;
+    readonly isNaN: boolean;
+    readonly xx: upstream0.Vector2;
+    get xy(): upstream0.Vector2;
+    get xz(): upstream0.Vector2;
+    get yx(): upstream0.Vector2;
+    readonly yy: upstream0.Vector2;
+    get yz(): upstream0.Vector2;
+    get zx(): upstream0.Vector2;
+    get zy(): upstream0.Vector2;
+    readonly zz: upstream0.Vector2;
+    readonly xxx: Vector3;
+    readonly xxy: Vector3;
+    readonly xxz: Vector3;
+    readonly xyx: Vector3;
+    readonly xyy: Vector3;
+    get xyz(): Vector3;
+    readonly xzx: Vector3;
+    get xzy(): Vector3;
+    readonly xzz: Vector3;
+    readonly yxx: Vector3;
+    readonly yxy: Vector3;
+    get yxz(): Vector3;
+    readonly yyx: Vector3;
+    readonly yyy: Vector3;
+    readonly yyz: Vector3;
+    get yzx(): Vector3;
+    readonly yzy: Vector3;
+    readonly yzz: Vector3;
+    readonly zxx: Vector3;
+    get zxy(): Vector3;
+    readonly zxz: Vector3;
+    get zyx(): Vector3;
+    readonly zyy: Vector3;
+    readonly zyz: Vector3;
+    readonly zzx: Vector3;
+    readonly zzy: Vector3;
+    readonly zzz: Vector3;
+    readonly xxxx: upstream1.Vector4;
+    readonly xxxy: upstream1.Vector4;
+    readonly xxxz: upstream1.Vector4;
+    readonly xxyx: upstream1.Vector4;
+    readonly xxyy: upstream1.Vector4;
+    readonly xxyz: upstream1.Vector4;
+    readonly xxzx: upstream1.Vector4;
+    readonly xxzy: upstream1.Vector4;
+    readonly xxzz: upstream1.Vector4;
+    readonly xyxx: upstream1.Vector4;
+    readonly xyxy: upstream1.Vector4;
+    readonly xyxz: upstream1.Vector4;
+    readonly xyyx: upstream1.Vector4;
+    readonly xyyy: upstream1.Vector4;
+    readonly xyyz: upstream1.Vector4;
+    readonly xyzx: upstream1.Vector4;
+    readonly xyzy: upstream1.Vector4;
+    readonly xyzz: upstream1.Vector4;
+    readonly xzxx: upstream1.Vector4;
+    readonly xzxy: upstream1.Vector4;
+    readonly xzxz: upstream1.Vector4;
+    readonly xzyx: upstream1.Vector4;
+    readonly xzyy: upstream1.Vector4;
+    readonly xzyz: upstream1.Vector4;
+    readonly xzzx: upstream1.Vector4;
+    readonly xzzy: upstream1.Vector4;
+    readonly xzzz: upstream1.Vector4;
+    readonly yxxx: upstream1.Vector4;
+    readonly yxxy: upstream1.Vector4;
+    readonly yxxz: upstream1.Vector4;
+    readonly yxyx: upstream1.Vector4;
+    readonly yxyy: upstream1.Vector4;
+    readonly yxyz: upstream1.Vector4;
+    readonly yxzx: upstream1.Vector4;
+    readonly yxzy: upstream1.Vector4;
+    readonly yxzz: upstream1.Vector4;
+    readonly yyxx: upstream1.Vector4;
+    readonly yyxy: upstream1.Vector4;
+    readonly yyxz: upstream1.Vector4;
+    readonly yyyx: upstream1.Vector4;
+    readonly yyyy: upstream1.Vector4;
+    readonly yyyz: upstream1.Vector4;
+    readonly yyzx: upstream1.Vector4;
+    readonly yyzy: upstream1.Vector4;
+    readonly yyzz: upstream1.Vector4;
+    readonly yzxx: upstream1.Vector4;
+    readonly yzxy: upstream1.Vector4;
+    readonly yzxz: upstream1.Vector4;
+    readonly yzyx: upstream1.Vector4;
+    readonly yzyy: upstream1.Vector4;
+    readonly yzyz: upstream1.Vector4;
+    readonly yzzx: upstream1.Vector4;
+    readonly yzzy: upstream1.Vector4;
+    readonly yzzz: upstream1.Vector4;
+    readonly zxxx: upstream1.Vector4;
+    readonly zxxy: upstream1.Vector4;
+    readonly zxxz: upstream1.Vector4;
+    readonly zxyx: upstream1.Vector4;
+    readonly zxyy: upstream1.Vector4;
+    readonly zxyz: upstream1.Vector4;
+    readonly zxzx: upstream1.Vector4;
+    readonly zxzy: upstream1.Vector4;
+    readonly zxzz: upstream1.Vector4;
+    readonly zyxx: upstream1.Vector4;
+    readonly zyxy: upstream1.Vector4;
+    readonly zyxz: upstream1.Vector4;
+    readonly zyyx: upstream1.Vector4;
+    readonly zyyy: upstream1.Vector4;
+    readonly zyyz: upstream1.Vector4;
+    readonly zyzx: upstream1.Vector4;
+    readonly zyzy: upstream1.Vector4;
+    readonly zyzz: upstream1.Vector4;
+    readonly zzxx: upstream1.Vector4;
+    readonly zzxy: upstream1.Vector4;
+    readonly zzxz: upstream1.Vector4;
+    readonly zzyx: upstream1.Vector4;
+    readonly zzyy: upstream1.Vector4;
+    readonly zzyz: upstream1.Vector4;
+    readonly zzzx: upstream1.Vector4;
+    readonly zzzy: upstream1.Vector4;
+    readonly zzzz: upstream1.Vector4;
+    get r(): number;
+    get g(): number;
+    get b(): number;
+    get s(): number;
+    get t(): number;
+    get p(): number;
+    get x(): number;
+    get y(): number;
+    get z(): number;
+    readonly rr: upstream0.Vector2;
+    get rg(): upstream0.Vector2;
+    get rb(): upstream0.Vector2;
+    get gr(): upstream0.Vector2;
+    readonly gg: upstream0.Vector2;
+    get gb(): upstream0.Vector2;
+    get br(): upstream0.Vector2;
+    get bg(): upstream0.Vector2;
+    readonly bb: upstream0.Vector2;
+    readonly rrr: Vector3;
+    readonly rrg: Vector3;
+    readonly rrb: Vector3;
+    readonly rgr: Vector3;
+    readonly rgg: Vector3;
+    get rgb(): Vector3;
+    readonly rbr: Vector3;
+    get rbg(): Vector3;
+    readonly rbb: Vector3;
+    readonly grr: Vector3;
+    readonly grg: Vector3;
+    get grb(): Vector3;
+    readonly ggr: Vector3;
+    readonly ggg: Vector3;
+    readonly ggb: Vector3;
+    get gbr(): Vector3;
+    readonly gbg: Vector3;
+    readonly gbb: Vector3;
+    readonly brr: Vector3;
+    get brg(): Vector3;
+    readonly brb: Vector3;
+    get bgr(): Vector3;
+    readonly bgg: Vector3;
+    readonly bgb: Vector3;
+    readonly bbr: Vector3;
+    readonly bbg: Vector3;
+    readonly bbb: Vector3;
+    readonly rrrr: upstream1.Vector4;
+    readonly rrrg: upstream1.Vector4;
+    readonly rrrb: upstream1.Vector4;
+    readonly rrgr: upstream1.Vector4;
+    readonly rrgg: upstream1.Vector4;
+    readonly rrgb: upstream1.Vector4;
+    readonly rrbr: upstream1.Vector4;
+    readonly rrbg: upstream1.Vector4;
+    readonly rrbb: upstream1.Vector4;
+    readonly rgrr: upstream1.Vector4;
+    readonly rgrg: upstream1.Vector4;
+    readonly rgrb: upstream1.Vector4;
+    readonly rggr: upstream1.Vector4;
+    readonly rggg: upstream1.Vector4;
+    readonly rggb: upstream1.Vector4;
+    readonly rgbr: upstream1.Vector4;
+    readonly rgbg: upstream1.Vector4;
+    readonly rgbb: upstream1.Vector4;
+    readonly rbrr: upstream1.Vector4;
+    readonly rbrg: upstream1.Vector4;
+    readonly rbrb: upstream1.Vector4;
+    readonly rbgr: upstream1.Vector4;
+    readonly rbgg: upstream1.Vector4;
+    readonly rbgb: upstream1.Vector4;
+    readonly rbbr: upstream1.Vector4;
+    readonly rbbg: upstream1.Vector4;
+    readonly rbbb: upstream1.Vector4;
+    readonly grrr: upstream1.Vector4;
+    readonly grrg: upstream1.Vector4;
+    readonly grrb: upstream1.Vector4;
+    readonly grgr: upstream1.Vector4;
+    readonly grgg: upstream1.Vector4;
+    readonly grgb: upstream1.Vector4;
+    readonly grbr: upstream1.Vector4;
+    readonly grbg: upstream1.Vector4;
+    readonly grbb: upstream1.Vector4;
+    readonly ggrr: upstream1.Vector4;
+    readonly ggrg: upstream1.Vector4;
+    readonly ggrb: upstream1.Vector4;
+    readonly gggr: upstream1.Vector4;
+    readonly gggg: upstream1.Vector4;
+    readonly gggb: upstream1.Vector4;
+    readonly ggbr: upstream1.Vector4;
+    readonly ggbg: upstream1.Vector4;
+    readonly ggbb: upstream1.Vector4;
+    readonly gbrr: upstream1.Vector4;
+    readonly gbrg: upstream1.Vector4;
+    readonly gbrb: upstream1.Vector4;
+    readonly gbgr: upstream1.Vector4;
+    readonly gbgg: upstream1.Vector4;
+    readonly gbgb: upstream1.Vector4;
+    readonly gbbr: upstream1.Vector4;
+    readonly gbbg: upstream1.Vector4;
+    readonly gbbb: upstream1.Vector4;
+    readonly brrr: upstream1.Vector4;
+    readonly brrg: upstream1.Vector4;
+    readonly brrb: upstream1.Vector4;
+    readonly brgr: upstream1.Vector4;
+    readonly brgg: upstream1.Vector4;
+    readonly brgb: upstream1.Vector4;
+    readonly brbr: upstream1.Vector4;
+    readonly brbg: upstream1.Vector4;
+    readonly brbb: upstream1.Vector4;
+    readonly bgrr: upstream1.Vector4;
+    readonly bgrg: upstream1.Vector4;
+    readonly bgrb: upstream1.Vector4;
+    readonly bggr: upstream1.Vector4;
+    readonly bggg: upstream1.Vector4;
+    readonly bggb: upstream1.Vector4;
+    readonly bgbr: upstream1.Vector4;
+    readonly bgbg: upstream1.Vector4;
+    readonly bgbb: upstream1.Vector4;
+    readonly bbrr: upstream1.Vector4;
+    readonly bbrg: upstream1.Vector4;
+    readonly bbrb: upstream1.Vector4;
+    readonly bbgr: upstream1.Vector4;
+    readonly bbgg: upstream1.Vector4;
+    readonly bbgb: upstream1.Vector4;
+    readonly bbbr: upstream1.Vector4;
+    readonly bbbg: upstream1.Vector4;
+    readonly bbbb: upstream1.Vector4;
+    readonly ss: upstream0.Vector2;
+    get st(): upstream0.Vector2;
+    get sp(): upstream0.Vector2;
+    get ts(): upstream0.Vector2;
+    readonly tt: upstream0.Vector2;
+    get tp(): upstream0.Vector2;
+    get ps(): upstream0.Vector2;
+    get pt(): upstream0.Vector2;
+    readonly pp: upstream0.Vector2;
+    readonly sss: Vector3;
+    readonly sst: Vector3;
+    readonly ssp: Vector3;
+    readonly sts: Vector3;
+    readonly stt: Vector3;
+    get stp(): Vector3;
+    readonly sps: Vector3;
+    get spt(): Vector3;
+    readonly spp: Vector3;
+    readonly tss: Vector3;
+    readonly tst: Vector3;
+    get tsp(): Vector3;
+    readonly tts: Vector3;
+    readonly ttt: Vector3;
+    readonly ttp: Vector3;
+    get tps(): Vector3;
+    readonly tpt: Vector3;
+    readonly tpp: Vector3;
+    readonly pss: Vector3;
+    get pst(): Vector3;
+    readonly psp: Vector3;
+    get pts(): Vector3;
+    readonly ptt: Vector3;
+    readonly ptp: Vector3;
+    readonly pps: Vector3;
+    readonly ppt: Vector3;
+    readonly ppp: Vector3;
+    readonly ssss: upstream1.Vector4;
+    readonly ssst: upstream1.Vector4;
+    readonly sssp: upstream1.Vector4;
+    readonly ssts: upstream1.Vector4;
+    readonly sstt: upstream1.Vector4;
+    readonly sstp: upstream1.Vector4;
+    readonly ssps: upstream1.Vector4;
+    readonly sspt: upstream1.Vector4;
+    readonly sspp: upstream1.Vector4;
+    readonly stss: upstream1.Vector4;
+    readonly stst: upstream1.Vector4;
+    readonly stsp: upstream1.Vector4;
+    readonly stts: upstream1.Vector4;
+    readonly sttt: upstream1.Vector4;
+    readonly sttp: upstream1.Vector4;
+    readonly stps: upstream1.Vector4;
+    readonly stpt: upstream1.Vector4;
+    readonly stpp: upstream1.Vector4;
+    readonly spss: upstream1.Vector4;
+    readonly spst: upstream1.Vector4;
+    readonly spsp: upstream1.Vector4;
+    readonly spts: upstream1.Vector4;
+    readonly sptt: upstream1.Vector4;
+    readonly sptp: upstream1.Vector4;
+    readonly spps: upstream1.Vector4;
+    readonly sppt: upstream1.Vector4;
+    readonly sppp: upstream1.Vector4;
+    readonly tsss: upstream1.Vector4;
+    readonly tsst: upstream1.Vector4;
+    readonly tssp: upstream1.Vector4;
+    readonly tsts: upstream1.Vector4;
+    readonly tstt: upstream1.Vector4;
+    readonly tstp: upstream1.Vector4;
+    readonly tsps: upstream1.Vector4;
+    readonly tspt: upstream1.Vector4;
+    readonly tspp: upstream1.Vector4;
+    readonly ttss: upstream1.Vector4;
+    readonly ttst: upstream1.Vector4;
+    readonly ttsp: upstream1.Vector4;
+    readonly ttts: upstream1.Vector4;
+    readonly tttt: upstream1.Vector4;
+    readonly tttp: upstream1.Vector4;
+    readonly ttps: upstream1.Vector4;
+    readonly ttpt: upstream1.Vector4;
+    readonly ttpp: upstream1.Vector4;
+    readonly tpss: upstream1.Vector4;
+    readonly tpst: upstream1.Vector4;
+    readonly tpsp: upstream1.Vector4;
+    readonly tpts: upstream1.Vector4;
+    readonly tptt: upstream1.Vector4;
+    readonly tptp: upstream1.Vector4;
+    readonly tpps: upstream1.Vector4;
+    readonly tppt: upstream1.Vector4;
+    readonly tppp: upstream1.Vector4;
+    readonly psss: upstream1.Vector4;
+    readonly psst: upstream1.Vector4;
+    readonly pssp: upstream1.Vector4;
+    readonly psts: upstream1.Vector4;
+    readonly pstt: upstream1.Vector4;
+    readonly pstp: upstream1.Vector4;
+    readonly psps: upstream1.Vector4;
+    readonly pspt: upstream1.Vector4;
+    readonly pspp: upstream1.Vector4;
+    readonly ptss: upstream1.Vector4;
+    readonly ptst: upstream1.Vector4;
+    readonly ptsp: upstream1.Vector4;
+    readonly ptts: upstream1.Vector4;
+    readonly pttt: upstream1.Vector4;
+    readonly pttp: upstream1.Vector4;
+    readonly ptps: upstream1.Vector4;
+    readonly ptpt: upstream1.Vector4;
+    readonly ptpp: upstream1.Vector4;
+    readonly ppss: upstream1.Vector4;
+    readonly ppst: upstream1.Vector4;
+    readonly ppsp: upstream1.Vector4;
+    readonly ppts: upstream1.Vector4;
+    readonly pptt: upstream1.Vector4;
+    readonly pptp: upstream1.Vector4;
+    readonly ppps: upstream1.Vector4;
+    readonly pppt: upstream1.Vector4;
+    readonly pppp: upstream1.Vector4;
+    setValues(x: number, y: number, z: number): void;
+    setZero(): void;
+    setFrom(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+    splat(arg: number): void;
+    toString(): string;
+    normalize(): number;
+    normalizeLength(): number;
+    normalized(): Vector3;
+    normalizeInto(out: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): Vector3;
+    distanceTo(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): number;
+    distanceToSquared(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): number;
+    angleTo(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): number;
+    angleToSigned(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, normal: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): number;
+    dot(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): number;
+    postmultiply(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix3": readonly [];
+    }>): void;
+    cross(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): Vector3;
+    crossInto(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, out: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): Vector3;
+    reflect(normal: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+    reflected(normal: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): Vector3;
+    applyProjection(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>): void;
+    applyAxisAngle(axis: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, angle: number): void;
+    applyQuaternion(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Quaternion": readonly [];
+    }>): void;
+    applyMatrix3(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix3": readonly [];
+    }>): void;
+    applyMatrix4(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>): void;
+    relativeError(correct: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): number;
+    absoluteError(correct: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): number;
+    add(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+    addScaled(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, factor: number): void;
+    sub(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+    multiply(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+    divide(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+    scale(arg: number): void;
+    scaled(arg: number): Vector3;
+    negate(): void;
+    absolute(): void;
+    clamp(min: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, max: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+    clampScalar(min: number, max: number): void;
+    floor(): void;
+    ceil(): void;
+    round(): void;
+    roundToZero(): void;
+    clone(): Vector3;
+    copyInto(arg: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): Vector3;
+    copyIntoArray(array: DartListInput<number, number>, offset?: number): void;
+    copyFromArray(array: DartListInput<number, number>, offset?: number): void;
+    operatorGetIndex(i: number): number;
+    operatorSetIndex(i: number, v: number): void;
+    operatorAdd(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): Vector3;
+    operatorSubtract(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): Vector3;
+    operatorMultiply(scale: number): Vector3;
+    operatorDivide(scale: number): Vector3;
+    operatorNegate(): Vector3;
+    set length(value: number);
+    set xy(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set xz(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set yx(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set yz(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set zx(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set zy(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set xyz(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set xzy(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set yxz(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set yzx(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set zxy(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set zyx(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set r(value: number);
+    set g(value: number);
+    set b(value: number);
+    set s(value: number);
+    set t(value: number);
+    set p(value: number);
+    set x(value: number);
+    set y(value: number);
+    set z(value: number);
+    set rg(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set rb(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set gr(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set gb(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set br(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set bg(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set rgb(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set rbg(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set grb(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set gbr(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set brg(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set bgr(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set st(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set sp(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set ts(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set tp(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set ps(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set pt(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector2": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set stp(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set spt(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set tsp(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set tps(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set pst(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+    set pts(value: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>);
+}
+export declare function _Vector3Factory(x: number, y: number, z: number): Vector3;
+export declare namespace _Vector3Factory {
+    function array(array: DartListInput<number, number>, offset?: number): Vector3;
+}
+export declare namespace _Vector3Factory {
+    function zero(): Vector3;
+}
+export declare namespace _Vector3Factory {
+    function all(value: number): Vector3;
+}
+export declare namespace _Vector3Factory {
+    function copy(other: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): Vector3;
+}
+export declare namespace _Vector3Factory {
+    function fromFloat64List(_v3storage: globalThis.Float64Array): Vector3;
+}
+export declare namespace _Vector3Factory {
+    function fromBuffer(buffer: globalThis.ArrayBuffer, offset: number): Vector3;
+}
+export declare namespace _Vector3Factory {
+    function min(a: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, b: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, result: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+}
+export declare namespace _Vector3Factory {
+    function max(a: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, b: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, result: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+}
+export declare namespace _Vector3Factory {
+    function mix(min: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, max: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>, a: number, result: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector3": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Vector": readonly [];
+    }>): void;
+}
+export declare const Vector3: typeof _Vector3Factory & _FlaxInstanceType<Vector3> & _FlaxDartType<Vector3, readonly ["class", "flax.core/sdk_dependencies#type:Vector3", readonly [], false]>;

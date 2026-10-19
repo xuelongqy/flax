@@ -10,7 +10,7 @@ readonly [_flaxDartTypeValue]: RouteAware;
 
 }
 defineObject("flax.core/sdk_widgets#type:RouteAware", [], [], _flaxBindingMethods("flax.core/sdk_widgets#type:RouteAware", "object", {"didPopNext":_flaxMemberParameters0,"didPush":_flaxMemberParameters0,"didPop":_flaxMemberParameters0,"didPushNext":_flaxMemberParameters0}, {}), []);
-const _RouteAwareProxy = {type: "flax.core/sdk_widgets#type:RouteAware", parameters: [], constructors: {"":[]}, methods: {"didPopNext":_flaxMemberParameters0,"didPush":_flaxMemberParameters0,"didPop":_flaxMemberParameters0,"didPushNext":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["didPopNext","didPush","didPop","didPushNext"]} as const;
+const _RouteAwareProxy = {type: "flax.core/sdk_widgets#type:RouteAware", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"didPopNext":_flaxMemberParameters0,"didPush":_flaxMemberParameters0,"didPop":_flaxMemberParameters0,"didPushNext":_flaxMemberParameters0}, getters: [], setters: [], contextMembers: [], superMembers: ["didPopNext","didPush","didPop","didPushNext"]} as const;
 export interface RouteAware {
 readonly [_flaxDartTypeValue]: RouteAware;
 

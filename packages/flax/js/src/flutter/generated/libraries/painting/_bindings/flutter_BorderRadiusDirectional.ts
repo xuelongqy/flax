@@ -51,21 +51,21 @@ export namespace _BorderRadiusDirectionalFactory {
 export function vertical(options: { top?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottom?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadiusDirectional {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "vertical", [{"name":"top","required":false,"positional":false},{"name":"bottom","required":false,"positional":false}], [], options) as BorderRadiusDirectional;
+return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "vertical", [{"name":"top"},{"name":"bottom"}], [], options) as BorderRadiusDirectional;
 }
 }
 export namespace _BorderRadiusDirectionalFactory {
 export function horizontal(options: { start?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; end?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadiusDirectional {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "horizontal", [{"name":"start","required":false,"positional":false},{"name":"end","required":false,"positional":false}], [], options) as BorderRadiusDirectional;
+return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "horizontal", [{"name":"start"},{"name":"end"}], [], options) as BorderRadiusDirectional;
 }
 }
 export namespace _BorderRadiusDirectionalFactory {
 export function only(options: { topStart?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; topEnd?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomStart?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined; bottomEnd?: Readonly<{ "__flaxBound:dart:ui::Radius": readonly [] }> | undefined } = {}): BorderRadiusDirectional {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "only", [{"name":"topStart","required":false,"positional":false},{"name":"topEnd","required":false,"positional":false},{"name":"bottomStart","required":false,"positional":false},{"name":"bottomEnd","required":false,"positional":false}], [], options) as BorderRadiusDirectional;
+return constructObject("object", "flax.core/flutter#type:BorderRadiusDirectional", "only", [{"name":"topStart"},{"name":"topEnd"},{"name":"bottomStart"},{"name":"bottomEnd"}], [], options) as BorderRadiusDirectional;
 }
 }
 export namespace _BorderRadiusDirectionalFactory { export declare const zero: BorderRadiusDirectional; }

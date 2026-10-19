@@ -32,8 +32,8 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
 const _flaxMemberParameters0 = [{"name":"selectable","required":true,"positional":true}] as const;
 const _flaxMemberParameters1 = [{"name":"child","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"ancestor","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"startHandle","required":true,"positional":true},{"name":"endHandle","required":true,"positional":true}] as const;
-const _flaxMemberParameters4 = [] as const;
+const _flaxMemberParameters3 = [] as const;
+const _flaxMemberParameters4 = [{"name":"startHandle","required":true,"positional":true},{"name":"endHandle","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"event","required":true,"positional":true}] as const;
 const _flaxMemberParameters6 = [{"name":"listener","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -44,7 +44,7 @@ readonly [_flaxDartTypeValue]: SelectionContainerDelegate;
 
 }
 defineObject("flax.core/sdk_widgets#type:SelectionContainerDelegate", ["contentLength","value","hasSize","containerSize"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:SelectionContainerDelegate", "object", {"add":_flaxMemberParameters0,"remove":_flaxMemberParameters0,"getTransformFrom":_flaxMemberParameters1,"getTransformTo":_flaxMemberParameters2}, {}), ["removeListener"], undefined, "flax.core/sdk_rendering#type:SelectionHandler");
-const _SelectionContainerDelegateProxy = {type: "flax.core/sdk_widgets#type:SelectionContainerDelegate", parameters: [], constructors: {"":[]}, methods: {"pushHandleLayers":_flaxMemberParameters3,"getSelectedContent":_flaxMemberParameters4,"getSelection":_flaxMemberParameters4,"dispatchSelectionEvent":_flaxMemberParameters5,"addListener":_flaxMemberParameters6,"removeListener":_flaxMemberParameters6,"add":_flaxMemberParameters0,"remove":_flaxMemberParameters0,"getTransformFrom":_flaxMemberParameters1,"getTransformTo":_flaxMemberParameters2}, getters: ["hasSize","containerSize","contentLength","value"], setters: [], contextMembers: [], superMembers: ["get:hasSize","get:containerSize","getTransformFrom","getTransformTo"]} as const;
+const _SelectionContainerDelegateProxy = {type: "flax.core/sdk_widgets#type:SelectionContainerDelegate", parameters: _flaxMemberParameters3, constructors: {"": _flaxMemberParameters3}, methods: {"pushHandleLayers":_flaxMemberParameters4,"getSelectedContent":_flaxMemberParameters3,"getSelection":_flaxMemberParameters3,"dispatchSelectionEvent":_flaxMemberParameters5,"addListener":_flaxMemberParameters6,"removeListener":_flaxMemberParameters6,"add":_flaxMemberParameters0,"remove":_flaxMemberParameters0,"getTransformFrom":_flaxMemberParameters1,"getTransformTo":_flaxMemberParameters2}, getters: ["hasSize","containerSize","contentLength","value"], setters: [], contextMembers: [], superMembers: ["get:hasSize","get:containerSize","getTransformFrom","getTransformTo"]} as const;
 export interface SelectionContainerDelegate {
 readonly [_flaxDartTypeValue]: SelectionContainerDelegate;
 

@@ -27,11 +27,9 @@ import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream13 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"properties","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"joiner","required":false,"positional":false},{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false},{"name":"prefixLineOne","required":false,"positional":false},{"name":"prefixOtherLines","required":false,"positional":false},{"name":"wrapWidth","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -51,11 +49,11 @@ toStringDeep(options?: {minLevel?: upstream10.DiagnosticLevel | undefined; prefi
 toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream12.DiagnosticsTreeStyle | null | undefined}): upstream11.DiagnosticsNode;
 debugDescribeChildren(): DartList<upstream11.DiagnosticsNode>;
 }
-defineObject("flax.core/sdk_widgets#type:Actions", ["dispatcher","actions","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:Actions", "object", {"createState":_flaxMemberParameters0,"debugFillProperties":_flaxMemberParameters1,"createElement":_flaxMemberParameters0,"toStringShort":_flaxMemberParameters0,"toStringShallow":_flaxMemberParameters2,"toStringDeep":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugDescribeChildren":_flaxMemberParameters0}, {}), []);
+defineObject("flax.core/sdk_widgets#type:Actions", ["dispatcher","actions","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:Actions", "object", {"createState":_flaxMemberParameters0,"createElement":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:Widget");
 export function _ActionsFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; dispatcher?: Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::ActionDispatcher": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | null | undefined; actions: DartMapInput<upstream5.Type, upstream3.Action<upstream4.Intent>, Readonly<{ "__flaxBound:dart:core::Type": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream4.Intent] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>>; child: Widget }): Actions {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:Actions", "", [{"name":"key","required":false,"positional":false},{"name":"dispatcher","required":false,"positional":false},{"name":"actions","required":true,"positional":false},{"name":"child","required":true,"positional":false}], [], options) as Actions;
+return constructObject("object", "flax.core/sdk_widgets#type:Actions", "", [{"name":"key"},{"name":"dispatcher"},{"name":"actions","required":true},{"name":"child","required":true}], [], options) as Actions;
 }
 export namespace _ActionsFactory { function _flaxDefault_handler<T extends upstream4.Intent = upstream4.Intent>(context: upstream6.BuildContext, intent: (T | DartInput<T>)): (() => void) | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
@@ -70,7 +68,7 @@ if (options === null || typeof options !== 'object' || Array.isArray(options) ||
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.find", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.intent]);
 return _flaxResult as upstream3.Action<T>;
 }
-export const find = _flaxDefineDartCallTypes(_flaxDefault_find, {"id":"flax.core/sdk_widgets#function:Actions.find","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent","required":false,"positional":false}]}) as _FlaxDartCallable<typeof _flaxDefault_find, _FlaxSignature1>;
+export const find = _flaxDefineDartCallTypes(_flaxDefault_find, {"id":"flax.core/sdk_widgets#function:Actions.find","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent"}]}) as _FlaxDartCallable<typeof _flaxDefault_find, _FlaxSignature1>;
 }
 export namespace _ActionsFactory { function _flaxDefault_maybeFind<T extends upstream4.Intent = upstream4.Intent>(context: upstream6.BuildContext, options: { intent?: (T | DartInput<T>) | null | undefined } = {}): upstream3.Action<T> | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
@@ -78,7 +76,7 @@ if (options === null || typeof options !== 'object' || Array.isArray(options) ||
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:Actions.maybeFind", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.intent]);
 return _flaxResult as upstream3.Action<T> | null;
 }
-export const maybeFind = _flaxDefineDartCallTypes(_flaxDefault_maybeFind, {"id":"flax.core/sdk_widgets#function:Actions.maybeFind","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent","required":false,"positional":false}]}) as _FlaxDartCallable<typeof _flaxDefault_maybeFind, _FlaxSignature2>;
+export const maybeFind = _flaxDefineDartCallTypes(_flaxDefault_maybeFind, {"id":"flax.core/sdk_widgets#function:Actions.maybeFind","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"intent"}]}) as _FlaxDartCallable<typeof _flaxDefault_maybeFind, _FlaxSignature2>;
 }
 export namespace _ActionsFactory { export function of(context: upstream6.BuildContext): upstream2.ActionDispatcher {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');

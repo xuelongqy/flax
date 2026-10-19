@@ -22,14 +22,14 @@ export namespace _ShortcutSerializationFactory {
 export function character(character: string, options: { alt?: boolean | undefined; control?: boolean | undefined; meta?: boolean | undefined } = {}): ShortcutSerialization {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:ShortcutSerialization", "character", [{"name":"character","required":true,"positional":true},{"name":"alt","required":false,"positional":false},{"name":"control","required":false,"positional":false},{"name":"meta","required":false,"positional":false}], [character], options) as ShortcutSerialization;
+return constructObject("object", "flax.core/sdk_widgets#type:ShortcutSerialization", "character", [{"name":"character","required":true,"positional":true},{"name":"alt"},{"name":"control"},{"name":"meta"}], [character], options) as ShortcutSerialization;
 }
 }
 export namespace _ShortcutSerializationFactory {
 export function modifier(trigger: Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::LogicalKeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/services/keyboard_key.g.dart::KeyboardKey": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>, options: { alt?: boolean | undefined; control?: boolean | undefined; meta?: boolean | undefined; shift?: boolean | undefined } = {}): ShortcutSerialization {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/sdk_widgets#type:ShortcutSerialization", "modifier", [{"name":"trigger","required":true,"positional":true},{"name":"alt","required":false,"positional":false},{"name":"control","required":false,"positional":false},{"name":"meta","required":false,"positional":false},{"name":"shift","required":false,"positional":false}], [trigger], options) as ShortcutSerialization;
+return constructObject("object", "flax.core/sdk_widgets#type:ShortcutSerialization", "modifier", [{"name":"trigger","required":true,"positional":true},{"name":"alt"},{"name":"control"},{"name":"meta"},{"name":"shift"}], [trigger], options) as ShortcutSerialization;
 }
 }
 export const ShortcutSerialization: typeof _ShortcutSerializationFactory & _FlaxInstanceType<ShortcutSerialization> & _FlaxDartType<ShortcutSerialization, readonly ["class", "flax.core/sdk_widgets#type:ShortcutSerialization", readonly [], false]> = _flaxBindInstanceType<ShortcutSerialization, typeof _ShortcutSerializationFactory>(_ShortcutSerializationFactory, "flax.core/sdk_widgets#type:ShortcutSerialization", ["dart:core::Object"]) as typeof _ShortcutSerializationFactory & _FlaxInstanceType<ShortcutSerialization> & _FlaxDartType<ShortcutSerialization, readonly ["class", "flax.core/sdk_widgets#type:ShortcutSerialization", readonly [], false]>;

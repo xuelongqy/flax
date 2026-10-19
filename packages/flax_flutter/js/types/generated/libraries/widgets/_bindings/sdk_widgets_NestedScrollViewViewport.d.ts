@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_Viewport';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Viewport';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/sdk_widgets_MultiChildRenderObjectWidget';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_RenderObjectWidget';
 import type * as upstream3 from '@flax/flutter/foundation/_bindings/flutter_Key';

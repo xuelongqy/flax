@@ -1,5 +1,6 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessWidget';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessWidget';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Color';
@@ -37,8 +38,8 @@ export interface CircleAvatar extends _FlaxDartWidget, Omit<upstream0.StatelessW
     readonly child: Widget | null;
     readonly backgroundColor: upstream2.Color | null;
     readonly foregroundColor: upstream2.Color | null;
-    readonly backgroundImage: upstream3.ImageProvider<{}> | null;
-    readonly foregroundImage: upstream3.ImageProvider<{}> | null;
+    readonly backgroundImage: upstream3.ImageProvider<any> | null;
+    readonly foregroundImage: upstream3.ImageProvider<any> | null;
     readonly onBackgroundImageError: ((exception: {}, stackTrace: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }> | null) => void) | null;

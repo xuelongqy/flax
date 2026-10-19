@@ -5,9 +5,9 @@ import type * as upstream0 from '@flax/flutter/rendering/_bindings/sdk_rendering
 import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
 import type * as upstream1 from '@flax/flutter/rendering/_bindings/sdk_rendering_SliverConstraints';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SliverConstraints';
-const _flaxMemberParameters0 = [{"name":"index","required":true,"positional":true},{"name":"after","required":true,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"index","required":true,"positional":true},{"name":"after","required":true}] as const;
 const _flaxMemberParameters1 = [{"name":"child","required":true,"positional":true}] as const;
-const _flaxMemberParameters2 = [{"name":"constraints","required":true,"positional":true},{"name":"firstIndex","required":false,"positional":false},{"name":"lastIndex","required":false,"positional":false},{"name":"leadingScrollOffset","required":false,"positional":false},{"name":"trailingScrollOffset","required":false,"positional":false}] as const;
+const _flaxMemberParameters2 = [{"name":"constraints","required":true,"positional":true},{"name":"firstIndex"},{"name":"lastIndex"},{"name":"leadingScrollOffset"},{"name":"trailingScrollOffset"}] as const;
 const _flaxMemberParameters3 = [{"name":"value","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -18,7 +18,7 @@ readonly [_flaxDartTypeValue]: RenderSliverBoxChildManager;
 
 }
 defineObject("flax.core/sdk_rendering#type:RenderSliverBoxChildManager", ["childCount","estimatedChildCount"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:RenderSliverBoxChildManager", "object", {"createChild":_flaxMemberParameters0,"removeChild":_flaxMemberParameters1,"estimateMaxScrollOffset":_flaxMemberParameters2,"didAdoptChild":_flaxMemberParameters1,"setDidUnderflow":_flaxMemberParameters3,"didStartLayout":_flaxMemberParameters4,"didFinishLayout":_flaxMemberParameters4,"debugAssertChildListLocked":_flaxMemberParameters4}, {}), []);
-const _RenderSliverBoxChildManagerProxy = {type: "flax.core/sdk_rendering#type:RenderSliverBoxChildManager", parameters: [], constructors: {"":[]}, methods: {"createChild":_flaxMemberParameters0,"removeChild":_flaxMemberParameters1,"estimateMaxScrollOffset":_flaxMemberParameters2,"didAdoptChild":_flaxMemberParameters1,"setDidUnderflow":_flaxMemberParameters3,"didStartLayout":_flaxMemberParameters4,"didFinishLayout":_flaxMemberParameters4,"debugAssertChildListLocked":_flaxMemberParameters4}, getters: ["childCount","estimatedChildCount"], setters: [], contextMembers: [], superMembers: ["get:estimatedChildCount","didStartLayout","didFinishLayout","debugAssertChildListLocked"]} as const;
+const _RenderSliverBoxChildManagerProxy = {type: "flax.core/sdk_rendering#type:RenderSliverBoxChildManager", parameters: _flaxMemberParameters4, constructors: {"": _flaxMemberParameters4}, methods: {"createChild":_flaxMemberParameters0,"removeChild":_flaxMemberParameters1,"estimateMaxScrollOffset":_flaxMemberParameters2,"didAdoptChild":_flaxMemberParameters1,"setDidUnderflow":_flaxMemberParameters3,"didStartLayout":_flaxMemberParameters4,"didFinishLayout":_flaxMemberParameters4,"debugAssertChildListLocked":_flaxMemberParameters4}, getters: ["childCount","estimatedChildCount"], setters: [], contextMembers: [], superMembers: ["get:estimatedChildCount","didStartLayout","didFinishLayout","debugAssertChildListLocked"]} as const;
 export interface RenderSliverBoxChildManager {
 readonly [_flaxDartTypeValue]: RenderSliverBoxChildManager;
 

@@ -43,6 +43,7 @@ const nativeApply = Reflect.apply;
 const nativeWeakMap = WeakMap;
 const nativeIsArray = Array.isArray;
 const nativeIsView = ArrayBuffer.isView;
+const nativeHasOwn = Object.hasOwn;
 
 /** Experimental generated-binding extension. Independent of the native C ABI. */
 export const bindingVersion = 24;
@@ -66,6 +67,8 @@ const supportedBindingCapabilities = new Set([
   'native-bigint',
   'native-widget-proxies',
   'widget-interface-proxies',
+  'context-instance-methods',
+  'proxy-native-members',
   'native-navigation-objects',
   'shared-buffers',
   'shared-uint8',
@@ -363,10 +366,12 @@ export interface DartSet<T> extends DartIterable<T> {
 // collection type brand; the host validates the original Dart instance.
 export type DartIterableInput<T, I = DartInput<T>> =
   | Pick<DartIterable<T>, typeof dartCollectionKind | typeof dartCollectionItem>
-  | Iterable<I>;
+  | Iterable<I>
+  | (number extends I ? Exclude<NativeBuffer, ArrayBuffer | DataView> : never);
 export type DartListInput<T, I = DartInput<T>> =
   | Pick<DartList<T>, typeof dartCollectionKind | typeof dartCollectionItem>
-  | ReadonlyArray<I>;
+  | ReadonlyArray<I>
+  | (number extends I ? Exclude<NativeBuffer, ArrayBuffer | DataView> : never);
 export type DartMapInput<K, V, IK = DartInput<K>, IV = DartInput<V>> =
   | Pick<
       DartMap<K, V>,
@@ -540,11 +545,20 @@ function synchronous(value: unknown, operation = 'Component callbacks'): unknown
 
 export interface Parameter {
   readonly name: string;
-  readonly required: boolean;
-  readonly positional: boolean;
+  readonly required?: boolean;
+  readonly positional?: boolean;
   readonly defaultValue?: unknown;
   readonly readonly?: boolean;
   readonly fixed?: boolean;
+}
+
+// Sparse layout defaults must not consult a business object's prototype changes.
+function parameterIsRequired(parameter: Parameter): boolean {
+  return nativeHasOwn(parameter, 'required') && parameter.required === true;
+}
+
+function parameterIsPositional(parameter: Parameter): boolean {
+  return nativeHasOwn(parameter, 'positional') && parameter.positional === true;
 }
 
 export function isBinding(value: unknown): value is Binding<unknown> {
@@ -568,16 +582,20 @@ export function construct(
   if (options === null || typeof options !== 'object' || Array.isArray(options)) {
     throw new TypeError('Named arguments must be an options object');
   }
-  const names = new Set(parameters.filter((p) => !p.positional).map((p) => p.name));
+  const names = new Set(
+    parameters.filter((p) => !parameterIsPositional(p)).map((p) => p.name),
+  );
   for (const name of Object.keys(options)) {
     if (!names.has(name)) throw new TypeError(`Unsupported argument: ${type}.${name}`);
   }
   let index = 0;
   const args: Record<string, unknown> = {};
   for (const parameter of parameters) {
-    const value = parameter.positional ? positional[index++] : options[parameter.name];
+    const value = parameterIsPositional(parameter)
+      ? positional[index++]
+      : options[parameter.name];
     if (value === undefined) {
-      if (parameter.required) {
+      if (parameterIsRequired(parameter)) {
         throw new TypeError(`Missing required argument: ${type}.${parameter.name}`);
       }
       continue;
@@ -733,7 +751,10 @@ export function invokeEnum(
   if (!operation) throw new TypeError('Invalid or foreign Dart enum');
   return invokeTopLevel(operation, [receiver, ...args]);
 }
-const contextTypes = new Map<string, readonly string[]>();
+const contextTypes = new Map<
+  string,
+  { fields: readonly string[]; methods: Readonly<Record<string, StateMethod>> }
+>();
 type ContextState = { type: string; id: number; alive: boolean };
 const statePrototypes = new Map<string, object>();
 const contextPrototypes = new Map<string, object>();
@@ -742,9 +763,24 @@ const contextStates = new WeakMap<object, ContextState>();
 const callbackMemos = new WeakMap<Function, Map<string, Function>>();
 const recordShapes = new WeakMap<object, string>();
 const recordDartTypes = new WeakMap<object, object>();
-export function defineContext(type: string, fields: readonly string[]): void {
+export function defineContext(
+  type: string,
+  fields: readonly string[],
+  methods: Readonly<Record<string, StateMethod>> = {},
+): void {
   if (contextTypes.has(type)) throw new Error(`Duplicate context type: ${type}`);
-  contextTypes.set(type, Object.freeze([...fields]));
+  contextTypes.set(type, { fields: Object.freeze([...fields]), methods });
+}
+
+function invokeContext(
+  receiver: object,
+  type: string,
+  member: string,
+  args: readonly unknown[],
+): unknown {
+  const id = contextHandle(receiver, type);
+  if (id == null) throw new TypeError('Invalid or foreign Context');
+  return invokeOperation('context', type, id, 'call', member, args);
 }
 
 export function contextHandle(value: unknown, type: string): number | null | undefined {
@@ -1022,7 +1058,7 @@ const genericCalls = new WeakMap<
 const genericMethods = new Map<
   string,
   {
-    category: 'object' | 'state' | 'stream';
+    category: 'object' | 'state' | 'stream' | 'context';
     methods: Readonly<Record<string, DartCallTarget>>;
   }
 >();
@@ -1196,7 +1232,9 @@ export function dartType(
         ? invokeStream
         : definition.category === 'state'
           ? invokeInstance
-          : invokeObject;
+          : definition.category === 'context'
+            ? invokeContext
+            : invokeObject;
     if (nativeType !== undefined) {
       // Selection is cached per real receiver; this callable itself has no receiver root.
       const selections = new WeakMap<object, string>();
@@ -1281,8 +1319,8 @@ export function dartType(
       }
       return invokeTopLevel(id, memberArguments(parameters)(inputs));
     }
-    const positional = parameters.filter((p) => p.positional).length;
-    const named = parameters.some((p) => !p.positional);
+    const positional = parameters.filter((p) => parameterIsPositional(p)).length;
+    const named = parameters.some((p) => !parameterIsPositional(p));
     if (inputs.length > positional + (named ? 1 : 0))
       throw new TypeError('Too many constructor arguments');
     const values = inputs.slice(0, positional);
@@ -1413,6 +1451,8 @@ export function bindInstanceType<T, V extends object>(
     )
   ) {
     futureObjectTypes.add(type);
+    // Proxy registration can prepare ordinary descriptors before async ancestry.
+    objectPrototypes.delete(type);
     const prototype = Object.getOwnPropertyDescriptor(value, 'prototype')?.value as
       object | undefined;
     if (typeof value === 'function' && prototype) {
@@ -1432,6 +1472,7 @@ export function bindInstanceType<T, V extends object>(
     )
   ) {
     streamObjectTypes.add(type);
+    objectPrototypes.delete(type);
     const prototype = Object.getOwnPropertyDescriptor(value, 'prototype')?.value;
     if (typeof value === 'function' && prototype) {
       Object.defineProperty(prototype, Symbol.asyncIterator, {
@@ -1605,6 +1646,11 @@ export function defineObject(
     collectionKind,
     iteratorMember,
   });
+  const waiting = pendingProxyMembers.get(type);
+  pendingProxyMembers.delete(type);
+  for (const [definition, prototype] of waiting ?? []) {
+    installProxyNativeMembers(prototype, definition);
+  }
 }
 
 function collectionDefinition(
@@ -1987,9 +2033,10 @@ function proxyLayout(definition: ProxyDefinition): number {
     return Object.freeze([
       name,
       kind,
-      parameters.filter((p) => p.positional && p.required).length,
-      parameters.filter((p) => p.positional).length +
-        (parameters.some((p) => !p.positional) ? 1 : 0) +
+      parameters.filter((p) => parameterIsPositional(p) && parameterIsRequired(p))
+        .length,
+      parameters.filter((p) => parameterIsPositional(p)).length +
+        (parameters.some((p) => !parameterIsPositional(p)) ? 1 : 0) +
         (kind === 0 && contexts.has(name) ? 1 : 0),
       base,
       supers.has(kind === 0 ? name : `${kind === 1 ? 'get' : 'set'}:${name}`),
@@ -2122,8 +2169,10 @@ function proxyDescriptor(
   definition: ProxyDefinition,
   args: readonly unknown[],
 ): DartValue {
-  const positional = definition.parameters.filter((p) => p.positional).length;
-  const hasNamed = definition.parameters.some((p) => !p.positional);
+  const positional = definition.parameters.filter((p) =>
+    parameterIsPositional(p),
+  ).length;
+  const hasNamed = definition.parameters.some((p) => !parameterIsPositional(p));
   if (args.length > positional + (hasNamed ? 1 : 0))
     throw new TypeError('Too many proxy constructor arguments');
   return construct(
@@ -2289,7 +2338,11 @@ function memberArguments(parameters: readonly MemberParameter[]) {
   if (cached) return cached;
   for (const parameter of parameters) Object.freeze(parameter);
   Object.freeze(parameters);
-  if (parameters.every((p) => p.required && p.positional && !p.context)) {
+  if (
+    parameters.every(
+      (p) => parameterIsRequired(p) && parameterIsPositional(p) && !p.context,
+    )
+  ) {
     const argumentsFor = (args: readonly unknown[]) => {
       if (args.length > parameters.length)
         throw new TypeError('Too many method arguments');
@@ -2302,8 +2355,8 @@ function memberArguments(parameters: readonly MemberParameter[]) {
     return argumentsFor;
   }
 
-  const positional = parameters.filter((p) => p.positional);
-  const named = parameters.filter((p) => !p.positional);
+  const positional = parameters.filter((p) => parameterIsPositional(p));
+  const named = parameters.filter((p) => !parameterIsPositional(p));
   const names = new Set(named.map((p) => p.name));
   const argumentsFor = (args: readonly unknown[]): unknown[] => {
     if (args.length > positional.length + (named.length ? 1 : 0))
@@ -2322,7 +2375,7 @@ function memberArguments(parameters: readonly MemberParameter[]) {
       throw new TypeError('Invalid named method arguments');
     let omitted = false;
     for (let i = 0; i < positional.length; i++) {
-      if (!positional[i]!.required && args[i] === undefined) omitted = true;
+      if (!parameterIsRequired(positional[i]!) && args[i] === undefined) omitted = true;
       else if (omitted && args[i] !== undefined)
         throw new TypeError(
           'Optional positional arguments must omit a trailing suffix',
@@ -2330,10 +2383,10 @@ function memberArguments(parameters: readonly MemberParameter[]) {
     }
     let index = 0;
     return parameters.map((parameter) => {
-      const value = parameter.positional
+      const value = parameterIsPositional(parameter)
         ? args[index++]
         : (options as Record<string, unknown>)[parameter.name];
-      if (value === undefined && parameter.required)
+      if (value === undefined && parameterIsRequired(parameter))
         throw new TypeError(`Missing required argument: ${parameter.name}`);
       return parameter.context ? contextHandle(value, parameter.context) : value;
     });
@@ -2344,7 +2397,7 @@ function memberArguments(parameters: readonly MemberParameter[]) {
 
 export function bindingMethods(
   type: string,
-  category: 'object' | 'state' | 'stream',
+  category: 'object' | 'state' | 'stream' | 'context',
   methods: Readonly<Record<string, readonly MemberParameter[]>>,
   generic?: Readonly<Record<string, DartCallTarget>>,
 ): Record<string, StateMethod> {
@@ -2355,7 +2408,9 @@ export function bindingMethods(
       ? invokeObject
       : category === 'stream'
         ? invokeStream
-        : invokeInstance;
+        : category === 'context'
+          ? invokeContext
+          : invokeInstance;
   return Object.fromEntries(
     Object.entries(methods).map(([name, parameters]) => {
       const argumentsFor = memberArguments(parameters);
@@ -2453,26 +2508,67 @@ export function defineProxyBase(
   }
   proxyLayouts.set(definition, { prototype });
   proxyDefinitions.set(flaxConstructor, definition);
-  if (objectTypes.get(definition.type)?.collectionKind !== undefined) {
-    const selected = new Set([
-      ...nativeGetters,
-      ...definition.getters,
-      ...definition.setters,
-      ...Object.keys(definition.methods),
-    ]);
+  if (objectTypes.has(definition.type))
+    installProxyNativeMembers(prototype, definition);
+}
+
+// ESM cycles can register a child before its ordinary native parent.
+const pendingProxyMembers = new Map<string, Map<ProxyDefinition, object>>();
+function installProxyNativeMembers(
+  prototype: object,
+  definition: ProxyDefinition,
+): void {
+  for (let type: string | undefined = definition.type; type !== undefined;) {
+    const owner = objectTypes.get(type);
+    if (!owner) {
+      let waiting = pendingProxyMembers.get(type);
+      if (!waiting) pendingProxyMembers.set(type, (waiting = new Map()));
+      waiting.set(definition, prototype);
+      return;
+    }
+    type = owner.parent;
+  }
+  const hasMember = (name: PropertyKey): boolean => {
     for (
-      let base: object | null = objectPrototype(definition.type);
-      base && base !== Object.prototype;
-      base = Object.getPrototypeOf(base) as object | null
+      let owner: object | null = prototype;
+      owner && owner !== Object.prototype;
+      owner = Object.getPrototypeOf(owner) as object | null
     ) {
-      for (const name of Reflect.ownKeys(base)) {
-        if (!selected.has(name as string) && !Reflect.has(prototype, name))
-          Object.defineProperty(
-            prototype,
-            name,
-            Object.getOwnPropertyDescriptor(base, name)!,
-          );
-      }
+      if (Object.hasOwn(owner, name)) return true;
+    }
+    return false;
+  };
+  const seen = new Set<PropertyKey>();
+  const selected = new Set([
+    ...definition.getters,
+    ...definition.setters,
+    ...Object.keys(definition.methods),
+  ]);
+  for (
+    let base: object | null = objectPrototype(definition.type);
+    base && base !== Object.prototype;
+    base = Object.getPrototypeOf(base) as object | null
+  ) {
+    for (const name of Reflect.ownKeys(base)) {
+      if (seen.has(name)) continue;
+      seen.add(name);
+      const native = Object.getOwnPropertyDescriptor(base, name)!;
+      const own = Object.getOwnPropertyDescriptor(prototype, name);
+      if (!('value' in native) && typeof name === 'string') {
+        if ((own && 'value' in own) || (!own && hasMember(name))) continue;
+        const get =
+          own?.get ?? (definition.getters.includes(name) ? undefined : native.get);
+        const set =
+          own?.set ?? (definition.setters.includes(name) ? undefined : native.set);
+        if (get !== own?.get || set !== own?.set)
+          Object.defineProperty(prototype, name, {
+            ...native,
+            ...own,
+            ...(get === undefined ? {} : { get }),
+            ...(set === undefined ? {} : { set }),
+          });
+      } else if (!selected.has(name as string) && !hasMember(name))
+        Object.defineProperty(prototype, name, native);
     }
   }
 }
@@ -2564,8 +2660,8 @@ export function invokeDartSuper(
   const parameters = definition && definition.methods[member]?.parameters;
   if (!parameters) throw new TypeError('Expected a generated generic super method');
   const count =
-    parameters.filter((p) => p.positional).length +
-    (parameters.some((p) => !p.positional) ? 1 : 0);
+    parameters.filter((p) => parameterIsPositional(p)).length +
+    (parameters.some((p) => !parameterIsPositional(p)) ? 1 : 0);
   const forwarded = [...args];
   while (forwarded.length < count) forwarded.push(undefined);
   forwarded.push(call);
@@ -2925,6 +3021,8 @@ function stateHandle(value: object): number | null {
 
 function collectionShape(value: object): string | null {
   if (Array.isArray(value)) return 'list';
+  if (nativeIsView(value) && nativeApply(typedArrayTag, value, []) !== undefined)
+    return 'buffer';
   if (value instanceof Map) return 'map';
   if (value instanceof Set) return 'set';
   if (typeof (value as { [Symbol.iterator]?: unknown })[Symbol.iterator] === 'function')
@@ -3345,10 +3443,12 @@ Object.assign(globalThis, {
       const cached = cachedObject(type, id);
       if (cached) return cached;
       const parameters = JSON.parse(shape) as CallbackParameter[];
-      const positional = parameters.filter((parameter) => parameter.positional);
-      const named = parameters.filter((parameter) => !parameter.positional);
-      const requiredPositional = positional.filter(
-        (parameter) => parameter.required,
+      const positional = parameters.filter((parameter) =>
+        parameterIsPositional(parameter),
+      );
+      const named = parameters.filter((parameter) => !parameterIsPositional(parameter));
+      const requiredPositional = positional.filter((parameter) =>
+        parameterIsRequired(parameter),
       ).length;
       const value = (...args: unknown[]): unknown => {
         if (!objectHandles.get(value)!.alive) throw new Error('Released Dart function');
@@ -3380,7 +3480,7 @@ Object.assign(globalThis, {
         if (named.length !== 0) {
           const input = args[positional.length];
           if (input === undefined) {
-            if (named.some((parameter) => parameter.required))
+            if (named.some((parameter) => parameterIsRequired(parameter)))
               throw new TypeError('Missing required named Dart function argument');
           } else {
             if (
@@ -3404,7 +3504,10 @@ Object.assign(globalThis, {
               if (field && !('value' in field))
                 throw new TypeError('Named Dart arguments require data properties');
               const fieldValue = field?.value;
-              if (parameter.required && (!present || fieldValue === undefined))
+              if (
+                parameterIsRequired(parameter) &&
+                (!present || fieldValue === undefined)
+              )
                 throw new TypeError('Missing required named Dart function argument');
               if (present && fieldValue !== undefined)
                 namedValues.push(parameter.name, fieldValue);
@@ -3561,10 +3664,10 @@ Object.assign(globalThis, {
       if (cached) return cached;
       let prototype = contextPrototypes.get(type);
       if (!prototype) {
-        const fields = contextTypes.get(type);
-        if (!fields) throw new TypeError(`Unregistered context type: ${type}`);
+        const definition = contextTypes.get(type);
+        if (!definition) throw new TypeError(`Unregistered context type: ${type}`);
         prototype = {};
-        for (const field of fields)
+        for (const field of definition.fields)
           Object.defineProperty(prototype, field, {
             enumerable: true,
             get(this: object) {
@@ -3578,11 +3681,18 @@ Object.assign(globalThis, {
               return invokeOperation('context', type, ref.id, 'get', field, []);
             },
           });
+        for (const [name, method] of Object.entries(definition.methods))
+          Object.defineProperty(prototype, name, { configurable: true, value: method });
         Object.defineProperty(prototype, 'findAncestorWidgetOfExactType', {
-          value(this: object, constructor: ComponentConstructor) {
+          value(this: object, constructor?: ComponentConstructor) {
             const ref = contextStates.get(this);
             if (!ref || ref.type !== type || !ref.alive)
               throw new Error('Unmounted BuildContext');
+            if (constructor === undefined) {
+              const method = definition.methods.findAncestorWidgetOfExactType;
+              if (!method) throw new TypeError('Unregistered Context method');
+              return method.call(this);
+            }
             const info = componentType(constructor);
             const call = (
               globalThis as typeof globalThis & {

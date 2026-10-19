@@ -1,5 +1,6 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartListInput, type DartMap, type DartMapInput, type DartInput } from '@flax/core/bindings';
-import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Uri';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartInput } from '@flax/core/bindings';
+import '@flax/dart/convert/_bindings/sdk_dependencies_Encoding';
+import type * as upstream1 from '@flax/dart/core/_bindings/flutter_Uri';
 import '@flax/dart/core/_bindings/flutter_Uri';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface UriData extends Readonly<{
@@ -7,7 +8,7 @@ export interface UriData extends Readonly<{
 }> {
     readonly __UriData: unique symbol;
     readonly [_flaxDartTypeValue]: UriData;
-    readonly uri: upstream0.Uri;
+    readonly uri: upstream1.Uri;
     readonly mimeType: string;
     readonly charset: string;
     readonly isBase64: boolean;
@@ -15,13 +16,29 @@ export interface UriData extends Readonly<{
     readonly parameters: DartMap<string, string>;
     isMimeType(mimeType: string): boolean;
     isCharset(charset: string): boolean;
+    isEncoding(encoding: Readonly<{
+        "__flaxBound:dart:convert::Encoding": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>];
+    }>): boolean;
     contentAsBytes(): globalThis.Uint8Array;
-    contentAsString(): string;
+    contentAsString(options?: {
+        encoding?: (Readonly<{
+            "__flaxBound:dart:convert::Encoding": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>];
+        }>) | null | undefined;
+    }): string;
     toString(): string;
 }
 export declare namespace _UriDataFactory {
     function fromString(content: string, options?: {
         mimeType?: string | null | undefined;
+        encoding?: (Readonly<{
+            "__flaxBound:dart:convert::Encoding": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:convert::Codec": readonly [string, DartList<number>];
+        }>) | null | undefined;
         parameters?: DartMapInput<string, string, string, string> | null | undefined;
         base64?: boolean | undefined;
     }): UriData;

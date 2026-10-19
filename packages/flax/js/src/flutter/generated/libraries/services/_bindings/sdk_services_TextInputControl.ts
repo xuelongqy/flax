@@ -31,9 +31,9 @@ const _flaxMemberParameters4 = [{"name":"value","required":true,"positional":tru
 const _flaxMemberParameters5 = [{"name":"editableBoxSize","required":true,"positional":true},{"name":"transform","required":true,"positional":true}] as const;
 const _flaxMemberParameters6 = [{"name":"rect","required":true,"positional":true}] as const;
 const _flaxMemberParameters7 = [{"name":"selectionRects","required":true,"positional":true}] as const;
-const _flaxMemberParameters8 = [{"name":"fontFamily","required":true,"positional":false},{"name":"fontSize","required":true,"positional":false},{"name":"fontWeight","required":true,"positional":false},{"name":"textAlign","required":true,"positional":false},{"name":"textDirection","required":true,"positional":false}] as const;
+const _flaxMemberParameters8 = [{"name":"fontFamily","required":true},{"name":"fontSize","required":true},{"name":"fontWeight","required":true},{"name":"textAlign","required":true},{"name":"textDirection","required":true}] as const;
 const _flaxMemberParameters9 = [{"name":"style","required":true,"positional":true}] as const;
-const _flaxMemberParameters10 = [{"name":"shouldSave","required":false,"positional":false}] as const;
+const _flaxMemberParameters10 = [{"name":"shouldSave"}] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface TextInputControl extends Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextInputControl": readonly [] }> { readonly __TextInputControl: unique symbol;

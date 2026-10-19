@@ -21,7 +21,7 @@ import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Scene';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Scene';
 import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdate';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsUpdate';
-const _flaxMemberParameters0 = [{"name":"scene","required":true,"positional":true},{"name":"size","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"scene","required":true,"positional":true},{"name":"size"}] as const;
 const _flaxMemberParameters1 = [{"name":"update","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/dart/ui/_bindings/sdk_dart_ui.__module";

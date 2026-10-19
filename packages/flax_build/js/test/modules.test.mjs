@@ -481,10 +481,14 @@ test('real delivery metadata preserves public library binding topology', async (
   assert.equal(widgets.source, 'dist/flutter/widgets.js');
   assert.equal(widgets.subpathRoot, 'dist/flutter/generated/libraries/widgets');
   const helpers = core.modules.flatMap((module) => module.helperSubpaths ?? []);
-  assert.equal(helpers.length, 16);
+  assert.equal(helpers.length, 17);
   assert.equal(new Set(helpers).size, helpers.length);
   assert.ok(helpers.includes('_bindings/components.__module'));
   assert.ok(helpers.includes('_bindings/sdk_widgets.__module'));
+  assert.deepEqual(entry(core, '@flax/flutter/vector_math').helperSubpaths, [
+    '_bindings/sdk_dependencies.__module',
+  ]);
+  assert.equal(entry(core, '@flax/dart/convert').helperSubpaths, undefined);
   for (const id of [
     'flax.core/components',
     'flax.core/flutter',

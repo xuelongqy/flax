@@ -22,7 +22,7 @@ readonly [_flaxDartTypeValue]: ToolbarItemsParentData;
 
 }
 defineObject("flax.core/sdk_widgets#type:ToolbarItemsParentData", ["offset","previousSibling","nextSibling","shouldPaint"], ["offset","previousSibling","nextSibling","shouldPaint"], _flaxBindingMethods("flax.core/sdk_widgets#type:ToolbarItemsParentData", "object", {}, {}), [], undefined, "flax.core/sdk_rendering#type:BoxParentData");
-const _ToolbarItemsParentDataProxy = {type: "flax.core/sdk_widgets#type:ToolbarItemsParentData", parameters: [], constructors: {"":[]}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["shouldPaint","offset","previousSibling","nextSibling"], setters: ["shouldPaint","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:shouldPaint","get:offset","get:previousSibling","get:nextSibling","set:shouldPaint","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
+const _ToolbarItemsParentDataProxy = {type: "flax.core/sdk_widgets#type:ToolbarItemsParentData", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"detach":_flaxMemberParameters0,"toString":_flaxMemberParameters0}, getters: ["shouldPaint","offset","previousSibling","nextSibling"], setters: ["shouldPaint","offset","previousSibling","nextSibling"], contextMembers: [], superMembers: ["get:shouldPaint","get:offset","get:previousSibling","get:nextSibling","set:shouldPaint","set:offset","set:previousSibling","set:nextSibling","detach","toString"]} as const;
 export interface ToolbarItemsParentData {
 readonly [_flaxDartTypeValue]: ToolbarItemsParentData;
 

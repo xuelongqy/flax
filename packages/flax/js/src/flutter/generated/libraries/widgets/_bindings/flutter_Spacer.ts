@@ -9,6 +9,6 @@ export interface Spacer extends WidgetDescription, Omit<Readonly<{ "__flaxBound:
 export function _SpacerFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; flex?: Bindable<number> | undefined } = {}): Spacer {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return construct("widget", "flax.core/flutter#type:Spacer", "", [{"name":"key","required":false,"positional":false},{"name":"flex","required":false,"positional":false}], [], options) as Spacer;
+return construct("widget", "flax.core/flutter#type:Spacer", "", [{"name":"key"},{"name":"flex"}], [], options) as Spacer;
 }
 export const Spacer: typeof _SpacerFactory & _FlaxInstanceType<Spacer> & _FlaxDartType<Spacer, readonly ["class", "flax.core/flutter#type:Spacer", readonly [], false]> = _flaxBindInstanceType<Spacer, typeof _SpacerFactory>(_SpacerFactory, "flax.core/flutter#type:Spacer", ["flax.core/sdk_widgets#type:StatelessWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _SpacerFactory & _FlaxInstanceType<Spacer> & _FlaxDartType<Spacer, readonly ["class", "flax.core/flutter#type:Spacer", readonly [], false]>;

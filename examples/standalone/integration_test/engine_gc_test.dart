@@ -52,6 +52,8 @@ import '../../../packages/flax/test/ui/typescript_generics_test.dart'
     as typescript_generics;
 import '../../../packages/flax/test/ui/render_bindings_test.dart'
     as render_bindings;
+import '../../../packages/flax/test/ui/sdk_capabilities_test.dart'
+    as sdk_capabilities;
 
 void main() {
   if (Platform.isIOS &&
@@ -225,6 +227,7 @@ void _registerTests() {
   group('deferred generic aliases', deferred_generics.main);
   group('TS generic compilation', typescript_generics.main);
   group('full rendering bindings', render_bindings.main);
+  group('SDK capability completion', sdk_capabilities.main);
   if (const bool.fromEnvironment('FLAX_ENGINE_BENCHMARK')) {
     testWidgets('profile GC, frame and memory measurements', (tester) async {
       final previousPolicy = binding.framePolicy;

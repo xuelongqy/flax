@@ -23,16 +23,17 @@ import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_Tra
 import '@flax/flutter/widgets/_bindings/sdk_widgets_TraversalDirection';
 import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_FocusScopeNode';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_FocusScopeNode';
-const _flaxMemberParameters0 = [{"name":"currentNode","required":true,"positional":true},{"name":"ignoreCurrentFocus","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"currentNode","required":true,"positional":true},{"name":"ignoreCurrentFocus"}] as const;
 const _flaxMemberParameters1 = [{"name":"currentNode","required":true,"positional":true},{"name":"direction","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [{"name":"node","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"node","required":false,"positional":false},{"name":"oldScope","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"node"},{"name":"oldScope"}] as const;
 const _flaxMemberParameters4 = [{"name":"currentNode","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"descendants","required":true,"positional":true},{"name":"currentNode","required":true,"positional":true}] as const;
-const _flaxMemberParameters6 = [] as const;
-const _flaxMemberParameters7 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters8 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
-const _flaxMemberParameters9 = [{"name":"properties","required":true,"positional":true}] as const;
+const _flaxMemberParameters6 = [{"name":"requestFocusCallback"}] as const;
+const _flaxMemberParameters7 = [] as const;
+const _flaxMemberParameters8 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters9 = [{"name":"name"},{"name":"style"}] as const;
+const _flaxMemberParameters10 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -41,7 +42,7 @@ readonly [_flaxDartTypeValue]: FocusTraversalPolicy;
 
 }
 defineObject("flax.core/sdk_widgets#type:FocusTraversalPolicy", ["requestFocusCallback"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:FocusTraversalPolicy", "object", {"findFirstFocus":_flaxMemberParameters0,"findLastFocus":_flaxMemberParameters0,"findFirstFocusInDirection":_flaxMemberParameters1,"invalidateScopeData":_flaxMemberParameters2,"changedScope":_flaxMemberParameters3,"next":_flaxMemberParameters4,"previous":_flaxMemberParameters4,"inDirection":_flaxMemberParameters1,"sortDescendants":_flaxMemberParameters5}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _FocusTraversalPolicyProxy = {type: "flax.core/sdk_widgets#type:FocusTraversalPolicy", parameters: [{"name":"requestFocusCallback","required":false,"positional":false}], constructors: {"":[{"name":"requestFocusCallback","required":false,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters6,"toString":_flaxMemberParameters7,"toDiagnosticsNode":_flaxMemberParameters8,"debugFillProperties":_flaxMemberParameters9,"findFirstFocus":_flaxMemberParameters0,"findLastFocus":_flaxMemberParameters0,"findFirstFocusInDirection":_flaxMemberParameters1,"invalidateScopeData":_flaxMemberParameters2,"changedScope":_flaxMemberParameters3,"next":_flaxMemberParameters4,"previous":_flaxMemberParameters4,"inDirection":_flaxMemberParameters1,"sortDescendants":_flaxMemberParameters5}, getters: ["requestFocusCallback"], setters: [], contextMembers: [], superMembers: ["get:requestFocusCallback","toStringShort","toString","toDiagnosticsNode","debugFillProperties","findFirstFocus","findLastFocus","invalidateScopeData","changedScope","next","previous"]} as const;
+const _FocusTraversalPolicyProxy = {type: "flax.core/sdk_widgets#type:FocusTraversalPolicy", parameters: _flaxMemberParameters6, constructors: {"": _flaxMemberParameters6}, methods: {"toStringShort":_flaxMemberParameters7,"toString":_flaxMemberParameters8,"toDiagnosticsNode":_flaxMemberParameters9,"debugFillProperties":_flaxMemberParameters10,"findFirstFocus":_flaxMemberParameters0,"findLastFocus":_flaxMemberParameters0,"findFirstFocusInDirection":_flaxMemberParameters1,"invalidateScopeData":_flaxMemberParameters2,"changedScope":_flaxMemberParameters3,"next":_flaxMemberParameters4,"previous":_flaxMemberParameters4,"inDirection":_flaxMemberParameters1,"sortDescendants":_flaxMemberParameters5}, getters: ["requestFocusCallback"], setters: [], contextMembers: [], superMembers: ["get:requestFocusCallback","toStringShort","toString","toDiagnosticsNode","debugFillProperties","findFirstFocus","findLastFocus","invalidateScopeData","changedScope","next","previous"]} as const;
 export interface FocusTraversalPolicy {
 readonly [_flaxDartTypeValue]: FocusTraversalPolicy;
 

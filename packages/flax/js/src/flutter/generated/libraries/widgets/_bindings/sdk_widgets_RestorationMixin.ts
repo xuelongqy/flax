@@ -22,8 +22,8 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_RestorableProperty';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RestorableProperty';
 const _flaxMemberParameters0 = [] as const;
-const _flaxMemberParameters1 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters2 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters1 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters2 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters3 = [{"name":"properties","required":true,"positional":true}] as const;
 const _flaxMemberParameters4 = [{"name":"oldBucket","required":true,"positional":true},{"name":"initialRestore","required":true,"positional":true}] as const;
 const _flaxMemberParameters5 = [{"name":"oldBucket","required":true,"positional":true}] as const;

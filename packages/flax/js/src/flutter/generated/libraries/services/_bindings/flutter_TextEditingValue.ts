@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/services/_bindings/flutter_TextSe
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
 import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_TextRange';
 import '@flax/dart/ui/_bindings/flutter_TextRange';
-const _flaxMemberParameters0 = [{"name":"composing","required":false,"positional":false},{"name":"selection","required":false,"positional":false},{"name":"text","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"composing"},{"name":"selection"},{"name":"text"}] as const;
 const _flaxMemberParameters1 = [{"name":"replacementRange","required":true,"positional":true},{"name":"replacementString","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
@@ -26,7 +26,7 @@ defineObject("flax.core/flutter#type:TextEditingValue", ["text","selection","com
 export function _TextEditingValueFactory(options: { text?: string | undefined; selection?: Readonly<{ "__flaxBound:package:flutter/src/services/text_editing.dart::TextSelection": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }> | undefined; composing?: Readonly<{ "__flaxBound:dart:ui::TextRange": readonly [] }> | undefined } = {}): TextEditingValue {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:TextEditingValue", "", [{"name":"text","required":false,"positional":false},{"name":"selection","required":false,"positional":false},{"name":"composing","required":false,"positional":false}], [], options) as TextEditingValue;
+return constructObject("object", "flax.core/flutter#type:TextEditingValue", "", [{"name":"text"},{"name":"selection"},{"name":"composing"}], [], options) as TextEditingValue;
 }
 export namespace _TextEditingValueFactory {
 export function fromJSON(encoded: DartMapInput<string, unknown | null, string, unknown | null>): TextEditingValue {

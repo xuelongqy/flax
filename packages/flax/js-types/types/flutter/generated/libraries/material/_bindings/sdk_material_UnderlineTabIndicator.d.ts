@@ -13,18 +13,18 @@ import '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
+import type * as upstream8 from '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
+import '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
+import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream14 from '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
-import '@flax/flutter/painting/_bindings/sdk_painting_BoxPainter';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
 export interface UnderlineTabIndicator extends Omit<upstream0.Decoration, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Decoration>, Readonly<{
@@ -62,20 +62,20 @@ export interface UnderlineTabIndicator {
     }>, options?: {
         textDirection?: upstream7.TextDirection | null | undefined;
     }): boolean;
+    createBoxPainter(onChanged?: (() => void) | null): upstream8.BoxPainter;
     getClipPath(rect: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
-    }>, textDirection: upstream7.TextDirection): upstream8.Path;
+    }>, textDirection: upstream7.TextDirection): upstream9.Path;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream11.DiagnosticsTreeStyle | null | undefined;
-    }): upstream10.DiagnosticsNode;
+        style?: upstream12.DiagnosticsTreeStyle | null | undefined;
+    }): upstream11.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
     toString(options?: {
-        minLevel?: upstream13.DiagnosticLevel | undefined;
+        minLevel?: upstream14.DiagnosticLevel | undefined;
     }): string;
-    createBoxPainter(onChanged?: (() => void) | null): upstream14.BoxPainter;
     get borderRadius(): upstream2.BorderRadius | null;
     get borderSide(): upstream3.BorderSide;
     get insets(): upstream4.EdgeInsetsGeometry;
@@ -119,5 +119,5 @@ export declare namespace UnderlineTabIndicator {
         }> | undefined;
     }], implementation: {}): UnderlineTabIndicator;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "isComplex" | "borderRadius" | "borderSide" | "insets" | "toStringShort" | "debugAssertIsValid" | "lerpFrom" | "lerpTo" | "hitTest" | "getClipPath" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "createBoxPainter" | "__flaxBound:package:flutter/src/material/tab_indicator.dart::UnderlineTabIndicator" | "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "padding" | "isComplex" | "borderRadius" | "borderSide" | "insets" | "toStringShort" | "debugAssertIsValid" | "lerpFrom" | "lerpTo" | "hitTest" | "createBoxPainter" | "getClipPath" | "toDiagnosticsNode" | "debugFillProperties" | "toString" | "__flaxBound:package:flutter/src/material/tab_indicator.dart::UnderlineTabIndicator" | "__flaxBound:package:flutter/src/painting/decoration.dart::Decoration" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

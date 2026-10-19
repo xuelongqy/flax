@@ -17,7 +17,7 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-const _flaxMemberParameters0 = [{"name":"color","required":false,"positional":false},{"name":"strokeAlign","required":false,"positional":false},{"name":"style","required":false,"positional":false},{"name":"width","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"color"},{"name":"strokeAlign"},{"name":"style"},{"name":"width"}] as const;
 const _flaxMemberParameters1 = [{"name":"t","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
@@ -44,7 +44,7 @@ defineObject("flax.core/flutter#type:BorderSide", ["color","width","style","stro
 export function _BorderSideFactory(options: { color?: Readonly<{ "__flaxBound:dart:ui::Color": readonly [] }> | undefined; width?: number | undefined; style?: upstream2.BorderStyle | undefined; strokeAlign?: number | undefined } = {}): BorderSide {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:BorderSide", "", [{"name":"color","required":false,"positional":false},{"name":"width","required":false,"positional":false},{"name":"style","required":false,"positional":false},{"name":"strokeAlign","required":false,"positional":false}], [], options) as BorderSide;
+return constructObject("object", "flax.core/flutter#type:BorderSide", "", [{"name":"color"},{"name":"width"},{"name":"style"},{"name":"strokeAlign"}], [], options) as BorderSide;
 }
 export namespace _BorderSideFactory { export declare const none: BorderSide; }
 export namespace _BorderSideFactory { export declare const strokeAlignInside: number; }

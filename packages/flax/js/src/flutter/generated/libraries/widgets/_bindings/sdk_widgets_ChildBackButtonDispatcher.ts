@@ -4,9 +4,10 @@ import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_BackButtonDispatcher';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_BackButtonDispatcher';
 const _flaxMemberParameters0 = [{"name":"defaultValue","required":true,"positional":true}] as const;
-const _flaxMemberParameters1 = [] as const;
-const _flaxMemberParameters2 = [{"name":"child","required":true,"positional":true}] as const;
-const _flaxMemberParameters3 = [{"name":"callback","required":true,"positional":true}] as const;
+const _flaxMemberParameters1 = [{"name":"parent","required":true,"positional":true}] as const;
+const _flaxMemberParameters2 = [] as const;
+const _flaxMemberParameters3 = [{"name":"child","required":true,"positional":true}] as const;
+const _flaxMemberParameters4 = [{"name":"callback","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,7 +16,7 @@ readonly [_flaxDartTypeValue]: ChildBackButtonDispatcher;
 
 }
 defineObject("flax.core/sdk_widgets#type:ChildBackButtonDispatcher", ["hasCallbacks","parent"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:ChildBackButtonDispatcher", "object", {"notifiedByParent":_flaxMemberParameters0}, {}), [], undefined, "flax.core/sdk_widgets#type:BackButtonDispatcher");
-const _ChildBackButtonDispatcherProxy = {type: "flax.core/sdk_widgets#type:ChildBackButtonDispatcher", parameters: [{"name":"parent","required":true,"positional":true}], constructors: {"":[{"name":"parent","required":true,"positional":true}]}, methods: {"invokeCallback":_flaxMemberParameters0,"createChildBackButtonDispatcher":_flaxMemberParameters1,"takePriority":_flaxMemberParameters1,"deferTo":_flaxMemberParameters2,"forget":_flaxMemberParameters2,"addCallback":_flaxMemberParameters3,"removeCallback":_flaxMemberParameters3,"notifiedByParent":_flaxMemberParameters0}, getters: ["parent","hasCallbacks"], setters: [], contextMembers: [], superMembers: ["get:parent","get:hasCallbacks","invokeCallback","createChildBackButtonDispatcher","takePriority","deferTo","forget","addCallback","removeCallback","notifiedByParent"]} as const;
+const _ChildBackButtonDispatcherProxy = {type: "flax.core/sdk_widgets#type:ChildBackButtonDispatcher", parameters: _flaxMemberParameters1, constructors: {"": _flaxMemberParameters1}, methods: {"invokeCallback":_flaxMemberParameters0,"createChildBackButtonDispatcher":_flaxMemberParameters2,"takePriority":_flaxMemberParameters2,"deferTo":_flaxMemberParameters3,"forget":_flaxMemberParameters3,"addCallback":_flaxMemberParameters4,"removeCallback":_flaxMemberParameters4,"notifiedByParent":_flaxMemberParameters0}, getters: ["parent","hasCallbacks"], setters: [], contextMembers: [], superMembers: ["get:parent","get:hasCallbacks","invokeCallback","createChildBackButtonDispatcher","takePriority","deferTo","forget","addCallback","removeCallback","notifiedByParent"]} as const;
 export interface ChildBackButtonDispatcher {
 readonly [_flaxDartTypeValue]: ChildBackButtonDispatcher;
 

@@ -17,11 +17,11 @@ import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
-const _flaxMemberParameters0 = [{"name":"horizontal","required":false,"positional":false},{"name":"vertical","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"horizontal"},{"name":"vertical"}] as const;
 const _flaxMemberParameters1 = [{"name":"constraints","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [] as const;
-const _flaxMemberParameters3 = [{"name":"minLevel","required":false,"positional":false}] as const;
-const _flaxMemberParameters4 = [{"name":"name","required":false,"positional":false},{"name":"style","required":false,"positional":false}] as const;
+const _flaxMemberParameters3 = [{"name":"minLevel"}] as const;
+const _flaxMemberParameters4 = [{"name":"name"},{"name":"style"}] as const;
 const _flaxMemberParameters5 = [{"name":"properties","required":true,"positional":true}] as const;
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/material/_bindings/sdk_material.__module";
@@ -31,7 +31,7 @@ readonly [_flaxDartTypeValue]: VisualDensity;
 
 }
 defineObject("flax.core/sdk_material#type:VisualDensity", ["horizontal","vertical","baseSizeAdjustment"], [], _flaxBindingMethods("flax.core/sdk_material#type:VisualDensity", "object", {"copyWith":_flaxMemberParameters0,"effectiveConstraints":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_foundation#type:Diagnosticable");
-const _VisualDensityProxy = {type: "flax.core/sdk_material#type:VisualDensity", parameters: [{"name":"horizontal","required":false,"positional":false},{"name":"vertical","required":false,"positional":false}], constructors: {"":[{"name":"horizontal","required":false,"positional":false},{"name":"vertical","required":false,"positional":false}]}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"copyWith":_flaxMemberParameters0,"effectiveConstraints":_flaxMemberParameters1}, getters: ["horizontal","vertical","baseSizeAdjustment"], setters: [], contextMembers: [], superMembers: ["get:horizontal","get:vertical","get:baseSizeAdjustment","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith","effectiveConstraints"]} as const;
+const _VisualDensityProxy = {type: "flax.core/sdk_material#type:VisualDensity", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"copyWith":_flaxMemberParameters0,"effectiveConstraints":_flaxMemberParameters1}, getters: ["horizontal","vertical","baseSizeAdjustment"], setters: [], contextMembers: [], superMembers: ["get:horizontal","get:vertical","get:baseSizeAdjustment","toStringShort","toString","toDiagnosticsNode","debugFillProperties","copyWith","effectiveConstraints"]} as const;
 export interface VisualDensity {
 readonly [_flaxDartTypeValue]: VisualDensity;
 

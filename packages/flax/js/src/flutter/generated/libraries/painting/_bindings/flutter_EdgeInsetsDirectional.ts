@@ -11,7 +11,7 @@ import type * as upstream3 from '@flax/flutter/painting/_bindings/flutter_EdgeIn
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
 import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-const _flaxMemberParameters0 = [{"name":"bottom","required":false,"positional":false},{"name":"end","required":false,"positional":false},{"name":"start","required":false,"positional":false},{"name":"top","required":false,"positional":false}] as const;
+const _flaxMemberParameters0 = [{"name":"bottom"},{"name":"end"},{"name":"start"},{"name":"top"}] as const;
 const _flaxMemberParameters1 = [{"name":"other","required":true,"positional":true}] as const;
 const _flaxMemberParameters2 = [] as const;
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
@@ -57,14 +57,14 @@ export namespace _EdgeInsetsDirectionalFactory {
 export function only(options: { start?: number | undefined; top?: number | undefined; end?: number | undefined; bottom?: number | undefined } = {}): EdgeInsetsDirectional {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:EdgeInsetsDirectional", "only", [{"name":"start","required":false,"positional":false},{"name":"top","required":false,"positional":false},{"name":"end","required":false,"positional":false},{"name":"bottom","required":false,"positional":false}], [], options) as EdgeInsetsDirectional;
+return constructObject("object", "flax.core/flutter#type:EdgeInsetsDirectional", "only", [{"name":"start"},{"name":"top"},{"name":"end"},{"name":"bottom"}], [], options) as EdgeInsetsDirectional;
 }
 }
 export namespace _EdgeInsetsDirectionalFactory {
 export function symmetric(options: { horizontal?: number | undefined; vertical?: number | undefined } = {}): EdgeInsetsDirectional {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:EdgeInsetsDirectional", "symmetric", [{"name":"horizontal","required":false,"positional":false},{"name":"vertical","required":false,"positional":false}], [], options) as EdgeInsetsDirectional;
+return constructObject("object", "flax.core/flutter#type:EdgeInsetsDirectional", "symmetric", [{"name":"horizontal"},{"name":"vertical"}], [], options) as EdgeInsetsDirectional;
 }
 }
 export namespace _EdgeInsetsDirectionalFactory {

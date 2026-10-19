@@ -57,426 +57,119 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:AlertDialog",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "title",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "titlePadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "titleTextStyle",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "content",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "contentPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "contentTextStyle",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "actions",
-            _flaxBinding7,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "actionsPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "actionsAlignment",
-            _flaxBinding8,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("icon", _flaxBinding1, required: false),
+          FlaxParameter("iconPadding", _flaxBinding2, required: false),
+          FlaxParameter("iconColor", _flaxBinding3, required: false),
+          FlaxParameter("title", _flaxBinding1, required: false),
+          FlaxParameter("titlePadding", _flaxBinding2, required: false),
+          FlaxParameter("titleTextStyle", _flaxBinding4, required: false),
+          FlaxParameter("content", _flaxBinding1, required: false),
+          FlaxParameter("contentPadding", _flaxBinding2, required: false),
+          FlaxParameter("contentTextStyle", _flaxBinding4, required: false),
+          FlaxParameter("actions", _flaxBinding7, required: false),
+          FlaxParameter("actionsPadding", _flaxBinding2, required: false),
+          FlaxParameter("actionsAlignment", _flaxBinding8, required: false),
           FlaxParameter(
             "actionsOverflowAlignment",
             _flaxBinding9,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "actionsOverflowDirection",
             _flaxBinding10,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "actionsOverflowButtonSpacing",
             _flaxBinding11,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "buttonPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "insetPadding",
-            _flaxBinding13,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "alignment",
-            _flaxBinding16,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            _flaxBinding17,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("buttonPadding", _flaxBinding2, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("shadowColor", _flaxBinding3, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+          FlaxParameter("semanticLabel", _flaxBinding12, required: false),
+          FlaxParameter("insetPadding", _flaxBinding13, required: false),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
+          FlaxParameter("alignment", _flaxBinding16, required: false),
+          FlaxParameter("constraints", _flaxBinding17, required: false),
           FlaxParameter(
             "scrollable",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
         ],
         "adaptive": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "title",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "titlePadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "titleTextStyle",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "content",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "contentPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "contentTextStyle",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "actions",
-            _flaxBinding7,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "actionsPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "actionsAlignment",
-            _flaxBinding8,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("icon", _flaxBinding1, required: false),
+          FlaxParameter("iconPadding", _flaxBinding2, required: false),
+          FlaxParameter("iconColor", _flaxBinding3, required: false),
+          FlaxParameter("title", _flaxBinding1, required: false),
+          FlaxParameter("titlePadding", _flaxBinding2, required: false),
+          FlaxParameter("titleTextStyle", _flaxBinding4, required: false),
+          FlaxParameter("content", _flaxBinding1, required: false),
+          FlaxParameter("contentPadding", _flaxBinding2, required: false),
+          FlaxParameter("contentTextStyle", _flaxBinding4, required: false),
+          FlaxParameter("actions", _flaxBinding7, required: false),
+          FlaxParameter("actionsPadding", _flaxBinding2, required: false),
+          FlaxParameter("actionsAlignment", _flaxBinding8, required: false),
           FlaxParameter(
             "actionsOverflowAlignment",
             _flaxBinding9,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "actionsOverflowDirection",
             _flaxBinding10,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "actionsOverflowButtonSpacing",
             _flaxBinding11,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "buttonPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("buttonPadding", _flaxBinding2, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("shadowColor", _flaxBinding3, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+          FlaxParameter("semanticLabel", _flaxBinding12, required: false),
           FlaxParameter(
             "insetPadding",
             _flaxBinding19,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "alignment",
-            _flaxBinding16,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            _flaxBinding17,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
+          FlaxParameter("alignment", _flaxBinding16, required: false),
+          FlaxParameter("constraints", _flaxBinding17, required: false),
           FlaxParameter(
             "scrollable",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "scrollController",
-            _flaxBinding20,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("scrollController", _flaxBinding20, required: false),
           FlaxParameter(
             "actionScrollController",
             _flaxBinding20,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "insetAnimationDuration",
             _flaxBinding21,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "insetAnimationCurve",
             _flaxBinding22,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
         ],
@@ -485,308 +178,78 @@ const materialBindings = FlaxBindingModule(
       matches: _isAlertDialog,
       methods: {},
     ),
-    FlaxObjectBinding(
-      "flax.material/material#type:AppBar",
-      [
-        _flaxBinding24,
-        _flaxBinding25,
-        _flaxBinding26,
-        _flaxBinding27,
-        _flaxBinding28,
-        _flaxBinding29,
-        _flaxBinding30,
-        _flaxBinding32,
-        _flaxBinding33,
-        _flaxBinding34,
-        _flaxBinding38,
-        _flaxBinding39,
-        _flaxBinding40,
-        _flaxBinding41,
-        _flaxBinding42,
-        _flaxBinding43,
-        _flaxBinding45,
-        _flaxBinding46,
-        _flaxBinding47,
-        _flaxBinding49,
-        _flaxBinding50,
-        _flaxBinding51,
-        _flaxBinding53,
-        _flaxBinding54,
-        _flaxBinding55,
-        _flaxBinding56,
-        _flaxBinding57,
-        _flaxBinding58,
-        _flaxBinding60,
-        _flaxBinding61,
-        _flaxBinding62,
-        _flaxBinding63,
-        _flaxBinding64,
-        _flaxBinding65,
-        _flaxBinding66,
-      ],
-      {
-        "toStringShort": _flaxBinding69,
-        "toString": _flaxBinding72,
-        "toDiagnosticsNode": _flaxBinding76,
-        "debugFillProperties": _flaxBinding80,
-        "toStringShallow": _flaxBinding82,
-        "toStringDeep": _flaxBinding85,
-        "debugDescribeChildren": _flaxBinding88,
-        "createState": _flaxBinding90,
-        "createElement": _flaxBinding92,
-      },
-      constructors: {"": _flaxBinding93},
-      setters: [],
-      create: _createAppBar,
-      matches: _isAppBar,
-      supertypes: [
-        "flax.core/components#type:StatefulWidget",
-        "flax.core/sdk_widgets#type:Widget",
-        "flax.core/sdk_foundation#type:DiagnosticableTree",
-        "dart:core::Object",
-        "flax.core/sdk_foundation#type:Diagnosticable",
-        "flax.core/flutter#type:PreferredSizeWidget",
-      ],
-    ),
-    _flaxBinding163,
+    _flaxBinding94,
+    _flaxBinding164,
     FlaxWidgetBinding(
       "flax.material/material#type:Card",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("shadowColor", _flaxBinding3, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
           FlaxParameter(
             "borderOnForeground",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "margin",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("margin", _flaxBinding2, required: false),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("child", _flaxBinding1, required: false),
           FlaxParameter(
             "semanticContainer",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
         ],
         "filled": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("shadowColor", _flaxBinding3, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
           FlaxParameter(
             "borderOnForeground",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "margin",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("margin", _flaxBinding2, required: false),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("child", _flaxBinding1, required: false),
           FlaxParameter(
             "semanticContainer",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
         ],
         "outlined": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("shadowColor", _flaxBinding3, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
           FlaxParameter(
             "borderOnForeground",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "margin",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("margin", _flaxBinding2, required: false),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("child", _flaxBinding1, required: false),
           FlaxParameter(
             "semanticContainer",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
         ],
       },
@@ -798,274 +261,76 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:Checkbox",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value",
-            _flaxBinding48,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("value", _flaxBinding48, required: true),
           FlaxParameter(
             "tristate",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onChanged",
-            _flaxBinding165,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "fillColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "checkColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "overlayColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            _flaxBinding141,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onChanged", _flaxBinding166, required: true),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("activeColor", _flaxBinding3, required: false),
+          FlaxParameter("fillColor", _flaxBinding104, required: false),
+          FlaxParameter("checkColor", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("overlayColor", _flaxBinding104, required: false),
+          FlaxParameter("splashRadius", _flaxBinding11, required: false),
+          FlaxParameter("visualDensity", _flaxBinding142, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding131,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "side",
-            _flaxBinding126,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("shape", _flaxBinding132, required: false),
+          FlaxParameter("side", _flaxBinding127, required: false),
           FlaxParameter(
             "isError",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "semanticLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("semanticLabel", _flaxBinding12, required: false),
         ],
         "adaptive": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value",
-            _flaxBinding48,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("value", _flaxBinding48, required: true),
           FlaxParameter(
             "tristate",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onChanged",
-            _flaxBinding165,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "fillColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "checkColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "overlayColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            _flaxBinding141,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onChanged", _flaxBinding166, required: true),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("activeColor", _flaxBinding3, required: false),
+          FlaxParameter("fillColor", _flaxBinding104, required: false),
+          FlaxParameter("checkColor", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("overlayColor", _flaxBinding104, required: false),
+          FlaxParameter("splashRadius", _flaxBinding11, required: false),
+          FlaxParameter("visualDensity", _flaxBinding142, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding131,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "side",
-            _flaxBinding126,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("shape", _flaxBinding132, required: false),
+          FlaxParameter("side", _flaxBinding127, required: false),
           FlaxParameter(
             "isError",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "semanticLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("semanticLabel", _flaxBinding12, required: false),
         ],
       },
       _CheckboxHost.new,
@@ -1076,271 +341,55 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:CircularProgressIndicator",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "valueColor",
-            _flaxBinding167,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "strokeWidth",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "strokeAlign",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsValue",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "strokeCap",
-            _flaxBinding168,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            _flaxBinding17,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackGap",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "year2023",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "padding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "controller",
-            _flaxBinding169,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("value", _flaxBinding11, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("valueColor", _flaxBinding168, required: false),
+          FlaxParameter("strokeWidth", _flaxBinding11, required: false),
+          FlaxParameter("strokeAlign", _flaxBinding11, required: false),
+          FlaxParameter("semanticsLabel", _flaxBinding12, required: false),
+          FlaxParameter("semanticsValue", _flaxBinding12, required: false),
+          FlaxParameter("strokeCap", _flaxBinding169, required: false),
+          FlaxParameter("constraints", _flaxBinding17, required: false),
+          FlaxParameter("trackGap", _flaxBinding11, required: false),
+          FlaxParameter("year2023", _flaxBinding48, required: false),
+          FlaxParameter("padding", _flaxBinding2, required: false),
+          FlaxParameter("controller", _flaxBinding170, required: false),
         ],
         "adaptive": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "valueColor",
-            _flaxBinding167,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "strokeWidth",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsValue",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "strokeCap",
-            _flaxBinding168,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "strokeAlign",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            _flaxBinding17,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackGap",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "year2023",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "padding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "controller",
-            _flaxBinding169,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("value", _flaxBinding11, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("valueColor", _flaxBinding168, required: false),
+          FlaxParameter("strokeWidth", _flaxBinding11, required: false),
+          FlaxParameter("semanticsLabel", _flaxBinding12, required: false),
+          FlaxParameter("semanticsValue", _flaxBinding12, required: false),
+          FlaxParameter("strokeCap", _flaxBinding169, required: false),
+          FlaxParameter("strokeAlign", _flaxBinding11, required: false),
+          FlaxParameter("constraints", _flaxBinding17, required: false),
+          FlaxParameter("trackGap", _flaxBinding11, required: false),
+          FlaxParameter("year2023", _flaxBinding48, required: false),
+          FlaxParameter("padding", _flaxBinding2, required: false),
+          FlaxParameter("controller", _flaxBinding170, required: false),
         ],
       },
       _CircularProgressIndicatorHost.new,
       matches: _isCircularProgressIndicator,
       methods: {},
     ),
-    _flaxBinding235,
+    _flaxBinding236,
     FlaxWidgetBinding(
       "flax.material/material#type:Divider",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "height",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "thickness",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "indent",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "endIndent",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "radius",
-            _flaxBinding236,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("height", _flaxBinding11, required: false),
+          FlaxParameter("thickness", _flaxBinding11, required: false),
+          FlaxParameter("indent", _flaxBinding11, required: false),
+          FlaxParameter("endIndent", _flaxBinding11, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("radius", _flaxBinding237, required: false),
         ],
       },
       _DividerHost.new,
@@ -1351,76 +400,16 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:Drawer",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "width",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("shadowColor", _flaxBinding3, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
+          FlaxParameter("width", _flaxBinding11, required: false),
+          FlaxParameter("child", _flaxBinding1, required: false),
+          FlaxParameter("semanticLabel", _flaxBinding12, required: false),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
         ],
       },
       _DrawerHost.new,
@@ -1431,169 +420,46 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:ElevatedButton",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("child", _flaxBinding1, required: true),
         ],
         "icon": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
             _flaxBinding14,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "label",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding1, required: false),
+          FlaxParameter("label", _flaxBinding5, required: true),
         ],
       },
       _ElevatedButtonHost.new,
@@ -1604,334 +470,98 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:FilledButton",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
             _flaxBinding14,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("child", _flaxBinding1, required: true),
         ],
         "icon": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
             _flaxBinding14,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "label",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding1, required: false),
+          FlaxParameter("label", _flaxBinding5, required: true),
         ],
         "tonal": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
             _flaxBinding14,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("child", _flaxBinding1, required: true),
         ],
         "tonalIcon": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
             _flaxBinding14,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "label",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding1, required: false),
+          FlaxParameter("label", _flaxBinding5, required: true),
         ],
       },
       _FilledButtonHost.new,
@@ -1942,649 +572,182 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:FloatingActionButton",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "foregroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("child", _flaxBinding1, required: false),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
+          FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
           FlaxParameter(
             "heroTag",
-            _flaxBinding242,
+            _flaxBinding243,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "disabledElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("focusElevation", _flaxBinding11, required: false),
+          FlaxParameter("hoverElevation", _flaxBinding11, required: false),
+          FlaxParameter("highlightElevation", _flaxBinding11, required: false),
+          FlaxParameter("disabledElevation", _flaxBinding11, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
           FlaxParameter(
             "mini",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("shape", _flaxBinding15, required: false),
           FlaxParameter(
             "clipBehavior",
-            _flaxBinding243,
+            _flaxBinding244,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "isExtended",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
         ],
         "small": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "foregroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("child", _flaxBinding1, required: false),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
+          FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
           FlaxParameter(
             "heroTag",
-            _flaxBinding242,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: true,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "disabledElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "clipBehavior",
             _flaxBinding243,
             required: false,
-            defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
+            omitWhenAbsent: true,
           ),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("focusElevation", _flaxBinding11, required: false),
+          FlaxParameter("hoverElevation", _flaxBinding11, required: false),
+          FlaxParameter("highlightElevation", _flaxBinding11, required: false),
+          FlaxParameter("disabledElevation", _flaxBinding11, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
           FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
+            "clipBehavior",
+            _flaxBinding244,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
+            defaultValue: api5.Clip.none,
           ),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
         ],
         "large": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "foregroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("child", _flaxBinding1, required: false),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
+          FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
           FlaxParameter(
             "heroTag",
-            _flaxBinding242,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: true,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "disabledElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "clipBehavior",
             _flaxBinding243,
             required: false,
-            defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
+            omitWhenAbsent: true,
           ),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("focusElevation", _flaxBinding11, required: false),
+          FlaxParameter("hoverElevation", _flaxBinding11, required: false),
+          FlaxParameter("highlightElevation", _flaxBinding11, required: false),
+          FlaxParameter("disabledElevation", _flaxBinding11, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
           FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
+            "clipBehavior",
+            _flaxBinding244,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
+            defaultValue: api5.Clip.none,
           ),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
         ],
         "extended": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "foregroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
+          FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
           FlaxParameter(
             "heroTag",
-            _flaxBinding242,
+            _flaxBinding243,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "disabledElevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("focusElevation", _flaxBinding11, required: false),
+          FlaxParameter("hoverElevation", _flaxBinding11, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
+          FlaxParameter("highlightElevation", _flaxBinding11, required: false),
+          FlaxParameter("disabledElevation", _flaxBinding11, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
           FlaxParameter(
             "isExtended",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
-            _flaxBinding243,
+            _flaxBinding244,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "extendedIconLabelSpacing",
             _flaxBinding11,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "extendedPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "extendedTextStyle",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "label",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("extendedPadding", _flaxBinding2, required: false),
+          FlaxParameter("extendedTextStyle", _flaxBinding4, required: false),
+          FlaxParameter("icon", _flaxBinding1, required: false),
+          FlaxParameter("label", _flaxBinding5, required: true),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
         ],
       },
       _FloatingActionButtonHost.new,
@@ -2595,740 +758,136 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:IconButton",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconSize",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            _flaxBinding141,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "padding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "alignment",
-            _flaxBinding16,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "disabledColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("iconSize", _flaxBinding11, required: false),
+          FlaxParameter("visualDensity", _flaxBinding142, required: false),
+          FlaxParameter("padding", _flaxBinding2, required: false),
+          FlaxParameter("alignment", _flaxBinding16, required: false),
+          FlaxParameter("splashRadius", _flaxBinding11, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("highlightColor", _flaxBinding3, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
+          FlaxParameter("disabledColor", _flaxBinding3, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            _flaxBinding17,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "isSelected",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "selectedIcon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+          FlaxParameter("constraints", _flaxBinding17, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("isSelected", _flaxBinding48, required: false),
+          FlaxParameter("selectedIcon", _flaxBinding1, required: false),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding5, required: true),
         ],
         "filled": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconSize",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            _flaxBinding141,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "padding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "alignment",
-            _flaxBinding16,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "disabledColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("iconSize", _flaxBinding11, required: false),
+          FlaxParameter("visualDensity", _flaxBinding142, required: false),
+          FlaxParameter("padding", _flaxBinding2, required: false),
+          FlaxParameter("alignment", _flaxBinding16, required: false),
+          FlaxParameter("splashRadius", _flaxBinding11, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("highlightColor", _flaxBinding3, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
+          FlaxParameter("disabledColor", _flaxBinding3, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            _flaxBinding17,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "isSelected",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "selectedIcon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+          FlaxParameter("constraints", _flaxBinding17, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("isSelected", _flaxBinding48, required: false),
+          FlaxParameter("selectedIcon", _flaxBinding1, required: false),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding5, required: true),
         ],
         "filledTonal": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconSize",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            _flaxBinding141,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "padding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "alignment",
-            _flaxBinding16,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "disabledColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("iconSize", _flaxBinding11, required: false),
+          FlaxParameter("visualDensity", _flaxBinding142, required: false),
+          FlaxParameter("padding", _flaxBinding2, required: false),
+          FlaxParameter("alignment", _flaxBinding16, required: false),
+          FlaxParameter("splashRadius", _flaxBinding11, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("highlightColor", _flaxBinding3, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
+          FlaxParameter("disabledColor", _flaxBinding3, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            _flaxBinding17,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "isSelected",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "selectedIcon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+          FlaxParameter("constraints", _flaxBinding17, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("isSelected", _flaxBinding48, required: false),
+          FlaxParameter("selectedIcon", _flaxBinding1, required: false),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding5, required: true),
         ],
         "outlined": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconSize",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            _flaxBinding141,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "padding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "alignment",
-            _flaxBinding16,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "disabledColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("iconSize", _flaxBinding11, required: false),
+          FlaxParameter("visualDensity", _flaxBinding142, required: false),
+          FlaxParameter("padding", _flaxBinding2, required: false),
+          FlaxParameter("alignment", _flaxBinding16, required: false),
+          FlaxParameter("splashRadius", _flaxBinding11, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("highlightColor", _flaxBinding3, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
+          FlaxParameter("disabledColor", _flaxBinding3, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            _flaxBinding17,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "isSelected",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "selectedIcon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+          FlaxParameter("constraints", _flaxBinding17, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("isSelected", _flaxBinding48, required: false),
+          FlaxParameter("selectedIcon", _flaxBinding1, required: false),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding5, required: true),
         ],
       },
       _IconButtonHost.new,
@@ -3339,339 +898,87 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:InkWell",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onTap",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onDoubleTap",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPressUp",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onTapDown",
-            _flaxBinding246,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onTapUp",
-            _flaxBinding249,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onTapCancel",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onSecondaryTap",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onSecondaryTapUp",
-            _flaxBinding249,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onSecondaryTapDown",
-            _flaxBinding246,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("child", _flaxBinding1, required: false),
+          FlaxParameter("onTap", _flaxBinding239, required: false),
+          FlaxParameter("onDoubleTap", _flaxBinding239, required: false),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onLongPressUp", _flaxBinding239, required: false),
+          FlaxParameter("onTapDown", _flaxBinding247, required: false),
+          FlaxParameter("onTapUp", _flaxBinding250, required: false),
+          FlaxParameter("onTapCancel", _flaxBinding239, required: false),
+          FlaxParameter("onSecondaryTap", _flaxBinding239, required: false),
+          FlaxParameter("onSecondaryTapUp", _flaxBinding250, required: false),
+          FlaxParameter("onSecondaryTapDown", _flaxBinding247, required: false),
           FlaxParameter(
             "onSecondaryTapCancel",
-            _flaxBinding238,
+            _flaxBinding239,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onHighlightChanged",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highlightColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "overlayColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "radius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "borderRadius",
-            _flaxBinding250,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "customBorder",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onHighlightChanged", _flaxBinding241, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("highlightColor", _flaxBinding3, required: false),
+          FlaxParameter("overlayColor", _flaxBinding104, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
+          FlaxParameter("radius", _flaxBinding11, required: false),
+          FlaxParameter("borderRadius", _flaxBinding251, required: false),
+          FlaxParameter("customBorder", _flaxBinding15, required: false),
           FlaxParameter(
             "enableFeedback",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "excludeFromSemantics",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "canRequestFocus",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverDuration",
-            _flaxBinding143,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("hoverDuration", _flaxBinding144, required: false),
         ],
       },
       _InkWellHost.new,
       matches: _isInkWell,
       methods: {},
     ),
-    _flaxBinding313,
+    _flaxBinding314,
     FlaxWidgetBinding(
       "flax.material/material#type:LinearProgressIndicator",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "valueColor",
-            _flaxBinding167,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "minHeight",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsValue",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "borderRadius",
-            _flaxBinding236,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "stopIndicatorColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "stopIndicatorRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackGap",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "year2023",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "controller",
-            _flaxBinding169,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("value", _flaxBinding11, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("valueColor", _flaxBinding168, required: false),
+          FlaxParameter("minHeight", _flaxBinding11, required: false),
+          FlaxParameter("semanticsLabel", _flaxBinding12, required: false),
+          FlaxParameter("semanticsValue", _flaxBinding12, required: false),
+          FlaxParameter("borderRadius", _flaxBinding237, required: false),
+          FlaxParameter("stopIndicatorColor", _flaxBinding3, required: false),
+          FlaxParameter("stopIndicatorRadius", _flaxBinding11, required: false),
+          FlaxParameter("trackGap", _flaxBinding11, required: false),
+          FlaxParameter("year2023", _flaxBinding48, required: false),
+          FlaxParameter("controller", _flaxBinding170, required: false),
         ],
       },
       _LinearProgressIndicatorHost.new,
@@ -3682,265 +989,67 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:ListTile",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "leading",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "title",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "subtitle",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trailing",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "isThreeLine",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "dense",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            _flaxBinding141,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding314,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "selectedColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "iconColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "textColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "titleTextStyle",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "subtitleTextStyle",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("leading", _flaxBinding1, required: false),
+          FlaxParameter("title", _flaxBinding1, required: false),
+          FlaxParameter("subtitle", _flaxBinding1, required: false),
+          FlaxParameter("trailing", _flaxBinding1, required: false),
+          FlaxParameter("isThreeLine", _flaxBinding48, required: false),
+          FlaxParameter("dense", _flaxBinding48, required: false),
+          FlaxParameter("visualDensity", _flaxBinding142, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
+          FlaxParameter("style", _flaxBinding315, required: false),
+          FlaxParameter("selectedColor", _flaxBinding3, required: false),
+          FlaxParameter("iconColor", _flaxBinding3, required: false),
+          FlaxParameter("textColor", _flaxBinding3, required: false),
+          FlaxParameter("titleTextStyle", _flaxBinding4, required: false),
+          FlaxParameter("subtitleTextStyle", _flaxBinding4, required: false),
           FlaxParameter(
             "leadingAndTrailingTextStyle",
             _flaxBinding4,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "contentPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("contentPadding", _flaxBinding2, required: false),
           FlaxParameter(
             "enabled",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onTap",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onTap", _flaxBinding239, required: false),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
           FlaxParameter(
             "selected",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("splashColor", _flaxBinding3, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "tileColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "selectedTileColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "horizontalTitleGap",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "minVerticalPadding",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "minLeadingWidth",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "minTileHeight",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("tileColor", _flaxBinding3, required: false),
+          FlaxParameter("selectedTileColor", _flaxBinding3, required: false),
+          FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+          FlaxParameter("horizontalTitleGap", _flaxBinding11, required: false),
+          FlaxParameter("minVerticalPadding", _flaxBinding11, required: false),
+          FlaxParameter("minLeadingWidth", _flaxBinding11, required: false),
+          FlaxParameter("minTileHeight", _flaxBinding11, required: false),
           FlaxParameter(
             "internalAddSemanticForOnTap",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
         ],
       },
       _ListTileHost.new,
@@ -3951,103 +1060,49 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:Material",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
           FlaxParameter(
             "type",
-            _flaxBinding315,
+            _flaxBinding316,
             required: false,
             defaultValue: api.MaterialType.canvas,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "elevation",
             _flaxBinding52,
             required: false,
             defaultValue: 0.0,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "textStyle",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "borderRadius",
-            _flaxBinding236,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("shadowColor", _flaxBinding3, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+          FlaxParameter("textStyle", _flaxBinding4, required: false),
+          FlaxParameter("borderRadius", _flaxBinding237, required: false),
+          FlaxParameter("shape", _flaxBinding15, required: false),
           FlaxParameter(
             "borderOnForeground",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
-            _flaxBinding243,
+            _flaxBinding244,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "animationDuration",
             _flaxBinding21,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("child", _flaxBinding1, required: false),
           FlaxParameter(
             "animateColor",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
         ],
       },
@@ -4059,186 +1114,89 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:MaterialApp",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "navigatorKey",
-            _flaxBinding316,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "home",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("navigatorKey", _flaxBinding317, required: false),
+          FlaxParameter("home", _flaxBinding1, required: false),
           FlaxParameter(
             "routes",
-            _flaxBinding319,
+            _flaxBinding320,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "initialRoute",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onGenerateRoute",
-            _flaxBinding323,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("initialRoute", _flaxBinding12, required: false),
+          FlaxParameter("onGenerateRoute", _flaxBinding324, required: false),
           FlaxParameter(
             "onGenerateInitialRoutes",
-            _flaxBinding328,
+            _flaxBinding329,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onUnknownRoute",
-            _flaxBinding323,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onUnknownRoute", _flaxBinding324, required: false),
           FlaxParameter(
             "onNavigationNotification",
-            _flaxBinding331,
+            _flaxBinding332,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "navigatorObservers",
-            _flaxBinding334,
+            _flaxBinding335,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "builder",
-            _flaxBinding336,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("builder", _flaxBinding337, required: false),
           FlaxParameter(
             "title",
             _flaxBinding12,
             required: false,
             defaultValue: '',
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onGenerateTitle",
-            _flaxBinding338,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "theme",
-            _flaxBinding339,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "darkTheme",
-            _flaxBinding339,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highContrastTheme",
-            _flaxBinding339,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onGenerateTitle", _flaxBinding339, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("theme", _flaxBinding340, required: false),
+          FlaxParameter("darkTheme", _flaxBinding340, required: false),
+          FlaxParameter("highContrastTheme", _flaxBinding340, required: false),
           FlaxParameter(
             "highContrastDarkTheme",
-            _flaxBinding339,
+            _flaxBinding340,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "themeMode",
-            _flaxBinding340,
+            _flaxBinding341,
             required: false,
             defaultValue: api.ThemeMode.system,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "themeAnimationDuration",
             _flaxBinding21,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "themeAnimationCurve",
             _flaxBinding22,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "locale",
-            _flaxBinding341,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("locale", _flaxBinding342, required: false),
           FlaxParameter(
             "localizationsDelegates",
-            _flaxBinding343,
+            _flaxBinding344,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "localeListResolutionCallback",
-            _flaxBinding348,
+            _flaxBinding349,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "localeResolutionCallback",
-            _flaxBinding350,
+            _flaxBinding351,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "supportedLocales",
-            _flaxBinding345,
+            _flaxBinding346,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
@@ -4246,246 +1204,127 @@ const materialBindings = FlaxBindingModule(
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "showPerformanceOverlay",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "checkerboardRasterCacheImages",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "checkerboardOffscreenLayers",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "showSemanticsDebugger",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "debugShowCheckedModeBanner",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "shortcuts",
-            _flaxBinding353,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "actions",
-            _flaxBinding356,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "restorationScopeId",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "scrollBehavior",
-            _flaxBinding357,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("shortcuts", _flaxBinding354, required: false),
+          FlaxParameter("actions", _flaxBinding357, required: false),
+          FlaxParameter("restorationScopeId", _flaxBinding12, required: false),
+          FlaxParameter("scrollBehavior", _flaxBinding358, required: false),
           FlaxParameter(
             "useInheritedMediaQuery",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "themeAnimationStyle",
-            _flaxBinding358,
+            _flaxBinding359,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         "router": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
           FlaxParameter(
             "routeInformationProvider",
-            _flaxBinding359,
+            _flaxBinding360,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "routeInformationParser",
-            _flaxBinding360,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "routerDelegate",
             _flaxBinding361,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "routerConfig",
-            _flaxBinding362,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("routerDelegate", _flaxBinding362, required: false),
+          FlaxParameter("routerConfig", _flaxBinding363, required: false),
           FlaxParameter(
             "backButtonDispatcher",
-            _flaxBinding363,
+            _flaxBinding364,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "builder",
-            _flaxBinding336,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "title",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onGenerateTitle",
-            _flaxBinding338,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("builder", _flaxBinding337, required: false),
+          FlaxParameter("title", _flaxBinding12, required: false),
+          FlaxParameter("onGenerateTitle", _flaxBinding339, required: false),
           FlaxParameter(
             "onNavigationNotification",
-            _flaxBinding331,
+            _flaxBinding332,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "theme",
-            _flaxBinding339,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "darkTheme",
-            _flaxBinding339,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "highContrastTheme",
-            _flaxBinding339,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("theme", _flaxBinding340, required: false),
+          FlaxParameter("darkTheme", _flaxBinding340, required: false),
+          FlaxParameter("highContrastTheme", _flaxBinding340, required: false),
           FlaxParameter(
             "highContrastDarkTheme",
-            _flaxBinding339,
+            _flaxBinding340,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "themeMode",
-            _flaxBinding340,
+            _flaxBinding341,
             required: false,
             defaultValue: api.ThemeMode.system,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "themeAnimationDuration",
             _flaxBinding21,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "themeAnimationCurve",
             _flaxBinding22,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "locale",
-            _flaxBinding341,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("locale", _flaxBinding342, required: false),
           FlaxParameter(
             "localizationsDelegates",
-            _flaxBinding343,
+            _flaxBinding344,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "localeListResolutionCallback",
-            _flaxBinding348,
+            _flaxBinding349,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "localeResolutionCallback",
-            _flaxBinding350,
+            _flaxBinding351,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "supportedLocales",
-            _flaxBinding345,
+            _flaxBinding346,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
@@ -4493,84 +1332,51 @@ const materialBindings = FlaxBindingModule(
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "showPerformanceOverlay",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "checkerboardRasterCacheImages",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "checkerboardOffscreenLayers",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "showSemanticsDebugger",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "debugShowCheckedModeBanner",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "shortcuts",
-            _flaxBinding353,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "actions",
-            _flaxBinding356,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "restorationScopeId",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "scrollBehavior",
-            _flaxBinding357,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("shortcuts", _flaxBinding354, required: false),
+          FlaxParameter("actions", _flaxBinding357, required: false),
+          FlaxParameter("restorationScopeId", _flaxBinding12, required: false),
+          FlaxParameter("scrollBehavior", _flaxBinding358, required: false),
           FlaxParameter(
             "useInheritedMediaQuery",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "themeAnimationStyle",
-            _flaxBinding358,
+            _flaxBinding359,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
       },
@@ -4581,10 +1387,10 @@ const materialBindings = FlaxBindingModule(
     FlaxObjectBinding(
       "flax.material/material#type:MaterialPage",
       [
-        _flaxBinding364,
         _flaxBinding365,
-        _flaxBinding367,
+        _flaxBinding366,
         _flaxBinding368,
+        _flaxBinding369,
         FlaxGetter(
           "onPopInvoked",
           FlaxTypeRef(
@@ -4599,12 +1405,12 @@ const materialBindings = FlaxBindingModule(
                 ),
                 FlaxCallbackParameter(
                   "result",
-                  _flaxBinding242,
+                  _flaxBinding243,
                   required: true,
                   positional: true,
                 ),
               ],
-              _flaxBinding79,
+              _flaxBinding78,
               _callback1,
               id: "callback:<>(p:r:didPop:bool:,p:r:result:any?:)->void:",
               invoke: _callback1Invoke,
@@ -4613,30 +1419,30 @@ const materialBindings = FlaxBindingModule(
           ),
           _MaterialPage_onPopInvoked,
         ),
-        _flaxBinding369,
         _flaxBinding370,
         _flaxBinding371,
         _flaxBinding372,
         _flaxBinding373,
+        _flaxBinding374,
       ],
       {
         "toString": FlaxInstanceMethod(
-          _flaxBinding67,
           _flaxBinding68,
+          _flaxBinding67,
           _MaterialPage_toString,
         ),
         "canUpdate": FlaxInstanceMethod(
-          _flaxBinding375,
+          _flaxBinding376,
           _flaxBinding18,
           _MaterialPage_canUpdate,
         ),
         "createRoute": FlaxInstanceMethod(
-          _flaxBinding376,
+          _flaxBinding377,
           FlaxTypeRef("object", id: "flax.core/flutter#type:Route"),
           _MaterialPage_createRoute,
         ),
       },
-      constructors: {"": _flaxBinding379},
+      constructors: {"": _flaxBinding380},
       create: _createMaterialPage,
       disposeMethod: null,
       listenerPairs: {},
@@ -4652,10 +1458,9 @@ const materialBindings = FlaxBindingModule(
     FlaxObjectBinding(
       "flax.material/material#type:MaterialPageRoute",
       [
-        _flaxBinding381,
-        _flaxBinding383,
+        _flaxBinding382,
         _flaxBinding384,
-        _flaxBinding388,
+        _flaxBinding385,
         _flaxBinding389,
         _flaxBinding390,
         _flaxBinding391,
@@ -4666,24 +1471,24 @@ const materialBindings = FlaxBindingModule(
         _flaxBinding396,
         _flaxBinding397,
         _flaxBinding398,
-        _flaxBinding400,
-        _flaxBinding402,
+        _flaxBinding399,
+        _flaxBinding401,
         _flaxBinding403,
-        _flaxBinding405,
+        _flaxBinding404,
         _flaxBinding406,
         _flaxBinding407,
         _flaxBinding408,
         _flaxBinding409,
+        _flaxBinding410,
         FlaxGetter(
           "completed",
           FlaxTypeRef(
             "future",
-            item: _flaxBinding242,
+            item: _flaxBinding243,
             future: FlaxFutureBinding("any?:", _future0Adapt),
           ),
           _MaterialPageRoute_completed,
         ),
-        _flaxBinding410,
         _flaxBinding411,
         _flaxBinding412,
         _flaxBinding413,
@@ -4691,12 +1496,13 @@ const materialBindings = FlaxBindingModule(
         _flaxBinding415,
         _flaxBinding416,
         _flaxBinding417,
-        _flaxBinding421,
+        _flaxBinding418,
         _flaxBinding422,
-        _flaxBinding424,
+        _flaxBinding423,
         _flaxBinding425,
-        _flaxBinding427,
+        _flaxBinding426,
         _flaxBinding428,
+        _flaxBinding429,
         FlaxGetter(
           "currentResult",
           FlaxTypeRef("any", nullable: true),
@@ -4706,51 +1512,51 @@ const materialBindings = FlaxBindingModule(
           "popped",
           FlaxTypeRef(
             "future",
-            item: _flaxBinding242,
+            item: _flaxBinding243,
             future: FlaxFutureBinding("any?:", _future0Adapt),
           ),
           _MaterialPageRoute_popped,
         ),
-        _flaxBinding429,
         _flaxBinding430,
         _flaxBinding431,
         _flaxBinding432,
         _flaxBinding433,
+        _flaxBinding434,
       ],
       {
         "setState": FlaxInstanceMethod(
-          _flaxBinding435,
-          _flaxBinding79,
+          _flaxBinding436,
+          _flaxBinding78,
           _MaterialPageRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          _flaxBinding436,
+          _flaxBinding437,
           _flaxBinding5,
           _MaterialPageRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          _flaxBinding437,
+          _flaxBinding438,
           _flaxBinding5,
           _MaterialPageRoute_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding79,
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding438,
+          _flaxBinding68,
+          _flaxBinding439,
           _MaterialPageRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding79,
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding439,
+          _flaxBinding68,
+          _flaxBinding440,
           _MaterialPageRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
@@ -4762,92 +1568,92 @@ const materialBindings = FlaxBindingModule(
               required: true,
             ),
           ],
-          _flaxBinding79,
+          _flaxBinding78,
           _MaterialPageRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
-          _flaxBinding443,
-          _flaxBinding79,
+          _flaxBinding444,
+          _flaxBinding78,
           _MaterialPageRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
-          _flaxBinding443,
-          _flaxBinding79,
+          _flaxBinding444,
+          _flaxBinding78,
           _MaterialPageRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          _flaxBinding445,
-          _flaxBinding79,
+          _flaxBinding446,
+          _flaxBinding78,
           _MaterialPageRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          _flaxBinding445,
-          _flaxBinding79,
+          _flaxBinding446,
+          _flaxBinding78,
           _MaterialPageRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          _flaxBinding446,
-          _flaxBinding79,
+          _flaxBinding447,
+          _flaxBinding78,
           _MaterialPageRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          _flaxBinding447,
-          _flaxBinding79,
+          _flaxBinding448,
+          _flaxBinding78,
           _MaterialPageRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          _flaxBinding448,
-          _flaxBinding79,
+          _flaxBinding449,
+          _flaxBinding78,
           _MaterialPageRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding79,
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding79,
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          _flaxBinding67,
+          _flaxBinding68,
           _flaxBinding5,
           _MaterialPageRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding419,
+          _flaxBinding68,
+          _flaxBinding420,
           _MaterialPageRoute_createOverlayEntries,
         ),
         "toString": FlaxInstanceMethod(
-          _flaxBinding67,
           _flaxBinding68,
+          _flaxBinding67,
           _MaterialPageRoute_toString,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          _flaxBinding67,
+          _flaxBinding68,
           _flaxBinding18,
           _MaterialPageRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding449,
+          _flaxBinding68,
+          _flaxBinding450,
           _MaterialPageRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding385,
+          _flaxBinding68,
+          _flaxBinding386,
           _MaterialPageRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          _flaxBinding450,
+          _flaxBinding452,
           _flaxBinding451,
           _MaterialPageRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          _flaxBinding452,
-          _flaxBinding79,
+          _flaxBinding453,
+          _flaxBinding78,
           _MaterialPageRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
@@ -4862,43 +1668,43 @@ const materialBindings = FlaxBindingModule(
           _MaterialPageRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod(
-          _flaxBinding454,
+          _flaxBinding455,
           _flaxBinding18,
           _MaterialPageRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          _flaxBinding455,
+          _flaxBinding456,
           _flaxBinding18,
           _MaterialPageRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          _flaxBinding456,
-          _flaxBinding79,
+          _flaxBinding457,
+          _flaxBinding78,
           _MaterialPageRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          _flaxBinding457,
-          _flaxBinding79,
+          _flaxBinding458,
+          _flaxBinding78,
           _MaterialPageRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding79,
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding79,
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          _flaxBinding67,
-          _flaxBinding79,
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          _flaxBinding458,
-          _flaxBinding79,
+          _flaxBinding459,
+          _flaxBinding78,
           _MaterialPageRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
@@ -4909,26 +1715,26 @@ const materialBindings = FlaxBindingModule(
               required: true,
             ),
           ],
-          _flaxBinding79,
+          _flaxBinding78,
           _MaterialPageRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          _flaxBinding460,
-          _flaxBinding79,
+          _flaxBinding461,
+          _flaxBinding78,
           _MaterialPageRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          _flaxBinding460,
-          _flaxBinding79,
+          _flaxBinding461,
+          _flaxBinding78,
           _MaterialPageRoute_removeLocalHistoryEntry,
         ),
         "buildContent": FlaxInstanceMethod(
-          _flaxBinding376,
+          _flaxBinding377,
           _flaxBinding5,
           _MaterialPageRoute_buildContent,
         ),
       },
-      constructors: {"": _flaxBinding462},
+      constructors: {"": _flaxBinding463},
       create: _createMaterialPageRoute,
       disposeMethod: "dispose",
       listenerPairs: {},
@@ -4943,7 +1749,7 @@ const materialBindings = FlaxBindingModule(
         "flax.core/sdk_widgets#type:LocalHistoryRoute",
         "package:material_ui/src/page.dart::MaterialRouteTransitionMixin",
       ],
-      setters: [_flaxBinding463, _flaxBinding464, _flaxBinding465],
+      setters: [_flaxBinding464, _flaxBinding465, _flaxBinding466],
       matches: _isMaterialPageRoute,
       methods: const {},
     ),
@@ -4951,124 +1757,36 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:NavigationBar",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "animationDuration",
-            _flaxBinding143,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("animationDuration", _flaxBinding144, required: false),
           FlaxParameter(
             "selectedIndex",
             _flaxBinding83,
             required: false,
             defaultValue: 0,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "destinations",
-            _flaxBinding466,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("destinations", _flaxBinding467, required: true),
           FlaxParameter(
             "onDestinationSelected",
-            _flaxBinding468,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "indicatorColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "indicatorShape",
-            _flaxBinding15,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "height",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "labelBehavior",
             _flaxBinding469,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "overlayColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "labelTextStyle",
-            _flaxBinding99,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "labelPadding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
+          FlaxParameter("elevation", _flaxBinding11, required: false),
+          FlaxParameter("shadowColor", _flaxBinding3, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+          FlaxParameter("indicatorColor", _flaxBinding3, required: false),
+          FlaxParameter("indicatorShape", _flaxBinding15, required: false),
+          FlaxParameter("height", _flaxBinding11, required: false),
+          FlaxParameter("labelBehavior", _flaxBinding470, required: false),
+          FlaxParameter("overlayColor", _flaxBinding104, required: false),
+          FlaxParameter("labelTextStyle", _flaxBinding100, required: false),
+          FlaxParameter("labelPadding", _flaxBinding2, required: false),
           FlaxParameter(
             "maintainBottomViewPadding",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
         ],
       },
@@ -5080,47 +1798,16 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:NavigationDestination",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "selectedIcon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "label",
-            _flaxBinding68,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "tooltip",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("icon", _flaxBinding5, required: true),
+          FlaxParameter("selectedIcon", _flaxBinding1, required: false),
+          FlaxParameter("label", _flaxBinding67, required: true),
+          FlaxParameter("tooltip", _flaxBinding12, required: false),
           FlaxParameter(
             "enabled",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
         ],
       },
@@ -5132,169 +1819,41 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:OutlinedButton",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding1,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("child", _flaxBinding1, required: true),
         ],
         "icon": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "label",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding1, required: false),
+          FlaxParameter("label", _flaxBinding5, required: true),
         ],
       },
       _OutlinedButtonHost.new,
@@ -5305,227 +1864,101 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:RefreshIndicator",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
           FlaxParameter(
             "displacement",
             _flaxBinding52,
             required: false,
             defaultValue: 40.0,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "edgeOffset",
             _flaxBinding52,
             required: false,
             defaultValue: 0.0,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onRefresh",
-            _flaxBinding472,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onRefresh", _flaxBinding473, required: true),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
           FlaxParameter(
             "notificationPredicate",
             _flaxBinding37,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "semanticsLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsValue",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("semanticsLabel", _flaxBinding12, required: false),
+          FlaxParameter("semanticsValue", _flaxBinding12, required: false),
           FlaxParameter(
             "strokeWidth",
             _flaxBinding52,
             required: false,
             defaultValue: 2.5,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "elevation",
             _flaxBinding52,
             required: false,
             defaultValue: 2.0,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "child",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("child", _flaxBinding5, required: true),
         ],
         "adaptive": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
           FlaxParameter(
             "displacement",
             _flaxBinding52,
             required: false,
             defaultValue: 40.0,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "edgeOffset",
             _flaxBinding52,
             required: false,
             defaultValue: 0.0,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onRefresh",
-            _flaxBinding472,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onRefresh", _flaxBinding473, required: true),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
           FlaxParameter(
             "notificationPredicate",
             _flaxBinding37,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "semanticsLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsValue",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("semanticsLabel", _flaxBinding12, required: false),
+          FlaxParameter("semanticsValue", _flaxBinding12, required: false),
           FlaxParameter(
             "strokeWidth",
             _flaxBinding52,
             required: false,
             defaultValue: 2.5,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "elevation",
             _flaxBinding52,
             required: false,
             defaultValue: 2.0,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "child",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("child", _flaxBinding5, required: true),
         ],
         "noSpinner": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onRefresh",
-            _flaxBinding472,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onRefresh", _flaxBinding473, required: true),
           FlaxParameter(
             "notificationPredicate",
             _flaxBinding37,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "semanticsLabel",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticsValue",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("semanticsLabel", _flaxBinding12, required: false),
+          FlaxParameter("semanticsValue", _flaxBinding12, required: false),
           FlaxParameter(
             "elevation",
             _flaxBinding52,
             required: false,
             defaultValue: 2.0,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "child",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("child", _flaxBinding5, required: true),
         ],
       },
       _RefreshIndicatorHost.new,
@@ -5536,188 +1969,89 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:Scaffold",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "appBar",
-            _flaxBinding31,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "body",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "floatingActionButton",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("appBar", _flaxBinding31, required: false),
+          FlaxParameter("body", _flaxBinding1, required: false),
+          FlaxParameter("floatingActionButton", _flaxBinding1, required: false),
           FlaxParameter(
             "persistentFooterButtons",
             _flaxBinding7,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "persistentFooterAlignment",
-            _flaxBinding473,
+            _flaxBinding474,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "persistentFooterDecoration",
-            _flaxBinding474,
+            _flaxBinding475,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "drawer",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onDrawerChanged",
-            _flaxBinding476,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "endDrawer",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onEndDrawerChanged",
-            _flaxBinding476,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "bottomNavigationBar",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "bottomSheet",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("drawer", _flaxBinding1, required: false),
+          FlaxParameter("onDrawerChanged", _flaxBinding477, required: false),
+          FlaxParameter("endDrawer", _flaxBinding1, required: false),
+          FlaxParameter("onEndDrawerChanged", _flaxBinding477, required: false),
+          FlaxParameter("bottomNavigationBar", _flaxBinding1, required: false),
+          FlaxParameter("bottomSheet", _flaxBinding1, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding3, required: false),
           FlaxParameter(
             "resizeToAvoidBottomInset",
             _flaxBinding48,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "primary",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "drawerDragStartBehavior",
-            _flaxBinding477,
+            _flaxBinding478,
             required: false,
             defaultValue: api7.DragStartBehavior.start,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "extendBody",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "drawerBarrierDismissible",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "extendBodyBehindAppBar",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "drawerScrimColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("drawerScrimColor", _flaxBinding3, required: false),
           FlaxParameter(
             "bottomSheetScrimBuilder",
-            _flaxBinding479,
+            _flaxBinding480,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "drawerEdgeDragWidth",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("drawerEdgeDragWidth", _flaxBinding11, required: false),
           FlaxParameter(
             "drawerEnableOpenDragGesture",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "endDrawerEnableOpenDragGesture",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "restorationId",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("restorationId", _flaxBinding12, required: false),
         ],
       },
       _ScaffoldHost.new,
@@ -5728,393 +2062,99 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:Switch",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value",
-            _flaxBinding18,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onChanged",
-            _flaxBinding240,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeThumbColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeTrackColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "inactiveThumbColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "inactiveTrackColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeThumbImage",
-            _flaxBinding480,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("value", _flaxBinding18, required: true),
+          FlaxParameter("onChanged", _flaxBinding241, required: true),
+          FlaxParameter("activeColor", _flaxBinding3, required: false),
+          FlaxParameter("activeThumbColor", _flaxBinding3, required: false),
+          FlaxParameter("activeTrackColor", _flaxBinding3, required: false),
+          FlaxParameter("inactiveThumbColor", _flaxBinding3, required: false),
+          FlaxParameter("inactiveTrackColor", _flaxBinding3, required: false),
+          FlaxParameter("activeThumbImage", _flaxBinding481, required: false),
           FlaxParameter(
             "onActiveThumbImageError",
-            _flaxBinding483,
+            _flaxBinding484,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "inactiveThumbImage",
-            _flaxBinding480,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("inactiveThumbImage", _flaxBinding481, required: false),
           FlaxParameter(
             "onInactiveThumbImageError",
-            _flaxBinding483,
+            _flaxBinding484,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "thumbColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackOutlineColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackOutlineWidth",
-            _flaxBinding111,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "thumbIcon",
-            _flaxBinding487,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("thumbColor", _flaxBinding104, required: false),
+          FlaxParameter("trackColor", _flaxBinding104, required: false),
+          FlaxParameter("trackOutlineColor", _flaxBinding104, required: false),
+          FlaxParameter("trackOutlineWidth", _flaxBinding112, required: false),
+          FlaxParameter("thumbIcon", _flaxBinding488, required: false),
           FlaxParameter(
             "dragStartBehavior",
-            _flaxBinding477,
+            _flaxBinding478,
             required: false,
             defaultValue: api7.DragStartBehavior.start,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "overlayColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("overlayColor", _flaxBinding104, required: false),
+          FlaxParameter("splashRadius", _flaxBinding11, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "padding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("padding", _flaxBinding2, required: false),
         ],
         "adaptive": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value",
-            _flaxBinding18,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onChanged",
-            _flaxBinding240,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeThumbColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeTrackColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "inactiveThumbColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "inactiveTrackColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "activeThumbImage",
-            _flaxBinding480,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("value", _flaxBinding18, required: true),
+          FlaxParameter("onChanged", _flaxBinding241, required: true),
+          FlaxParameter("activeColor", _flaxBinding3, required: false),
+          FlaxParameter("activeThumbColor", _flaxBinding3, required: false),
+          FlaxParameter("activeTrackColor", _flaxBinding3, required: false),
+          FlaxParameter("inactiveThumbColor", _flaxBinding3, required: false),
+          FlaxParameter("inactiveTrackColor", _flaxBinding3, required: false),
+          FlaxParameter("activeThumbImage", _flaxBinding481, required: false),
           FlaxParameter(
             "onActiveThumbImageError",
-            _flaxBinding483,
+            _flaxBinding484,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "inactiveThumbImage",
-            _flaxBinding480,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("inactiveThumbImage", _flaxBinding481, required: false),
           FlaxParameter(
             "onInactiveThumbImageError",
-            _flaxBinding483,
+            _flaxBinding484,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "thumbColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackOutlineColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "trackOutlineWidth",
-            _flaxBinding111,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "thumbIcon",
-            _flaxBinding487,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("thumbColor", _flaxBinding104, required: false),
+          FlaxParameter("trackColor", _flaxBinding104, required: false),
+          FlaxParameter("trackOutlineColor", _flaxBinding104, required: false),
+          FlaxParameter("trackOutlineWidth", _flaxBinding112, required: false),
+          FlaxParameter("thumbIcon", _flaxBinding488, required: false),
           FlaxParameter(
             "dragStartBehavior",
-            _flaxBinding477,
+            _flaxBinding478,
             required: false,
             defaultValue: api7.DragStartBehavior.start,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "overlayColor",
-            _flaxBinding103,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("focusColor", _flaxBinding3, required: false),
+          FlaxParameter("hoverColor", _flaxBinding3, required: false),
+          FlaxParameter("overlayColor", _flaxBinding104, required: false),
+          FlaxParameter("splashRadius", _flaxBinding11, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "padding",
-            _flaxBinding2,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "applyCupertinoTheme",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("padding", _flaxBinding2, required: false),
+          FlaxParameter("applyCupertinoTheme", _flaxBinding48, required: false),
         ],
       },
       _SwitchHost.new,
@@ -6125,176 +2165,52 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:TextButton",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "clipBehavior",
-            _flaxBinding14,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("clipBehavior", _flaxBinding14, required: false),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
           FlaxParameter(
             "isSemanticButton",
             _flaxBinding48,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "child",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("child", _flaxBinding5, required: true),
         ],
         "icon": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onPressed",
-            _flaxBinding238,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onLongPress",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onHover",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onFocusChange",
-            _flaxBinding240,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding159,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("onPressed", _flaxBinding239, required: true),
+          FlaxParameter("onLongPress", _flaxBinding239, required: false),
+          FlaxParameter("onHover", _flaxBinding241, required: false),
+          FlaxParameter("onFocusChange", _flaxBinding241, required: false),
+          FlaxParameter("style", _flaxBinding160, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
             _flaxBinding14,
             required: false,
             defaultValue: api5.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "icon",
-            _flaxBinding1,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "label",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
+          FlaxParameter("icon", _flaxBinding1, required: false),
+          FlaxParameter("label", _flaxBinding5, required: true),
         ],
       },
       _TextButtonHost.new,
@@ -6305,480 +2221,209 @@ const materialBindings = FlaxBindingModule(
       "flax.material/material#type:TextField",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
           FlaxParameter(
             "groupId",
-            _flaxBinding307,
+            _flaxBinding308,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "controller",
-            _flaxBinding488,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            _flaxBinding166,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "undoController",
-            _flaxBinding489,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("controller", _flaxBinding489, required: false),
+          FlaxParameter("focusNode", _flaxBinding167, required: false),
+          FlaxParameter("undoController", _flaxBinding490, required: false),
           FlaxParameter(
             "decoration",
-            _flaxBinding490,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: true,
-          ),
-          FlaxParameter(
-            "keyboardType",
             _flaxBinding491,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
+            omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "textInputAction",
-            _flaxBinding492,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("keyboardType", _flaxBinding492, required: false),
+          FlaxParameter("textInputAction", _flaxBinding493, required: false),
           FlaxParameter(
             "textCapitalization",
-            _flaxBinding493,
-            required: false,
-            defaultValue: api9.TextCapitalization.none,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "style",
-            _flaxBinding4,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "strutStyle",
             _flaxBinding494,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
+            defaultValue: api9.TextCapitalization.none,
           ),
+          FlaxParameter("style", _flaxBinding4, required: false),
+          FlaxParameter("strutStyle", _flaxBinding495, required: false),
           FlaxParameter(
             "textAlign",
-            _flaxBinding495,
-            required: false,
-            defaultValue: api5.TextAlign.start,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "textAlignVertical",
             _flaxBinding496,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
+            defaultValue: api5.TextAlign.start,
           ),
-          FlaxParameter(
-            "textDirection",
-            _flaxBinding265,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("textAlignVertical", _flaxBinding497, required: false),
+          FlaxParameter("textDirection", _flaxBinding266, required: false),
           FlaxParameter(
             "readOnly",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "toolbarOptions",
-            _flaxBinding497,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "showCursor",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("toolbarOptions", _flaxBinding498, required: false),
+          FlaxParameter("showCursor", _flaxBinding48, required: false),
           FlaxParameter(
             "autofocus",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "statesController",
-            _flaxBinding241,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("statesController", _flaxBinding242, required: false),
           FlaxParameter(
             "obscuringCharacter",
-            _flaxBinding68,
+            _flaxBinding67,
             required: false,
             defaultValue: '•',
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "obscureText",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "autocorrect",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "smartDashesType",
-            _flaxBinding498,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "smartQuotesType",
-            _flaxBinding499,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("autocorrect", _flaxBinding48, required: false),
+          FlaxParameter("smartDashesType", _flaxBinding499, required: false),
+          FlaxParameter("smartQuotesType", _flaxBinding500, required: false),
           FlaxParameter(
             "enableSuggestions",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "maxLines",
-            _flaxBinding260,
+            _flaxBinding261,
             required: false,
             defaultValue: 1,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "minLines",
-            _flaxBinding260,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("minLines", _flaxBinding261, required: false),
           FlaxParameter(
             "expands",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "maxLength",
-            _flaxBinding260,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("maxLength", _flaxBinding261, required: false),
           FlaxParameter(
             "maxLengthEnforcement",
-            _flaxBinding500,
+            _flaxBinding501,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onChanged",
-            _flaxBinding502,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onEditingComplete",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onSubmitted",
-            _flaxBinding502,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onChanged", _flaxBinding503, required: false),
+          FlaxParameter("onEditingComplete", _flaxBinding239, required: false),
+          FlaxParameter("onSubmitted", _flaxBinding503, required: false),
           FlaxParameter(
             "onAppPrivateCommand",
-            _flaxBinding505,
+            _flaxBinding506,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "inputFormatters",
-            _flaxBinding508,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "enabled",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "ignorePointers",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("inputFormatters", _flaxBinding509, required: false),
+          FlaxParameter("enabled", _flaxBinding48, required: false),
+          FlaxParameter("ignorePointers", _flaxBinding48, required: false),
           FlaxParameter(
             "cursorWidth",
             _flaxBinding52,
             required: false,
             defaultValue: 2.0,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "cursorHeight",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "cursorRadius",
-            _flaxBinding509,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("cursorHeight", _flaxBinding11, required: false),
+          FlaxParameter("cursorRadius", _flaxBinding510, required: false),
           FlaxParameter(
             "cursorOpacityAnimates",
             _flaxBinding48,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "cursorColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "cursorErrorColor",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("cursorColor", _flaxBinding3, required: false),
+          FlaxParameter("cursorErrorColor", _flaxBinding3, required: false),
           FlaxParameter(
             "selectionHeightStyle",
-            _flaxBinding510,
+            _flaxBinding511,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "selectionWidthStyle",
-            _flaxBinding511,
+            _flaxBinding512,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "keyboardAppearance",
-            _flaxBinding226,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("keyboardAppearance", _flaxBinding227, required: false),
           FlaxParameter(
             "scrollPadding",
             _flaxBinding19,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "dragStartBehavior",
-            _flaxBinding477,
+            _flaxBinding478,
             required: false,
             defaultValue: api7.DragStartBehavior.start,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "enableInteractiveSelection",
             _flaxBinding48,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "selectAllOnFocus",
-            _flaxBinding48,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "selectionControls",
-            _flaxBinding512,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onTap",
-            _flaxBinding238,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("selectAllOnFocus", _flaxBinding48, required: false),
+          FlaxParameter("selectionControls", _flaxBinding513, required: false),
+          FlaxParameter("onTap", _flaxBinding239, required: false),
           FlaxParameter(
             "onTapAlwaysCalled",
             _flaxBinding18,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onTapOutside",
-            _flaxBinding515,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "onTapUpOutside",
-            _flaxBinding518,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "mouseCursor",
-            _flaxBinding136,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "buildCounter",
-            _flaxBinding520,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "scrollController",
-            _flaxBinding20,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "scrollPhysics",
-            _flaxBinding521,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onTapOutside", _flaxBinding516, required: false),
+          FlaxParameter("onTapUpOutside", _flaxBinding519, required: false),
+          FlaxParameter("mouseCursor", _flaxBinding137, required: false),
+          FlaxParameter("buildCounter", _flaxBinding521, required: false),
+          FlaxParameter("scrollController", _flaxBinding20, required: false),
+          FlaxParameter("scrollPhysics", _flaxBinding522, required: false),
           FlaxParameter(
             "autofillHints",
-            _flaxBinding522,
+            _flaxBinding523,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "contentInsertionConfiguration",
-            _flaxBinding523,
+            _flaxBinding524,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "clipBehavior",
-            _flaxBinding243,
+            _flaxBinding244,
             required: false,
             defaultValue: api5.Clip.hardEdge,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "restorationId",
-            _flaxBinding12,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("restorationId", _flaxBinding12, required: false),
           FlaxParameter(
             "scribbleEnabled",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "stylusHandwritingEnabled",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "enableIMEPersonalizedLearning",
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "enableInlinePrediction",
             _flaxBinding48,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "contextMenuBuilder",
-            _flaxBinding526,
+            _flaxBinding527,
             required: false,
-            defaultValue: null,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
@@ -6786,128 +2431,57 @@ const materialBindings = FlaxBindingModule(
             _flaxBinding18,
             required: false,
             defaultValue: true,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "spellCheckConfiguration",
-            _flaxBinding527,
+            _flaxBinding528,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "magnifierConfiguration",
-            _flaxBinding528,
+            _flaxBinding529,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "hintLocales",
-            _flaxBinding346,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("hintLocales", _flaxBinding347, required: false),
         ],
       },
       _TextFieldHost.new,
       matches: _isTextField,
       methods: {},
     ),
-    _flaxBinding561,
+    _flaxBinding562,
     FlaxWidgetBinding(
       "flax.material/material#type:Theme",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "data",
-            _flaxBinding562,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            _flaxBinding5,
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("data", _flaxBinding563, required: true),
+          FlaxParameter("child", _flaxBinding5, required: true),
         ],
       },
       _ThemeHost.new,
       matches: _isTheme,
       methods: {},
     ),
-    _flaxBinding605,
+    _flaxBinding606,
     FlaxWidgetBinding(
       "flax.material/material#type:VerticalDivider",
       {
         "": [
-          FlaxParameter(
-            "key",
-            _flaxBinding0,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "width",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "thickness",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "indent",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "endIndent",
-            _flaxBinding11,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "color",
-            _flaxBinding3,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "radius",
-            _flaxBinding236,
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("key", _flaxBinding0, required: false),
+          FlaxParameter("width", _flaxBinding11, required: false),
+          FlaxParameter("thickness", _flaxBinding11, required: false),
+          FlaxParameter("indent", _flaxBinding11, required: false),
+          FlaxParameter("endIndent", _flaxBinding11, required: false),
+          FlaxParameter("color", _flaxBinding3, required: false),
+          FlaxParameter("radius", _flaxBinding237, required: false),
         ],
       },
       _VerticalDividerHost.new,
       matches: _isVerticalDivider,
       methods: {},
     ),
-    _flaxBinding620,
+    _flaxBinding621,
   ],
   functions: [
     FlaxFunctionBinding(
@@ -6925,99 +2499,45 @@ const materialBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.material/material#function:showDialog",
       [
-        FlaxParameter(
-          "anchorPoint",
-          _flaxBinding621,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "animationStyle",
-          _flaxBinding358,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "barrierColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("anchorPoint", _flaxBinding622, required: false),
+        FlaxParameter("animationStyle", _flaxBinding359, required: false),
+        FlaxParameter("barrierColor", _flaxBinding3, required: false),
         FlaxParameter(
           "barrierDismissible",
           _flaxBinding18,
           required: false,
           defaultValue: true,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "barrierLabel",
-          _flaxBinding12,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "builder",
-          _flaxBinding318,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("barrierLabel", _flaxBinding12, required: false),
+        FlaxParameter("builder", _flaxBinding319, required: true),
+        FlaxParameter("context", _flaxBinding148, required: true),
         FlaxParameter(
           "fullscreenDialog",
           _flaxBinding18,
           required: false,
           defaultValue: false,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "requestFocus",
-          _flaxBinding48,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "routeSettings",
-          _flaxBinding461,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("requestFocus", _flaxBinding48, required: false),
+        FlaxParameter("routeSettings", _flaxBinding462, required: false),
         FlaxParameter(
           "traversalEdgeBehavior",
-          _flaxBinding382,
+          _flaxBinding383,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "useRootNavigator",
           _flaxBinding18,
           required: false,
           defaultValue: true,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "useSafeArea",
           _flaxBinding18,
           required: false,
           defaultValue: true,
-          omitWhenAbsent: false,
         ),
       ],
-      _flaxBinding622,
+      _flaxBinding623,
       _function_showDialog,
       route: FlaxRouteCallBinding(["builder"]),
       genericFactory: _flaxGenericFunction0,
@@ -7025,20 +2545,8 @@ const materialBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.material/material#function:AppBar.preferredHeightFor",
       [
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "preferredSize",
-          _flaxBinding23,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("context", _flaxBinding148, required: true),
+        FlaxParameter("preferredSize", _flaxBinding23, required: true),
       ],
       _flaxBinding52,
       _AppBar_preferredHeightFor,
@@ -7046,1299 +2554,303 @@ const materialBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.material/material#function:ButtonStyle.lerp",
       [
-        FlaxParameter(
-          "a",
-          _flaxBinding159,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "b",
-          _flaxBinding159,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "t",
-          _flaxBinding52,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("a", _flaxBinding160, required: true),
+        FlaxParameter("b", _flaxBinding160, required: true),
+        FlaxParameter("t", _flaxBinding52, required: true),
       ],
-      _flaxBinding159,
+      _flaxBinding160,
       _ButtonStyle_lerp,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:Checkbox.width",
-      _flaxBinding52,
-      api.Checkbox.width,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:CircularProgressIndicator.strokeAlignInside",
-      _flaxBinding52,
-      api.CircularProgressIndicator.strokeAlignInside,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:CircularProgressIndicator.strokeAlignCenter",
-      _flaxBinding52,
-      api.CircularProgressIndicator.strokeAlignCenter,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:CircularProgressIndicator.strokeAlignOutside",
-      _flaxBinding52,
-      api.CircularProgressIndicator.strokeAlignOutside,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:CircularProgressIndicator.defaultAnimationDuration",
-      _flaxBinding21,
-      api.CircularProgressIndicator.defaultAnimationDuration,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:ColorScheme.lerp",
       [
-        FlaxParameter(
-          "a",
-          _flaxBinding228,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "b",
-          _flaxBinding228,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "t",
-          _flaxBinding52,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("a", _flaxBinding229, required: true),
+        FlaxParameter("b", _flaxBinding229, required: true),
+        FlaxParameter("t", _flaxBinding52, required: true),
       ],
-      _flaxBinding228,
+      _flaxBinding229,
       _ColorScheme_lerp,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:ColorScheme.fromImageProvider",
       [
-        FlaxParameter(
-          "background",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("background", _flaxBinding3, required: false),
         FlaxParameter(
           "brightness",
-          _flaxBinding170,
+          _flaxBinding171,
           required: false,
           defaultValue: api.Brightness.light,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "contrastLevel",
           _flaxBinding52,
           required: false,
           defaultValue: 0.0,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "error",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "errorContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "inversePrimary",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "inverseSurface",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onBackground",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onError",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onErrorContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onInverseSurface",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onPrimary",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onPrimaryContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onPrimaryFixed",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onPrimaryFixedVariant",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onSecondary",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onSecondaryContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onSecondaryFixed",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("error", _flaxBinding3, required: false),
+        FlaxParameter("errorContainer", _flaxBinding3, required: false),
+        FlaxParameter("inversePrimary", _flaxBinding3, required: false),
+        FlaxParameter("inverseSurface", _flaxBinding3, required: false),
+        FlaxParameter("onBackground", _flaxBinding3, required: false),
+        FlaxParameter("onError", _flaxBinding3, required: false),
+        FlaxParameter("onErrorContainer", _flaxBinding3, required: false),
+        FlaxParameter("onInverseSurface", _flaxBinding3, required: false),
+        FlaxParameter("onPrimary", _flaxBinding3, required: false),
+        FlaxParameter("onPrimaryContainer", _flaxBinding3, required: false),
+        FlaxParameter("onPrimaryFixed", _flaxBinding3, required: false),
+        FlaxParameter("onPrimaryFixedVariant", _flaxBinding3, required: false),
+        FlaxParameter("onSecondary", _flaxBinding3, required: false),
+        FlaxParameter("onSecondaryContainer", _flaxBinding3, required: false),
+        FlaxParameter("onSecondaryFixed", _flaxBinding3, required: false),
         FlaxParameter(
           "onSecondaryFixedVariant",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "onSurface",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onSurfaceVariant",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onTertiary",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onTertiaryContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onTertiaryFixed",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "onTertiaryFixedVariant",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "outline",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "outlineVariant",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "primary",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "primaryContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "primaryFixed",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "primaryFixedDim",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "provider",
-          _flaxBinding623,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "scrim",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "secondary",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "secondaryContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "secondaryFixed",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "secondaryFixedDim",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shadow",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surface",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceBright",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceContainerHigh",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("onSurface", _flaxBinding3, required: false),
+        FlaxParameter("onSurfaceVariant", _flaxBinding3, required: false),
+        FlaxParameter("onTertiary", _flaxBinding3, required: false),
+        FlaxParameter("onTertiaryContainer", _flaxBinding3, required: false),
+        FlaxParameter("onTertiaryFixed", _flaxBinding3, required: false),
+        FlaxParameter("onTertiaryFixedVariant", _flaxBinding3, required: false),
+        FlaxParameter("outline", _flaxBinding3, required: false),
+        FlaxParameter("outlineVariant", _flaxBinding3, required: false),
+        FlaxParameter("primary", _flaxBinding3, required: false),
+        FlaxParameter("primaryContainer", _flaxBinding3, required: false),
+        FlaxParameter("primaryFixed", _flaxBinding3, required: false),
+        FlaxParameter("primaryFixedDim", _flaxBinding3, required: false),
+        FlaxParameter("provider", _flaxBinding624, required: true),
+        FlaxParameter("scrim", _flaxBinding3, required: false),
+        FlaxParameter("secondary", _flaxBinding3, required: false),
+        FlaxParameter("secondaryContainer", _flaxBinding3, required: false),
+        FlaxParameter("secondaryFixed", _flaxBinding3, required: false),
+        FlaxParameter("secondaryFixedDim", _flaxBinding3, required: false),
+        FlaxParameter("shadow", _flaxBinding3, required: false),
+        FlaxParameter("surface", _flaxBinding3, required: false),
+        FlaxParameter("surfaceBright", _flaxBinding3, required: false),
+        FlaxParameter("surfaceContainer", _flaxBinding3, required: false),
+        FlaxParameter("surfaceContainerHigh", _flaxBinding3, required: false),
         FlaxParameter(
           "surfaceContainerHighest",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "surfaceContainerLow",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceContainerLowest",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceDim",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceTint",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceVariant",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "tertiary",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "tertiaryContainer",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "tertiaryFixed",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "tertiaryFixedDim",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("surfaceContainerLow", _flaxBinding3, required: false),
+        FlaxParameter("surfaceContainerLowest", _flaxBinding3, required: false),
+        FlaxParameter("surfaceDim", _flaxBinding3, required: false),
+        FlaxParameter("surfaceTint", _flaxBinding3, required: false),
+        FlaxParameter("surfaceVariant", _flaxBinding3, required: false),
+        FlaxParameter("tertiary", _flaxBinding3, required: false),
+        FlaxParameter("tertiaryContainer", _flaxBinding3, required: false),
+        FlaxParameter("tertiaryFixed", _flaxBinding3, required: false),
+        FlaxParameter("tertiaryFixedDim", _flaxBinding3, required: false),
       ],
-      _flaxBinding624,
+      _flaxBinding625,
       _ColorScheme_fromImageProvider,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:ColorScheme.of",
-      [
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding228,
+      [FlaxParameter("context", _flaxBinding148, required: true)],
+      _flaxBinding229,
       _ColorScheme_of,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:Divider.createBorderSide",
       [
-        FlaxParameter(
-          "context",
-          _flaxBinding399,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "color",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "width",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("context", _flaxBinding400, required: true),
+        FlaxParameter("color", _flaxBinding3, required: false),
+        FlaxParameter("width", _flaxBinding11, required: false),
       ],
-      _flaxBinding625,
+      _flaxBinding626,
       _Divider_createBorderSide,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:ElevatedButton.styleFrom",
       [
-        FlaxParameter(
-          "alignment",
-          _flaxBinding16,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "animationDuration",
-          _flaxBinding143,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundBuilder",
-          _flaxBinding149,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("alignment", _flaxBinding16, required: false),
+        FlaxParameter("animationDuration", _flaxBinding144, required: false),
+        FlaxParameter("backgroundBuilder", _flaxBinding150, required: false),
+        FlaxParameter("backgroundColor", _flaxBinding3, required: false),
         FlaxParameter(
           "disabledBackgroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "disabledForegroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "disabledIconColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "disabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "elevation",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enableFeedback",
-          _flaxBinding48,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "fixedSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundBuilder",
-          _flaxBinding149,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconSize",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "maximumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "minimumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "overlayColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "padding",
-          _flaxBinding2,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shadowColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shape",
-          _flaxBinding131,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "side",
-          _flaxBinding126,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceTintColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "textStyle",
-          _flaxBinding4,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "visualDensity",
-          _flaxBinding141,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("disabledIconColor", _flaxBinding3, required: false),
+        FlaxParameter("disabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("elevation", _flaxBinding11, required: false),
+        FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+        FlaxParameter("enabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("fixedSize", _flaxBinding118, required: false),
+        FlaxParameter("foregroundBuilder", _flaxBinding150, required: false),
+        FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+        FlaxParameter("iconColor", _flaxBinding3, required: false),
+        FlaxParameter("iconSize", _flaxBinding11, required: false),
+        FlaxParameter("maximumSize", _flaxBinding118, required: false),
+        FlaxParameter("minimumSize", _flaxBinding118, required: false),
+        FlaxParameter("overlayColor", _flaxBinding3, required: false),
+        FlaxParameter("padding", _flaxBinding2, required: false),
+        FlaxParameter("shadowColor", _flaxBinding3, required: false),
+        FlaxParameter("shape", _flaxBinding132, required: false),
+        FlaxParameter("side", _flaxBinding127, required: false),
+        FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+        FlaxParameter("textStyle", _flaxBinding4, required: false),
+        FlaxParameter("visualDensity", _flaxBinding142, required: false),
       ],
-      _flaxBinding157,
+      _flaxBinding158,
       _ElevatedButton_styleFrom,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:FilledButton.styleFrom",
       [
-        FlaxParameter(
-          "alignment",
-          _flaxBinding16,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "animationDuration",
-          _flaxBinding143,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundBuilder",
-          _flaxBinding149,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("alignment", _flaxBinding16, required: false),
+        FlaxParameter("animationDuration", _flaxBinding144, required: false),
+        FlaxParameter("backgroundBuilder", _flaxBinding150, required: false),
+        FlaxParameter("backgroundColor", _flaxBinding3, required: false),
         FlaxParameter(
           "disabledBackgroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "disabledForegroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "disabledIconColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "disabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "elevation",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enableFeedback",
-          _flaxBinding48,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "fixedSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundBuilder",
-          _flaxBinding149,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconSize",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "maximumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "minimumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "overlayColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "padding",
-          _flaxBinding2,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shadowColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shape",
-          _flaxBinding131,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "side",
-          _flaxBinding126,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceTintColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "textStyle",
-          _flaxBinding4,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "visualDensity",
-          _flaxBinding141,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("disabledIconColor", _flaxBinding3, required: false),
+        FlaxParameter("disabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("elevation", _flaxBinding11, required: false),
+        FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+        FlaxParameter("enabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("fixedSize", _flaxBinding118, required: false),
+        FlaxParameter("foregroundBuilder", _flaxBinding150, required: false),
+        FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+        FlaxParameter("iconColor", _flaxBinding3, required: false),
+        FlaxParameter("iconSize", _flaxBinding11, required: false),
+        FlaxParameter("maximumSize", _flaxBinding118, required: false),
+        FlaxParameter("minimumSize", _flaxBinding118, required: false),
+        FlaxParameter("overlayColor", _flaxBinding3, required: false),
+        FlaxParameter("padding", _flaxBinding2, required: false),
+        FlaxParameter("shadowColor", _flaxBinding3, required: false),
+        FlaxParameter("shape", _flaxBinding132, required: false),
+        FlaxParameter("side", _flaxBinding127, required: false),
+        FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+        FlaxParameter("textStyle", _flaxBinding4, required: false),
+        FlaxParameter("visualDensity", _flaxBinding142, required: false),
       ],
-      _flaxBinding157,
+      _flaxBinding158,
       _FilledButton_styleFrom,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:IconButton.styleFrom",
       [
-        FlaxParameter(
-          "alignment",
-          _flaxBinding16,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "animationDuration",
-          _flaxBinding143,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("alignment", _flaxBinding16, required: false),
+        FlaxParameter("animationDuration", _flaxBinding144, required: false),
+        FlaxParameter("backgroundColor", _flaxBinding3, required: false),
         FlaxParameter(
           "disabledBackgroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "disabledForegroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "disabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "elevation",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enableFeedback",
-          _flaxBinding48,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "fixedSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "focusColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "highlightColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "hoverColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconSize",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "maximumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "minimumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "overlayColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "padding",
-          _flaxBinding2,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shadowColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shape",
-          _flaxBinding131,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "side",
-          _flaxBinding126,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceTintColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "visualDensity",
-          _flaxBinding141,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("disabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("elevation", _flaxBinding11, required: false),
+        FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+        FlaxParameter("enabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("fixedSize", _flaxBinding118, required: false),
+        FlaxParameter("focusColor", _flaxBinding3, required: false),
+        FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+        FlaxParameter("highlightColor", _flaxBinding3, required: false),
+        FlaxParameter("hoverColor", _flaxBinding3, required: false),
+        FlaxParameter("iconSize", _flaxBinding11, required: false),
+        FlaxParameter("maximumSize", _flaxBinding118, required: false),
+        FlaxParameter("minimumSize", _flaxBinding118, required: false),
+        FlaxParameter("overlayColor", _flaxBinding3, required: false),
+        FlaxParameter("padding", _flaxBinding2, required: false),
+        FlaxParameter("shadowColor", _flaxBinding3, required: false),
+        FlaxParameter("shape", _flaxBinding132, required: false),
+        FlaxParameter("side", _flaxBinding127, required: false),
+        FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+        FlaxParameter("visualDensity", _flaxBinding142, required: false),
       ],
-      _flaxBinding157,
+      _flaxBinding158,
       _IconButton_styleFrom,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:LinearProgressIndicator.defaultAnimationDuration",
-      _flaxBinding21,
-      api.LinearProgressIndicator.defaultAnimationDuration,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:ListTile.divideTiles",
       [
-        FlaxParameter(
-          "color",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "context",
-          _flaxBinding399,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "tiles",
-          _flaxBinding6,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("color", _flaxBinding3, required: false),
+        FlaxParameter("context", _flaxBinding400, required: false),
+        FlaxParameter("tiles", _flaxBinding6, required: true),
       ],
       _flaxBinding6,
       _ListTile_divideTiles,
     ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:Material.defaultSplashRadius",
-      _flaxBinding52,
-      api.Material.defaultSplashRadius,
-    ),
     FlaxFunctionBinding(
       "flax.material/material#function:MaterialApp.createMaterialHeroController",
       [],
-      _flaxBinding626,
+      _flaxBinding627,
       _MaterialApp_createMaterialHeroController,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:OutlinedButton.styleFrom",
       [
-        FlaxParameter(
-          "alignment",
-          _flaxBinding16,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "animationDuration",
-          _flaxBinding143,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundBuilder",
-          _flaxBinding149,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("alignment", _flaxBinding16, required: false),
+        FlaxParameter("animationDuration", _flaxBinding144, required: false),
+        FlaxParameter("backgroundBuilder", _flaxBinding150, required: false),
+        FlaxParameter("backgroundColor", _flaxBinding3, required: false),
         FlaxParameter(
           "disabledBackgroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "disabledForegroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "disabledIconColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "disabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "elevation",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enableFeedback",
-          _flaxBinding48,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "fixedSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundBuilder",
-          _flaxBinding149,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconSize",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "maximumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "minimumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "overlayColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "padding",
-          _flaxBinding2,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shadowColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shape",
-          _flaxBinding131,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "side",
-          _flaxBinding126,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceTintColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "textStyle",
-          _flaxBinding4,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "visualDensity",
-          _flaxBinding141,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("disabledIconColor", _flaxBinding3, required: false),
+        FlaxParameter("disabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("elevation", _flaxBinding11, required: false),
+        FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+        FlaxParameter("enabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("fixedSize", _flaxBinding118, required: false),
+        FlaxParameter("foregroundBuilder", _flaxBinding150, required: false),
+        FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+        FlaxParameter("iconColor", _flaxBinding3, required: false),
+        FlaxParameter("iconSize", _flaxBinding11, required: false),
+        FlaxParameter("maximumSize", _flaxBinding118, required: false),
+        FlaxParameter("minimumSize", _flaxBinding118, required: false),
+        FlaxParameter("overlayColor", _flaxBinding3, required: false),
+        FlaxParameter("padding", _flaxBinding2, required: false),
+        FlaxParameter("shadowColor", _flaxBinding3, required: false),
+        FlaxParameter("shape", _flaxBinding132, required: false),
+        FlaxParameter("side", _flaxBinding127, required: false),
+        FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+        FlaxParameter("textStyle", _flaxBinding4, required: false),
+        FlaxParameter("visualDensity", _flaxBinding142, required: false),
       ],
-      _flaxBinding157,
+      _flaxBinding158,
       _OutlinedButton_styleFrom,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:Scaffold.hasDrawer",
       [
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("context", _flaxBinding148, required: true),
         FlaxParameter(
           "registerForUpdates",
           _flaxBinding18,
           required: false,
           defaultValue: true,
-          omitWhenAbsent: false,
         ),
       ],
       _flaxBinding18,
@@ -8347,450 +2859,176 @@ const materialBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.material/material#function:TextButton.styleFrom",
       [
-        FlaxParameter(
-          "alignment",
-          _flaxBinding16,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "animationDuration",
-          _flaxBinding143,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundBuilder",
-          _flaxBinding149,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "backgroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("alignment", _flaxBinding16, required: false),
+        FlaxParameter("animationDuration", _flaxBinding144, required: false),
+        FlaxParameter("backgroundBuilder", _flaxBinding150, required: false),
+        FlaxParameter("backgroundColor", _flaxBinding3, required: false),
         FlaxParameter(
           "disabledBackgroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
         FlaxParameter(
           "disabledForegroundColor",
           _flaxBinding3,
           required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
         ),
-        FlaxParameter(
-          "disabledIconColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "disabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "elevation",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enableFeedback",
-          _flaxBinding48,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "enabledMouseCursor",
-          _flaxBinding136,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "fixedSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundBuilder",
-          _flaxBinding149,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "foregroundColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "iconSize",
-          _flaxBinding11,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "maximumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "minimumSize",
-          _flaxBinding117,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "overlayColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "padding",
-          _flaxBinding2,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shadowColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "shape",
-          _flaxBinding131,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "side",
-          _flaxBinding126,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "surfaceTintColor",
-          _flaxBinding3,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "textStyle",
-          _flaxBinding4,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "visualDensity",
-          _flaxBinding141,
-          required: false,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("disabledIconColor", _flaxBinding3, required: false),
+        FlaxParameter("disabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("elevation", _flaxBinding11, required: false),
+        FlaxParameter("enableFeedback", _flaxBinding48, required: false),
+        FlaxParameter("enabledMouseCursor", _flaxBinding137, required: false),
+        FlaxParameter("fixedSize", _flaxBinding118, required: false),
+        FlaxParameter("foregroundBuilder", _flaxBinding150, required: false),
+        FlaxParameter("foregroundColor", _flaxBinding3, required: false),
+        FlaxParameter("iconColor", _flaxBinding3, required: false),
+        FlaxParameter("iconSize", _flaxBinding11, required: false),
+        FlaxParameter("maximumSize", _flaxBinding118, required: false),
+        FlaxParameter("minimumSize", _flaxBinding118, required: false),
+        FlaxParameter("overlayColor", _flaxBinding3, required: false),
+        FlaxParameter("padding", _flaxBinding2, required: false),
+        FlaxParameter("shadowColor", _flaxBinding3, required: false),
+        FlaxParameter("shape", _flaxBinding132, required: false),
+        FlaxParameter("side", _flaxBinding127, required: false),
+        FlaxParameter("surfaceTintColor", _flaxBinding3, required: false),
+        FlaxParameter("textStyle", _flaxBinding4, required: false),
+        FlaxParameter("visualDensity", _flaxBinding142, required: false),
       ],
-      _flaxBinding157,
+      _flaxBinding158,
       _TextButton_styleFrom,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:TextField.inferAndroidSpellCheckConfiguration",
-      [
-        FlaxParameter(
-          "configuration",
-          _flaxBinding527,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding627,
-      _TextField_inferAndroidSpellCheckConfiguration,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:TextField.noMaxLength",
-      _flaxBinding83,
-      api.TextField.noMaxLength,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:TextField.materialMisspelledTextStyle",
+      [FlaxParameter("configuration", _flaxBinding528, required: true)],
       _flaxBinding628,
-      api.TextField.materialMisspelledTextStyle,
+      _TextField_inferAndroidSpellCheckConfiguration,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:TextTheme.lerp",
       [
-        FlaxParameter(
-          "a",
-          _flaxBinding551,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "b",
-          _flaxBinding551,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "t",
-          _flaxBinding52,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("a", _flaxBinding552, required: true),
+        FlaxParameter("b", _flaxBinding552, required: true),
+        FlaxParameter("t", _flaxBinding52, required: true),
       ],
-      _flaxBinding549,
+      _flaxBinding550,
       _TextTheme_lerp,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:TextTheme.of",
-      [
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding549,
+      [FlaxParameter("context", _flaxBinding148, required: true)],
+      _flaxBinding550,
       _TextTheme_of,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:TextTheme.primaryOf",
-      [
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding549,
+      [FlaxParameter("context", _flaxBinding148, required: true)],
+      _flaxBinding550,
       _TextTheme_primaryOf,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:Theme.of",
-      [
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding562,
+      [FlaxParameter("context", _flaxBinding148, required: true)],
+      _flaxBinding563,
       _Theme_of,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:Theme.brightnessOf",
-      [
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding170,
+      [FlaxParameter("context", _flaxBinding148, required: true)],
+      _flaxBinding171,
       _Theme_brightnessOf,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:Theme.maybeBrightnessOf",
-      [
-        FlaxParameter(
-          "context",
-          _flaxBinding147,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding226,
+      [FlaxParameter("context", _flaxBinding148, required: true)],
+      _flaxBinding227,
       _Theme_maybeBrightnessOf,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:ThemeData.localize",
       [
-        FlaxParameter(
-          "baseTheme",
-          _flaxBinding562,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "localTextGeometry",
-          _flaxBinding549,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("baseTheme", _flaxBinding563, required: true),
+        FlaxParameter("localTextGeometry", _flaxBinding550, required: true),
       ],
-      _flaxBinding562,
+      _flaxBinding563,
       _ThemeData_localize,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:ThemeData.estimateBrightnessForColor",
-      [
-        FlaxParameter(
-          "color",
-          _flaxBinding172,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding170,
+      [FlaxParameter("color", _flaxBinding173, required: true)],
+      _flaxBinding171,
       _ThemeData_estimateBrightnessForColor,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:ThemeData.lerp",
       [
-        FlaxParameter(
-          "a",
-          _flaxBinding562,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "b",
-          _flaxBinding562,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "t",
-          _flaxBinding52,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("a", _flaxBinding563, required: true),
+        FlaxParameter("b", _flaxBinding563, required: true),
+        FlaxParameter("t", _flaxBinding52, required: true),
       ],
-      _flaxBinding562,
+      _flaxBinding563,
       _ThemeData_lerp,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:VisualDensity.defaultDensityForPlatform",
-      [
-        FlaxParameter(
-          "platform",
-          _flaxBinding565,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
-      _flaxBinding568,
+      [FlaxParameter("platform", _flaxBinding566, required: true)],
+      _flaxBinding569,
       _VisualDensity_defaultDensityForPlatform,
     ),
     FlaxFunctionBinding(
       "flax.material/material#function:VisualDensity.lerp",
       [
-        FlaxParameter(
-          "a",
-          _flaxBinding568,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "b",
-          _flaxBinding568,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-        FlaxParameter(
-          "t",
-          _flaxBinding52,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
+        FlaxParameter("a", _flaxBinding569, required: true),
+        FlaxParameter("b", _flaxBinding569, required: true),
+        FlaxParameter("t", _flaxBinding52, required: true),
       ],
-      _flaxBinding568,
+      _flaxBinding569,
       _VisualDensity_lerp,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:VisualDensity.minimumDensity",
-      _flaxBinding52,
-      api.VisualDensity.minimumDensity,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:VisualDensity.maximumDensity",
-      _flaxBinding52,
-      api.VisualDensity.maximumDensity,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:VisualDensity.standard",
-      _flaxBinding568,
-      api.VisualDensity.standard,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:VisualDensity.comfortable",
-      _flaxBinding568,
-      api.VisualDensity.comfortable,
-    ),
-    const FlaxFunctionBinding.constant(
-      "flax.material/material#read:VisualDensity.compact",
-      _flaxBinding568,
-      api.VisualDensity.compact,
     ),
     FlaxFunctionBinding(
       "flax.material/material#read:VisualDensity.adaptivePlatformDensity",
       [],
-      _flaxBinding568,
+      _flaxBinding569,
       _VisualDensity_static_get_adaptivePlatformDensity,
     ),
+  ],
+  constants: [
+    FlaxConstantGroup(_flaxBinding52, {
+      "flax.material/material#read:Checkbox.width": api.Checkbox.width,
+      "flax.material/material#read:CircularProgressIndicator.strokeAlignInside":
+          api.CircularProgressIndicator.strokeAlignInside,
+      "flax.material/material#read:CircularProgressIndicator.strokeAlignCenter":
+          api.CircularProgressIndicator.strokeAlignCenter,
+      "flax.material/material#read:CircularProgressIndicator.strokeAlignOutside":
+          api.CircularProgressIndicator.strokeAlignOutside,
+      "flax.material/material#read:Material.defaultSplashRadius":
+          api.Material.defaultSplashRadius,
+      "flax.material/material#read:VisualDensity.minimumDensity":
+          api.VisualDensity.minimumDensity,
+      "flax.material/material#read:VisualDensity.maximumDensity":
+          api.VisualDensity.maximumDensity,
+    }),
+    FlaxConstantGroup(_flaxBinding21, {
+      "flax.material/material#read:CircularProgressIndicator.defaultAnimationDuration":
+          api.CircularProgressIndicator.defaultAnimationDuration,
+      "flax.material/material#read:LinearProgressIndicator.defaultAnimationDuration":
+          api.LinearProgressIndicator.defaultAnimationDuration,
+    }),
+    FlaxConstantGroup(_flaxBinding83, {
+      "flax.material/material#read:TextField.noMaxLength":
+          api.TextField.noMaxLength,
+    }),
+    FlaxConstantGroup(_flaxBinding629, {
+      "flax.material/material#read:TextField.materialMisspelledTextStyle":
+          api.TextField.materialMisspelledTextStyle,
+    }),
+    FlaxConstantGroup(_flaxBinding569, {
+      "flax.material/material#read:VisualDensity.standard":
+          api.VisualDensity.standard,
+      "flax.material/material#read:VisualDensity.comfortable":
+          api.VisualDensity.comfortable,
+      "flax.material/material#read:VisualDensity.compact":
+          api.VisualDensity.compact,
+    }),
   ],
   moduleId: "flax.material/material",
   dependencyModules: [
@@ -23821,11 +18059,11 @@ const _flaxBinding65 = FlaxGetter(
   _AppBar_animateColor,
 );
 const _flaxBinding66 = FlaxGetter("key", _flaxBinding0, _AppBar_key);
-const _flaxBinding67 = <FlaxParameter>[];
-const _flaxBinding68 = FlaxTypeRef("String");
+const _flaxBinding67 = FlaxTypeRef("String");
+const _flaxBinding68 = <FlaxParameter>[];
 const _flaxBinding69 = FlaxInstanceMethod(
-  _flaxBinding67,
   _flaxBinding68,
+  _flaxBinding67,
   _AppBar_toStringShort,
 );
 const _flaxBinding70 = FlaxTypeRef(
@@ -23842,7 +18080,7 @@ const _flaxBinding71 = <FlaxParameter>[
 ];
 const _flaxBinding72 = FlaxInstanceMethod(
   _flaxBinding71,
-  _flaxBinding68,
+  _flaxBinding67,
   _AppBar_toString,
 );
 const _flaxBinding73 = FlaxTypeRef(
@@ -23867,17 +18105,17 @@ const _flaxBinding77 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
 );
-const _flaxBinding78 = <FlaxParameter>[
+const _flaxBinding78 = FlaxTypeRef("void");
+const _flaxBinding79 = <FlaxParameter>[
   FlaxParameter("properties", _flaxBinding77, required: true),
 ];
-const _flaxBinding79 = FlaxTypeRef("void");
 const _flaxBinding80 = FlaxInstanceMethod(
-  _flaxBinding78,
   _flaxBinding79,
+  _flaxBinding78,
   _AppBar_debugFillProperties,
 );
 const _flaxBinding81 = <FlaxParameter>[
-  FlaxParameter("joiner", _flaxBinding68, required: false, defaultValue: ', '),
+  FlaxParameter("joiner", _flaxBinding67, required: false, defaultValue: ', '),
   FlaxParameter(
     "minLevel",
     _flaxBinding70,
@@ -23887,7 +18125,7 @@ const _flaxBinding81 = <FlaxParameter>[
 ];
 const _flaxBinding82 = FlaxInstanceMethod(
   _flaxBinding81,
-  _flaxBinding68,
+  _flaxBinding67,
   _AppBar_toStringShallow,
 );
 const _flaxBinding83 = FlaxTypeRef("int");
@@ -23900,7 +18138,7 @@ const _flaxBinding84 = <FlaxParameter>[
   ),
   FlaxParameter(
     "prefixLineOne",
-    _flaxBinding68,
+    _flaxBinding67,
     required: false,
     defaultValue: '',
   ),
@@ -23909,7 +18147,7 @@ const _flaxBinding84 = <FlaxParameter>[
 ];
 const _flaxBinding85 = FlaxInstanceMethod(
   _flaxBinding84,
-  _flaxBinding68,
+  _flaxBinding67,
   _AppBar_toStringDeep,
 );
 const _flaxBinding86 = FlaxTypeRef(
@@ -23933,7 +18171,7 @@ const _flaxBinding87 = FlaxTypeRef(
   iterable: _flaxBinding86,
 );
 const _flaxBinding88 = FlaxInstanceMethod(
-  _flaxBinding67,
+  _flaxBinding68,
   _flaxBinding87,
   _AppBar_debugDescribeChildren,
 );
@@ -23943,7 +18181,7 @@ const _flaxBinding89 = FlaxTypeRef(
   dartType: FlaxDartTypes.typeOf<api1.State<api.AppBar>>,
 );
 const _flaxBinding90 = FlaxInstanceMethod(
-  _flaxBinding67,
+  _flaxBinding68,
   _flaxBinding89,
   _AppBar_createState,
 );
@@ -23952,7 +18190,7 @@ const _flaxBinding91 = FlaxTypeRef(
   id: "flax.core/sdk_widgets#type:StatefulElement",
 );
 const _flaxBinding92 = FlaxInstanceMethod(
-  _flaxBinding67,
+  _flaxBinding68,
   _flaxBinding91,
   _AppBar_createElement,
 );
@@ -24037,13 +18275,76 @@ const _flaxBinding93 = <FlaxParameter>[
     defaultValue: false,
   ),
 ];
-const _flaxBinding94 = FlaxTypeRef(
+const _flaxBinding94 = FlaxObjectBinding(
+  "flax.material/material#type:AppBar",
+  [
+    _flaxBinding24,
+    _flaxBinding25,
+    _flaxBinding26,
+    _flaxBinding27,
+    _flaxBinding28,
+    _flaxBinding29,
+    _flaxBinding30,
+    _flaxBinding32,
+    _flaxBinding33,
+    _flaxBinding34,
+    _flaxBinding38,
+    _flaxBinding39,
+    _flaxBinding40,
+    _flaxBinding41,
+    _flaxBinding42,
+    _flaxBinding43,
+    _flaxBinding45,
+    _flaxBinding46,
+    _flaxBinding47,
+    _flaxBinding49,
+    _flaxBinding50,
+    _flaxBinding51,
+    _flaxBinding53,
+    _flaxBinding54,
+    _flaxBinding55,
+    _flaxBinding56,
+    _flaxBinding57,
+    _flaxBinding58,
+    _flaxBinding60,
+    _flaxBinding61,
+    _flaxBinding62,
+    _flaxBinding63,
+    _flaxBinding64,
+    _flaxBinding65,
+    _flaxBinding66,
+  ],
+  {
+    "toStringShort": _flaxBinding69,
+    "toString": _flaxBinding72,
+    "toDiagnosticsNode": _flaxBinding76,
+    "debugFillProperties": _flaxBinding80,
+    "toStringShallow": _flaxBinding82,
+    "toStringDeep": _flaxBinding85,
+    "debugDescribeChildren": _flaxBinding88,
+    "createState": _flaxBinding90,
+    "createElement": _flaxBinding92,
+  },
+  constructors: {"": _flaxBinding93},
+  create: _createAppBar,
+  matches: _isAppBar,
+  setters: [],
+  supertypes: [
+    "flax.core/components#type:StatefulWidget",
+    "flax.core/sdk_widgets#type:Widget",
+    "flax.core/sdk_foundation#type:DiagnosticableTree",
+    "dart:core::Object",
+    "flax.core/sdk_foundation#type:Diagnosticable",
+    "flax.core/flutter#type:PreferredSizeWidget",
+  ],
+);
+const _flaxBinding95 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:WidgetState",
 );
-const _flaxBinding95 = FlaxTypeRef(
+const _flaxBinding96 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding94,
+  item: _flaxBinding95,
   collection: FlaxCollectionBinding(
     "iterable:[enum:flax.core/flutter#type:WidgetState]",
     _collection5Create,
@@ -24051,21 +18352,21 @@ const _flaxBinding95 = FlaxTypeRef(
     restore: _collection5Restore,
   ),
 );
-const _flaxBinding96 = FlaxTypeRef(
+const _flaxBinding97 = FlaxTypeRef(
   "set",
-  item: _flaxBinding94,
+  item: _flaxBinding95,
   collection: FlaxCollectionBinding(
     "set:[enum:flax.core/flutter#type:WidgetState]",
     _collection4Create,
     _collection4Matches,
   ),
-  iterable: _flaxBinding95,
+  iterable: _flaxBinding96,
 );
-const _flaxBinding97 = FlaxCallbackBinding(
+const _flaxBinding98 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
@@ -24077,8 +18378,8 @@ const _flaxBinding97 = FlaxCallbackBinding(
   matches:
       FlaxCallbackAdapters.matches1<Set<api1.WidgetState>, api2.TextStyle?>,
 );
-const _flaxBinding98 = FlaxTypeRef("callback", callback: _flaxBinding97);
-const _flaxBinding99 = FlaxTypeRef(
+const _flaxBinding99 = FlaxTypeRef("callback", callback: _flaxBinding98);
+const _flaxBinding100 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api1.WidgetStateProperty<api2.TextStyle?>?>,
@@ -24086,29 +18387,21 @@ const _flaxBinding99 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:TextStyle>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding98,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding99, required: true)],
       _deferred0,
     ),
   },
 );
-const _flaxBinding100 = FlaxGetter(
+const _flaxBinding101 = FlaxGetter(
   "textStyle",
-  _flaxBinding99,
+  _flaxBinding100,
   _ButtonStyle_textStyle,
 );
-const _flaxBinding101 = FlaxCallbackBinding(
+const _flaxBinding102 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
@@ -24119,8 +18412,8 @@ const _flaxBinding101 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<Set<api1.WidgetState>, api5.Color?>,
   matches: FlaxCallbackAdapters.matches1<Set<api1.WidgetState>, api5.Color?>,
 );
-const _flaxBinding102 = FlaxTypeRef("callback", callback: _flaxBinding101);
-const _flaxBinding103 = FlaxTypeRef(
+const _flaxBinding103 = FlaxTypeRef("callback", callback: _flaxBinding102);
+const _flaxBinding104 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api1.WidgetStateProperty<api5.Color?>?>,
@@ -24128,49 +18421,41 @@ const _flaxBinding103 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Color>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding102,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding103, required: true)],
       _deferred1,
     ),
   },
 );
-const _flaxBinding104 = FlaxGetter(
+const _flaxBinding105 = FlaxGetter(
   "backgroundColor",
-  _flaxBinding103,
+  _flaxBinding104,
   _ButtonStyle_backgroundColor,
 );
-const _flaxBinding105 = FlaxGetter(
+const _flaxBinding106 = FlaxGetter(
   "foregroundColor",
-  _flaxBinding103,
+  _flaxBinding104,
   _ButtonStyle_foregroundColor,
 );
-const _flaxBinding106 = FlaxGetter(
+const _flaxBinding107 = FlaxGetter(
   "overlayColor",
-  _flaxBinding103,
+  _flaxBinding104,
   _ButtonStyle_overlayColor,
 );
-const _flaxBinding107 = FlaxGetter(
+const _flaxBinding108 = FlaxGetter(
   "shadowColor",
-  _flaxBinding103,
+  _flaxBinding104,
   _ButtonStyle_shadowColor,
 );
-const _flaxBinding108 = FlaxGetter(
+const _flaxBinding109 = FlaxGetter(
   "surfaceTintColor",
-  _flaxBinding103,
+  _flaxBinding104,
   _ButtonStyle_surfaceTintColor,
 );
-const _flaxBinding109 = FlaxCallbackBinding(
+const _flaxBinding110 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
@@ -24181,8 +18466,8 @@ const _flaxBinding109 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<Set<api1.WidgetState>, double?>,
   matches: FlaxCallbackAdapters.matches1<Set<api1.WidgetState>, double?>,
 );
-const _flaxBinding110 = FlaxTypeRef("callback", callback: _flaxBinding109);
-const _flaxBinding111 = FlaxTypeRef(
+const _flaxBinding111 = FlaxTypeRef("callback", callback: _flaxBinding110);
+const _flaxBinding112 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api1.WidgetStateProperty<double?>?>,
@@ -24190,29 +18475,21 @@ const _flaxBinding111 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><double?:>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding110,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding111, required: true)],
       _deferred2,
     ),
   },
 );
-const _flaxBinding112 = FlaxGetter(
+const _flaxBinding113 = FlaxGetter(
   "elevation",
-  _flaxBinding111,
+  _flaxBinding112,
   _ButtonStyle_elevation,
 );
-const _flaxBinding113 = FlaxCallbackBinding(
+const _flaxBinding114 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
@@ -24225,8 +18502,8 @@ const _flaxBinding113 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches1<Set<api1.WidgetState>, api2.EdgeInsetsGeometry?>,
 );
-const _flaxBinding114 = FlaxTypeRef("callback", callback: _flaxBinding113);
-const _flaxBinding115 = FlaxTypeRef(
+const _flaxBinding115 = FlaxTypeRef("callback", callback: _flaxBinding114);
+const _flaxBinding116 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType:
@@ -24235,46 +18512,38 @@ const _flaxBinding115 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:EdgeInsetsGeometry>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding114,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding115, required: true)],
       _deferred3,
     ),
   },
 );
-const _flaxBinding116 = FlaxGetter(
+const _flaxBinding117 = FlaxGetter(
   "padding",
-  _flaxBinding115,
+  _flaxBinding116,
   _ButtonStyle_padding,
 );
-const _flaxBinding117 = FlaxTypeRef(
+const _flaxBinding118 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Size",
   nullable: true,
 );
-const _flaxBinding118 = FlaxCallbackBinding(
+const _flaxBinding119 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding117,
+  _flaxBinding118,
   FlaxCallbackAdapters.wrap1<Set<api1.WidgetState>, api5.Size?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Size",
   invoke: FlaxCallbackAdapters.invoke1<Set<api1.WidgetState>, api5.Size?>,
   matches: FlaxCallbackAdapters.matches1<Set<api1.WidgetState>, api5.Size?>,
 );
-const _flaxBinding119 = FlaxTypeRef("callback", callback: _flaxBinding118);
-const _flaxBinding120 = FlaxTypeRef(
+const _flaxBinding120 = FlaxTypeRef("callback", callback: _flaxBinding119);
+const _flaxBinding121 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api1.WidgetStateProperty<api5.Size?>?>,
@@ -24282,67 +18551,59 @@ const _flaxBinding120 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:Size>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding119,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding120, required: true)],
       _deferred4,
     ),
   },
 );
-const _flaxBinding121 = FlaxGetter(
+const _flaxBinding122 = FlaxGetter(
   "minimumSize",
-  _flaxBinding120,
+  _flaxBinding121,
   _ButtonStyle_minimumSize,
 );
-const _flaxBinding122 = FlaxGetter(
+const _flaxBinding123 = FlaxGetter(
   "fixedSize",
-  _flaxBinding120,
+  _flaxBinding121,
   _ButtonStyle_fixedSize,
 );
-const _flaxBinding123 = FlaxGetter(
+const _flaxBinding124 = FlaxGetter(
   "maximumSize",
-  _flaxBinding120,
+  _flaxBinding121,
   _ButtonStyle_maximumSize,
 );
-const _flaxBinding124 = FlaxGetter(
+const _flaxBinding125 = FlaxGetter(
   "iconColor",
-  _flaxBinding103,
+  _flaxBinding104,
   _ButtonStyle_iconColor,
 );
-const _flaxBinding125 = FlaxGetter(
+const _flaxBinding126 = FlaxGetter(
   "iconSize",
-  _flaxBinding111,
+  _flaxBinding112,
   _ButtonStyle_iconSize,
 );
-const _flaxBinding126 = FlaxTypeRef(
+const _flaxBinding127 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BorderSide",
   nullable: true,
 );
-const _flaxBinding127 = FlaxCallbackBinding(
+const _flaxBinding128 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding126,
+  _flaxBinding127,
   FlaxCallbackAdapters.wrap1<Set<api1.WidgetState>, api2.BorderSide?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:BorderSide",
   invoke: FlaxCallbackAdapters.invoke1<Set<api1.WidgetState>, api2.BorderSide?>,
   matches:
       FlaxCallbackAdapters.matches1<Set<api1.WidgetState>, api2.BorderSide?>,
 );
-const _flaxBinding128 = FlaxTypeRef("callback", callback: _flaxBinding127);
-const _flaxBinding129 = FlaxTypeRef(
+const _flaxBinding129 = FlaxTypeRef("callback", callback: _flaxBinding128);
+const _flaxBinding130 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api1.WidgetStateProperty<api2.BorderSide?>?>,
@@ -24350,35 +18611,27 @@ const _flaxBinding129 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:BorderSide>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding128,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding129, required: true)],
       _deferred5,
     ),
   },
 );
-const _flaxBinding130 = FlaxGetter("side", _flaxBinding129, _ButtonStyle_side);
-const _flaxBinding131 = FlaxTypeRef(
+const _flaxBinding131 = FlaxGetter("side", _flaxBinding130, _ButtonStyle_side);
+const _flaxBinding132 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:OutlinedBorder",
   nullable: true,
 );
-const _flaxBinding132 = FlaxCallbackBinding(
+const _flaxBinding133 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding131,
+  _flaxBinding132,
   FlaxCallbackAdapters.wrap1<Set<api1.WidgetState>, api2.OutlinedBorder?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:OutlinedBorder",
   invoke:
@@ -24386,8 +18639,8 @@ const _flaxBinding132 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches1<Set<api1.WidgetState>, api2.OutlinedBorder?>,
 );
-const _flaxBinding133 = FlaxTypeRef("callback", callback: _flaxBinding132);
-const _flaxBinding134 = FlaxTypeRef(
+const _flaxBinding134 = FlaxTypeRef("callback", callback: _flaxBinding133);
+const _flaxBinding135 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType:
@@ -24396,39 +18649,31 @@ const _flaxBinding134 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:OutlinedBorder>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding133,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding134, required: true)],
       _deferred6,
     ),
   },
 );
-const _flaxBinding135 = FlaxGetter(
+const _flaxBinding136 = FlaxGetter(
   "shape",
-  _flaxBinding134,
+  _flaxBinding135,
   _ButtonStyle_shape,
 );
-const _flaxBinding136 = FlaxTypeRef(
+const _flaxBinding137 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:MouseCursor",
   nullable: true,
 );
-const _flaxBinding137 = FlaxCallbackBinding(
+const _flaxBinding138 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding136,
+  _flaxBinding137,
   FlaxCallbackAdapters.wrap1<Set<api1.WidgetState>, api9.MouseCursor?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:MouseCursor",
   invoke:
@@ -24436,8 +18681,8 @@ const _flaxBinding137 = FlaxCallbackBinding(
   matches:
       FlaxCallbackAdapters.matches1<Set<api1.WidgetState>, api9.MouseCursor?>,
 );
-const _flaxBinding138 = FlaxTypeRef("callback", callback: _flaxBinding137);
-const _flaxBinding139 = FlaxTypeRef(
+const _flaxBinding139 = FlaxTypeRef("callback", callback: _flaxBinding138);
+const _flaxBinding140 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api1.WidgetStateProperty<api9.MouseCursor?>?>,
@@ -24445,69 +18690,61 @@ const _flaxBinding139 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:MouseCursor>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding138,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding139, required: true)],
       _deferred7,
     ),
   },
 );
-const _flaxBinding140 = FlaxGetter(
+const _flaxBinding141 = FlaxGetter(
   "mouseCursor",
-  _flaxBinding139,
+  _flaxBinding140,
   _ButtonStyle_mouseCursor,
 );
-const _flaxBinding141 = FlaxTypeRef(
+const _flaxBinding142 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:VisualDensity",
   nullable: true,
 );
-const _flaxBinding142 = FlaxGetter(
+const _flaxBinding143 = FlaxGetter(
   "visualDensity",
-  _flaxBinding141,
+  _flaxBinding142,
   _ButtonStyle_visualDensity,
 );
-const _flaxBinding143 = FlaxTypeRef(
+const _flaxBinding144 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Duration",
   nullable: true,
 );
-const _flaxBinding144 = FlaxGetter(
+const _flaxBinding145 = FlaxGetter(
   "animationDuration",
-  _flaxBinding143,
+  _flaxBinding144,
   _ButtonStyle_animationDuration,
 );
-const _flaxBinding145 = FlaxGetter(
+const _flaxBinding146 = FlaxGetter(
   "enableFeedback",
   _flaxBinding48,
   _ButtonStyle_enableFeedback,
 );
-const _flaxBinding146 = FlaxGetter(
+const _flaxBinding147 = FlaxGetter(
   "alignment",
   _flaxBinding16,
   _ButtonStyle_alignment,
 );
-const _flaxBinding147 = FlaxTypeRef(
+const _flaxBinding148 = FlaxTypeRef(
   "context",
   id: "flax.core/flutter#type:BuildContext",
 );
-const _flaxBinding148 = FlaxCallbackBinding(
+const _flaxBinding149 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "context",
-      _flaxBinding147,
+      _flaxBinding148,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
@@ -24524,146 +18761,146 @@ const _flaxBinding148 = FlaxCallbackBinding(
   invoke: _callback0Invoke,
   matches: _callback0Matches,
 );
-const _flaxBinding149 = FlaxTypeRef(
+const _flaxBinding150 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding148,
-);
-const _flaxBinding150 = FlaxGetter(
-  "backgroundBuilder",
-  _flaxBinding149,
-  _ButtonStyle_backgroundBuilder,
+  callback: _flaxBinding149,
 );
 const _flaxBinding151 = FlaxGetter(
+  "backgroundBuilder",
+  _flaxBinding150,
+  _ButtonStyle_backgroundBuilder,
+);
+const _flaxBinding152 = FlaxGetter(
   "foregroundBuilder",
-  _flaxBinding149,
+  _flaxBinding150,
   _ButtonStyle_foregroundBuilder,
 );
-const _flaxBinding152 = FlaxInstanceMethod(
-  _flaxBinding67,
+const _flaxBinding153 = FlaxInstanceMethod(
   _flaxBinding68,
+  _flaxBinding67,
   _ButtonStyle_toStringShort,
 );
-const _flaxBinding153 = FlaxInstanceMethod(
+const _flaxBinding154 = FlaxInstanceMethod(
   _flaxBinding71,
-  _flaxBinding68,
+  _flaxBinding67,
   _ButtonStyle_toString,
 );
-const _flaxBinding154 = FlaxInstanceMethod(
+const _flaxBinding155 = FlaxInstanceMethod(
   _flaxBinding74,
   _flaxBinding75,
   _ButtonStyle_toDiagnosticsNode,
 );
-const _flaxBinding155 = FlaxInstanceMethod(
-  _flaxBinding78,
+const _flaxBinding156 = FlaxInstanceMethod(
   _flaxBinding79,
+  _flaxBinding78,
   _ButtonStyle_debugFillProperties,
 );
-const _flaxBinding156 = <FlaxParameter>[
+const _flaxBinding157 = <FlaxParameter>[
   FlaxParameter("alignment", _flaxBinding16, required: false),
-  FlaxParameter("animationDuration", _flaxBinding143, required: false),
-  FlaxParameter("backgroundBuilder", _flaxBinding149, required: false),
-  FlaxParameter("backgroundColor", _flaxBinding103, required: false),
-  FlaxParameter("elevation", _flaxBinding111, required: false),
+  FlaxParameter("animationDuration", _flaxBinding144, required: false),
+  FlaxParameter("backgroundBuilder", _flaxBinding150, required: false),
+  FlaxParameter("backgroundColor", _flaxBinding104, required: false),
+  FlaxParameter("elevation", _flaxBinding112, required: false),
   FlaxParameter("enableFeedback", _flaxBinding48, required: false),
-  FlaxParameter("fixedSize", _flaxBinding120, required: false),
-  FlaxParameter("foregroundBuilder", _flaxBinding149, required: false),
-  FlaxParameter("foregroundColor", _flaxBinding103, required: false),
-  FlaxParameter("iconColor", _flaxBinding103, required: false),
-  FlaxParameter("iconSize", _flaxBinding111, required: false),
-  FlaxParameter("maximumSize", _flaxBinding120, required: false),
-  FlaxParameter("minimumSize", _flaxBinding120, required: false),
-  FlaxParameter("mouseCursor", _flaxBinding139, required: false),
-  FlaxParameter("overlayColor", _flaxBinding103, required: false),
-  FlaxParameter("padding", _flaxBinding115, required: false),
-  FlaxParameter("shadowColor", _flaxBinding103, required: false),
-  FlaxParameter("shape", _flaxBinding134, required: false),
-  FlaxParameter("side", _flaxBinding129, required: false),
-  FlaxParameter("surfaceTintColor", _flaxBinding103, required: false),
-  FlaxParameter("textStyle", _flaxBinding99, required: false),
-  FlaxParameter("visualDensity", _flaxBinding141, required: false),
+  FlaxParameter("fixedSize", _flaxBinding121, required: false),
+  FlaxParameter("foregroundBuilder", _flaxBinding150, required: false),
+  FlaxParameter("foregroundColor", _flaxBinding104, required: false),
+  FlaxParameter("iconColor", _flaxBinding104, required: false),
+  FlaxParameter("iconSize", _flaxBinding112, required: false),
+  FlaxParameter("maximumSize", _flaxBinding121, required: false),
+  FlaxParameter("minimumSize", _flaxBinding121, required: false),
+  FlaxParameter("mouseCursor", _flaxBinding140, required: false),
+  FlaxParameter("overlayColor", _flaxBinding104, required: false),
+  FlaxParameter("padding", _flaxBinding116, required: false),
+  FlaxParameter("shadowColor", _flaxBinding104, required: false),
+  FlaxParameter("shape", _flaxBinding135, required: false),
+  FlaxParameter("side", _flaxBinding130, required: false),
+  FlaxParameter("surfaceTintColor", _flaxBinding104, required: false),
+  FlaxParameter("textStyle", _flaxBinding100, required: false),
+  FlaxParameter("visualDensity", _flaxBinding142, required: false),
 ];
-const _flaxBinding157 = FlaxTypeRef(
+const _flaxBinding158 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:ButtonStyle",
 );
-const _flaxBinding158 = FlaxInstanceMethod(
-  _flaxBinding156,
+const _flaxBinding159 = FlaxInstanceMethod(
   _flaxBinding157,
+  _flaxBinding158,
   _ButtonStyle_copyWith,
 );
-const _flaxBinding159 = FlaxTypeRef(
+const _flaxBinding160 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:ButtonStyle",
   nullable: true,
 );
-const _flaxBinding160 = <FlaxParameter>[
-  FlaxParameter("style", _flaxBinding159, required: true),
+const _flaxBinding161 = <FlaxParameter>[
+  FlaxParameter("style", _flaxBinding160, required: true),
 ];
-const _flaxBinding161 = FlaxInstanceMethod(
-  _flaxBinding160,
-  _flaxBinding157,
+const _flaxBinding162 = FlaxInstanceMethod(
+  _flaxBinding161,
+  _flaxBinding158,
   _ButtonStyle_merge,
 );
-const _flaxBinding162 = <FlaxParameter>[
-  FlaxParameter("textStyle", _flaxBinding99, required: false),
-  FlaxParameter("backgroundColor", _flaxBinding103, required: false),
-  FlaxParameter("foregroundColor", _flaxBinding103, required: false),
-  FlaxParameter("overlayColor", _flaxBinding103, required: false),
-  FlaxParameter("shadowColor", _flaxBinding103, required: false),
-  FlaxParameter("surfaceTintColor", _flaxBinding103, required: false),
-  FlaxParameter("elevation", _flaxBinding111, required: false),
-  FlaxParameter("padding", _flaxBinding115, required: false),
-  FlaxParameter("minimumSize", _flaxBinding120, required: false),
-  FlaxParameter("fixedSize", _flaxBinding120, required: false),
-  FlaxParameter("maximumSize", _flaxBinding120, required: false),
-  FlaxParameter("iconColor", _flaxBinding103, required: false),
-  FlaxParameter("iconSize", _flaxBinding111, required: false),
-  FlaxParameter("side", _flaxBinding129, required: false),
-  FlaxParameter("shape", _flaxBinding134, required: false),
-  FlaxParameter("mouseCursor", _flaxBinding139, required: false),
-  FlaxParameter("visualDensity", _flaxBinding141, required: false),
-  FlaxParameter("animationDuration", _flaxBinding143, required: false),
+const _flaxBinding163 = <FlaxParameter>[
+  FlaxParameter("textStyle", _flaxBinding100, required: false),
+  FlaxParameter("backgroundColor", _flaxBinding104, required: false),
+  FlaxParameter("foregroundColor", _flaxBinding104, required: false),
+  FlaxParameter("overlayColor", _flaxBinding104, required: false),
+  FlaxParameter("shadowColor", _flaxBinding104, required: false),
+  FlaxParameter("surfaceTintColor", _flaxBinding104, required: false),
+  FlaxParameter("elevation", _flaxBinding112, required: false),
+  FlaxParameter("padding", _flaxBinding116, required: false),
+  FlaxParameter("minimumSize", _flaxBinding121, required: false),
+  FlaxParameter("fixedSize", _flaxBinding121, required: false),
+  FlaxParameter("maximumSize", _flaxBinding121, required: false),
+  FlaxParameter("iconColor", _flaxBinding104, required: false),
+  FlaxParameter("iconSize", _flaxBinding112, required: false),
+  FlaxParameter("side", _flaxBinding130, required: false),
+  FlaxParameter("shape", _flaxBinding135, required: false),
+  FlaxParameter("mouseCursor", _flaxBinding140, required: false),
+  FlaxParameter("visualDensity", _flaxBinding142, required: false),
+  FlaxParameter("animationDuration", _flaxBinding144, required: false),
   FlaxParameter("enableFeedback", _flaxBinding48, required: false),
   FlaxParameter("alignment", _flaxBinding16, required: false),
-  FlaxParameter("backgroundBuilder", _flaxBinding149, required: false),
-  FlaxParameter("foregroundBuilder", _flaxBinding149, required: false),
+  FlaxParameter("backgroundBuilder", _flaxBinding150, required: false),
+  FlaxParameter("foregroundBuilder", _flaxBinding150, required: false),
 ];
-const _flaxBinding163 = FlaxObjectBinding(
+const _flaxBinding164 = FlaxObjectBinding(
   "flax.material/material#type:ButtonStyle",
   [
-    _flaxBinding100,
-    _flaxBinding104,
+    _flaxBinding101,
     _flaxBinding105,
     _flaxBinding106,
     _flaxBinding107,
     _flaxBinding108,
-    _flaxBinding112,
-    _flaxBinding116,
-    _flaxBinding121,
+    _flaxBinding109,
+    _flaxBinding113,
+    _flaxBinding117,
     _flaxBinding122,
     _flaxBinding123,
     _flaxBinding124,
     _flaxBinding125,
-    _flaxBinding130,
-    _flaxBinding135,
-    _flaxBinding140,
-    _flaxBinding142,
-    _flaxBinding144,
+    _flaxBinding126,
+    _flaxBinding131,
+    _flaxBinding136,
+    _flaxBinding141,
+    _flaxBinding143,
     _flaxBinding145,
     _flaxBinding146,
-    _flaxBinding150,
+    _flaxBinding147,
     _flaxBinding151,
+    _flaxBinding152,
   ],
   {
-    "toStringShort": _flaxBinding152,
-    "toString": _flaxBinding153,
-    "toDiagnosticsNode": _flaxBinding154,
-    "debugFillProperties": _flaxBinding155,
-    "copyWith": _flaxBinding158,
-    "merge": _flaxBinding161,
+    "toStringShort": _flaxBinding153,
+    "toString": _flaxBinding154,
+    "toDiagnosticsNode": _flaxBinding155,
+    "debugFillProperties": _flaxBinding156,
+    "copyWith": _flaxBinding159,
+    "merge": _flaxBinding162,
   },
-  constructors: {"": _flaxBinding162},
+  constructors: {"": _flaxBinding163},
   create: _createButtonStyle,
   matches: _isButtonStyle,
   setters: [],
@@ -24672,7 +18909,7 @@ const _flaxBinding163 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding164 = FlaxCallbackBinding(
+const _flaxBinding165 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
@@ -24681,324 +18918,324 @@ const _flaxBinding164 = FlaxCallbackBinding(
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<bool?>,
   id: "callback:<>(p:r:value:bool?:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<bool?>,
   matches: FlaxCallbackAdapters.matchesVoid1<bool?>,
 );
-const _flaxBinding165 = FlaxTypeRef(
+const _flaxBinding166 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding164,
+  callback: _flaxBinding165,
 );
-const _flaxBinding166 = FlaxTypeRef(
+const _flaxBinding167 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:FocusNode",
   nullable: true,
 );
-const _flaxBinding167 = FlaxTypeRef(
+const _flaxBinding168 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Animation",
   dartType: FlaxDartTypes.typeOf<api3.Animation<api5.Color?>?>,
   nullable: true,
 );
-const _flaxBinding168 = FlaxTypeRef(
+const _flaxBinding169 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:StrokeCap",
   nullable: true,
 );
-const _flaxBinding169 = FlaxTypeRef(
+const _flaxBinding170 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:AnimationController",
   nullable: true,
 );
-const _flaxBinding170 = FlaxTypeRef(
+const _flaxBinding171 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:Brightness",
 );
-const _flaxBinding171 = FlaxGetter(
+const _flaxBinding172 = FlaxGetter(
   "brightness",
-  _flaxBinding170,
+  _flaxBinding171,
   _ColorScheme_brightness,
 );
-const _flaxBinding172 = FlaxTypeRef(
+const _flaxBinding173 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Color",
 );
-const _flaxBinding173 = FlaxGetter(
+const _flaxBinding174 = FlaxGetter(
   "primary",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_primary,
 );
-const _flaxBinding174 = FlaxGetter(
+const _flaxBinding175 = FlaxGetter(
   "onPrimary",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onPrimary,
 );
-const _flaxBinding175 = FlaxGetter(
+const _flaxBinding176 = FlaxGetter(
   "primaryContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_primaryContainer,
 );
-const _flaxBinding176 = FlaxGetter(
+const _flaxBinding177 = FlaxGetter(
   "onPrimaryContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onPrimaryContainer,
 );
-const _flaxBinding177 = FlaxGetter(
+const _flaxBinding178 = FlaxGetter(
   "primaryFixed",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_primaryFixed,
 );
-const _flaxBinding178 = FlaxGetter(
+const _flaxBinding179 = FlaxGetter(
   "primaryFixedDim",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_primaryFixedDim,
 );
-const _flaxBinding179 = FlaxGetter(
+const _flaxBinding180 = FlaxGetter(
   "onPrimaryFixed",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onPrimaryFixed,
 );
-const _flaxBinding180 = FlaxGetter(
+const _flaxBinding181 = FlaxGetter(
   "onPrimaryFixedVariant",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onPrimaryFixedVariant,
 );
-const _flaxBinding181 = FlaxGetter(
+const _flaxBinding182 = FlaxGetter(
   "secondary",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_secondary,
 );
-const _flaxBinding182 = FlaxGetter(
+const _flaxBinding183 = FlaxGetter(
   "onSecondary",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onSecondary,
 );
-const _flaxBinding183 = FlaxGetter(
+const _flaxBinding184 = FlaxGetter(
   "secondaryContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_secondaryContainer,
 );
-const _flaxBinding184 = FlaxGetter(
+const _flaxBinding185 = FlaxGetter(
   "onSecondaryContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onSecondaryContainer,
 );
-const _flaxBinding185 = FlaxGetter(
+const _flaxBinding186 = FlaxGetter(
   "secondaryFixed",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_secondaryFixed,
 );
-const _flaxBinding186 = FlaxGetter(
+const _flaxBinding187 = FlaxGetter(
   "secondaryFixedDim",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_secondaryFixedDim,
 );
-const _flaxBinding187 = FlaxGetter(
+const _flaxBinding188 = FlaxGetter(
   "onSecondaryFixed",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onSecondaryFixed,
 );
-const _flaxBinding188 = FlaxGetter(
+const _flaxBinding189 = FlaxGetter(
   "onSecondaryFixedVariant",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onSecondaryFixedVariant,
 );
-const _flaxBinding189 = FlaxGetter(
+const _flaxBinding190 = FlaxGetter(
   "tertiary",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_tertiary,
 );
-const _flaxBinding190 = FlaxGetter(
+const _flaxBinding191 = FlaxGetter(
   "onTertiary",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onTertiary,
 );
-const _flaxBinding191 = FlaxGetter(
+const _flaxBinding192 = FlaxGetter(
   "tertiaryContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_tertiaryContainer,
 );
-const _flaxBinding192 = FlaxGetter(
+const _flaxBinding193 = FlaxGetter(
   "onTertiaryContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onTertiaryContainer,
 );
-const _flaxBinding193 = FlaxGetter(
+const _flaxBinding194 = FlaxGetter(
   "tertiaryFixed",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_tertiaryFixed,
 );
-const _flaxBinding194 = FlaxGetter(
+const _flaxBinding195 = FlaxGetter(
   "tertiaryFixedDim",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_tertiaryFixedDim,
 );
-const _flaxBinding195 = FlaxGetter(
+const _flaxBinding196 = FlaxGetter(
   "onTertiaryFixed",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onTertiaryFixed,
 );
-const _flaxBinding196 = FlaxGetter(
+const _flaxBinding197 = FlaxGetter(
   "onTertiaryFixedVariant",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onTertiaryFixedVariant,
 );
-const _flaxBinding197 = FlaxGetter(
+const _flaxBinding198 = FlaxGetter(
   "error",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_error,
 );
-const _flaxBinding198 = FlaxGetter(
+const _flaxBinding199 = FlaxGetter(
   "onError",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onError,
 );
-const _flaxBinding199 = FlaxGetter(
+const _flaxBinding200 = FlaxGetter(
   "errorContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_errorContainer,
 );
-const _flaxBinding200 = FlaxGetter(
+const _flaxBinding201 = FlaxGetter(
   "onErrorContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onErrorContainer,
 );
-const _flaxBinding201 = FlaxGetter(
+const _flaxBinding202 = FlaxGetter(
   "surface",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surface,
 );
-const _flaxBinding202 = FlaxGetter(
+const _flaxBinding203 = FlaxGetter(
   "onSurface",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onSurface,
 );
-const _flaxBinding203 = FlaxGetter(
+const _flaxBinding204 = FlaxGetter(
   "surfaceVariant",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceVariant,
 );
-const _flaxBinding204 = FlaxGetter(
+const _flaxBinding205 = FlaxGetter(
   "surfaceDim",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceDim,
 );
-const _flaxBinding205 = FlaxGetter(
+const _flaxBinding206 = FlaxGetter(
   "surfaceBright",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceBright,
 );
-const _flaxBinding206 = FlaxGetter(
+const _flaxBinding207 = FlaxGetter(
   "surfaceContainerLowest",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceContainerLowest,
 );
-const _flaxBinding207 = FlaxGetter(
+const _flaxBinding208 = FlaxGetter(
   "surfaceContainerLow",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceContainerLow,
 );
-const _flaxBinding208 = FlaxGetter(
+const _flaxBinding209 = FlaxGetter(
   "surfaceContainer",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceContainer,
 );
-const _flaxBinding209 = FlaxGetter(
+const _flaxBinding210 = FlaxGetter(
   "surfaceContainerHigh",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceContainerHigh,
 );
-const _flaxBinding210 = FlaxGetter(
+const _flaxBinding211 = FlaxGetter(
   "surfaceContainerHighest",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceContainerHighest,
 );
-const _flaxBinding211 = FlaxGetter(
+const _flaxBinding212 = FlaxGetter(
   "onSurfaceVariant",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onSurfaceVariant,
 );
-const _flaxBinding212 = FlaxGetter(
+const _flaxBinding213 = FlaxGetter(
   "outline",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_outline,
 );
-const _flaxBinding213 = FlaxGetter(
+const _flaxBinding214 = FlaxGetter(
   "outlineVariant",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_outlineVariant,
 );
-const _flaxBinding214 = FlaxGetter(
+const _flaxBinding215 = FlaxGetter(
   "shadow",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_shadow,
 );
-const _flaxBinding215 = FlaxGetter(
+const _flaxBinding216 = FlaxGetter(
   "scrim",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_scrim,
 );
-const _flaxBinding216 = FlaxGetter(
+const _flaxBinding217 = FlaxGetter(
   "inverseSurface",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_inverseSurface,
 );
-const _flaxBinding217 = FlaxGetter(
+const _flaxBinding218 = FlaxGetter(
   "onInverseSurface",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onInverseSurface,
 );
-const _flaxBinding218 = FlaxGetter(
+const _flaxBinding219 = FlaxGetter(
   "inversePrimary",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_inversePrimary,
 );
-const _flaxBinding219 = FlaxGetter(
+const _flaxBinding220 = FlaxGetter(
   "surfaceTint",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_surfaceTint,
 );
-const _flaxBinding220 = FlaxGetter(
+const _flaxBinding221 = FlaxGetter(
   "background",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_background,
 );
-const _flaxBinding221 = FlaxGetter(
+const _flaxBinding222 = FlaxGetter(
   "onBackground",
-  _flaxBinding172,
+  _flaxBinding173,
   _ColorScheme_onBackground,
 );
-const _flaxBinding222 = FlaxInstanceMethod(
-  _flaxBinding67,
+const _flaxBinding223 = FlaxInstanceMethod(
   _flaxBinding68,
+  _flaxBinding67,
   _ColorScheme_toStringShort,
 );
-const _flaxBinding223 = FlaxInstanceMethod(
+const _flaxBinding224 = FlaxInstanceMethod(
   _flaxBinding71,
-  _flaxBinding68,
+  _flaxBinding67,
   _ColorScheme_toString,
 );
-const _flaxBinding224 = FlaxInstanceMethod(
+const _flaxBinding225 = FlaxInstanceMethod(
   _flaxBinding74,
   _flaxBinding75,
   _ColorScheme_toDiagnosticsNode,
 );
-const _flaxBinding225 = FlaxInstanceMethod(
-  _flaxBinding78,
+const _flaxBinding226 = FlaxInstanceMethod(
   _flaxBinding79,
+  _flaxBinding78,
   _ColorScheme_debugFillProperties,
 );
-const _flaxBinding226 = FlaxTypeRef(
+const _flaxBinding227 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:Brightness",
   nullable: true,
 );
-const _flaxBinding227 = <FlaxParameter>[
+const _flaxBinding228 = <FlaxParameter>[
   FlaxParameter("background", _flaxBinding3, required: false),
-  FlaxParameter("brightness", _flaxBinding226, required: false),
+  FlaxParameter("brightness", _flaxBinding227, required: false),
   FlaxParameter("error", _flaxBinding3, required: false),
   FlaxParameter("errorContainer", _flaxBinding3, required: false),
   FlaxParameter("inversePrimary", _flaxBinding3, required: false),
@@ -25048,27 +19285,27 @@ const _flaxBinding227 = <FlaxParameter>[
   FlaxParameter("tertiaryFixed", _flaxBinding3, required: false),
   FlaxParameter("tertiaryFixedDim", _flaxBinding3, required: false),
 ];
-const _flaxBinding228 = FlaxTypeRef(
+const _flaxBinding229 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:ColorScheme",
 );
-const _flaxBinding229 = FlaxInstanceMethod(
-  _flaxBinding227,
+const _flaxBinding230 = FlaxInstanceMethod(
   _flaxBinding228,
+  _flaxBinding229,
   _ColorScheme_copyWith,
 );
-const _flaxBinding230 = <FlaxParameter>[
-  FlaxParameter("brightness", _flaxBinding170, required: true),
-  FlaxParameter("primary", _flaxBinding172, required: true),
-  FlaxParameter("onPrimary", _flaxBinding172, required: true),
+const _flaxBinding231 = <FlaxParameter>[
+  FlaxParameter("brightness", _flaxBinding171, required: true),
+  FlaxParameter("primary", _flaxBinding173, required: true),
+  FlaxParameter("onPrimary", _flaxBinding173, required: true),
   FlaxParameter("primaryContainer", _flaxBinding3, required: false),
   FlaxParameter("onPrimaryContainer", _flaxBinding3, required: false),
   FlaxParameter("primaryFixed", _flaxBinding3, required: false),
   FlaxParameter("primaryFixedDim", _flaxBinding3, required: false),
   FlaxParameter("onPrimaryFixed", _flaxBinding3, required: false),
   FlaxParameter("onPrimaryFixedVariant", _flaxBinding3, required: false),
-  FlaxParameter("secondary", _flaxBinding172, required: true),
-  FlaxParameter("onSecondary", _flaxBinding172, required: true),
+  FlaxParameter("secondary", _flaxBinding173, required: true),
+  FlaxParameter("onSecondary", _flaxBinding173, required: true),
   FlaxParameter("secondaryContainer", _flaxBinding3, required: false),
   FlaxParameter("onSecondaryContainer", _flaxBinding3, required: false),
   FlaxParameter("secondaryFixed", _flaxBinding3, required: false),
@@ -25083,12 +19320,12 @@ const _flaxBinding230 = <FlaxParameter>[
   FlaxParameter("tertiaryFixedDim", _flaxBinding3, required: false),
   FlaxParameter("onTertiaryFixed", _flaxBinding3, required: false),
   FlaxParameter("onTertiaryFixedVariant", _flaxBinding3, required: false),
-  FlaxParameter("error", _flaxBinding172, required: true),
-  FlaxParameter("onError", _flaxBinding172, required: true),
+  FlaxParameter("error", _flaxBinding173, required: true),
+  FlaxParameter("onError", _flaxBinding173, required: true),
   FlaxParameter("errorContainer", _flaxBinding3, required: false),
   FlaxParameter("onErrorContainer", _flaxBinding3, required: false),
-  FlaxParameter("surface", _flaxBinding172, required: true),
-  FlaxParameter("onSurface", _flaxBinding172, required: true),
+  FlaxParameter("surface", _flaxBinding173, required: true),
+  FlaxParameter("onSurface", _flaxBinding173, required: true),
   FlaxParameter("surfaceDim", _flaxBinding3, required: false),
   FlaxParameter("surfaceBright", _flaxBinding3, required: false),
   FlaxParameter("surfaceContainerLowest", _flaxBinding3, required: false),
@@ -25109,11 +19346,11 @@ const _flaxBinding230 = <FlaxParameter>[
   FlaxParameter("onBackground", _flaxBinding3, required: false),
   FlaxParameter("surfaceVariant", _flaxBinding3, required: false),
 ];
-const _flaxBinding231 = <FlaxParameter>[
-  FlaxParameter("seedColor", _flaxBinding172, required: true),
+const _flaxBinding232 = <FlaxParameter>[
+  FlaxParameter("seedColor", _flaxBinding173, required: true),
   FlaxParameter(
     "brightness",
-    _flaxBinding170,
+    _flaxBinding171,
     required: false,
     defaultValue: api.Brightness.light,
   ),
@@ -25173,22 +19410,22 @@ const _flaxBinding231 = <FlaxParameter>[
   FlaxParameter("onBackground", _flaxBinding3, required: false),
   FlaxParameter("surfaceVariant", _flaxBinding3, required: false),
 ];
-const _flaxBinding232 = <FlaxParameter>[
+const _flaxBinding233 = <FlaxParameter>[
   FlaxParameter(
     "brightness",
-    _flaxBinding170,
+    _flaxBinding171,
     required: false,
     defaultValue: api.Brightness.light,
   ),
   FlaxParameter(
     "primary",
-    _flaxBinding172,
+    _flaxBinding173,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "onPrimary",
-    _flaxBinding172,
+    _flaxBinding173,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -25200,13 +19437,13 @@ const _flaxBinding232 = <FlaxParameter>[
   FlaxParameter("onPrimaryFixedVariant", _flaxBinding3, required: false),
   FlaxParameter(
     "secondary",
-    _flaxBinding172,
+    _flaxBinding173,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "onSecondary",
-    _flaxBinding172,
+    _flaxBinding173,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -25226,13 +19463,13 @@ const _flaxBinding232 = <FlaxParameter>[
   FlaxParameter("onTertiaryFixedVariant", _flaxBinding3, required: false),
   FlaxParameter(
     "error",
-    _flaxBinding172,
+    _flaxBinding173,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "onError",
-    _flaxBinding172,
+    _flaxBinding173,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -25240,120 +19477,13 @@ const _flaxBinding232 = <FlaxParameter>[
   FlaxParameter("onErrorContainer", _flaxBinding3, required: false),
   FlaxParameter(
     "surface",
-    _flaxBinding172,
+    _flaxBinding173,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "onSurface",
-    _flaxBinding172,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter("surfaceDim", _flaxBinding3, required: false),
-  FlaxParameter("surfaceBright", _flaxBinding3, required: false),
-  FlaxParameter("surfaceContainerLowest", _flaxBinding3, required: false),
-  FlaxParameter("surfaceContainerLow", _flaxBinding3, required: false),
-  FlaxParameter("surfaceContainer", _flaxBinding3, required: false),
-  FlaxParameter("surfaceContainerHigh", _flaxBinding3, required: false),
-  FlaxParameter("surfaceContainerHighest", _flaxBinding3, required: false),
-  FlaxParameter("onSurfaceVariant", _flaxBinding3, required: false),
-  FlaxParameter("outline", _flaxBinding3, required: false),
-  FlaxParameter("outlineVariant", _flaxBinding3, required: false),
-  FlaxParameter("shadow", _flaxBinding3, required: false),
-  FlaxParameter("scrim", _flaxBinding3, required: false),
-  FlaxParameter("inverseSurface", _flaxBinding3, required: false),
-  FlaxParameter("onInverseSurface", _flaxBinding3, required: false),
-  FlaxParameter("inversePrimary", _flaxBinding3, required: false),
-  FlaxParameter("surfaceTint", _flaxBinding3, required: false),
-  FlaxParameter(
-    "background",
-    _flaxBinding3,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter(
-    "onBackground",
-    _flaxBinding3,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter("surfaceVariant", _flaxBinding3, required: false),
-];
-const _flaxBinding233 = <FlaxParameter>[
-  FlaxParameter(
-    "brightness",
-    _flaxBinding170,
-    required: false,
-    defaultValue: api.Brightness.dark,
-  ),
-  FlaxParameter(
-    "primary",
-    _flaxBinding172,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter(
-    "onPrimary",
-    _flaxBinding172,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter("primaryContainer", _flaxBinding3, required: false),
-  FlaxParameter("onPrimaryContainer", _flaxBinding3, required: false),
-  FlaxParameter("primaryFixed", _flaxBinding3, required: false),
-  FlaxParameter("primaryFixedDim", _flaxBinding3, required: false),
-  FlaxParameter("onPrimaryFixed", _flaxBinding3, required: false),
-  FlaxParameter("onPrimaryFixedVariant", _flaxBinding3, required: false),
-  FlaxParameter(
-    "secondary",
-    _flaxBinding172,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter(
-    "onSecondary",
-    _flaxBinding172,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter("secondaryContainer", _flaxBinding3, required: false),
-  FlaxParameter("onSecondaryContainer", _flaxBinding3, required: false),
-  FlaxParameter("secondaryFixed", _flaxBinding3, required: false),
-  FlaxParameter("secondaryFixedDim", _flaxBinding3, required: false),
-  FlaxParameter("onSecondaryFixed", _flaxBinding3, required: false),
-  FlaxParameter("onSecondaryFixedVariant", _flaxBinding3, required: false),
-  FlaxParameter("tertiary", _flaxBinding3, required: false),
-  FlaxParameter("onTertiary", _flaxBinding3, required: false),
-  FlaxParameter("tertiaryContainer", _flaxBinding3, required: false),
-  FlaxParameter("onTertiaryContainer", _flaxBinding3, required: false),
-  FlaxParameter("tertiaryFixed", _flaxBinding3, required: false),
-  FlaxParameter("tertiaryFixedDim", _flaxBinding3, required: false),
-  FlaxParameter("onTertiaryFixed", _flaxBinding3, required: false),
-  FlaxParameter("onTertiaryFixedVariant", _flaxBinding3, required: false),
-  FlaxParameter(
-    "error",
-    _flaxBinding172,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter(
-    "onError",
-    _flaxBinding172,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter("errorContainer", _flaxBinding3, required: false),
-  FlaxParameter("onErrorContainer", _flaxBinding3, required: false),
-  FlaxParameter(
-    "surface",
-    _flaxBinding172,
-    required: false,
-    omitWhenAbsent: true,
-  ),
-  FlaxParameter(
-    "onSurface",
-    _flaxBinding172,
+    _flaxBinding173,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -25388,22 +19518,128 @@ const _flaxBinding233 = <FlaxParameter>[
   FlaxParameter("surfaceVariant", _flaxBinding3, required: false),
 ];
 const _flaxBinding234 = <FlaxParameter>[
+  FlaxParameter(
+    "brightness",
+    _flaxBinding171,
+    required: false,
+    defaultValue: api.Brightness.dark,
+  ),
+  FlaxParameter(
+    "primary",
+    _flaxBinding173,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter(
+    "onPrimary",
+    _flaxBinding173,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter("primaryContainer", _flaxBinding3, required: false),
+  FlaxParameter("onPrimaryContainer", _flaxBinding3, required: false),
+  FlaxParameter("primaryFixed", _flaxBinding3, required: false),
+  FlaxParameter("primaryFixedDim", _flaxBinding3, required: false),
+  FlaxParameter("onPrimaryFixed", _flaxBinding3, required: false),
+  FlaxParameter("onPrimaryFixedVariant", _flaxBinding3, required: false),
+  FlaxParameter(
+    "secondary",
+    _flaxBinding173,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter(
+    "onSecondary",
+    _flaxBinding173,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter("secondaryContainer", _flaxBinding3, required: false),
+  FlaxParameter("onSecondaryContainer", _flaxBinding3, required: false),
+  FlaxParameter("secondaryFixed", _flaxBinding3, required: false),
+  FlaxParameter("secondaryFixedDim", _flaxBinding3, required: false),
+  FlaxParameter("onSecondaryFixed", _flaxBinding3, required: false),
+  FlaxParameter("onSecondaryFixedVariant", _flaxBinding3, required: false),
+  FlaxParameter("tertiary", _flaxBinding3, required: false),
+  FlaxParameter("onTertiary", _flaxBinding3, required: false),
+  FlaxParameter("tertiaryContainer", _flaxBinding3, required: false),
+  FlaxParameter("onTertiaryContainer", _flaxBinding3, required: false),
+  FlaxParameter("tertiaryFixed", _flaxBinding3, required: false),
+  FlaxParameter("tertiaryFixedDim", _flaxBinding3, required: false),
+  FlaxParameter("onTertiaryFixed", _flaxBinding3, required: false),
+  FlaxParameter("onTertiaryFixedVariant", _flaxBinding3, required: false),
+  FlaxParameter(
+    "error",
+    _flaxBinding173,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter(
+    "onError",
+    _flaxBinding173,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter("errorContainer", _flaxBinding3, required: false),
+  FlaxParameter("onErrorContainer", _flaxBinding3, required: false),
+  FlaxParameter(
+    "surface",
+    _flaxBinding173,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter(
+    "onSurface",
+    _flaxBinding173,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter("surfaceDim", _flaxBinding3, required: false),
+  FlaxParameter("surfaceBright", _flaxBinding3, required: false),
+  FlaxParameter("surfaceContainerLowest", _flaxBinding3, required: false),
+  FlaxParameter("surfaceContainerLow", _flaxBinding3, required: false),
+  FlaxParameter("surfaceContainer", _flaxBinding3, required: false),
+  FlaxParameter("surfaceContainerHigh", _flaxBinding3, required: false),
+  FlaxParameter("surfaceContainerHighest", _flaxBinding3, required: false),
+  FlaxParameter("onSurfaceVariant", _flaxBinding3, required: false),
+  FlaxParameter("outline", _flaxBinding3, required: false),
+  FlaxParameter("outlineVariant", _flaxBinding3, required: false),
+  FlaxParameter("shadow", _flaxBinding3, required: false),
+  FlaxParameter("scrim", _flaxBinding3, required: false),
+  FlaxParameter("inverseSurface", _flaxBinding3, required: false),
+  FlaxParameter("onInverseSurface", _flaxBinding3, required: false),
+  FlaxParameter("inversePrimary", _flaxBinding3, required: false),
+  FlaxParameter("surfaceTint", _flaxBinding3, required: false),
+  FlaxParameter(
+    "background",
+    _flaxBinding3,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter(
+    "onBackground",
+    _flaxBinding3,
+    required: false,
+    omitWhenAbsent: true,
+  ),
+  FlaxParameter("surfaceVariant", _flaxBinding3, required: false),
+];
+const _flaxBinding235 = <FlaxParameter>[
   FlaxParameter("accentColor", _flaxBinding3, required: false),
   FlaxParameter("cardColor", _flaxBinding3, required: false),
   FlaxParameter("backgroundColor", _flaxBinding3, required: false),
   FlaxParameter("errorColor", _flaxBinding3, required: false),
   FlaxParameter(
     "brightness",
-    _flaxBinding170,
+    _flaxBinding171,
     required: false,
     defaultValue: api.Brightness.light,
   ),
 ];
-const _flaxBinding235 = FlaxObjectBinding(
+const _flaxBinding236 = FlaxObjectBinding(
   "flax.material/material#type:ColorScheme",
   [
-    _flaxBinding171,
-    _flaxBinding173,
+    _flaxBinding172,
     _flaxBinding174,
     _flaxBinding175,
     _flaxBinding176,
@@ -25452,22 +19688,23 @@ const _flaxBinding235 = FlaxObjectBinding(
     _flaxBinding219,
     _flaxBinding220,
     _flaxBinding221,
+    _flaxBinding222,
   ],
   {
-    "toStringShort": _flaxBinding222,
-    "toString": _flaxBinding223,
-    "toDiagnosticsNode": _flaxBinding224,
-    "debugFillProperties": _flaxBinding225,
-    "copyWith": _flaxBinding229,
+    "toStringShort": _flaxBinding223,
+    "toString": _flaxBinding224,
+    "toDiagnosticsNode": _flaxBinding225,
+    "debugFillProperties": _flaxBinding226,
+    "copyWith": _flaxBinding230,
   },
   constructors: {
-    "": _flaxBinding230,
-    "fromSeed": _flaxBinding231,
-    "light": _flaxBinding232,
-    "dark": _flaxBinding233,
-    "highContrastLight": _flaxBinding232,
-    "highContrastDark": _flaxBinding233,
-    "fromSwatch": _flaxBinding234,
+    "": _flaxBinding231,
+    "fromSeed": _flaxBinding232,
+    "light": _flaxBinding233,
+    "dark": _flaxBinding234,
+    "highContrastLight": _flaxBinding233,
+    "highContrastDark": _flaxBinding234,
+    "fromSwatch": _flaxBinding235,
   },
   create: _createColorScheme,
   matches: _isColorScheme,
@@ -25477,25 +19714,25 @@ const _flaxBinding235 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding236 = FlaxTypeRef(
+const _flaxBinding237 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BorderRadiusGeometry",
   nullable: true,
 );
-const _flaxBinding237 = FlaxCallbackBinding(
+const _flaxBinding238 = FlaxCallbackBinding(
   [],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid0,
   id: "callback:<>()->void:",
   invoke: FlaxCallbackAdapters.invokeVoid0,
   matches: FlaxCallbackAdapters.matchesVoid0,
 );
-const _flaxBinding238 = FlaxTypeRef(
+const _flaxBinding239 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding237,
+  callback: _flaxBinding238,
 );
-const _flaxBinding239 = FlaxCallbackBinding(
+const _flaxBinding240 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
@@ -25504,339 +19741,339 @@ const _flaxBinding239 = FlaxCallbackBinding(
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<bool>,
   id: "callback:<>(p:r:value:bool:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<bool>,
   matches: FlaxCallbackAdapters.matchesVoid1<bool>,
 );
-const _flaxBinding240 = FlaxTypeRef(
+const _flaxBinding241 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding239,
+  callback: _flaxBinding240,
 );
-const _flaxBinding241 = FlaxTypeRef(
+const _flaxBinding242 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:WidgetStatesController",
   nullable: true,
 );
-const _flaxBinding242 = FlaxTypeRef("any", nullable: true);
-const _flaxBinding243 = FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip");
-const _flaxBinding244 = FlaxTypeRef(
+const _flaxBinding243 = FlaxTypeRef("any", nullable: true);
+const _flaxBinding244 = FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip");
+const _flaxBinding245 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:TapDownDetails",
 );
-const _flaxBinding245 = FlaxCallbackBinding(
+const _flaxBinding246 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "details",
-      _flaxBinding244,
+      _flaxBinding245,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<api7.TapDownDetails>,
   id: "callback:<>(p:r:details:object:flax.core/sdk_gestures#type:TapDownDetails)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api7.TapDownDetails>,
   matches: FlaxCallbackAdapters.matchesVoid1<api7.TapDownDetails>,
 );
-const _flaxBinding246 = FlaxTypeRef(
+const _flaxBinding247 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding245,
+  callback: _flaxBinding246,
 );
-const _flaxBinding247 = FlaxTypeRef(
+const _flaxBinding248 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:TapUpDetails",
 );
-const _flaxBinding248 = FlaxCallbackBinding(
+const _flaxBinding249 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "details",
-      _flaxBinding247,
+      _flaxBinding248,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<api7.TapUpDetails>,
   id: "callback:<>(p:r:details:object:flax.core/sdk_gestures#type:TapUpDetails)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api7.TapUpDetails>,
   matches: FlaxCallbackAdapters.matchesVoid1<api7.TapUpDetails>,
 );
-const _flaxBinding249 = FlaxTypeRef(
+const _flaxBinding250 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding248,
+  callback: _flaxBinding249,
 );
-const _flaxBinding250 = FlaxTypeRef(
+const _flaxBinding251 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BorderRadius",
   nullable: true,
 );
-const _flaxBinding251 = FlaxGetter(
+const _flaxBinding252 = FlaxGetter(
   "icon",
   _flaxBinding1,
   _InputDecoration_icon,
 );
-const _flaxBinding252 = FlaxGetter(
+const _flaxBinding253 = FlaxGetter(
   "iconColor",
   _flaxBinding3,
   _InputDecoration_iconColor,
 );
-const _flaxBinding253 = FlaxGetter(
+const _flaxBinding254 = FlaxGetter(
   "label",
   _flaxBinding1,
   _InputDecoration_label,
 );
-const _flaxBinding254 = FlaxGetter(
+const _flaxBinding255 = FlaxGetter(
   "labelText",
   _flaxBinding12,
   _InputDecoration_labelText,
 );
-const _flaxBinding255 = FlaxGetter(
+const _flaxBinding256 = FlaxGetter(
   "labelStyle",
   _flaxBinding4,
   _InputDecoration_labelStyle,
 );
-const _flaxBinding256 = FlaxGetter(
+const _flaxBinding257 = FlaxGetter(
   "floatingLabelStyle",
   _flaxBinding4,
   _InputDecoration_floatingLabelStyle,
 );
-const _flaxBinding257 = FlaxGetter(
+const _flaxBinding258 = FlaxGetter(
   "helper",
   _flaxBinding1,
   _InputDecoration_helper,
 );
-const _flaxBinding258 = FlaxGetter(
+const _flaxBinding259 = FlaxGetter(
   "helperText",
   _flaxBinding12,
   _InputDecoration_helperText,
 );
-const _flaxBinding259 = FlaxGetter(
+const _flaxBinding260 = FlaxGetter(
   "helperStyle",
   _flaxBinding4,
   _InputDecoration_helperStyle,
 );
-const _flaxBinding260 = FlaxTypeRef("int", nullable: true);
-const _flaxBinding261 = FlaxGetter(
+const _flaxBinding261 = FlaxTypeRef("int", nullable: true);
+const _flaxBinding262 = FlaxGetter(
   "helperMaxLines",
-  _flaxBinding260,
+  _flaxBinding261,
   _InputDecoration_helperMaxLines,
 );
-const _flaxBinding262 = FlaxGetter(
+const _flaxBinding263 = FlaxGetter(
   "hintText",
   _flaxBinding12,
   _InputDecoration_hintText,
 );
-const _flaxBinding263 = FlaxGetter(
+const _flaxBinding264 = FlaxGetter(
   "hint",
   _flaxBinding1,
   _InputDecoration_hint,
 );
-const _flaxBinding264 = FlaxGetter(
+const _flaxBinding265 = FlaxGetter(
   "hintStyle",
   _flaxBinding4,
   _InputDecoration_hintStyle,
 );
-const _flaxBinding265 = FlaxTypeRef(
+const _flaxBinding266 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TextDirection",
   nullable: true,
 );
-const _flaxBinding266 = FlaxGetter(
+const _flaxBinding267 = FlaxGetter(
   "hintTextDirection",
-  _flaxBinding265,
+  _flaxBinding266,
   _InputDecoration_hintTextDirection,
 );
-const _flaxBinding267 = FlaxGetter(
+const _flaxBinding268 = FlaxGetter(
   "hintMaxLines",
-  _flaxBinding260,
+  _flaxBinding261,
   _InputDecoration_hintMaxLines,
 );
-const _flaxBinding268 = FlaxGetter(
+const _flaxBinding269 = FlaxGetter(
   "hintFadeDuration",
-  _flaxBinding143,
+  _flaxBinding144,
   _InputDecoration_hintFadeDuration,
 );
-const _flaxBinding269 = FlaxGetter(
+const _flaxBinding270 = FlaxGetter(
   "maintainHintHeight",
   _flaxBinding18,
   _InputDecoration_maintainHintHeight,
 );
-const _flaxBinding270 = FlaxGetter(
+const _flaxBinding271 = FlaxGetter(
   "maintainHintSize",
   _flaxBinding18,
   _InputDecoration_maintainHintSize,
 );
-const _flaxBinding271 = FlaxGetter(
+const _flaxBinding272 = FlaxGetter(
   "maintainLabelSize",
   _flaxBinding18,
   _InputDecoration_maintainLabelSize,
 );
-const _flaxBinding272 = FlaxGetter(
+const _flaxBinding273 = FlaxGetter(
   "error",
   _flaxBinding1,
   _InputDecoration_error,
 );
-const _flaxBinding273 = FlaxGetter(
+const _flaxBinding274 = FlaxGetter(
   "errorText",
   _flaxBinding12,
   _InputDecoration_errorText,
 );
-const _flaxBinding274 = FlaxGetter(
+const _flaxBinding275 = FlaxGetter(
   "errorStyle",
   _flaxBinding4,
   _InputDecoration_errorStyle,
 );
-const _flaxBinding275 = FlaxGetter(
+const _flaxBinding276 = FlaxGetter(
   "errorMaxLines",
-  _flaxBinding260,
+  _flaxBinding261,
   _InputDecoration_errorMaxLines,
 );
-const _flaxBinding276 = FlaxGetter(
+const _flaxBinding277 = FlaxGetter(
   "isDense",
   _flaxBinding48,
   _InputDecoration_isDense,
 );
-const _flaxBinding277 = FlaxGetter(
+const _flaxBinding278 = FlaxGetter(
   "contentPadding",
   _flaxBinding2,
   _InputDecoration_contentPadding,
 );
-const _flaxBinding278 = FlaxGetter(
+const _flaxBinding279 = FlaxGetter(
   "isCollapsed",
   _flaxBinding48,
   _InputDecoration_isCollapsed,
 );
-const _flaxBinding279 = FlaxGetter(
+const _flaxBinding280 = FlaxGetter(
   "prefixIcon",
   _flaxBinding1,
   _InputDecoration_prefixIcon,
 );
-const _flaxBinding280 = FlaxGetter(
+const _flaxBinding281 = FlaxGetter(
   "prefixIconConstraints",
   _flaxBinding17,
   _InputDecoration_prefixIconConstraints,
 );
-const _flaxBinding281 = FlaxGetter(
+const _flaxBinding282 = FlaxGetter(
   "prefix",
   _flaxBinding1,
   _InputDecoration_prefix,
 );
-const _flaxBinding282 = FlaxGetter(
+const _flaxBinding283 = FlaxGetter(
   "prefixText",
   _flaxBinding12,
   _InputDecoration_prefixText,
 );
-const _flaxBinding283 = FlaxGetter(
+const _flaxBinding284 = FlaxGetter(
   "prefixStyle",
   _flaxBinding4,
   _InputDecoration_prefixStyle,
 );
-const _flaxBinding284 = FlaxGetter(
+const _flaxBinding285 = FlaxGetter(
   "prefixIconColor",
   _flaxBinding3,
   _InputDecoration_prefixIconColor,
 );
-const _flaxBinding285 = FlaxGetter(
+const _flaxBinding286 = FlaxGetter(
   "suffixIcon",
   _flaxBinding1,
   _InputDecoration_suffixIcon,
 );
-const _flaxBinding286 = FlaxGetter(
+const _flaxBinding287 = FlaxGetter(
   "suffix",
   _flaxBinding1,
   _InputDecoration_suffix,
 );
-const _flaxBinding287 = FlaxGetter(
+const _flaxBinding288 = FlaxGetter(
   "suffixText",
   _flaxBinding12,
   _InputDecoration_suffixText,
 );
-const _flaxBinding288 = FlaxGetter(
+const _flaxBinding289 = FlaxGetter(
   "suffixStyle",
   _flaxBinding4,
   _InputDecoration_suffixStyle,
 );
-const _flaxBinding289 = FlaxGetter(
+const _flaxBinding290 = FlaxGetter(
   "suffixIconColor",
   _flaxBinding3,
   _InputDecoration_suffixIconColor,
 );
-const _flaxBinding290 = FlaxGetter(
+const _flaxBinding291 = FlaxGetter(
   "suffixIconConstraints",
   _flaxBinding17,
   _InputDecoration_suffixIconConstraints,
 );
-const _flaxBinding291 = FlaxGetter(
+const _flaxBinding292 = FlaxGetter(
   "counterText",
   _flaxBinding12,
   _InputDecoration_counterText,
 );
-const _flaxBinding292 = FlaxGetter(
+const _flaxBinding293 = FlaxGetter(
   "counter",
   _flaxBinding1,
   _InputDecoration_counter,
 );
-const _flaxBinding293 = FlaxGetter(
+const _flaxBinding294 = FlaxGetter(
   "counterStyle",
   _flaxBinding4,
   _InputDecoration_counterStyle,
 );
-const _flaxBinding294 = FlaxGetter(
+const _flaxBinding295 = FlaxGetter(
   "filled",
   _flaxBinding48,
   _InputDecoration_filled,
 );
-const _flaxBinding295 = FlaxGetter(
+const _flaxBinding296 = FlaxGetter(
   "fillColor",
   _flaxBinding3,
   _InputDecoration_fillColor,
 );
-const _flaxBinding296 = FlaxGetter(
+const _flaxBinding297 = FlaxGetter(
   "focusColor",
   _flaxBinding3,
   _InputDecoration_focusColor,
 );
-const _flaxBinding297 = FlaxGetter(
+const _flaxBinding298 = FlaxGetter(
   "hoverColor",
   _flaxBinding3,
   _InputDecoration_hoverColor,
 );
-const _flaxBinding298 = FlaxGetter(
+const _flaxBinding299 = FlaxGetter(
   "enabled",
   _flaxBinding18,
   _InputDecoration_enabled,
 );
-const _flaxBinding299 = FlaxGetter(
+const _flaxBinding300 = FlaxGetter(
   "semanticCounterText",
   _flaxBinding12,
   _InputDecoration_semanticCounterText,
 );
-const _flaxBinding300 = FlaxGetter(
+const _flaxBinding301 = FlaxGetter(
   "alignLabelWithHint",
   _flaxBinding48,
   _InputDecoration_alignLabelWithHint,
 );
-const _flaxBinding301 = FlaxGetter(
+const _flaxBinding302 = FlaxGetter(
   "constraints",
   _flaxBinding17,
   _InputDecoration_constraints,
 );
-const _flaxBinding302 = FlaxGetter(
+const _flaxBinding303 = FlaxGetter(
   "visualDensity",
-  _flaxBinding141,
+  _flaxBinding142,
   _InputDecoration_visualDensity,
 );
-const _flaxBinding303 = FlaxTypeRef(
+const _flaxBinding304 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_semantics#type:SemanticsService",
   nullable: true,
 );
-const _flaxBinding304 = <FlaxParameter>[
+const _flaxBinding305 = <FlaxParameter>[
   FlaxParameter("alignLabelWithHint", _flaxBinding48, required: false),
   FlaxParameter("constraints", _flaxBinding17, required: false),
   FlaxParameter("contentPadding", _flaxBinding2, required: false),
@@ -25845,7 +20082,7 @@ const _flaxBinding304 = <FlaxParameter>[
   FlaxParameter("counterText", _flaxBinding12, required: false),
   FlaxParameter("enabled", _flaxBinding48, required: false),
   FlaxParameter("error", _flaxBinding1, required: false),
-  FlaxParameter("errorMaxLines", _flaxBinding260, required: false),
+  FlaxParameter("errorMaxLines", _flaxBinding261, required: false),
   FlaxParameter("errorStyle", _flaxBinding4, required: false),
   FlaxParameter("errorText", _flaxBinding12, required: false),
   FlaxParameter("fillColor", _flaxBinding3, required: false),
@@ -25853,15 +20090,15 @@ const _flaxBinding304 = <FlaxParameter>[
   FlaxParameter("floatingLabelStyle", _flaxBinding4, required: false),
   FlaxParameter("focusColor", _flaxBinding3, required: false),
   FlaxParameter("helper", _flaxBinding1, required: false),
-  FlaxParameter("helperMaxLines", _flaxBinding260, required: false),
+  FlaxParameter("helperMaxLines", _flaxBinding261, required: false),
   FlaxParameter("helperStyle", _flaxBinding4, required: false),
   FlaxParameter("helperText", _flaxBinding12, required: false),
   FlaxParameter("hint", _flaxBinding1, required: false),
-  FlaxParameter("hintFadeDuration", _flaxBinding143, required: false),
-  FlaxParameter("hintMaxLines", _flaxBinding260, required: false),
+  FlaxParameter("hintFadeDuration", _flaxBinding144, required: false),
+  FlaxParameter("hintMaxLines", _flaxBinding261, required: false),
   FlaxParameter("hintStyle", _flaxBinding4, required: false),
   FlaxParameter("hintText", _flaxBinding12, required: false),
-  FlaxParameter("hintTextDirection", _flaxBinding265, required: false),
+  FlaxParameter("hintTextDirection", _flaxBinding266, required: false),
   FlaxParameter("hoverColor", _flaxBinding3, required: false),
   FlaxParameter("icon", _flaxBinding1, required: false),
   FlaxParameter("iconColor", _flaxBinding3, required: false),
@@ -25880,39 +20117,39 @@ const _flaxBinding304 = <FlaxParameter>[
   FlaxParameter("prefixStyle", _flaxBinding4, required: false),
   FlaxParameter("prefixText", _flaxBinding12, required: false),
   FlaxParameter("semanticCounterText", _flaxBinding12, required: false),
-  FlaxParameter("semanticsService", _flaxBinding303, required: false),
+  FlaxParameter("semanticsService", _flaxBinding304, required: false),
   FlaxParameter("suffix", _flaxBinding1, required: false),
   FlaxParameter("suffixIcon", _flaxBinding1, required: false),
   FlaxParameter("suffixIconColor", _flaxBinding3, required: false),
   FlaxParameter("suffixIconConstraints", _flaxBinding17, required: false),
   FlaxParameter("suffixStyle", _flaxBinding4, required: false),
   FlaxParameter("suffixText", _flaxBinding12, required: false),
-  FlaxParameter("visualDensity", _flaxBinding141, required: false),
+  FlaxParameter("visualDensity", _flaxBinding142, required: false),
 ];
-const _flaxBinding305 = FlaxTypeRef(
+const _flaxBinding306 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:InputDecoration",
 );
-const _flaxBinding306 = FlaxInstanceMethod(
-  _flaxBinding304,
+const _flaxBinding307 = FlaxInstanceMethod(
   _flaxBinding305,
+  _flaxBinding306,
   _InputDecoration_copyWith,
 );
-const _flaxBinding307 = FlaxTypeRef("any");
-const _flaxBinding308 = <FlaxParameter>[
-  FlaxParameter("inputDecorationTheme", _flaxBinding307, required: true),
+const _flaxBinding308 = FlaxTypeRef("any");
+const _flaxBinding309 = <FlaxParameter>[
+  FlaxParameter("inputDecorationTheme", _flaxBinding308, required: true),
 ];
-const _flaxBinding309 = FlaxInstanceMethod(
-  _flaxBinding308,
-  _flaxBinding305,
+const _flaxBinding310 = FlaxInstanceMethod(
+  _flaxBinding309,
+  _flaxBinding306,
   _InputDecoration_applyDefaults,
 );
-const _flaxBinding310 = FlaxInstanceMethod(
-  _flaxBinding67,
+const _flaxBinding311 = FlaxInstanceMethod(
   _flaxBinding68,
+  _flaxBinding67,
   _InputDecoration_toString,
 );
-const _flaxBinding311 = <FlaxParameter>[
+const _flaxBinding312 = <FlaxParameter>[
   FlaxParameter("icon", _flaxBinding1, required: false),
   FlaxParameter("iconColor", _flaxBinding3, required: false),
   FlaxParameter("label", _flaxBinding1, required: false),
@@ -25922,13 +20159,13 @@ const _flaxBinding311 = <FlaxParameter>[
   FlaxParameter("helper", _flaxBinding1, required: false),
   FlaxParameter("helperText", _flaxBinding12, required: false),
   FlaxParameter("helperStyle", _flaxBinding4, required: false),
-  FlaxParameter("helperMaxLines", _flaxBinding260, required: false),
+  FlaxParameter("helperMaxLines", _flaxBinding261, required: false),
   FlaxParameter("hintText", _flaxBinding12, required: false),
   FlaxParameter("hint", _flaxBinding1, required: false),
   FlaxParameter("hintStyle", _flaxBinding4, required: false),
-  FlaxParameter("hintTextDirection", _flaxBinding265, required: false),
-  FlaxParameter("hintMaxLines", _flaxBinding260, required: false),
-  FlaxParameter("hintFadeDuration", _flaxBinding143, required: false),
+  FlaxParameter("hintTextDirection", _flaxBinding266, required: false),
+  FlaxParameter("hintMaxLines", _flaxBinding261, required: false),
+  FlaxParameter("hintFadeDuration", _flaxBinding144, required: false),
   FlaxParameter(
     "maintainHintHeight",
     _flaxBinding18,
@@ -25950,7 +20187,7 @@ const _flaxBinding311 = <FlaxParameter>[
   FlaxParameter("error", _flaxBinding1, required: false),
   FlaxParameter("errorText", _flaxBinding12, required: false),
   FlaxParameter("errorStyle", _flaxBinding4, required: false),
-  FlaxParameter("errorMaxLines", _flaxBinding260, required: false),
+  FlaxParameter("errorMaxLines", _flaxBinding261, required: false),
   FlaxParameter("isCollapsed", _flaxBinding48, required: false),
   FlaxParameter("isDense", _flaxBinding48, required: false),
   FlaxParameter("contentPadding", _flaxBinding2, required: false),
@@ -25977,15 +20214,15 @@ const _flaxBinding311 = <FlaxParameter>[
   FlaxParameter("semanticCounterText", _flaxBinding12, required: false),
   FlaxParameter("alignLabelWithHint", _flaxBinding48, required: false),
   FlaxParameter("constraints", _flaxBinding17, required: false),
-  FlaxParameter("visualDensity", _flaxBinding141, required: false),
+  FlaxParameter("visualDensity", _flaxBinding142, required: false),
 ];
-const _flaxBinding312 = <FlaxParameter>[
+const _flaxBinding313 = <FlaxParameter>[
   FlaxParameter("hintText", _flaxBinding12, required: true),
   FlaxParameter("hintStyle", _flaxBinding4, required: false),
   FlaxParameter("hint", _flaxBinding1, required: false),
-  FlaxParameter("hintTextDirection", _flaxBinding265, required: false),
-  FlaxParameter("hintMaxLines", _flaxBinding260, required: false),
-  FlaxParameter("hintFadeDuration", _flaxBinding143, required: false),
+  FlaxParameter("hintTextDirection", _flaxBinding266, required: false),
+  FlaxParameter("hintMaxLines", _flaxBinding261, required: false),
+  FlaxParameter("hintFadeDuration", _flaxBinding144, required: false),
   FlaxParameter(
     "maintainHintHeight",
     _flaxBinding18,
@@ -26011,10 +20248,9 @@ const _flaxBinding312 = <FlaxParameter>[
   FlaxParameter("enabled", _flaxBinding18, required: false, defaultValue: true),
   FlaxParameter("constraints", _flaxBinding17, required: false),
 ];
-const _flaxBinding313 = FlaxObjectBinding(
+const _flaxBinding314 = FlaxObjectBinding(
   "flax.material/material#type:InputDecoration",
   [
-    _flaxBinding251,
     _flaxBinding252,
     _flaxBinding253,
     _flaxBinding254,
@@ -26023,11 +20259,11 @@ const _flaxBinding313 = FlaxObjectBinding(
     _flaxBinding257,
     _flaxBinding258,
     _flaxBinding259,
-    _flaxBinding261,
+    _flaxBinding260,
     _flaxBinding262,
     _flaxBinding263,
     _flaxBinding264,
-    _flaxBinding266,
+    _flaxBinding265,
     _flaxBinding267,
     _flaxBinding268,
     _flaxBinding269,
@@ -26064,38 +20300,39 @@ const _flaxBinding313 = FlaxObjectBinding(
     _flaxBinding300,
     _flaxBinding301,
     _flaxBinding302,
+    _flaxBinding303,
   ],
   {
-    "copyWith": _flaxBinding306,
-    "applyDefaults": _flaxBinding309,
-    "toString": _flaxBinding310,
+    "copyWith": _flaxBinding307,
+    "applyDefaults": _flaxBinding310,
+    "toString": _flaxBinding311,
   },
-  constructors: {"": _flaxBinding311, "collapsed": _flaxBinding312},
+  constructors: {"": _flaxBinding312, "collapsed": _flaxBinding313},
   create: _createInputDecoration,
   matches: _isInputDecoration,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding314 = FlaxTypeRef(
+const _flaxBinding315 = FlaxTypeRef(
   "enum",
   id: "flax.material/material#type:ListTileStyle",
   nullable: true,
 );
-const _flaxBinding315 = FlaxTypeRef(
+const _flaxBinding316 = FlaxTypeRef(
   "enum",
   id: "flax.material/material#type:MaterialType",
 );
-const _flaxBinding316 = FlaxTypeRef(
+const _flaxBinding317 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:GlobalKey",
   dartType: FlaxDartTypes.typeOf<api1.GlobalKey<api1.NavigatorState>?>,
   nullable: true,
 );
-const _flaxBinding317 = FlaxCallbackBinding(
+const _flaxBinding318 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "context",
-      _flaxBinding147,
+      _flaxBinding148,
       required: true,
       positional: true,
     ),
@@ -26106,37 +20343,37 @@ const _flaxBinding317 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<api1.BuildContext, api1.Widget>,
   matches: FlaxCallbackAdapters.matches1<api1.BuildContext, api1.Widget>,
 );
-const _flaxBinding318 = FlaxTypeRef("callback", callback: _flaxBinding317);
-const _flaxBinding319 = FlaxTypeRef(
+const _flaxBinding319 = FlaxTypeRef("callback", callback: _flaxBinding318);
+const _flaxBinding320 = FlaxTypeRef(
   "map",
-  item: _flaxBinding318,
-  key: _flaxBinding68,
+  item: _flaxBinding319,
+  key: _flaxBinding67,
   collection: FlaxCollectionBinding(
     "map:[callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:][String:]",
     _collection6Create,
     _collection6Matches,
   ),
 );
-const _flaxBinding320 = FlaxTypeRef(
+const _flaxBinding321 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:RouteSettings",
 );
-const _flaxBinding321 = FlaxTypeRef(
+const _flaxBinding322 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Route",
   dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
   nullable: true,
 );
-const _flaxBinding322 = FlaxCallbackBinding(
+const _flaxBinding323 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "settings",
-      _flaxBinding320,
+      _flaxBinding321,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding321,
+  _flaxBinding322,
   FlaxCallbackAdapters.wrap1<api1.RouteSettings, api1.Route<Object?>?>,
   id: "callback:<>(p:r:settings:object:flax.core/flutter#type:RouteSettings)->object?:flax.core/flutter#type:Route<Object?><any?:>",
   invoke:
@@ -26144,19 +20381,19 @@ const _flaxBinding322 = FlaxCallbackBinding(
   matches:
       FlaxCallbackAdapters.matches1<api1.RouteSettings, api1.Route<Object?>?>,
 );
-const _flaxBinding323 = FlaxTypeRef(
+const _flaxBinding324 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding322,
+  callback: _flaxBinding323,
 );
-const _flaxBinding324 = FlaxTypeRef(
+const _flaxBinding325 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Route",
   dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
 );
-const _flaxBinding325 = FlaxTypeRef(
+const _flaxBinding326 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding324,
+  item: _flaxBinding325,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/flutter#type:Route<Object?><any?:>]",
     _collection8Create,
@@ -26164,45 +20401,45 @@ const _flaxBinding325 = FlaxTypeRef(
     restore: _collection8Restore,
   ),
 );
-const _flaxBinding326 = FlaxTypeRef(
+const _flaxBinding327 = FlaxTypeRef(
   "list",
-  item: _flaxBinding324,
+  item: _flaxBinding325,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Route<Object?><any?:>]",
     _collection7Create,
     _collection7Matches,
   ),
-  iterable: _flaxBinding325,
+  iterable: _flaxBinding326,
 );
-const _flaxBinding327 = FlaxCallbackBinding(
+const _flaxBinding328 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "initialRoute",
-      _flaxBinding68,
+      _flaxBinding67,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding326,
+  _flaxBinding327,
   FlaxCallbackAdapters.wrap1<String, List<api1.Route<Object?>>>,
   id: "callback:<>(p:r:initialRoute:String:)->list:[object:flax.core/flutter#type:Route<Object?><any?:>]",
   invoke: FlaxCallbackAdapters.invoke1<String, List<api1.Route<Object?>>>,
   matches: FlaxCallbackAdapters.matches1<String, List<api1.Route<Object?>>>,
 );
-const _flaxBinding328 = FlaxTypeRef(
+const _flaxBinding329 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding327,
+  callback: _flaxBinding328,
 );
-const _flaxBinding329 = FlaxTypeRef(
+const _flaxBinding330 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:NavigationNotification",
 );
-const _flaxBinding330 = FlaxCallbackBinding(
+const _flaxBinding331 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "notification",
-      _flaxBinding329,
+      _flaxBinding330,
       required: true,
       positional: true,
     ),
@@ -26213,18 +20450,18 @@ const _flaxBinding330 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<api1.NavigationNotification, bool>,
   matches: FlaxCallbackAdapters.matches1<api1.NavigationNotification, bool>,
 );
-const _flaxBinding331 = FlaxTypeRef(
+const _flaxBinding332 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding330,
+  callback: _flaxBinding331,
 );
-const _flaxBinding332 = FlaxTypeRef(
+const _flaxBinding333 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:NavigatorObserver",
 );
-const _flaxBinding333 = FlaxTypeRef(
+const _flaxBinding334 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding332,
+  item: _flaxBinding333,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/flutter#type:NavigatorObserver]",
     _collection10Create,
@@ -26232,21 +20469,21 @@ const _flaxBinding333 = FlaxTypeRef(
     restore: _collection10Restore,
   ),
 );
-const _flaxBinding334 = FlaxTypeRef(
+const _flaxBinding335 = FlaxTypeRef(
   "list",
-  item: _flaxBinding332,
+  item: _flaxBinding333,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:NavigatorObserver]",
     _collection9Create,
     _collection9Matches,
   ),
-  iterable: _flaxBinding333,
+  iterable: _flaxBinding334,
 );
-const _flaxBinding335 = FlaxCallbackBinding(
+const _flaxBinding336 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "context",
-      _flaxBinding147,
+      _flaxBinding148,
       required: true,
       positional: true,
     ),
@@ -26266,55 +20503,55 @@ const _flaxBinding335 = FlaxCallbackBinding(
       .matches2<api1.BuildContext, api1.Widget?, api1.Widget>,
   independentWidgetResult: true,
 );
-const _flaxBinding336 = FlaxTypeRef(
+const _flaxBinding337 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding335,
+  callback: _flaxBinding336,
 );
-const _flaxBinding337 = FlaxCallbackBinding(
+const _flaxBinding338 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "context",
-      _flaxBinding147,
+      _flaxBinding148,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding68,
+  _flaxBinding67,
   FlaxCallbackAdapters.wrap1<api1.BuildContext, String>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->String:",
   invoke: FlaxCallbackAdapters.invoke1<api1.BuildContext, String>,
   matches: FlaxCallbackAdapters.matches1<api1.BuildContext, String>,
 );
-const _flaxBinding338 = FlaxTypeRef(
+const _flaxBinding339 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding337,
+  callback: _flaxBinding338,
 );
-const _flaxBinding339 = FlaxTypeRef(
+const _flaxBinding340 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:ThemeData",
   nullable: true,
 );
-const _flaxBinding340 = FlaxTypeRef(
+const _flaxBinding341 = FlaxTypeRef(
   "enum",
   id: "flax.material/material#type:ThemeMode",
   nullable: true,
 );
-const _flaxBinding341 = FlaxTypeRef(
+const _flaxBinding342 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:Locale",
   nullable: true,
 );
-const _flaxBinding342 = FlaxTypeRef(
+const _flaxBinding343 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:LocalizationsDelegate",
   dartType: FlaxDartTypes.typeOf<api1.LocalizationsDelegate<Object?>>,
 );
-const _flaxBinding343 = FlaxTypeRef(
+const _flaxBinding344 = FlaxTypeRef(
   "iterable",
   nullable: true,
-  item: _flaxBinding342,
+  item: _flaxBinding343,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_widgets#type:LocalizationsDelegate<Object?><any?:>]",
     _collection11Create,
@@ -26322,13 +20559,13 @@ const _flaxBinding343 = FlaxTypeRef(
     restore: _collection11Restore,
   ),
 );
-const _flaxBinding344 = FlaxTypeRef(
+const _flaxBinding345 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:Locale",
 );
-const _flaxBinding345 = FlaxTypeRef(
+const _flaxBinding346 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding344,
+  item: _flaxBinding345,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:Locale]",
     _collection13Create,
@@ -26336,33 +20573,33 @@ const _flaxBinding345 = FlaxTypeRef(
     restore: _collection13Restore,
   ),
 );
-const _flaxBinding346 = FlaxTypeRef(
+const _flaxBinding347 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding344,
+  item: _flaxBinding345,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:Locale]",
     _collection12Create,
     _collection12Matches,
   ),
-  iterable: _flaxBinding345,
+  iterable: _flaxBinding346,
 );
-const _flaxBinding347 = FlaxCallbackBinding(
+const _flaxBinding348 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "locales",
-      _flaxBinding346,
+      _flaxBinding347,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "supportedLocales",
-      _flaxBinding345,
+      _flaxBinding346,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding341,
+  _flaxBinding342,
   FlaxCallbackAdapters
       .wrap2<List<api5.Locale>?, Iterable<api5.Locale>, api5.Locale?>,
   id: "callback:<>(p:r:locales:list?:[object:flax.core/sdk_dart_ui#type:Locale],p:r:supportedLocales:iterable:[object:flax.core/sdk_dart_ui#type:Locale])->object?:flax.core/sdk_dart_ui#type:Locale",
@@ -26371,27 +20608,27 @@ const _flaxBinding347 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches2<List<api5.Locale>?, Iterable<api5.Locale>, api5.Locale?>,
 );
-const _flaxBinding348 = FlaxTypeRef(
+const _flaxBinding349 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding347,
+  callback: _flaxBinding348,
 );
-const _flaxBinding349 = FlaxCallbackBinding(
+const _flaxBinding350 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "locale",
-      _flaxBinding341,
+      _flaxBinding342,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "supportedLocales",
-      _flaxBinding345,
+      _flaxBinding346,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding341,
+  _flaxBinding342,
   FlaxCallbackAdapters.wrap2<api5.Locale?, Iterable<api5.Locale>, api5.Locale?>,
   id: "callback:<>(p:r:locale:object?:flax.core/sdk_dart_ui#type:Locale,p:r:supportedLocales:iterable:[object:flax.core/sdk_dart_ui#type:Locale])->object?:flax.core/sdk_dart_ui#type:Locale",
   invoke: FlaxCallbackAdapters
@@ -26399,138 +20636,138 @@ const _flaxBinding349 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches2<api5.Locale?, Iterable<api5.Locale>, api5.Locale?>,
 );
-const _flaxBinding350 = FlaxTypeRef(
+const _flaxBinding351 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding349,
-);
-const _flaxBinding351 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_widgets#type:Intent",
+  callback: _flaxBinding350,
 );
 const _flaxBinding352 = FlaxTypeRef(
   "object",
-  id: "flax.core/sdk_widgets#type:ShortcutActivator",
+  id: "flax.core/sdk_widgets#type:Intent",
 );
 const _flaxBinding353 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_widgets#type:ShortcutActivator",
+);
+const _flaxBinding354 = FlaxTypeRef(
   "map",
   nullable: true,
-  item: _flaxBinding351,
-  key: _flaxBinding352,
+  item: _flaxBinding352,
+  key: _flaxBinding353,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/sdk_widgets#type:Intent][object:flax.core/sdk_widgets#type:ShortcutActivator]",
     _collection14Create,
     _collection14Matches,
   ),
 );
-const _flaxBinding354 = FlaxTypeRef(
+const _flaxBinding355 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:Action",
   dartType: FlaxDartTypes.typeOf<api1.Action<api1.Intent>>,
 );
-const _flaxBinding355 = FlaxTypeRef(
+const _flaxBinding356 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Type",
 );
-const _flaxBinding356 = FlaxTypeRef(
+const _flaxBinding357 = FlaxTypeRef(
   "map",
   nullable: true,
-  item: _flaxBinding354,
-  key: _flaxBinding355,
+  item: _flaxBinding355,
+  key: _flaxBinding356,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/sdk_widgets#type:Action<Intent><object:flax.core/sdk_widgets#type:Intent>][object:flax.core/flutter#type:Type]",
     _collection15Create,
     _collection15Matches,
   ),
 );
-const _flaxBinding357 = FlaxTypeRef(
+const _flaxBinding358 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ScrollBehavior",
   nullable: true,
 );
-const _flaxBinding358 = FlaxTypeRef(
+const _flaxBinding359 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:AnimationStyle",
   nullable: true,
 );
-const _flaxBinding359 = FlaxTypeRef(
+const _flaxBinding360 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RouteInformationProvider",
   nullable: true,
 );
-const _flaxBinding360 = FlaxTypeRef(
+const _flaxBinding361 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RouteInformationParser",
   dartType: FlaxDartTypes.typeOf<api1.RouteInformationParser<Object>?>,
   nullable: true,
 );
-const _flaxBinding361 = FlaxTypeRef(
+const _flaxBinding362 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RouterDelegate",
   dartType: FlaxDartTypes.typeOf<api1.RouterDelegate<Object>?>,
   nullable: true,
 );
-const _flaxBinding362 = FlaxTypeRef(
+const _flaxBinding363 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RouterConfig",
   dartType: FlaxDartTypes.typeOf<api1.RouterConfig<Object>?>,
   nullable: true,
 );
-const _flaxBinding363 = FlaxTypeRef(
+const _flaxBinding364 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:BackButtonDispatcher",
   nullable: true,
 );
-const _flaxBinding364 = FlaxGetter("name", _flaxBinding12, _MaterialPage_name);
-const _flaxBinding365 = FlaxGetter(
+const _flaxBinding365 = FlaxGetter("name", _flaxBinding12, _MaterialPage_name);
+const _flaxBinding366 = FlaxGetter(
   "arguments",
-  _flaxBinding242,
+  _flaxBinding243,
   _MaterialPage_arguments,
 );
-const _flaxBinding366 = FlaxTypeRef(
+const _flaxBinding367 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:LocalKey",
   nullable: true,
 );
-const _flaxBinding367 = FlaxGetter("key", _flaxBinding366, _MaterialPage_key);
-const _flaxBinding368 = FlaxGetter(
+const _flaxBinding368 = FlaxGetter("key", _flaxBinding367, _MaterialPage_key);
+const _flaxBinding369 = FlaxGetter(
   "restorationId",
   _flaxBinding12,
   _MaterialPage_restorationId,
 );
-const _flaxBinding369 = FlaxGetter(
+const _flaxBinding370 = FlaxGetter(
   "canPop",
   _flaxBinding18,
   _MaterialPage_canPop,
 );
-const _flaxBinding370 = FlaxGetter("child", _flaxBinding5, _MaterialPage_child);
-const _flaxBinding371 = FlaxGetter(
+const _flaxBinding371 = FlaxGetter("child", _flaxBinding5, _MaterialPage_child);
+const _flaxBinding372 = FlaxGetter(
   "maintainState",
   _flaxBinding18,
   _MaterialPage_maintainState,
 );
-const _flaxBinding372 = FlaxGetter(
+const _flaxBinding373 = FlaxGetter(
   "fullscreenDialog",
   _flaxBinding18,
   _MaterialPage_fullscreenDialog,
 );
-const _flaxBinding373 = FlaxGetter(
+const _flaxBinding374 = FlaxGetter(
   "allowSnapshotting",
   _flaxBinding18,
   _MaterialPage_allowSnapshotting,
 );
-const _flaxBinding374 = FlaxTypeRef(
+const _flaxBinding375 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Page",
   dartType: FlaxDartTypes.typeOf<api1.Page<Object?>>,
 );
-const _flaxBinding375 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding374, required: true),
-];
 const _flaxBinding376 = <FlaxParameter>[
-  FlaxParameter("context", _flaxBinding147, required: true),
+  FlaxParameter("other", _flaxBinding375, required: true),
 ];
-const _flaxBinding377 = FlaxCallbackBinding(
+const _flaxBinding377 = <FlaxParameter>[
+  FlaxParameter("context", _flaxBinding148, required: true),
+];
+const _flaxBinding378 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "didPop",
@@ -26540,19 +20777,19 @@ const _flaxBinding377 = FlaxCallbackBinding(
     ),
     FlaxCallbackParameter(
       "result",
-      _flaxBinding242,
+      _flaxBinding243,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid2<bool, Object?>,
   id: "callback:<>(p:r:didPop:bool:,p:r:result:any?:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid2<bool, Object?>,
   matches: FlaxCallbackAdapters.matchesVoid2<bool, Object?>,
 );
-const _flaxBinding378 = FlaxTypeRef("callback", callback: _flaxBinding377);
-const _flaxBinding379 = <FlaxParameter>[
+const _flaxBinding379 = FlaxTypeRef("callback", callback: _flaxBinding378);
+const _flaxBinding380 = <FlaxParameter>[
   FlaxParameter("child", _flaxBinding5, required: true),
   FlaxParameter(
     "maintainState",
@@ -26572,65 +20809,65 @@ const _flaxBinding379 = <FlaxParameter>[
     required: false,
     defaultValue: true,
   ),
-  FlaxParameter("key", _flaxBinding366, required: false),
+  FlaxParameter("key", _flaxBinding367, required: false),
   FlaxParameter("canPop", _flaxBinding18, required: false, defaultValue: true),
   FlaxParameter(
     "onPopInvoked",
-    _flaxBinding378,
+    _flaxBinding379,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter("name", _flaxBinding12, required: false),
-  FlaxParameter("arguments", _flaxBinding242, required: false),
+  FlaxParameter("arguments", _flaxBinding243, required: false),
   FlaxParameter("restorationId", _flaxBinding12, required: false),
 ];
-const _flaxBinding380 = FlaxTypeRef(
+const _flaxBinding381 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:ImageFilter",
   nullable: true,
 );
-const _flaxBinding381 = FlaxGetter(
+const _flaxBinding382 = FlaxGetter(
   "filter",
-  _flaxBinding380,
+  _flaxBinding381,
   _MaterialPageRoute_filter,
 );
-const _flaxBinding382 = FlaxTypeRef(
+const _flaxBinding383 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
   nullable: true,
 );
-const _flaxBinding383 = FlaxGetter(
+const _flaxBinding384 = FlaxGetter(
   "traversalEdgeBehavior",
-  _flaxBinding382,
+  _flaxBinding383,
   _MaterialPageRoute_traversalEdgeBehavior,
 );
-const _flaxBinding384 = FlaxGetter(
+const _flaxBinding385 = FlaxGetter(
   "directionalTraversalEdgeBehavior",
-  _flaxBinding382,
+  _flaxBinding383,
   _MaterialPageRoute_directionalTraversalEdgeBehavior,
 );
-const _flaxBinding385 = FlaxTypeRef(
+const _flaxBinding386 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Animation",
   dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
 );
-const _flaxBinding386 = FlaxCallbackBinding(
+const _flaxBinding387 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "context",
-      _flaxBinding147,
+      _flaxBinding148,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "animation",
-      _flaxBinding385,
+      _flaxBinding386,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "secondaryAnimation",
-      _flaxBinding385,
+      _flaxBinding386,
       required: true,
       positional: true,
     ),
@@ -26653,168 +20890,168 @@ const _flaxBinding386 = FlaxCallbackBinding(
   invoke: _callback2Invoke,
   matches: _callback2Matches,
 );
-const _flaxBinding387 = FlaxTypeRef(
+const _flaxBinding388 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding386,
-);
-const _flaxBinding388 = FlaxGetter(
-  "delegatedTransition",
-  _flaxBinding387,
-  _MaterialPageRoute_delegatedTransition,
+  callback: _flaxBinding387,
 );
 const _flaxBinding389 = FlaxGetter(
-  "receivedTransition",
-  _flaxBinding387,
-  _MaterialPageRoute_receivedTransition,
+  "delegatedTransition",
+  _flaxBinding388,
+  _MaterialPageRoute_delegatedTransition,
 );
 const _flaxBinding390 = FlaxGetter(
+  "receivedTransition",
+  _flaxBinding388,
+  _MaterialPageRoute_receivedTransition,
+);
+const _flaxBinding391 = FlaxGetter(
   "barrierDismissible",
   _flaxBinding18,
   _MaterialPageRoute_barrierDismissible,
 );
-const _flaxBinding391 = FlaxGetter(
+const _flaxBinding392 = FlaxGetter(
   "semanticsDismissible",
   _flaxBinding18,
   _MaterialPageRoute_semanticsDismissible,
 );
-const _flaxBinding392 = FlaxGetter(
+const _flaxBinding393 = FlaxGetter(
   "barrierColor",
   _flaxBinding3,
   _MaterialPageRoute_barrierColor,
 );
-const _flaxBinding393 = FlaxGetter(
+const _flaxBinding394 = FlaxGetter(
   "barrierLabel",
   _flaxBinding12,
   _MaterialPageRoute_barrierLabel,
 );
-const _flaxBinding394 = FlaxGetter(
+const _flaxBinding395 = FlaxGetter(
   "barrierCurve",
   _flaxBinding22,
   _MaterialPageRoute_barrierCurve,
 );
-const _flaxBinding395 = FlaxGetter(
+const _flaxBinding396 = FlaxGetter(
   "maintainState",
   _flaxBinding18,
   _MaterialPageRoute_maintainState,
 );
-const _flaxBinding396 = FlaxGetter(
+const _flaxBinding397 = FlaxGetter(
   "popGestureInProgress",
   _flaxBinding18,
   _MaterialPageRoute_popGestureInProgress,
 );
-const _flaxBinding397 = FlaxGetter(
+const _flaxBinding398 = FlaxGetter(
   "popGestureEnabled",
   _flaxBinding18,
   _MaterialPageRoute_popGestureEnabled,
 );
-const _flaxBinding398 = FlaxGetter(
+const _flaxBinding399 = FlaxGetter(
   "offstage",
   _flaxBinding18,
   _MaterialPageRoute_offstage,
 );
-const _flaxBinding399 = FlaxTypeRef(
+const _flaxBinding400 = FlaxTypeRef(
   "context",
   id: "flax.core/flutter#type:BuildContext",
   nullable: true,
 );
-const _flaxBinding400 = FlaxGetter(
+const _flaxBinding401 = FlaxGetter(
   "subtreeContext",
-  _flaxBinding399,
+  _flaxBinding400,
   _MaterialPageRoute_subtreeContext,
 );
-const _flaxBinding401 = FlaxTypeRef(
+const _flaxBinding402 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Animation",
   dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
   nullable: true,
 );
-const _flaxBinding402 = FlaxGetter(
+const _flaxBinding403 = FlaxGetter(
   "animation",
-  _flaxBinding401,
+  _flaxBinding402,
   _MaterialPageRoute_animation,
 );
-const _flaxBinding403 = FlaxGetter(
+const _flaxBinding404 = FlaxGetter(
   "secondaryAnimation",
-  _flaxBinding401,
+  _flaxBinding402,
   _MaterialPageRoute_secondaryAnimation,
 );
-const _flaxBinding404 = FlaxTypeRef(
+const _flaxBinding405 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_widgets#type:RoutePopDisposition",
 );
-const _flaxBinding405 = FlaxGetter(
+const _flaxBinding406 = FlaxGetter(
   "popDisposition",
-  _flaxBinding404,
+  _flaxBinding405,
   _MaterialPageRoute_popDisposition,
 );
-const _flaxBinding406 = FlaxGetter(
+const _flaxBinding407 = FlaxGetter(
   "hasScopedWillPopCallback",
   _flaxBinding18,
   _MaterialPageRoute_hasScopedWillPopCallback,
 );
-const _flaxBinding407 = FlaxGetter(
+const _flaxBinding408 = FlaxGetter(
   "canPop",
   _flaxBinding18,
   _MaterialPageRoute_canPop,
 );
-const _flaxBinding408 = FlaxGetter(
+const _flaxBinding409 = FlaxGetter(
   "impliesAppBarDismissal",
   _flaxBinding18,
   _MaterialPageRoute_impliesAppBarDismissal,
 );
-const _flaxBinding409 = FlaxGetter(
+const _flaxBinding410 = FlaxGetter(
   "fullscreenDialog",
   _flaxBinding18,
   _MaterialPageRoute_fullscreenDialog,
 );
-const _flaxBinding410 = FlaxGetter(
+const _flaxBinding411 = FlaxGetter(
   "transitionDuration",
   _flaxBinding21,
   _MaterialPageRoute_transitionDuration,
 );
-const _flaxBinding411 = FlaxGetter(
+const _flaxBinding412 = FlaxGetter(
   "reverseTransitionDuration",
   _flaxBinding21,
   _MaterialPageRoute_reverseTransitionDuration,
 );
-const _flaxBinding412 = FlaxGetter(
+const _flaxBinding413 = FlaxGetter(
   "opaque",
   _flaxBinding18,
   _MaterialPageRoute_opaque,
 );
-const _flaxBinding413 = FlaxGetter(
+const _flaxBinding414 = FlaxGetter(
   "allowSnapshotting",
   _flaxBinding18,
   _MaterialPageRoute_allowSnapshotting,
 );
-const _flaxBinding414 = FlaxGetter(
+const _flaxBinding415 = FlaxGetter(
   "finishedWhenPopped",
   _flaxBinding18,
   _MaterialPageRoute_finishedWhenPopped,
 );
-const _flaxBinding415 = FlaxGetter(
+const _flaxBinding416 = FlaxGetter(
   "controller",
-  _flaxBinding169,
+  _flaxBinding170,
   _MaterialPageRoute_controller,
 );
-const _flaxBinding416 = FlaxGetter(
+const _flaxBinding417 = FlaxGetter(
   "willDisposeAnimationController",
   _flaxBinding18,
   _MaterialPageRoute_willDisposeAnimationController,
 );
-const _flaxBinding417 = FlaxGetter(
+const _flaxBinding418 = FlaxGetter(
   "debugLabel",
-  _flaxBinding68,
+  _flaxBinding67,
   _MaterialPageRoute_debugLabel,
 );
-const _flaxBinding418 = FlaxTypeRef(
+const _flaxBinding419 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:OverlayEntry",
 );
-const _flaxBinding419 = FlaxTypeRef(
+const _flaxBinding420 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding418,
+  item: _flaxBinding419,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
     _collection17Create,
@@ -26822,192 +21059,192 @@ const _flaxBinding419 = FlaxTypeRef(
     restore: _collection17Restore,
   ),
 );
-const _flaxBinding420 = FlaxTypeRef(
+const _flaxBinding421 = FlaxTypeRef(
   "list",
-  item: _flaxBinding418,
+  item: _flaxBinding419,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
     _collection16Create,
     _collection16Matches,
   ),
-  iterable: _flaxBinding419,
-);
-const _flaxBinding421 = FlaxGetter(
-  "overlayEntries",
-  _flaxBinding420,
-  _MaterialPageRoute_overlayEntries,
+  iterable: _flaxBinding420,
 );
 const _flaxBinding422 = FlaxGetter(
+  "overlayEntries",
+  _flaxBinding421,
+  _MaterialPageRoute_overlayEntries,
+);
+const _flaxBinding423 = FlaxGetter(
   "requestFocus",
   _flaxBinding18,
   _MaterialPageRoute_requestFocus,
 );
-const _flaxBinding423 = FlaxTypeRef(
+const _flaxBinding424 = FlaxTypeRef(
   "state",
   id: "flax.core/flutter#type:NavigatorState",
   nullable: true,
 );
-const _flaxBinding424 = FlaxGetter(
+const _flaxBinding425 = FlaxGetter(
   "navigator",
-  _flaxBinding423,
+  _flaxBinding424,
   _MaterialPageRoute_navigator,
 );
-const _flaxBinding425 = FlaxGetter(
+const _flaxBinding426 = FlaxGetter(
   "settings",
-  _flaxBinding320,
+  _flaxBinding321,
   _MaterialPageRoute_settings,
 );
-const _flaxBinding426 = FlaxTypeRef(
+const _flaxBinding427 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:ValueListenable",
   dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
 );
-const _flaxBinding427 = FlaxGetter(
+const _flaxBinding428 = FlaxGetter(
   "restorationScopeId",
-  _flaxBinding426,
+  _flaxBinding427,
   _MaterialPageRoute_restorationScopeId,
 );
-const _flaxBinding428 = FlaxGetter(
+const _flaxBinding429 = FlaxGetter(
   "willHandlePopInternally",
   _flaxBinding18,
   _MaterialPageRoute_willHandlePopInternally,
 );
-const _flaxBinding429 = FlaxGetter(
+const _flaxBinding430 = FlaxGetter(
   "isCurrent",
   _flaxBinding18,
   _MaterialPageRoute_isCurrent,
 );
-const _flaxBinding430 = FlaxGetter(
+const _flaxBinding431 = FlaxGetter(
   "isFirst",
   _flaxBinding18,
   _MaterialPageRoute_isFirst,
 );
-const _flaxBinding431 = FlaxGetter(
+const _flaxBinding432 = FlaxGetter(
   "hasActiveRouteBelow",
   _flaxBinding18,
   _MaterialPageRoute_hasActiveRouteBelow,
 );
-const _flaxBinding432 = FlaxGetter(
+const _flaxBinding433 = FlaxGetter(
   "isActive",
   _flaxBinding18,
   _MaterialPageRoute_isActive,
 );
-const _flaxBinding433 = FlaxGetter(
+const _flaxBinding434 = FlaxGetter(
   "builder",
-  _flaxBinding318,
+  _flaxBinding319,
   _MaterialPageRoute_builder,
 );
-const _flaxBinding434 = FlaxTypeRef("callback", callback: _flaxBinding237);
-const _flaxBinding435 = <FlaxParameter>[
-  FlaxParameter("fn", _flaxBinding434, required: true),
-];
+const _flaxBinding435 = FlaxTypeRef("callback", callback: _flaxBinding238);
 const _flaxBinding436 = <FlaxParameter>[
-  FlaxParameter("context", _flaxBinding147, required: true),
-  FlaxParameter("animation", _flaxBinding385, required: true),
-  FlaxParameter("secondaryAnimation", _flaxBinding385, required: true),
+  FlaxParameter("fn", _flaxBinding435, required: true),
 ];
 const _flaxBinding437 = <FlaxParameter>[
-  FlaxParameter("context", _flaxBinding147, required: true),
-  FlaxParameter("animation", _flaxBinding385, required: true),
-  FlaxParameter("secondaryAnimation", _flaxBinding385, required: true),
+  FlaxParameter("context", _flaxBinding148, required: true),
+  FlaxParameter("animation", _flaxBinding386, required: true),
+  FlaxParameter("secondaryAnimation", _flaxBinding386, required: true),
+];
+const _flaxBinding438 = <FlaxParameter>[
+  FlaxParameter("context", _flaxBinding148, required: true),
+  FlaxParameter("animation", _flaxBinding386, required: true),
+  FlaxParameter("secondaryAnimation", _flaxBinding386, required: true),
   FlaxParameter("child", _flaxBinding5, required: true),
 ];
-const _flaxBinding438 = FlaxTypeRef(
+const _flaxBinding439 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_scheduler#type:TickerFuture",
 );
-const _flaxBinding439 = FlaxTypeRef(
+const _flaxBinding440 = FlaxTypeRef(
   "future",
-  item: _flaxBinding404,
+  item: _flaxBinding405,
   future: FlaxFutureBinding(
     "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
     _future1Adapt,
   ),
 );
-const _flaxBinding440 = FlaxTypeRef(
+const _flaxBinding441 = FlaxTypeRef(
   "future",
   item: _flaxBinding18,
   future: FlaxFutureBinding("bool:", _future2Adapt),
 );
-const _flaxBinding441 = FlaxCallbackBinding(
+const _flaxBinding442 = FlaxCallbackBinding(
   [],
-  _flaxBinding440,
+  _flaxBinding441,
   _callback3,
   id: "callback:<>()->future:[bool:]",
   invoke: _callback3Invoke,
   matches: _callback3Matches,
 );
-const _flaxBinding442 = FlaxTypeRef("callback", callback: _flaxBinding441);
-const _flaxBinding443 = <FlaxParameter>[
-  FlaxParameter("callback", _flaxBinding442, required: true),
+const _flaxBinding443 = FlaxTypeRef("callback", callback: _flaxBinding442);
+const _flaxBinding444 = <FlaxParameter>[
+  FlaxParameter("callback", _flaxBinding443, required: true),
 ];
-const _flaxBinding444 = FlaxTypeRef(
+const _flaxBinding445 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:PopEntry",
   dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
 );
-const _flaxBinding445 = <FlaxParameter>[
-  FlaxParameter("popEntry", _flaxBinding444, required: true),
-];
 const _flaxBinding446 = <FlaxParameter>[
-  FlaxParameter("previousRoute", _flaxBinding321, required: true),
+  FlaxParameter("popEntry", _flaxBinding445, required: true),
 ];
 const _flaxBinding447 = <FlaxParameter>[
-  FlaxParameter("nextRoute", _flaxBinding321, required: true),
+  FlaxParameter("previousRoute", _flaxBinding322, required: true),
 ];
 const _flaxBinding448 = <FlaxParameter>[
-  FlaxParameter("nextRoute", _flaxBinding324, required: true),
+  FlaxParameter("nextRoute", _flaxBinding322, required: true),
 ];
-const _flaxBinding449 = FlaxTypeRef(
+const _flaxBinding449 = <FlaxParameter>[
+  FlaxParameter("nextRoute", _flaxBinding325, required: true),
+];
+const _flaxBinding450 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:AnimationController",
 );
-const _flaxBinding450 = <FlaxParameter>[
-  FlaxParameter("forward", _flaxBinding18, required: true),
-];
 const _flaxBinding451 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_physics#type:Simulation",
   nullable: true,
 );
 const _flaxBinding452 = <FlaxParameter>[
-  FlaxParameter("oldRoute", _flaxBinding321, required: true),
+  FlaxParameter("forward", _flaxBinding18, required: true),
 ];
-const _flaxBinding453 = FlaxTypeRef(
+const _flaxBinding453 = <FlaxParameter>[
+  FlaxParameter("oldRoute", _flaxBinding322, required: true),
+];
+const _flaxBinding454 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:TransitionRoute",
   dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
 );
-const _flaxBinding454 = <FlaxParameter>[
-  FlaxParameter("nextRoute", _flaxBinding453, required: true),
-];
 const _flaxBinding455 = <FlaxParameter>[
-  FlaxParameter("previousRoute", _flaxBinding453, required: true),
+  FlaxParameter("nextRoute", _flaxBinding454, required: true),
 ];
 const _flaxBinding456 = <FlaxParameter>[
-  FlaxParameter("progress", _flaxBinding52, required: false, defaultValue: 0.0),
+  FlaxParameter("previousRoute", _flaxBinding454, required: true),
 ];
 const _flaxBinding457 = <FlaxParameter>[
-  FlaxParameter("progress", _flaxBinding52, required: true),
+  FlaxParameter("progress", _flaxBinding52, required: false, defaultValue: 0.0),
 ];
 const _flaxBinding458 = <FlaxParameter>[
+  FlaxParameter("progress", _flaxBinding52, required: true),
+];
+const _flaxBinding459 = <FlaxParameter>[
   FlaxParameter("didPop", _flaxBinding18, required: true),
 ];
-const _flaxBinding459 = FlaxTypeRef(
+const _flaxBinding460 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
 );
-const _flaxBinding460 = <FlaxParameter>[
-  FlaxParameter("entry", _flaxBinding459, required: true),
+const _flaxBinding461 = <FlaxParameter>[
+  FlaxParameter("entry", _flaxBinding460, required: true),
 ];
-const _flaxBinding461 = FlaxTypeRef(
+const _flaxBinding462 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:RouteSettings",
   nullable: true,
 );
-const _flaxBinding462 = <FlaxParameter>[
-  FlaxParameter("builder", _flaxBinding318, required: true),
-  FlaxParameter("settings", _flaxBinding461, required: false),
+const _flaxBinding463 = <FlaxParameter>[
+  FlaxParameter("builder", _flaxBinding319, required: true),
+  FlaxParameter("settings", _flaxBinding462, required: false),
   FlaxParameter("requestFocus", _flaxBinding48, required: false),
   FlaxParameter(
     "maintainState",
@@ -27033,29 +21270,29 @@ const _flaxBinding462 = <FlaxParameter>[
     required: false,
     defaultValue: false,
   ),
-  FlaxParameter("traversalEdgeBehavior", _flaxBinding382, required: false),
+  FlaxParameter("traversalEdgeBehavior", _flaxBinding383, required: false),
   FlaxParameter(
     "directionalTraversalEdgeBehavior",
-    _flaxBinding382,
+    _flaxBinding383,
     required: false,
   ),
 ];
-const _flaxBinding463 = FlaxSetter(
+const _flaxBinding464 = FlaxSetter(
   "receivedTransition",
-  _flaxBinding387,
+  _flaxBinding388,
   _MaterialPageRoute_set_receivedTransition,
 );
-const _flaxBinding464 = FlaxSetter(
+const _flaxBinding465 = FlaxSetter(
   "offstage",
   _flaxBinding18,
   _MaterialPageRoute_set_offstage,
 );
-const _flaxBinding465 = FlaxSetter(
+const _flaxBinding466 = FlaxSetter(
   "willDisposeAnimationController",
   _flaxBinding18,
   _MaterialPageRoute_set_willDisposeAnimationController,
 );
-const _flaxBinding466 = FlaxTypeRef(
+const _flaxBinding467 = FlaxTypeRef(
   "list",
   item: _flaxBinding5,
   collection: FlaxCollectionBinding(
@@ -27066,7 +21303,7 @@ const _flaxBinding466 = FlaxTypeRef(
   ),
   iterable: _flaxBinding6,
 );
-const _flaxBinding467 = FlaxCallbackBinding(
+const _flaxBinding468 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
@@ -27075,46 +21312,46 @@ const _flaxBinding467 = FlaxCallbackBinding(
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<int>,
   id: "callback:<>(p:r:value:int:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<int>,
   matches: FlaxCallbackAdapters.matchesVoid1<int>,
 );
-const _flaxBinding468 = FlaxTypeRef(
+const _flaxBinding469 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding467,
+  callback: _flaxBinding468,
 );
-const _flaxBinding469 = FlaxTypeRef(
+const _flaxBinding470 = FlaxTypeRef(
   "enum",
   id: "flax.material/material#type:NavigationDestinationLabelBehavior",
   nullable: true,
 );
-const _flaxBinding470 = FlaxTypeRef(
+const _flaxBinding471 = FlaxTypeRef(
   "future",
-  item: _flaxBinding79,
+  item: _flaxBinding78,
   future: FlaxFutureBinding("void:", _future3Adapt),
 );
-const _flaxBinding471 = FlaxCallbackBinding(
+const _flaxBinding472 = FlaxCallbackBinding(
   [],
-  _flaxBinding470,
+  _flaxBinding471,
   _callback4,
   id: "callback:<>()->future:[void:]",
   invoke: _callback4Invoke,
   matches: _callback4Matches,
 );
-const _flaxBinding472 = FlaxTypeRef("callback", callback: _flaxBinding471);
-const _flaxBinding473 = FlaxTypeRef(
+const _flaxBinding473 = FlaxTypeRef("callback", callback: _flaxBinding472);
+const _flaxBinding474 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:AlignmentDirectional",
 );
-const _flaxBinding474 = FlaxTypeRef(
+const _flaxBinding475 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BoxDecoration",
   nullable: true,
 );
-const _flaxBinding475 = FlaxCallbackBinding(
+const _flaxBinding476 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "isOpened",
@@ -27123,32 +21360,32 @@ const _flaxBinding475 = FlaxCallbackBinding(
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<bool>,
   id: "callback:<>(p:r:isOpened:bool:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<bool>,
   matches: FlaxCallbackAdapters.matchesVoid1<bool>,
 );
-const _flaxBinding476 = FlaxTypeRef(
+const _flaxBinding477 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding475,
+  callback: _flaxBinding476,
 );
-const _flaxBinding477 = FlaxTypeRef(
+const _flaxBinding478 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:DragStartBehavior",
 );
-const _flaxBinding478 = FlaxCallbackBinding(
+const _flaxBinding479 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "p0",
-      _flaxBinding147,
+      _flaxBinding148,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "p1",
-      _flaxBinding385,
+      _flaxBinding386,
       required: true,
       positional: true,
     ),
@@ -27163,66 +21400,66 @@ const _flaxBinding478 = FlaxCallbackBinding(
       .matches2<api1.BuildContext, api3.Animation<double>, api1.Widget?>,
   independentWidgetResult: true,
 );
-const _flaxBinding479 = FlaxTypeRef("callback", callback: _flaxBinding478);
-const _flaxBinding480 = FlaxTypeRef(
+const _flaxBinding480 = FlaxTypeRef("callback", callback: _flaxBinding479);
+const _flaxBinding481 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:ImageProvider",
   dartType: FlaxDartTypes.typeOf<api2.ImageProvider<Object>?>,
   nullable: true,
 );
-const _flaxBinding481 = FlaxTypeRef(
+const _flaxBinding482 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:StackTrace",
   nullable: true,
 );
-const _flaxBinding482 = FlaxCallbackBinding(
+const _flaxBinding483 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "exception",
-      _flaxBinding307,
+      _flaxBinding308,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "stackTrace",
-      _flaxBinding481,
+      _flaxBinding482,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid2<Object, api8.StackTrace?>,
   id: "callback:<>(p:r:exception:any:,p:r:stackTrace:object?:flax.core/flutter#type:StackTrace)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid2<Object, api8.StackTrace?>,
   matches: FlaxCallbackAdapters.matchesVoid2<Object, api8.StackTrace?>,
 );
-const _flaxBinding483 = FlaxTypeRef(
+const _flaxBinding484 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding482,
+  callback: _flaxBinding483,
 );
-const _flaxBinding484 = FlaxTypeRef(
+const _flaxBinding485 = FlaxTypeRef(
   "widget",
   id: "flax.core/sdk_widgets#type:Icon",
   nullable: true,
 );
-const _flaxBinding485 = FlaxCallbackBinding(
+const _flaxBinding486 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "states",
-      _flaxBinding96,
+      _flaxBinding97,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding484,
+  _flaxBinding485,
   FlaxCallbackAdapters.wrap1<Set<api1.WidgetState>, api1.Icon?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->widget?:flax.core/sdk_widgets#type:Icon",
   invoke: FlaxCallbackAdapters.invoke1<Set<api1.WidgetState>, api1.Icon?>,
   matches: FlaxCallbackAdapters.matches1<Set<api1.WidgetState>, api1.Icon?>,
 );
-const _flaxBinding486 = FlaxTypeRef("callback", callback: _flaxBinding485);
-const _flaxBinding487 = FlaxTypeRef(
+const _flaxBinding487 = FlaxTypeRef("callback", callback: _flaxBinding486);
+const _flaxBinding488 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api1.WidgetStateProperty<api1.Icon?>?>,
@@ -27230,145 +21467,137 @@ const _flaxBinding487 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><widget?:flax.core/sdk_widgets#type:Icon>",
-      [
-        FlaxParameter(
-          "callback",
-          _flaxBinding486,
-          required: true,
-          defaultValue: null,
-          omitWhenAbsent: false,
-        ),
-      ],
+      [FlaxParameter("callback", _flaxBinding487, required: true)],
       _deferred8,
     ),
   },
 );
-const _flaxBinding488 = FlaxTypeRef(
+const _flaxBinding489 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:TextEditingController",
   nullable: true,
 );
-const _flaxBinding489 = FlaxTypeRef(
+const _flaxBinding490 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:UndoHistoryController",
   nullable: true,
 );
-const _flaxBinding490 = FlaxTypeRef(
+const _flaxBinding491 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:InputDecoration",
   nullable: true,
 );
-const _flaxBinding491 = FlaxTypeRef(
+const _flaxBinding492 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:TextInputType",
   nullable: true,
 );
-const _flaxBinding492 = FlaxTypeRef(
+const _flaxBinding493 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:TextInputAction",
   nullable: true,
 );
-const _flaxBinding493 = FlaxTypeRef(
+const _flaxBinding494 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:TextCapitalization",
 );
-const _flaxBinding494 = FlaxTypeRef(
+const _flaxBinding495 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:StrutStyle",
   nullable: true,
 );
-const _flaxBinding495 = FlaxTypeRef(
+const _flaxBinding496 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TextAlign",
 );
-const _flaxBinding496 = FlaxTypeRef(
+const _flaxBinding497 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:TextAlignVertical",
   nullable: true,
 );
-const _flaxBinding497 = FlaxTypeRef(
+const _flaxBinding498 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ToolbarOptions",
   nullable: true,
 );
-const _flaxBinding498 = FlaxTypeRef(
+const _flaxBinding499 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SmartDashesType",
   nullable: true,
 );
-const _flaxBinding499 = FlaxTypeRef(
+const _flaxBinding500 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SmartQuotesType",
   nullable: true,
 );
-const _flaxBinding500 = FlaxTypeRef(
+const _flaxBinding501 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:MaxLengthEnforcement",
   nullable: true,
 );
-const _flaxBinding501 = FlaxCallbackBinding(
+const _flaxBinding502 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "value",
-      _flaxBinding68,
+      _flaxBinding67,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<String>,
   id: "callback:<>(p:r:value:String:)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<String>,
   matches: FlaxCallbackAdapters.matchesVoid1<String>,
 );
-const _flaxBinding502 = FlaxTypeRef(
+const _flaxBinding503 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding501,
+  callback: _flaxBinding502,
 );
-const _flaxBinding503 = FlaxTypeRef(
+const _flaxBinding504 = FlaxTypeRef(
   "map",
-  item: _flaxBinding242,
-  key: _flaxBinding68,
+  item: _flaxBinding243,
+  key: _flaxBinding67,
   collection: FlaxCollectionBinding(
     "map:[any?:][String:]",
     _collection18Create,
     _collection18Matches,
   ),
 );
-const _flaxBinding504 = FlaxCallbackBinding(
+const _flaxBinding505 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "action",
-      _flaxBinding68,
+      _flaxBinding67,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "data",
-      _flaxBinding503,
+      _flaxBinding504,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid2<String, Map<String, Object?>>,
   id: "callback:<>(p:r:action:String:,p:r:data:map:[any?:][String:])->void:",
   invoke: FlaxCallbackAdapters.invokeVoid2<String, Map<String, Object?>>,
   matches: FlaxCallbackAdapters.matchesVoid2<String, Map<String, Object?>>,
 );
-const _flaxBinding505 = FlaxTypeRef(
+const _flaxBinding506 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding504,
+  callback: _flaxBinding505,
 );
-const _flaxBinding506 = FlaxTypeRef(
+const _flaxBinding507 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:TextInputFormatter",
 );
-const _flaxBinding507 = FlaxTypeRef(
+const _flaxBinding508 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding506,
+  item: _flaxBinding507,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/flutter#type:TextInputFormatter]",
     _collection20Create,
@@ -27376,90 +21605,90 @@ const _flaxBinding507 = FlaxTypeRef(
     restore: _collection20Restore,
   ),
 );
-const _flaxBinding508 = FlaxTypeRef(
+const _flaxBinding509 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding506,
+  item: _flaxBinding507,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:TextInputFormatter]",
     _collection19Create,
     _collection19Matches,
   ),
-  iterable: _flaxBinding507,
+  iterable: _flaxBinding508,
 );
-const _flaxBinding509 = FlaxTypeRef(
+const _flaxBinding510 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Radius",
   nullable: true,
 );
-const _flaxBinding510 = FlaxTypeRef(
+const _flaxBinding511 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:BoxHeightStyle",
   nullable: true,
 );
-const _flaxBinding511 = FlaxTypeRef(
+const _flaxBinding512 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:BoxWidthStyle",
   nullable: true,
 );
-const _flaxBinding512 = FlaxTypeRef(
+const _flaxBinding513 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:TextSelectionControls",
   nullable: true,
 );
-const _flaxBinding513 = FlaxTypeRef(
+const _flaxBinding514 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:PointerDownEvent",
 );
-const _flaxBinding514 = FlaxCallbackBinding(
+const _flaxBinding515 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "event",
-      _flaxBinding513,
+      _flaxBinding514,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<api7.PointerDownEvent>,
   id: "callback:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerDownEvent)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api7.PointerDownEvent>,
   matches: FlaxCallbackAdapters.matchesVoid1<api7.PointerDownEvent>,
 );
-const _flaxBinding515 = FlaxTypeRef(
+const _flaxBinding516 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding514,
+  callback: _flaxBinding515,
 );
-const _flaxBinding516 = FlaxTypeRef(
+const _flaxBinding517 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:PointerUpEvent",
 );
-const _flaxBinding517 = FlaxCallbackBinding(
+const _flaxBinding518 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "event",
-      _flaxBinding516,
+      _flaxBinding517,
       required: true,
       positional: true,
     ),
   ],
-  _flaxBinding79,
+  _flaxBinding78,
   FlaxCallbackAdapters.wrapVoid1<api7.PointerUpEvent>,
   id: "callback:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerUpEvent)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api7.PointerUpEvent>,
   matches: FlaxCallbackAdapters.matchesVoid1<api7.PointerUpEvent>,
 );
-const _flaxBinding518 = FlaxTypeRef(
+const _flaxBinding519 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding517,
+  callback: _flaxBinding518,
 );
-const _flaxBinding519 = FlaxCallbackBinding(
+const _flaxBinding520 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "context",
-      _flaxBinding147,
+      _flaxBinding148,
       required: true,
       positional: true,
     ),
@@ -27477,7 +21706,7 @@ const _flaxBinding519 = FlaxCallbackBinding(
     ),
     FlaxCallbackParameter(
       "maxLength",
-      _flaxBinding260,
+      _flaxBinding261,
       required: true,
       positional: false,
     ),
@@ -27489,20 +21718,20 @@ const _flaxBinding519 = FlaxCallbackBinding(
   matches: _callback5Matches,
   independentWidgetResult: true,
 );
-const _flaxBinding520 = FlaxTypeRef(
+const _flaxBinding521 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding519,
+  callback: _flaxBinding520,
 );
-const _flaxBinding521 = FlaxTypeRef(
+const _flaxBinding522 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:ScrollPhysics",
   nullable: true,
 );
-const _flaxBinding522 = FlaxTypeRef(
+const _flaxBinding523 = FlaxTypeRef(
   "iterable",
   nullable: true,
-  item: _flaxBinding68,
+  item: _flaxBinding67,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
     _collection21Create,
@@ -27510,26 +21739,26 @@ const _flaxBinding522 = FlaxTypeRef(
     restore: _collection21Restore,
   ),
 );
-const _flaxBinding523 = FlaxTypeRef(
+const _flaxBinding524 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ContentInsertionConfiguration",
   nullable: true,
 );
-const _flaxBinding524 = FlaxTypeRef(
+const _flaxBinding525 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:EditableTextState",
 );
-const _flaxBinding525 = FlaxCallbackBinding(
+const _flaxBinding526 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter(
       "context",
-      _flaxBinding147,
+      _flaxBinding148,
       required: true,
       positional: true,
     ),
     FlaxCallbackParameter(
       "editableTextState",
-      _flaxBinding524,
+      _flaxBinding525,
       required: true,
       positional: true,
     ),
@@ -27544,117 +21773,117 @@ const _flaxBinding525 = FlaxCallbackBinding(
       .matches2<api1.BuildContext, api1.EditableTextState, api1.Widget>,
   independentWidgetResult: true,
 );
-const _flaxBinding526 = FlaxTypeRef(
+const _flaxBinding527 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding525,
+  callback: _flaxBinding526,
 );
-const _flaxBinding527 = FlaxTypeRef(
+const _flaxBinding528 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:SpellCheckConfiguration",
   nullable: true,
 );
-const _flaxBinding528 = FlaxTypeRef(
+const _flaxBinding529 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:TextMagnifierConfiguration",
   nullable: true,
 );
-const _flaxBinding529 = FlaxGetter(
+const _flaxBinding530 = FlaxGetter(
   "displayLarge",
   _flaxBinding4,
   _TextTheme_displayLarge,
 );
-const _flaxBinding530 = FlaxGetter(
+const _flaxBinding531 = FlaxGetter(
   "displayMedium",
   _flaxBinding4,
   _TextTheme_displayMedium,
 );
-const _flaxBinding531 = FlaxGetter(
+const _flaxBinding532 = FlaxGetter(
   "displaySmall",
   _flaxBinding4,
   _TextTheme_displaySmall,
 );
-const _flaxBinding532 = FlaxGetter(
+const _flaxBinding533 = FlaxGetter(
   "headlineLarge",
   _flaxBinding4,
   _TextTheme_headlineLarge,
 );
-const _flaxBinding533 = FlaxGetter(
+const _flaxBinding534 = FlaxGetter(
   "headlineMedium",
   _flaxBinding4,
   _TextTheme_headlineMedium,
 );
-const _flaxBinding534 = FlaxGetter(
+const _flaxBinding535 = FlaxGetter(
   "headlineSmall",
   _flaxBinding4,
   _TextTheme_headlineSmall,
 );
-const _flaxBinding535 = FlaxGetter(
+const _flaxBinding536 = FlaxGetter(
   "titleLarge",
   _flaxBinding4,
   _TextTheme_titleLarge,
 );
-const _flaxBinding536 = FlaxGetter(
+const _flaxBinding537 = FlaxGetter(
   "titleMedium",
   _flaxBinding4,
   _TextTheme_titleMedium,
 );
-const _flaxBinding537 = FlaxGetter(
+const _flaxBinding538 = FlaxGetter(
   "titleSmall",
   _flaxBinding4,
   _TextTheme_titleSmall,
 );
-const _flaxBinding538 = FlaxGetter(
+const _flaxBinding539 = FlaxGetter(
   "bodyLarge",
   _flaxBinding4,
   _TextTheme_bodyLarge,
 );
-const _flaxBinding539 = FlaxGetter(
+const _flaxBinding540 = FlaxGetter(
   "bodyMedium",
   _flaxBinding4,
   _TextTheme_bodyMedium,
 );
-const _flaxBinding540 = FlaxGetter(
+const _flaxBinding541 = FlaxGetter(
   "bodySmall",
   _flaxBinding4,
   _TextTheme_bodySmall,
 );
-const _flaxBinding541 = FlaxGetter(
+const _flaxBinding542 = FlaxGetter(
   "labelLarge",
   _flaxBinding4,
   _TextTheme_labelLarge,
 );
-const _flaxBinding542 = FlaxGetter(
+const _flaxBinding543 = FlaxGetter(
   "labelMedium",
   _flaxBinding4,
   _TextTheme_labelMedium,
 );
-const _flaxBinding543 = FlaxGetter(
+const _flaxBinding544 = FlaxGetter(
   "labelSmall",
   _flaxBinding4,
   _TextTheme_labelSmall,
 );
-const _flaxBinding544 = FlaxInstanceMethod(
-  _flaxBinding67,
+const _flaxBinding545 = FlaxInstanceMethod(
   _flaxBinding68,
+  _flaxBinding67,
   _TextTheme_toStringShort,
 );
-const _flaxBinding545 = FlaxInstanceMethod(
+const _flaxBinding546 = FlaxInstanceMethod(
   _flaxBinding71,
-  _flaxBinding68,
+  _flaxBinding67,
   _TextTheme_toString,
 );
-const _flaxBinding546 = FlaxInstanceMethod(
+const _flaxBinding547 = FlaxInstanceMethod(
   _flaxBinding74,
   _flaxBinding75,
   _TextTheme_toDiagnosticsNode,
 );
-const _flaxBinding547 = FlaxInstanceMethod(
-  _flaxBinding78,
+const _flaxBinding548 = FlaxInstanceMethod(
   _flaxBinding79,
+  _flaxBinding78,
   _TextTheme_debugFillProperties,
 );
-const _flaxBinding548 = <FlaxParameter>[
+const _flaxBinding549 = <FlaxParameter>[
   FlaxParameter("bodyLarge", _flaxBinding4, required: false),
   FlaxParameter("bodyMedium", _flaxBinding4, required: false),
   FlaxParameter("bodySmall", _flaxBinding4, required: false),
@@ -27671,41 +21900,41 @@ const _flaxBinding548 = <FlaxParameter>[
   FlaxParameter("titleMedium", _flaxBinding4, required: false),
   FlaxParameter("titleSmall", _flaxBinding4, required: false),
 ];
-const _flaxBinding549 = FlaxTypeRef(
+const _flaxBinding550 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:TextTheme",
 );
-const _flaxBinding550 = FlaxInstanceMethod(
-  _flaxBinding548,
+const _flaxBinding551 = FlaxInstanceMethod(
   _flaxBinding549,
+  _flaxBinding550,
   _TextTheme_copyWith,
 );
-const _flaxBinding551 = FlaxTypeRef(
+const _flaxBinding552 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:TextTheme",
   nullable: true,
 );
-const _flaxBinding552 = <FlaxParameter>[
-  FlaxParameter("other", _flaxBinding551, required: true),
+const _flaxBinding553 = <FlaxParameter>[
+  FlaxParameter("other", _flaxBinding552, required: true),
 ];
-const _flaxBinding553 = FlaxInstanceMethod(
-  _flaxBinding552,
-  _flaxBinding549,
+const _flaxBinding554 = FlaxInstanceMethod(
+  _flaxBinding553,
+  _flaxBinding550,
   _TextTheme_merge,
 );
-const _flaxBinding554 = FlaxTypeRef(
+const _flaxBinding555 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:TextDecoration",
   nullable: true,
 );
-const _flaxBinding555 = FlaxTypeRef(
+const _flaxBinding556 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:TextDecorationStyle",
   nullable: true,
 );
-const _flaxBinding556 = FlaxTypeRef(
+const _flaxBinding557 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding68,
+  item: _flaxBinding67,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
     _collection21Create,
@@ -27713,25 +21942,25 @@ const _flaxBinding556 = FlaxTypeRef(
     restore: _collection21Restore,
   ),
 );
-const _flaxBinding557 = FlaxTypeRef(
+const _flaxBinding558 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding68,
+  item: _flaxBinding67,
   collection: FlaxCollectionBinding(
     "list:[String:]",
     _collection22Create,
     _collection22Matches,
   ),
-  iterable: _flaxBinding556,
+  iterable: _flaxBinding557,
 );
-const _flaxBinding558 = <FlaxParameter>[
+const _flaxBinding559 = <FlaxParameter>[
   FlaxParameter("bodyColor", _flaxBinding3, required: false),
-  FlaxParameter("decoration", _flaxBinding554, required: false),
+  FlaxParameter("decoration", _flaxBinding555, required: false),
   FlaxParameter("decorationColor", _flaxBinding3, required: false),
-  FlaxParameter("decorationStyle", _flaxBinding555, required: false),
+  FlaxParameter("decorationStyle", _flaxBinding556, required: false),
   FlaxParameter("displayColor", _flaxBinding3, required: false),
   FlaxParameter("fontFamily", _flaxBinding12, required: false),
-  FlaxParameter("fontFamilyFallback", _flaxBinding557, required: false),
+  FlaxParameter("fontFamilyFallback", _flaxBinding558, required: false),
   FlaxParameter(
     "fontSizeDelta",
     _flaxBinding52,
@@ -27782,12 +22011,12 @@ const _flaxBinding558 = <FlaxParameter>[
     defaultValue: 1.0,
   ),
 ];
-const _flaxBinding559 = FlaxInstanceMethod(
-  _flaxBinding558,
-  _flaxBinding549,
+const _flaxBinding560 = FlaxInstanceMethod(
+  _flaxBinding559,
+  _flaxBinding550,
   _TextTheme_apply,
 );
-const _flaxBinding560 = <FlaxParameter>[
+const _flaxBinding561 = <FlaxParameter>[
   FlaxParameter("displayLarge", _flaxBinding4, required: false),
   FlaxParameter("displayMedium", _flaxBinding4, required: false),
   FlaxParameter("displaySmall", _flaxBinding4, required: false),
@@ -27804,10 +22033,9 @@ const _flaxBinding560 = <FlaxParameter>[
   FlaxParameter("labelMedium", _flaxBinding4, required: false),
   FlaxParameter("labelSmall", _flaxBinding4, required: false),
 ];
-const _flaxBinding561 = FlaxObjectBinding(
+const _flaxBinding562 = FlaxObjectBinding(
   "flax.material/material#type:TextTheme",
   [
-    _flaxBinding529,
     _flaxBinding530,
     _flaxBinding531,
     _flaxBinding532,
@@ -27822,17 +22050,18 @@ const _flaxBinding561 = FlaxObjectBinding(
     _flaxBinding541,
     _flaxBinding542,
     _flaxBinding543,
+    _flaxBinding544,
   ],
   {
-    "toStringShort": _flaxBinding544,
-    "toString": _flaxBinding545,
-    "toDiagnosticsNode": _flaxBinding546,
-    "debugFillProperties": _flaxBinding547,
-    "copyWith": _flaxBinding550,
-    "merge": _flaxBinding553,
-    "apply": _flaxBinding559,
+    "toStringShort": _flaxBinding545,
+    "toString": _flaxBinding546,
+    "toDiagnosticsNode": _flaxBinding547,
+    "debugFillProperties": _flaxBinding548,
+    "copyWith": _flaxBinding551,
+    "merge": _flaxBinding554,
+    "apply": _flaxBinding560,
   },
-  constructors: {"": _flaxBinding560},
+  constructors: {"": _flaxBinding561},
   create: _createTextTheme,
   matches: _isTextTheme,
   setters: [],
@@ -27841,199 +22070,199 @@ const _flaxBinding561 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding562 = FlaxTypeRef(
+const _flaxBinding563 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:ThemeData",
 );
-const _flaxBinding563 = FlaxGetter(
+const _flaxBinding564 = FlaxGetter(
   "brightness",
-  _flaxBinding170,
+  _flaxBinding171,
   _ThemeData_brightness,
 );
-const _flaxBinding564 = FlaxGetter(
+const _flaxBinding565 = FlaxGetter(
   "applyElevationOverlayColor",
   _flaxBinding18,
   _ThemeData_applyElevationOverlayColor,
 );
-const _flaxBinding565 = FlaxTypeRef(
+const _flaxBinding566 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TargetPlatform",
 );
-const _flaxBinding566 = FlaxGetter(
+const _flaxBinding567 = FlaxGetter(
   "platform",
-  _flaxBinding565,
+  _flaxBinding566,
   _ThemeData_platform,
 );
-const _flaxBinding567 = FlaxGetter(
+const _flaxBinding568 = FlaxGetter(
   "useMaterial3",
   _flaxBinding18,
   _ThemeData_useMaterial3,
 );
-const _flaxBinding568 = FlaxTypeRef(
+const _flaxBinding569 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:VisualDensity",
 );
-const _flaxBinding569 = FlaxGetter(
+const _flaxBinding570 = FlaxGetter(
   "visualDensity",
-  _flaxBinding568,
+  _flaxBinding569,
   _ThemeData_visualDensity,
 );
-const _flaxBinding570 = FlaxGetter(
+const _flaxBinding571 = FlaxGetter(
   "canvasColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_canvasColor,
 );
-const _flaxBinding571 = FlaxGetter(
+const _flaxBinding572 = FlaxGetter(
   "cardColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_cardColor,
 );
-const _flaxBinding572 = FlaxGetter(
+const _flaxBinding573 = FlaxGetter(
   "colorScheme",
-  _flaxBinding228,
+  _flaxBinding229,
   _ThemeData_colorScheme,
 );
-const _flaxBinding573 = FlaxGetter(
+const _flaxBinding574 = FlaxGetter(
   "disabledColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_disabledColor,
 );
-const _flaxBinding574 = FlaxGetter(
+const _flaxBinding575 = FlaxGetter(
   "dividerColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_dividerColor,
 );
-const _flaxBinding575 = FlaxGetter(
+const _flaxBinding576 = FlaxGetter(
   "focusColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_focusColor,
 );
-const _flaxBinding576 = FlaxGetter(
+const _flaxBinding577 = FlaxGetter(
   "highlightColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_highlightColor,
 );
-const _flaxBinding577 = FlaxGetter(
+const _flaxBinding578 = FlaxGetter(
   "hintColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_hintColor,
 );
-const _flaxBinding578 = FlaxGetter(
+const _flaxBinding579 = FlaxGetter(
   "hoverColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_hoverColor,
 );
-const _flaxBinding579 = FlaxGetter(
+const _flaxBinding580 = FlaxGetter(
   "primaryColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_primaryColor,
 );
-const _flaxBinding580 = FlaxGetter(
+const _flaxBinding581 = FlaxGetter(
   "primaryColorDark",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_primaryColorDark,
 );
-const _flaxBinding581 = FlaxGetter(
+const _flaxBinding582 = FlaxGetter(
   "primaryColorLight",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_primaryColorLight,
 );
-const _flaxBinding582 = FlaxGetter(
+const _flaxBinding583 = FlaxGetter(
   "scaffoldBackgroundColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_scaffoldBackgroundColor,
 );
-const _flaxBinding583 = FlaxGetter(
+const _flaxBinding584 = FlaxGetter(
   "secondaryHeaderColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_secondaryHeaderColor,
 );
-const _flaxBinding584 = FlaxGetter(
+const _flaxBinding585 = FlaxGetter(
   "shadowColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_shadowColor,
 );
-const _flaxBinding585 = FlaxGetter(
+const _flaxBinding586 = FlaxGetter(
   "splashColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_splashColor,
 );
-const _flaxBinding586 = FlaxGetter(
+const _flaxBinding587 = FlaxGetter(
   "unselectedWidgetColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_unselectedWidgetColor,
 );
-const _flaxBinding587 = FlaxTypeRef(
+const _flaxBinding588 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:IconThemeData",
 );
-const _flaxBinding588 = FlaxGetter(
+const _flaxBinding589 = FlaxGetter(
   "iconTheme",
-  _flaxBinding587,
+  _flaxBinding588,
   _ThemeData_iconTheme,
 );
-const _flaxBinding589 = FlaxGetter(
+const _flaxBinding590 = FlaxGetter(
   "primaryIconTheme",
-  _flaxBinding587,
+  _flaxBinding588,
   _ThemeData_primaryIconTheme,
 );
-const _flaxBinding590 = FlaxGetter(
+const _flaxBinding591 = FlaxGetter(
   "primaryTextTheme",
-  _flaxBinding549,
+  _flaxBinding550,
   _ThemeData_primaryTextTheme,
 );
-const _flaxBinding591 = FlaxGetter(
+const _flaxBinding592 = FlaxGetter(
   "textTheme",
-  _flaxBinding549,
+  _flaxBinding550,
   _ThemeData_textTheme,
 );
-const _flaxBinding592 = FlaxGetter(
+const _flaxBinding593 = FlaxGetter(
   "dialogBackgroundColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_dialogBackgroundColor,
 );
-const _flaxBinding593 = FlaxGetter(
+const _flaxBinding594 = FlaxGetter(
   "indicatorColor",
-  _flaxBinding172,
+  _flaxBinding173,
   _ThemeData_indicatorColor,
 );
-const _flaxBinding594 = FlaxInstanceMethod(
-  _flaxBinding67,
+const _flaxBinding595 = FlaxInstanceMethod(
   _flaxBinding68,
+  _flaxBinding67,
   _ThemeData_toStringShort,
 );
-const _flaxBinding595 = FlaxInstanceMethod(
+const _flaxBinding596 = FlaxInstanceMethod(
   _flaxBinding71,
-  _flaxBinding68,
+  _flaxBinding67,
   _ThemeData_toString,
 );
-const _flaxBinding596 = FlaxInstanceMethod(
+const _flaxBinding597 = FlaxInstanceMethod(
   _flaxBinding74,
   _flaxBinding75,
   _ThemeData_toDiagnosticsNode,
 );
-const _flaxBinding597 = FlaxInstanceMethod(
-  _flaxBinding78,
+const _flaxBinding598 = FlaxInstanceMethod(
   _flaxBinding79,
+  _flaxBinding78,
   _ThemeData_debugFillProperties,
 );
-const _flaxBinding598 = FlaxTypeRef(
+const _flaxBinding599 = FlaxTypeRef(
   "object",
   id: "flax.material/material#type:ColorScheme",
   nullable: true,
 );
-const _flaxBinding599 = FlaxTypeRef(
+const _flaxBinding600 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TargetPlatform",
   nullable: true,
 );
-const _flaxBinding600 = <FlaxParameter>[
-  FlaxParameter("appBarTheme", _flaxBinding242, required: false),
+const _flaxBinding601 = <FlaxParameter>[
+  FlaxParameter("appBarTheme", _flaxBinding243, required: false),
   FlaxParameter("applyElevationOverlayColor", _flaxBinding48, required: false),
-  FlaxParameter("brightness", _flaxBinding226, required: false),
+  FlaxParameter("brightness", _flaxBinding227, required: false),
   FlaxParameter("canvasColor", _flaxBinding3, required: false),
   FlaxParameter("cardColor", _flaxBinding3, required: false),
-  FlaxParameter("colorScheme", _flaxBinding598, required: false),
+  FlaxParameter("colorScheme", _flaxBinding599, required: false),
   FlaxParameter("dialogBackgroundColor", _flaxBinding3, required: false),
   FlaxParameter("disabledColor", _flaxBinding3, required: false),
   FlaxParameter("dividerColor", _flaxBinding3, required: false),
@@ -28043,36 +22272,36 @@ const _flaxBinding600 = <FlaxParameter>[
   FlaxParameter("hoverColor", _flaxBinding3, required: false),
   FlaxParameter("iconTheme", _flaxBinding44, required: false),
   FlaxParameter("indicatorColor", _flaxBinding3, required: false),
-  FlaxParameter("inputDecorationTheme", _flaxBinding242, required: false),
-  FlaxParameter("platform", _flaxBinding599, required: false),
+  FlaxParameter("inputDecorationTheme", _flaxBinding243, required: false),
+  FlaxParameter("platform", _flaxBinding600, required: false),
   FlaxParameter("primaryColor", _flaxBinding3, required: false),
   FlaxParameter("primaryColorDark", _flaxBinding3, required: false),
   FlaxParameter("primaryColorLight", _flaxBinding3, required: false),
   FlaxParameter("primaryIconTheme", _flaxBinding44, required: false),
-  FlaxParameter("primaryTextTheme", _flaxBinding551, required: false),
+  FlaxParameter("primaryTextTheme", _flaxBinding552, required: false),
   FlaxParameter("scaffoldBackgroundColor", _flaxBinding3, required: false),
   FlaxParameter("secondaryHeaderColor", _flaxBinding3, required: false),
   FlaxParameter("shadowColor", _flaxBinding3, required: false),
   FlaxParameter("splashColor", _flaxBinding3, required: false),
-  FlaxParameter("textTheme", _flaxBinding551, required: false),
+  FlaxParameter("textTheme", _flaxBinding552, required: false),
   FlaxParameter("unselectedWidgetColor", _flaxBinding3, required: false),
   FlaxParameter("useMaterial3", _flaxBinding48, required: false),
-  FlaxParameter("visualDensity", _flaxBinding141, required: false),
+  FlaxParameter("visualDensity", _flaxBinding142, required: false),
 ];
-const _flaxBinding601 = FlaxInstanceMethod(
-  _flaxBinding600,
-  _flaxBinding562,
+const _flaxBinding602 = FlaxInstanceMethod(
+  _flaxBinding601,
+  _flaxBinding563,
   _ThemeData_copyWith,
 );
-const _flaxBinding602 = <FlaxParameter>[
+const _flaxBinding603 = <FlaxParameter>[
   FlaxParameter("applyElevationOverlayColor", _flaxBinding48, required: false),
-  FlaxParameter("inputDecorationTheme", _flaxBinding242, required: false),
-  FlaxParameter("platform", _flaxBinding599, required: false),
+  FlaxParameter("inputDecorationTheme", _flaxBinding243, required: false),
+  FlaxParameter("platform", _flaxBinding600, required: false),
   FlaxParameter("useMaterial3", _flaxBinding48, required: false),
   FlaxParameter("useSystemColors", _flaxBinding48, required: false),
-  FlaxParameter("visualDensity", _flaxBinding141, required: false),
-  FlaxParameter("colorScheme", _flaxBinding598, required: false),
-  FlaxParameter("brightness", _flaxBinding226, required: false),
+  FlaxParameter("visualDensity", _flaxBinding142, required: false),
+  FlaxParameter("colorScheme", _flaxBinding599, required: false),
+  FlaxParameter("brightness", _flaxBinding227, required: false),
   FlaxParameter("colorSchemeSeed", _flaxBinding3, required: false),
   FlaxParameter("canvasColor", _flaxBinding3, required: false),
   FlaxParameter("cardColor", _flaxBinding3, required: false),
@@ -28091,32 +22320,31 @@ const _flaxBinding602 = <FlaxParameter>[
   FlaxParameter("splashColor", _flaxBinding3, required: false),
   FlaxParameter("unselectedWidgetColor", _flaxBinding3, required: false),
   FlaxParameter("fontFamily", _flaxBinding12, required: false),
-  FlaxParameter("fontFamilyFallback", _flaxBinding557, required: false),
+  FlaxParameter("fontFamilyFallback", _flaxBinding558, required: false),
   FlaxParameter("package", _flaxBinding12, required: false),
   FlaxParameter("iconTheme", _flaxBinding44, required: false),
   FlaxParameter("primaryIconTheme", _flaxBinding44, required: false),
-  FlaxParameter("primaryTextTheme", _flaxBinding551, required: false),
-  FlaxParameter("textTheme", _flaxBinding551, required: false),
-  FlaxParameter("appBarTheme", _flaxBinding242, required: false),
+  FlaxParameter("primaryTextTheme", _flaxBinding552, required: false),
+  FlaxParameter("textTheme", _flaxBinding552, required: false),
+  FlaxParameter("appBarTheme", _flaxBinding243, required: false),
   FlaxParameter("dialogBackgroundColor", _flaxBinding3, required: false),
   FlaxParameter("indicatorColor", _flaxBinding3, required: false),
 ];
-const _flaxBinding603 = <FlaxParameter>[
-  FlaxParameter("colorScheme", _flaxBinding228, required: true),
-  FlaxParameter("textTheme", _flaxBinding551, required: false),
-  FlaxParameter("useMaterial3", _flaxBinding48, required: false),
-];
 const _flaxBinding604 = <FlaxParameter>[
+  FlaxParameter("colorScheme", _flaxBinding229, required: true),
+  FlaxParameter("textTheme", _flaxBinding552, required: false),
   FlaxParameter("useMaterial3", _flaxBinding48, required: false),
 ];
-const _flaxBinding605 = FlaxObjectBinding(
+const _flaxBinding605 = <FlaxParameter>[
+  FlaxParameter("useMaterial3", _flaxBinding48, required: false),
+];
+const _flaxBinding606 = FlaxObjectBinding(
   "flax.material/material#type:ThemeData",
   [
-    _flaxBinding563,
     _flaxBinding564,
-    _flaxBinding566,
+    _flaxBinding565,
     _flaxBinding567,
-    _flaxBinding569,
+    _flaxBinding568,
     _flaxBinding570,
     _flaxBinding571,
     _flaxBinding572,
@@ -28134,33 +22362,34 @@ const _flaxBinding605 = FlaxObjectBinding(
     _flaxBinding584,
     _flaxBinding585,
     _flaxBinding586,
-    _flaxBinding588,
+    _flaxBinding587,
     _flaxBinding589,
     _flaxBinding590,
     _flaxBinding591,
     _flaxBinding592,
     _flaxBinding593,
+    _flaxBinding594,
   ],
   {
-    "toStringShort": _flaxBinding594,
-    "toString": _flaxBinding595,
-    "toDiagnosticsNode": _flaxBinding596,
-    "debugFillProperties": _flaxBinding597,
+    "toStringShort": _flaxBinding595,
+    "toString": _flaxBinding596,
+    "toDiagnosticsNode": _flaxBinding597,
+    "debugFillProperties": _flaxBinding598,
     "extension": FlaxInstanceMethod(
-      _flaxBinding67,
+      _flaxBinding68,
       FlaxTypeRef("any", nullable: true),
       _ThemeData_extension,
       genericFactory: _flaxGeneric_ThemeData_extension,
       ownerTypes: [],
     ),
-    "copyWith": _flaxBinding601,
+    "copyWith": _flaxBinding602,
   },
   constructors: {
-    "": _flaxBinding602,
-    "from": _flaxBinding603,
-    "light": _flaxBinding604,
-    "dark": _flaxBinding604,
-    "fallback": _flaxBinding604,
+    "": _flaxBinding603,
+    "from": _flaxBinding604,
+    "light": _flaxBinding605,
+    "dark": _flaxBinding605,
+    "fallback": _flaxBinding605,
   },
   create: _createThemeData,
   matches: _isThemeData,
@@ -28170,67 +22399,67 @@ const _flaxBinding605 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding606 = FlaxGetter(
+const _flaxBinding607 = FlaxGetter(
   "horizontal",
   _flaxBinding52,
   _VisualDensity_horizontal,
 );
-const _flaxBinding607 = FlaxGetter(
+const _flaxBinding608 = FlaxGetter(
   "vertical",
   _flaxBinding52,
   _VisualDensity_vertical,
 );
-const _flaxBinding608 = FlaxTypeRef(
+const _flaxBinding609 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Offset",
 );
-const _flaxBinding609 = FlaxGetter(
+const _flaxBinding610 = FlaxGetter(
   "baseSizeAdjustment",
-  _flaxBinding608,
+  _flaxBinding609,
   _VisualDensity_baseSizeAdjustment,
 );
-const _flaxBinding610 = FlaxInstanceMethod(
-  _flaxBinding67,
+const _flaxBinding611 = FlaxInstanceMethod(
   _flaxBinding68,
+  _flaxBinding67,
   _VisualDensity_toStringShort,
 );
-const _flaxBinding611 = FlaxInstanceMethod(
+const _flaxBinding612 = FlaxInstanceMethod(
   _flaxBinding71,
-  _flaxBinding68,
+  _flaxBinding67,
   _VisualDensity_toString,
 );
-const _flaxBinding612 = FlaxInstanceMethod(
+const _flaxBinding613 = FlaxInstanceMethod(
   _flaxBinding74,
   _flaxBinding75,
   _VisualDensity_toDiagnosticsNode,
 );
-const _flaxBinding613 = FlaxInstanceMethod(
-  _flaxBinding78,
+const _flaxBinding614 = FlaxInstanceMethod(
   _flaxBinding79,
+  _flaxBinding78,
   _VisualDensity_debugFillProperties,
 );
-const _flaxBinding614 = <FlaxParameter>[
+const _flaxBinding615 = <FlaxParameter>[
   FlaxParameter("horizontal", _flaxBinding11, required: false),
   FlaxParameter("vertical", _flaxBinding11, required: false),
 ];
-const _flaxBinding615 = FlaxInstanceMethod(
-  _flaxBinding614,
-  _flaxBinding568,
+const _flaxBinding616 = FlaxInstanceMethod(
+  _flaxBinding615,
+  _flaxBinding569,
   _VisualDensity_copyWith,
 );
-const _flaxBinding616 = FlaxTypeRef(
+const _flaxBinding617 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BoxConstraints",
 );
-const _flaxBinding617 = <FlaxParameter>[
-  FlaxParameter("constraints", _flaxBinding616, required: true),
+const _flaxBinding618 = <FlaxParameter>[
+  FlaxParameter("constraints", _flaxBinding617, required: true),
 ];
-const _flaxBinding618 = FlaxInstanceMethod(
+const _flaxBinding619 = FlaxInstanceMethod(
+  _flaxBinding618,
   _flaxBinding617,
-  _flaxBinding616,
   _VisualDensity_effectiveConstraints,
 );
-const _flaxBinding619 = <FlaxParameter>[
+const _flaxBinding620 = <FlaxParameter>[
   FlaxParameter(
     "horizontal",
     _flaxBinding52,
@@ -28239,18 +22468,18 @@ const _flaxBinding619 = <FlaxParameter>[
   ),
   FlaxParameter("vertical", _flaxBinding52, required: false, defaultValue: 0.0),
 ];
-const _flaxBinding620 = FlaxObjectBinding(
+const _flaxBinding621 = FlaxObjectBinding(
   "flax.material/material#type:VisualDensity",
-  [_flaxBinding606, _flaxBinding607, _flaxBinding609],
+  [_flaxBinding607, _flaxBinding608, _flaxBinding610],
   {
-    "toStringShort": _flaxBinding610,
-    "toString": _flaxBinding611,
-    "toDiagnosticsNode": _flaxBinding612,
-    "debugFillProperties": _flaxBinding613,
-    "copyWith": _flaxBinding615,
-    "effectiveConstraints": _flaxBinding618,
+    "toStringShort": _flaxBinding611,
+    "toString": _flaxBinding612,
+    "toDiagnosticsNode": _flaxBinding613,
+    "debugFillProperties": _flaxBinding614,
+    "copyWith": _flaxBinding616,
+    "effectiveConstraints": _flaxBinding619,
   },
-  constructors: {"": _flaxBinding619},
+  constructors: {"": _flaxBinding620},
   create: _createVisualDensity,
   matches: _isVisualDensity,
   setters: [],
@@ -28259,42 +22488,42 @@ const _flaxBinding620 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding621 = FlaxTypeRef(
+const _flaxBinding622 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Offset",
   nullable: true,
 );
-const _flaxBinding622 = FlaxTypeRef(
+const _flaxBinding623 = FlaxTypeRef(
   "future",
-  item: _flaxBinding242,
+  item: _flaxBinding243,
   future: FlaxFutureBinding("any?:", _future0Adapt),
 );
-const _flaxBinding623 = FlaxTypeRef(
+const _flaxBinding624 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:ImageProvider",
   dartType: FlaxDartTypes.typeOf<api2.ImageProvider<Object>>,
 );
-const _flaxBinding624 = FlaxTypeRef(
+const _flaxBinding625 = FlaxTypeRef(
   "future",
-  item: _flaxBinding228,
+  item: _flaxBinding229,
   future: FlaxFutureBinding(
     "object:flax.material/material#type:ColorScheme",
     _future4Adapt,
   ),
 );
-const _flaxBinding625 = FlaxTypeRef(
+const _flaxBinding626 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BorderSide",
 );
-const _flaxBinding626 = FlaxTypeRef(
+const _flaxBinding627 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:HeroController",
 );
-const _flaxBinding627 = FlaxTypeRef(
+const _flaxBinding628 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:SpellCheckConfiguration",
 );
-const _flaxBinding628 = FlaxTypeRef(
+const _flaxBinding629 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:TextStyle",
 );

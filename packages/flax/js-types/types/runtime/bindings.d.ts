@@ -159,8 +159,8 @@ export interface DartSet<T> extends DartIterable<T> {
     clear(): void;
     toSet(): Set<DartCopy<T>>;
 }
-export type DartIterableInput<T, I = DartInput<T>> = Pick<DartIterable<T>, typeof dartCollectionKind | typeof dartCollectionItem> | Iterable<I>;
-export type DartListInput<T, I = DartInput<T>> = Pick<DartList<T>, typeof dartCollectionKind | typeof dartCollectionItem> | ReadonlyArray<I>;
+export type DartIterableInput<T, I = DartInput<T>> = Pick<DartIterable<T>, typeof dartCollectionKind | typeof dartCollectionItem> | Iterable<I> | (number extends I ? Exclude<NativeBuffer, ArrayBuffer | DataView> : never);
+export type DartListInput<T, I = DartInput<T>> = Pick<DartList<T>, typeof dartCollectionKind | typeof dartCollectionItem> | ReadonlyArray<I> | (number extends I ? Exclude<NativeBuffer, ArrayBuffer | DataView> : never);
 export type DartMapInput<K, V, IK = DartInput<K>, IV = DartInput<V>> = Pick<DartMap<K, V>, typeof dartCollectionKind | typeof dartCollectionKey | typeof dartCollectionItem> | ReadonlyMap<IK, IV> | (K extends string ? Readonly<Record<string, IV>> : never);
 export type DartSetInput<T, I = DartInput<T>> = Pick<DartSet<T>, typeof dartCollectionKind | typeof dartCollectionItem> | ReadonlySet<I>;
 export interface DartEnum {
@@ -203,8 +203,8 @@ export declare function componentStateWidget(instance: object): object;
 export declare function componentStateCall(instance: object, operation: string, args: readonly unknown[]): unknown;
 export interface Parameter {
     readonly name: string;
-    readonly required: boolean;
-    readonly positional: boolean;
+    readonly required?: boolean;
+    readonly positional?: boolean;
     readonly defaultValue?: unknown;
     readonly readonly?: boolean;
     readonly fixed?: boolean;
@@ -217,7 +217,7 @@ export declare function defineEnum(type: string, names: readonly string[], membe
 export declare function enumValue<T extends DartEnum>(type: string, name: string): T;
 /** Closed generic constants select typed calls while sharing one prototype. */
 export declare function invokeEnum(receiver: object, operations: readonly string[], args: readonly unknown[]): unknown;
-export declare function defineContext(type: string, fields: readonly string[]): void;
+export declare function defineContext(type: string, fields: readonly string[], methods?: Readonly<Record<string, StateMethod>>): void;
 export declare function contextHandle(value: unknown, type: string): number | null | undefined;
 export declare function invokeStatic(type: string, member: string, args: readonly unknown[]): unknown;
 /** Generated exports share a typed Dart function registry. */
@@ -318,7 +318,7 @@ export declare abstract class FlaxProxyBase {
 }
 /** Keeps descriptor calls and native subclass construction on one public export. */
 export declare function widgetProxyFactory<F extends object, C extends abstract new (...args: never[]) => object>(factory: F, native: C): F & (new (...args: ConstructorParameters<C>) => InstanceType<C>);
-export declare function bindingMethods(type: string, category: 'object' | 'state' | 'stream', methods: Readonly<Record<string, readonly MemberParameter[]>>, generic?: Readonly<Record<string, DartCallTarget>>): Record<string, StateMethod>;
+export declare function bindingMethods(type: string, category: 'object' | 'state' | 'stream' | 'context', methods: Readonly<Record<string, readonly MemberParameter[]>>, generic?: Readonly<Record<string, DartCallTarget>>): Record<string, StateMethod>;
 export declare function defineProxyBase(prototype: object, definition: ProxyDefinition, nativeGetters?: readonly string[]): void;
 export declare function defineStateMembers(prototype: object, methods: Readonly<Record<string, readonly MemberParameter[]>>, getters: readonly string[], setters: readonly string[]): void;
 /**
