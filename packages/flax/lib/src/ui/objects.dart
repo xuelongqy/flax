@@ -264,27 +264,48 @@ extension _ObjectCalls on _Session {
     }
     var selected = expected;
     if (expected.aliasOf != null) return expected;
-    // Preserve concrete identity within the signature's provider, without
-    // exposing a subtype view registered by another provider.
-    final owner = _bindingOwner(type);
-    final providerPrefix = owner != null && owner.moduleId.contains('/')
-        ? '${owner.moduleId.split('/').first}/'
-        : null;
-    for (final binding in _typeBindings.values) {
-      if (binding is FlaxObjectBinding &&
-          binding.aliasOf == null &&
-          (_bindingOwner(binding.id) == owner ||
-              providerPrefix != null &&
-                  _bindingOwner(binding.id)?.moduleId
-                          .startsWith(providerPrefix) ==
-                      true) &&
-          _isMoreSpecificBinding(binding, expected) &&
-          binding.matches?.call(value) == true &&
+    for (final binding in _objectSubtypeCandidates(type, expected)) {
+      if (binding.matches?.call(value) == true &&
           (selected.id == type || _isMoreSpecificBinding(binding, selected))) {
         selected = binding;
       }
     }
     return selected;
+  }
+
+  List<FlaxObjectBinding> _objectSubtypeCandidates(
+    String type,
+    FlaxObjectBinding expected,
+  ) {
+    final cached = _objectCandidates[type];
+    if (cached != null && cached.$1 == _materializedTypes.length) {
+      return cached.$2;
+    }
+    // Provider and ancestry are metadata; matches must still inspect each value.
+    final owner = _bindingOwner(type);
+    final providerPrefix = owner != null && owner.moduleId.contains('/')
+        ? '${owner.moduleId.split('/').first}/'
+        : null;
+    bool eligible(FlaxTypeBinding binding) =>
+        binding is FlaxObjectBinding &&
+        binding.aliasOf == null &&
+        (_bindingOwner(binding.id) == owner ||
+            providerPrefix != null &&
+                _bindingOwner(binding.id)?.moduleId
+                        .startsWith(providerPrefix) ==
+                    true) &&
+        _isMoreSpecificBinding(binding, expected);
+    final family = _specializedOwners[expected.id] ?? expected.id;
+    final result = <FlaxObjectBinding>[
+      for (final module in [componentsBindings, ...registry.modules])
+        for (final binding
+            in module._objectSubtypes[family] ?? const <FlaxObjectBinding>[])
+          if (eligible(binding)) binding,
+      for (final binding in _materializedTypes)
+        if (eligible(binding)) binding as FlaxObjectBinding,
+    ];
+    _objectCandidates[type] = (_materializedTypes.length, result);
+    return result;
   }
 
   FlaxObjectBinding _signatureObjectBinding(

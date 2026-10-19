@@ -15,6 +15,24 @@ aliases and share the Dart identity's lifetime. Collections use
 [typed views](interop.md) of the same original instance. Invalid, released,
 type-incompatible and cross-session JS references fail before invoking Dart.
 
+Returning an ordinary object through a base signature preserves its most specific
+available binding within that provider. Each binding module lazily indexes ordinary
+object declarations by ancestor ID; the weak module-keyed index is shared across
+registries and Sessions. Module declarations and ancestry lists are immutable
+registration metadata. A Session caches provider-filtered candidates for each requested
+type and refreshes them when another generic binding is materialized. Closing the
+Session clears its dynamic bindings and candidate cache.
+
+The cache stores binding metadata, never returned objects or their wrappers. Actual
+`matches` checks still run for every value, including repeated returns of the same
+object. Candidate order, aliases, provider isolation and generic compatibility keep
+their existing rules; user `runtimeType` getters are not used for selection. The first
+lookup builds the relevant module indexes; warm lookups inspect only related candidates
+instead of traversing the complete registered type table. A broad base can still have
+many candidates; collection and erased-value inference keep their existing dispatch.
+This adds metadata storage, not another business root or GC policy, and cannot expose an
+unbound class's APIs.
+
 ## Checked views and Dart type diagnostics
 
 Core exports `asDart(value, Target)` and `getDartType(value)` from

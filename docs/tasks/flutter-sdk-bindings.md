@@ -1,6 +1,142 @@
 # Task: Flutter SDK Binding Verification
 
-Status: Shared JS parameter layouts implemented and reviewed
+Status: Shared object subtype indexes and candidate caches implemented, reviewed and
+verified on macOS V8 release/AOT and iOS Simulator Hermes debug
+
+## Shared object subtype selection
+
+The four shared runtime changes from the validated candidate-index experiment are now
+implemented. Binding modules lazily share an ancestor-to-candidate index through a
+weak-key Expando. Sessions cache provider-filtered lists, invalidate them after generic
+materialization and clear them during close. Actual value predicates still run on every
+return. No generator, generated binding, JS API, Manifest, protocol, ABI or engine
+change is required.
+
+Permanent regressions cover changing matches on the same object, transitive ancestry
+across modules of one provider, aliases and foreign-provider exclusion, ignored user
+`runtimeType` overrides, generic candidate invalidation and independent Sessions reusing
+the same module metadata. The shared-module case uses direct Sessions over identical
+module objects, with runtime tracking and zero-handle close checks. The standalone
+engine application runs these cases alongside its existing inheritance, override, super
+and joint-GC checks. Implementation acceptance receipts are kept in
+`.local/object-type-index-implementation-20261019/`; the prototype measurements below
+remain historical experiment evidence.
+
+Acceptance uses the normal `tool/check_engine_application.dart` gate with `release` on
+macOS and `debug` with `FLAX_CHECK_TARGET=ios-simulator-arm64` on the booted simulator.
+V8 passes 248 cases, including both new regressions; two Flutter-debug-only checks are
+explicitly inapplicable. Hermes passes all 250 cases. All 246 shared V8 and 248 shared
+Hermes results from the prototype acceptance are preserved, with the two private probes
+replaced by the permanent regressions. The gates cover real subtype/provider selection,
+nested generics, JS inheritance and private fields, overrides, lexical/async super, both
+business roots, rootless callback/proxy/Future cycles and zero-handle teardown. Copied
+application inputs match all four working-tree runtime files on both targets. Signing
+and single-engine closure audits pass; V8 verifies JIT and Hermes verifies its embedded
+interpreter. No engine or SDK is rebuilt.
+
+Review additionally verifies an isolated cache-only staging tree, excluding the pending
+description-size changes. Both focused cases pass on V8 release/AOT and Hermes simulator
+debug, including direct Sessions sharing actual module objects and zero-handle close.
+Signing and single-engine audits pass on both targets. The four working-tree runtime
+files are unchanged during review; the full-suite counts above remain the implementation
+acceptance evidence. Review receipts are in `.local/object-type-index-review-20261020/`.
+
+Core and application-entry analysis, Dart formatting, Markdown formatting/lint/tests,
+local links and diff checks pass. Existing unrelated uncommitted changes are preserved.
+No new performance or memory comparison is claimed for this adoption; the prototype
+results below retain their measured scope. Android, physical-device and frame-time
+performance are not rerun. Task-owned application copies, the simulator test
+installation and its temporary Xcode DerivedData are removed after recording receipts.
+The cache change is independent of the pending description-size optimizations. This
+acceptance does not publish or trigger CI.
+
+## Object-return type-selection experiment
+
+Historical checkpoint before the implementation above: references to unchanged
+production sources in this section describe the prototype experiment only. Measurements
+use that worktree, including its pending description-size optimizations, rather than an
+isolated cache-only commit.
+
+Result: the private candidate-index prototype preserves the tested behavior and
+substantially reduces warm object-creation cost. Production sources remain unchanged;
+this is verification evidence for a subsequent implementation, not a shipped cache. The
+earlier compact runtime-table scheme remains rejected.
+
+The prototype changes four shared runtime files. Each immutable binding module lazily
+indexes its ordinary-object declarations by ancestor ID in a weak-key Expando, so
+independent registries can reuse that metadata. A Session caches provider-filtered
+candidate lists. Materializing a generic binding invalidates those lists, and closing
+the Session clears its dynamic metadata and candidates. Candidate order, alias
+exclusion, provider boundaries and the existing generic checks remain unchanged. Every
+actual value still runs the applicable `matches` predicates; caching a final result by
+VM Type would incorrectly freeze value-dependent hand-written matches. No business value
+is a cache key or value. The generator, generated bindings, JS API, Manifest, protocol
+and native ABI are unchanged.
+
+The macOS arm64 release/AOT comparison registers the complete current SDK selection: 16
+modules and 2,330 type entries. It uses the production runtime without the test handle
+tracker. Both applications contain identical frozen JS fixtures and unsigned engine
+libraries, verified as one V8 closure with JIT entitlement. Both AOT images are
+71,968,096 bytes, including the identical benchmark and full acceptance entrypoint; this
+is not a binding-only binary size.
+
+Six fresh processes run serially in the order baseline, indexed, indexed, baseline,
+baseline, indexed, after compiler and functional-test processes have exited. Each path
+has two 100-object warm-up batches and seven measured 200-object batches per process.
+Scheduled Session checkpoints run between batches outside the timer. The table shows the
+pooled median of 21 batch averages per variant in microseconds per creation, not a
+per-object latency percentile. Samples in one process are not independent runs.
+
+| Creation path                  | Baseline, us | Indexed, us | Speedup |
+| ------------------------------ | -----------: | ----------: | ------: |
+| Duration factory               |      248.240 |      44.320 |   5.60x |
+| BoxConstraints factory         |      245.680 |      35.630 |   6.90x |
+| JS subclass of RenderProxyBox  |      272.800 |      59.725 |   4.57x |
+| Selected MapEntry<String, int> |      258.120 |      37.735 |   6.84x |
+
+All three process medians show the same direction, and the full warm sample ranges do
+not overlap between variants. This establishes an improvement for these creation paths,
+not a frame-rate or general application speedup. First measured Duration calls have
+medians 5.808 ms and 7.463 ms respectively, including first-use setup; their broad
+ranges overlap. A one-time index build remains necessary, and this first-call difference
+is not an isolated measurement of index-building cost. Desktop activation is requested
+at phase boundaries without exclusive foreground ownership; activation and front PIDs
+are recorded. No unstable timing assertion is introduced.
+
+Memory uses external process `phys_footprint` samples, not retained-heap accounting.
+Each phase has one sample per fresh process; values below are means of three samples, in
+decimal MB. The live phase retains 1,000 objects of each kind, 4,000 total. The final
+phase drops those roots and applies the same JS/Dart allocation-pressure collections.
+
+| Physical-footprint phase   | Baseline, MB | Indexed, MB |
+| -------------------------- | -----------: | ----------: |
+| Warmed                     |      243.587 |     239.628 |
+| 4,000 live objects         |      270.969 |     261.079 |
+| After roots dropped and GC |      263.801 |     265.773 |
+
+The post-GC ranges overlap: 262.753–264.997 MB and 258.510–272.781 MB. The experiment
+therefore does not establish stable memory savings or quantify the cache's retained heap
+cost. The speed benefit, rather than a memory-reduction claim, supports this
+candidate-index design. RSS, individual samples and cold-phase variation are retained in
+the private receipt.
+
+Baseline and indexed V8 release each pass the same 248 named cases, with two explicit
+Flutter-debug-only checks inapplicable. Indexed Hermes iOS Simulator debug passes all
+250 cases, preserving every previously recorded Hermes result. The two additional
+regressions check changing predicates on the same real object, actual subtype/provider
+and alias selection, ignored user `runtimeType` overrides, and a subtype materialized
+after its base candidates have been cached. Existing cases cover nested generics, JS
+private fields, inheritance, overrides, lexical/async super, live Dart/JS roots,
+rootless callback and proxy cycles, multiple Sessions and teardown with zero tracked
+handles. Hermes, Android and device release creation performance were not measured.
+
+An initial instrumented, non-yielding smoke probe was interrupted while sampled stacks
+were dominated by joint GC; it is excluded. A later production-runtime smoke probe
+passed but overlapped the Hermes functional run, so it is also excluded from comparison.
+The formal runs use the same corrected benchmark without either overlap. Their raw
+samples, compiled-source hashes, engine audits, regression receipts and private
+four-file patch are under `.local/object-type-index-20261019/`. No engine/SDK rebuild,
+commit, push or CI trigger is performed.
 
 ## Shared JS parameter layouts
 

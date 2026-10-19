@@ -161,6 +161,12 @@ type witness. At runtime, subtype selection compares a generic instance's declar
 identity with ancestor identities; its session-local specialization ID does not create a
 second independent class.
 
+Ordinary object results use a shared ancestor index and Session-local candidate lists to
+select available subtypes without scanning the complete registry on each return. Generic
+materialization refreshes those candidates. Value predicates and provider boundaries
+still apply on every result; the cache holds only binding metadata. See
+[object identity and application ownership](objects.md#identity-and-application-ownership).
+
 ## Bottom types and opaque Core values
 
 Core provides `Type` and `Symbol` through ordinary object bindings. Symbols use real

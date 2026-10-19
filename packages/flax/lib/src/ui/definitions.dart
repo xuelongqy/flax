@@ -659,6 +659,23 @@ class FlaxBindingModule {
   final List<FlaxFunctionBinding> _functions;
   static final _functionViews = Expando<List<FlaxFunctionBinding>>();
 
+  static final _subtypeIndexes =
+      Expando<Map<String, List<FlaxObjectBinding>>>();
+  // Immutable declaration metadata is shared across registries and Sessions.
+  Map<String, List<FlaxObjectBinding>> get _objectSubtypes =>
+      _subtypeIndexes[this] ??= () {
+        final index = <String, List<FlaxObjectBinding>>{};
+        for (final binding in types) {
+          if (binding is! FlaxObjectBinding || binding.aliasOf != null) {
+            continue;
+          }
+          for (final ancestor in binding.supertypes.toSet()) {
+            (index[ancestor] ??= []).add(binding);
+          }
+        }
+        return index;
+      }();
+
   /// Complete author-facing metadata; registries index groups without expanding them.
   List<FlaxFunctionBinding> get functions => constants.isEmpty
       ? _functions

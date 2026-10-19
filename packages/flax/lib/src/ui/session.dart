@@ -232,6 +232,9 @@ class _Session {
   final FlaxJsRuntime runtime;
   final FlaxBindingRegistry registry;
   late final _typeBindings = <String, FlaxTypeBinding>{...registry._types};
+  final _materializedTypes = <FlaxTypeBinding>[];
+  // Candidate lists never retain values; new generic bindings invalidate them.
+  final _objectCandidates = <String, (int, List<FlaxObjectBinding>)>{};
   late final _functionBindings = <String, FlaxFunctionBinding>{
     ...registry._functions,
   };
@@ -1165,6 +1168,8 @@ class _Session {
     _genericObjectBindings.clear();
     dartTypes.close();
     _typeBindings.clear();
+    _materializedTypes.clear();
+    _objectCandidates.clear();
     _functionBindings.clear();
     _specializedContexts.clear();
     _specializedOwners.clear();

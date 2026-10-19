@@ -54,6 +54,8 @@ import '../../../packages/flax/test/ui/render_bindings_test.dart'
     as render_bindings;
 import '../../../packages/flax/test/ui/sdk_capabilities_test.dart'
     as sdk_capabilities;
+import '../../../packages/flax/test/ui/object_type_selection_test.dart'
+    as object_type_selection;
 
 void main() {
   if (Platform.isIOS &&
@@ -228,6 +230,7 @@ void _registerTests() {
   group('TS generic compilation', typescript_generics.main);
   group('full rendering bindings', render_bindings.main);
   group('SDK capability completion', sdk_capabilities.main);
+  group('object subtype selection', object_type_selection.main);
   if (const bool.fromEnvironment('FLAX_ENGINE_BENCHMARK')) {
     testWidgets('profile GC, frame and memory measurements', (tester) async {
       final previousPolicy = binding.framePolicy;

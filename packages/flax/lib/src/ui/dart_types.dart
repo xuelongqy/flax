@@ -697,6 +697,7 @@ class FlaxDartTypes {
           instantiate(template.factory!, arguments(type), const []) as Function;
       final selected = Function.apply(factory, [this, id]) as FlaxDartClass;
       _deferred[id] = selected.deferredFactories;
+      _session._materializedTypes.add(selected.binding);
       return _session._typeBindings[id] = selected.binding;
     }
 
