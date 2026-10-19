@@ -16270,7 +16270,7 @@ FlaxCallbackBinding _flaxProxySignature_BaseTapGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -16301,7 +16301,7 @@ FlaxCallbackBinding _flaxProxySignature_BaseTapGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -16934,7 +16934,7 @@ _flaxProxySignature_DelayedMultiDragGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -16965,7 +16965,7 @@ _flaxProxySignature_DelayedMultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -17653,7 +17653,7 @@ _flaxProxySignature_DoubleTapGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -17684,7 +17684,7 @@ _flaxProxySignature_DoubleTapGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -18984,7 +18984,7 @@ FlaxCallbackBinding _flaxProxySignature_EagerGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -19015,7 +19015,7 @@ FlaxCallbackBinding _flaxProxySignature_EagerGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -20317,7 +20317,7 @@ _flaxProxySignature_ForcePressGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -20348,7 +20348,7 @@ _flaxProxySignature_ForcePressGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -21054,7 +21054,7 @@ FlaxCallbackBinding _flaxProxySignature_GestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -21085,7 +21085,7 @@ FlaxCallbackBinding _flaxProxySignature_GestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -21905,7 +21905,7 @@ _flaxProxySignature_HorizontalMultiDragGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -21936,7 +21936,7 @@ _flaxProxySignature_HorizontalMultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -22602,7 +22602,7 @@ _flaxProxySignature_ImmediateMultiDragGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -22633,7 +22633,7 @@ _flaxProxySignature_ImmediateMultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -24387,7 +24387,7 @@ _flaxProxySignature_LongPressGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -24418,7 +24418,7 @@ _flaxProxySignature_LongPressGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -25300,7 +25300,7 @@ _flaxProxySignature_MultiDragGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -25331,7 +25331,7 @@ _flaxProxySignature_MultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -26219,7 +26219,7 @@ _flaxProxySignature_MultiTapGestureRecognizer_invokeCallback<T extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -26250,7 +26250,7 @@ _flaxProxySignature_MultiTapGestureRecognizer_invokeCallback<T extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -27045,7 +27045,7 @@ _flaxProxySignature_OneSequenceGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -27076,7 +27076,7 @@ _flaxProxySignature_OneSequenceGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -35652,7 +35652,7 @@ _flaxProxySignature_PrimaryPointerGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -35683,7 +35683,7 @@ _flaxProxySignature_PrimaryPointerGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -36743,7 +36743,7 @@ FlaxCallbackBinding _flaxProxySignature_ScaleGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -36774,7 +36774,7 @@ FlaxCallbackBinding _flaxProxySignature_ScaleGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -38013,7 +38013,7 @@ _flaxProxySignature_SerialTapGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -38044,7 +38044,7 @@ _flaxProxySignature_SerialTapGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -40291,7 +40291,7 @@ FlaxCallbackBinding _flaxProxySignature_TapGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -40322,7 +40322,7 @@ FlaxCallbackBinding _flaxProxySignature_TapGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41296,7 +41296,7 @@ _flaxProxySignature_VerticalMultiDragGestureRecognizer_invokeCallback<
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -41327,7 +41327,7 @@ _flaxProxySignature_VerticalMultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41368,14 +41368,8 @@ Function _flaxGeneric_BaseTapAndDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41395,8 +41389,6 @@ Function _flaxGeneric_BaseTapAndDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41405,7 +41397,7 @@ Function _flaxGeneric_BaseTapAndDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41413,8 +41405,6 @@ Function _flaxGeneric_BaseTapAndDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -41433,14 +41423,8 @@ Function _flaxGeneric_BaseTapGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41460,8 +41444,6 @@ Function _flaxGeneric_BaseTapGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41470,7 +41452,7 @@ Function _flaxGeneric_BaseTapGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41478,8 +41460,6 @@ Function _flaxGeneric_BaseTapGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -41499,14 +41479,8 @@ Function _flaxGeneric_BaseTapGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41526,8 +41500,6 @@ Function _flaxGeneric_BaseTapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41536,7 +41508,7 @@ Function _flaxGeneric_BaseTapGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41544,8 +41516,6 @@ Function _flaxGeneric_BaseTapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -41565,14 +41535,8 @@ Function _flaxGeneric_DelayedMultiDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41592,8 +41556,6 @@ Function _flaxGeneric_DelayedMultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41602,7 +41564,7 @@ Function _flaxGeneric_DelayedMultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41610,8 +41572,6 @@ Function _flaxGeneric_DelayedMultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -41631,14 +41591,8 @@ Function _flaxGeneric_DelayedMultiDragGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41658,8 +41612,6 @@ Function _flaxGeneric_DelayedMultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41668,7 +41620,7 @@ Function _flaxGeneric_DelayedMultiDragGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41676,8 +41628,6 @@ Function _flaxGeneric_DelayedMultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -41697,14 +41647,8 @@ Function _flaxGeneric_DoubleTapGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41724,8 +41668,6 @@ Function _flaxGeneric_DoubleTapGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41734,7 +41676,7 @@ Function _flaxGeneric_DoubleTapGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41742,8 +41684,6 @@ Function _flaxGeneric_DoubleTapGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -41763,14 +41703,8 @@ Function _flaxGeneric_DoubleTapGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41790,8 +41724,6 @@ Function _flaxGeneric_DoubleTapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41800,7 +41732,7 @@ Function _flaxGeneric_DoubleTapGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41808,8 +41740,6 @@ Function _flaxGeneric_DoubleTapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -41828,14 +41758,8 @@ _flaxGeneric_DragGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("name", _flaxBinding21, required: true),
           FlaxParameter(
             "callback",
             types.define<_Method0 Function()>(
@@ -41855,8 +41779,6 @@ _flaxGeneric_DragGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "debugReport",
@@ -41865,7 +41787,7 @@ _flaxGeneric_DragGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("String"),
+                _flaxBinding21,
                 FlaxCallbackAdapters.wrap0<String>,
                 id: types.key<String Function()?>() + ":callback:<>()->String:",
                 invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41873,8 +41795,6 @@ _flaxGeneric_DragGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               ),
             ),
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<_Method0?>(),
@@ -41893,14 +41813,8 @@ Function _flaxGeneric_EagerGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41920,8 +41834,6 @@ Function _flaxGeneric_EagerGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41930,7 +41842,7 @@ Function _flaxGeneric_EagerGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -41938,8 +41850,6 @@ Function _flaxGeneric_EagerGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -41959,14 +41869,8 @@ Function _flaxGeneric_EagerGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -41986,8 +41890,6 @@ Function _flaxGeneric_EagerGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -41996,7 +41898,7 @@ Function _flaxGeneric_EagerGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42004,8 +41906,6 @@ Function _flaxGeneric_EagerGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42025,14 +41925,8 @@ Function _flaxGeneric_ForcePressGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42052,8 +41946,6 @@ Function _flaxGeneric_ForcePressGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42062,7 +41954,7 @@ Function _flaxGeneric_ForcePressGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42070,8 +41962,6 @@ Function _flaxGeneric_ForcePressGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42091,14 +41981,8 @@ Function _flaxGeneric_ForcePressGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42118,8 +42002,6 @@ Function _flaxGeneric_ForcePressGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42128,7 +42010,7 @@ Function _flaxGeneric_ForcePressGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42136,8 +42018,6 @@ Function _flaxGeneric_ForcePressGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42156,14 +42036,8 @@ _flaxGeneric_GestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("name", _flaxBinding21, required: true),
           FlaxParameter(
             "callback",
             types.define<_Method0 Function()>(
@@ -42183,8 +42057,6 @@ _flaxGeneric_GestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "debugReport",
@@ -42193,7 +42065,7 @@ _flaxGeneric_GestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("String"),
+                _flaxBinding21,
                 FlaxCallbackAdapters.wrap0<String>,
                 id: types.key<String Function()?>() + ":callback:<>()->String:",
                 invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42201,8 +42073,6 @@ _flaxGeneric_GestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               ),
             ),
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<_Method0?>(),
@@ -42222,14 +42092,8 @@ Function _flaxGeneric_GestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42249,8 +42113,6 @@ Function _flaxGeneric_GestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42259,7 +42121,7 @@ Function _flaxGeneric_GestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42267,8 +42129,6 @@ Function _flaxGeneric_GestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42319,39 +42179,27 @@ Function _flaxClass_HitTestEntry<
       id,
       [
         FlaxGetter("target", types.ref<_Owner0>(), _HitTestEntry_target),
-        FlaxGetter(
-          "transform",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_rendering#type:Matrix4",
-            nullable: true,
-          ),
-          _HitTestEntry_transform,
-        ),
+        FlaxGetter("transform", _flaxBinding124, _HitTestEntry_transform),
       ],
       {
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding491,
+          _flaxBinding21,
           _HitTestEntry_toString,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding491,
+          _flaxBinding21,
           _FlaxProxyDispatch13_super_call_toString,
         ),
         "@super:get:target": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding491,
           types.ref<_Owner0>(),
           _HitTestEntry_super_get_target,
         ),
         "@super:get:transform": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_rendering#type:Matrix4",
-            nullable: true,
-          ),
+          _flaxBinding491,
+          _flaxBinding124,
           _HitTestEntry_super_get_transform,
         ),
       },
@@ -42375,7 +42223,7 @@ Function _flaxClass_HitTestEntry<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -42395,11 +42243,7 @@ Function _flaxClass_HitTestEntry<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_rendering#type:Matrix4",
-              nullable: true,
-            ),
+            _flaxBinding124,
             id:
                 types.key<api4.Matrix4? Function()>() +
                 ":callback:<>()->object?:flax.core/sdk_rendering#type:Matrix4",
@@ -42423,14 +42267,8 @@ Function _flaxGeneric_HorizontalDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42450,8 +42288,6 @@ Function _flaxGeneric_HorizontalDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42460,7 +42296,7 @@ Function _flaxGeneric_HorizontalDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42468,8 +42304,6 @@ Function _flaxGeneric_HorizontalDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42489,14 +42323,8 @@ Function _flaxGeneric_HorizontalMultiDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42516,8 +42344,6 @@ Function _flaxGeneric_HorizontalMultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42526,7 +42352,7 @@ Function _flaxGeneric_HorizontalMultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42534,8 +42360,6 @@ Function _flaxGeneric_HorizontalMultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42555,14 +42379,8 @@ Function _flaxGeneric_HorizontalMultiDragGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42582,8 +42400,6 @@ Function _flaxGeneric_HorizontalMultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42592,7 +42408,7 @@ Function _flaxGeneric_HorizontalMultiDragGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42600,8 +42416,6 @@ Function _flaxGeneric_HorizontalMultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42621,14 +42435,8 @@ Function _flaxGeneric_ImmediateMultiDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42648,8 +42456,6 @@ Function _flaxGeneric_ImmediateMultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42658,7 +42464,7 @@ Function _flaxGeneric_ImmediateMultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42666,8 +42472,6 @@ Function _flaxGeneric_ImmediateMultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42687,14 +42491,8 @@ Function _flaxGeneric_ImmediateMultiDragGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42714,8 +42512,6 @@ Function _flaxGeneric_ImmediateMultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42724,7 +42520,7 @@ Function _flaxGeneric_ImmediateMultiDragGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42732,8 +42528,6 @@ Function _flaxGeneric_ImmediateMultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42753,14 +42547,8 @@ Function _flaxGeneric_LongPressGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42780,8 +42568,6 @@ Function _flaxGeneric_LongPressGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42790,7 +42576,7 @@ Function _flaxGeneric_LongPressGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42798,8 +42584,6 @@ Function _flaxGeneric_LongPressGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42819,14 +42603,8 @@ Function _flaxGeneric_LongPressGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42846,8 +42624,6 @@ Function _flaxGeneric_LongPressGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42856,7 +42632,7 @@ Function _flaxGeneric_LongPressGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42864,8 +42640,6 @@ Function _flaxGeneric_LongPressGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42885,14 +42659,8 @@ Function _flaxGeneric_MultiDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42912,8 +42680,6 @@ Function _flaxGeneric_MultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42922,7 +42688,7 @@ Function _flaxGeneric_MultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42930,8 +42696,6 @@ Function _flaxGeneric_MultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -42951,14 +42715,8 @@ Function _flaxGeneric_MultiDragGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -42978,8 +42736,6 @@ Function _flaxGeneric_MultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -42988,7 +42744,7 @@ Function _flaxGeneric_MultiDragGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -42996,8 +42752,6 @@ Function _flaxGeneric_MultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43016,14 +42770,8 @@ Function _flaxGeneric_MultiTapGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43043,8 +42791,6 @@ Function _flaxGeneric_MultiTapGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43053,7 +42799,7 @@ Function _flaxGeneric_MultiTapGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43061,8 +42807,6 @@ Function _flaxGeneric_MultiTapGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43082,14 +42826,8 @@ Function _flaxGeneric_MultiTapGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43109,8 +42847,6 @@ Function _flaxGeneric_MultiTapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43119,7 +42855,7 @@ Function _flaxGeneric_MultiTapGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43127,8 +42863,6 @@ Function _flaxGeneric_MultiTapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43148,14 +42882,8 @@ Function _flaxGeneric_OneSequenceGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43175,8 +42903,6 @@ Function _flaxGeneric_OneSequenceGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43185,7 +42911,7 @@ Function _flaxGeneric_OneSequenceGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43193,8 +42919,6 @@ Function _flaxGeneric_OneSequenceGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43214,14 +42938,8 @@ Function _flaxGeneric_OneSequenceGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43241,8 +42959,6 @@ Function _flaxGeneric_OneSequenceGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43251,7 +42967,7 @@ Function _flaxGeneric_OneSequenceGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43259,8 +42975,6 @@ Function _flaxGeneric_OneSequenceGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43279,14 +42993,8 @@ _flaxGeneric_PanGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("name", _flaxBinding21, required: true),
           FlaxParameter(
             "callback",
             types.define<_Method0 Function()>(
@@ -43306,8 +43014,6 @@ _flaxGeneric_PanGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "debugReport",
@@ -43316,7 +43022,7 @@ _flaxGeneric_PanGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("String"),
+                _flaxBinding21,
                 FlaxCallbackAdapters.wrap0<String>,
                 id: types.key<String Function()?>() + ":callback:<>()->String:",
                 invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43324,8 +43030,6 @@ _flaxGeneric_PanGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               ),
             ),
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<_Method0?>(),
@@ -43345,14 +43049,8 @@ Function _flaxGeneric_PrimaryPointerGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43372,8 +43070,6 @@ Function _flaxGeneric_PrimaryPointerGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43382,7 +43078,7 @@ Function _flaxGeneric_PrimaryPointerGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43390,8 +43086,6 @@ Function _flaxGeneric_PrimaryPointerGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43411,14 +43105,8 @@ Function _flaxGeneric_PrimaryPointerGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43438,8 +43126,6 @@ Function _flaxGeneric_PrimaryPointerGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43448,7 +43134,7 @@ Function _flaxGeneric_PrimaryPointerGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43456,8 +43142,6 @@ Function _flaxGeneric_PrimaryPointerGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43476,14 +43160,8 @@ Function _flaxGeneric_ScaleGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43503,8 +43181,6 @@ Function _flaxGeneric_ScaleGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43513,7 +43189,7 @@ Function _flaxGeneric_ScaleGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43521,8 +43197,6 @@ Function _flaxGeneric_ScaleGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43542,14 +43216,8 @@ Function _flaxGeneric_ScaleGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43569,8 +43237,6 @@ Function _flaxGeneric_ScaleGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43579,7 +43245,7 @@ Function _flaxGeneric_ScaleGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43587,8 +43253,6 @@ Function _flaxGeneric_ScaleGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43608,14 +43272,8 @@ Function _flaxGeneric_SerialTapGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43635,8 +43293,6 @@ Function _flaxGeneric_SerialTapGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43645,7 +43301,7 @@ Function _flaxGeneric_SerialTapGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43653,8 +43309,6 @@ Function _flaxGeneric_SerialTapGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43674,14 +43328,8 @@ Function _flaxGeneric_SerialTapGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43701,8 +43349,6 @@ Function _flaxGeneric_SerialTapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43711,7 +43357,7 @@ Function _flaxGeneric_SerialTapGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43719,8 +43365,6 @@ Function _flaxGeneric_SerialTapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43740,14 +43384,8 @@ Function _flaxGeneric_TapAndDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43767,8 +43405,6 @@ Function _flaxGeneric_TapAndDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43777,7 +43413,7 @@ Function _flaxGeneric_TapAndDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43785,8 +43421,6 @@ Function _flaxGeneric_TapAndDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43806,14 +43440,8 @@ Function _flaxGeneric_TapAndHorizontalDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43833,8 +43461,6 @@ Function _flaxGeneric_TapAndHorizontalDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43843,7 +43469,7 @@ Function _flaxGeneric_TapAndHorizontalDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43851,8 +43477,6 @@ Function _flaxGeneric_TapAndHorizontalDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43872,14 +43496,8 @@ Function _flaxGeneric_TapAndPanGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -43899,8 +43517,6 @@ Function _flaxGeneric_TapAndPanGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -43909,7 +43525,7 @@ Function _flaxGeneric_TapAndPanGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43917,8 +43533,6 @@ Function _flaxGeneric_TapAndPanGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -43937,14 +43551,8 @@ _flaxGeneric_TapGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("name", _flaxBinding21, required: true),
           FlaxParameter(
             "callback",
             types.define<_Method0 Function()>(
@@ -43964,8 +43572,6 @@ _flaxGeneric_TapGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "debugReport",
@@ -43974,7 +43580,7 @@ _flaxGeneric_TapGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("String"),
+                _flaxBinding21,
                 FlaxCallbackAdapters.wrap0<String>,
                 id: types.key<String Function()?>() + ":callback:<>()->String:",
                 invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -43982,8 +43588,6 @@ _flaxGeneric_TapGestureRecognizer_invokeCallback<_Method0 extends Object?>() =>
               ),
             ),
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<_Method0?>(),
@@ -44003,14 +43607,8 @@ Function _flaxGeneric_TapGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -44030,8 +43628,6 @@ Function _flaxGeneric_TapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -44040,7 +43636,7 @@ Function _flaxGeneric_TapGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -44048,8 +43644,6 @@ Function _flaxGeneric_TapGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -44069,14 +43663,8 @@ Function _flaxGeneric_VerticalDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -44096,8 +43684,6 @@ Function _flaxGeneric_VerticalDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -44106,7 +43692,7 @@ Function _flaxGeneric_VerticalDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -44114,8 +43700,6 @@ Function _flaxGeneric_VerticalDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -44135,14 +43719,8 @@ Function _flaxGeneric_VerticalMultiDragGestureRecognizer_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -44162,8 +43740,6 @@ Function _flaxGeneric_VerticalMultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -44172,7 +43748,7 @@ Function _flaxGeneric_VerticalMultiDragGestureRecognizer_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -44180,8 +43756,6 @@ Function _flaxGeneric_VerticalMultiDragGestureRecognizer_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -44201,14 +43775,8 @@ Function _flaxGeneric_VerticalMultiDragGestureRecognizer_super_invokeCallback<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "name",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("name", _flaxBinding21, required: true),
       FlaxParameter(
         "callback",
         types.define<_Method0 Function()>(
@@ -44228,8 +43796,6 @@ Function _flaxGeneric_VerticalMultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "debugReport",
@@ -44238,7 +43804,7 @@ Function _flaxGeneric_VerticalMultiDragGestureRecognizer_super_invokeCallback<
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -44246,8 +43812,6 @@ Function _flaxGeneric_VerticalMultiDragGestureRecognizer_super_invokeCallback<
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0?>(),
@@ -44523,7 +44087,7 @@ FlaxCallbackBinding _callback2Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -44556,7 +44120,7 @@ FlaxCallbackBinding _callback2Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -44702,7 +44266,7 @@ FlaxCallbackBinding _callback4Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -44735,7 +44299,7 @@ FlaxCallbackBinding _callback4Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -44895,7 +44459,7 @@ FlaxCallbackBinding _callback7Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -44928,7 +44492,7 @@ FlaxCallbackBinding _callback7Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -45074,7 +44638,7 @@ FlaxCallbackBinding _callback9Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -45107,7 +44671,7 @@ FlaxCallbackBinding _callback9Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -45253,7 +44817,7 @@ FlaxCallbackBinding _callback11Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -45286,7 +44850,7 @@ FlaxCallbackBinding _callback11Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -45432,7 +44996,7 @@ FlaxCallbackBinding _callback13Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -45465,7 +45029,7 @@ FlaxCallbackBinding _callback13Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -45611,7 +45175,7 @@ FlaxCallbackBinding _callback15Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -45644,7 +45208,7 @@ FlaxCallbackBinding _callback15Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -45804,7 +45368,7 @@ FlaxCallbackBinding _callback18Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -45837,7 +45401,7 @@ FlaxCallbackBinding _callback18Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -45983,7 +45547,7 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -46016,7 +45580,7 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -46315,7 +45879,7 @@ FlaxCallbackBinding _callback31Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -46348,7 +45912,7 @@ FlaxCallbackBinding _callback31Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -46494,7 +46058,7 @@ FlaxCallbackBinding _callback33Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -46527,7 +46091,7 @@ FlaxCallbackBinding _callback33Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -46673,7 +46237,7 @@ FlaxCallbackBinding _callback35Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -46706,7 +46270,7 @@ FlaxCallbackBinding _callback35Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -46852,7 +46416,7 @@ FlaxCallbackBinding _callback37Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -46885,7 +46449,7 @@ FlaxCallbackBinding _callback37Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -47045,7 +46609,7 @@ FlaxCallbackBinding _callback40Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -47078,7 +46642,7 @@ FlaxCallbackBinding _callback40Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -47224,7 +46788,7 @@ FlaxCallbackBinding _callback42Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -47257,7 +46821,7 @@ FlaxCallbackBinding _callback42Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -47445,7 +47009,7 @@ FlaxCallbackBinding _callback47Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -47478,7 +47042,7 @@ FlaxCallbackBinding _callback47Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,
@@ -47638,7 +47202,7 @@ FlaxCallbackBinding _callback50Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "name",
-        FlaxTypeRef("String"),
+        _flaxBinding21,
         required: true,
         positional: true,
       ),
@@ -47671,7 +47235,7 @@ FlaxCallbackBinding _callback50Types<_Callback0 extends Object?>(
           nullable: true,
           callback: FlaxCallbackBinding(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding21,
             FlaxCallbackAdapters.wrap0<String>,
             id: types.key<String Function()?>() + ":callback:<>()->String:",
             invoke: FlaxCallbackAdapters.invoke0<String>,

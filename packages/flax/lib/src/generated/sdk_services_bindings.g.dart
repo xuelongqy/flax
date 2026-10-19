@@ -12188,7 +12188,7 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredData<
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -12202,7 +12202,7 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -12293,7 +12293,7 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredBinaryData<
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -12307,7 +12307,7 @@ FlaxCallbackBinding _flaxProxySignature_AssetBundle_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -12937,7 +12937,7 @@ FlaxCallbackBinding _flaxProxySignature_CachingAssetBundle_loadStructuredData<
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -12951,7 +12951,7 @@ FlaxCallbackBinding _flaxProxySignature_CachingAssetBundle_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -13043,7 +13043,7 @@ _flaxProxySignature_CachingAssetBundle_loadStructuredBinaryData<
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -13057,7 +13057,7 @@ _flaxProxySignature_CachingAssetBundle_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -14996,13 +14996,13 @@ FlaxCallbackBinding _flaxProxySignature_MethodChannel_invokeMethod<
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -15055,13 +15055,13 @@ FlaxCallbackBinding _flaxProxySignature_MethodChannel_invokeListMethod<
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -15120,13 +15120,13 @@ FlaxCallbackBinding _flaxProxySignature_MethodChannel_invokeMapMethod<
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -15680,7 +15680,7 @@ FlaxCallbackBinding _flaxProxySignature_NetworkAssetBundle_loadStructuredData<
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -15694,7 +15694,7 @@ FlaxCallbackBinding _flaxProxySignature_NetworkAssetBundle_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -15786,7 +15786,7 @@ _flaxProxySignature_NetworkAssetBundle_loadStructuredBinaryData<
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -15800,7 +15800,7 @@ _flaxProxySignature_NetworkAssetBundle_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -16047,13 +16047,13 @@ FlaxCallbackBinding _flaxProxySignature_OptionalMethodChannel_invokeMethod<
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -16106,13 +16106,13 @@ FlaxCallbackBinding _flaxProxySignature_OptionalMethodChannel_invokeListMethod<
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -16171,13 +16171,13 @@ FlaxCallbackBinding _flaxProxySignature_OptionalMethodChannel_invokeMapMethod<
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -16436,7 +16436,7 @@ FlaxCallbackBinding _flaxProxySignature_PlatformAssetBundle_loadStructuredData<
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -16450,7 +16450,7 @@ FlaxCallbackBinding _flaxProxySignature_PlatformAssetBundle_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -16542,7 +16542,7 @@ _flaxProxySignature_PlatformAssetBundle_loadStructuredBinaryData<
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -16556,7 +16556,7 @@ _flaxProxySignature_PlatformAssetBundle_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -21904,14 +21904,8 @@ _flaxGeneric_AssetBundle_loadStructuredData<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "key",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("key", _flaxBinding0, required: true),
           FlaxParameter(
             "parser",
             types.define<Future<_Method0> Function(String value)>(
@@ -21922,7 +21916,7 @@ _flaxGeneric_AssetBundle_loadStructuredData<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "value",
-                      FlaxTypeRef("String"),
+                      _flaxBinding0,
                       required: true,
                       positional: true,
                     ),
@@ -21938,8 +21932,6 @@ _flaxGeneric_AssetBundle_loadStructuredData<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0>>(),
@@ -21977,14 +21969,8 @@ _flaxGeneric_AssetBundle_super_loadStructuredData<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "key",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("key", _flaxBinding0, required: true),
           FlaxParameter(
             "parser",
             types.define<Future<_Method0> Function(String value)>(
@@ -21995,7 +21981,7 @@ _flaxGeneric_AssetBundle_super_loadStructuredData<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "value",
-                      FlaxTypeRef("String"),
+                      _flaxBinding0,
                       required: true,
                       positional: true,
                     ),
@@ -22011,8 +21997,6 @@ _flaxGeneric_AssetBundle_super_loadStructuredData<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0>>(),
@@ -22049,14 +22033,8 @@ Function _flaxGeneric_AssetBundle_loadStructuredBinaryData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
@@ -22067,7 +22045,7 @@ Function _flaxGeneric_AssetBundle_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -22086,8 +22064,6 @@ Function _flaxGeneric_AssetBundle_loadStructuredBinaryData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -22126,14 +22102,8 @@ Function _flaxGeneric_AssetBundle_super_loadStructuredBinaryData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
@@ -22144,7 +22114,7 @@ Function _flaxGeneric_AssetBundle_super_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -22163,8 +22133,6 @@ Function _flaxGeneric_AssetBundle_super_loadStructuredBinaryData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -22289,7 +22257,7 @@ Function _flaxClass_BasicMessageChannel<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter("name", FlaxTypeRef("String"), _BasicMessageChannel_name),
+        FlaxGetter("name", _flaxBinding0, _BasicMessageChannel_name),
         FlaxGetter(
           "codec",
           types.ref<api.MessageCodec<_Owner0>>(),
@@ -22297,10 +22265,7 @@ Function _flaxClass_BasicMessageChannel<
         ),
         FlaxGetter(
           "binaryMessenger",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_services#type:BinaryMessenger",
-          ),
+          _flaxBinding54,
           _BasicMessageChannel_binaryMessenger,
         ),
       ],
@@ -22345,7 +22310,7 @@ Function _flaxClass_BasicMessageChannel<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding24,
           _BasicMessageChannel_setMessageHandler,
         ),
         "@super:send": FlaxInstanceMethod(
@@ -22388,45 +22353,34 @@ Function _flaxClass_BasicMessageChannel<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding24,
           _BasicMessageChannel_super_setMessageHandler,
         ),
         "@super:get:name": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding332,
+          _flaxBinding0,
           _FlaxProxyDispatch7_super_get_name,
         ),
         "@super:get:codec": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding332,
           types.ref<api.MessageCodec<_Owner0>>(),
           _BasicMessageChannel_super_get_codec,
         ),
         "@super:get:binaryMessenger": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_services#type:BinaryMessenger",
-          ),
+          _flaxBinding332,
+          _flaxBinding54,
           _FlaxProxyDispatch7_super_get_binaryMessenger,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
-          FlaxParameter("name", FlaxTypeRef("String"), required: true),
+          FlaxParameter("name", _flaxBinding0, required: true),
           FlaxParameter(
             "codec",
             types.ref<api.MessageCodec<_Owner0>>(),
             required: true,
           ),
-          FlaxParameter(
-            "binaryMessenger",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_services#type:BinaryMessenger",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("binaryMessenger", _flaxBinding457, required: false),
         ],
       },
       create: _createBasicMessageChannel,
@@ -22496,7 +22450,7 @@ Function _flaxClass_BasicMessageChannel<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding24,
             id:
                 types
                     .key<
@@ -22513,7 +22467,7 @@ Function _flaxClass_BasicMessageChannel<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -22533,10 +22487,7 @@ Function _flaxClass_BasicMessageChannel<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_services#type:BinaryMessenger",
-            ),
+            _flaxBinding54,
             id: types.key<api.BinaryMessenger Function()>() + ":callback:<>()->object:flax.core/sdk_services#type:BinaryMessenger",
           ),
           hasSuper: true,
@@ -22575,14 +22526,8 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<Future<_Method0> Function(String value)>(
@@ -22593,7 +22538,7 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -22609,8 +22554,6 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -22648,14 +22591,8 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<Future<_Method0> Function(String value)>(
@@ -22666,7 +22603,7 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -22682,8 +22619,6 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -22722,14 +22657,8 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredBinaryData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
@@ -22740,7 +22669,7 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -22759,8 +22688,6 @@ Function _flaxGeneric_CachingAssetBundle_loadStructuredBinaryData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -22799,14 +22726,8 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredBinaryData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
@@ -22817,7 +22738,7 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -22836,8 +22757,6 @@ Function _flaxGeneric_CachingAssetBundle_super_loadStructuredBinaryData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -22890,22 +22809,16 @@ Function _flaxClass_MessageCodec<_Owner0 extends Object?>() =>
               <FlaxParameter>[
                 FlaxParameter("message", types.ref<_Owner0>(), required: true),
               ],
-              FlaxTypeRef("ByteData", nullable: true),
+              _flaxBinding56,
               _MessageCodec_encodeMessage,
             ),
             "decodeMessage": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter(
-                  "message",
-                  FlaxTypeRef("ByteData", nullable: true),
-                  required: true,
-                ),
-              ],
+              _flaxBinding767,
               types.ref<_Owner0?>(),
               _MessageCodec_decodeMessage,
             ),
           },
-          constructors: {"@implementation": <FlaxParameter>[]},
+          constructors: {"@implementation": _flaxBinding332},
           create: _createMessageCodec,
           matches: _isMessageCodec,
           setters: [],
@@ -22928,7 +22841,7 @@ Function _flaxClass_MessageCodec<_Owner0 extends Object?>() =>
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("ByteData", nullable: true),
+                _flaxBinding56,
                 id:
                     types.key<api3.ByteData? Function(_Owner0 message)>() +
                     ":callback:<>(p:r:message:parameter:)->ByteData?:",
@@ -22941,7 +22854,7 @@ Function _flaxClass_MessageCodec<_Owner0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "message",
-                    FlaxTypeRef("ByteData", nullable: true),
+                    _flaxBinding56,
                     required: true,
                     positional: true,
                   ),
@@ -22971,22 +22884,7 @@ Function _flaxGeneric_MethodChannel_invokeMethod<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "method",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: true,
-          ),
-        ],
+        _flaxBinding771,
         types.ref<Future<_Method0?>>(),
         invoke,
       );
@@ -23006,22 +22904,7 @@ Function _flaxGeneric_MethodChannel_super_invokeMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<_Method0?>>(),
     invoke,
   );
@@ -23042,22 +22925,7 @@ _flaxGeneric_MethodChannel_invokeListMethod<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "method",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: true,
-          ),
-        ],
+        _flaxBinding771,
         types.ref<Future<List<_Method0>?>>(),
         invoke,
       );
@@ -23078,22 +22946,7 @@ Function _flaxGeneric_MethodChannel_super_invokeListMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<List<_Method0>?>>(),
     invoke,
   );
@@ -23114,22 +22967,7 @@ Function _flaxGeneric_MethodChannel_invokeMapMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<Map<_Method0, _Method1>?>>(),
     invoke,
   );
@@ -23153,22 +22991,7 @@ Function _flaxGeneric_MethodChannel_super_invokeMapMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<Map<_Method0, _Method1>?>>(),
     invoke,
   );
@@ -23203,14 +23026,8 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<Future<_Method0> Function(String value)>(
@@ -23221,7 +23038,7 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -23237,8 +23054,6 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -23276,14 +23091,8 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<Future<_Method0> Function(String value)>(
@@ -23294,7 +23103,7 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -23310,8 +23119,6 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -23350,14 +23157,8 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredBinaryData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
@@ -23368,7 +23169,7 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -23387,8 +23188,6 @@ Function _flaxGeneric_NetworkAssetBundle_loadStructuredBinaryData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -23427,14 +23226,8 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredBinaryData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
@@ -23445,7 +23238,7 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -23464,8 +23257,6 @@ Function _flaxGeneric_NetworkAssetBundle_super_loadStructuredBinaryData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -23488,22 +23279,7 @@ _flaxGeneric_OptionalMethodChannel_invokeMethod<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "method",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: true,
-          ),
-        ],
+        _flaxBinding771,
         types.ref<Future<_Method0?>>(),
         invoke,
       );
@@ -23524,22 +23300,7 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<_Method0?>>(),
     invoke,
   );
@@ -23560,22 +23321,7 @@ Function _flaxGeneric_OptionalMethodChannel_invokeListMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<List<_Method0>?>>(),
     invoke,
   );
@@ -23596,22 +23342,7 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeListMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<List<_Method0>?>>(),
     invoke,
   );
@@ -23633,22 +23364,7 @@ Function _flaxGeneric_OptionalMethodChannel_invokeMapMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<Map<_Method0, _Method1>?>>(),
     invoke,
   );
@@ -23672,22 +23388,7 @@ Function _flaxGeneric_OptionalMethodChannel_super_invokeMapMethod<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "method",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: true,
-      ),
-    ],
+    _flaxBinding771,
     types.ref<Future<Map<_Method0, _Method1>?>>(),
     invoke,
   );
@@ -23722,14 +23423,8 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<Future<_Method0> Function(String value)>(
@@ -23740,7 +23435,7 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -23756,8 +23451,6 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -23795,14 +23488,8 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<Future<_Method0> Function(String value)>(
@@ -23813,7 +23500,7 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredData<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -23829,8 +23516,6 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -23869,14 +23554,8 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredBinaryData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
@@ -23887,7 +23566,7 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -23906,8 +23585,6 @@ Function _flaxGeneric_PlatformAssetBundle_loadStructuredBinaryData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -23946,14 +23623,8 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredBinaryData<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "key",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("key", _flaxBinding0, required: true),
       FlaxParameter(
         "parser",
         types.define<api7.FutureOr<_Method0> Function(api3.ByteData data)>(
@@ -23964,7 +23635,7 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredBinaryData<
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -23983,8 +23654,6 @@ Function _flaxGeneric_PlatformAssetBundle_super_loadStructuredBinaryData<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -24000,15 +23669,7 @@ Function _flaxGeneric_RestorationBucket_read<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "restorationId",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
+        _flaxBinding1007,
         types.ref<_Method0?>(),
         invoke,
       );
@@ -24024,23 +23685,11 @@ Function _flaxGeneric_RestorationBucket_write<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "restorationId",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("restorationId", _flaxBinding0, required: true),
+          FlaxParameter("value", types.ref<_Method0>(), required: true),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding24,
         invoke,
       );
     };
@@ -24053,15 +23702,7 @@ Function _flaxGeneric_RestorationBucket_remove<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "restorationId",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
+        _flaxBinding1007,
         types.ref<_Method0?>(),
         invoke,
       );
@@ -24095,7 +23736,7 @@ _flaxGeneric_ServicesBinding_scheduleTask<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "task",
             types.define<api7.FutureOr<_Method0> Function()>(
@@ -24115,34 +23756,10 @@ _flaxGeneric_ServicesBinding_scheduleTask<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "priority",
-            FlaxTypeRef("object", id: "flax.core/sdk_scheduler#type:Priority"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "debugLabel",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "flow",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_dependencies#type:Flow",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("priority", _flaxBinding1154, required: true),
+          FlaxParameter("debugLabel", _flaxBinding14, required: false),
+          FlaxParameter("flow", _flaxBinding1155, required: false),
         ],
         types.ref<Future<_Method0>>(),
         invoke,
@@ -24426,7 +24043,7 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -24440,7 +24057,7 @@ FlaxCallbackBinding _callback5Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -24580,7 +24197,7 @@ FlaxCallbackBinding _callback7Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -24594,7 +24211,7 @@ FlaxCallbackBinding _callback7Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -24793,7 +24410,7 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -24807,7 +24424,7 @@ FlaxCallbackBinding _callback12Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -24929,7 +24546,7 @@ FlaxCallbackBinding _callback13Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -24943,7 +24560,7 @@ FlaxCallbackBinding _callback13Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -25056,13 +24673,13 @@ FlaxCallbackBinding _callback14Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -25163,13 +24780,13 @@ FlaxCallbackBinding _callback15Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -25276,13 +24893,13 @@ FlaxCallbackBinding _callback16Types<
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -25439,7 +25056,7 @@ FlaxCallbackBinding _callback19Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -25453,7 +25070,7 @@ FlaxCallbackBinding _callback19Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -25575,7 +25192,7 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -25589,7 +25206,7 @@ FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
@@ -25702,13 +25319,13 @@ FlaxCallbackBinding _callback21Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -25809,13 +25426,13 @@ FlaxCallbackBinding _callback22Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -25922,13 +25539,13 @@ FlaxCallbackBinding _callback23Types<
     [
       FlaxCallbackParameter(
         "method",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "arguments",
-        FlaxTypeRef("any", nullable: true),
+        _flaxBinding42,
         required: false,
         positional: true,
       ),
@@ -26085,7 +25702,7 @@ FlaxCallbackBinding _callback26Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -26099,7 +25716,7 @@ FlaxCallbackBinding _callback26Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
@@ -26221,7 +25838,7 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter(
         "key",
-        FlaxTypeRef("String"),
+        _flaxBinding0,
         required: true,
         positional: true,
       ),
@@ -26235,7 +25852,7 @@ FlaxCallbackBinding _callback27Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "data",
-                  FlaxTypeRef("ByteData"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),

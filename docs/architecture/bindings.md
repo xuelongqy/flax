@@ -56,6 +56,12 @@ and result conversions must agree. Defaulted, scoped, snapshot and open generic
 parameters keep their original views. Proxy-only signatures store only their parameter,
 result and identity fields. No new callable or business-reference cache is introduced.
 
+Generic factories also reference module constants for type descriptions and parameter
+lists independent of their owner and method type parameters. Descriptions containing
+callbacks or deferred constructors remain local because their helpers can close over the
+factory's type context. Typed calls, lexical super bodies and owner-dependent metadata
+keep their original scope. Shared constants contain no session or receiver.
+
 Closed proxy signatures also share generated typed dispatch functions within a module.
 Each proxy retains its native superclass, constructors, Widget mixin and lexical-super
 calls. A small override passes its constant peer member index to the shared function;

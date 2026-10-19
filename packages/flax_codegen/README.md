@@ -49,6 +49,12 @@ Defaulted, scoped, snapshot and open generic signatures retain their existing pa
 views. Proxy-only signatures store no unused function adapters. This shares metadata
 without changing native dispatch, lexical super or callback ownership.
 
+Generic class and method factories reuse this module constant pool for closed type
+descriptions and parameter lists. Owner-dependent types remain in their factory.
+Callbacks and deferred constructors can reference factory-local helpers even when their
+types are closed, so their descriptions retain that scope. Generic methods use the same
+parameter emitter as ordinary calls; defaults and omission policies remain complete.
+
 Actual static Dart `const` fields use `FlaxConstantGroup`, preserving readable operation
 IDs, native values and normal result conversion. Registry and module admission index the
 groups directly; each session materializes a normal function descriptor at first use.

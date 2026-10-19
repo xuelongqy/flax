@@ -287,6 +287,19 @@ class FlaxCodegenBindingEmitter {
     type,
   ).any((node) => node.kind == 'parameter' || node.typeParameters.isNotEmpty);
 
+  // Closed callbacks and deferred constructors can still reference factory-local helpers.
+  bool _canPoolType(FlaxCodegenTypeRef type) =>
+      _isClosedType(type) &&
+      (!_vmFactory ||
+          !_reachableType(type).any(
+            (node) =>
+                node.category == FlaxCodegenTypeCategory.callback ||
+                node.kind == 'object' &&
+                    node.dartArguments.isNotEmpty &&
+                    _classes[node.id]?.methods.any((m) => m.deferredFactory) ==
+                        true,
+          ));
+
   String _constant(String expression) => _constants.putIfAbsent(
     expression,
     () => '_flaxBinding${_constants.length}',
@@ -1427,9 +1440,7 @@ class FlaxCodegenBindingEmitter {
     out.write(_deferredLiteral(deferred));
     out.write(')');
     final expression = out.toString();
-    return !_vmFactory && _isClosedType(type)
-        ? _constant(expression)
-        : expression;
+    return _canPoolType(type) ? _constant(expression) : expression;
   }
 
   String _deferredLiteral(
@@ -3828,7 +3839,7 @@ import 'package:flax/bindings.dart';
     final values = parameters.toList();
     final entries = values.map(_parameterBinding).join(',');
     final expression = '<FlaxParameter>[$entries]';
-    return !_vmFactory && values.every((p) => _isClosedType(p.type))
+    return values.every((p) => _canPoolType(p.type))
         ? _constant(expression)
         : expression;
   }

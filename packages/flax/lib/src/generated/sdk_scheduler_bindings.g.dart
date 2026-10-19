@@ -1149,7 +1149,7 @@ FlaxCallbackBinding _flaxProxySignature_TickerFuture_then<R extends Object?>(
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("void"),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
@@ -1170,7 +1170,7 @@ FlaxCallbackBinding _flaxProxySignature_TickerFuture_then<R extends Object?>(
       ),
       FlaxCallbackParameter(
         "onError",
-        FlaxTypeRef("function", nullable: true),
+        _flaxBinding98,
         required: false,
         positional: false,
       ),
@@ -1220,7 +1220,7 @@ Function _flaxGeneric_TickerFuture_then<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "onValue",
             types.define<api3.FutureOr<_Method0> Function(void value)>(
@@ -1231,7 +1231,7 @@ Function _flaxGeneric_TickerFuture_then<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "value",
-                      FlaxTypeRef("void"),
+                      _flaxBinding5,
                       required: true,
                       positional: true,
                     ),
@@ -1248,16 +1248,8 @@ Function _flaxGeneric_TickerFuture_then<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onError",
-            FlaxTypeRef("function", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onError", _flaxBinding98, required: false),
         ],
         types.ref<Future<_Method0>>(),
         invoke,
@@ -1292,7 +1284,7 @@ Function _flaxGeneric_TickerFuture_super_then<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "onValue",
             types.define<api3.FutureOr<_Method0> Function(void value)>(
@@ -1303,7 +1295,7 @@ Function _flaxGeneric_TickerFuture_super_then<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "value",
-                      FlaxTypeRef("void"),
+                      _flaxBinding5,
                       required: true,
                       positional: true,
                     ),
@@ -1320,16 +1312,8 @@ Function _flaxGeneric_TickerFuture_super_then<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "onError",
-            FlaxTypeRef("function", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("onError", _flaxBinding98, required: false),
         ],
         types.ref<Future<_Method0>>(),
         invoke,
@@ -1509,7 +1493,7 @@ FlaxCallbackBinding _callback3Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("void"),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
@@ -1530,7 +1514,7 @@ FlaxCallbackBinding _callback3Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "onError",
-        FlaxTypeRef("function", nullable: true),
+        _flaxBinding98,
         required: false,
         positional: false,
       ),

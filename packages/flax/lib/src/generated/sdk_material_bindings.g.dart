@@ -109581,42 +109581,30 @@ _flaxProxySignature_FadeForwardsPageTransitionsBuilder_buildTransitions<
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef(
-          "context",
-          id: "flax.core/flutter#type:BuildContext",
-          nullable: true,
-        ),
+        _flaxBinding3395,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -124190,38 +124178,30 @@ FlaxCallbackBinding _flaxProxySignature_PageTransitionsTheme_buildTransitions<
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding5,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -124761,38 +124741,30 @@ _flaxProxySignature_PredictiveBackFullscreenPageTransitionsBuilder_buildTransiti
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding5,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -124994,38 +124966,30 @@ _flaxProxySignature_PredictiveBackPageTransitionsBuilder_buildTransitions<
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding5,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -139739,38 +139703,30 @@ _flaxProxySignature_ZoomPageTransitionsBuilder_buildTransitions<
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding5,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -139902,54 +139858,12 @@ _flaxGenericFunction7<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/sdk_material#function:showAdaptiveDialog",
-    [
-      FlaxParameter(
-        "anchorPoint",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Offset",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animationStyle",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:AnimationStyle",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "barrierColor",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Color",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "barrierDismissible",
-        FlaxTypeRef("bool", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "barrierLabel",
-        FlaxTypeRef("String", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("anchorPoint", _flaxBinding32, required: false),
+      FlaxParameter("animationStyle", _flaxBinding196, required: false),
+      FlaxParameter("barrierColor", _flaxBinding14, required: false),
+      FlaxParameter("barrierDismissible", _flaxBinding22, required: false),
+      FlaxParameter("barrierLabel", _flaxBinding66, required: false),
       FlaxParameter(
         "builder",
         FlaxTypeRef(
@@ -139958,15 +139872,12 @@ _flaxGenericFunction7<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding6,
             FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
             id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
@@ -139976,58 +139887,22 @@ _flaxGenericFunction7<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "requestFocus",
-        FlaxTypeRef("bool", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "routeSettings",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:RouteSettings",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "traversalEdgeBehavior",
-        FlaxTypeRef(
-          "enum",
-          id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("requestFocus", _flaxBinding22, required: false),
+      FlaxParameter("routeSettings", _flaxBinding3453, required: false),
+      FlaxParameter("traversalEdgeBehavior", _flaxBinding3385, required: false),
       FlaxParameter(
         "useRootNavigator",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "useSafeArea",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -140058,54 +139933,17 @@ _flaxGenericFunction11<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/sdk_material#function:showDialog",
-    [
-      FlaxParameter(
-        "anchorPoint",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Offset",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animationStyle",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:AnimationStyle",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "barrierColor",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Color",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("anchorPoint", _flaxBinding32, required: false),
+      FlaxParameter("animationStyle", _flaxBinding196, required: false),
+      FlaxParameter("barrierColor", _flaxBinding14, required: false),
       FlaxParameter(
         "barrierDismissible",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "barrierLabel",
-        FlaxTypeRef("String", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("barrierLabel", _flaxBinding66, required: false),
       FlaxParameter(
         "builder",
         FlaxTypeRef(
@@ -140114,15 +139952,12 @@ _flaxGenericFunction11<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding6,
             FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
             id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
@@ -140132,65 +139967,28 @@ _flaxGenericFunction11<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
       FlaxParameter(
         "fullscreenDialog",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "requestFocus",
-        FlaxTypeRef("bool", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "routeSettings",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:RouteSettings",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "traversalEdgeBehavior",
-        FlaxTypeRef(
-          "enum",
-          id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("requestFocus", _flaxBinding22, required: false),
+      FlaxParameter("routeSettings", _flaxBinding3453, required: false),
+      FlaxParameter("traversalEdgeBehavior", _flaxBinding3385, required: false),
       FlaxParameter(
         "useRootNavigator",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "useSafeArea",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -140231,97 +140029,34 @@ Function _flaxGenericFunction13<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_material#function:showMenu",
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "clipBehavior",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip"),
+            _flaxBinding199,
             required: false,
             defaultValue: api4.Clip.none,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "color",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BoxConstraints",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("color", _flaxBinding14, required: false),
+          FlaxParameter("constraints", _flaxBinding52, required: false),
+          FlaxParameter("context", _flaxBinding5, required: true),
+          FlaxParameter("elevation", _flaxBinding16, required: false),
           FlaxParameter(
             "initialValue",
             types.ref<_Method0?>(),
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "items",
             types.ref<List<api.PopupMenuEntry<_Method0>>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "menuPadding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("menuPadding", _flaxBinding28, required: false),
           FlaxParameter(
             "popUpAnimationStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:AnimationStyle",
-              nullable: true,
-            ),
+            _flaxBinding196,
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "position",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_rendering#type:RelativeRect",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("position", _flaxBinding9726, required: false),
           FlaxParameter(
             "positionBuilder",
             FlaxTypeRef(
@@ -140331,27 +140066,18 @@ Function _flaxGenericFunction13<_Method0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "constraints",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:BoxConstraints",
-                    ),
+                    _flaxBinding130,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_rendering#type:RelativeRect",
-                ),
+                _flaxBinding9727,
                 FlaxCallbackAdapters.wrap2<
                   api1.BuildContext,
                   api5.BoxConstraints,
@@ -140381,73 +140107,18 @@ Function _flaxGenericFunction13<_Method0 extends Object?>() =>
               ),
             ),
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "routeSettings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "semanticLabel",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "shape",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:ShapeBorder",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("requestFocus", _flaxBinding22, required: false),
+          FlaxParameter("routeSettings", _flaxBinding3453, required: false),
+          FlaxParameter("semanticLabel", _flaxBinding66, required: false),
+          FlaxParameter("shadowColor", _flaxBinding14, required: false),
+          FlaxParameter("shape", _flaxBinding18, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding14, required: false),
           FlaxParameter(
             "useRootNavigator",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0?>>(),
@@ -140488,47 +140159,11 @@ _flaxGenericFunction14<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/sdk_material#function:showModalBottomSheet",
-    [
-      FlaxParameter(
-        "anchorPoint",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Offset",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "backgroundColor",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Color",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "barrierColor",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Color",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "barrierLabel",
-        FlaxTypeRef("String", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("anchorPoint", _flaxBinding32, required: false),
+      FlaxParameter("backgroundColor", _flaxBinding14, required: false),
+      FlaxParameter("barrierColor", _flaxBinding14, required: false),
+      FlaxParameter("barrierLabel", _flaxBinding66, required: false),
       FlaxParameter(
         "builder",
         FlaxTypeRef(
@@ -140537,15 +140172,12 @@ _flaxGenericFunction14<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding6,
             FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
             id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
@@ -140555,140 +140187,56 @@ _flaxGenericFunction14<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "clipBehavior",
-        FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "constraints",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:BoxConstraints",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "elevation",
-        FlaxTypeRef("double", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("clipBehavior", _flaxBinding50, required: false),
+      FlaxParameter("constraints", _flaxBinding52, required: false),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("elevation", _flaxBinding16, required: false),
       FlaxParameter(
         "enableDrag",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "isDismissible",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "isScrollControlled",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "requestFocus",
-        FlaxTypeRef("bool", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "routeSettings",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:RouteSettings",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("requestFocus", _flaxBinding22, required: false),
+      FlaxParameter("routeSettings", _flaxBinding3453, required: false),
       FlaxParameter(
         "scrollControlDisabledMaxHeightRatio",
-        FlaxTypeRef("double"),
+        _flaxBinding122,
         required: false,
         defaultValue: 0.5625,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "shape",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:ShapeBorder",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "sheetAnimationStyle",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:AnimationStyle",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "showDragHandle",
-        FlaxTypeRef("bool", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("shape", _flaxBinding18, required: false),
+      FlaxParameter("sheetAnimationStyle", _flaxBinding196, required: false),
+      FlaxParameter("showDragHandle", _flaxBinding22, required: false),
       FlaxParameter(
         "transitionAnimationController",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:AnimationController",
-          nullable: true,
-        ),
+        _flaxBinding455,
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "useRootNavigator",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "useSafeArea",
-        FlaxTypeRef("bool"),
+        _flaxBinding12,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -140709,41 +140257,30 @@ Function _flaxGenericFunction15<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_material#function:showSearch",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding5, required: true),
           FlaxParameter(
             "delegate",
             types.ref<api.SearchDelegate<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "maintainState",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "query",
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding66,
             required: false,
             defaultValue: '',
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "useRootNavigator",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0?>>(),
@@ -140760,14 +140297,8 @@ Function _flaxGenericFunction51<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_material#function:ButtonStyleButton.allOrNull",
-        [
-          FlaxParameter(
-            "value",
-            types.ref<_Method0?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("value", types.ref<_Method0?>(), required: true),
         ],
         types.ref<api1.WidgetStateProperty<_Method0>?>(),
         invoke,
@@ -140816,24 +140347,11 @@ Function _flaxClass_Adaptation<_Owner0 extends Object?>() =>
         api.Adaptation<_Owner0>,
         FlaxObjectBinding(
           id,
-          [
-            FlaxGetter(
-              "type",
-              FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
-              _Adaptation_type,
-            ),
-          ],
+          [FlaxGetter("type", _flaxBinding10, _Adaptation_type)],
           {
             "adapt": FlaxInstanceMethod(
               <FlaxParameter>[
-                FlaxParameter(
-                  "theme",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_material#type:ThemeData",
-                  ),
-                  required: true,
-                ),
+                FlaxParameter("theme", _flaxBinding212, required: true),
                 FlaxParameter(
                   "defaultValue",
                   types.ref<_Owner0>(),
@@ -140845,14 +140363,7 @@ Function _flaxClass_Adaptation<_Owner0 extends Object?>() =>
             ),
             "@super:adapt": FlaxInstanceMethod(
               <FlaxParameter>[
-                FlaxParameter(
-                  "theme",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_material#type:ThemeData",
-                  ),
-                  required: true,
-                ),
+                FlaxParameter("theme", _flaxBinding212, required: true),
                 FlaxParameter(
                   "defaultValue",
                   types.ref<_Owner0>(),
@@ -140863,12 +140374,12 @@ Function _flaxClass_Adaptation<_Owner0 extends Object?>() =>
               _Adaptation_super_adapt,
             ),
             "@super:get:type": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+              _flaxBinding733,
+              _flaxBinding10,
               _Adaptation_super_get_type,
             ),
           },
-          constructors: {"@implementation": <FlaxParameter>[]},
+          constructors: {"@implementation": _flaxBinding733},
           create: _createAdaptation,
           matches: _isAdaptation,
           setters: [],
@@ -140886,10 +140397,7 @@ Function _flaxClass_Adaptation<_Owner0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "theme",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_material#type:ThemeData",
-                    ),
+                    _flaxBinding212,
                     required: true,
                     positional: true,
                   ),
@@ -140918,7 +140426,7 @@ Function _flaxClass_Adaptation<_Owner0 extends Object?>() =>
               1,
               FlaxCallbackBinding.signature(
                 [],
-                FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+                _flaxBinding10,
                 id:
                     types.key<api7.Type Function()>() +
                     ":callback:<>()->object:flax.core/flutter#type:Type",
@@ -141399,7 +140907,7 @@ Function _flaxClass_Autocomplete<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("String"),
+                _flaxBinding0,
                 FlaxCallbackAdapters.wrap1<_Owner0, String>,
                 id:
                     types.key<String Function(_Owner0 option)>() +
@@ -141419,25 +140927,19 @@ Function _flaxClass_Autocomplete<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "textEditingController",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/flutter#type:TextEditingController",
-                  ),
+                  _flaxBinding1089,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "focusNode",
-                  FlaxTypeRef("object", id: "flax.core/flutter#type:FocusNode"),
+                  _flaxBinding1090,
                   required: true,
                   positional: true,
                 ),
@@ -141447,7 +140949,7 @@ Function _flaxClass_Autocomplete<
                     "callback",
                     callback: FlaxCallbackBinding(
                       [],
-                      FlaxTypeRef("void"),
+                      _flaxBinding3,
                       FlaxCallbackAdapters.wrapVoid0,
                       id:
                           types.key<void Function()>() +
@@ -141460,7 +140962,7 @@ Function _flaxClass_Autocomplete<
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding6,
               _callback0,
               id:
                   types
@@ -141479,15 +140981,7 @@ Function _flaxClass_Autocomplete<
           ),
           _Autocomplete_fieldViewBuilder,
         ),
-        FlaxGetter(
-          "focusNode",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:FocusNode",
-            nullable: true,
-          ),
-          _Autocomplete_focusNode,
-        ),
+        FlaxGetter("focusNode", _flaxBinding201, _Autocomplete_focusNode),
         FlaxGetter(
           "onSelected",
           types.define<void Function(_Owner0 option)?>(
@@ -141503,7 +140997,7 @@ Function _flaxClass_Autocomplete<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                 id:
                     types.key<void Function(_Owner0 option)?>() +
@@ -141529,10 +141023,7 @@ Function _flaxClass_Autocomplete<
                 [
                   FlaxCallbackParameter(
                     "textEditingValue",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:TextEditingValue",
-                    ),
+                    _flaxBinding483,
                     required: true,
                     positional: true,
                   ),
@@ -141572,10 +141063,7 @@ Function _flaxClass_Autocomplete<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
@@ -141594,7 +141082,7 @@ Function _flaxClass_Autocomplete<
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef("void"),
+                          _flaxBinding3,
                           FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                           id:
                               types.key<void Function(_Owner0 option)>() +
@@ -141615,7 +141103,7 @@ Function _flaxClass_Autocomplete<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding6,
                 _callback2,
                 id:
                     types
@@ -141636,201 +141124,71 @@ Function _flaxClass_Autocomplete<
         ),
         FlaxGetter(
           "optionsViewOpenDirection",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:OptionsViewOpenDirection",
-          ),
+          _flaxBinding1099,
           _Autocomplete_optionsViewOpenDirection,
         ),
         FlaxGetter(
           "optionsMaxHeight",
-          FlaxTypeRef("double"),
+          _flaxBinding122,
           _Autocomplete_optionsMaxHeight,
         ),
         FlaxGetter(
           "textEditingController",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextEditingController",
-            nullable: true,
-          ),
+          _flaxBinding1102,
           _Autocomplete_textEditingController,
         ),
         FlaxGetter(
           "initialValue",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextEditingValue",
-            nullable: true,
-          ),
+          _flaxBinding1104,
           _Autocomplete_initialValue,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _Autocomplete_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _Autocomplete_key),
       ],
       {
         "build": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _Autocomplete_build,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatelessElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding732,
           _Autocomplete_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _Autocomplete_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _Autocomplete_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _Autocomplete_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _Autocomplete_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _Autocomplete_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _Autocomplete_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter(
             "optionsBuilder",
             types.define<
@@ -141845,10 +141203,7 @@ Function _flaxClass_Autocomplete<
                   [
                     FlaxCallbackParameter(
                       "textEditingValue",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:TextEditingValue",
-                      ),
+                      _flaxBinding483,
                       required: true,
                       positional: true,
                     ),
@@ -141887,7 +141242,7 @@ Function _flaxClass_Autocomplete<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrap1<_Owner0, String>,
                   id:
                       types.key<String Function(_Owner0 option)>() +
@@ -141908,28 +141263,19 @@ Function _flaxClass_Autocomplete<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "textEditingController",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:TextEditingController",
-                    ),
+                    _flaxBinding1089,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "focusNode",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:FocusNode",
-                    ),
+                    _flaxBinding1090,
                     required: true,
                     positional: true,
                   ),
@@ -141939,7 +141285,7 @@ Function _flaxClass_Autocomplete<
                       "callback",
                       callback: FlaxCallbackBinding(
                         [],
-                        FlaxTypeRef("void"),
+                        _flaxBinding3,
                         FlaxCallbackAdapters.wrapVoid0,
                         id:
                             types.key<void Function()>() +
@@ -141952,7 +141298,7 @@ Function _flaxClass_Autocomplete<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding6,
                 _callback4,
                 id:
                     types
@@ -141972,15 +141318,7 @@ Function _flaxClass_Autocomplete<
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
           FlaxParameter(
             "onSelected",
             types.define<void Function(_Owner0 option)?>(
@@ -141996,7 +141334,7 @@ Function _flaxClass_Autocomplete<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                   id:
                       types.key<void Function(_Owner0 option)?>() +
@@ -142010,7 +141348,7 @@ Function _flaxClass_Autocomplete<
           ),
           FlaxParameter(
             "optionsMaxHeight",
-            FlaxTypeRef("double"),
+            _flaxBinding122,
             required: false,
             defaultValue: 200.0,
           ),
@@ -142030,10 +141368,7 @@ Function _flaxClass_Autocomplete<
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding5,
                       required: true,
                       positional: true,
                     ),
@@ -142052,7 +141387,7 @@ Function _flaxClass_Autocomplete<
                                 positional: true,
                               ),
                             ],
-                            FlaxTypeRef("void"),
+                            _flaxBinding3,
                             FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                             id:
                                 types.key<void Function(_Owner0 option)>() +
@@ -142073,7 +141408,7 @@ Function _flaxClass_Autocomplete<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("widget"),
+                  _flaxBinding6,
                   _callback5,
                   id:
                       types
@@ -142094,31 +141429,16 @@ Function _flaxClass_Autocomplete<
           ),
           FlaxParameter(
             "optionsViewOpenDirection",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:OptionsViewOpenDirection",
-            ),
+            _flaxBinding1099,
             required: false,
             defaultValue: api1.OptionsViewOpenDirection.down,
           ),
           FlaxParameter(
             "textEditingController",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextEditingController",
-              nullable: true,
-            ),
+            _flaxBinding1102,
             required: false,
           ),
-          FlaxParameter(
-            "initialValue",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextEditingValue",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("initialValue", _flaxBinding1104, required: false),
         ],
       },
       create: _createAutocomplete,
@@ -142192,71 +141512,47 @@ Function _flaxClass_ButtonSegment<
       id,
       [
         FlaxGetter("value", types.ref<_Owner0>(), _ButtonSegment_value),
-        FlaxGetter(
-          "icon",
-          FlaxTypeRef("widget", nullable: true),
-          _ButtonSegment_icon,
-        ),
-        FlaxGetter(
-          "label",
-          FlaxTypeRef("widget", nullable: true),
-          _ButtonSegment_label,
-        ),
-        FlaxGetter(
-          "tooltip",
-          FlaxTypeRef("String", nullable: true),
-          _ButtonSegment_tooltip,
-        ),
-        FlaxGetter("enabled", FlaxTypeRef("bool"), _ButtonSegment_enabled),
+        FlaxGetter("icon", _flaxBinding64, _ButtonSegment_icon),
+        FlaxGetter("label", _flaxBinding64, _ButtonSegment_label),
+        FlaxGetter("tooltip", _flaxBinding66, _ButtonSegment_tooltip),
+        FlaxGetter("enabled", _flaxBinding12, _ButtonSegment_enabled),
       ],
       {
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<_Owner0>(),
           _ButtonSegment_super_get_value,
         ),
         "@super:get:icon": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding733,
+          _flaxBinding64,
           _ButtonSegment_super_get_icon,
         ),
         "@super:get:label": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding733,
+          _flaxBinding64,
           _FlaxProxyDispatch24_super_get_label,
         ),
         "@super:get:tooltip": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding733,
+          _flaxBinding66,
           _FlaxProxyDispatch25_super_get_tooltip,
         ),
         "@super:get:enabled": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding733,
+          _flaxBinding12,
           _FlaxProxyDispatch26_super_get_enabled,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
-          FlaxParameter(
-            "icon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "label",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "tooltip",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("icon", _flaxBinding64, required: false),
+          FlaxParameter("label", _flaxBinding64, required: false),
+          FlaxParameter("tooltip", _flaxBinding66, required: false),
           FlaxParameter(
             "enabled",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
@@ -142287,7 +141583,7 @@ Function _flaxClass_ButtonSegment<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             id:
                 types.key<api1.Widget? Function()>() +
                 ":callback:<>()->widget?:",
@@ -142299,7 +141595,7 @@ Function _flaxClass_ButtonSegment<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             id:
                 types.key<api1.Widget? Function()>() +
                 ":callback:<>()->widget?:",
@@ -142311,7 +141607,7 @@ Function _flaxClass_ButtonSegment<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding66,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -142321,7 +141617,7 @@ Function _flaxClass_ButtonSegment<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -142589,7 +141885,7 @@ Function _flaxClass_CalendarDelegate<
       [],
       {
         "now": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<_Owner0>(),
           _CalendarDelegate_now,
         ),
@@ -142616,7 +141912,7 @@ Function _flaxClass_CalendarDelegate<
             FlaxParameter("dateA", types.ref<_Owner0?>(), required: true),
             FlaxParameter("dateB", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _CalendarDelegate_isSameDay,
         ),
         "isSameMonth": FlaxInstanceMethod(
@@ -142624,7 +141920,7 @@ Function _flaxClass_CalendarDelegate<
             FlaxParameter("dateA", types.ref<_Owner0?>(), required: true),
             FlaxParameter("dateB", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _CalendarDelegate_isSameMonth,
         ),
         "monthDelta": FlaxInstanceMethod(
@@ -142632,13 +141928,13 @@ Function _flaxClass_CalendarDelegate<
             FlaxParameter("startDate", types.ref<_Owner0>(), required: true),
             FlaxParameter("endDate", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("int"),
+          _flaxBinding143,
           _CalendarDelegate_monthDelta,
         ),
         "addMonthsToMonthDate": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("monthDate", types.ref<_Owner0>(), required: true),
-            FlaxParameter("monthsToAdd", FlaxTypeRef("int"), required: true),
+            FlaxParameter("monthsToAdd", _flaxBinding143, required: true),
           ],
           types.ref<_Owner0>(),
           _CalendarDelegate_addMonthsToMonthDate,
@@ -142646,188 +141942,92 @@ Function _flaxClass_CalendarDelegate<
         "addDaysToDate": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("date", types.ref<_Owner0>(), required: true),
-            FlaxParameter("days", FlaxTypeRef("int"), required: true),
+            FlaxParameter("days", _flaxBinding143, required: true),
           ],
           types.ref<_Owner0>(),
           _CalendarDelegate_addDaysToDate,
         ),
         "firstDayOffset": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("year", FlaxTypeRef("int"), required: true),
-            FlaxParameter("month", FlaxTypeRef("int"), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("int"),
+          _flaxBinding9767,
+          _flaxBinding143,
           _CalendarDelegate_firstDayOffset,
         ),
         "getDaysInMonth": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("year", FlaxTypeRef("int"), required: true),
-            FlaxParameter("month", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("int"),
+          _flaxBinding1735,
+          _flaxBinding143,
           _CalendarDelegate_getDaysInMonth,
         ),
         "getMonth": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("year", FlaxTypeRef("int"), required: true),
-            FlaxParameter("month", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding1735,
           types.ref<_Owner0>(),
           _CalendarDelegate_getMonth,
         ),
         "getDay": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("year", FlaxTypeRef("int"), required: true),
-            FlaxParameter("month", FlaxTypeRef("int"), required: true),
-            FlaxParameter("day", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding1736,
           types.ref<_Owner0>(),
           _CalendarDelegate_getDay,
         ),
         "formatMonthYear": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("date", types.ref<_Owner0>(), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
+            FlaxParameter("localizations", _flaxBinding144, required: true),
           ],
-          FlaxTypeRef("String"),
+          _flaxBinding0,
           _CalendarDelegate_formatMonthYear,
         ),
         "formatYear": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("year", FlaxTypeRef("int"), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding9768,
+          _flaxBinding0,
           _CalendarDelegate_formatYear,
         ),
         "formatMediumDate": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("date", types.ref<_Owner0>(), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
+            FlaxParameter("localizations", _flaxBinding144, required: true),
           ],
-          FlaxTypeRef("String"),
+          _flaxBinding0,
           _CalendarDelegate_formatMediumDate,
         ),
         "formatShortMonthDay": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("date", types.ref<_Owner0>(), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
+            FlaxParameter("localizations", _flaxBinding144, required: true),
           ],
-          FlaxTypeRef("String"),
+          _flaxBinding0,
           _CalendarDelegate_formatShortMonthDay,
         ),
         "formatShortDate": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("date", types.ref<_Owner0>(), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
+            FlaxParameter("localizations", _flaxBinding144, required: true),
           ],
-          FlaxTypeRef("String"),
+          _flaxBinding0,
           _CalendarDelegate_formatShortDate,
         ),
         "formatFullDate": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("date", types.ref<_Owner0>(), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
+            FlaxParameter("localizations", _flaxBinding144, required: true),
           ],
-          FlaxTypeRef("String"),
+          _flaxBinding0,
           _CalendarDelegate_formatFullDate,
         ),
         "formatCompactDate": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("date", types.ref<_Owner0>(), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
+            FlaxParameter("localizations", _flaxBinding144, required: true),
           ],
-          FlaxTypeRef("String"),
+          _flaxBinding0,
           _CalendarDelegate_formatCompactDate,
         ),
         "parseCompactDate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "inputString",
-              FlaxTypeRef("String", nullable: true),
-              required: true,
-            ),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding1737,
           types.ref<_Owner0?>(),
           _CalendarDelegate_parseCompactDate,
         ),
         "dateHelpText": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding9769,
+          _flaxBinding0,
           _CalendarDelegate_dateHelpText,
         ),
         "@super:datesOnly": FlaxInstanceMethod(
@@ -142846,7 +142046,7 @@ Function _flaxClass_CalendarDelegate<
             FlaxParameter("dateA", types.ref<_Owner0?>(), required: true),
             FlaxParameter("dateB", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _CalendarDelegate_super_isSameDay,
         ),
         "@super:isSameMonth": FlaxInstanceMethod(
@@ -142854,26 +142054,16 @@ Function _flaxClass_CalendarDelegate<
             FlaxParameter("dateA", types.ref<_Owner0?>(), required: true),
             FlaxParameter("dateB", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _CalendarDelegate_super_isSameMonth,
         ),
         "@super:formatYear": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("year", FlaxTypeRef("int"), required: true),
-            FlaxParameter(
-              "localizations",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:MaterialLocalizations",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding9768,
+          _flaxBinding0,
           _FlaxProxyDispatch36_super_call_formatYear,
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding733},
       create: _createCalendarDelegate,
       matches: _isCalendarDelegate,
       setters: [],
@@ -142953,7 +142143,7 @@ Function _flaxClass_CalendarDelegate<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             id: types.key<bool Function(_Owner0? dateA, _Owner0? dateB)>() + ":callback:<>(p:r:dateA:parameter?:,p:r:dateB:parameter?:)->bool:",
           ),
           hasSuper: true,
@@ -142976,7 +142166,7 @@ Function _flaxClass_CalendarDelegate<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             id: types.key<bool Function(_Owner0? dateA, _Owner0? dateB)>() + ":callback:<>(p:r:dateA:parameter?:,p:r:dateB:parameter?:)->bool:",
           ),
           hasSuper: true,
@@ -142999,7 +142189,7 @@ Function _flaxClass_CalendarDelegate<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("int"),
+            _flaxBinding143,
             id: types.key<int Function(_Owner0 startDate, _Owner0 endDate)>() + ":callback:<>(p:r:startDate:parameter:,p:r:endDate:parameter:)->int:",
           ),
         ),
@@ -143016,7 +142206,7 @@ Function _flaxClass_CalendarDelegate<
               ),
               FlaxCallbackParameter(
                 "monthsToAdd",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
@@ -143043,7 +142233,7 @@ Function _flaxClass_CalendarDelegate<
               ),
               FlaxCallbackParameter(
                 "days",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
@@ -143061,27 +142251,24 @@ Function _flaxClass_CalendarDelegate<
             [
               FlaxCallbackParameter(
                 "year",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "month",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("int"),
+            _flaxBinding143,
             id:
                 types
                     .key<
@@ -143101,18 +142288,18 @@ Function _flaxClass_CalendarDelegate<
             [
               FlaxCallbackParameter(
                 "year",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "month",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("int"),
+            _flaxBinding143,
             id:
                 types.key<int Function(int year, int month)>() +
                 ":callback:<>(p:r:year:int:,p:r:month:int:)->int:",
@@ -143125,13 +142312,13 @@ Function _flaxClass_CalendarDelegate<
             [
               FlaxCallbackParameter(
                 "year",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "month",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
@@ -143149,19 +142336,19 @@ Function _flaxClass_CalendarDelegate<
             [
               FlaxCallbackParameter(
                 "year",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "month",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "day",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
@@ -143183,15 +142370,12 @@ Function _flaxClass_CalendarDelegate<
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -143210,21 +142394,18 @@ Function _flaxClass_CalendarDelegate<
             [
               FlaxCallbackParameter(
                 "year",
-                FlaxTypeRef("int"),
+                _flaxBinding143,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -143250,15 +142431,12 @@ Function _flaxClass_CalendarDelegate<
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -143283,15 +142461,12 @@ Function _flaxClass_CalendarDelegate<
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -143316,15 +142491,12 @@ Function _flaxClass_CalendarDelegate<
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -143349,15 +142521,12 @@ Function _flaxClass_CalendarDelegate<
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -143382,15 +142551,12 @@ Function _flaxClass_CalendarDelegate<
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -143409,16 +142575,13 @@ Function _flaxClass_CalendarDelegate<
             [
               FlaxCallbackParameter(
                 "inputString",
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding66,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
@@ -143442,15 +142605,12 @@ Function _flaxClass_CalendarDelegate<
             [
               FlaxCallbackParameter(
                 "localizations",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:MaterialLocalizations",
-                ),
+                _flaxBinding144,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -143621,16 +142781,8 @@ Function _flaxClass_CheckedPopupMenuItem<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "checked",
-          FlaxTypeRef("bool"),
-          _CheckedPopupMenuItem_checked,
-        ),
-        FlaxGetter(
-          "child",
-          FlaxTypeRef("widget", nullable: true),
-          _CheckedPopupMenuItem_child,
-        ),
+        FlaxGetter("checked", _flaxBinding12, _CheckedPopupMenuItem_checked),
+        FlaxGetter("child", _flaxBinding64, _CheckedPopupMenuItem_child),
         FlaxGetter("value", types.ref<_Owner0?>(), _CheckedPopupMenuItem_value),
         FlaxGetter(
           "onTap",
@@ -143639,7 +142791,7 @@ Function _flaxClass_CheckedPopupMenuItem<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -143648,32 +142800,12 @@ Function _flaxClass_CheckedPopupMenuItem<
           ),
           _CheckedPopupMenuItem_onTap,
         ),
-        FlaxGetter(
-          "enabled",
-          FlaxTypeRef("bool"),
-          _CheckedPopupMenuItem_enabled,
-        ),
-        FlaxGetter(
-          "height",
-          FlaxTypeRef("double"),
-          _CheckedPopupMenuItem_height,
-        ),
-        FlaxGetter(
-          "padding",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsets",
-            nullable: true,
-          ),
-          _CheckedPopupMenuItem_padding,
-        ),
+        FlaxGetter("enabled", _flaxBinding12, _CheckedPopupMenuItem_enabled),
+        FlaxGetter("height", _flaxBinding122, _CheckedPopupMenuItem_height),
+        FlaxGetter("padding", _flaxBinding192, _CheckedPopupMenuItem_padding),
         FlaxGetter(
           "textStyle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextStyle",
-            nullable: true,
-          ),
+          _flaxBinding24,
           _CheckedPopupMenuItem_textStyle,
         ),
         FlaxGetter(
@@ -143696,40 +142828,12 @@ Function _flaxClass_CheckedPopupMenuItem<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:TextStyle",
-                          nullable: true,
-                        ),
+                        _flaxBinding24,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, api2.TextStyle?>,
                         id:
@@ -143757,26 +142861,14 @@ Function _flaxClass_CheckedPopupMenuItem<
         ),
         FlaxGetter(
           "mouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
+          _flaxBinding43,
           _CheckedPopupMenuItem_mouseCursor,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _CheckedPopupMenuItem_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _CheckedPopupMenuItem_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types
               .ref<
                 api.PopupMenuItemState<
@@ -143790,178 +142882,65 @@ Function _flaxClass_CheckedPopupMenuItem<
           <FlaxParameter>[
             FlaxParameter("value", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _CheckedPopupMenuItem_represents,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _CheckedPopupMenuItem_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _CheckedPopupMenuItem_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _CheckedPopupMenuItem_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _CheckedPopupMenuItem_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _CheckedPopupMenuItem_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _CheckedPopupMenuItem_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _CheckedPopupMenuItem_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter("value", types.ref<_Owner0?>(), required: false),
           FlaxParameter(
             "checked",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "enabled",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "padding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsets",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("padding", _flaxBinding192, required: false),
           FlaxParameter(
             "height",
-            FlaxTypeRef("double"),
+            _flaxBinding122,
             required: false,
             defaultValue: 48.0,
           ),
@@ -143985,40 +142964,12 @@ Function _flaxClass_CheckedPopupMenuItem<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:TextStyle",
-                            nullable: true,
-                          ),
+                          _flaxBinding24,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api2.TextStyle?>,
                           id:
@@ -144044,20 +142995,8 @@ Function _flaxClass_CheckedPopupMenuItem<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "child",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding43, required: false),
+          FlaxParameter("child", _flaxBinding64, required: false),
           FlaxParameter(
             "onTap",
             FlaxTypeRef(
@@ -144065,7 +143004,7 @@ Function _flaxClass_CheckedPopupMenuItem<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -144152,36 +143091,32 @@ Function _flaxClass_DateTimeRange<
       [
         FlaxGetter("start", types.ref<_Owner0>(), _DateTimeRange_start),
         FlaxGetter("end", types.ref<_Owner0>(), _DateTimeRange_end),
-        FlaxGetter(
-          "duration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
-          _DateTimeRange_duration,
-        ),
+        FlaxGetter("duration", _flaxBinding128, _DateTimeRange_duration),
       ],
       {
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _DateTimeRange_toString,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _FlaxProxyDispatch39_super_call_toString,
         ),
         "@super:get:start": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<_Owner0>(),
           _DateTimeRange_super_get_start,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<_Owner0>(),
           _DateTimeRange_super_get_end,
         ),
         "@super:get:duration": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding733,
+          _flaxBinding128,
           _DateTimeRange_super_get_duration,
         ),
       },
@@ -144206,7 +143141,7 @@ Function _flaxClass_DateTimeRange<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -144236,7 +143171,7 @@ Function _flaxClass_DateTimeRange<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+            _flaxBinding128,
             id:
                 types.key<api7.Duration Function()>() +
                 ":callback:<>()->object:flax.core/flutter#type:Duration",
@@ -144939,78 +143874,38 @@ Function _flaxClass_DialogRoute<
       [
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_barrierDismissible,
         ),
-        FlaxGetter(
-          "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
-          _DialogRoute_barrierLabel,
-        ),
-        FlaxGetter(
-          "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _DialogRoute_barrierColor,
-        ),
+        FlaxGetter("barrierLabel", _flaxBinding66, _DialogRoute_barrierLabel),
+        FlaxGetter("barrierColor", _flaxBinding14, _DialogRoute_barrierColor),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding128,
           _DialogRoute_transitionDuration,
         ),
-        FlaxGetter(
-          "anchorPoint",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Offset",
-            nullable: true,
-          ),
-          _DialogRoute_anchorPoint,
-        ),
+        FlaxGetter("anchorPoint", _flaxBinding32, _DialogRoute_anchorPoint),
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_fullscreenDialog,
         ),
-        FlaxGetter("opaque", FlaxTypeRef("bool"), _DialogRoute_opaque),
-        FlaxGetter(
-          "maintainState",
-          FlaxTypeRef("bool"),
-          _DialogRoute_maintainState,
-        ),
+        FlaxGetter("opaque", _flaxBinding12, _DialogRoute_opaque),
+        FlaxGetter("maintainState", _flaxBinding12, _DialogRoute_maintainState),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_allowSnapshotting,
         ),
-        FlaxGetter(
-          "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
-          _DialogRoute_filter,
-        ),
+        FlaxGetter("filter", _flaxBinding3383, _DialogRoute_filter),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding3385,
           _DialogRoute_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding3385,
           _DialogRoute_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -145022,47 +143917,36 @@ Function _flaxClass_DialogRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback0,
               id:
                   types
@@ -145091,47 +143975,36 @@ Function _flaxClass_DialogRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback1,
               id:
                   types
@@ -145153,71 +144026,46 @@ Function _flaxClass_DialogRoute<
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_semanticsDismissible,
         ),
-        FlaxGetter(
-          "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
-          _DialogRoute_barrierCurve,
-        ),
+        FlaxGetter("barrierCurve", _flaxBinding149, _DialogRoute_barrierCurve),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_popGestureInProgress,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_popGestureEnabled,
         ),
-        FlaxGetter("offstage", FlaxTypeRef("bool"), _DialogRoute_offstage),
+        FlaxGetter("offstage", _flaxBinding12, _DialogRoute_offstage),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding3395,
           _DialogRoute_subtreeContext,
         ),
-        FlaxGetter(
-          "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
-          _DialogRoute_animation,
-        ),
+        FlaxGetter("animation", _flaxBinding576, _DialogRoute_animation),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding576,
           _DialogRoute_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding3399,
           _DialogRoute_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_hasScopedWillPopCallback,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _DialogRoute_canPop),
+        FlaxGetter("canPop", _flaxBinding12, _DialogRoute_canPop),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_impliesAppBarDismissal,
         ),
         FlaxGetter(
@@ -145227,93 +144075,37 @@ Function _flaxClass_DialogRoute<
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding128,
           _DialogRoute_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_finishedWhenPopped,
         ),
-        FlaxGetter(
-          "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
-          _DialogRoute_controller,
-        ),
+        FlaxGetter("controller", _flaxBinding455, _DialogRoute_controller),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_willDisposeAnimationController,
         ),
-        FlaxGetter(
-          "debugLabel",
-          FlaxTypeRef("String"),
-          _DialogRoute_debugLabel,
-        ),
+        FlaxGetter("debugLabel", _flaxBinding0, _DialogRoute_debugLabel),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding3411,
           _DialogRoute_overlayEntries,
         ),
-        FlaxGetter(
-          "requestFocus",
-          FlaxTypeRef("bool"),
-          _DialogRoute_requestFocus,
-        ),
-        FlaxGetter(
-          "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
-          _DialogRoute_navigator,
-        ),
-        FlaxGetter(
-          "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
-          _DialogRoute_settings,
-        ),
+        FlaxGetter("requestFocus", _flaxBinding12, _DialogRoute_requestFocus),
+        FlaxGetter("navigator", _flaxBinding3414, _DialogRoute_navigator),
+        FlaxGetter("settings", _flaxBinding3416, _DialogRoute_settings),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding3418,
           _DialogRoute_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -145326,73 +144118,24 @@ Function _flaxClass_DialogRoute<
           types.ref<Future<_Owner0?>>(),
           _DialogRoute_popped,
         ),
-        FlaxGetter("isCurrent", FlaxTypeRef("bool"), _DialogRoute_isCurrent),
-        FlaxGetter("isFirst", FlaxTypeRef("bool"), _DialogRoute_isFirst),
+        FlaxGetter("isCurrent", _flaxBinding12, _DialogRoute_isCurrent),
+        FlaxGetter("isFirst", _flaxBinding12, _DialogRoute_isFirst),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_hasActiveRouteBelow,
         ),
-        FlaxGetter("isActive", FlaxTypeRef("bool"), _DialogRoute_isActive),
+        FlaxGetter("isActive", _flaxBinding12, _DialogRoute_isActive),
       ],
       {
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding3425,
+          _flaxBinding6,
           _DialogRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding3426,
+          _flaxBinding6,
           _DialogRoute_buildTransitions,
         ),
         "setState": FlaxInstanceMethod(
@@ -145403,7 +144146,7 @@ Function _flaxClass_DialogRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -145413,48 +144156,35 @@ Function _flaxClass_DialogRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _DialogRoute_setState,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _DialogRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding733,
+          _flaxBinding3428,
           _DialogRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _DialogRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future3Adapt,
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding3429,
           _DialogRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding12, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _DialogRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -145465,11 +144195,7 @@ Function _flaxClass_DialogRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future4Adapt),
-                  ),
+                  _flaxBinding3430,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -145481,7 +144207,7 @@ Function _flaxClass_DialogRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _DialogRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -145492,11 +144218,7 @@ Function _flaxClass_DialogRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future4Adapt),
-                  ),
+                  _flaxBinding3430,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -145508,293 +144230,152 @@ Function _flaxClass_DialogRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _DialogRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3435,
+          _flaxBinding3,
           _DialogRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3435,
+          _flaxBinding3,
           _DialogRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3437,
+          _flaxBinding3,
           _DialogRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3438,
+          _flaxBinding3,
           _DialogRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3440,
+          _flaxBinding3,
           _DialogRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _DialogRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _DialogRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding733,
+          _flaxBinding6,
           _DialogRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding3410,
           _DialogRoute_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding733,
+          _flaxBinding12,
           _DialogRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding733,
+          _flaxBinding3441,
           _DialogRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding733,
+          _flaxBinding281,
           _DialogRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_physics#type:Simulation",
-            nullable: true,
-          ),
+          _flaxBinding3442,
+          _flaxBinding183,
           _DialogRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3443,
+          _flaxBinding3,
           _DialogRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding3445,
+          _flaxBinding12,
           _DialogRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding3446,
+          _flaxBinding12,
           _DialogRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3447,
+          _flaxBinding3,
           _DialogRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3448,
+          _flaxBinding3,
           _DialogRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _DialogRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _DialogRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _DialogRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3449,
+          _flaxBinding3,
           _DialogRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _DialogRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3451,
+          _flaxBinding3,
           _DialogRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3451,
+          _flaxBinding3,
           _DialogRoute_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _DialogRoute_toString,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-          ),
+          FlaxParameter("context", _flaxBinding5, required: true),
           FlaxParameter(
             "builder",
             FlaxTypeRef(
@@ -145803,15 +144384,12 @@ Function _flaxClass_DialogRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding6,
                 FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
                 id:
                     types
@@ -145827,89 +144405,41 @@ Function _flaxClass_DialogRoute<
             ),
             required: true,
           ),
-          FlaxParameter(
-            "themes",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:CapturedThemes",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("themes", _flaxBinding3452, required: false),
           FlaxParameter(
             "barrierColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
+            _flaxBinding14,
             required: false,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "barrierDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "barrierLabel",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("barrierLabel", _flaxBinding66, required: false),
           FlaxParameter(
             "useSafeArea",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "settings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "anchorPoint",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Offset",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("settings", _flaxBinding3453, required: false),
+          FlaxParameter("requestFocus", _flaxBinding22, required: false),
+          FlaxParameter("anchorPoint", _flaxBinding32, required: false),
           FlaxParameter(
             "traversalEdgeBehavior",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-              nullable: true,
-            ),
+            _flaxBinding3385,
             required: false,
           ),
           FlaxParameter(
             "fullscreenDialog",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "animationStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:AnimationStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("animationStyle", _flaxBinding196, required: false),
         ],
       },
       create: _createDialogRoute,
@@ -145924,47 +144454,36 @@ Function _flaxClass_DialogRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback2,
               id:
                   types
@@ -145984,10 +144503,10 @@ Function _flaxClass_DialogRoute<
           ),
           _DialogRoute_set_receivedTransition,
         ),
-        FlaxSetter("offstage", FlaxTypeRef("bool"), _DialogRoute_set_offstage),
+        FlaxSetter("offstage", _flaxBinding12, _DialogRoute_set_offstage),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DialogRoute_set_willDisposeAnimationController,
         ),
       ],
@@ -146314,14 +144833,10 @@ Function _flaxClass_DropdownButton<
           _DropdownButton_items,
         ),
         FlaxGetter("value", types.ref<_Owner0?>(), _DropdownButton_value),
-        FlaxGetter(
-          "hint",
-          FlaxTypeRef("widget", nullable: true),
-          _DropdownButton_hint,
-        ),
+        FlaxGetter("hint", _flaxBinding64, _DropdownButton_hint),
         FlaxGetter(
           "disabledHint",
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding64,
           _DropdownButton_disabledHint,
         ),
         FlaxGetter(
@@ -146339,7 +144854,7 @@ Function _flaxClass_DropdownButton<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)?>() +
@@ -146358,7 +144873,7 @@ Function _flaxClass_DropdownButton<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -146376,34 +144891,12 @@ Function _flaxClass_DropdownButton<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef(
-                "list",
-                item: FlaxTypeRef("widget"),
-                collection: FlaxCollectionBinding(
-                  "list:[widget:]",
-                  _collection15Create,
-                  _collection15Matches,
-                  snapshot: _collection15Snapshot,
-                ),
-                iterable: FlaxTypeRef(
-                  "iterable",
-                  item: FlaxTypeRef("widget"),
-                  collection: FlaxCollectionBinding(
-                    "iterable:[widget:]",
-                    _collection16Create,
-                    _collection16Matches,
-                    restore: _collection16Restore,
-                  ),
-                ),
-              ),
+              _flaxBinding1470,
               _callback0,
               id:
                   types
@@ -146417,305 +144910,108 @@ Function _flaxClass_DropdownButton<
           ),
           _DropdownButton_selectedItemBuilder,
         ),
-        FlaxGetter("elevation", FlaxTypeRef("int"), _DropdownButton_elevation),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextStyle",
-            nullable: true,
-          ),
-          _DropdownButton_style,
-        ),
-        FlaxGetter(
-          "underline",
-          FlaxTypeRef("widget", nullable: true),
-          _DropdownButton_underline,
-        ),
-        FlaxGetter(
-          "icon",
-          FlaxTypeRef("widget", nullable: true),
-          _DropdownButton_icon,
-        ),
+        FlaxGetter("elevation", _flaxBinding143, _DropdownButton_elevation),
+        FlaxGetter("style", _flaxBinding24, _DropdownButton_style),
+        FlaxGetter("underline", _flaxBinding64, _DropdownButton_underline),
+        FlaxGetter("icon", _flaxBinding64, _DropdownButton_icon),
         FlaxGetter(
           "iconDisabledColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _DropdownButton_iconDisabledColor,
         ),
         FlaxGetter(
           "iconEnabledColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _DropdownButton_iconEnabledColor,
         ),
-        FlaxGetter("iconSize", FlaxTypeRef("double"), _DropdownButton_iconSize),
-        FlaxGetter("isDense", FlaxTypeRef("bool"), _DropdownButton_isDense),
-        FlaxGetter(
-          "isExpanded",
-          FlaxTypeRef("bool"),
-          _DropdownButton_isExpanded,
-        ),
-        FlaxGetter(
-          "itemHeight",
-          FlaxTypeRef("double", nullable: true),
-          _DropdownButton_itemHeight,
-        ),
-        FlaxGetter(
-          "menuWidth",
-          FlaxTypeRef("double", nullable: true),
-          _DropdownButton_menuWidth,
-        ),
-        FlaxGetter(
-          "focusColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _DropdownButton_focusColor,
-        ),
-        FlaxGetter(
-          "focusNode",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:FocusNode",
-            nullable: true,
-          ),
-          _DropdownButton_focusNode,
-        ),
-        FlaxGetter("autofocus", FlaxTypeRef("bool"), _DropdownButton_autofocus),
+        FlaxGetter("iconSize", _flaxBinding122, _DropdownButton_iconSize),
+        FlaxGetter("isDense", _flaxBinding12, _DropdownButton_isDense),
+        FlaxGetter("isExpanded", _flaxBinding12, _DropdownButton_isExpanded),
+        FlaxGetter("itemHeight", _flaxBinding16, _DropdownButton_itemHeight),
+        FlaxGetter("menuWidth", _flaxBinding16, _DropdownButton_menuWidth),
+        FlaxGetter("focusColor", _flaxBinding14, _DropdownButton_focusColor),
+        FlaxGetter("focusNode", _flaxBinding201, _DropdownButton_focusNode),
+        FlaxGetter("autofocus", _flaxBinding12, _DropdownButton_autofocus),
         FlaxGetter(
           "dropdownColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _DropdownButton_dropdownColor,
         ),
-        FlaxGetter(
-          "padding",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsetsGeometry",
-            nullable: true,
-          ),
-          _DropdownButton_padding,
-        ),
+        FlaxGetter("padding", _flaxBinding28, _DropdownButton_padding),
         FlaxGetter(
           "menuMaxHeight",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _DropdownButton_menuMaxHeight,
         ),
         FlaxGetter(
           "enableFeedback",
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding22,
           _DropdownButton_enableFeedback,
         ),
-        FlaxGetter(
-          "alignment",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentGeometry"),
-          _DropdownButton_alignment,
-        ),
+        FlaxGetter("alignment", _flaxBinding3772, _DropdownButton_alignment),
         FlaxGetter(
           "borderRadius",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:BorderRadius",
-            nullable: true,
-          ),
+          _flaxBinding574,
           _DropdownButton_borderRadius,
         ),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DropdownButton_barrierDismissible,
         ),
-        FlaxGetter(
-          "mouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
-          _DropdownButton_mouseCursor,
-        ),
+        FlaxGetter("mouseCursor", _flaxBinding43, _DropdownButton_mouseCursor),
         FlaxGetter(
           "dropdownMenuItemMouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
+          _flaxBinding43,
           _DropdownButton_dropdownMenuItemMouseCursor,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _DropdownButton_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _DropdownButton_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api1.State<api.DropdownButton<_Owner0>>>(),
           _DropdownButton_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _DropdownButton_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _DropdownButton_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _DropdownButton_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _DropdownButton_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _DropdownButton_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _DropdownButton_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _DropdownButton_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter(
             "items",
             types.ref<List<api.DropdownMenuItem<_Owner0>>?>(),
@@ -146730,34 +145026,12 @@ Function _flaxClass_DropdownButton<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef(
-                  "list",
-                  item: FlaxTypeRef("widget"),
-                  collection: FlaxCollectionBinding(
-                    "list:[widget:]",
-                    _collection15Create,
-                    _collection15Matches,
-                    snapshot: _collection15Snapshot,
-                  ),
-                  iterable: FlaxTypeRef(
-                    "iterable",
-                    item: FlaxTypeRef("widget"),
-                    collection: FlaxCollectionBinding(
-                      "iterable:[widget:]",
-                      _collection16Create,
-                      _collection16Matches,
-                      restore: _collection16Restore,
-                    ),
-                  ),
-                ),
+                _flaxBinding1470,
                 _callback1,
                 id:
                     types
@@ -146772,16 +145046,8 @@ Function _flaxClass_DropdownButton<
             required: false,
           ),
           FlaxParameter("value", types.ref<_Owner0?>(), required: false),
-          FlaxParameter(
-            "hint",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "disabledHint",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("hint", _flaxBinding64, required: false),
+          FlaxParameter("disabledHint", _flaxBinding64, required: false),
           FlaxParameter(
             "onChanged",
             types.define<void Function(_Owner0? value)?>(
@@ -146797,7 +145063,7 @@ Function _flaxClass_DropdownButton<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -146816,7 +145082,7 @@ Function _flaxClass_DropdownButton<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -146827,168 +145093,69 @@ Function _flaxClass_DropdownButton<
           ),
           FlaxParameter(
             "elevation",
-            FlaxTypeRef("int"),
+            _flaxBinding143,
             required: false,
             defaultValue: 8,
           ),
-          FlaxParameter(
-            "style",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "underline",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "icon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "iconDisabledColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "iconEnabledColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("style", _flaxBinding24, required: false),
+          FlaxParameter("underline", _flaxBinding64, required: false),
+          FlaxParameter("icon", _flaxBinding64, required: false),
+          FlaxParameter("iconDisabledColor", _flaxBinding14, required: false),
+          FlaxParameter("iconEnabledColor", _flaxBinding14, required: false),
           FlaxParameter(
             "iconSize",
-            FlaxTypeRef("double"),
+            _flaxBinding122,
             required: false,
             defaultValue: 24.0,
           ),
           FlaxParameter(
             "isDense",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "isExpanded",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "itemHeight",
-            FlaxTypeRef("double", nullable: true),
+            _flaxBinding16,
             required: false,
             defaultValue: 48.0,
           ),
-          FlaxParameter(
-            "menuWidth",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("menuWidth", _flaxBinding16, required: false),
+          FlaxParameter("focusColor", _flaxBinding14, required: false),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
           FlaxParameter(
             "autofocus",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "dropdownColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "menuMaxHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("dropdownColor", _flaxBinding14, required: false),
+          FlaxParameter("menuMaxHeight", _flaxBinding16, required: false),
+          FlaxParameter("enableFeedback", _flaxBinding22, required: false),
           FlaxParameter(
             "alignment",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:AlignmentGeometry",
-            ),
+            _flaxBinding3772,
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "borderRadius",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BorderRadius",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "padding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("borderRadius", _flaxBinding574, required: false),
+          FlaxParameter("padding", _flaxBinding28, required: false),
           FlaxParameter(
             "barrierDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding43, required: false),
           FlaxParameter(
             "dropdownMenuItemMouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
+            _flaxBinding43,
             required: false,
           ),
         ],
@@ -147287,7 +145454,7 @@ Function _flaxClass_DropdownButtonFormField<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)?>() +
@@ -147301,33 +145468,22 @@ Function _flaxClass_DropdownButtonFormField<
         ),
         FlaxGetter(
           "decoration",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:InputDecoration",
-          ),
+          _flaxBinding334,
           _DropdownButtonFormField_decoration,
         ),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DropdownButtonFormField_barrierDismissible,
         ),
         FlaxGetter(
           "mouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
+          _flaxBinding43,
           _DropdownButtonFormField_mouseCursor,
         ),
         FlaxGetter(
           "dropdownMenuItemMouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
+          _flaxBinding43,
           _DropdownButtonFormField_dropdownMenuItemMouseCursor,
         ),
         FlaxGetter(
@@ -147348,7 +145504,7 @@ Function _flaxClass_DropdownButtonFormField<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("widget"),
+                    _flaxBinding6,
                     FlaxCallbackAdapters
                         .wrap1<api1.FormFieldState<_Owner0>, api1.Widget>,
                     id:
@@ -147383,7 +145539,7 @@ Function _flaxClass_DropdownButtonFormField<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? newValue)?>() +
@@ -147402,7 +145558,7 @@ Function _flaxClass_DropdownButtonFormField<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -147413,7 +145569,7 @@ Function _flaxClass_DropdownButtonFormField<
         ),
         FlaxGetter(
           "forceErrorText",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _DropdownButtonFormField_forceErrorText,
         ),
         FlaxGetter(
@@ -147431,7 +145587,7 @@ Function _flaxClass_DropdownButtonFormField<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding66,
                 FlaxCallbackAdapters.wrap1<_Owner0?, String?>,
                 id:
                     types.key<String? Function(_Owner0? value)?>() +
@@ -147452,21 +145608,18 @@ Function _flaxClass_DropdownButtonFormField<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "errorText",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding6,
               FlaxCallbackAdapters
                   .wrap2<api1.BuildContext, String, api1.Widget>,
               id:
@@ -147491,181 +145644,64 @@ Function _flaxClass_DropdownButtonFormField<
           types.ref<_Owner0?>(),
           _DropdownButtonFormField_initialValue,
         ),
-        FlaxGetter(
-          "enabled",
-          FlaxTypeRef("bool"),
-          _DropdownButtonFormField_enabled,
-        ),
+        FlaxGetter("enabled", _flaxBinding12, _DropdownButtonFormField_enabled),
         FlaxGetter(
           "autovalidateMode",
-          FlaxTypeRef("enum", id: "flax.core/flutter#type:AutovalidateMode"),
+          _flaxBinding3796,
           _DropdownButtonFormField_autovalidateMode,
         ),
         FlaxGetter(
           "restorationId",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _DropdownButtonFormField_restorationId,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _DropdownButtonFormField_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _DropdownButtonFormField_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api1.FormFieldState<_Owner0>>(),
           _DropdownButtonFormField_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _DropdownButtonFormField_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _DropdownButtonFormField_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _DropdownButtonFormField_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _DropdownButtonFormField_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _DropdownButtonFormField_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _DropdownButtonFormField_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _DropdownButtonFormField_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter(
             "items",
             types.ref<List<api.DropdownMenuItem<_Owner0>>?>(),
@@ -147680,34 +145716,12 @@ Function _flaxClass_DropdownButtonFormField<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef(
-                  "list",
-                  item: FlaxTypeRef("widget"),
-                  collection: FlaxCollectionBinding(
-                    "list:[widget:]",
-                    _collection15Create,
-                    _collection15Matches,
-                    snapshot: _collection15Snapshot,
-                  ),
-                  iterable: FlaxTypeRef(
-                    "iterable",
-                    item: FlaxTypeRef("widget"),
-                    collection: FlaxCollectionBinding(
-                      "iterable:[widget:]",
-                      _collection16Create,
-                      _collection16Matches,
-                      restore: _collection16Restore,
-                    ),
-                  ),
-                ),
+                _flaxBinding1470,
                 _callback0,
                 id:
                     types
@@ -147723,16 +145737,8 @@ Function _flaxClass_DropdownButtonFormField<
           ),
           FlaxParameter("value", types.ref<_Owner0?>(), required: false),
           FlaxParameter("initialValue", types.ref<_Owner0?>(), required: false),
-          FlaxParameter(
-            "hint",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "disabledHint",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("hint", _flaxBinding64, required: false),
+          FlaxParameter("disabledHint", _flaxBinding64, required: false),
           FlaxParameter(
             "onChanged",
             types.define<void Function(_Owner0? value)?>(
@@ -147748,7 +145754,7 @@ Function _flaxClass_DropdownButtonFormField<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -147767,7 +145773,7 @@ Function _flaxClass_DropdownButtonFormField<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -147778,107 +145784,43 @@ Function _flaxClass_DropdownButtonFormField<
           ),
           FlaxParameter(
             "elevation",
-            FlaxTypeRef("int"),
+            _flaxBinding143,
             required: false,
             defaultValue: 8,
           ),
-          FlaxParameter(
-            "style",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "icon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "iconDisabledColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "iconEnabledColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("style", _flaxBinding24, required: false),
+          FlaxParameter("icon", _flaxBinding64, required: false),
+          FlaxParameter("iconDisabledColor", _flaxBinding14, required: false),
+          FlaxParameter("iconEnabledColor", _flaxBinding14, required: false),
           FlaxParameter(
             "iconSize",
-            FlaxTypeRef("double"),
+            _flaxBinding122,
             required: false,
             defaultValue: 24.0,
           ),
           FlaxParameter(
             "isDense",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "isExpanded",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "itemHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("itemHeight", _flaxBinding16, required: false),
+          FlaxParameter("focusColor", _flaxBinding14, required: false),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
           FlaxParameter(
             "autofocus",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "dropdownColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "decoration",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:InputDecoration",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("dropdownColor", _flaxBinding14, required: false),
+          FlaxParameter("decoration", _flaxBinding3800, required: false),
           FlaxParameter(
             "onSaved",
             types.define<void Function(_Owner0? newValue)?>(
@@ -147894,7 +145836,7 @@ Function _flaxClass_DropdownButtonFormField<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? newValue)?>() +
@@ -147921,7 +145863,7 @@ Function _flaxClass_DropdownButtonFormField<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("String", nullable: true),
+                  _flaxBinding66,
                   FlaxCallbackAdapters.wrap1<_Owner0?, String?>,
                   id:
                       types.key<String? Function(_Owner0? value)?>() +
@@ -147942,21 +145884,18 @@ Function _flaxClass_DropdownButtonFormField<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "errorText",
-                    FlaxTypeRef("String"),
+                    _flaxBinding0,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding6,
                 FlaxCallbackAdapters
                     .wrap2<api1.BuildContext, String, api1.Widget>,
                 id:
@@ -147976,79 +145915,28 @@ Function _flaxClass_DropdownButtonFormField<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "forceErrorText",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "autovalidateMode",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/flutter#type:AutovalidateMode",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "menuMaxHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("forceErrorText", _flaxBinding66, required: false),
+          FlaxParameter("autovalidateMode", _flaxBinding3805, required: false),
+          FlaxParameter("menuMaxHeight", _flaxBinding16, required: false),
+          FlaxParameter("enableFeedback", _flaxBinding22, required: false),
           FlaxParameter(
             "alignment",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:AlignmentGeometry",
-            ),
+            _flaxBinding3772,
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "borderRadius",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BorderRadius",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "padding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("borderRadius", _flaxBinding574, required: false),
+          FlaxParameter("padding", _flaxBinding28, required: false),
           FlaxParameter(
             "barrierDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding43, required: false),
           FlaxParameter(
             "dropdownMenuItemMouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
+            _flaxBinding43,
             required: false,
           ),
         ],
@@ -148411,106 +146299,38 @@ Function _flaxClass_DropdownMenu<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter("enabled", FlaxTypeRef("bool"), _DropdownMenu_enabled),
-        FlaxGetter(
-          "width",
-          FlaxTypeRef("double", nullable: true),
-          _DropdownMenu_width,
-        ),
-        FlaxGetter(
-          "menuHeight",
-          FlaxTypeRef("double", nullable: true),
-          _DropdownMenu_menuHeight,
-        ),
-        FlaxGetter(
-          "leadingIcon",
-          FlaxTypeRef("widget", nullable: true),
-          _DropdownMenu_leadingIcon,
-        ),
-        FlaxGetter(
-          "trailingIcon",
-          FlaxTypeRef("widget", nullable: true),
-          _DropdownMenu_trailingIcon,
-        ),
+        FlaxGetter("enabled", _flaxBinding12, _DropdownMenu_enabled),
+        FlaxGetter("width", _flaxBinding16, _DropdownMenu_width),
+        FlaxGetter("menuHeight", _flaxBinding16, _DropdownMenu_menuHeight),
+        FlaxGetter("leadingIcon", _flaxBinding64, _DropdownMenu_leadingIcon),
+        FlaxGetter("trailingIcon", _flaxBinding64, _DropdownMenu_trailingIcon),
         FlaxGetter(
           "showTrailingIcon",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _DropdownMenu_showTrailingIcon,
         ),
         FlaxGetter(
           "trailingIconFocusNode",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:FocusNode",
-            nullable: true,
-          ),
+          _flaxBinding201,
           _DropdownMenu_trailingIconFocusNode,
         ),
-        FlaxGetter(
-          "label",
-          FlaxTypeRef("widget", nullable: true),
-          _DropdownMenu_label,
-        ),
-        FlaxGetter(
-          "hintText",
-          FlaxTypeRef("String", nullable: true),
-          _DropdownMenu_hintText,
-        ),
-        FlaxGetter(
-          "helperText",
-          FlaxTypeRef("String", nullable: true),
-          _DropdownMenu_helperText,
-        ),
-        FlaxGetter(
-          "errorText",
-          FlaxTypeRef("String", nullable: true),
-          _DropdownMenu_errorText,
-        ),
+        FlaxGetter("label", _flaxBinding64, _DropdownMenu_label),
+        FlaxGetter("hintText", _flaxBinding66, _DropdownMenu_hintText),
+        FlaxGetter("helperText", _flaxBinding66, _DropdownMenu_helperText),
+        FlaxGetter("errorText", _flaxBinding66, _DropdownMenu_errorText),
         FlaxGetter(
           "selectedTrailingIcon",
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding64,
           _DropdownMenu_selectedTrailingIcon,
         ),
-        FlaxGetter(
-          "enableFilter",
-          FlaxTypeRef("bool"),
-          _DropdownMenu_enableFilter,
-        ),
-        FlaxGetter(
-          "enableSearch",
-          FlaxTypeRef("bool"),
-          _DropdownMenu_enableSearch,
-        ),
-        FlaxGetter(
-          "keyboardType",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_services#type:TextInputType",
-            nullable: true,
-          ),
-          _DropdownMenu_keyboardType,
-        ),
-        FlaxGetter(
-          "textStyle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextStyle",
-            nullable: true,
-          ),
-          _DropdownMenu_textStyle,
-        ),
-        FlaxGetter(
-          "textAlign",
-          FlaxTypeRef("enum", id: "flax.core/flutter#type:TextAlign"),
-          _DropdownMenu_textAlign,
-        ),
+        FlaxGetter("enableFilter", _flaxBinding12, _DropdownMenu_enableFilter),
+        FlaxGetter("enableSearch", _flaxBinding12, _DropdownMenu_enableSearch),
+        FlaxGetter("keyboardType", _flaxBinding499, _DropdownMenu_keyboardType),
+        FlaxGetter("textStyle", _flaxBinding24, _DropdownMenu_textStyle),
+        FlaxGetter("textAlign", _flaxBinding3837, _DropdownMenu_textAlign),
         FlaxGetter(
           "inputDecorationTheme",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:InputDecorationThemeData",
-            nullable: true,
-          ),
+          _flaxBinding239,
           _DropdownMenu_inputDecorationTheme,
         ),
         FlaxGetter(
@@ -148522,27 +146342,18 @@ Function _flaxClass_DropdownMenu<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "controller",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_widgets#type:MenuController",
-                  ),
+                  _flaxBinding3840,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_material#type:InputDecoration",
-              ),
+              _flaxBinding334,
               FlaxCallbackAdapters.wrap2<
                 api1.BuildContext,
                 api1.MenuController,
@@ -148573,24 +146384,8 @@ Function _flaxClass_DropdownMenu<
           ),
           _DropdownMenu_decorationBuilder,
         ),
-        FlaxGetter(
-          "menuStyle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:MenuStyle",
-            nullable: true,
-          ),
-          _DropdownMenu_menuStyle,
-        ),
-        FlaxGetter(
-          "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextEditingController",
-            nullable: true,
-          ),
-          _DropdownMenu_controller,
-        ),
+        FlaxGetter("menuStyle", _flaxBinding287, _DropdownMenu_menuStyle),
+        FlaxGetter("controller", _flaxBinding1102, _DropdownMenu_controller),
         FlaxGetter(
           "initialSelection",
           types.ref<_Owner0?>(),
@@ -148611,7 +146406,7 @@ Function _flaxClass_DropdownMenu<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)?>() +
@@ -148623,21 +146418,13 @@ Function _flaxClass_DropdownMenu<
           ),
           _DropdownMenu_onSelected,
         ),
-        FlaxGetter(
-          "focusNode",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:FocusNode",
-            nullable: true,
-          ),
-          _DropdownMenu_focusNode,
-        ),
+        FlaxGetter("focusNode", _flaxBinding201, _DropdownMenu_focusNode),
         FlaxGetter(
           "requestFocusOnTap",
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding22,
           _DropdownMenu_requestFocusOnTap,
         ),
-        FlaxGetter("selectOnly", FlaxTypeRef("bool"), _DropdownMenu_selectOnly),
+        FlaxGetter("selectOnly", _flaxBinding12, _DropdownMenu_selectOnly),
         FlaxGetter(
           "dropdownMenuEntries",
           types.ref<List<api.DropdownMenuEntry<_Owner0>>>(),
@@ -148645,11 +146432,7 @@ Function _flaxClass_DropdownMenu<
         ),
         FlaxGetter(
           "expandedInsets",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsetsGeometry",
-            nullable: true,
-          ),
+          _flaxBinding28,
           _DropdownMenu_expandedInsets,
         ),
         FlaxGetter(
@@ -148675,7 +146458,7 @@ Function _flaxClass_DropdownMenu<
                   ),
                   FlaxCallbackParameter(
                     "filter",
-                    FlaxTypeRef("String"),
+                    _flaxBinding0,
                     required: true,
                     positional: true,
                   ),
@@ -148737,12 +146520,12 @@ Function _flaxClass_DropdownMenu<
                   ),
                   FlaxCallbackParameter(
                     "query",
-                    FlaxTypeRef("String"),
+                    _flaxBinding0,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("int", nullable: true),
+                _flaxBinding336,
                 FlaxCallbackAdapters
                     .wrap2<List<api.DropdownMenuEntry<_Owner0>>, String, int?>,
                 id:
@@ -148773,354 +146556,141 @@ Function _flaxClass_DropdownMenu<
         ),
         FlaxGetter(
           "inputFormatters",
-          FlaxTypeRef(
-            "list",
-            nullable: true,
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextInputFormatter",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/flutter#type:TextInputFormatter]",
-              _collection37Create,
-              _collection37Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:TextInputFormatter",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/flutter#type:TextInputFormatter]",
-                _collection38Create,
-                _collection38Matches,
-                restore: _collection38Restore,
-              ),
-            ),
-          ),
+          _flaxBinding3855,
           _DropdownMenu_inputFormatters,
         ),
         FlaxGetter(
           "alignmentOffset",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Offset",
-            nullable: true,
-          ),
+          _flaxBinding32,
           _DropdownMenu_alignmentOffset,
         ),
         FlaxGetter(
           "closeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_material#type:DropdownMenuCloseBehavior",
-          ),
+          _flaxBinding3858,
           _DropdownMenu_closeBehavior,
         ),
-        FlaxGetter(
-          "maxLines",
-          FlaxTypeRef("int", nullable: true),
-          _DropdownMenu_maxLines,
-        ),
+        FlaxGetter("maxLines", _flaxBinding336, _DropdownMenu_maxLines),
         FlaxGetter(
           "textInputAction",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_services#type:TextInputAction",
-            nullable: true,
-          ),
+          _flaxBinding3861,
           _DropdownMenu_textInputAction,
         ),
-        FlaxGetter(
-          "cursorHeight",
-          FlaxTypeRef("double", nullable: true),
-          _DropdownMenu_cursorHeight,
-        ),
+        FlaxGetter("cursorHeight", _flaxBinding16, _DropdownMenu_cursorHeight),
         FlaxGetter(
           "restorationId",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _DropdownMenu_restorationId,
         ),
         FlaxGetter(
           "menuController",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:MenuController",
-            nullable: true,
-          ),
+          _flaxBinding3865,
           _DropdownMenu_menuController,
         ),
         FlaxGetter(
           "scrollPadding",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:EdgeInsets"),
+          _flaxBinding469,
           _DropdownMenu_scrollPadding,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _DropdownMenu_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _DropdownMenu_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api1.State<api.DropdownMenu<_Owner0>>>(),
           _DropdownMenu_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _DropdownMenu_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _DropdownMenu_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _DropdownMenu_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _DropdownMenu_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _DropdownMenu_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _DropdownMenu_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _DropdownMenu_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter(
             "enabled",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "width",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "menuHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "leadingIcon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "trailingIcon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("width", _flaxBinding16, required: false),
+          FlaxParameter("menuHeight", _flaxBinding16, required: false),
+          FlaxParameter("leadingIcon", _flaxBinding64, required: false),
+          FlaxParameter("trailingIcon", _flaxBinding64, required: false),
           FlaxParameter(
             "showTrailingIcon",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "trailingIconFocusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
+            _flaxBinding201,
             required: false,
           ),
-          FlaxParameter(
-            "label",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "hintText",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "helperText",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "errorText",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("label", _flaxBinding64, required: false),
+          FlaxParameter("hintText", _flaxBinding66, required: false),
+          FlaxParameter("helperText", _flaxBinding66, required: false),
+          FlaxParameter("errorText", _flaxBinding66, required: false),
           FlaxParameter(
             "selectedTrailingIcon",
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             required: false,
           ),
           FlaxParameter(
             "enableFilter",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "enableSearch",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "keyboardType",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_services#type:TextInputType",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "textStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("keyboardType", _flaxBinding499, required: false),
+          FlaxParameter("textStyle", _flaxBinding24, required: false),
           FlaxParameter(
             "textAlign",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:TextAlign"),
+            _flaxBinding3837,
             required: false,
             defaultValue: api4.TextAlign.start,
           ),
           FlaxParameter(
             "inputDecorationTheme",
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding461,
             required: false,
           ),
           FlaxParameter(
@@ -149132,27 +146702,18 @@ Function _flaxClass_DropdownMenu<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "controller",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_widgets#type:MenuController",
-                    ),
+                    _flaxBinding3840,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:InputDecoration",
-                ),
+                _flaxBinding334,
                 FlaxCallbackAdapters.wrap2<
                   api1.BuildContext,
                   api1.MenuController,
@@ -149183,24 +146744,8 @@ Function _flaxClass_DropdownMenu<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "menuStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:MenuStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "controller",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextEditingController",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("menuStyle", _flaxBinding287, required: false),
+          FlaxParameter("controller", _flaxBinding1102, required: false),
           FlaxParameter(
             "initialSelection",
             types.ref<_Owner0?>(),
@@ -149221,7 +146766,7 @@ Function _flaxClass_DropdownMenu<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -149233,35 +146778,15 @@ Function _flaxClass_DropdownMenu<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocusOnTap",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
+          FlaxParameter("requestFocusOnTap", _flaxBinding22, required: false),
           FlaxParameter(
             "selectOnly",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "expandedInsets",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("expandedInsets", _flaxBinding28, required: false),
           FlaxParameter(
             "filterCallback",
             types.define<
@@ -149285,7 +146810,7 @@ Function _flaxClass_DropdownMenu<
                     ),
                     FlaxCallbackParameter(
                       "filter",
-                      FlaxTypeRef("String"),
+                      _flaxBinding0,
                       required: true,
                       positional: true,
                     ),
@@ -149347,12 +146872,12 @@ Function _flaxClass_DropdownMenu<
                     ),
                     FlaxCallbackParameter(
                       "query",
-                      FlaxTypeRef("String"),
+                      _flaxBinding0,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("int", nullable: true),
+                  _flaxBinding336,
                   FlaxCallbackAdapters.wrap2<
                     List<api.DropdownMenuEntry<_Owner0>>,
                     String,
@@ -149384,96 +146909,32 @@ Function _flaxClass_DropdownMenu<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "alignmentOffset",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Offset",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("alignmentOffset", _flaxBinding32, required: false),
           FlaxParameter(
             "dropdownMenuEntries",
             types.ref<List<api.DropdownMenuEntry<_Owner0>>>(),
             required: true,
           ),
-          FlaxParameter(
-            "inputFormatters",
-            FlaxTypeRef(
-              "list",
-              nullable: true,
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:TextInputFormatter",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/flutter#type:TextInputFormatter]",
-                _collection37Create,
-                _collection37Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:TextInputFormatter",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/flutter#type:TextInputFormatter]",
-                  _collection38Create,
-                  _collection38Matches,
-                  restore: _collection38Restore,
-                ),
-              ),
-            ),
-            required: false,
-          ),
+          FlaxParameter("inputFormatters", _flaxBinding3855, required: false),
           FlaxParameter(
             "closeBehavior",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:DropdownMenuCloseBehavior",
-            ),
+            _flaxBinding3858,
             required: false,
             defaultValue: api.DropdownMenuCloseBehavior.all,
           ),
           FlaxParameter(
             "maxLines",
-            FlaxTypeRef("int", nullable: true),
+            _flaxBinding336,
             required: false,
             defaultValue: 1,
           ),
-          FlaxParameter(
-            "textInputAction",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_services#type:TextInputAction",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "cursorHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "restorationId",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "menuController",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:MenuController",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("textInputAction", _flaxBinding3861, required: false),
+          FlaxParameter("cursorHeight", _flaxBinding16, required: false),
+          FlaxParameter("restorationId", _flaxBinding66, required: false),
+          FlaxParameter("menuController", _flaxBinding3865, required: false),
           FlaxParameter(
             "scrollPadding",
-            FlaxTypeRef("object", id: "flax.core/flutter#type:EdgeInsets"),
+            _flaxBinding469,
             required: false,
             omitWhenAbsent: true,
           ),
@@ -149571,108 +147032,76 @@ Function _flaxClass_DropdownMenuEntry<
       id,
       [
         FlaxGetter("value", types.ref<_Owner0>(), _DropdownMenuEntry_value),
-        FlaxGetter("label", FlaxTypeRef("String"), _DropdownMenuEntry_label),
+        FlaxGetter("label", _flaxBinding0, _DropdownMenuEntry_label),
         FlaxGetter(
           "labelWidget",
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding64,
           _DropdownMenuEntry_labelWidget,
         ),
         FlaxGetter(
           "leadingIcon",
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding64,
           _DropdownMenuEntry_leadingIcon,
         ),
         FlaxGetter(
           "trailingIcon",
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding64,
           _DropdownMenuEntry_trailingIcon,
         ),
-        FlaxGetter("enabled", FlaxTypeRef("bool"), _DropdownMenuEntry_enabled),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:ButtonStyle",
-            nullable: true,
-          ),
-          _DropdownMenuEntry_style,
-        ),
+        FlaxGetter("enabled", _flaxBinding12, _DropdownMenuEntry_enabled),
+        FlaxGetter("style", _flaxBinding68, _DropdownMenuEntry_style),
       ],
       {
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<_Owner0>(),
           _DropdownMenuEntry_super_get_value,
         ),
         "@super:get:label": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _DropdownMenuEntry_super_get_label,
         ),
         "@super:get:labelWidget": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding733,
+          _flaxBinding64,
           _DropdownMenuEntry_super_get_labelWidget,
         ),
         "@super:get:leadingIcon": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding733,
+          _flaxBinding64,
           _DropdownMenuEntry_super_get_leadingIcon,
         ),
         "@super:get:trailingIcon": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding733,
+          _flaxBinding64,
           _DropdownMenuEntry_super_get_trailingIcon,
         ),
         "@super:get:enabled": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding733,
+          _flaxBinding12,
           _FlaxProxyDispatch26_super_get_enabled,
         ),
         "@super:get:style": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:ButtonStyle",
-            nullable: true,
-          ),
+          _flaxBinding733,
+          _flaxBinding68,
           _FlaxProxyDispatch72_super_get_style,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
-          FlaxParameter("label", FlaxTypeRef("String"), required: true),
-          FlaxParameter(
-            "labelWidget",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "leadingIcon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "trailingIcon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("label", _flaxBinding0, required: true),
+          FlaxParameter("labelWidget", _flaxBinding64, required: false),
+          FlaxParameter("leadingIcon", _flaxBinding64, required: false),
+          FlaxParameter("trailingIcon", _flaxBinding64, required: false),
           FlaxParameter(
             "enabled",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "style",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:ButtonStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("style", _flaxBinding68, required: false),
         ],
       },
       create: _createDropdownMenuEntry,
@@ -149700,7 +147129,7 @@ Function _flaxClass_DropdownMenuEntry<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -149710,7 +147139,7 @@ Function _flaxClass_DropdownMenuEntry<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             id:
                 types.key<api1.Widget? Function()>() +
                 ":callback:<>()->widget?:",
@@ -149722,7 +147151,7 @@ Function _flaxClass_DropdownMenuEntry<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             id:
                 types.key<api1.Widget? Function()>() +
                 ":callback:<>()->widget?:",
@@ -149734,7 +147163,7 @@ Function _flaxClass_DropdownMenuEntry<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             id:
                 types.key<api1.Widget? Function()>() +
                 ":callback:<>()->widget?:",
@@ -149746,7 +147175,7 @@ Function _flaxClass_DropdownMenuEntry<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -149756,11 +147185,7 @@ Function _flaxClass_DropdownMenuEntry<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:ButtonStyle",
-              nullable: true,
-            ),
+            _flaxBinding68,
             id: types.key<api.ButtonStyle? Function()>() + ":callback:<>()->object?:flax.core/sdk_material#type:ButtonStyle",
           ),
           hasSuper: true,
@@ -149992,7 +147417,7 @@ Function _flaxClass_DropdownMenuFormField<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)?>() +
@@ -150006,11 +147431,7 @@ Function _flaxClass_DropdownMenuFormField<
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextEditingController",
-            nullable: true,
-          ),
+          _flaxBinding1102,
           _DropdownMenuFormField_controller,
         ),
         FlaxGetter(
@@ -150036,7 +147457,7 @@ Function _flaxClass_DropdownMenuFormField<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("widget"),
+                    _flaxBinding6,
                     FlaxCallbackAdapters
                         .wrap1<api1.FormFieldState<_Owner0>, api1.Widget>,
                     id:
@@ -150071,7 +147492,7 @@ Function _flaxClass_DropdownMenuFormField<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? newValue)?>() +
@@ -150090,7 +147511,7 @@ Function _flaxClass_DropdownMenuFormField<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -150101,7 +147522,7 @@ Function _flaxClass_DropdownMenuFormField<
         ),
         FlaxGetter(
           "forceErrorText",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _DropdownMenuFormField_forceErrorText,
         ),
         FlaxGetter(
@@ -150119,7 +147540,7 @@ Function _flaxClass_DropdownMenuFormField<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding66,
                 FlaxCallbackAdapters.wrap1<_Owner0?, String?>,
                 id:
                     types.key<String? Function(_Owner0? value)?>() +
@@ -150140,21 +147561,18 @@ Function _flaxClass_DropdownMenuFormField<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "errorText",
-                  FlaxTypeRef("String"),
+                  _flaxBinding0,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding6,
               FlaxCallbackAdapters
                   .wrap2<api1.BuildContext, String, api1.Widget>,
               id:
@@ -150179,281 +147597,116 @@ Function _flaxClass_DropdownMenuFormField<
           types.ref<_Owner0?>(),
           _DropdownMenuFormField_initialValue,
         ),
-        FlaxGetter(
-          "enabled",
-          FlaxTypeRef("bool"),
-          _DropdownMenuFormField_enabled,
-        ),
+        FlaxGetter("enabled", _flaxBinding12, _DropdownMenuFormField_enabled),
         FlaxGetter(
           "autovalidateMode",
-          FlaxTypeRef("enum", id: "flax.core/flutter#type:AutovalidateMode"),
+          _flaxBinding3796,
           _DropdownMenuFormField_autovalidateMode,
         ),
         FlaxGetter(
           "restorationId",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _DropdownMenuFormField_restorationId,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _DropdownMenuFormField_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _DropdownMenuFormField_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api1.FormFieldState<_Owner0>>(),
           _DropdownMenuFormField_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _DropdownMenuFormField_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _DropdownMenuFormField_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _DropdownMenuFormField_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _DropdownMenuFormField_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _DropdownMenuFormField_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _DropdownMenuFormField_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _DropdownMenuFormField_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter(
             "enabled",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "width",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "menuHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "leadingIcon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "trailingIcon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("width", _flaxBinding16, required: false),
+          FlaxParameter("menuHeight", _flaxBinding16, required: false),
+          FlaxParameter("leadingIcon", _flaxBinding64, required: false),
+          FlaxParameter("trailingIcon", _flaxBinding64, required: false),
           FlaxParameter(
             "showTrailingIcon",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "trailingIconFocusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
+            _flaxBinding201,
             required: false,
           ),
-          FlaxParameter(
-            "label",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "hintText",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "helperText",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("label", _flaxBinding64, required: false),
+          FlaxParameter("hintText", _flaxBinding66, required: false),
+          FlaxParameter("helperText", _flaxBinding66, required: false),
           FlaxParameter(
             "selectedTrailingIcon",
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             required: false,
           ),
           FlaxParameter(
             "enableFilter",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "enableSearch",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "keyboardType",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_services#type:TextInputType",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "textStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("keyboardType", _flaxBinding499, required: false),
+          FlaxParameter("textStyle", _flaxBinding24, required: false),
           FlaxParameter(
             "textAlign",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:TextAlign"),
+            _flaxBinding3837,
             required: false,
             defaultValue: api4.TextAlign.start,
           ),
           FlaxParameter(
             "inputDecorationTheme",
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding461,
             required: false,
           ),
           FlaxParameter(
@@ -150465,27 +147718,18 @@ Function _flaxClass_DropdownMenuFormField<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "controller",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_widgets#type:MenuController",
-                    ),
+                    _flaxBinding3840,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_material#type:InputDecoration",
-                ),
+                _flaxBinding334,
                 FlaxCallbackAdapters.wrap2<
                   api1.BuildContext,
                   api1.MenuController,
@@ -150516,24 +147760,8 @@ Function _flaxClass_DropdownMenuFormField<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "menuStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:MenuStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "controller",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextEditingController",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("menuStyle", _flaxBinding287, required: false),
+          FlaxParameter("controller", _flaxBinding1102, required: false),
           FlaxParameter(
             "initialSelection",
             types.ref<_Owner0?>(),
@@ -150554,7 +147782,7 @@ Function _flaxClass_DropdownMenuFormField<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -150566,44 +147794,16 @@ Function _flaxClass_DropdownMenuFormField<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocusOnTap",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
+          FlaxParameter("requestFocusOnTap", _flaxBinding22, required: false),
           FlaxParameter(
             "selectOnly",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "expandedInsets",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "alignmentOffset",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Offset",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("expandedInsets", _flaxBinding28, required: false),
+          FlaxParameter("alignmentOffset", _flaxBinding32, required: false),
           FlaxParameter(
             "filterCallback",
             types.define<
@@ -150627,7 +147827,7 @@ Function _flaxClass_DropdownMenuFormField<
                     ),
                     FlaxCallbackParameter(
                       "filter",
-                      FlaxTypeRef("String"),
+                      _flaxBinding0,
                       required: true,
                       positional: true,
                     ),
@@ -150689,12 +147889,12 @@ Function _flaxClass_DropdownMenuFormField<
                     ),
                     FlaxCallbackParameter(
                       "query",
-                      FlaxTypeRef("String"),
+                      _flaxBinding0,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("int", nullable: true),
+                  _flaxBinding336,
                   FlaxCallbackAdapters.wrap2<
                     List<api.DropdownMenuEntry<_Owner0>>,
                     String,
@@ -150731,79 +147931,23 @@ Function _flaxClass_DropdownMenuFormField<
             types.ref<List<api.DropdownMenuEntry<_Owner0>>>(),
             required: true,
           ),
-          FlaxParameter(
-            "inputFormatters",
-            FlaxTypeRef(
-              "list",
-              nullable: true,
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:TextInputFormatter",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/flutter#type:TextInputFormatter]",
-                _collection37Create,
-                _collection37Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:TextInputFormatter",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/flutter#type:TextInputFormatter]",
-                  _collection38Create,
-                  _collection38Matches,
-                  restore: _collection38Restore,
-                ),
-              ),
-            ),
-            required: false,
-          ),
+          FlaxParameter("inputFormatters", _flaxBinding3855, required: false),
           FlaxParameter(
             "closeBehavior",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:DropdownMenuCloseBehavior",
-            ),
+            _flaxBinding3858,
             required: false,
             defaultValue: api.DropdownMenuCloseBehavior.all,
           ),
           FlaxParameter(
             "maxLines",
-            FlaxTypeRef("int"),
+            _flaxBinding143,
             required: false,
             defaultValue: 1,
           ),
-          FlaxParameter(
-            "textInputAction",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_services#type:TextInputAction",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "cursorHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "menuController",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:MenuController",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "restorationId",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("textInputAction", _flaxBinding3861, required: false),
+          FlaxParameter("cursorHeight", _flaxBinding16, required: false),
+          FlaxParameter("menuController", _flaxBinding3865, required: false),
+          FlaxParameter("restorationId", _flaxBinding66, required: false),
           FlaxParameter(
             "onSaved",
             types.define<void Function(_Owner0? newValue)?>(
@@ -150819,7 +147963,7 @@ Function _flaxClass_DropdownMenuFormField<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? newValue)?>() +
@@ -150833,7 +147977,7 @@ Function _flaxClass_DropdownMenuFormField<
           ),
           FlaxParameter(
             "autovalidateMode",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:AutovalidateMode"),
+            _flaxBinding3796,
             required: false,
             defaultValue: api1.AutovalidateMode.disabled,
           ),
@@ -150852,7 +147996,7 @@ Function _flaxClass_DropdownMenuFormField<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("String", nullable: true),
+                  _flaxBinding66,
                   FlaxCallbackAdapters.wrap1<_Owner0?, String?>,
                   id:
                       types.key<String? Function(_Owner0? value)?>() +
@@ -150864,11 +148008,7 @@ Function _flaxClass_DropdownMenuFormField<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "forceErrorText",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("forceErrorText", _flaxBinding66, required: false),
           FlaxParameter(
             "errorBuilder",
             FlaxTypeRef(
@@ -150878,21 +148018,18 @@ Function _flaxClass_DropdownMenuFormField<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "errorText",
-                    FlaxTypeRef("String"),
+                    _flaxBinding0,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding6,
                 FlaxCallbackAdapters
                     .wrap2<api1.BuildContext, String, api1.Widget>,
                 id:
@@ -150935,377 +148072,255 @@ Function _flaxClass_DropdownMenuFormField<
 };
 Type _flaxType_DropdownMenuItem<_Owner0 extends Object?>() =>
     api.DropdownMenuItem<_Owner0>;
-Function _flaxClass_DropdownMenuItem<
-  _Owner0 extends Object?
->() => (FlaxDartTypes types, String id) {
-  // ignore: unused_element
-  bool _isDropdownMenuItem(Object value) =>
-      value is api.DropdownMenuItem<_Owner0>;
-  // ignore: unused_element
-  Object? _DropdownMenuItem_onTap(Object value) =>
-      (value as api.DropdownMenuItem<_Owner0>).onTap;
-  // ignore: unused_element
-  Object? _DropdownMenuItem_value(Object value) =>
-      (value as api.DropdownMenuItem<_Owner0>).value;
-  // ignore: unused_element
-  Object? _DropdownMenuItem_enabled(Object value) =>
-      (value as api.DropdownMenuItem<_Owner0>).enabled;
-  // ignore: unused_element
-  Object? _DropdownMenuItem_child(Object value) =>
-      (value as api.DropdownMenuItem<_Owner0>).child;
-  // ignore: unused_element
-  Object? _DropdownMenuItem_alignment(Object value) =>
-      (value as api.DropdownMenuItem<_Owner0>).alignment;
-  // ignore: unused_element
-  Object? _DropdownMenuItem_key(Object value) =>
-      (value as api.DropdownMenuItem<_Owner0>).key;
-  Object? _DropdownMenuItem_build(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DropdownMenuItem<_Owner0>).build(
-      values["context"] as api1.BuildContext,
-    );
-  }
-
-  Object? _DropdownMenuItem_createElement(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DropdownMenuItem<_Owner0>).createElement();
-  }
-
-  Object? _DropdownMenuItem_toStringShort(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DropdownMenuItem<_Owner0>).toStringShort();
-  }
-
-  Object? _DropdownMenuItem_debugFillProperties(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    (receiver as api.DropdownMenuItem<_Owner0>).debugFillProperties(
-      values["properties"] as api6.DiagnosticPropertiesBuilder,
-    );
-    return null;
-  }
-
-  Object? _DropdownMenuItem_toStringShallow(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DropdownMenuItem<_Owner0>).toStringShallow(
-      joiner: values["joiner"] as String,
-      minLevel: values["minLevel"] as api6.DiagnosticLevel,
-    );
-  }
-
-  Object? _DropdownMenuItem_toStringDeep(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DropdownMenuItem<_Owner0>).toStringDeep(
-      minLevel: values["minLevel"] as api6.DiagnosticLevel,
-      prefixLineOne: values["prefixLineOne"] as String,
-      prefixOtherLines: values["prefixOtherLines"] as String?,
-      wrapWidth: values["wrapWidth"] as int,
-    );
-  }
-
-  Object? _DropdownMenuItem_toDiagnosticsNode(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DropdownMenuItem<_Owner0>).toDiagnosticsNode(
-      name: values["name"] as String?,
-      style: values["style"] as api6.DiagnosticsTreeStyle?,
-    );
-  }
-
-  Object? _DropdownMenuItem_debugDescribeChildren(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DropdownMenuItem<_Owner0>).debugDescribeChildren();
-  }
-
-  // ignore: unused_element
-  Object _createDropdownMenuItem(String ctor, Map<String, Object?> values) {
-    switch (ctor) {
-      case "":
-        if (!values.containsKey("alignment")) {
-          return api.DropdownMenuItem<_Owner0>(
-            key: values["key"] as api6.Key?,
-            onTap: values["onTap"] as void Function()?,
-            value: values["value"] as _Owner0?,
-            enabled: values["enabled"] as bool,
-            child: values["child"] as api1.Widget,
-          );
-        }
-        return api.DropdownMenuItem<_Owner0>(
-          key: values["key"] as api6.Key?,
-          onTap: values["onTap"] as void Function()?,
-          value: values["value"] as _Owner0?,
-          enabled: values["enabled"] as bool,
-          alignment: values["alignment"] as api2.AlignmentGeometry,
-          child: values["child"] as api1.Widget,
+Function _flaxClass_DropdownMenuItem<_Owner0 extends Object?>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isDropdownMenuItem(Object value) =>
+          value is api.DropdownMenuItem<_Owner0>;
+      // ignore: unused_element
+      Object? _DropdownMenuItem_onTap(Object value) =>
+          (value as api.DropdownMenuItem<_Owner0>).onTap;
+      // ignore: unused_element
+      Object? _DropdownMenuItem_value(Object value) =>
+          (value as api.DropdownMenuItem<_Owner0>).value;
+      // ignore: unused_element
+      Object? _DropdownMenuItem_enabled(Object value) =>
+          (value as api.DropdownMenuItem<_Owner0>).enabled;
+      // ignore: unused_element
+      Object? _DropdownMenuItem_child(Object value) =>
+          (value as api.DropdownMenuItem<_Owner0>).child;
+      // ignore: unused_element
+      Object? _DropdownMenuItem_alignment(Object value) =>
+          (value as api.DropdownMenuItem<_Owner0>).alignment;
+      // ignore: unused_element
+      Object? _DropdownMenuItem_key(Object value) =>
+          (value as api.DropdownMenuItem<_Owner0>).key;
+      Object? _DropdownMenuItem_build(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.DropdownMenuItem<_Owner0>).build(
+          values["context"] as api1.BuildContext,
         );
-      default:
-        throw ArgumentError("Unknown constructor");
-    }
-  }
+      }
 
-  return FlaxDartClass(
-    api.DropdownMenuItem<_Owner0>,
-    FlaxObjectBinding(
-      id,
-      [
-        FlaxGetter(
-          "onTap",
-          FlaxTypeRef(
-            "callback",
-            nullable: true,
-            callback: FlaxCallbackBinding(
-              [],
-              FlaxTypeRef("void"),
-              FlaxCallbackAdapters.wrapVoid0,
-              id: types.key<void Function()?>() + ":callback:<>()->void:",
-              invoke: FlaxCallbackAdapters.invokeVoid0,
-              matches: FlaxCallbackAdapters.matchesVoid0,
-            ),
-          ),
-          _DropdownMenuItem_onTap,
-        ),
-        FlaxGetter("value", types.ref<_Owner0?>(), _DropdownMenuItem_value),
-        FlaxGetter("enabled", FlaxTypeRef("bool"), _DropdownMenuItem_enabled),
-        FlaxGetter("child", FlaxTypeRef("widget"), _DropdownMenuItem_child),
-        FlaxGetter(
-          "alignment",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:AlignmentGeometry"),
-          _DropdownMenuItem_alignment,
-        ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _DropdownMenuItem_key,
-        ),
-      ],
-      {
-        "build": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
-          _DropdownMenuItem_build,
-        ),
-        "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatelessElement",
-          ),
-          _DropdownMenuItem_createElement,
-        ),
-        "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
-          _DropdownMenuItem_toStringShort,
-        ),
-        "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
+      Object? _DropdownMenuItem_createElement(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.DropdownMenuItem<_Owner0>).createElement();
+      }
+
+      Object? _DropdownMenuItem_toStringShort(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.DropdownMenuItem<_Owner0>).toStringShort();
+      }
+
+      Object? _DropdownMenuItem_debugFillProperties(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        (receiver as api.DropdownMenuItem<_Owner0>).debugFillProperties(
+          values["properties"] as api6.DiagnosticPropertiesBuilder,
+        );
+        return null;
+      }
+
+      Object? _DropdownMenuItem_toStringShallow(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.DropdownMenuItem<_Owner0>).toStringShallow(
+          joiner: values["joiner"] as String,
+          minLevel: values["minLevel"] as api6.DiagnosticLevel,
+        );
+      }
+
+      Object? _DropdownMenuItem_toStringDeep(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.DropdownMenuItem<_Owner0>).toStringDeep(
+          minLevel: values["minLevel"] as api6.DiagnosticLevel,
+          prefixLineOne: values["prefixLineOne"] as String,
+          prefixOtherLines: values["prefixOtherLines"] as String?,
+          wrapWidth: values["wrapWidth"] as int,
+        );
+      }
+
+      Object? _DropdownMenuItem_toDiagnosticsNode(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.DropdownMenuItem<_Owner0>).toDiagnosticsNode(
+          name: values["name"] as String?,
+          style: values["style"] as api6.DiagnosticsTreeStyle?,
+        );
+      }
+
+      Object? _DropdownMenuItem_debugDescribeChildren(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.DropdownMenuItem<_Owner0>)
+            .debugDescribeChildren();
+      }
+
+      // ignore: unused_element
+      Object _createDropdownMenuItem(String ctor, Map<String, Object?> values) {
+        switch (ctor) {
+          case "":
+            if (!values.containsKey("alignment")) {
+              return api.DropdownMenuItem<_Owner0>(
+                key: values["key"] as api6.Key?,
+                onTap: values["onTap"] as void Function()?,
+                value: values["value"] as _Owner0?,
+                enabled: values["enabled"] as bool,
+                child: values["child"] as api1.Widget,
+              );
+            }
+            return api.DropdownMenuItem<_Owner0>(
+              key: values["key"] as api6.Key?,
+              onTap: values["onTap"] as void Function()?,
+              value: values["value"] as _Owner0?,
+              enabled: values["enabled"] as bool,
+              alignment: values["alignment"] as api2.AlignmentGeometry,
+              child: values["child"] as api1.Widget,
+            );
+          default:
+            throw ArgumentError("Unknown constructor");
+        }
+      }
+
+      return FlaxDartClass(
+        api.DropdownMenuItem<_Owner0>,
+        FlaxObjectBinding(
+          id,
+          [
+            FlaxGetter(
+              "onTap",
               FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
-          _DropdownMenuItem_debugFillProperties,
-        ),
-        "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
-          _DropdownMenuItem_toStringShallow,
-        ),
-        "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
-          _DropdownMenuItem_toStringDeep,
-        ),
-        "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
+                "callback",
                 nullable: true,
+                callback: FlaxCallbackBinding(
+                  [],
+                  _flaxBinding3,
+                  FlaxCallbackAdapters.wrapVoid0,
+                  id: types.key<void Function()?>() + ":callback:<>()->void:",
+                  invoke: FlaxCallbackAdapters.invokeVoid0,
+                  matches: FlaxCallbackAdapters.matchesVoid0,
+                ),
               ),
-              required: false,
+              _DropdownMenuItem_onTap,
             ),
+            FlaxGetter("value", types.ref<_Owner0?>(), _DropdownMenuItem_value),
+            FlaxGetter("enabled", _flaxBinding12, _DropdownMenuItem_enabled),
+            FlaxGetter("child", _flaxBinding6, _DropdownMenuItem_child),
+            FlaxGetter(
+              "alignment",
+              _flaxBinding3772,
+              _DropdownMenuItem_alignment,
+            ),
+            FlaxGetter("key", _flaxBinding729, _DropdownMenuItem_key),
           ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
-          _DropdownMenuItem_toDiagnosticsNode,
+          {
+            "build": FlaxInstanceMethod(
+              _flaxBinding1609,
+              _flaxBinding6,
+              _DropdownMenuItem_build,
+            ),
+            "createElement": FlaxInstanceMethod(
+              _flaxBinding733,
+              _flaxBinding732,
+              _DropdownMenuItem_createElement,
+            ),
+            "toStringShort": FlaxInstanceMethod(
+              _flaxBinding733,
+              _flaxBinding0,
+              _DropdownMenuItem_toStringShort,
+            ),
+            "debugFillProperties": FlaxInstanceMethod(
+              _flaxBinding9766,
+              _flaxBinding3,
+              _DropdownMenuItem_debugFillProperties,
+            ),
+            "toStringShallow": FlaxInstanceMethod(
+              _flaxBinding738,
+              _flaxBinding0,
+              _DropdownMenuItem_toStringShallow,
+            ),
+            "toStringDeep": FlaxInstanceMethod(
+              _flaxBinding740,
+              _flaxBinding0,
+              _DropdownMenuItem_toStringDeep,
+            ),
+            "toDiagnosticsNode": FlaxInstanceMethod(
+              _flaxBinding743,
+              _flaxBinding744,
+              _DropdownMenuItem_toDiagnosticsNode,
+            ),
+            "debugDescribeChildren": FlaxInstanceMethod(
+              _flaxBinding733,
+              _flaxBinding747,
+              _DropdownMenuItem_debugDescribeChildren,
+            ),
+          },
+          constructors: {
+            "": <FlaxParameter>[
+              FlaxParameter("key", _flaxBinding729, required: false),
+              FlaxParameter(
+                "onTap",
+                FlaxTypeRef(
+                  "callback",
+                  nullable: true,
+                  callback: FlaxCallbackBinding(
+                    [],
+                    _flaxBinding3,
+                    FlaxCallbackAdapters.wrapVoid0,
+                    id: types.key<void Function()?>() + ":callback:<>()->void:",
+                    invoke: FlaxCallbackAdapters.invokeVoid0,
+                    matches: FlaxCallbackAdapters.matchesVoid0,
+                  ),
+                ),
+                required: false,
+              ),
+              FlaxParameter("value", types.ref<_Owner0?>(), required: false),
+              FlaxParameter(
+                "enabled",
+                _flaxBinding12,
+                required: false,
+                defaultValue: true,
+              ),
+              FlaxParameter(
+                "alignment",
+                _flaxBinding3772,
+                required: false,
+                omitWhenAbsent: true,
+              ),
+              FlaxParameter("child", _flaxBinding6, required: true),
+            ],
+          },
+          create: _createDropdownMenuItem,
+          matches: _isDropdownMenuItem,
+          setters: [],
+          supertypes: [
+            "flax.core/sdk_material#type:DropdownMenuItem",
+            ...[
+              "package:flutter/src/material/dropdown.dart::_DropdownMenuItemContainer",
+              "flax.core/sdk_widgets#type:StatelessWidget",
+              "flax.core/sdk_widgets#type:Widget",
+              "flax.core/sdk_foundation#type:DiagnosticableTree",
+              "dart:core::Object",
+              "flax.core/sdk_foundation#type:Diagnosticable",
+            ],
+          ],
+          listenerPairs: {},
+          disposeMethod: null,
         ),
-        "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
-          _DropdownMenuItem_debugDescribeChildren,
-        ),
-      },
-      constructors: {
-        "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "onTap",
-            FlaxTypeRef(
-              "callback",
-              nullable: true,
-              callback: FlaxCallbackBinding(
-                [],
-                FlaxTypeRef("void"),
-                FlaxCallbackAdapters.wrapVoid0,
-                id: types.key<void Function()?>() + ":callback:<>()->void:",
-                invoke: FlaxCallbackAdapters.invokeVoid0,
-                matches: FlaxCallbackAdapters.matchesVoid0,
-              ),
-            ),
-            required: false,
-          ),
-          FlaxParameter("value", types.ref<_Owner0?>(), required: false),
-          FlaxParameter(
-            "enabled",
-            FlaxTypeRef("bool"),
-            required: false,
-            defaultValue: true,
-          ),
-          FlaxParameter(
-            "alignment",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:AlignmentGeometry",
-            ),
-            required: false,
-            omitWhenAbsent: true,
-          ),
-          FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-        ],
-      },
-      create: _createDropdownMenuItem,
-      matches: _isDropdownMenuItem,
-      setters: [],
-      supertypes: [
-        "flax.core/sdk_material#type:DropdownMenuItem",
-        ...[
-          "package:flutter/src/material/dropdown.dart::_DropdownMenuItemContainer",
-          "flax.core/sdk_widgets#type:StatelessWidget",
-          "flax.core/sdk_widgets#type:Widget",
-          "flax.core/sdk_foundation#type:DiagnosticableTree",
-          "dart:core::Object",
-          "flax.core/sdk_foundation#type:Diagnosticable",
-        ],
-      ],
-      listenerPairs: {},
-      disposeMethod: null,
-    ),
-  );
-};
+      );
+    };
 Function _flaxGeneric_FadeForwardsPageTransitionsBuilder_buildTransitions<
   _Method0 extends Object?
 >() => (FlaxDartTypes types) {
@@ -151321,56 +148336,18 @@ Function _flaxGeneric_FadeForwardsPageTransitionsBuilder_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>?>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef(
-          "context",
-          id: "flax.core/flutter#type:BuildContext",
-          nullable: true,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding3395, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -151389,56 +148366,18 @@ Function _flaxGeneric_FadeForwardsPageTransitionsBuilder_super_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>?>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef(
-          "context",
-          id: "flax.core/flutter#type:BuildContext",
-          nullable: true,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding3395, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -151542,18 +148481,10 @@ Function _flaxClass_MaterialPage<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:LocalKey",
-            nullable: true,
-          ),
-          _MaterialPage_key,
-        ),
+        FlaxGetter("key", _flaxBinding223, _MaterialPage_key),
         FlaxGetter(
           "restorationId",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _MaterialPage_restorationId,
         ),
         FlaxGetter(
@@ -151566,7 +148497,7 @@ Function _flaxClass_MaterialPage<
                 [
                   FlaxCallbackParameter(
                     "didPop",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding12,
                     required: true,
                     positional: true,
                   ),
@@ -151577,7 +148508,7 @@ Function _flaxClass_MaterialPage<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid2<bool, _Owner0?>,
                 id: types.key<void Function(bool didPop, _Owner0? result)>() + ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid2<bool, _Owner0?>,
@@ -151587,100 +148518,68 @@ Function _flaxClass_MaterialPage<
           ),
           _MaterialPage_onPopInvoked,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _MaterialPage_canPop),
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _MaterialPage_name,
-        ),
-        FlaxGetter(
-          "arguments",
-          FlaxTypeRef("any", nullable: true),
-          _MaterialPage_arguments,
-        ),
-        FlaxGetter("child", FlaxTypeRef("widget"), _MaterialPage_child),
+        FlaxGetter("canPop", _flaxBinding12, _MaterialPage_canPop),
+        FlaxGetter("name", _flaxBinding66, _MaterialPage_name),
+        FlaxGetter("arguments", _flaxBinding461, _MaterialPage_arguments),
+        FlaxGetter("child", _flaxBinding6, _MaterialPage_child),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPage_maintainState,
         ),
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPage_fullscreenDialog,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPage_allowSnapshotting,
         ),
       ],
       {
         "canUpdate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "other",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Page",
-                dartType: FlaxDartTypes.typeOf<api1.Page<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding5511,
+          _flaxBinding12,
           _MaterialPage_canUpdate,
         ),
         "createRoute": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
+          _flaxBinding1609,
           types.ref<api1.Route<_Owner0>>(),
           _MaterialPage_createRoute,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _MaterialPage_toString,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter("child", FlaxTypeRef("widget"), required: true),
+          FlaxParameter("child", _flaxBinding6, required: true),
           FlaxParameter(
             "maintainState",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "fullscreenDialog",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "allowSnapshotting",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:LocalKey",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding223, required: false),
           FlaxParameter(
             "canPop",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
@@ -151694,7 +148593,7 @@ Function _flaxClass_MaterialPage<
                   [
                     FlaxCallbackParameter(
                       "didPop",
-                      FlaxTypeRef("bool"),
+                      _flaxBinding12,
                       required: true,
                       positional: true,
                     ),
@@ -151705,7 +148604,7 @@ Function _flaxClass_MaterialPage<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid2<bool, _Owner0?>,
                   id: types.key<void Function(bool didPop, _Owner0? result)>() + ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid2<bool, _Owner0?>,
@@ -151716,21 +148615,9 @@ Function _flaxClass_MaterialPage<
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "restorationId",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("name", _flaxBinding66, required: false),
+          FlaxParameter("arguments", _flaxBinding461, required: false),
+          FlaxParameter("restorationId", _flaxBinding66, required: false),
         ],
       },
       create: _createMaterialPage,
@@ -152461,50 +149348,34 @@ Function _flaxClass_MaterialPageRoute<
       [
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_fullscreenDialog,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_allowSnapshotting,
         ),
-        FlaxGetter("opaque", FlaxTypeRef("bool"), _MaterialPageRoute_opaque),
+        FlaxGetter("opaque", _flaxBinding12, _MaterialPageRoute_opaque),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_barrierDismissible,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_popGestureEnabled,
         ),
-        FlaxGetter(
-          "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
-          _MaterialPageRoute_filter,
-        ),
+        FlaxGetter("filter", _flaxBinding3383, _MaterialPageRoute_filter),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding3385,
           _MaterialPageRoute_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding3385,
           _MaterialPageRoute_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -152516,47 +149387,36 @@ Function _flaxClass_MaterialPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback0,
               id:
                   types
@@ -152585,47 +149445,36 @@ Function _flaxClass_MaterialPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback1,
               id:
                   types
@@ -152647,89 +149496,60 @@ Function _flaxClass_MaterialPageRoute<
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _MaterialPageRoute_barrierColor,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _MaterialPageRoute_barrierLabel,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding149,
           _MaterialPageRoute_barrierCurve,
         ),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_maintainState,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_popGestureInProgress,
         ),
-        FlaxGetter(
-          "offstage",
-          FlaxTypeRef("bool"),
-          _MaterialPageRoute_offstage,
-        ),
+        FlaxGetter("offstage", _flaxBinding12, _MaterialPageRoute_offstage),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding3395,
           _MaterialPageRoute_subtreeContext,
         ),
-        FlaxGetter(
-          "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
-          _MaterialPageRoute_animation,
-        ),
+        FlaxGetter("animation", _flaxBinding576, _MaterialPageRoute_animation),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding576,
           _MaterialPageRoute_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding3399,
           _MaterialPageRoute_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_hasScopedWillPopCallback,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _MaterialPageRoute_canPop),
+        FlaxGetter("canPop", _flaxBinding12, _MaterialPageRoute_canPop),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_impliesAppBarDismissal,
         ),
         FlaxGetter(
@@ -152739,98 +149559,50 @@ Function _flaxClass_MaterialPageRoute<
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding128,
           _MaterialPageRoute_transitionDuration,
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding128,
           _MaterialPageRoute_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding455,
           _MaterialPageRoute_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_willDisposeAnimationController,
         ),
-        FlaxGetter(
-          "debugLabel",
-          FlaxTypeRef("String"),
-          _MaterialPageRoute_debugLabel,
-        ),
+        FlaxGetter("debugLabel", _flaxBinding0, _MaterialPageRoute_debugLabel),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding3411,
           _MaterialPageRoute_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_requestFocus,
         ),
-        FlaxGetter(
-          "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
-          _MaterialPageRoute_navigator,
-        ),
-        FlaxGetter(
-          "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
-          _MaterialPageRoute_settings,
-        ),
+        FlaxGetter("navigator", _flaxBinding3414, _MaterialPageRoute_navigator),
+        FlaxGetter("settings", _flaxBinding3416, _MaterialPageRoute_settings),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding3418,
           _MaterialPageRoute_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -152843,22 +149615,14 @@ Function _flaxClass_MaterialPageRoute<
           types.ref<Future<_Owner0?>>(),
           _MaterialPageRoute_popped,
         ),
-        FlaxGetter(
-          "isCurrent",
-          FlaxTypeRef("bool"),
-          _MaterialPageRoute_isCurrent,
-        ),
-        FlaxGetter("isFirst", FlaxTypeRef("bool"), _MaterialPageRoute_isFirst),
+        FlaxGetter("isCurrent", _flaxBinding12, _MaterialPageRoute_isCurrent),
+        FlaxGetter("isFirst", _flaxBinding12, _MaterialPageRoute_isFirst),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_hasActiveRouteBelow,
         ),
-        FlaxGetter(
-          "isActive",
-          FlaxTypeRef("bool"),
-          _MaterialPageRoute_isActive,
-        ),
+        FlaxGetter("isActive", _flaxBinding12, _MaterialPageRoute_isActive),
         FlaxGetter(
           "builder",
           FlaxTypeRef(
@@ -152867,15 +149631,12 @@ Function _flaxClass_MaterialPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding6,
               FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
               id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
               invoke:
@@ -152889,33 +149650,13 @@ Function _flaxClass_MaterialPageRoute<
       ],
       {
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding3445,
+          _flaxBinding12,
           _MaterialPageRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding3446,
+          _flaxBinding12,
           _MaterialPageRoute_canTransitionFrom,
         ),
         "setState": FlaxInstanceMethod(
@@ -152926,7 +149667,7 @@ Function _flaxClass_MaterialPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -152936,107 +149677,45 @@ Function _flaxClass_MaterialPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialPageRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding3425,
+          _flaxBinding6,
           _MaterialPageRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding3426,
+          _flaxBinding6,
           _MaterialPageRoute_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialPageRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding733,
+          _flaxBinding3428,
           _MaterialPageRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialPageRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future3Adapt,
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding3429,
           _MaterialPageRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding12, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialPageRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -153047,11 +149726,7 @@ Function _flaxClass_MaterialPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future4Adapt),
-                  ),
+                  _flaxBinding3430,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -153063,7 +149738,7 @@ Function _flaxClass_MaterialPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialPageRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -153074,11 +149749,7 @@ Function _flaxClass_MaterialPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future4Adapt),
-                  ),
+                  _flaxBinding3430,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -153090,264 +149761,141 @@ Function _flaxClass_MaterialPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialPageRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3435,
+          _flaxBinding3,
           _MaterialPageRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3435,
+          _flaxBinding3,
           _MaterialPageRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3437,
+          _flaxBinding3,
           _MaterialPageRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3438,
+          _flaxBinding3,
           _MaterialPageRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3440,
+          _flaxBinding3,
           _MaterialPageRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialPageRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialPageRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding733,
+          _flaxBinding6,
           _MaterialPageRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding3410,
           _MaterialPageRoute_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding733,
+          _flaxBinding12,
           _MaterialPageRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding733,
+          _flaxBinding3441,
           _MaterialPageRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding733,
+          _flaxBinding281,
           _MaterialPageRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_physics#type:Simulation",
-            nullable: true,
-          ),
+          _flaxBinding3442,
+          _flaxBinding183,
           _MaterialPageRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3443,
+          _flaxBinding3,
           _MaterialPageRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_didPop,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3447,
+          _flaxBinding3,
           _MaterialPageRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3448,
+          _flaxBinding3,
           _MaterialPageRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialPageRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialPageRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialPageRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3449,
+          _flaxBinding3,
           _MaterialPageRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialPageRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3451,
+          _flaxBinding3,
           _MaterialPageRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3451,
+          _flaxBinding3,
           _MaterialPageRoute_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _MaterialPageRoute_toString,
         ),
         "buildContent": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _MaterialPageRoute_buildContent,
         ),
       },
@@ -153361,15 +149909,12 @@ Function _flaxClass_MaterialPageRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding6,
                 FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
                 id:
                     types
@@ -153385,60 +149930,40 @@ Function _flaxClass_MaterialPageRoute<
             ),
             required: true,
           ),
-          FlaxParameter(
-            "settings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("settings", _flaxBinding3453, required: false),
+          FlaxParameter("requestFocus", _flaxBinding22, required: false),
           FlaxParameter(
             "maintainState",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "fullscreenDialog",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "allowSnapshotting",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "barrierDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "traversalEdgeBehavior",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-              nullable: true,
-            ),
+            _flaxBinding3385,
             required: false,
           ),
           FlaxParameter(
             "directionalTraversalEdgeBehavior",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-              nullable: true,
-            ),
+            _flaxBinding3385,
             required: false,
           ),
         ],
@@ -153455,47 +149980,36 @@ Function _flaxClass_MaterialPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback2,
               id:
                   types
@@ -153515,14 +150029,10 @@ Function _flaxClass_MaterialPageRoute<
           ),
           _MaterialPageRoute_set_receivedTransition,
         ),
-        FlaxSetter(
-          "offstage",
-          FlaxTypeRef("bool"),
-          _MaterialPageRoute_set_offstage,
-        ),
+        FlaxSetter("offstage", _flaxBinding12, _MaterialPageRoute_set_offstage),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialPageRoute_set_willDisposeAnimationController,
         ),
       ],
@@ -154262,54 +150772,42 @@ Function _flaxClass_MaterialRouteTransitionMixin<
       [
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_fullscreenDialog,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_allowSnapshotting,
         ),
         FlaxGetter(
           "opaque",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_opaque,
         ),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_barrierDismissible,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_popGestureEnabled,
         ),
         FlaxGetter(
           "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
+          _flaxBinding3383,
           _MaterialRouteTransitionMixin_filter,
         ),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding3385,
           _MaterialRouteTransitionMixin_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding3385,
           _MaterialRouteTransitionMixin_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -154321,47 +150819,36 @@ Function _flaxClass_MaterialRouteTransitionMixin<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback0,
               id:
                   types
@@ -154390,47 +150877,36 @@ Function _flaxClass_MaterialRouteTransitionMixin<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback1,
               id:
                   types
@@ -154452,93 +150928,72 @@ Function _flaxClass_MaterialRouteTransitionMixin<
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _MaterialRouteTransitionMixin_barrierColor,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _MaterialRouteTransitionMixin_barrierLabel,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding149,
           _MaterialRouteTransitionMixin_barrierCurve,
         ),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_maintainState,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_popGestureInProgress,
         ),
         FlaxGetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_offstage,
         ),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding3395,
           _MaterialRouteTransitionMixin_subtreeContext,
         ),
         FlaxGetter(
           "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding576,
           _MaterialRouteTransitionMixin_animation,
         ),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding576,
           _MaterialRouteTransitionMixin_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding3399,
           _MaterialRouteTransitionMixin_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_hasScopedWillPopCallback,
         ),
         FlaxGetter(
           "canPop",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_canPop,
         ),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_impliesAppBarDismissal,
         ),
         FlaxGetter(
@@ -154548,98 +151003,62 @@ Function _flaxClass_MaterialRouteTransitionMixin<
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding128,
           _MaterialRouteTransitionMixin_transitionDuration,
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding128,
           _MaterialRouteTransitionMixin_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding455,
           _MaterialRouteTransitionMixin_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_willDisposeAnimationController,
         ),
         FlaxGetter(
           "debugLabel",
-          FlaxTypeRef("String"),
+          _flaxBinding0,
           _MaterialRouteTransitionMixin_debugLabel,
         ),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding3411,
           _MaterialRouteTransitionMixin_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_requestFocus,
         ),
         FlaxGetter(
           "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
+          _flaxBinding3414,
           _MaterialRouteTransitionMixin_navigator,
         ),
         FlaxGetter(
           "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
+          _flaxBinding3416,
           _MaterialRouteTransitionMixin_settings,
         ),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding3418,
           _MaterialRouteTransitionMixin_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -154654,54 +151073,34 @@ Function _flaxClass_MaterialRouteTransitionMixin<
         ),
         FlaxGetter(
           "isCurrent",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_isCurrent,
         ),
         FlaxGetter(
           "isFirst",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_isFirst,
         ),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_hasActiveRouteBelow,
         ),
         FlaxGetter(
           "isActive",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_isActive,
         ),
       ],
       {
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding3445,
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding3446,
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_canTransitionFrom,
         ),
         "setState": FlaxInstanceMethod(
@@ -154712,7 +151111,7 @@ Function _flaxClass_MaterialRouteTransitionMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -154722,107 +151121,45 @@ Function _flaxClass_MaterialRouteTransitionMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding3425,
+          _flaxBinding6,
           _MaterialRouteTransitionMixin_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding3426,
+          _flaxBinding6,
           _MaterialRouteTransitionMixin_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding733,
+          _flaxBinding3428,
           _MaterialRouteTransitionMixin_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future3Adapt,
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding3429,
           _MaterialRouteTransitionMixin_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding12, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -154833,11 +151170,7 @@ Function _flaxClass_MaterialRouteTransitionMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future4Adapt),
-                  ),
+                  _flaxBinding3430,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -154849,7 +151182,7 @@ Function _flaxClass_MaterialRouteTransitionMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -154860,11 +151193,7 @@ Function _flaxClass_MaterialRouteTransitionMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future4Adapt),
-                  ),
+                  _flaxBinding3430,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -154876,264 +151205,141 @@ Function _flaxClass_MaterialRouteTransitionMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3435,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3435,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3437,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3438,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3440,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding733,
+          _flaxBinding6,
           _MaterialRouteTransitionMixin_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding3410,
           _MaterialRouteTransitionMixin_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding733,
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding733,
+          _flaxBinding3441,
           _MaterialRouteTransitionMixin_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding733,
+          _flaxBinding281,
           _MaterialRouteTransitionMixin_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_physics#type:Simulation",
-            nullable: true,
-          ),
+          _flaxBinding3442,
+          _flaxBinding183,
           _MaterialRouteTransitionMixin_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3443,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_didPop,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3447,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3448,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3449,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3451,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3451,
+          _flaxBinding3,
           _MaterialRouteTransitionMixin_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _MaterialRouteTransitionMixin_toString,
         ),
         "buildContent": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _MaterialRouteTransitionMixin_buildContent,
         ),
       },
@@ -155150,47 +151356,36 @@ Function _flaxClass_MaterialRouteTransitionMixin<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback2,
               id:
                   types
@@ -155212,12 +151407,12 @@ Function _flaxClass_MaterialRouteTransitionMixin<
         ),
         FlaxSetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_set_offstage,
         ),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialRouteTransitionMixin_set_willDisposeAnimationController,
         ),
       ],
@@ -155457,143 +151652,57 @@ Function _flaxClass_MaterialStateMixin<
       [
         FlaxGetter(
           "materialStates",
-          FlaxTypeRef(
-            "set",
-            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-            collection: FlaxCollectionBinding(
-              "set:[enum:flax.core/flutter#type:WidgetState]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "enum",
-                id: "flax.core/flutter#type:WidgetState",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                _collection1Create,
-                _collection1Matches,
-                restore: _collection1Restore,
-              ),
-            ),
-          ),
+          _flaxBinding42,
           _MaterialStateMixin_materialStates,
         ),
         FlaxGetter(
           "isDisabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialStateMixin_isDisabled,
         ),
-        FlaxGetter(
-          "isDragged",
-          FlaxTypeRef("bool"),
-          _MaterialStateMixin_isDragged,
-        ),
-        FlaxGetter(
-          "isErrored",
-          FlaxTypeRef("bool"),
-          _MaterialStateMixin_isErrored,
-        ),
-        FlaxGetter(
-          "isFocused",
-          FlaxTypeRef("bool"),
-          _MaterialStateMixin_isFocused,
-        ),
-        FlaxGetter(
-          "isHovered",
-          FlaxTypeRef("bool"),
-          _MaterialStateMixin_isHovered,
-        ),
-        FlaxGetter(
-          "isPressed",
-          FlaxTypeRef("bool"),
-          _MaterialStateMixin_isPressed,
-        ),
+        FlaxGetter("isDragged", _flaxBinding12, _MaterialStateMixin_isDragged),
+        FlaxGetter("isErrored", _flaxBinding12, _MaterialStateMixin_isErrored),
+        FlaxGetter("isFocused", _flaxBinding12, _MaterialStateMixin_isFocused),
+        FlaxGetter("isHovered", _flaxBinding12, _MaterialStateMixin_isHovered),
+        FlaxGetter("isPressed", _flaxBinding12, _MaterialStateMixin_isPressed),
         FlaxGetter(
           "isScrolledUnder",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialStateMixin_isScrolledUnder,
         ),
         FlaxGetter(
           "isSelected",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _MaterialStateMixin_isSelected,
         ),
         FlaxGetter("widget", types.ref<_Owner0>(), _MaterialStateMixin_widget),
-        FlaxGetter(
-          "context",
-          FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-          _MaterialStateMixin_context,
-        ),
-        FlaxGetter("mounted", FlaxTypeRef("bool"), _MaterialStateMixin_mounted),
+        FlaxGetter("context", _flaxBinding5, _MaterialStateMixin_context),
+        FlaxGetter("mounted", _flaxBinding12, _MaterialStateMixin_mounted),
       ],
       {
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _MaterialStateMixin_toStringShort,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.info,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding831,
+          _flaxBinding0,
           _MaterialStateMixin_toString,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _MaterialStateMixin_toDiagnosticsNode,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _MaterialStateMixin_debugFillProperties,
         ),
         "updateMaterialState": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "key",
-              FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-              required: true,
-            ),
+            FlaxParameter("key", _flaxBinding40, required: true),
             FlaxParameter(
               "onChanged",
               FlaxTypeRef(
@@ -155603,12 +151712,12 @@ Function _flaxClass_MaterialStateMixin<
                   [
                     FlaxCallbackParameter(
                       "value",
-                      FlaxTypeRef("bool"),
+                      _flaxBinding12,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<bool>,
                   id:
                       types.key<void Function(bool value)?>() +
@@ -155626,12 +151735,12 @@ Function _flaxClass_MaterialStateMixin<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid1<bool>,
               id:
                   types.key<void Function(bool value)>() +
@@ -155643,54 +151752,35 @@ Function _flaxClass_MaterialStateMixin<
           _MaterialStateMixin_updateMaterialState,
         ),
         "setMaterialState": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "state",
-              FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-              required: true,
-            ),
-            FlaxParameter("isSet", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding5719,
+          _flaxBinding3,
           _MaterialStateMixin_setMaterialState,
         ),
         "addMaterialState": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "state",
-              FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding5720,
+          _flaxBinding3,
           _MaterialStateMixin_addMaterialState,
         ),
         "removeMaterialState": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "state",
-              FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding5720,
+          _flaxBinding3,
           _MaterialStateMixin_removeMaterialState,
         ),
         "initState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialStateMixin_initState,
         ),
         "didUpdateWidget": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("oldWidget", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialStateMixin_didUpdateWidget,
         ),
         "reassemble": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialStateMixin_reassemble,
         ),
         "setState": FlaxInstanceMethod(
@@ -155701,7 +151791,7 @@ Function _flaxClass_MaterialStateMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -155711,38 +151801,32 @@ Function _flaxClass_MaterialStateMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _MaterialStateMixin_setState,
         ),
         "deactivate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialStateMixin_deactivate,
         ),
         "activate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialStateMixin_activate,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialStateMixin_dispose,
         ),
         "build": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _MaterialStateMixin_build,
         ),
         "didChangeDependencies": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _MaterialStateMixin_didChangeDependencies,
         ),
       },
@@ -155752,28 +151836,7 @@ Function _flaxClass_MaterialStateMixin<
       setters: [
         FlaxSetter(
           "materialStates",
-          FlaxTypeRef(
-            "set",
-            item: FlaxTypeRef("enum", id: "flax.core/flutter#type:WidgetState"),
-            collection: FlaxCollectionBinding(
-              "set:[enum:flax.core/flutter#type:WidgetState]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "enum",
-                id: "flax.core/flutter#type:WidgetState",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                _collection1Create,
-                _collection1Matches,
-                restore: _collection1Restore,
-              ),
-            ),
-          ),
+          _flaxBinding42,
           _MaterialStateMixin_set_materialStates,
         ),
       ],
@@ -156569,46 +152632,26 @@ Function _flaxClass_ModalBottomSheetRoute<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "opaque",
-          FlaxTypeRef("bool"),
-          _ModalBottomSheetRoute_opaque,
-        ),
+        FlaxGetter("opaque", _flaxBinding12, _ModalBottomSheetRoute_opaque),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_maintainState,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_allowSnapshotting,
         ),
-        FlaxGetter(
-          "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
-          _ModalBottomSheetRoute_filter,
-        ),
+        FlaxGetter("filter", _flaxBinding3383, _ModalBottomSheetRoute_filter),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding3385,
           _ModalBottomSheetRoute_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding3385,
           _ModalBottomSheetRoute_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -156620,47 +152663,36 @@ Function _flaxClass_ModalBottomSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback0,
               id:
                   types
@@ -156689,47 +152721,36 @@ Function _flaxClass_ModalBottomSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback1,
               id:
                   types
@@ -156751,99 +152772,74 @@ Function _flaxClass_ModalBottomSheetRoute<
         ),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_barrierDismissible,
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding119,
           _ModalBottomSheetRoute_barrierColor,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _ModalBottomSheetRoute_barrierLabel,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding149,
           _ModalBottomSheetRoute_barrierCurve,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_popGestureInProgress,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_popGestureEnabled,
         ),
-        FlaxGetter(
-          "offstage",
-          FlaxTypeRef("bool"),
-          _ModalBottomSheetRoute_offstage,
-        ),
+        FlaxGetter("offstage", _flaxBinding12, _ModalBottomSheetRoute_offstage),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding3395,
           _ModalBottomSheetRoute_subtreeContext,
         ),
         FlaxGetter(
           "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding576,
           _ModalBottomSheetRoute_animation,
         ),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding576,
           _ModalBottomSheetRoute_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding3399,
           _ModalBottomSheetRoute_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_hasScopedWillPopCallback,
         ),
-        FlaxGetter(
-          "canPop",
-          FlaxTypeRef("bool"),
-          _ModalBottomSheetRoute_canPop,
-        ),
+        FlaxGetter("canPop", _flaxBinding12, _ModalBottomSheetRoute_canPop),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_impliesAppBarDismissal,
         ),
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_fullscreenDialog,
         ),
         FlaxGetter(
@@ -156853,98 +152849,62 @@ Function _flaxClass_ModalBottomSheetRoute<
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding128,
           _ModalBottomSheetRoute_transitionDuration,
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding128,
           _ModalBottomSheetRoute_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding455,
           _ModalBottomSheetRoute_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_willDisposeAnimationController,
         ),
         FlaxGetter(
           "debugLabel",
-          FlaxTypeRef("String"),
+          _flaxBinding0,
           _ModalBottomSheetRoute_debugLabel,
         ),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding3411,
           _ModalBottomSheetRoute_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_requestFocus,
         ),
         FlaxGetter(
           "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
+          _flaxBinding3414,
           _ModalBottomSheetRoute_navigator,
         ),
         FlaxGetter(
           "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
+          _flaxBinding3416,
           _ModalBottomSheetRoute_settings,
         ),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding3418,
           _ModalBottomSheetRoute_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -156959,24 +152919,16 @@ Function _flaxClass_ModalBottomSheetRoute<
         ),
         FlaxGetter(
           "isCurrent",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_isCurrent,
         ),
-        FlaxGetter(
-          "isFirst",
-          FlaxTypeRef("bool"),
-          _ModalBottomSheetRoute_isFirst,
-        ),
+        FlaxGetter("isFirst", _flaxBinding12, _ModalBottomSheetRoute_isFirst),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_hasActiveRouteBelow,
         ),
-        FlaxGetter(
-          "isActive",
-          FlaxTypeRef("bool"),
-          _ModalBottomSheetRoute_isActive,
-        ),
+        FlaxGetter("isActive", _flaxBinding12, _ModalBottomSheetRoute_isActive),
         FlaxGetter(
           "builder",
           FlaxTypeRef(
@@ -156985,15 +152937,12 @@ Function _flaxClass_ModalBottomSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding6,
               FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
               id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
               invoke:
@@ -157006,123 +152955,83 @@ Function _flaxClass_ModalBottomSheetRoute<
         ),
         FlaxGetter(
           "capturedThemes",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:CapturedThemes",
-            nullable: true,
-          ),
+          _flaxBinding3452,
           _ModalBottomSheetRoute_capturedThemes,
         ),
         FlaxGetter(
           "isScrollControlled",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_isScrollControlled,
         ),
         FlaxGetter(
           "scrollControlDisabledMaxHeightRatio",
-          FlaxTypeRef("double"),
+          _flaxBinding122,
           _ModalBottomSheetRoute_scrollControlDisabledMaxHeightRatio,
         ),
         FlaxGetter(
           "backgroundColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _ModalBottomSheetRoute_backgroundColor,
         ),
         FlaxGetter(
           "elevation",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _ModalBottomSheetRoute_elevation,
         ),
-        FlaxGetter(
-          "shape",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ShapeBorder",
-            nullable: true,
-          ),
-          _ModalBottomSheetRoute_shape,
-        ),
+        FlaxGetter("shape", _flaxBinding18, _ModalBottomSheetRoute_shape),
         FlaxGetter(
           "clipBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/flutter#type:Clip",
-            nullable: true,
-          ),
+          _flaxBinding50,
           _ModalBottomSheetRoute_clipBehavior,
         ),
         FlaxGetter(
           "constraints",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:BoxConstraints",
-            nullable: true,
-          ),
+          _flaxBinding52,
           _ModalBottomSheetRoute_constraints,
         ),
         FlaxGetter(
           "modalBarrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _ModalBottomSheetRoute_modalBarrierColor,
         ),
         FlaxGetter(
           "isDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_isDismissible,
         ),
         FlaxGetter(
           "enableDrag",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_enableDrag,
         ),
         FlaxGetter(
           "showDragHandle",
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding22,
           _ModalBottomSheetRoute_showDragHandle,
         ),
         FlaxGetter(
           "transitionAnimationController",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding455,
           _ModalBottomSheetRoute_transitionAnimationController,
         ),
         FlaxGetter(
           "anchorPoint",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Offset",
-            nullable: true,
-          ),
+          _flaxBinding32,
           _ModalBottomSheetRoute_anchorPoint,
         ),
         FlaxGetter(
           "useSafeArea",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_useSafeArea,
         ),
         FlaxGetter(
           "sheetAnimationStyle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationStyle",
-            nullable: true,
-          ),
+          _flaxBinding196,
           _ModalBottomSheetRoute_sheetAnimationStyle,
         ),
         FlaxGetter(
           "barrierOnTapHint",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _ModalBottomSheetRoute_barrierOnTapHint,
         ),
       ],
@@ -157135,7 +153044,7 @@ Function _flaxClass_ModalBottomSheetRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -157145,107 +153054,45 @@ Function _flaxClass_ModalBottomSheetRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _ModalBottomSheetRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding3425,
+          _flaxBinding6,
           _ModalBottomSheetRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding3426,
+          _flaxBinding6,
           _ModalBottomSheetRoute_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _ModalBottomSheetRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding733,
+          _flaxBinding3428,
           _ModalBottomSheetRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _ModalBottomSheetRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future3Adapt,
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding3429,
           _ModalBottomSheetRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding12, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _ModalBottomSheetRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -157256,11 +153103,7 @@ Function _flaxClass_ModalBottomSheetRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future4Adapt),
-                  ),
+                  _flaxBinding3430,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -157272,7 +153115,7 @@ Function _flaxClass_ModalBottomSheetRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _ModalBottomSheetRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -157283,11 +153126,7 @@ Function _flaxClass_ModalBottomSheetRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future4Adapt),
-                  ),
+                  _flaxBinding3430,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -157299,283 +153138,146 @@ Function _flaxClass_ModalBottomSheetRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _ModalBottomSheetRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3435,
+          _flaxBinding3,
           _ModalBottomSheetRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3435,
+          _flaxBinding3,
           _ModalBottomSheetRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3437,
+          _flaxBinding3,
           _ModalBottomSheetRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3438,
+          _flaxBinding3,
           _ModalBottomSheetRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3440,
+          _flaxBinding3,
           _ModalBottomSheetRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _ModalBottomSheetRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _ModalBottomSheetRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding733,
+          _flaxBinding6,
           _ModalBottomSheetRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding3410,
           _ModalBottomSheetRoute_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding733,
+          _flaxBinding12,
           _ModalBottomSheetRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding733,
+          _flaxBinding3441,
           _ModalBottomSheetRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding733,
+          _flaxBinding281,
           _ModalBottomSheetRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_physics#type:Simulation",
-            nullable: true,
-          ),
+          _flaxBinding3442,
+          _flaxBinding183,
           _ModalBottomSheetRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3443,
+          _flaxBinding3,
           _ModalBottomSheetRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding3445,
+          _flaxBinding12,
           _ModalBottomSheetRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding3446,
+          _flaxBinding12,
           _ModalBottomSheetRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3447,
+          _flaxBinding3,
           _ModalBottomSheetRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3448,
+          _flaxBinding3,
           _ModalBottomSheetRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _ModalBottomSheetRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _ModalBottomSheetRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _ModalBottomSheetRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3449,
+          _flaxBinding3,
           _ModalBottomSheetRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _ModalBottomSheetRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3451,
+          _flaxBinding3,
           _ModalBottomSheetRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding3451,
+          _flaxBinding3,
           _ModalBottomSheetRoute_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _ModalBottomSheetRoute_toString,
         ),
       },
@@ -157589,15 +153291,12 @@ Function _flaxClass_ModalBottomSheetRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding6,
                 FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
                 id:
                     types
@@ -157613,148 +153312,52 @@ Function _flaxClass_ModalBottomSheetRoute<
             ),
             required: true,
           ),
-          FlaxParameter(
-            "capturedThemes",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:CapturedThemes",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "barrierLabel",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "barrierOnTapHint",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "backgroundColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "shape",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:ShapeBorder",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "clipBehavior",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/flutter#type:Clip",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BoxConstraints",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "modalBarrierColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("capturedThemes", _flaxBinding3452, required: false),
+          FlaxParameter("barrierLabel", _flaxBinding66, required: false),
+          FlaxParameter("barrierOnTapHint", _flaxBinding66, required: false),
+          FlaxParameter("backgroundColor", _flaxBinding14, required: false),
+          FlaxParameter("elevation", _flaxBinding16, required: false),
+          FlaxParameter("shape", _flaxBinding18, required: false),
+          FlaxParameter("clipBehavior", _flaxBinding50, required: false),
+          FlaxParameter("constraints", _flaxBinding52, required: false),
+          FlaxParameter("modalBarrierColor", _flaxBinding14, required: false),
           FlaxParameter(
             "isDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "enableDrag",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "showDragHandle",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "isScrollControlled",
-            FlaxTypeRef("bool"),
-            required: true,
-          ),
+          FlaxParameter("showDragHandle", _flaxBinding22, required: false),
+          FlaxParameter("isScrollControlled", _flaxBinding12, required: true),
           FlaxParameter(
             "scrollControlDisabledMaxHeightRatio",
-            FlaxTypeRef("double"),
+            _flaxBinding122,
             required: false,
             defaultValue: 0.5625,
           ),
-          FlaxParameter(
-            "settings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("settings", _flaxBinding3453, required: false),
+          FlaxParameter("requestFocus", _flaxBinding22, required: false),
           FlaxParameter(
             "transitionAnimationController",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:AnimationController",
-              nullable: true,
-            ),
+            _flaxBinding455,
             required: false,
           ),
-          FlaxParameter(
-            "anchorPoint",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Offset",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("anchorPoint", _flaxBinding32, required: false),
           FlaxParameter(
             "useSafeArea",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "sheetAnimationStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:AnimationStyle",
-              nullable: true,
-            ),
+            _flaxBinding196,
             required: false,
           ),
         ],
@@ -157771,47 +153374,36 @@ Function _flaxClass_ModalBottomSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding5,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding281,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding64,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding64,
               _callback2,
               id:
                   types
@@ -157833,12 +153425,12 @@ Function _flaxClass_ModalBottomSheetRoute<
         ),
         FlaxSetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_set_offstage,
         ),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _ModalBottomSheetRoute_set_willDisposeAnimationController,
         ),
       ],
@@ -157875,52 +153467,18 @@ Function _flaxGeneric_PageTransitionsTheme_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -157939,52 +153497,18 @@ Function _flaxGeneric_PageTransitionsTheme_super_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -158393,10 +153917,7 @@ Function _flaxClass_PopupMenuButton<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding5,
                     required: true,
                     positional: true,
                   ),
@@ -158432,7 +153953,7 @@ Function _flaxClass_PopupMenuButton<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -158456,7 +153977,7 @@ Function _flaxClass_PopupMenuButton<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                 id:
                     types.key<void Function(_Owner0 value)?>() +
@@ -158475,7 +153996,7 @@ Function _flaxClass_PopupMenuButton<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -158484,338 +154005,114 @@ Function _flaxClass_PopupMenuButton<
           ),
           _PopupMenuButton_onCanceled,
         ),
-        FlaxGetter(
-          "tooltip",
-          FlaxTypeRef("String", nullable: true),
-          _PopupMenuButton_tooltip,
-        ),
-        FlaxGetter(
-          "elevation",
-          FlaxTypeRef("double", nullable: true),
-          _PopupMenuButton_elevation,
-        ),
-        FlaxGetter(
-          "shadowColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _PopupMenuButton_shadowColor,
-        ),
+        FlaxGetter("tooltip", _flaxBinding66, _PopupMenuButton_tooltip),
+        FlaxGetter("elevation", _flaxBinding16, _PopupMenuButton_elevation),
+        FlaxGetter("shadowColor", _flaxBinding14, _PopupMenuButton_shadowColor),
         FlaxGetter(
           "surfaceTintColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _PopupMenuButton_surfaceTintColor,
         ),
-        FlaxGetter(
-          "padding",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsetsGeometry",
-          ),
-          _PopupMenuButton_padding,
-        ),
-        FlaxGetter(
-          "menuPadding",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsetsGeometry",
-            nullable: true,
-          ),
-          _PopupMenuButton_menuPadding,
-        ),
+        FlaxGetter("padding", _flaxBinding124, _PopupMenuButton_padding),
+        FlaxGetter("menuPadding", _flaxBinding28, _PopupMenuButton_menuPadding),
         FlaxGetter(
           "splashRadius",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _PopupMenuButton_splashRadius,
         ),
-        FlaxGetter(
-          "child",
-          FlaxTypeRef("widget", nullable: true),
-          _PopupMenuButton_child,
-        ),
+        FlaxGetter("child", _flaxBinding64, _PopupMenuButton_child),
         FlaxGetter(
           "borderRadius",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:BorderRadius",
-            nullable: true,
-          ),
+          _flaxBinding574,
           _PopupMenuButton_borderRadius,
         ),
-        FlaxGetter(
-          "icon",
-          FlaxTypeRef("widget", nullable: true),
-          _PopupMenuButton_icon,
-        ),
-        FlaxGetter(
-          "offset",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Offset"),
-          _PopupMenuButton_offset,
-        ),
-        FlaxGetter("enabled", FlaxTypeRef("bool"), _PopupMenuButton_enabled),
-        FlaxGetter(
-          "shape",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ShapeBorder",
-            nullable: true,
-          ),
-          _PopupMenuButton_shape,
-        ),
-        FlaxGetter(
-          "color",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _PopupMenuButton_color,
-        ),
-        FlaxGetter(
-          "iconColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _PopupMenuButton_iconColor,
-        ),
+        FlaxGetter("icon", _flaxBinding64, _PopupMenuButton_icon),
+        FlaxGetter("offset", _flaxBinding264, _PopupMenuButton_offset),
+        FlaxGetter("enabled", _flaxBinding12, _PopupMenuButton_enabled),
+        FlaxGetter("shape", _flaxBinding18, _PopupMenuButton_shape),
+        FlaxGetter("color", _flaxBinding14, _PopupMenuButton_color),
+        FlaxGetter("iconColor", _flaxBinding14, _PopupMenuButton_iconColor),
         FlaxGetter(
           "enableFeedback",
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding22,
           _PopupMenuButton_enableFeedback,
         ),
-        FlaxGetter(
-          "iconSize",
-          FlaxTypeRef("double", nullable: true),
-          _PopupMenuButton_iconSize,
-        ),
-        FlaxGetter(
-          "constraints",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:BoxConstraints",
-            nullable: true,
-          ),
-          _PopupMenuButton_constraints,
-        ),
-        FlaxGetter(
-          "position",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_material#type:PopupMenuPosition",
-            nullable: true,
-          ),
-          _PopupMenuButton_position,
-        ),
+        FlaxGetter("iconSize", _flaxBinding16, _PopupMenuButton_iconSize),
+        FlaxGetter("constraints", _flaxBinding52, _PopupMenuButton_constraints),
+        FlaxGetter("position", _flaxBinding451, _PopupMenuButton_position),
         FlaxGetter(
           "clipBehavior",
-          FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip"),
+          _flaxBinding199,
           _PopupMenuButton_clipBehavior,
         ),
         FlaxGetter(
           "useRootNavigator",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _PopupMenuButton_useRootNavigator,
         ),
         FlaxGetter(
           "popUpAnimationStyle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationStyle",
-            nullable: true,
-          ),
+          _flaxBinding196,
           _PopupMenuButton_popUpAnimationStyle,
         ),
         FlaxGetter(
           "routeSettings",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:RouteSettings",
-            nullable: true,
-          ),
+          _flaxBinding3453,
           _PopupMenuButton_routeSettings,
         ),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:ButtonStyle",
-            nullable: true,
-          ),
-          _PopupMenuButton_style,
-        ),
+        FlaxGetter("style", _flaxBinding68, _PopupMenuButton_style),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding22,
           _PopupMenuButton_requestFocus,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _PopupMenuButton_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _PopupMenuButton_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api.PopupMenuButtonState<_Owner0>>(),
           _PopupMenuButton_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _PopupMenuButton_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _PopupMenuButton_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _PopupMenuButton_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _PopupMenuButton_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _PopupMenuButton_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _PopupMenuButton_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _PopupMenuButton_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter(
             "itemBuilder",
             types.define<
@@ -158830,10 +154127,7 @@ Function _flaxClass_PopupMenuButton<
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding5,
                       required: true,
                       positional: true,
                     ),
@@ -158865,7 +154159,7 @@ Function _flaxClass_PopupMenuButton<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -158889,7 +154183,7 @@ Function _flaxClass_PopupMenuButton<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                   id:
                       types.key<void Function(_Owner0 value)?>() +
@@ -158908,7 +154202,7 @@ Function _flaxClass_PopupMenuButton<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -158917,187 +154211,60 @@ Function _flaxClass_PopupMenuButton<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "tooltip",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "elevation",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "shadowColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "surfaceTintColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("tooltip", _flaxBinding66, required: false),
+          FlaxParameter("elevation", _flaxBinding16, required: false),
+          FlaxParameter("shadowColor", _flaxBinding14, required: false),
+          FlaxParameter("surfaceTintColor", _flaxBinding14, required: false),
           FlaxParameter(
             "padding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-            ),
+            _flaxBinding124,
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "menuPadding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "child",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "borderRadius",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BorderRadius",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "splashRadius",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "icon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "iconSize",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("menuPadding", _flaxBinding28, required: false),
+          FlaxParameter("child", _flaxBinding64, required: false),
+          FlaxParameter("borderRadius", _flaxBinding574, required: false),
+          FlaxParameter("splashRadius", _flaxBinding16, required: false),
+          FlaxParameter("icon", _flaxBinding64, required: false),
+          FlaxParameter("iconSize", _flaxBinding16, required: false),
           FlaxParameter(
             "offset",
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Offset"),
+            _flaxBinding264,
             required: false,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "enabled",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "shape",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:ShapeBorder",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "color",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "iconColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "enableFeedback",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "constraints",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BoxConstraints",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "position",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:PopupMenuPosition",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("shape", _flaxBinding18, required: false),
+          FlaxParameter("color", _flaxBinding14, required: false),
+          FlaxParameter("iconColor", _flaxBinding14, required: false),
+          FlaxParameter("enableFeedback", _flaxBinding22, required: false),
+          FlaxParameter("constraints", _flaxBinding52, required: false),
+          FlaxParameter("position", _flaxBinding451, required: false),
           FlaxParameter(
             "clipBehavior",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip"),
+            _flaxBinding199,
             required: false,
             defaultValue: api4.Clip.none,
           ),
           FlaxParameter(
             "useRootNavigator",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "popUpAnimationStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:AnimationStyle",
-              nullable: true,
-            ),
+            _flaxBinding196,
             required: false,
           ),
-          FlaxParameter(
-            "routeSettings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "style",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:ButtonStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("routeSettings", _flaxBinding3453, required: false),
+          FlaxParameter("style", _flaxBinding68, required: false),
+          FlaxParameter("requestFocus", _flaxBinding22, required: false),
         ],
       },
       create: _createPopupMenuButton,
@@ -159276,99 +154443,48 @@ Function _flaxClass_PopupMenuButtonState<
           types.ref<api.PopupMenuButton<_Owner0>>(),
           _PopupMenuButtonState_widget,
         ),
-        FlaxGetter(
-          "context",
-          FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-          _PopupMenuButtonState_context,
-        ),
-        FlaxGetter(
-          "mounted",
-          FlaxTypeRef("bool"),
-          _PopupMenuButtonState_mounted,
-        ),
+        FlaxGetter("context", _flaxBinding5, _PopupMenuButtonState_context),
+        FlaxGetter("mounted", _flaxBinding12, _PopupMenuButtonState_mounted),
       ],
       {
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _PopupMenuButtonState_toStringShort,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.info,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding831,
+          _flaxBinding0,
           _PopupMenuButtonState_toString,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _PopupMenuButtonState_toDiagnosticsNode,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _PopupMenuButtonState_debugFillProperties,
         ),
         "didChangeDependencies": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuButtonState_didChangeDependencies,
         ),
         "showButtonMenu": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuButtonState_showButtonMenu,
         ),
         "build": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _PopupMenuButtonState_build,
         ),
         "initState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuButtonState_initState,
         ),
         "didUpdateWidget": FlaxInstanceMethod(
@@ -159379,12 +154495,12 @@ Function _flaxClass_PopupMenuButtonState<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _PopupMenuButtonState_didUpdateWidget,
         ),
         "reassemble": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuButtonState_reassemble,
         ),
         "setState": FlaxInstanceMethod(
@@ -159395,7 +154511,7 @@ Function _flaxClass_PopupMenuButtonState<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -159405,26 +154521,26 @@ Function _flaxClass_PopupMenuButtonState<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _PopupMenuButtonState_setState,
         ),
         "deactivate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuButtonState_deactivate,
         ),
         "activate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuButtonState_activate,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuButtonState_dispose,
         ),
       },
-      constructors: {"": <FlaxParameter>[]},
+      constructors: {"": _flaxBinding733},
       create: _createPopupMenuButtonState,
       matches: _isPopupMenuButtonState,
       setters: [],
@@ -159443,289 +154559,181 @@ Function _flaxClass_PopupMenuButtonState<
 };
 Type _flaxType_PopupMenuEntry<_Owner0 extends Object?>() =>
     api.PopupMenuEntry<_Owner0>;
-Function _flaxClass_PopupMenuEntry<
-  _Owner0 extends Object?
->() => (FlaxDartTypes types, String id) {
-  // ignore: unused_element
-  bool _isPopupMenuEntry(Object value) => value is api.PopupMenuEntry<_Owner0>;
-  // ignore: unused_element
-  Object? _PopupMenuEntry_height(Object value) =>
-      (value as api.PopupMenuEntry<_Owner0>).height;
-  // ignore: unused_element
-  Object? _PopupMenuEntry_key(Object value) =>
-      (value as api.PopupMenuEntry<_Owner0>).key;
-  Object? _PopupMenuEntry_represents(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.PopupMenuEntry<_Owner0>).represents(
-      values["value"] as _Owner0?,
-    );
-  }
+Function _flaxClass_PopupMenuEntry<_Owner0 extends Object?>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isPopupMenuEntry(Object value) =>
+          value is api.PopupMenuEntry<_Owner0>;
+      // ignore: unused_element
+      Object? _PopupMenuEntry_height(Object value) =>
+          (value as api.PopupMenuEntry<_Owner0>).height;
+      // ignore: unused_element
+      Object? _PopupMenuEntry_key(Object value) =>
+          (value as api.PopupMenuEntry<_Owner0>).key;
+      Object? _PopupMenuEntry_represents(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.PopupMenuEntry<_Owner0>).represents(
+          values["value"] as _Owner0?,
+        );
+      }
 
-  Object? _PopupMenuEntry_createElement(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.PopupMenuEntry<_Owner0>).createElement();
-  }
+      Object? _PopupMenuEntry_createElement(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.PopupMenuEntry<_Owner0>).createElement();
+      }
 
-  Object? _PopupMenuEntry_createState(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.PopupMenuEntry<_Owner0>).createState();
-  }
+      Object? _PopupMenuEntry_createState(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.PopupMenuEntry<_Owner0>).createState();
+      }
 
-  Object? _PopupMenuEntry_toStringShort(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.PopupMenuEntry<_Owner0>).toStringShort();
-  }
+      Object? _PopupMenuEntry_toStringShort(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.PopupMenuEntry<_Owner0>).toStringShort();
+      }
 
-  Object? _PopupMenuEntry_debugFillProperties(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    (receiver as api.PopupMenuEntry<_Owner0>).debugFillProperties(
-      values["properties"] as api6.DiagnosticPropertiesBuilder,
-    );
-    return null;
-  }
+      Object? _PopupMenuEntry_debugFillProperties(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        (receiver as api.PopupMenuEntry<_Owner0>).debugFillProperties(
+          values["properties"] as api6.DiagnosticPropertiesBuilder,
+        );
+        return null;
+      }
 
-  Object? _PopupMenuEntry_toStringShallow(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.PopupMenuEntry<_Owner0>).toStringShallow(
-      joiner: values["joiner"] as String,
-      minLevel: values["minLevel"] as api6.DiagnosticLevel,
-    );
-  }
+      Object? _PopupMenuEntry_toStringShallow(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.PopupMenuEntry<_Owner0>).toStringShallow(
+          joiner: values["joiner"] as String,
+          minLevel: values["minLevel"] as api6.DiagnosticLevel,
+        );
+      }
 
-  Object? _PopupMenuEntry_toStringDeep(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.PopupMenuEntry<_Owner0>).toStringDeep(
-      minLevel: values["minLevel"] as api6.DiagnosticLevel,
-      prefixLineOne: values["prefixLineOne"] as String,
-      prefixOtherLines: values["prefixOtherLines"] as String?,
-      wrapWidth: values["wrapWidth"] as int,
-    );
-  }
+      Object? _PopupMenuEntry_toStringDeep(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.PopupMenuEntry<_Owner0>).toStringDeep(
+          minLevel: values["minLevel"] as api6.DiagnosticLevel,
+          prefixLineOne: values["prefixLineOne"] as String,
+          prefixOtherLines: values["prefixOtherLines"] as String?,
+          wrapWidth: values["wrapWidth"] as int,
+        );
+      }
 
-  Object? _PopupMenuEntry_toDiagnosticsNode(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.PopupMenuEntry<_Owner0>).toDiagnosticsNode(
-      name: values["name"] as String?,
-      style: values["style"] as api6.DiagnosticsTreeStyle?,
-    );
-  }
+      Object? _PopupMenuEntry_toDiagnosticsNode(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.PopupMenuEntry<_Owner0>).toDiagnosticsNode(
+          name: values["name"] as String?,
+          style: values["style"] as api6.DiagnosticsTreeStyle?,
+        );
+      }
 
-  Object? _PopupMenuEntry_debugDescribeChildren(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.PopupMenuEntry<_Owner0>).debugDescribeChildren();
-  }
+      Object? _PopupMenuEntry_debugDescribeChildren(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.PopupMenuEntry<_Owner0>)
+            .debugDescribeChildren();
+      }
 
-  // ignore: unused_element
-  Object _createPopupMenuEntry(String ctor, Map<String, Object?> values) {
-    switch (ctor) {
-      default:
-        throw ArgumentError("Unknown constructor");
-    }
-  }
+      // ignore: unused_element
+      Object _createPopupMenuEntry(String ctor, Map<String, Object?> values) {
+        switch (ctor) {
+          default:
+            throw ArgumentError("Unknown constructor");
+        }
+      }
 
-  return FlaxDartClass(
-    api.PopupMenuEntry<_Owner0>,
-    FlaxObjectBinding(
-      id,
-      [
-        FlaxGetter("height", FlaxTypeRef("double"), _PopupMenuEntry_height),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _PopupMenuEntry_key,
-        ),
-      ],
-      {
-        "represents": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("value", types.ref<_Owner0?>(), required: true),
+      return FlaxDartClass(
+        api.PopupMenuEntry<_Owner0>,
+        FlaxObjectBinding(
+          id,
+          [
+            FlaxGetter("height", _flaxBinding122, _PopupMenuEntry_height),
+            FlaxGetter("key", _flaxBinding729, _PopupMenuEntry_key),
           ],
-          FlaxTypeRef("bool"),
-          _PopupMenuEntry_represents,
-        ),
-        "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
-          _PopupMenuEntry_createElement,
-        ),
-        "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/components#type:State",
-            dartType: FlaxDartTypes.typeOf<api1.State<api1.StatefulWidget>>,
-          ),
-          _PopupMenuEntry_createState,
-        ),
-        "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
-          _PopupMenuEntry_toStringShort,
-        ),
-        "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
+          {
+            "represents": FlaxInstanceMethod(
+              <FlaxParameter>[
+                FlaxParameter("value", types.ref<_Owner0?>(), required: true),
+              ],
+              _flaxBinding12,
+              _PopupMenuEntry_represents,
             ),
+            "createElement": FlaxInstanceMethod(
+              _flaxBinding733,
+              _flaxBinding951,
+              _PopupMenuEntry_createElement,
+            ),
+            "createState": FlaxInstanceMethod(
+              _flaxBinding733,
+              _flaxBinding464,
+              _PopupMenuEntry_createState,
+            ),
+            "toStringShort": FlaxInstanceMethod(
+              _flaxBinding733,
+              _flaxBinding0,
+              _PopupMenuEntry_toStringShort,
+            ),
+            "debugFillProperties": FlaxInstanceMethod(
+              _flaxBinding9766,
+              _flaxBinding3,
+              _PopupMenuEntry_debugFillProperties,
+            ),
+            "toStringShallow": FlaxInstanceMethod(
+              _flaxBinding738,
+              _flaxBinding0,
+              _PopupMenuEntry_toStringShallow,
+            ),
+            "toStringDeep": FlaxInstanceMethod(
+              _flaxBinding740,
+              _flaxBinding0,
+              _PopupMenuEntry_toStringDeep,
+            ),
+            "toDiagnosticsNode": FlaxInstanceMethod(
+              _flaxBinding743,
+              _flaxBinding744,
+              _PopupMenuEntry_toDiagnosticsNode,
+            ),
+            "debugDescribeChildren": FlaxInstanceMethod(
+              _flaxBinding733,
+              _flaxBinding747,
+              _PopupMenuEntry_debugDescribeChildren,
+            ),
+          },
+          constructors: {},
+          create: _createPopupMenuEntry,
+          matches: _isPopupMenuEntry,
+          setters: [],
+          supertypes: [
+            "flax.core/sdk_material#type:PopupMenuEntry",
+            ...[
+              "flax.core/components#type:StatefulWidget",
+              "flax.core/sdk_widgets#type:Widget",
+              "flax.core/sdk_foundation#type:DiagnosticableTree",
+              "dart:core::Object",
+              "flax.core/sdk_foundation#type:Diagnosticable",
+            ],
           ],
-          FlaxTypeRef("void"),
-          _PopupMenuEntry_debugFillProperties,
+          listenerPairs: {},
+          disposeMethod: null,
         ),
-        "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
-          _PopupMenuEntry_toStringShallow,
-        ),
-        "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
-          _PopupMenuEntry_toStringDeep,
-        ),
-        "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
-          _PopupMenuEntry_toDiagnosticsNode,
-        ),
-        "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
-          _PopupMenuEntry_debugDescribeChildren,
-        ),
-      },
-      constructors: {},
-      create: _createPopupMenuEntry,
-      matches: _isPopupMenuEntry,
-      setters: [],
-      supertypes: [
-        "flax.core/sdk_material#type:PopupMenuEntry",
-        ...[
-          "flax.core/components#type:StatefulWidget",
-          "flax.core/sdk_widgets#type:Widget",
-          "flax.core/sdk_foundation#type:DiagnosticableTree",
-          "dart:core::Object",
-          "flax.core/sdk_foundation#type:Diagnosticable",
-        ],
-      ],
-      listenerPairs: {},
-      disposeMethod: null,
-    ),
-  );
-};
+      );
+    };
 Type _flaxType_PopupMenuItem<_Owner0 extends Object?>() =>
     api.PopupMenuItem<_Owner0>;
 Function _flaxClass_PopupMenuItem<
@@ -159887,7 +154895,7 @@ Function _flaxClass_PopupMenuItem<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -159896,26 +154904,10 @@ Function _flaxClass_PopupMenuItem<
           ),
           _PopupMenuItem_onTap,
         ),
-        FlaxGetter("enabled", FlaxTypeRef("bool"), _PopupMenuItem_enabled),
-        FlaxGetter("height", FlaxTypeRef("double"), _PopupMenuItem_height),
-        FlaxGetter(
-          "padding",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsets",
-            nullable: true,
-          ),
-          _PopupMenuItem_padding,
-        ),
-        FlaxGetter(
-          "textStyle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextStyle",
-            nullable: true,
-          ),
-          _PopupMenuItem_textStyle,
-        ),
+        FlaxGetter("enabled", _flaxBinding12, _PopupMenuItem_enabled),
+        FlaxGetter("height", _flaxBinding122, _PopupMenuItem_height),
+        FlaxGetter("padding", _flaxBinding192, _PopupMenuItem_padding),
+        FlaxGetter("textStyle", _flaxBinding24, _PopupMenuItem_textStyle),
         FlaxGetter(
           "labelTextStyle",
           FlaxTypeRef(
@@ -159936,40 +154928,12 @@ Function _flaxClass_PopupMenuItem<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:TextStyle",
-                          nullable: true,
-                        ),
+                        _flaxBinding24,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, api2.TextStyle?>,
                         id:
@@ -159995,40 +154959,20 @@ Function _flaxClass_PopupMenuItem<
           ),
           _PopupMenuItem_labelTextStyle,
         ),
-        FlaxGetter(
-          "mouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
-          _PopupMenuItem_mouseCursor,
-        ),
-        FlaxGetter(
-          "child",
-          FlaxTypeRef("widget", nullable: true),
-          _PopupMenuItem_child,
-        ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _PopupMenuItem_key,
-        ),
+        FlaxGetter("mouseCursor", _flaxBinding43, _PopupMenuItem_mouseCursor),
+        FlaxGetter("child", _flaxBinding64, _PopupMenuItem_child),
+        FlaxGetter("key", _flaxBinding729, _PopupMenuItem_key),
       ],
       {
         "represents": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("value", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _PopupMenuItem_represents,
         ),
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types
               .ref<
                 api.PopupMenuItemState<_Owner0, api.PopupMenuItem<_Owner0>>
@@ -160036,149 +154980,44 @@ Function _flaxClass_PopupMenuItem<
           _PopupMenuItem_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _PopupMenuItem_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _PopupMenuItem_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _PopupMenuItem_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _PopupMenuItem_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _PopupMenuItem_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _PopupMenuItem_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _PopupMenuItem_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter("value", types.ref<_Owner0?>(), required: false),
           FlaxParameter(
             "onTap",
@@ -160187,7 +155026,7 @@ Function _flaxClass_PopupMenuItem<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -160198,34 +155037,18 @@ Function _flaxClass_PopupMenuItem<
           ),
           FlaxParameter(
             "enabled",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "height",
-            FlaxTypeRef("double"),
+            _flaxBinding122,
             required: false,
             defaultValue: 48.0,
           ),
-          FlaxParameter(
-            "padding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsets",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "textStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("padding", _flaxBinding192, required: false),
+          FlaxParameter("textStyle", _flaxBinding24, required: false),
           FlaxParameter(
             "labelTextStyle",
             FlaxTypeRef(
@@ -160246,40 +155069,12 @@ Function _flaxClass_PopupMenuItem<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:TextStyle",
-                            nullable: true,
-                          ),
+                          _flaxBinding24,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api2.TextStyle?>,
                           id:
@@ -160305,20 +155100,8 @@ Function _flaxClass_PopupMenuItem<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "child",
-            FlaxTypeRef("widget", nullable: true),
-            required: true,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding43, required: false),
+          FlaxParameter("child", _flaxBinding64, required: true),
         ],
       },
       create: _createPopupMenuItem,
@@ -160515,114 +155298,65 @@ Function _flaxClass_PopupMenuItemState<
       id,
       [
         FlaxGetter("widget", types.ref<_Owner1>(), _PopupMenuItemState_widget),
-        FlaxGetter(
-          "context",
-          FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-          _PopupMenuItemState_context,
-        ),
-        FlaxGetter("mounted", FlaxTypeRef("bool"), _PopupMenuItemState_mounted),
+        FlaxGetter("context", _flaxBinding5, _PopupMenuItemState_context),
+        FlaxGetter("mounted", _flaxBinding12, _PopupMenuItemState_mounted),
       ],
       {
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _PopupMenuItemState_toStringShort,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.info,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding831,
+          _flaxBinding0,
           _PopupMenuItemState_toString,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _PopupMenuItemState_toDiagnosticsNode,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _PopupMenuItemState_debugFillProperties,
         ),
         "buildChild": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding733,
+          _flaxBinding64,
           _PopupMenuItemState_buildChild,
         ),
         "handleTap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuItemState_handleTap,
         ),
         "build": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _PopupMenuItemState_build,
         ),
         "buildSemantics": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding6554,
+          _flaxBinding6,
           _PopupMenuItemState_buildSemantics,
         ),
         "initState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuItemState_initState,
         ),
         "didUpdateWidget": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("oldWidget", types.ref<_Owner1>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _PopupMenuItemState_didUpdateWidget,
         ),
         "reassemble": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuItemState_reassemble,
         ),
         "setState": FlaxInstanceMethod(
@@ -160633,7 +155367,7 @@ Function _flaxClass_PopupMenuItemState<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -160643,31 +155377,31 @@ Function _flaxClass_PopupMenuItemState<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _PopupMenuItemState_setState,
         ),
         "deactivate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuItemState_deactivate,
         ),
         "activate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuItemState_activate,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuItemState_dispose,
         ),
         "didChangeDependencies": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _PopupMenuItemState_didChangeDependencies,
         ),
       },
-      constructors: {"": <FlaxParameter>[]},
+      constructors: {"": _flaxBinding733},
       create: _createPopupMenuItemState,
       matches: _isPopupMenuItemState,
       setters: [],
@@ -160700,52 +155434,18 @@ _flaxGeneric_PredictiveBackFullscreenPageTransitionsBuilder_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -160765,52 +155465,18 @@ _flaxGeneric_PredictiveBackFullscreenPageTransitionsBuilder_super_buildTransitio
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -160829,52 +155495,18 @@ Function _flaxGeneric_PredictiveBackPageTransitionsBuilder_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -160894,52 +155526,18 @@ _flaxGeneric_PredictiveBackPageTransitionsBuilder_super_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -161178,7 +155776,7 @@ Function _flaxClass_Radio<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)?>() +
@@ -161190,25 +155788,9 @@ Function _flaxClass_Radio<
           ),
           _Radio_onChanged,
         ),
-        FlaxGetter(
-          "mouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
-          _Radio_mouseCursor,
-        ),
-        FlaxGetter("toggleable", FlaxTypeRef("bool"), _Radio_toggleable),
-        FlaxGetter(
-          "activeColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _Radio_activeColor,
-        ),
+        FlaxGetter("mouseCursor", _flaxBinding43, _Radio_mouseCursor),
+        FlaxGetter("toggleable", _flaxBinding12, _Radio_toggleable),
+        FlaxGetter("activeColor", _flaxBinding14, _Radio_activeColor),
         FlaxGetter(
           "fillColor",
           FlaxTypeRef(
@@ -161229,40 +155811,12 @@ Function _flaxClass_Radio<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:Color",
-                          nullable: true,
-                        ),
+                        _flaxBinding14,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, api4.Color?>,
                         id:
@@ -161290,40 +155844,12 @@ Function _flaxClass_Radio<
         ),
         FlaxGetter(
           "materialTapTargetSize",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_material#type:MaterialTapTargetSize",
-            nullable: true,
-          ),
+          _flaxBinding105,
           _Radio_materialTapTargetSize,
         ),
-        FlaxGetter(
-          "visualDensity",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:VisualDensity",
-            nullable: true,
-          ),
-          _Radio_visualDensity,
-        ),
-        FlaxGetter(
-          "focusColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _Radio_focusColor,
-        ),
-        FlaxGetter(
-          "hoverColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _Radio_hoverColor,
-        ),
+        FlaxGetter("visualDensity", _flaxBinding103, _Radio_visualDensity),
+        FlaxGetter("focusColor", _flaxBinding14, _Radio_focusColor),
+        FlaxGetter("hoverColor", _flaxBinding14, _Radio_hoverColor),
         FlaxGetter(
           "overlayColor",
           FlaxTypeRef(
@@ -161344,40 +155870,12 @@ Function _flaxClass_Radio<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:Color",
-                          nullable: true,
-                        ),
+                        _flaxBinding14,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, api4.Color?>,
                         id:
@@ -161403,24 +155901,12 @@ Function _flaxClass_Radio<
           ),
           _Radio_overlayColor,
         ),
-        FlaxGetter(
-          "splashRadius",
-          FlaxTypeRef("double", nullable: true),
-          _Radio_splashRadius,
-        ),
-        FlaxGetter(
-          "focusNode",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:FocusNode",
-            nullable: true,
-          ),
-          _Radio_focusNode,
-        ),
-        FlaxGetter("autofocus", FlaxTypeRef("bool"), _Radio_autofocus),
+        FlaxGetter("splashRadius", _flaxBinding16, _Radio_splashRadius),
+        FlaxGetter("focusNode", _flaxBinding201, _Radio_focusNode),
+        FlaxGetter("autofocus", _flaxBinding12, _Radio_autofocus),
         FlaxGetter(
           "useCupertinoCheckmarkStyle",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _Radio_useCupertinoCheckmarkStyle,
         ),
         FlaxGetter(
@@ -161428,11 +155914,7 @@ Function _flaxClass_Radio<
           types.ref<api1.RadioGroupRegistry<_Owner0>?>(),
           _Radio_groupRegistry,
         ),
-        FlaxGetter(
-          "enabled",
-          FlaxTypeRef("bool", nullable: true),
-          _Radio_enabled,
-        ),
+        FlaxGetter("enabled", _flaxBinding22, _Radio_enabled),
         FlaxGetter(
           "backgroundColor",
           FlaxTypeRef(
@@ -161453,40 +155935,12 @@ Function _flaxClass_Radio<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:Color",
-                          nullable: true,
-                        ),
+                        _flaxBinding14,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, api4.Color?>,
                         id:
@@ -161512,15 +155966,7 @@ Function _flaxClass_Radio<
           ),
           _Radio_backgroundColor,
         ),
-        FlaxGetter(
-          "side",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:BorderSide",
-            nullable: true,
-          ),
-          _Radio_side,
-        ),
+        FlaxGetter("side", _flaxBinding93, _Radio_side),
         FlaxGetter(
           "innerRadius",
           FlaxTypeRef(
@@ -161540,36 +155986,12 @@ Function _flaxClass_Radio<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef("double", nullable: true),
+                        _flaxBinding16,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, double?>,
                         id:
@@ -161593,166 +156015,53 @@ Function _flaxClass_Radio<
           ),
           _Radio_innerRadius,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _Radio_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _Radio_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api1.State<api.Radio<_Owner0>>>(),
           _Radio_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _Radio_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _Radio_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _Radio_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _Radio_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _Radio_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _Radio_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _Radio_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
           FlaxParameter("groupValue", types.ref<_Owner0?>(), required: false),
           FlaxParameter(
@@ -161770,7 +156079,7 @@ Function _flaxClass_Radio<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -161782,30 +156091,14 @@ Function _flaxClass_Radio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding43, required: false),
           FlaxParameter(
             "toggleable",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "activeColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("activeColor", _flaxBinding14, required: false),
           FlaxParameter(
             "fillColor",
             FlaxTypeRef(
@@ -161826,40 +156119,12 @@ Function _flaxClass_Radio<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -161885,24 +156150,8 @@ Function _flaxClass_Radio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "focusColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("focusColor", _flaxBinding14, required: false),
+          FlaxParameter("hoverColor", _flaxBinding14, required: false),
           FlaxParameter(
             "overlayColor",
             FlaxTypeRef(
@@ -161923,40 +156172,12 @@ Function _flaxClass_Radio<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -161982,49 +156203,21 @@ Function _flaxClass_Radio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "splashRadius",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("splashRadius", _flaxBinding16, required: false),
           FlaxParameter(
             "materialTapTargetSize",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:MaterialTapTargetSize",
-              nullable: true,
-            ),
+            _flaxBinding105,
             required: false,
           ),
-          FlaxParameter(
-            "visualDensity",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:VisualDensity",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("visualDensity", _flaxBinding103, required: false),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
           FlaxParameter(
             "autofocus",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "enabled",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("enabled", _flaxBinding22, required: false),
           FlaxParameter(
             "groupRegistry",
             types.ref<api1.RadioGroupRegistry<_Owner0>?>(),
@@ -162050,40 +156243,12 @@ Function _flaxClass_Radio<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -162109,15 +156274,7 @@ Function _flaxClass_Radio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "side",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BorderSide",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("side", _flaxBinding93, required: false),
           FlaxParameter(
             "innerRadius",
             FlaxTypeRef(
@@ -162138,36 +156295,12 @@ Function _flaxClass_Radio<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef("double", nullable: true),
+                          _flaxBinding16,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, double?>,
                           id:
@@ -162195,15 +156328,7 @@ Function _flaxClass_Radio<
           ),
         ],
         "adaptive": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
           FlaxParameter("groupValue", types.ref<_Owner0?>(), required: false),
           FlaxParameter(
@@ -162221,7 +156346,7 @@ Function _flaxClass_Radio<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -162233,30 +156358,14 @@ Function _flaxClass_Radio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding43, required: false),
           FlaxParameter(
             "toggleable",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "activeColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("activeColor", _flaxBinding14, required: false),
           FlaxParameter(
             "fillColor",
             FlaxTypeRef(
@@ -162277,40 +156386,12 @@ Function _flaxClass_Radio<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -162336,24 +156417,8 @@ Function _flaxClass_Radio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "focusColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "hoverColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("focusColor", _flaxBinding14, required: false),
+          FlaxParameter("hoverColor", _flaxBinding14, required: false),
           FlaxParameter(
             "overlayColor",
             FlaxTypeRef(
@@ -162374,40 +156439,12 @@ Function _flaxClass_Radio<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -162433,55 +156470,27 @@ Function _flaxClass_Radio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "splashRadius",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("splashRadius", _flaxBinding16, required: false),
           FlaxParameter(
             "materialTapTargetSize",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:MaterialTapTargetSize",
-              nullable: true,
-            ),
+            _flaxBinding105,
             required: false,
           ),
-          FlaxParameter(
-            "visualDensity",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:VisualDensity",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("visualDensity", _flaxBinding103, required: false),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
           FlaxParameter(
             "autofocus",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "useCupertinoCheckmarkStyle",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "enabled",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("enabled", _flaxBinding22, required: false),
           FlaxParameter(
             "groupRegistry",
             types.ref<api1.RadioGroupRegistry<_Owner0>?>(),
@@ -162507,40 +156516,12 @@ Function _flaxClass_Radio<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -162566,15 +156547,7 @@ Function _flaxClass_Radio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "side",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BorderSide",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("side", _flaxBinding93, required: false),
           FlaxParameter(
             "innerRadius",
             FlaxTypeRef(
@@ -162595,36 +156568,12 @@ Function _flaxClass_Radio<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef("double", nullable: true),
+                          _flaxBinding16,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, double?>,
                           id:
@@ -163033,7 +156982,7 @@ Function _flaxClass_RadioListTile<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)?>() +
@@ -163045,29 +156994,9 @@ Function _flaxClass_RadioListTile<
           ),
           _RadioListTile_onChanged,
         ),
-        FlaxGetter(
-          "mouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
-          _RadioListTile_mouseCursor,
-        ),
-        FlaxGetter(
-          "toggleable",
-          FlaxTypeRef("bool"),
-          _RadioListTile_toggleable,
-        ),
-        FlaxGetter(
-          "activeColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _RadioListTile_activeColor,
-        ),
+        FlaxGetter("mouseCursor", _flaxBinding43, _RadioListTile_mouseCursor),
+        FlaxGetter("toggleable", _flaxBinding12, _RadioListTile_toggleable),
+        FlaxGetter("activeColor", _flaxBinding14, _RadioListTile_activeColor),
         FlaxGetter(
           "fillColor",
           FlaxTypeRef(
@@ -163088,40 +157017,12 @@ Function _flaxClass_RadioListTile<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:Color",
-                          nullable: true,
-                        ),
+                        _flaxBinding14,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, api4.Color?>,
                         id:
@@ -163149,22 +157050,10 @@ Function _flaxClass_RadioListTile<
         ),
         FlaxGetter(
           "materialTapTargetSize",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_material#type:MaterialTapTargetSize",
-            nullable: true,
-          ),
+          _flaxBinding105,
           _RadioListTile_materialTapTargetSize,
         ),
-        FlaxGetter(
-          "hoverColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _RadioListTile_hoverColor,
-        ),
+        FlaxGetter("hoverColor", _flaxBinding14, _RadioListTile_hoverColor),
         FlaxGetter(
           "overlayColor",
           FlaxTypeRef(
@@ -163185,40 +157074,12 @@ Function _flaxClass_RadioListTile<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:Color",
-                          nullable: true,
-                        ),
+                        _flaxBinding14,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, api4.Color?>,
                         id:
@@ -163244,108 +157105,40 @@ Function _flaxClass_RadioListTile<
           ),
           _RadioListTile_overlayColor,
         ),
-        FlaxGetter(
-          "splashRadius",
-          FlaxTypeRef("double", nullable: true),
-          _RadioListTile_splashRadius,
-        ),
-        FlaxGetter(
-          "title",
-          FlaxTypeRef("widget", nullable: true),
-          _RadioListTile_title,
-        ),
-        FlaxGetter(
-          "subtitle",
-          FlaxTypeRef("widget", nullable: true),
-          _RadioListTile_subtitle,
-        ),
-        FlaxGetter(
-          "secondary",
-          FlaxTypeRef("widget", nullable: true),
-          _RadioListTile_secondary,
-        ),
-        FlaxGetter(
-          "isThreeLine",
-          FlaxTypeRef("bool", nullable: true),
-          _RadioListTile_isThreeLine,
-        ),
-        FlaxGetter(
-          "dense",
-          FlaxTypeRef("bool", nullable: true),
-          _RadioListTile_dense,
-        ),
-        FlaxGetter("selected", FlaxTypeRef("bool"), _RadioListTile_selected),
+        FlaxGetter("splashRadius", _flaxBinding16, _RadioListTile_splashRadius),
+        FlaxGetter("title", _flaxBinding64, _RadioListTile_title),
+        FlaxGetter("subtitle", _flaxBinding64, _RadioListTile_subtitle),
+        FlaxGetter("secondary", _flaxBinding64, _RadioListTile_secondary),
+        FlaxGetter("isThreeLine", _flaxBinding22, _RadioListTile_isThreeLine),
+        FlaxGetter("dense", _flaxBinding22, _RadioListTile_dense),
+        FlaxGetter("selected", _flaxBinding12, _RadioListTile_selected),
         FlaxGetter(
           "controlAffinity",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_material#type:ListTileControlAffinity",
-            nullable: true,
-          ),
+          _flaxBinding356,
           _RadioListTile_controlAffinity,
         ),
-        FlaxGetter("autofocus", FlaxTypeRef("bool"), _RadioListTile_autofocus),
+        FlaxGetter("autofocus", _flaxBinding12, _RadioListTile_autofocus),
         FlaxGetter(
           "contentPadding",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsetsGeometry",
-            nullable: true,
-          ),
+          _flaxBinding28,
           _RadioListTile_contentPadding,
         ),
-        FlaxGetter(
-          "shape",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ShapeBorder",
-            nullable: true,
-          ),
-          _RadioListTile_shape,
-        ),
-        FlaxGetter(
-          "tileColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _RadioListTile_tileColor,
-        ),
+        FlaxGetter("shape", _flaxBinding18, _RadioListTile_shape),
+        FlaxGetter("tileColor", _flaxBinding14, _RadioListTile_tileColor),
         FlaxGetter(
           "selectedTileColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding14,
           _RadioListTile_selectedTileColor,
         ),
         FlaxGetter(
           "visualDensity",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:VisualDensity",
-            nullable: true,
-          ),
+          _flaxBinding103,
           _RadioListTile_visualDensity,
         ),
-        FlaxGetter(
-          "focusNode",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:FocusNode",
-            nullable: true,
-          ),
-          _RadioListTile_focusNode,
-        ),
+        FlaxGetter("focusNode", _flaxBinding201, _RadioListTile_focusNode),
         FlaxGetter(
           "statesController",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:WidgetStatesController",
-            nullable: true,
-          ),
+          _flaxBinding1141,
           _RadioListTile_statesController,
         ),
         FlaxGetter(
@@ -163357,12 +157150,12 @@ Function _flaxClass_RadioListTile<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid1<bool>,
               id:
                   types.key<void Function(bool value)?>() +
@@ -163375,58 +157168,50 @@ Function _flaxClass_RadioListTile<
         ),
         FlaxGetter(
           "enableFeedback",
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding22,
           _RadioListTile_enableFeedback,
         ),
         FlaxGetter(
           "horizontalTitleGap",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _RadioListTile_horizontalTitleGap,
         ),
         FlaxGetter(
           "minVerticalPadding",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _RadioListTile_minVerticalPadding,
         ),
         FlaxGetter(
           "minLeadingWidth",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _RadioListTile_minLeadingWidth,
         ),
         FlaxGetter(
           "minTileHeight",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _RadioListTile_minTileHeight,
         ),
         FlaxGetter(
           "titleAlignment",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_material#type:ListTileTitleAlignment",
-            nullable: true,
-          ),
+          _flaxBinding354,
           _RadioListTile_titleAlignment,
         ),
         FlaxGetter(
           "internalAddSemanticForOnTap",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _RadioListTile_internalAddSemanticForOnTap,
         ),
         FlaxGetter(
           "useCupertinoCheckmarkStyle",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _RadioListTile_useCupertinoCheckmarkStyle,
         ),
         FlaxGetter(
           "radioScaleFactor",
-          FlaxTypeRef("double"),
+          _flaxBinding122,
           _RadioListTile_radioScaleFactor,
         ),
-        FlaxGetter(
-          "enabled",
-          FlaxTypeRef("bool", nullable: true),
-          _RadioListTile_enabled,
-        ),
+        FlaxGetter("enabled", _flaxBinding22, _RadioListTile_enabled),
         FlaxGetter(
           "radioBackgroundColor",
           FlaxTypeRef(
@@ -163447,40 +157232,12 @@ Function _flaxClass_RadioListTile<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:Color",
-                          nullable: true,
-                        ),
+                        _flaxBinding14,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, api4.Color?>,
                         id:
@@ -163506,15 +157263,7 @@ Function _flaxClass_RadioListTile<
           ),
           _RadioListTile_radioBackgroundColor,
         ),
-        FlaxGetter(
-          "radioSide",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:BorderSide",
-            nullable: true,
-          ),
-          _RadioListTile_radioSide,
-        ),
+        FlaxGetter("radioSide", _flaxBinding93, _RadioListTile_radioSide),
         FlaxGetter(
           "radioInnerRadius",
           FlaxTypeRef(
@@ -163534,36 +157283,12 @@ Function _flaxClass_RadioListTile<
                         [
                           FlaxCallbackParameter(
                             "states",
-                            FlaxTypeRef(
-                              "set",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "set:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection0Create,
-                                _collection0Matches,
-                              ),
-                              iterable: FlaxTypeRef(
-                                "iterable",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection1Create,
-                                  _collection1Matches,
-                                  restore: _collection1Restore,
-                                ),
-                              ),
-                            ),
+                            _flaxBinding42,
                             required: true,
                             positional: true,
                           ),
                         ],
-                        FlaxTypeRef("double", nullable: true),
+                        _flaxBinding16,
                         FlaxCallbackAdapters
                             .wrap1<Set<api1.WidgetState>, double?>,
                         id:
@@ -163587,167 +157312,54 @@ Function _flaxClass_RadioListTile<
           ),
           _RadioListTile_radioInnerRadius,
         ),
-        FlaxGetter("checked", FlaxTypeRef("bool"), _RadioListTile_checked),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _RadioListTile_key,
-        ),
+        FlaxGetter("checked", _flaxBinding12, _RadioListTile_checked),
+        FlaxGetter("key", _flaxBinding729, _RadioListTile_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api1.State<api.RadioListTile<_Owner0>>>(),
           _RadioListTile_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _RadioListTile_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _RadioListTile_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _RadioListTile_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _RadioListTile_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _RadioListTile_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _RadioListTile_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _RadioListTile_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
           FlaxParameter("groupValue", types.ref<_Owner0?>(), required: false),
           FlaxParameter(
@@ -163765,7 +157377,7 @@ Function _flaxClass_RadioListTile<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -163777,30 +157389,14 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding43, required: false),
           FlaxParameter(
             "toggleable",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "activeColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("activeColor", _flaxBinding14, required: false),
           FlaxParameter(
             "fillColor",
             FlaxTypeRef(
@@ -163821,40 +157417,12 @@ Function _flaxClass_RadioListTile<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -163880,15 +157448,7 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "hoverColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("hoverColor", _flaxBinding14, required: false),
           FlaxParameter(
             "overlayColor",
             FlaxTypeRef(
@@ -163909,40 +157469,12 @@ Function _flaxClass_RadioListTile<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -163968,129 +157500,37 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "splashRadius",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("splashRadius", _flaxBinding16, required: false),
           FlaxParameter(
             "materialTapTargetSize",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:MaterialTapTargetSize",
-              nullable: true,
-            ),
+            _flaxBinding105,
             required: false,
           ),
-          FlaxParameter(
-            "title",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "subtitle",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "isThreeLine",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "dense",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "secondary",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("title", _flaxBinding64, required: false),
+          FlaxParameter("subtitle", _flaxBinding64, required: false),
+          FlaxParameter("isThreeLine", _flaxBinding22, required: false),
+          FlaxParameter("dense", _flaxBinding22, required: false),
+          FlaxParameter("secondary", _flaxBinding64, required: false),
           FlaxParameter(
             "selected",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "controlAffinity",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:ListTileControlAffinity",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("controlAffinity", _flaxBinding356, required: false),
           FlaxParameter(
             "autofocus",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "contentPadding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "shape",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:ShapeBorder",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "tileColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "selectedTileColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:VisualDensity",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:WidgetStatesController",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("contentPadding", _flaxBinding28, required: false),
+          FlaxParameter("shape", _flaxBinding18, required: false),
+          FlaxParameter("tileColor", _flaxBinding14, required: false),
+          FlaxParameter("selectedTileColor", _flaxBinding14, required: false),
+          FlaxParameter("visualDensity", _flaxBinding103, required: false),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
+          FlaxParameter("statesController", _flaxBinding1141, required: false),
           FlaxParameter(
             "onFocusChange",
             FlaxTypeRef(
@@ -164100,12 +157540,12 @@ Function _flaxClass_RadioListTile<
                 [
                   FlaxCallbackParameter(
                     "value",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding12,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<bool>,
                 id:
                     types.key<void Function(bool value)?>() +
@@ -164116,54 +157556,22 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "enableFeedback",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "horizontalTitleGap",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "minVerticalPadding",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "minLeadingWidth",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "minTileHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("enableFeedback", _flaxBinding22, required: false),
+          FlaxParameter("horizontalTitleGap", _flaxBinding16, required: false),
+          FlaxParameter("minVerticalPadding", _flaxBinding16, required: false),
+          FlaxParameter("minLeadingWidth", _flaxBinding16, required: false),
+          FlaxParameter("minTileHeight", _flaxBinding16, required: false),
           FlaxParameter(
             "radioScaleFactor",
-            FlaxTypeRef("double"),
+            _flaxBinding122,
             required: false,
             defaultValue: 1.0,
           ),
-          FlaxParameter(
-            "titleAlignment",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:ListTileTitleAlignment",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "enabled",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("titleAlignment", _flaxBinding354, required: false),
+          FlaxParameter("enabled", _flaxBinding22, required: false),
           FlaxParameter(
             "internalAddSemanticForOnTap",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
@@ -164187,40 +157595,12 @@ Function _flaxClass_RadioListTile<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -164246,15 +157626,7 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "radioSide",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BorderSide",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("radioSide", _flaxBinding93, required: false),
           FlaxParameter(
             "radioInnerRadius",
             FlaxTypeRef(
@@ -164275,36 +157647,12 @@ Function _flaxClass_RadioListTile<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef("double", nullable: true),
+                          _flaxBinding16,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, double?>,
                           id:
@@ -164332,15 +157680,7 @@ Function _flaxClass_RadioListTile<
           ),
         ],
         "adaptive": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
           FlaxParameter("groupValue", types.ref<_Owner0?>(), required: false),
           FlaxParameter(
@@ -164358,7 +157698,7 @@ Function _flaxClass_RadioListTile<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -164370,30 +157710,14 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding43, required: false),
           FlaxParameter(
             "toggleable",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "activeColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("activeColor", _flaxBinding14, required: false),
           FlaxParameter(
             "fillColor",
             FlaxTypeRef(
@@ -164414,40 +157738,12 @@ Function _flaxClass_RadioListTile<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -164473,15 +157769,7 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "hoverColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("hoverColor", _flaxBinding14, required: false),
           FlaxParameter(
             "overlayColor",
             FlaxTypeRef(
@@ -164502,40 +157790,12 @@ Function _flaxClass_RadioListTile<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -164561,129 +157821,37 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "splashRadius",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("splashRadius", _flaxBinding16, required: false),
           FlaxParameter(
             "materialTapTargetSize",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:MaterialTapTargetSize",
-              nullable: true,
-            ),
+            _flaxBinding105,
             required: false,
           ),
-          FlaxParameter(
-            "title",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "subtitle",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "isThreeLine",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "dense",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "secondary",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("title", _flaxBinding64, required: false),
+          FlaxParameter("subtitle", _flaxBinding64, required: false),
+          FlaxParameter("isThreeLine", _flaxBinding22, required: false),
+          FlaxParameter("dense", _flaxBinding22, required: false),
+          FlaxParameter("secondary", _flaxBinding64, required: false),
           FlaxParameter(
             "selected",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "controlAffinity",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:ListTileControlAffinity",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("controlAffinity", _flaxBinding356, required: false),
           FlaxParameter(
             "autofocus",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "contentPadding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "shape",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:ShapeBorder",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "tileColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "selectedTileColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "visualDensity",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:VisualDensity",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:WidgetStatesController",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("contentPadding", _flaxBinding28, required: false),
+          FlaxParameter("shape", _flaxBinding18, required: false),
+          FlaxParameter("tileColor", _flaxBinding14, required: false),
+          FlaxParameter("selectedTileColor", _flaxBinding14, required: false),
+          FlaxParameter("visualDensity", _flaxBinding103, required: false),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
+          FlaxParameter("statesController", _flaxBinding1141, required: false),
           FlaxParameter(
             "onFocusChange",
             FlaxTypeRef(
@@ -164693,12 +157861,12 @@ Function _flaxClass_RadioListTile<
                 [
                   FlaxCallbackParameter(
                     "value",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding12,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<bool>,
                 id:
                     types.key<void Function(bool value)?>() +
@@ -164709,60 +157877,28 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "enableFeedback",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "horizontalTitleGap",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "minVerticalPadding",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "minLeadingWidth",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "minTileHeight",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("enableFeedback", _flaxBinding22, required: false),
+          FlaxParameter("horizontalTitleGap", _flaxBinding16, required: false),
+          FlaxParameter("minVerticalPadding", _flaxBinding16, required: false),
+          FlaxParameter("minLeadingWidth", _flaxBinding16, required: false),
+          FlaxParameter("minTileHeight", _flaxBinding16, required: false),
           FlaxParameter(
             "radioScaleFactor",
-            FlaxTypeRef("double"),
+            _flaxBinding122,
             required: false,
             defaultValue: 1.0,
           ),
-          FlaxParameter(
-            "enabled",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("enabled", _flaxBinding22, required: false),
           FlaxParameter(
             "useCupertinoCheckmarkStyle",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "titleAlignment",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_material#type:ListTileTitleAlignment",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("titleAlignment", _flaxBinding354, required: false),
           FlaxParameter(
             "internalAddSemanticForOnTap",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
@@ -164786,40 +157922,12 @@ Function _flaxClass_RadioListTile<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/flutter#type:Color",
-                            nullable: true,
-                          ),
+                          _flaxBinding14,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, api4.Color?>,
                           id:
@@ -164845,15 +157953,7 @@ Function _flaxClass_RadioListTile<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "radioSide",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:BorderSide",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("radioSide", _flaxBinding93, required: false),
           FlaxParameter(
             "radioInnerRadius",
             FlaxTypeRef(
@@ -164874,36 +157974,12 @@ Function _flaxClass_RadioListTile<
                           [
                             FlaxCallbackParameter(
                               "states",
-                              FlaxTypeRef(
-                                "set",
-                                item: FlaxTypeRef(
-                                  "enum",
-                                  id: "flax.core/flutter#type:WidgetState",
-                                ),
-                                collection: FlaxCollectionBinding(
-                                  "set:[enum:flax.core/flutter#type:WidgetState]",
-                                  _collection0Create,
-                                  _collection0Matches,
-                                ),
-                                iterable: FlaxTypeRef(
-                                  "iterable",
-                                  item: FlaxTypeRef(
-                                    "enum",
-                                    id: "flax.core/flutter#type:WidgetState",
-                                  ),
-                                  collection: FlaxCollectionBinding(
-                                    "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                    _collection1Create,
-                                    _collection1Matches,
-                                    restore: _collection1Restore,
-                                  ),
-                                ),
-                              ),
+                              _flaxBinding42,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef("double", nullable: true),
+                          _flaxBinding16,
                           FlaxCallbackAdapters
                               .wrap1<Set<api1.WidgetState>, double?>,
                           id:
@@ -165112,11 +158188,7 @@ Function _flaxClass_RadioMenuButton<
           types.ref<_Owner0?>(),
           _RadioMenuButton_groupValue,
         ),
-        FlaxGetter(
-          "toggleable",
-          FlaxTypeRef("bool"),
-          _RadioMenuButton_toggleable,
-        ),
+        FlaxGetter("toggleable", _flaxBinding12, _RadioMenuButton_toggleable),
         FlaxGetter(
           "onChanged",
           types.define<void Function(_Owner0? value)?>(
@@ -165132,7 +158204,7 @@ Function _flaxClass_RadioMenuButton<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)?>() +
@@ -165153,12 +158225,12 @@ Function _flaxClass_RadioMenuButton<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid1<bool>,
               id:
                   types.key<void Function(bool value)?>() +
@@ -165178,12 +158250,12 @@ Function _flaxClass_RadioMenuButton<
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid1<bool>,
               id:
                   types.key<void Function(bool value)?>() +
@@ -165194,229 +158266,78 @@ Function _flaxClass_RadioMenuButton<
           ),
           _RadioMenuButton_onFocusChange,
         ),
-        FlaxGetter(
-          "focusNode",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:FocusNode",
-            nullable: true,
-          ),
-          _RadioMenuButton_focusNode,
-        ),
-        FlaxGetter(
-          "shortcut",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:MenuSerializableShortcut",
-            nullable: true,
-          ),
-          _RadioMenuButton_shortcut,
-        ),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:ButtonStyle",
-            nullable: true,
-          ),
-          _RadioMenuButton_style,
-        ),
+        FlaxGetter("focusNode", _flaxBinding201, _RadioMenuButton_focusNode),
+        FlaxGetter("shortcut", _flaxBinding2064, _RadioMenuButton_shortcut),
+        FlaxGetter("style", _flaxBinding68, _RadioMenuButton_style),
         FlaxGetter(
           "statesController",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:WidgetStatesController",
-            nullable: true,
-          ),
+          _flaxBinding1141,
           _RadioMenuButton_statesController,
         ),
         FlaxGetter(
           "clipBehavior",
-          FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip"),
+          _flaxBinding199,
           _RadioMenuButton_clipBehavior,
         ),
         FlaxGetter(
           "trailingIcon",
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding64,
           _RadioMenuButton_trailingIcon,
         ),
         FlaxGetter(
           "closeOnActivate",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _RadioMenuButton_closeOnActivate,
         ),
-        FlaxGetter(
-          "child",
-          FlaxTypeRef("widget", nullable: true),
-          _RadioMenuButton_child,
-        ),
-        FlaxGetter("enabled", FlaxTypeRef("bool"), _RadioMenuButton_enabled),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _RadioMenuButton_key,
-        ),
+        FlaxGetter("child", _flaxBinding64, _RadioMenuButton_child),
+        FlaxGetter("enabled", _flaxBinding12, _RadioMenuButton_enabled),
+        FlaxGetter("key", _flaxBinding729, _RadioMenuButton_key),
       ],
       {
         "build": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _RadioMenuButton_build,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatelessElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding732,
           _RadioMenuButton_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _RadioMenuButton_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _RadioMenuButton_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _RadioMenuButton_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _RadioMenuButton_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _RadioMenuButton_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _RadioMenuButton_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
           FlaxParameter("groupValue", types.ref<_Owner0?>(), required: true),
           FlaxParameter(
@@ -165434,7 +158355,7 @@ Function _flaxClass_RadioMenuButton<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -165448,7 +158369,7 @@ Function _flaxClass_RadioMenuButton<
           ),
           FlaxParameter(
             "toggleable",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
@@ -165461,12 +158382,12 @@ Function _flaxClass_RadioMenuButton<
                 [
                   FlaxCallbackParameter(
                     "value",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding12,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<bool>,
                 id:
                     types.key<void Function(bool value)?>() +
@@ -165486,12 +158407,12 @@ Function _flaxClass_RadioMenuButton<
                 [
                   FlaxCallbackParameter(
                     "value",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding12,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<bool>,
                 id:
                     types.key<void Function(bool value)?>() +
@@ -165502,64 +158423,24 @@ Function _flaxClass_RadioMenuButton<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "shortcut",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:MenuSerializableShortcut",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "style",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:ButtonStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "statesController",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:WidgetStatesController",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("focusNode", _flaxBinding201, required: false),
+          FlaxParameter("shortcut", _flaxBinding2064, required: false),
+          FlaxParameter("style", _flaxBinding68, required: false),
+          FlaxParameter("statesController", _flaxBinding1141, required: false),
           FlaxParameter(
             "clipBehavior",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:Clip"),
+            _flaxBinding199,
             required: false,
             defaultValue: api4.Clip.none,
           ),
-          FlaxParameter(
-            "trailingIcon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("trailingIcon", _flaxBinding64, required: false),
           FlaxParameter(
             "closeOnActivate",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "child",
-            FlaxTypeRef("widget", nullable: true),
-            required: true,
-          ),
+          FlaxParameter("child", _flaxBinding64, required: true),
         ],
       },
       create: _createRadioMenuButton,
@@ -165627,7 +158508,7 @@ Function _flaxClass_ScaffoldFeatureController<
             "callback",
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -165649,7 +158530,7 @@ Function _flaxClass_ScaffoldFeatureController<
                     "callback",
                     callback: FlaxCallbackBinding(
                       [],
-                      FlaxTypeRef("void"),
+                      _flaxBinding3,
                       FlaxCallbackAdapters.wrapVoid0,
                       id:
                           types.key<void Function()>() +
@@ -165662,7 +158543,7 @@ Function _flaxClass_ScaffoldFeatureController<
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding3,
               FlaxCallbackAdapters.wrapVoid1<void Function()>,
               id:
                   types.key<void Function(void Function() fn)?>() +
@@ -166003,465 +158884,235 @@ Function _flaxClass_SearchDelegate<
       [
         FlaxGetter(
           "automaticallyImplyLeading",
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding22,
           _SearchDelegate_automaticallyImplyLeading,
         ),
         FlaxGetter(
           "leadingWidth",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _SearchDelegate_leadingWidth,
         ),
-        FlaxGetter("query", FlaxTypeRef("String"), _SearchDelegate_query),
+        FlaxGetter("query", _flaxBinding0, _SearchDelegate_query),
         FlaxGetter(
           "searchFieldLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding66,
           _SearchDelegate_searchFieldLabel,
         ),
         FlaxGetter(
           "searchFieldStyle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextStyle",
-            nullable: true,
-          ),
+          _flaxBinding24,
           _SearchDelegate_searchFieldStyle,
         ),
         FlaxGetter(
           "searchFieldDecorationTheme",
-          FlaxTypeRef(
-            "widget",
-            id: "flax.core/sdk_material#type:InputDecorationTheme",
-            nullable: true,
-          ),
+          _flaxBinding497,
           _SearchDelegate_searchFieldDecorationTheme,
         ),
         FlaxGetter(
           "keyboardType",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_services#type:TextInputType",
-            nullable: true,
-          ),
+          _flaxBinding499,
           _SearchDelegate_keyboardType,
         ),
-        FlaxGetter(
-          "autocorrect",
-          FlaxTypeRef("bool"),
-          _SearchDelegate_autocorrect,
-        ),
+        FlaxGetter("autocorrect", _flaxBinding12, _SearchDelegate_autocorrect),
         FlaxGetter(
           "enableSuggestions",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _SearchDelegate_enableSuggestions,
         ),
         FlaxGetter(
           "textInputAction",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_services#type:TextInputAction",
-          ),
+          _flaxBinding501,
           _SearchDelegate_textInputAction,
         ),
         FlaxGetter(
           "transitionAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding281,
           _SearchDelegate_transitionAnimation,
         ),
       ],
       {
         "buildSuggestions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _SearchDelegate_buildSuggestions,
         ),
         "buildResults": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1609,
+          _flaxBinding6,
           _SearchDelegate_buildResults,
         ),
         "buildLeading": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding1609,
+          _flaxBinding64,
           _SearchDelegate_buildLeading,
         ),
         "buildActions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "list",
-            nullable: true,
-            item: FlaxTypeRef("widget"),
-            collection: FlaxCollectionBinding(
-              "list:[widget:]",
-              _collection15Create,
-              _collection15Matches,
-              snapshot: _collection15Snapshot,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("widget"),
-              collection: FlaxCollectionBinding(
-                "iterable:[widget:]",
-                _collection16Create,
-                _collection16Matches,
-                restore: _collection16Restore,
-              ),
-            ),
-          ),
+          _flaxBinding1609,
+          _flaxBinding491,
           _SearchDelegate_buildActions,
         ),
         "buildBottom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:PreferredSizeWidget",
-            nullable: true,
-          ),
+          _flaxBinding1609,
+          _flaxBinding493,
           _SearchDelegate_buildBottom,
         ),
         "buildFlexibleSpace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding1609,
+          _flaxBinding64,
           _SearchDelegate_buildFlexibleSpace,
         ),
         "appBarTheme": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/sdk_material#type:ThemeData"),
+          _flaxBinding1609,
+          _flaxBinding212,
           _SearchDelegate_appBarTheme,
         ),
         "showResults": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1609,
+          _flaxBinding3,
           _SearchDelegate_showResults,
         ),
         "showSuggestions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1609,
+          _flaxBinding3,
           _SearchDelegate_showSuggestions,
         ),
         "close": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
+            FlaxParameter("context", _flaxBinding5, required: true),
             FlaxParameter("result", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _SearchDelegate_close,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _SearchDelegate_dispose,
         ),
         "@super:buildBottom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:PreferredSizeWidget",
-            nullable: true,
-          ),
+          _flaxBinding1609,
+          _flaxBinding493,
           _SearchDelegate_super_buildBottom,
         ),
         "@super:buildFlexibleSpace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding1609,
+          _flaxBinding64,
           _SearchDelegate_super_buildFlexibleSpace,
         ),
         "@super:appBarTheme": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/sdk_material#type:ThemeData"),
+          _flaxBinding1609,
+          _flaxBinding212,
           _SearchDelegate_super_appBarTheme,
         ),
         "@super:showResults": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1609,
+          _flaxBinding3,
           _SearchDelegate_super_showResults,
         ),
         "@super:showSuggestions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1609,
+          _flaxBinding3,
           _SearchDelegate_super_showSuggestions,
         ),
         "@super:close": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
+            FlaxParameter("context", _flaxBinding5, required: true),
             FlaxParameter("result", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding3,
           _SearchDelegate_super_close,
         ),
         "@super:dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding733,
+          _flaxBinding3,
           _FlaxProxyDispatch38_super_call_dispose,
         ),
         "@super:get:automaticallyImplyLeading": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding733,
+          _flaxBinding22,
           _SearchDelegate_super_get_automaticallyImplyLeading,
         ),
         "@super:get:leadingWidth": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding733,
+          _flaxBinding16,
           _SearchDelegate_super_get_leadingWidth,
         ),
         "@super:get:query": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _SearchDelegate_super_get_query,
         ),
         "@super:get:searchFieldLabel": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding733,
+          _flaxBinding66,
           _SearchDelegate_super_get_searchFieldLabel,
         ),
         "@super:get:searchFieldStyle": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:TextStyle",
-            nullable: true,
-          ),
+          _flaxBinding733,
+          _flaxBinding24,
           _SearchDelegate_super_get_searchFieldStyle,
         ),
         "@super:get:searchFieldDecorationTheme": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "widget",
-            id: "flax.core/sdk_material#type:InputDecorationTheme",
-            nullable: true,
-          ),
+          _flaxBinding733,
+          _flaxBinding497,
           _SearchDelegate_super_get_searchFieldDecorationTheme,
         ),
         "@super:get:keyboardType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_services#type:TextInputType",
-            nullable: true,
-          ),
+          _flaxBinding733,
+          _flaxBinding499,
           _SearchDelegate_super_get_keyboardType,
         ),
         "@super:get:autocorrect": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding733,
+          _flaxBinding12,
           _SearchDelegate_super_get_autocorrect,
         ),
         "@super:get:enableSuggestions": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding733,
+          _flaxBinding12,
           _SearchDelegate_super_get_enableSuggestions,
         ),
         "@super:get:textInputAction": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_services#type:TextInputAction",
-          ),
+          _flaxBinding733,
+          _flaxBinding501,
           _SearchDelegate_super_get_textInputAction,
         ),
         "@super:get:transitionAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding733,
+          _flaxBinding281,
           _SearchDelegate_super_get_transitionAnimation,
         ),
         "@super:set:automaticallyImplyLeading": FlaxInstanceMethod(
-          [
-            FlaxParameter(
-              "value",
-              FlaxTypeRef("bool", nullable: true),
-              required: true,
-            ),
-          ],
+          [FlaxParameter("value", _flaxBinding22, required: true)],
           const FlaxTypeRef("void"),
           _SearchDelegate_super_set_automaticallyImplyLeading,
         ),
         "@super:set:leadingWidth": FlaxInstanceMethod(
-          [
-            FlaxParameter(
-              "value",
-              FlaxTypeRef("double", nullable: true),
-              required: true,
-            ),
-          ],
+          [FlaxParameter("value", _flaxBinding16, required: true)],
           const FlaxTypeRef("void"),
           _SearchDelegate_super_set_leadingWidth,
         ),
         "@super:set:query": FlaxInstanceMethod(
-          [FlaxParameter("value", FlaxTypeRef("String"), required: true)],
+          [FlaxParameter("value", _flaxBinding0, required: true)],
           const FlaxTypeRef("void"),
           _SearchDelegate_super_set_query,
         ),
       },
-      constructors: {
-        "@implementation": <FlaxParameter>[
-          FlaxParameter(
-            "searchFieldLabel",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "searchFieldStyle",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "searchFieldDecorationTheme",
-            FlaxTypeRef(
-              "widget",
-              id: "flax.core/sdk_material#type:InputDecorationTheme",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "keyboardType",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_services#type:TextInputType",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "textInputAction",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_services#type:TextInputAction",
-            ),
-            required: false,
-            defaultValue: api12.TextInputAction.search,
-          ),
-          FlaxParameter(
-            "autocorrect",
-            FlaxTypeRef("bool"),
-            required: false,
-            defaultValue: true,
-          ),
-          FlaxParameter(
-            "enableSuggestions",
-            FlaxTypeRef("bool"),
-            required: false,
-            defaultValue: true,
-          ),
-        ],
-      },
+      constructors: {"@implementation": _flaxBinding7575},
       create: _createSearchDelegate,
       matches: _isSearchDelegate,
       setters: [
         FlaxSetter(
           "automaticallyImplyLeading",
-          FlaxTypeRef("bool", nullable: true),
+          _flaxBinding22,
           _SearchDelegate_set_automaticallyImplyLeading,
         ),
         FlaxSetter(
           "leadingWidth",
-          FlaxTypeRef("double", nullable: true),
+          _flaxBinding16,
           _SearchDelegate_set_leadingWidth,
         ),
-        FlaxSetter("query", FlaxTypeRef("String"), _SearchDelegate_set_query),
+        FlaxSetter("query", _flaxBinding0, _SearchDelegate_set_query),
       ],
       supertypes: [
         "flax.core/sdk_material#type:SearchDelegate",
@@ -166477,15 +159128,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding6,
             id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
           ),
         ),
@@ -166496,15 +159144,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding6,
             id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
           ),
         ),
@@ -166515,15 +159160,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             id: types.key<api1.Widget? Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget?:",
           ),
         ),
@@ -166534,35 +159176,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "list",
-              nullable: true,
-              item: FlaxTypeRef("widget"),
-              collection: FlaxCollectionBinding(
-                "list:[widget:]",
-                _collection15Create,
-                _collection15Matches,
-                snapshot: _collection15Snapshot,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef("widget"),
-                collection: FlaxCollectionBinding(
-                  "iterable:[widget:]",
-                  _collection16Create,
-                  _collection16Matches,
-                  restore: _collection16Restore,
-                ),
-              ),
-            ),
+            _flaxBinding491,
             id:
                 types
                     .key<
@@ -166578,19 +159197,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:PreferredSizeWidget",
-              nullable: true,
-            ),
+            _flaxBinding493,
             id:
                 types
                     .key<
@@ -166609,15 +159221,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget", nullable: true),
+            _flaxBinding64,
             id: types.key<api1.Widget? Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget?:",
           ),
           hasSuper: true,
@@ -166629,15 +159238,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("object", id: "flax.core/sdk_material#type:ThemeData"),
+            _flaxBinding212,
             id: types.key<api.ThemeData Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->object:flax.core/sdk_material#type:ThemeData",
           ),
           hasSuper: true,
@@ -166649,15 +159255,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding3,
             id: types.key<void Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->void:",
           ),
           hasSuper: true,
@@ -166669,15 +159272,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding3,
             id: types.key<void Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->void:",
           ),
           hasSuper: true,
@@ -166689,10 +159289,7 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding5,
                 required: true,
                 positional: true,
               ),
@@ -166703,7 +159300,7 @@ Function _flaxClass_SearchDelegate<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding3,
             id:
                 types
                     .key<
@@ -166718,7 +159315,7 @@ Function _flaxClass_SearchDelegate<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding3,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -166728,7 +159325,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool", nullable: true),
+            _flaxBinding22,
             id: types.key<bool? Function()>() + ":callback:<>()->bool?:",
           ),
           hasSuper: true,
@@ -166738,7 +159335,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("double", nullable: true),
+            _flaxBinding16,
             id: types.key<double? Function()>() + ":callback:<>()->double?:",
           ),
           hasSuper: true,
@@ -166748,7 +159345,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding0,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -166758,7 +159355,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding66,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -166768,11 +159365,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:TextStyle",
-              nullable: true,
-            ),
+            _flaxBinding24,
             id:
                 types.key<api2.TextStyle? Function()>() +
                 ":callback:<>()->object?:flax.core/flutter#type:TextStyle",
@@ -166784,11 +159377,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "widget",
-              id: "flax.core/sdk_material#type:InputDecorationTheme",
-              nullable: true,
-            ),
+            _flaxBinding497,
             id: types.key<api.InputDecorationTheme? Function()>() + ":callback:<>()->widget?:flax.core/sdk_material#type:InputDecorationTheme",
           ),
           hasSuper: true,
@@ -166798,11 +159387,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_services#type:TextInputType",
-              nullable: true,
-            ),
+            _flaxBinding499,
             id: types.key<api12.TextInputType? Function()>() + ":callback:<>()->object?:flax.core/sdk_services#type:TextInputType",
           ),
           hasSuper: true,
@@ -166812,7 +159397,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -166822,7 +159407,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -166832,10 +159417,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_services#type:TextInputAction",
-            ),
+            _flaxBinding501,
             id: types.key<api12.TextInputAction Function()>() + ":callback:<>()->enum:flax.core/sdk_services#type:TextInputAction",
           ),
           hasSuper: true,
@@ -166845,11 +159427,7 @@ Function _flaxClass_SearchDelegate<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:Animation",
-              dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-            ),
+            _flaxBinding281,
             id: types.key<api3.Animation<double> Function()>() + ":callback:<>()->object:flax.core/sdk_animation#type:Animation<double:>",
           ),
           hasSuper: true,
@@ -166861,12 +159439,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "value",
-                FlaxTypeRef("bool", nullable: true),
+                _flaxBinding22,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding3,
             id:
                 types.key<void Function(bool? value)>() +
                 ":callback:<>(p:r:value:bool?:)->void:",
@@ -166880,12 +159458,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "value",
-                FlaxTypeRef("double", nullable: true),
+                _flaxBinding16,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding3,
             id:
                 types.key<void Function(double? value)>() +
                 ":callback:<>(p:r:value:double?:)->void:",
@@ -166899,12 +159477,12 @@ Function _flaxClass_SearchDelegate<
             [
               FlaxCallbackParameter(
                 "value",
-                FlaxTypeRef("String"),
+                _flaxBinding0,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding3,
             id:
                 types.key<void Function(String value)>() +
                 ":callback:<>(p:r:value:String:)->void:",
@@ -167059,11 +159637,7 @@ Function _flaxClass_SegmentedButton<
           types.ref<List<api.ButtonSegment<_Owner0>>>(),
           _SegmentedButton_segments,
         ),
-        FlaxGetter(
-          "direction",
-          FlaxTypeRef("enum", id: "flax.core/flutter#type:Axis"),
-          _SegmentedButton_direction,
-        ),
+        FlaxGetter("direction", _flaxBinding1908, _SegmentedButton_direction),
         FlaxGetter(
           "selected",
           types.ref<Set<_Owner0>>(),
@@ -167084,7 +159658,7 @@ Function _flaxClass_SegmentedButton<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding3,
                 FlaxCallbackAdapters.wrapVoid1<Set<_Owner0>>,
                 id:
                     types.key<void Function(Set<_Owner0> p0)?>() +
@@ -167098,202 +159672,77 @@ Function _flaxClass_SegmentedButton<
         ),
         FlaxGetter(
           "multiSelectionEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _SegmentedButton_multiSelectionEnabled,
         ),
         FlaxGetter(
           "emptySelectionAllowed",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _SegmentedButton_emptySelectionAllowed,
         ),
         FlaxGetter(
           "expandedInsets",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsets",
-            nullable: true,
-          ),
+          _flaxBinding192,
           _SegmentedButton_expandedInsets,
         ),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_material#type:ButtonStyle",
-            nullable: true,
-          ),
-          _SegmentedButton_style,
-        ),
+        FlaxGetter("style", _flaxBinding68, _SegmentedButton_style),
         FlaxGetter(
           "showSelectedIcon",
-          FlaxTypeRef("bool"),
+          _flaxBinding12,
           _SegmentedButton_showSelectedIcon,
         ),
         FlaxGetter(
           "selectedIcon",
-          FlaxTypeRef("widget", nullable: true),
+          _flaxBinding64,
           _SegmentedButton_selectedIcon,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _SegmentedButton_key,
-        ),
+        FlaxGetter("key", _flaxBinding729, _SegmentedButton_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api1.State<api.SegmentedButton<_Owner0>>>(),
           _SegmentedButton_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding733,
+          _flaxBinding951,
           _SegmentedButton_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding733,
+          _flaxBinding0,
           _SegmentedButton_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding9766,
+          _flaxBinding3,
           _SegmentedButton_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding738,
+          _flaxBinding0,
           _SegmentedButton_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding740,
+          _flaxBinding0,
           _SegmentedButton_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding743,
+          _flaxBinding744,
           _SegmentedButton_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection19Create,
-              _collection19Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection20Create,
-                _collection20Matches,
-                restore: _collection20Restore,
-              ),
-            ),
-          ),
+          _flaxBinding733,
+          _flaxBinding747,
           _SegmentedButton_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding729, required: false),
           FlaxParameter(
             "segments",
             types.ref<List<api.ButtonSegment<_Owner0>>>(),
@@ -167315,7 +159764,7 @@ Function _flaxClass_SegmentedButton<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding3,
                   FlaxCallbackAdapters.wrapVoid1<Set<_Owner0>>,
                   id:
                       types.key<void Function(Set<_Owner0> p0)?>() +
@@ -167329,48 +159778,28 @@ Function _flaxClass_SegmentedButton<
           ),
           FlaxParameter(
             "multiSelectionEnabled",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "emptySelectionAllowed",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "expandedInsets",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsets",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "style",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_material#type:ButtonStyle",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("expandedInsets", _flaxBinding192, required: false),
+          FlaxParameter("style", _flaxBinding68, required: false),
           FlaxParameter(
             "showSelectedIcon",
-            FlaxTypeRef("bool"),
+            _flaxBinding12,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "selectedIcon",
-            FlaxTypeRef("widget", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("selectedIcon", _flaxBinding64, required: false),
           FlaxParameter(
             "direction",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:Axis"),
+            _flaxBinding1908,
             required: false,
             defaultValue: api2.Axis.horizontal,
           ),
@@ -167401,7 +159830,7 @@ Function _flaxGeneric_ThemeData_getAdaptation<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [],
+        _flaxBinding733,
         types.ref<api.Adaptation<_Method0>?>(),
         invoke,
       );
@@ -167413,7 +159842,11 @@ Function _flaxGeneric_ThemeData_super_getAdaptation<
     return (receiver as _ThemeDataProxy)._flaxSuper_getAdaptation<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<api.Adaptation<_Method0>?>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding733,
+    types.ref<api.Adaptation<_Method0>?>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_ThemeData_extension<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -167421,7 +159854,11 @@ Function _flaxGeneric_ThemeData_extension<_Method0 extends Object?>() =>
         return (receiver as api.ThemeData).extension<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<_Method0?>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding733,
+        types.ref<_Method0?>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_ThemeData_super_extension<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -167429,7 +159866,11 @@ Function _flaxGeneric_ThemeData_super_extension<_Method0 extends Object?>() =>
         return (receiver as _ThemeDataProxy)._flaxSuper_extension<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<_Method0?>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding733,
+        types.ref<_Method0?>(),
+        invoke,
+      );
     };
 Type _flaxType_ThemeExtension<_Owner0 extends api.ThemeExtension<_Owner0>>() =>
     api.ThemeExtension<_Owner0>;
@@ -167473,10 +159914,10 @@ Function _flaxClass_ThemeExtension<
     api.ThemeExtension<_Owner0>,
     FlaxObjectBinding(
       id,
-      [FlaxGetter("type", FlaxTypeRef("any"), _ThemeExtension_type)],
+      [FlaxGetter("type", _flaxBinding292, _ThemeExtension_type)],
       {
         "copyWith": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding733,
           types.ref<api.ThemeExtension<_Owner0>>(),
           _ThemeExtension_copyWith,
         ),
@@ -167487,18 +159928,18 @@ Function _flaxClass_ThemeExtension<
               types.ref<api.ThemeExtension<_Owner0>?>(),
               required: true,
             ),
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
+            FlaxParameter("t", _flaxBinding122, required: true),
           ],
           types.ref<api.ThemeExtension<_Owner0>>(),
           _ThemeExtension_lerp,
         ),
         "@super:get:type": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any"),
+          _flaxBinding733,
+          _flaxBinding292,
           _ThemeExtension_super_get_type,
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding733},
       create: _createThemeExtension,
       matches: _isThemeExtension,
       setters: [],
@@ -167531,7 +159972,7 @@ Function _flaxClass_ThemeExtension<
               ),
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding122,
                 required: true,
                 positional: true,
               ),
@@ -167553,7 +159994,7 @@ Function _flaxClass_ThemeExtension<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any"),
+            _flaxBinding292,
             id: types.key<Object Function()>() + ":callback:<>()->any:",
           ),
           hasSuper: true,
@@ -167577,52 +160018,18 @@ Function _flaxGeneric_ZoomPageTransitionsBuilder_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -167641,52 +160048,18 @@ Function _flaxGeneric_ZoomPageTransitionsBuilder_super_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding5, required: true),
+      FlaxParameter("animation", _flaxBinding281, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding281, required: true),
+      FlaxParameter("child", _flaxBinding6, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     invoke,
   );
 };
@@ -169132,42 +161505,30 @@ FlaxCallbackBinding _callback28Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef(
-          "context",
-          id: "flax.core/flutter#type:BuildContext",
-          nullable: true,
-        ),
+        _flaxBinding3395,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -169382,38 +161743,30 @@ FlaxCallbackBinding _callback32Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding5,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -169603,38 +161956,30 @@ FlaxCallbackBinding _callback36Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding5,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -169762,38 +162107,30 @@ FlaxCallbackBinding _callback37Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding5,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -170182,38 +162519,30 @@ FlaxCallbackBinding _callback49Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding5,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding281,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding6,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding6,
     _callback0,
     id:
         types
@@ -256249,3 +248578,18 @@ const _flaxBinding9765 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_material#type:ThemeMode",
 );
+const _flaxBinding9766 = <FlaxParameter>[
+  FlaxParameter("properties", _flaxBinding2, required: true),
+];
+const _flaxBinding9767 = <FlaxParameter>[
+  FlaxParameter("year", _flaxBinding143, required: true),
+  FlaxParameter("month", _flaxBinding143, required: true),
+  FlaxParameter("localizations", _flaxBinding144, required: true),
+];
+const _flaxBinding9768 = <FlaxParameter>[
+  FlaxParameter("year", _flaxBinding143, required: true),
+  FlaxParameter("localizations", _flaxBinding144, required: true),
+];
+const _flaxBinding9769 = <FlaxParameter>[
+  FlaxParameter("localizations", _flaxBinding144, required: true),
+];

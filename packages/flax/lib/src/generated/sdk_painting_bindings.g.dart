@@ -24882,28 +24882,18 @@ Function _flaxGenericFunction17<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_painting#function:ColorSwatch.lerp",
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "a",
             types.ref<api.ColorSwatch<_Method0>?>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "b",
             types.ref<api.ColorSwatch<_Method0>?>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "t",
-            FlaxTypeRef("double"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("t", _flaxBinding8, required: true),
         ],
         types.ref<api.ColorSwatch<_Method0>?>(),
         invoke,
@@ -25141,280 +25131,188 @@ Function _flaxClass_ColorSwatch<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter("a", FlaxTypeRef("double"), _ColorSwatch_a),
-        FlaxGetter("r", FlaxTypeRef("double"), _ColorSwatch_r),
-        FlaxGetter("g", FlaxTypeRef("double"), _ColorSwatch_g),
-        FlaxGetter("b", FlaxTypeRef("double"), _ColorSwatch_b),
-        FlaxGetter(
-          "colorSpace",
-          FlaxTypeRef("enum", id: "flax.core/sdk_dart_ui#type:ColorSpace"),
-          _ColorSwatch_colorSpace,
-        ),
-        FlaxGetter("value", FlaxTypeRef("int"), _ColorSwatch_value),
-        FlaxGetter("alpha", FlaxTypeRef("int"), _ColorSwatch_alpha),
-        FlaxGetter("opacity", FlaxTypeRef("double"), _ColorSwatch_opacity),
-        FlaxGetter("red", FlaxTypeRef("int"), _ColorSwatch_red),
-        FlaxGetter("green", FlaxTypeRef("int"), _ColorSwatch_green),
-        FlaxGetter("blue", FlaxTypeRef("int"), _ColorSwatch_blue),
+        FlaxGetter("a", _flaxBinding8, _ColorSwatch_a),
+        FlaxGetter("r", _flaxBinding8, _ColorSwatch_r),
+        FlaxGetter("g", _flaxBinding8, _ColorSwatch_g),
+        FlaxGetter("b", _flaxBinding8, _ColorSwatch_b),
+        FlaxGetter("colorSpace", _flaxBinding112, _ColorSwatch_colorSpace),
+        FlaxGetter("value", _flaxBinding0, _ColorSwatch_value),
+        FlaxGetter("alpha", _flaxBinding0, _ColorSwatch_alpha),
+        FlaxGetter("opacity", _flaxBinding8, _ColorSwatch_opacity),
+        FlaxGetter("red", _flaxBinding0, _ColorSwatch_red),
+        FlaxGetter("green", _flaxBinding0, _ColorSwatch_green),
+        FlaxGetter("blue", _flaxBinding0, _ColorSwatch_blue),
         FlaxGetter("keys", types.ref<Iterable<_Owner0>>(), _ColorSwatch_keys),
       ],
       {
         "toARGB32": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding412,
+          _flaxBinding0,
           _ColorSwatch_toARGB32,
         ),
         "withValues": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "alpha",
-              FlaxTypeRef("double", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "blue",
-              FlaxTypeRef("double", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "colorSpace",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_dart_ui#type:ColorSpace",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "green",
-              FlaxTypeRef("double", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "red",
-              FlaxTypeRef("double", nullable: true),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding621,
+          _flaxBinding72,
           _ColorSwatch_withValues,
         ),
         "withAlpha": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("a", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1805,
+          _flaxBinding72,
           _ColorSwatch_withAlpha,
         ),
         "withOpacity": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("opacity", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1806,
+          _flaxBinding72,
           _ColorSwatch_withOpacity,
         ),
         "withRed": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("r", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1807,
+          _flaxBinding72,
           _ColorSwatch_withRed,
         ),
         "withGreen": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("g", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1808,
+          _flaxBinding72,
           _ColorSwatch_withGreen,
         ),
         "withBlue": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("b", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1809,
+          _flaxBinding72,
           _ColorSwatch_withBlue,
         ),
         "computeLuminance": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("double"),
+          _flaxBinding412,
+          _flaxBinding8,
           _ColorSwatch_computeLuminance,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding412,
+          _flaxBinding4,
           _ColorSwatch_toString,
         ),
         "operatorGetIndex": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("key", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding99,
           _ColorSwatch_operatorGetIndex,
         ),
         "@super:toARGB32": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding412,
+          _flaxBinding0,
           _ColorSwatch_super_toARGB32,
         ),
         "@super:withValues": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "alpha",
-              FlaxTypeRef("double", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "blue",
-              FlaxTypeRef("double", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "colorSpace",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_dart_ui#type:ColorSpace",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "green",
-              FlaxTypeRef("double", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "red",
-              FlaxTypeRef("double", nullable: true),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding621,
+          _flaxBinding72,
           _ColorSwatch_super_withValues,
         ),
         "@super:withAlpha": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("a", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1805,
+          _flaxBinding72,
           _ColorSwatch_super_withAlpha,
         ),
         "@super:withOpacity": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("opacity", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1806,
+          _flaxBinding72,
           _ColorSwatch_super_withOpacity,
         ),
         "@super:withRed": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("r", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1807,
+          _flaxBinding72,
           _ColorSwatch_super_withRed,
         ),
         "@super:withGreen": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("g", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1808,
+          _flaxBinding72,
           _ColorSwatch_super_withGreen,
         ),
         "@super:withBlue": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("b", FlaxTypeRef("int"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding1809,
+          _flaxBinding72,
           _ColorSwatch_super_withBlue,
         ),
         "@super:computeLuminance": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("double"),
+          _flaxBinding412,
+          _flaxBinding8,
           _ColorSwatch_super_computeLuminance,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding412,
+          _flaxBinding4,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:operatorGetIndex": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("key", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding99,
           _ColorSwatch_super_operatorGetIndex,
         ),
         "@super:get:keys": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding412,
           types.ref<Iterable<_Owner0>>(),
           _ColorSwatch_super_get_keys,
         ),
         "@super:get:a": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("double"),
+          _flaxBinding412,
+          _flaxBinding8,
           _ColorSwatch_super_get_a,
         ),
         "@super:get:r": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("double"),
+          _flaxBinding412,
+          _flaxBinding8,
           _ColorSwatch_super_get_r,
         ),
         "@super:get:g": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("double"),
+          _flaxBinding412,
+          _flaxBinding8,
           _ColorSwatch_super_get_g,
         ),
         "@super:get:b": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("double"),
+          _flaxBinding412,
+          _flaxBinding8,
           _ColorSwatch_super_get_b,
         ),
         "@super:get:colorSpace": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("enum", id: "flax.core/sdk_dart_ui#type:ColorSpace"),
+          _flaxBinding412,
+          _flaxBinding112,
           _ColorSwatch_super_get_colorSpace,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding412,
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_get_value,
         ),
         "@super:get:alpha": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding412,
+          _flaxBinding0,
           _ColorSwatch_super_get_alpha,
         ),
         "@super:get:opacity": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("double"),
+          _flaxBinding412,
+          _flaxBinding8,
           _FlaxProxyDispatch11_super_get_opacity,
         ),
         "@super:get:red": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding412,
+          _flaxBinding0,
           _ColorSwatch_super_get_red,
         ),
         "@super:get:green": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding412,
+          _flaxBinding0,
           _ColorSwatch_super_get_green,
         ),
         "@super:get:blue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding412,
+          _flaxBinding0,
           _ColorSwatch_super_get_blue,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
-          FlaxParameter("primary", FlaxTypeRef("int"), required: true),
+          FlaxParameter("primary", _flaxBinding0, required: true),
           FlaxParameter(
             "_swatch",
             types.ref<Map<_Owner0, api1.Color>>(),
@@ -25437,7 +25335,7 @@ Function _flaxClass_ColorSwatch<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding0,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -25449,40 +25347,36 @@ Function _flaxClass_ColorSwatch<
             [
               FlaxCallbackParameter(
                 "alpha",
-                FlaxTypeRef("double", nullable: true),
+                _flaxBinding181,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "red",
-                FlaxTypeRef("double", nullable: true),
+                _flaxBinding181,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "green",
-                FlaxTypeRef("double", nullable: true),
+                _flaxBinding181,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "blue",
-                FlaxTypeRef("double", nullable: true),
+                _flaxBinding181,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "colorSpace",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_dart_ui#type:ColorSpace",
-                  nullable: true,
-                ),
+                _flaxBinding620,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+            _flaxBinding72,
             id:
                 types
                     .key<
@@ -25505,12 +25399,12 @@ Function _flaxClass_ColorSwatch<
             [
               FlaxCallbackParameter(
                 "a",
-                FlaxTypeRef("int"),
+                _flaxBinding0,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+            _flaxBinding72,
             id:
                 types.key<api1.Color Function(int a)>() +
                 ":callback:<>(p:r:a:int:)->object:flax.core/flutter#type:Color",
@@ -25524,12 +25418,12 @@ Function _flaxClass_ColorSwatch<
             [
               FlaxCallbackParameter(
                 "opacity",
-                FlaxTypeRef("double"),
+                _flaxBinding8,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+            _flaxBinding72,
             id: types.key<api1.Color Function(double opacity)>() + ":callback:<>(p:r:opacity:double:)->object:flax.core/flutter#type:Color",
           ),
           hasSuper: true,
@@ -25541,12 +25435,12 @@ Function _flaxClass_ColorSwatch<
             [
               FlaxCallbackParameter(
                 "r",
-                FlaxTypeRef("int"),
+                _flaxBinding0,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+            _flaxBinding72,
             id:
                 types.key<api1.Color Function(int r)>() +
                 ":callback:<>(p:r:r:int:)->object:flax.core/flutter#type:Color",
@@ -25560,12 +25454,12 @@ Function _flaxClass_ColorSwatch<
             [
               FlaxCallbackParameter(
                 "g",
-                FlaxTypeRef("int"),
+                _flaxBinding0,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+            _flaxBinding72,
             id:
                 types.key<api1.Color Function(int g)>() +
                 ":callback:<>(p:r:g:int:)->object:flax.core/flutter#type:Color",
@@ -25579,12 +25473,12 @@ Function _flaxClass_ColorSwatch<
             [
               FlaxCallbackParameter(
                 "b",
-                FlaxTypeRef("int"),
+                _flaxBinding0,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+            _flaxBinding72,
             id:
                 types.key<api1.Color Function(int b)>() +
                 ":callback:<>(p:r:b:int:)->object:flax.core/flutter#type:Color",
@@ -25596,7 +25490,7 @@ Function _flaxClass_ColorSwatch<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("double"),
+            _flaxBinding8,
             id: types.key<double Function()>() + ":callback:<>()->double:",
           ),
           hasSuper: true,
@@ -25606,7 +25500,7 @@ Function _flaxClass_ColorSwatch<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding4,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -25623,11 +25517,7 @@ Function _flaxClass_ColorSwatch<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
+            _flaxBinding99,
             id: types.key<api1.Color? Function(_Owner0 key)>() + ":callback:<>(p:r:key:parameter:)->object?:flax.core/flutter#type:Color",
           ),
           hasSuper: true,
@@ -25649,7 +25539,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("double"),
+            _flaxBinding8,
             id: types.key<double Function()>() + ":callback:<>()->double:",
           ),
           hasSuper: true,
@@ -25659,7 +25549,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("double"),
+            _flaxBinding8,
             id: types.key<double Function()>() + ":callback:<>()->double:",
           ),
           hasSuper: true,
@@ -25669,7 +25559,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("double"),
+            _flaxBinding8,
             id: types.key<double Function()>() + ":callback:<>()->double:",
           ),
           hasSuper: true,
@@ -25679,7 +25569,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("double"),
+            _flaxBinding8,
             id: types.key<double Function()>() + ":callback:<>()->double:",
           ),
           hasSuper: true,
@@ -25689,7 +25579,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("enum", id: "flax.core/sdk_dart_ui#type:ColorSpace"),
+            _flaxBinding112,
             id:
                 types.key<api1.ColorSpace Function()>() +
                 ":callback:<>()->enum:flax.core/sdk_dart_ui#type:ColorSpace",
@@ -25701,7 +25591,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding0,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -25711,7 +25601,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding0,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -25721,7 +25611,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("double"),
+            _flaxBinding8,
             id: types.key<double Function()>() + ":callback:<>()->double:",
           ),
           hasSuper: true,
@@ -25731,7 +25621,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding0,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -25741,7 +25631,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding0,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -25751,7 +25641,7 @@ Function _flaxClass_ColorSwatch<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding0,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -26305,43 +26195,18 @@ Function _flaxClass_ImageProvider<
       [],
       {
         "resolve": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/sdk_painting#type:ImageStream"),
+          _flaxBinding963,
+          _flaxBinding11,
           _ImageProvider_resolve,
         ),
         "createStream": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/sdk_painting#type:ImageStream"),
+          _flaxBinding963,
+          _flaxBinding11,
           _ImageProvider_createStream,
         ),
         "obtainCacheStatus": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: true,
-            ),
+            FlaxParameter("configuration", _flaxBinding10, required: true),
             FlaxParameter(
               "handleError",
               FlaxTypeRef(
@@ -26351,22 +26216,18 @@ Function _flaxClass_ImageProvider<
                   [
                     FlaxCallbackParameter(
                       "exception",
-                      FlaxTypeRef("any"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "stackTrace",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                        nullable: true,
-                      ),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding1,
                   FlaxCallbackAdapters.wrapVoid2<Object, api5.StackTrace?>,
                   id:
                       types
@@ -26386,38 +26247,13 @@ Function _flaxClass_ImageProvider<
               required: false,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_painting#type:ImageCacheStatus",
-              nullable: true,
-            ),
-            future: FlaxFutureBinding(
-              "object?:flax.core/sdk_painting#type:ImageCacheStatus",
-              _future6Adapt,
-            ),
-          ),
+          _flaxBinding401,
           _ImageProvider_obtainCacheStatus,
         ),
         "resolveStreamForKey": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "stream",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageStream",
-              ),
-              required: true,
-            ),
+            FlaxParameter("configuration", _flaxBinding10, required: true),
+            FlaxParameter("stream", _flaxBinding11, required: true),
             FlaxParameter("key", types.ref<_Owner0>(), required: true),
             FlaxParameter(
               "handleError",
@@ -26427,22 +26263,18 @@ Function _flaxClass_ImageProvider<
                   [
                     FlaxCallbackParameter(
                       "exception",
-                      FlaxTypeRef("any"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "stackTrace",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                        nullable: true,
-                      ),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding1,
                   FlaxCallbackAdapters.wrapVoid2<Object, api5.StackTrace?>,
                   id:
                       types
@@ -26462,48 +26294,16 @@ Function _flaxClass_ImageProvider<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _ImageProvider_resolveStreamForKey,
         ),
         "evict": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "cache",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageCache",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: false,
-              omitWhenAbsent: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future7Adapt),
-          ),
+          _flaxBinding405,
+          _flaxBinding406,
           _ImageProvider_evict,
         ),
         "obtainKey": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding963,
           types.ref<Future<_Owner0>>(),
           _ImageProvider_obtainKey,
         ),
@@ -26518,43 +26318,30 @@ Function _flaxClass_ImageProvider<
                   [
                     FlaxCallbackParameter(
                       "buffer",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:ImmutableBuffer",
-                      ),
+                      _flaxBinding21,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "allowUpscaling",
-                      FlaxTypeRef("bool"),
+                      _flaxBinding22,
                       required: false,
                       positional: false,
                     ),
                     FlaxCallbackParameter(
                       "cacheHeight",
-                      FlaxTypeRef("int", nullable: true),
+                      _flaxBinding23,
                       required: false,
                       positional: false,
                     ),
                     FlaxCallbackParameter(
                       "cacheWidth",
-                      FlaxTypeRef("int", nullable: true),
+                      _flaxBinding23,
                       required: false,
                       positional: false,
                     ),
                   ],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_dart_ui#type:Codec",
-                    ),
-                    future: FlaxFutureBinding(
-                      "object:flax.core/sdk_dart_ui#type:Codec",
-                      _future1Adapt,
-                    ),
-                  ),
+                  _flaxBinding25,
                   _callback0,
                   id:
                       types
@@ -26574,10 +26361,7 @@ Function _flaxClass_ImageProvider<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_painting#type:ImageStreamCompleter",
-          ),
+          _flaxBinding28,
           _ImageProvider_loadBuffer,
         ),
         "loadImage": FlaxInstanceMethod(
@@ -26591,10 +26375,7 @@ Function _flaxClass_ImageProvider<
                   [
                     FlaxCallbackParameter(
                       "buffer",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:ImmutableBuffer",
-                      ),
+                      _flaxBinding21,
                       required: true,
                       positional: true,
                     ),
@@ -26607,21 +26388,18 @@ Function _flaxClass_ImageProvider<
                           [
                             FlaxCallbackParameter(
                               "intrinsicWidth",
-                              FlaxTypeRef("int"),
+                              _flaxBinding0,
                               required: true,
                               positional: true,
                             ),
                             FlaxCallbackParameter(
                               "intrinsicHeight",
-                              FlaxTypeRef("int"),
+                              _flaxBinding0,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/sdk_dart_ui#type:TargetImageSize",
-                          ),
+                          _flaxBinding30,
                           FlaxCallbackAdapters
                               .wrap2<int, int, api1.TargetImageSize>,
                           id:
@@ -26643,17 +26421,7 @@ Function _flaxClass_ImageProvider<
                       positional: false,
                     ),
                   ],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_dart_ui#type:Codec",
-                    ),
-                    future: FlaxFutureBinding(
-                      "object:flax.core/sdk_dart_ui#type:Codec",
-                      _future1Adapt,
-                    ),
-                  ),
+                  _flaxBinding25,
                   _callback1,
                   id:
                       types
@@ -26675,41 +26443,22 @@ Function _flaxClass_ImageProvider<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_painting#type:ImageStreamCompleter",
-          ),
+          _flaxBinding28,
           _ImageProvider_loadImage,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding412,
+          _flaxBinding4,
           _ImageProvider_toString,
         ),
         "@super:createStream": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("object", id: "flax.core/sdk_painting#type:ImageStream"),
+          _flaxBinding963,
+          _flaxBinding11,
           _FlaxProxyDispatch3_super_call_createStream,
         ),
         "@super:obtainCacheStatus": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: true,
-            ),
+            FlaxParameter("configuration", _flaxBinding10, required: true),
             FlaxParameter(
               "handleError",
               FlaxTypeRef(
@@ -26719,22 +26468,18 @@ Function _flaxClass_ImageProvider<
                   [
                     FlaxCallbackParameter(
                       "exception",
-                      FlaxTypeRef("any"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "stackTrace",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                        nullable: true,
-                      ),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding1,
                   FlaxCallbackAdapters.wrapVoid2<Object, api5.StackTrace?>,
                   id:
                       types
@@ -26754,38 +26499,13 @@ Function _flaxClass_ImageProvider<
               required: false,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_painting#type:ImageCacheStatus",
-              nullable: true,
-            ),
-            future: FlaxFutureBinding(
-              "object?:flax.core/sdk_painting#type:ImageCacheStatus",
-              _future6Adapt,
-            ),
-          ),
+          _flaxBinding401,
           _FlaxProxyDispatch3_super_call_obtainCacheStatus,
         ),
         "@super:resolveStreamForKey": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "stream",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageStream",
-              ),
-              required: true,
-            ),
+            FlaxParameter("configuration", _flaxBinding10, required: true),
+            FlaxParameter("stream", _flaxBinding11, required: true),
             FlaxParameter("key", types.ref<_Owner0>(), required: true),
             FlaxParameter(
               "handleError",
@@ -26795,22 +26515,18 @@ Function _flaxClass_ImageProvider<
                   [
                     FlaxCallbackParameter(
                       "exception",
-                      FlaxTypeRef("any"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "stackTrace",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                        nullable: true,
-                      ),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding1,
                   FlaxCallbackAdapters.wrapVoid2<Object, api5.StackTrace?>,
                   id:
                       types
@@ -26830,35 +26546,12 @@ Function _flaxClass_ImageProvider<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _ImageProvider_super_resolveStreamForKey,
         ),
         "@super:evict": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "cache",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageCache",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "configuration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageConfiguration",
-              ),
-              required: false,
-              omitWhenAbsent: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future7Adapt),
-          ),
+          _flaxBinding405,
+          _flaxBinding406,
           _FlaxProxyDispatch3_super_call_evict,
         ),
         "@super:loadBuffer": FlaxInstanceMethod(
@@ -26872,43 +26565,30 @@ Function _flaxClass_ImageProvider<
                   [
                     FlaxCallbackParameter(
                       "buffer",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:ImmutableBuffer",
-                      ),
+                      _flaxBinding21,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "allowUpscaling",
-                      FlaxTypeRef("bool"),
+                      _flaxBinding22,
                       required: false,
                       positional: false,
                     ),
                     FlaxCallbackParameter(
                       "cacheHeight",
-                      FlaxTypeRef("int", nullable: true),
+                      _flaxBinding23,
                       required: false,
                       positional: false,
                     ),
                     FlaxCallbackParameter(
                       "cacheWidth",
-                      FlaxTypeRef("int", nullable: true),
+                      _flaxBinding23,
                       required: false,
                       positional: false,
                     ),
                   ],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_dart_ui#type:Codec",
-                    ),
-                    future: FlaxFutureBinding(
-                      "object:flax.core/sdk_dart_ui#type:Codec",
-                      _future1Adapt,
-                    ),
-                  ),
+                  _flaxBinding25,
                   _callback0,
                   id:
                       types
@@ -26928,10 +26608,7 @@ Function _flaxClass_ImageProvider<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_painting#type:ImageStreamCompleter",
-          ),
+          _flaxBinding28,
           _ImageProvider_super_loadBuffer,
         ),
         "@super:loadImage": FlaxInstanceMethod(
@@ -26945,10 +26622,7 @@ Function _flaxClass_ImageProvider<
                   [
                     FlaxCallbackParameter(
                       "buffer",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:ImmutableBuffer",
-                      ),
+                      _flaxBinding21,
                       required: true,
                       positional: true,
                     ),
@@ -26961,21 +26635,18 @@ Function _flaxClass_ImageProvider<
                           [
                             FlaxCallbackParameter(
                               "intrinsicWidth",
-                              FlaxTypeRef("int"),
+                              _flaxBinding0,
                               required: true,
                               positional: true,
                             ),
                             FlaxCallbackParameter(
                               "intrinsicHeight",
-                              FlaxTypeRef("int"),
+                              _flaxBinding0,
                               required: true,
                               positional: true,
                             ),
                           ],
-                          FlaxTypeRef(
-                            "object",
-                            id: "flax.core/sdk_dart_ui#type:TargetImageSize",
-                          ),
+                          _flaxBinding30,
                           FlaxCallbackAdapters
                               .wrap2<int, int, api1.TargetImageSize>,
                           id:
@@ -26997,17 +26668,7 @@ Function _flaxClass_ImageProvider<
                       positional: false,
                     ),
                   ],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_dart_ui#type:Codec",
-                    ),
-                    future: FlaxFutureBinding(
-                      "object:flax.core/sdk_dart_ui#type:Codec",
-                      _future1Adapt,
-                    ),
-                  ),
+                  _flaxBinding25,
                   _callback1,
                   id:
                       types
@@ -27029,19 +26690,16 @@ Function _flaxClass_ImageProvider<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_painting#type:ImageStreamCompleter",
-          ),
+          _flaxBinding28,
           _ImageProvider_super_loadImage,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding412,
+          _flaxBinding4,
           _FlaxProxyDispatch1_super_call_toString,
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding412},
       create: _createImageProvider,
       matches: _isImageProvider,
       setters: [],
@@ -27059,18 +26717,12 @@ Function _flaxClass_ImageProvider<
             [
               FlaxCallbackParameter(
                 "configuration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_painting#type:ImageConfiguration",
-                ),
+                _flaxBinding10,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_painting#type:ImageStream",
-            ),
+            _flaxBinding11,
             id:
                 types
                     .key<
@@ -27089,10 +26741,7 @@ Function _flaxClass_ImageProvider<
             [
               FlaxCallbackParameter(
                 "configuration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_painting#type:ImageConfiguration",
-                ),
+                _flaxBinding10,
                 required: true,
                 positional: false,
               ),
@@ -27105,22 +26754,18 @@ Function _flaxClass_ImageProvider<
                     [
                       FlaxCallbackParameter(
                         "exception",
-                        FlaxTypeRef("any"),
+                        _flaxBinding14,
                         required: true,
                         positional: true,
                       ),
                       FlaxCallbackParameter(
                         "stackTrace",
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:StackTrace",
-                          nullable: true,
-                        ),
+                        _flaxBinding15,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid2<Object, api5.StackTrace?>,
                     id:
                         types
@@ -27141,18 +26786,7 @@ Function _flaxClass_ImageProvider<
                 positional: false,
               ),
             ],
-            FlaxTypeRef(
-              "future",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_painting#type:ImageCacheStatus",
-                nullable: true,
-              ),
-              future: FlaxFutureBinding(
-                "object?:flax.core/sdk_painting#type:ImageCacheStatus",
-                _future6Adapt,
-              ),
-            ),
+            _flaxBinding401,
             id:
                 types
                     .key<
@@ -27176,19 +26810,13 @@ Function _flaxClass_ImageProvider<
             [
               FlaxCallbackParameter(
                 "configuration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_painting#type:ImageConfiguration",
-                ),
+                _flaxBinding10,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "stream",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_painting#type:ImageStream",
-                ),
+                _flaxBinding11,
                 required: true,
                 positional: true,
               ),
@@ -27206,22 +26834,18 @@ Function _flaxClass_ImageProvider<
                     [
                       FlaxCallbackParameter(
                         "exception",
-                        FlaxTypeRef("any"),
+                        _flaxBinding14,
                         required: true,
                         positional: true,
                       ),
                       FlaxCallbackParameter(
                         "stackTrace",
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/flutter#type:StackTrace",
-                          nullable: true,
-                        ),
+                        _flaxBinding15,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid2<Object, api5.StackTrace?>,
                     id:
                         types
@@ -27242,7 +26866,7 @@ Function _flaxClass_ImageProvider<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types
                     .key<
@@ -27268,29 +26892,18 @@ Function _flaxClass_ImageProvider<
             [
               FlaxCallbackParameter(
                 "cache",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_painting#type:ImageCache",
-                  nullable: true,
-                ),
+                _flaxBinding404,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "configuration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_painting#type:ImageConfiguration",
-                ),
+                _flaxBinding10,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef(
-              "future",
-              item: FlaxTypeRef("bool"),
-              future: FlaxFutureBinding("bool:", _future7Adapt),
-            ),
+            _flaxBinding406,
             id:
                 types
                     .key<
@@ -27310,10 +26923,7 @@ Function _flaxClass_ImageProvider<
             [
               FlaxCallbackParameter(
                 "configuration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_painting#type:ImageConfiguration",
-                ),
+                _flaxBinding10,
                 required: true,
                 positional: true,
               ),
@@ -27348,43 +26958,30 @@ Function _flaxClass_ImageProvider<
                     [
                       FlaxCallbackParameter(
                         "buffer",
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/sdk_dart_ui#type:ImmutableBuffer",
-                        ),
+                        _flaxBinding21,
                         required: true,
                         positional: true,
                       ),
                       FlaxCallbackParameter(
                         "allowUpscaling",
-                        FlaxTypeRef("bool"),
+                        _flaxBinding22,
                         required: false,
                         positional: false,
                       ),
                       FlaxCallbackParameter(
                         "cacheHeight",
-                        FlaxTypeRef("int", nullable: true),
+                        _flaxBinding23,
                         required: false,
                         positional: false,
                       ),
                       FlaxCallbackParameter(
                         "cacheWidth",
-                        FlaxTypeRef("int", nullable: true),
+                        _flaxBinding23,
                         required: false,
                         positional: false,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "future",
-                      item: FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:Codec",
-                      ),
-                      future: FlaxFutureBinding(
-                        "object:flax.core/sdk_dart_ui#type:Codec",
-                        _future1Adapt,
-                      ),
-                    ),
+                    _flaxBinding25,
                     _callback2,
                     id:
                         types
@@ -27405,10 +27002,7 @@ Function _flaxClass_ImageProvider<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_painting#type:ImageStreamCompleter",
-            ),
+            _flaxBinding28,
             id:
                 types
                     .key<
@@ -27446,10 +27040,7 @@ Function _flaxClass_ImageProvider<
                     [
                       FlaxCallbackParameter(
                         "buffer",
-                        FlaxTypeRef(
-                          "object",
-                          id: "flax.core/sdk_dart_ui#type:ImmutableBuffer",
-                        ),
+                        _flaxBinding21,
                         required: true,
                         positional: true,
                       ),
@@ -27462,21 +27053,18 @@ Function _flaxClass_ImageProvider<
                             [
                               FlaxCallbackParameter(
                                 "intrinsicWidth",
-                                FlaxTypeRef("int"),
+                                _flaxBinding0,
                                 required: true,
                                 positional: true,
                               ),
                               FlaxCallbackParameter(
                                 "intrinsicHeight",
-                                FlaxTypeRef("int"),
+                                _flaxBinding0,
                                 required: true,
                                 positional: true,
                               ),
                             ],
-                            FlaxTypeRef(
-                              "object",
-                              id: "flax.core/sdk_dart_ui#type:TargetImageSize",
-                            ),
+                            _flaxBinding30,
                             FlaxCallbackAdapters
                                 .wrap2<int, int, api1.TargetImageSize>,
                             id:
@@ -27498,17 +27086,7 @@ Function _flaxClass_ImageProvider<
                         positional: false,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "future",
-                      item: FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:Codec",
-                      ),
-                      future: FlaxFutureBinding(
-                        "object:flax.core/sdk_dart_ui#type:Codec",
-                        _future1Adapt,
-                      ),
-                    ),
+                    _flaxBinding25,
                     _callback3,
                     id:
                         types
@@ -27531,10 +27109,7 @@ Function _flaxClass_ImageProvider<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_painting#type:ImageStreamCompleter",
-            ),
+            _flaxBinding28,
             id:
                 types
                     .key<
@@ -27560,7 +27135,7 @@ Function _flaxClass_ImageProvider<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding4,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -27598,7 +27173,7 @@ _flaxGeneric_PaintingBinding_scheduleTask<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "task",
             types.define<api8.FutureOr<_Method0> Function()>(
@@ -27618,34 +27193,10 @@ _flaxGeneric_PaintingBinding_scheduleTask<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "priority",
-            FlaxTypeRef("object", id: "flax.core/sdk_scheduler#type:Priority"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "debugLabel",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "flow",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_dependencies#type:Flow",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("priority", _flaxBinding1346, required: true),
+          FlaxParameter("debugLabel", _flaxBinding38, required: false),
+          FlaxParameter("flow", _flaxBinding1347, required: false),
         ],
         types.ref<Future<_Method0>>(),
         invoke,
@@ -44345,3 +43896,18 @@ const _flaxBinding1804 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:TextAlignVertical",
 );
+const _flaxBinding1805 = <FlaxParameter>[
+  FlaxParameter("a", _flaxBinding0, required: true),
+];
+const _flaxBinding1806 = <FlaxParameter>[
+  FlaxParameter("opacity", _flaxBinding8, required: true),
+];
+const _flaxBinding1807 = <FlaxParameter>[
+  FlaxParameter("r", _flaxBinding0, required: true),
+];
+const _flaxBinding1808 = <FlaxParameter>[
+  FlaxParameter("g", _flaxBinding0, required: true),
+];
+const _flaxBinding1809 = <FlaxParameter>[
+  FlaxParameter("b", _flaxBinding0, required: true),
+];

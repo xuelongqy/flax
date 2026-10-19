@@ -370,17 +370,14 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         );
       }
       out.writeln('}');
-      final parameters = [
-        for (final p in method.parameters)
-          'FlaxParameter(${_quote(p.name)}, ${_ref(p.type)}, required: ${p.required}, defaultValue: ${_default(p)}, omitWhenAbsent: ${p.omitWhenAbsent})',
-      ];
+      final parameters = _parameters(method.parameters);
       final result = _ref(method.result);
       _usesVmCallbackResult |= _writeCallbackAdapters(
         out,
         _callbacks.entries.toList(),
       );
       out.writeln(
-        'return ${method.instance ? 'FlaxInstanceMethod' : 'FlaxFunctionBinding'}(${method.instance ? '' : '${_quote(functionId!)}, '}[${parameters.join(',')}], $result, invoke${method.startsRoute && method.instance ? ', startsRoute: true' : ''}${route == null ? '' : ', route: FlaxRouteCallBinding(${jsonEncode(route.builders)})'});',
+        'return ${method.instance ? 'FlaxInstanceMethod' : 'FlaxFunctionBinding'}(${method.instance ? '' : '${_quote(functionId!)}, '}$parameters, $result, invoke${method.startsRoute && method.instance ? ', startsRoute: true' : ''}${route == null ? '' : ', route: FlaxRouteCallBinding(${jsonEncode(route.builders)})'});',
       );
       out.writeln('};');
     });

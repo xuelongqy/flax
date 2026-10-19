@@ -1,7 +1,66 @@
 # Task: Flutter SDK Binding Verification
 
-Status: Shared SDK capability and metadata-size fixes complete; local dual-engine
-acceptance and review complete; not pushed
+Status: Generic factory fixed-description sharing implemented and reviewed
+
+## Fixed descriptions in generic factories
+
+Generic class and method factories now reuse the existing module constant pool for
+closed conversion descriptions and parameter lists. Types depending on an owner or
+method parameter remain local. Closed callbacks and deferred constructors also remain
+local because their helper functions can capture the current type context. Generic
+method factories use the ordinary parameter emitter, preserving defaults and omission
+rules. Receiver calls, native super bodies and bridge ownership are unchanged.
+
+| Measurement                               | Before bytes | After bytes | Reduction |
+| ----------------------------------------- | -----------: | ----------: | --------: |
+| Complete Core Dart, excluding bootstrap   |   48,448,429 |  47,091,884 |     2.80% |
+| Same macOS release application AOT binary |   73,412,704 |  72,263,584 |     1.57% |
+
+Widgets saves 421,053 source bytes, Rendering 352,538 and Material 233,473. The AOT code
+section saves 793,488 bytes and its constant section saves 352,944. The V8 library
+hashes are unchanged; signing and single-engine-closure checks pass. AOT measures the
+complete acceptance application, not binding code alone. The current 9,309 generated
+API, type-projection, delivery and Manifest files remain byte-identical, including all
+3,062 Core TS files and five package Manifests. JS APIs, Manifest 27, UI protocol 24 and
+native ABI 2 are unchanged.
+
+All 652 generator tests pass, including the generated-code regression for shared fixed
+List, Record, Future and parameter descriptions, distinct String/int owner types,
+wrong-type rejection, named callback adapters and factory-local deferred constructors.
+Official four-package generation and reproducibility, public-type projection, module
+delivery, strict workspace TypeScript and full workspace Dart analysis pass. Changed
+Dart formatting, Markdown lint, local links and whitespace checks pass.
+
+Two optimized macOS V8 release/AOT launches each pass the same 246 named cases as two
+baseline launches. Two debug-only checks are inapplicable in release. iOS Simulator
+Hermes debug acceptance passes all 248 named cases, matching the previous accepted case
+map. Covered cases include generic JS inheritance, overrides, lexical super and
+bidirectional collection. The task-owned Simulator is restored to shutdown.
+
+The existing Rendering benchmark runs in baseline, optimized, optimized, baseline order.
+Each application process warms up two batches and measures five batches of 200 composite
+operations per path. The table pools ten measured batches per variant and reports
+microseconds; checksums and iteration counts agree in all four runs.
+
+| Path                         | Baseline median (range)     | Optimized median (range)  | Median change |
+| ---------------------------- | --------------------------- | ------------------------- | ------------: |
+| JS inherited calls           | 347,472.5 (331,059–383,560) | 350,331 (329,617–370,507) |        +0.82% |
+| JS override and super        | 310,767.5 (285,897–330,823) | 311,132 (278,936–321,646) |        +0.12% |
+| Native parent override/super | 383,285.5 (377,566–390,812) | 383,079 (366,720–386,328) |        −0.05% |
+
+Review reruns pass 15 focused generator cases covering fixed descriptions, lexical
+generic scopes, nested callbacks, inheritance, overrides and super. Scoped Dart analysis
+and full four-package reproducibility pass. The reviewed production source matches the
+accepted dual-engine implementation above; JS, Manifests, runtime and engine sources are
+unchanged. Shared constants contain only declaration metadata and top-level typed
+helpers, while Session-owned type caches retain their existing close behavior.
+
+The ranges overlap; these small samples establish no speed guarantee or timing
+assertion. Cold generic-factory creation cost is not measured separately. Other
+platforms, every SDK member and complete optional-plugin suites were not rerun. No push,
+CI run or engine/SDK rebuild is included. Source snapshots, raw benchmark samples and
+acceptance receipts are in `.local/generic-descriptor-hoist-20261019/`; task-owned
+application copies are removed after recording their results.
 
 ## Metadata sharing and compact storage
 

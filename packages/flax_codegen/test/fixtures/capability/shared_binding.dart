@@ -77,6 +77,28 @@ class SharedGeneric<T> extends SharedBase {
   T echo(T value) => value;
 }
 
+class FixedFactory<T> {
+  FixedFactory(this.value, {this.label = 'fixed'});
+  T value;
+  final String label;
+  List<int> get values => [1, 2];
+  (String, int) get record => (label, 2);
+  Future<int> get future => Future.value(2);
+  FixedDeferred<int> get deferred => FixedDeferred(2);
+  int sum(List<int> values, {int offset = 3}) =>
+      values.fold(offset, (a, b) => a + b);
+  T choose(T input, {bool enabled = true}) => enabled ? input : value;
+  String call(String Function({required String text}) callback) =>
+      callback(text: label);
+}
+
+class FixedDeferred<T> {
+  FixedDeferred(this.value);
+  final T value;
+  static FixedDeferred<T> resolveWith<T>(T Function() callback) =>
+      FixedDeferred(callback());
+}
+
 class SharedWidgetBase extends StatelessWidget {
   const SharedWidgetBase({super.key});
 

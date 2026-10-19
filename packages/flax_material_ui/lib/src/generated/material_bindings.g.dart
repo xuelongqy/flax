@@ -14885,54 +14885,17 @@ _flaxGenericFunction0<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.material/material#function:showDialog",
-    [
-      FlaxParameter(
-        "anchorPoint",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Offset",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animationStyle",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:AnimationStyle",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "barrierColor",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Color",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("anchorPoint", _flaxBinding622, required: false),
+      FlaxParameter("animationStyle", _flaxBinding359, required: false),
+      FlaxParameter("barrierColor", _flaxBinding3, required: false),
       FlaxParameter(
         "barrierDismissible",
-        FlaxTypeRef("bool"),
+        _flaxBinding18,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "barrierLabel",
-        FlaxTypeRef("String", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("barrierLabel", _flaxBinding12, required: false),
       FlaxParameter(
         "builder",
         FlaxTypeRef(
@@ -14941,15 +14904,12 @@ _flaxGenericFunction0<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding148,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding5,
             FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
             id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
@@ -14959,65 +14919,28 @@ _flaxGenericFunction0<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding148, required: true),
       FlaxParameter(
         "fullscreenDialog",
-        FlaxTypeRef("bool"),
+        _flaxBinding18,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "requestFocus",
-        FlaxTypeRef("bool", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "routeSettings",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:RouteSettings",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "traversalEdgeBehavior",
-        FlaxTypeRef(
-          "enum",
-          id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("requestFocus", _flaxBinding48, required: false),
+      FlaxParameter("routeSettings", _flaxBinding462, required: false),
+      FlaxParameter("traversalEdgeBehavior", _flaxBinding383, required: false),
       FlaxParameter(
         "useRootNavigator",
-        FlaxTypeRef("bool"),
+        _flaxBinding18,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "useSafeArea",
-        FlaxTypeRef("bool"),
+        _flaxBinding18,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -15125,28 +15048,12 @@ Function _flaxClass_MaterialPage<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _MaterialPage_name,
-        ),
-        FlaxGetter(
-          "arguments",
-          FlaxTypeRef("any", nullable: true),
-          _MaterialPage_arguments,
-        ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:LocalKey",
-            nullable: true,
-          ),
-          _MaterialPage_key,
-        ),
+        FlaxGetter("name", _flaxBinding12, _MaterialPage_name),
+        FlaxGetter("arguments", _flaxBinding243, _MaterialPage_arguments),
+        FlaxGetter("key", _flaxBinding367, _MaterialPage_key),
         FlaxGetter(
           "restorationId",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding12,
           _MaterialPage_restorationId,
         ),
         FlaxGetter(
@@ -15159,7 +15066,7 @@ Function _flaxClass_MaterialPage<
                 [
                   FlaxCallbackParameter(
                     "didPop",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding18,
                     required: true,
                     positional: true,
                   ),
@@ -15170,7 +15077,7 @@ Function _flaxClass_MaterialPage<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding78,
                 FlaxCallbackAdapters.wrapVoid2<bool, _Owner0?>,
                 id: types.key<void Function(bool didPop, _Owner0? result)>() + ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid2<bool, _Owner0?>,
@@ -15180,90 +15087,66 @@ Function _flaxClass_MaterialPage<
           ),
           _MaterialPage_onPopInvoked,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _MaterialPage_canPop),
-        FlaxGetter("child", FlaxTypeRef("widget"), _MaterialPage_child),
+        FlaxGetter("canPop", _flaxBinding18, _MaterialPage_canPop),
+        FlaxGetter("child", _flaxBinding5, _MaterialPage_child),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPage_maintainState,
         ),
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPage_fullscreenDialog,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPage_allowSnapshotting,
         ),
       ],
       {
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding68,
+          _flaxBinding67,
           _MaterialPage_toString,
         ),
         "canUpdate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "other",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Page",
-                dartType: FlaxDartTypes.typeOf<api1.Page<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding376,
+          _flaxBinding18,
           _MaterialPage_canUpdate,
         ),
         "createRoute": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
+          _flaxBinding377,
           types.ref<api1.Route<_Owner0>>(),
           _MaterialPage_createRoute,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter("child", FlaxTypeRef("widget"), required: true),
+          FlaxParameter("child", _flaxBinding5, required: true),
           FlaxParameter(
             "maintainState",
-            FlaxTypeRef("bool"),
+            _flaxBinding18,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "fullscreenDialog",
-            FlaxTypeRef("bool"),
+            _flaxBinding18,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "allowSnapshotting",
-            FlaxTypeRef("bool"),
+            _flaxBinding18,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:LocalKey",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding367, required: false),
           FlaxParameter(
             "canPop",
-            FlaxTypeRef("bool"),
+            _flaxBinding18,
             required: false,
             defaultValue: true,
           ),
@@ -15277,7 +15160,7 @@ Function _flaxClass_MaterialPage<
                   [
                     FlaxCallbackParameter(
                       "didPop",
-                      FlaxTypeRef("bool"),
+                      _flaxBinding18,
                       required: true,
                       positional: true,
                     ),
@@ -15288,7 +15171,7 @@ Function _flaxClass_MaterialPage<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding78,
                   FlaxCallbackAdapters.wrapVoid2<bool, _Owner0?>,
                   id: types.key<void Function(bool didPop, _Owner0? result)>() + ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid2<bool, _Owner0?>,
@@ -15299,21 +15182,9 @@ Function _flaxClass_MaterialPage<
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "restorationId",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("name", _flaxBinding12, required: false),
+          FlaxParameter("arguments", _flaxBinding243, required: false),
+          FlaxParameter("restorationId", _flaxBinding12, required: false),
         ],
       },
       create: _createMaterialPage,
@@ -16042,31 +15913,15 @@ Function _flaxClass_MaterialPageRoute<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
-          _MaterialPageRoute_filter,
-        ),
+        FlaxGetter("filter", _flaxBinding381, _MaterialPageRoute_filter),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding383,
           _MaterialPageRoute_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding383,
           _MaterialPageRoute_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -16078,47 +15933,36 @@ Function _flaxClass_MaterialPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding148,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding386,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding386,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding1,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding1,
               _callback0,
               id:
                   types
@@ -16147,47 +15991,36 @@ Function _flaxClass_MaterialPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding148,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding386,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding386,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding1,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding1,
               _callback1,
               id:
                   types
@@ -16209,104 +16042,75 @@ Function _flaxClass_MaterialPageRoute<
         ),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_barrierDismissible,
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding3,
           _MaterialPageRoute_barrierColor,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding12,
           _MaterialPageRoute_barrierLabel,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding22,
           _MaterialPageRoute_barrierCurve,
         ),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_maintainState,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_popGestureInProgress,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_popGestureEnabled,
         ),
-        FlaxGetter(
-          "offstage",
-          FlaxTypeRef("bool"),
-          _MaterialPageRoute_offstage,
-        ),
+        FlaxGetter("offstage", _flaxBinding18, _MaterialPageRoute_offstage),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding400,
           _MaterialPageRoute_subtreeContext,
         ),
-        FlaxGetter(
-          "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
-          _MaterialPageRoute_animation,
-        ),
+        FlaxGetter("animation", _flaxBinding402, _MaterialPageRoute_animation),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding402,
           _MaterialPageRoute_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding405,
           _MaterialPageRoute_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_hasScopedWillPopCallback,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _MaterialPageRoute_canPop),
+        FlaxGetter("canPop", _flaxBinding18, _MaterialPageRoute_canPop),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_impliesAppBarDismissal,
         ),
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_fullscreenDialog,
         ),
         FlaxGetter(
@@ -16316,104 +16120,56 @@ Function _flaxClass_MaterialPageRoute<
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding21,
           _MaterialPageRoute_transitionDuration,
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding21,
           _MaterialPageRoute_reverseTransitionDuration,
         ),
-        FlaxGetter("opaque", FlaxTypeRef("bool"), _MaterialPageRoute_opaque),
+        FlaxGetter("opaque", _flaxBinding18, _MaterialPageRoute_opaque),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_allowSnapshotting,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding170,
           _MaterialPageRoute_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_willDisposeAnimationController,
         ),
-        FlaxGetter(
-          "debugLabel",
-          FlaxTypeRef("String"),
-          _MaterialPageRoute_debugLabel,
-        ),
+        FlaxGetter("debugLabel", _flaxBinding67, _MaterialPageRoute_debugLabel),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection16Create,
-              _collection16Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection17Create,
-                _collection17Matches,
-                restore: _collection17Restore,
-              ),
-            ),
-          ),
+          _flaxBinding421,
           _MaterialPageRoute_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_requestFocus,
         ),
-        FlaxGetter(
-          "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
-          _MaterialPageRoute_navigator,
-        ),
-        FlaxGetter(
-          "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
-          _MaterialPageRoute_settings,
-        ),
+        FlaxGetter("navigator", _flaxBinding424, _MaterialPageRoute_navigator),
+        FlaxGetter("settings", _flaxBinding321, _MaterialPageRoute_settings),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding427,
           _MaterialPageRoute_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -16426,22 +16182,14 @@ Function _flaxClass_MaterialPageRoute<
           types.ref<Future<_Owner0?>>(),
           _MaterialPageRoute_popped,
         ),
-        FlaxGetter(
-          "isCurrent",
-          FlaxTypeRef("bool"),
-          _MaterialPageRoute_isCurrent,
-        ),
-        FlaxGetter("isFirst", FlaxTypeRef("bool"), _MaterialPageRoute_isFirst),
+        FlaxGetter("isCurrent", _flaxBinding18, _MaterialPageRoute_isCurrent),
+        FlaxGetter("isFirst", _flaxBinding18, _MaterialPageRoute_isFirst),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_hasActiveRouteBelow,
         ),
-        FlaxGetter(
-          "isActive",
-          FlaxTypeRef("bool"),
-          _MaterialPageRoute_isActive,
-        ),
+        FlaxGetter("isActive", _flaxBinding18, _MaterialPageRoute_isActive),
         FlaxGetter(
           "builder",
           FlaxTypeRef(
@@ -16450,15 +16198,12 @@ Function _flaxClass_MaterialPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding148,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding5,
               FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
               id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
               invoke:
@@ -16479,7 +16224,7 @@ Function _flaxClass_MaterialPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding78,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -16489,107 +16234,45 @@ Function _flaxClass_MaterialPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding78,
           _MaterialPageRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding437,
+          _flaxBinding5,
           _MaterialPageRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding438,
+          _flaxBinding5,
           _MaterialPageRoute_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding68,
+          _flaxBinding439,
           _MaterialPageRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future1Adapt,
-            ),
-          ),
+          _flaxBinding68,
+          _flaxBinding440,
           _MaterialPageRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding18, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding78,
           _MaterialPageRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -16600,11 +16283,7 @@ Function _flaxClass_MaterialPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future2Adapt),
-                  ),
+                  _flaxBinding441,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -16616,7 +16295,7 @@ Function _flaxClass_MaterialPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding78,
           _MaterialPageRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -16627,11 +16306,7 @@ Function _flaxClass_MaterialPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future2Adapt),
-                  ),
+                  _flaxBinding441,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -16643,294 +16318,151 @@ Function _flaxClass_MaterialPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding78,
           _MaterialPageRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding446,
+          _flaxBinding78,
           _MaterialPageRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding446,
+          _flaxBinding78,
           _MaterialPageRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding447,
+          _flaxBinding78,
           _MaterialPageRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding448,
+          _flaxBinding78,
           _MaterialPageRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding449,
+          _flaxBinding78,
           _MaterialPageRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding68,
+          _flaxBinding5,
           _MaterialPageRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection17Create,
-              _collection17Matches,
-              restore: _collection17Restore,
-            ),
-          ),
+          _flaxBinding68,
+          _flaxBinding420,
           _MaterialPageRoute_createOverlayEntries,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding68,
+          _flaxBinding67,
           _MaterialPageRoute_toString,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding68,
+          _flaxBinding18,
           _MaterialPageRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding68,
+          _flaxBinding450,
           _MaterialPageRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding68,
+          _flaxBinding386,
           _MaterialPageRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_physics#type:Simulation",
-            nullable: true,
-          ),
+          _flaxBinding452,
+          _flaxBinding451,
           _MaterialPageRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding453,
+          _flaxBinding78,
           _MaterialPageRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding455,
+          _flaxBinding18,
           _MaterialPageRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding456,
+          _flaxBinding18,
           _MaterialPageRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding457,
+          _flaxBinding78,
           _MaterialPageRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding458,
+          _flaxBinding78,
           _MaterialPageRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding68,
+          _flaxBinding78,
           _MaterialPageRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding459,
+          _flaxBinding78,
           _MaterialPageRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding78,
           _MaterialPageRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding461,
+          _flaxBinding78,
           _MaterialPageRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding461,
+          _flaxBinding78,
           _MaterialPageRoute_removeLocalHistoryEntry,
         ),
         "buildContent": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding377,
+          _flaxBinding5,
           _MaterialPageRoute_buildContent,
         ),
       },
@@ -16944,15 +16476,12 @@ Function _flaxClass_MaterialPageRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding148,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding5,
                 FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
                 id:
                     types
@@ -16968,60 +16497,40 @@ Function _flaxClass_MaterialPageRoute<
             ),
             required: true,
           ),
-          FlaxParameter(
-            "settings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("settings", _flaxBinding462, required: false),
+          FlaxParameter("requestFocus", _flaxBinding48, required: false),
           FlaxParameter(
             "maintainState",
-            FlaxTypeRef("bool"),
+            _flaxBinding18,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "fullscreenDialog",
-            FlaxTypeRef("bool"),
+            _flaxBinding18,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "allowSnapshotting",
-            FlaxTypeRef("bool"),
+            _flaxBinding18,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "barrierDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding18,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "traversalEdgeBehavior",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-              nullable: true,
-            ),
+            _flaxBinding383,
             required: false,
           ),
           FlaxParameter(
             "directionalTraversalEdgeBehavior",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-              nullable: true,
-            ),
+            _flaxBinding383,
             required: false,
           ),
         ],
@@ -17038,47 +16547,36 @@ Function _flaxClass_MaterialPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding148,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding386,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding386,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding18,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding1,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding1,
               _callback2,
               id:
                   types
@@ -17098,14 +16596,10 @@ Function _flaxClass_MaterialPageRoute<
           ),
           _MaterialPageRoute_set_receivedTransition,
         ),
-        FlaxSetter(
-          "offstage",
-          FlaxTypeRef("bool"),
-          _MaterialPageRoute_set_offstage,
-        ),
+        FlaxSetter("offstage", _flaxBinding18, _MaterialPageRoute_set_offstage),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding18,
           _MaterialPageRoute_set_willDisposeAnimationController,
         ),
       ],
@@ -17134,7 +16628,7 @@ Function _flaxGeneric_ThemeData_extension<_Method0 extends Object?>() =>
         return (receiver as api.ThemeData).extension<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<_Method0?>(), invoke);
+      return FlaxInstanceMethod(_flaxBinding68, types.ref<_Method0?>(), invoke);
     };
 const _flaxDartShapes = <FlaxDartShapeTemplate>[
   FlaxDartShapeTemplate("[\"callback\",[1,1,[],[]]]", _flaxShape0),

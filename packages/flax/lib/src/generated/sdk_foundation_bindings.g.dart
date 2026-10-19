@@ -32575,7 +32575,7 @@ FlaxCallbackBinding _flaxProxySignature_SynchronousFuture_then<
       ),
       FlaxCallbackParameter(
         "onError",
-        FlaxTypeRef("function", nullable: true),
+        _flaxBinding839,
         required: false,
         positional: false,
       ),
@@ -33145,23 +33145,15 @@ Function _flaxGenericFunction0<_Method0 extends api3.Comparable<Object>>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_foundation#function:binarySearch",
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "sortedList",
             types.ref<List<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "value",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("value", types.ref<_Method0>(), required: true),
         ],
-        FlaxTypeRef("int"),
+        _flaxBinding6,
         invoke,
       );
     };
@@ -33198,7 +33190,7 @@ Function _flaxGenericFunction1<
 
   return FlaxFunctionBinding(
     "flax.core/sdk_foundation#function:compute",
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "callback",
         types.define<api5.FutureOr<_Method1> Function(_Method0 message)>(
@@ -33228,23 +33220,9 @@ Function _flaxGenericFunction1<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "message",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "debugLabel",
-        FlaxTypeRef("String", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("message", types.ref<_Method0>(), required: true),
+      FlaxParameter("debugLabel", _flaxBinding67, required: false),
     ],
     types.ref<Future<_Method1>>(),
     invoke,
@@ -33277,14 +33255,8 @@ Function _flaxGenericFunction5<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_foundation#function:debugInstrumentAction",
-        [
-          FlaxParameter(
-            "description",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("description", _flaxBinding14, required: true),
           FlaxParameter(
             "action",
             types.define<Future<_Method0> Function()>(
@@ -33304,8 +33276,6 @@ Function _flaxGenericFunction5<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0>>(),
@@ -33323,58 +33293,35 @@ Function _flaxGenericFunction15<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_foundation#function:listEquals",
-        [
-          FlaxParameter(
-            "a",
-            types.ref<List<_Method0>?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "b",
-            types.ref<List<_Method0>?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("a", types.ref<List<_Method0>?>(), required: true),
+          FlaxParameter("b", types.ref<List<_Method0>?>(), required: true),
         ],
-        FlaxTypeRef("bool"),
+        _flaxBinding10,
         invoke,
       );
     };
-Function
-_flaxGenericFunction16<_Method0 extends Object?, _Method1 extends Object?>() =>
-    (FlaxDartTypes types) {
-      Object? invoke(Map<String, Object?> values) {
-        return api.mapEquals<_Method0, _Method1>(
-          values["a"] as Map<_Method0, _Method1>?,
-          values["b"] as Map<_Method0, _Method1>?,
-        );
-      }
+Function _flaxGenericFunction16<
+  _Method0 extends Object?,
+  _Method1 extends Object?
+>() => (FlaxDartTypes types) {
+  Object? invoke(Map<String, Object?> values) {
+    return api.mapEquals<_Method0, _Method1>(
+      values["a"] as Map<_Method0, _Method1>?,
+      values["b"] as Map<_Method0, _Method1>?,
+    );
+  }
 
-      return FlaxFunctionBinding(
-        "flax.core/sdk_foundation#function:mapEquals",
-        [
-          FlaxParameter(
-            "a",
-            types.ref<Map<_Method0, _Method1>?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "b",
-            types.ref<Map<_Method0, _Method1>?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-        FlaxTypeRef("bool"),
-        invoke,
-      );
-    };
+  return FlaxFunctionBinding(
+    "flax.core/sdk_foundation#function:mapEquals",
+    <FlaxParameter>[
+      FlaxParameter("a", types.ref<Map<_Method0, _Method1>?>(), required: true),
+      FlaxParameter("b", types.ref<Map<_Method0, _Method1>?>(), required: true),
+    ],
+    _flaxBinding10,
+    invoke,
+  );
+};
 Function _flaxGenericFunction17<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Map<String, Object?> values) {
@@ -33389,14 +33336,8 @@ Function _flaxGenericFunction17<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_foundation#function:mergeSort",
-        [
-          FlaxParameter(
-            "list",
-            types.ref<List<_Method0>>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("list", types.ref<List<_Method0>>(), required: true),
           FlaxParameter(
             "compare",
             types.define<int Function(_Method0 p0, _Method0 p1)?>(
@@ -33418,7 +33359,7 @@ Function _flaxGenericFunction17<_Method0 extends Object?>() =>
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("int"),
+                  _flaxBinding6,
                   FlaxCallbackAdapters.wrap2<_Method0, _Method0, int>,
                   id:
                       types.key<int Function(_Method0 p0, _Method0 p1)?>() +
@@ -33430,25 +33371,16 @@ Function _flaxGenericFunction17<_Method0 extends Object?>() =>
               ),
             ),
             required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "end",
-            FlaxTypeRef("int", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("end", _flaxBinding112, required: false),
           FlaxParameter(
             "start",
-            FlaxTypeRef("int"),
+            _flaxBinding6,
             required: false,
             defaultValue: 0,
-            omitWhenAbsent: false,
           ),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding1,
         invoke,
       );
     };
@@ -33463,23 +33395,11 @@ Function _flaxGenericFunction19<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_foundation#function:setEquals",
-        [
-          FlaxParameter(
-            "a",
-            types.ref<Set<_Method0>?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "b",
-            types.ref<Set<_Method0>?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("a", types.ref<Set<_Method0>?>(), required: true),
+          FlaxParameter("b", types.ref<Set<_Method0>?>(), required: true),
         ],
-        FlaxTypeRef("bool"),
+        _flaxBinding10,
         invoke,
       );
     };
@@ -33493,14 +33413,8 @@ Function _flaxGenericFunction21<_Method0 extends api.BindingBase>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_foundation#function:BindingBase.checkInstance",
-        [
-          FlaxParameter(
-            "instance",
-            types.ref<_Method0?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("instance", types.ref<_Method0?>(), required: true),
         ],
         types.ref<_Method0>(),
         invoke,
@@ -33519,14 +33433,8 @@ Function _flaxGenericFunction51<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_foundation#function:FlutterTimeline.timeSync",
-        [
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("name", _flaxBinding14, required: true),
           FlaxParameter(
             "function",
             types.define<_Method0 Function()>(
@@ -33546,37 +33454,9 @@ Function _flaxGenericFunction51<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef(
-              "map",
-              nullable: true,
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "flow",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_dependencies#type:Flow",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("arguments", _flaxBinding985, required: false),
+          FlaxParameter("flow", _flaxBinding986, required: false),
         ],
         types.ref<_Method0>(),
         invoke,
@@ -33632,42 +33512,30 @@ Function _flaxClass_BitField<_Owner0 extends Object?>() =>
           [],
           {
             "reset": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter(
-                  "value",
-                  FlaxTypeRef("bool"),
-                  required: false,
-                  defaultValue: false,
-                ),
-              ],
-              FlaxTypeRef("void"),
+              _flaxBinding226,
+              _flaxBinding1,
               _BitField_reset,
             ),
             "operatorGetIndex": FlaxInstanceMethod(
               <FlaxParameter>[
                 FlaxParameter("index", types.ref<_Owner0>(), required: true),
               ],
-              FlaxTypeRef("bool"),
+              _flaxBinding10,
               _BitField_operatorGetIndex,
             ),
             "operatorSetIndex": FlaxInstanceMethod(
               <FlaxParameter>[
                 FlaxParameter("index", types.ref<_Owner0>(), required: true),
-                FlaxParameter("value", FlaxTypeRef("bool"), required: true),
+                FlaxParameter("value", _flaxBinding10, required: true),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding1,
               _BitField_operatorSetIndex,
             ),
           },
           constructors: {
-            "": <FlaxParameter>[
-              FlaxParameter("length", FlaxTypeRef("int"), required: true),
-            ],
-            "filled": <FlaxParameter>[
-              FlaxParameter("length", FlaxTypeRef("int"), required: true),
-              FlaxParameter("value", FlaxTypeRef("bool"), required: true),
-            ],
-            "@implementation": <FlaxParameter>[],
+            "": _flaxBinding227,
+            "filled": _flaxBinding228,
+            "@implementation": _flaxBinding156,
           },
           create: _createBitField,
           matches: _isBitField,
@@ -33686,12 +33554,12 @@ Function _flaxClass_BitField<_Owner0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "value",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     required: false,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding1,
                 id:
                     types.key<void Function([bool value])>() +
                     ":callback:<>(p:o:value:bool:)->void:",
@@ -33709,7 +33577,7 @@ Function _flaxClass_BitField<_Owner0 extends Object?>() =>
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("bool"),
+                _flaxBinding10,
                 id:
                     types.key<bool Function(_Owner0 index)>() +
                     ":callback:<>(p:r:index:parameter:)->bool:",
@@ -33728,12 +33596,12 @@ Function _flaxClass_BitField<_Owner0 extends Object?>() =>
                   ),
                   FlaxCallbackParameter(
                     "value",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding1,
                 id:
                     types.key<void Function(_Owner0 index, bool value)>() +
                     ":callback:<>(p:r:index:parameter:,p:r:value:bool:)->void:",
@@ -33754,7 +33622,7 @@ Function _flaxGeneric_CachingIterable_map<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElement",
         types.define<_Method0 Function(_Owner0 e)>(
@@ -33781,8 +33649,6 @@ Function _flaxGeneric_CachingIterable_map<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -33801,7 +33667,7 @@ Function _flaxGeneric_CachingIterable_super_map<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElement",
         types.define<_Method0 Function(_Owner0 e)>(
@@ -33828,8 +33694,6 @@ Function _flaxGeneric_CachingIterable_super_map<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -33847,7 +33711,7 @@ Function _flaxGeneric_CachingIterable_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElements",
         types.define<Iterable<_Method0> Function(_Owner0 element)>(
@@ -33875,8 +33739,6 @@ Function _flaxGeneric_CachingIterable_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -33895,7 +33757,7 @@ Function _flaxGeneric_CachingIterable_super_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElements",
         types.define<Iterable<_Method0> Function(_Owner0 element)>(
@@ -33923,8 +33785,6 @@ Function _flaxGeneric_CachingIterable_super_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -33939,7 +33799,11 @@ Function _flaxGeneric_CachingIterable_cast<
     return (receiver as api.CachingIterable<_Owner0>).cast<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_CachingIterable_super_cast<
   _Owner0 extends Object?,
@@ -33950,7 +33814,11 @@ Function _flaxGeneric_CachingIterable_super_cast<
         ._flaxSuper_cast<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_CachingIterable_whereType<
   _Owner0 extends Object?,
@@ -33960,7 +33828,11 @@ Function _flaxGeneric_CachingIterable_whereType<
     return (receiver as api.CachingIterable<_Owner0>).whereType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_CachingIterable_super_whereType<
   _Owner0 extends Object?,
@@ -33971,7 +33843,11 @@ Function _flaxGeneric_CachingIterable_super_whereType<
         ._flaxSuper_whereType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_CachingIterable_fold<
   _Owner0 extends Object?,
@@ -33986,14 +33862,8 @@ Function _flaxGeneric_CachingIterable_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<
@@ -34035,8 +33905,6 @@ Function _flaxGeneric_CachingIterable_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0>(),
@@ -34057,14 +33925,8 @@ Function _flaxGeneric_CachingIterable_super_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<
@@ -34106,8 +33968,6 @@ Function _flaxGeneric_CachingIterable_super_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0>(),
@@ -34907,13 +34767,9 @@ Function _flaxClass_CachingIterable<
           types.ref<api3.Iterator<_Owner0>>(),
           _CachingIterable_iterator,
         ),
-        FlaxGetter("length", FlaxTypeRef("int"), _CachingIterable_length),
-        FlaxGetter("isEmpty", FlaxTypeRef("bool"), _CachingIterable_isEmpty),
-        FlaxGetter(
-          "isNotEmpty",
-          FlaxTypeRef("bool"),
-          _CachingIterable_isNotEmpty,
-        ),
+        FlaxGetter("length", _flaxBinding6, _CachingIterable_length),
+        FlaxGetter("isEmpty", _flaxBinding10, _CachingIterable_isEmpty),
+        FlaxGetter("isNotEmpty", _flaxBinding10, _CachingIterable_isNotEmpty),
         FlaxGetter("first", types.ref<_Owner0>(), _CachingIterable_first),
         FlaxGetter("last", types.ref<_Owner0>(), _CachingIterable_last),
         FlaxGetter("single", types.ref<_Owner0>(), _CachingIterable_single),
@@ -34936,7 +34792,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                     id:
                         types.key<Object? Function(_Owner0 e)>() +
@@ -34949,16 +34805,7 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _CachingIterable_map,
           genericFactory: _flaxGeneric_CachingIterable_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -34980,7 +34827,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -35013,16 +34860,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("any", nullable: true),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[any?:]",
-                        _collection21Create,
-                        _collection21Matches,
-                        restore: _collection21Restore,
-                      ),
-                    ),
+                    _flaxBinding234,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -35040,24 +34878,13 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _CachingIterable_expand,
           genericFactory: _flaxGeneric_CachingIterable_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "take": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _CachingIterable_take,
         ),
@@ -35078,7 +34905,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -35095,9 +34922,7 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_takeWhile,
         ),
         "skip": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _CachingIterable_skip,
         ),
@@ -35118,7 +34943,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -35135,36 +34960,18 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_skipWhile,
         ),
         "elementAt": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("index", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding236,
           types.ref<_Owner0>(),
           _CachingIterable_elementAt,
         ),
         "toList": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "growable",
-              FlaxTypeRef("bool"),
-              required: false,
-              defaultValue: true,
-            ),
-          ],
+          _flaxBinding237,
           types.ref<List<_Owner0>>(),
           _CachingIterable_toList,
         ),
         "cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _CachingIterable_cast,
           genericFactory: _flaxGeneric_CachingIterable_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -35181,30 +34988,15 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_followedBy,
         ),
         "whereType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _CachingIterable_whereType,
           genericFactory: _flaxGeneric_CachingIterable_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "contains": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "element",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding993,
+          _flaxBinding10,
           _CachingIterable_contains,
         ),
         "forEach": FlaxInstanceMethod(
@@ -35224,7 +35016,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 element)>() +
@@ -35237,7 +35029,7 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _CachingIterable_forEach,
         ),
         "reduce": FlaxInstanceMethod(
@@ -35286,11 +35078,7 @@ Function _flaxClass_CachingIterable<
         ),
         "fold": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "initialValue",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
+            FlaxParameter("initialValue", _flaxBinding8, required: true),
             FlaxParameter(
               "combine",
               types.define<
@@ -35303,7 +35091,7 @@ Function _flaxClass_CachingIterable<
                     [
                       FlaxCallbackParameter(
                         "previousValue",
-                        FlaxTypeRef("any", nullable: true),
+                        _flaxBinding8,
                         required: true,
                         positional: true,
                       ),
@@ -35314,7 +35102,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                     id:
                         types
@@ -35335,7 +35123,7 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _CachingIterable_fold,
           genericFactory: _flaxGeneric_CachingIterable_fold,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -35357,7 +35145,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -35370,19 +35158,12 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _CachingIterable_every,
         ),
         "join": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "separator",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding238,
+          _flaxBinding14,
           _CachingIterable_join,
         ),
         "any": FlaxInstanceMethod(
@@ -35402,7 +35183,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -35415,11 +35196,11 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _CachingIterable_any,
         ),
         "toSet": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<Set<_Owner0>>(),
           _CachingIterable_toSet,
         ),
@@ -35440,7 +35221,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -35493,7 +35274,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -35546,7 +35327,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -35599,7 +35380,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                     id:
                         types.key<Object? Function(_Owner0 e)>() +
@@ -35612,16 +35393,7 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _CachingIterable_super_map,
           genericFactory: _flaxGeneric_CachingIterable_super_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -35643,7 +35415,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -35676,16 +35448,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("any", nullable: true),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[any?:]",
-                        _collection21Create,
-                        _collection21Matches,
-                        restore: _collection21Restore,
-                      ),
-                    ),
+                    _flaxBinding234,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -35703,24 +35466,13 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _CachingIterable_super_expand,
           genericFactory: _flaxGeneric_CachingIterable_super_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:take": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _CachingIterable_super_take,
         ),
@@ -35741,7 +35493,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -35758,9 +35510,7 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _CachingIterable_super_skip,
         ),
@@ -35781,7 +35531,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -35798,36 +35548,18 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_super_skipWhile,
         ),
         "@super:elementAt": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("index", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding236,
           types.ref<_Owner0>(),
           _CachingIterable_super_elementAt,
         ),
         "@super:toList": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "growable",
-              FlaxTypeRef("bool"),
-              required: false,
-              defaultValue: true,
-            ),
-          ],
+          _flaxBinding237,
           types.ref<List<_Owner0>>(),
           _CachingIterable_super_toList,
         ),
         "@super:cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _CachingIterable_super_cast,
           genericFactory: _flaxGeneric_CachingIterable_super_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -35844,30 +35576,15 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_super_followedBy,
         ),
         "@super:whereType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _CachingIterable_super_whereType,
           genericFactory: _flaxGeneric_CachingIterable_super_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:contains": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "element",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding993,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_call_contains,
         ),
         "@super:forEach": FlaxInstanceMethod(
@@ -35887,7 +35604,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 element)>() +
@@ -35900,7 +35617,7 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _CachingIterable_super_forEach,
         ),
         "@super:reduce": FlaxInstanceMethod(
@@ -35949,11 +35666,7 @@ Function _flaxClass_CachingIterable<
         ),
         "@super:fold": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "initialValue",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
+            FlaxParameter("initialValue", _flaxBinding8, required: true),
             FlaxParameter(
               "combine",
               types.define<
@@ -35966,7 +35679,7 @@ Function _flaxClass_CachingIterable<
                     [
                       FlaxCallbackParameter(
                         "previousValue",
-                        FlaxTypeRef("any", nullable: true),
+                        _flaxBinding8,
                         required: true,
                         positional: true,
                       ),
@@ -35977,7 +35690,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                     id:
                         types
@@ -35998,7 +35711,7 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _CachingIterable_super_fold,
           genericFactory: _flaxGeneric_CachingIterable_super_fold,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -36020,7 +35733,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -36033,19 +35746,12 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _CachingIterable_super_every,
         ),
         "@super:join": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "separator",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding238,
+          _flaxBinding14,
           _FlaxProxyDispatch1_super_call_join,
         ),
         "@super:any": FlaxInstanceMethod(
@@ -36065,7 +35771,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -36078,11 +35784,11 @@ Function _flaxClass_CachingIterable<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _CachingIterable_super_any,
         ),
         "@super:toSet": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<Set<_Owner0>>(),
           _CachingIterable_super_toSet,
         ),
@@ -36103,7 +35809,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -36156,7 +35862,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -36209,7 +35915,7 @@ Function _flaxClass_CachingIterable<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -36246,37 +35952,37 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_super_singleWhere,
         ),
         "@super:get:iterator": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<api3.Iterator<_Owner0>>(),
           _CachingIterable_super_get_iterator,
         ),
         "@super:get:length": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding156,
+          _flaxBinding6,
           _FlaxProxyDispatch1_super_get_length,
         ),
         "@super:get:isEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_get_isEmpty,
         ),
         "@super:get:isNotEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_get_isNotEmpty,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _CachingIterable_super_get_first,
         ),
         "@super:get:last": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _CachingIterable_super_get_last,
         ),
         "@super:get:single": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _CachingIterable_super_get_single,
         ),
@@ -36320,7 +36026,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding8,
                       FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                       id:
                           types.key<Object? Function(_Owner0 e)>() +
@@ -36335,16 +36041,7 @@ Function _flaxClass_CachingIterable<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback0,
             id:
                 types
@@ -36381,7 +36078,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -36428,16 +36125,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef(
-                        "iterable",
-                        item: FlaxTypeRef("any", nullable: true),
-                        collection: FlaxCollectionBinding(
-                          "iterable:[any?:]",
-                          _collection21Create,
-                          _collection21Matches,
-                          restore: _collection21Restore,
-                        ),
-                      ),
+                      _flaxBinding234,
                       FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                       id:
                           types
@@ -36457,16 +36145,7 @@ Function _flaxClass_CachingIterable<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback1,
             id:
                 types
@@ -36490,7 +36169,7 @@ Function _flaxClass_CachingIterable<
             [
               FlaxCallbackParameter(
                 "count",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -36522,7 +36201,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 value)>() +
@@ -36556,7 +36235,7 @@ Function _flaxClass_CachingIterable<
             [
               FlaxCallbackParameter(
                 "count",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -36588,7 +36267,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 value)>() +
@@ -36622,7 +36301,7 @@ Function _flaxClass_CachingIterable<
             [
               FlaxCallbackParameter(
                 "index",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -36641,7 +36320,7 @@ Function _flaxClass_CachingIterable<
             [
               FlaxCallbackParameter(
                 "growable",
-                FlaxTypeRef("bool"),
+                _flaxBinding10,
                 required: false,
                 positional: false,
               ),
@@ -36658,16 +36337,7 @@ Function _flaxClass_CachingIterable<
           0,
           FlaxCallbackBinding(
             [],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback2,
             id:
                 types.key<Iterable<R> Function<R extends Object?>()>() +
@@ -36706,16 +36376,7 @@ Function _flaxClass_CachingIterable<
           0,
           FlaxCallbackBinding(
             [],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback3,
             id:
                 types.key<Iterable<T> Function<T extends Object?>()>() +
@@ -36734,12 +36395,12 @@ Function _flaxClass_CachingIterable<
             [
               FlaxCallbackParameter(
                 "element",
-                FlaxTypeRef("any", nullable: true),
+                _flaxBinding8,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types.key<bool Function(Object? element)>() +
                 ":callback:<>(p:r:element:any?:)->bool:",
@@ -36766,7 +36427,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("void"),
+                      _flaxBinding1,
                       FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                       id:
                           types.key<void Function(_Owner0 element)>() +
@@ -36781,7 +36442,7 @@ Function _flaxClass_CachingIterable<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types
                     .key<
@@ -36857,7 +36518,7 @@ Function _flaxClass_CachingIterable<
             [
               FlaxCallbackParameter(
                 "initialValue",
-                FlaxTypeRef("any", nullable: true),
+                _flaxBinding8,
                 required: true,
                 positional: true,
               ),
@@ -36873,7 +36534,7 @@ Function _flaxClass_CachingIterable<
                       [
                         FlaxCallbackParameter(
                           "previousValue",
-                          FlaxTypeRef("any", nullable: true),
+                          _flaxBinding8,
                           required: true,
                           positional: true,
                         ),
@@ -36884,7 +36545,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding8,
                       FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                       id:
                           types
@@ -36907,7 +36568,7 @@ Function _flaxClass_CachingIterable<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             _callback4,
             id:
                 types
@@ -36945,7 +36606,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -36960,7 +36621,7 @@ Function _flaxClass_CachingIterable<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types
                     .key<bool Function(bool Function(_Owner0 element) test)>() +
@@ -36975,12 +36636,12 @@ Function _flaxClass_CachingIterable<
             [
               FlaxCallbackParameter(
                 "separator",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types.key<String Function([String separator])>() +
                 ":callback:<>(p:o:separator:String:)->String:",
@@ -37007,7 +36668,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -37022,7 +36683,7 @@ Function _flaxClass_CachingIterable<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types
                     .key<bool Function(bool Function(_Owner0 element) test)>() +
@@ -37062,7 +36723,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -37132,7 +36793,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -37202,7 +36863,7 @@ Function _flaxClass_CachingIterable<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -37267,7 +36928,7 @@ Function _flaxClass_CachingIterable<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding6,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -37277,7 +36938,7 @@ Function _flaxClass_CachingIterable<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -37287,7 +36948,7 @@ Function _flaxClass_CachingIterable<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -37489,606 +37150,206 @@ Function _flaxClass_DiagnosticableNode<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _DiagnosticableNode_name,
-        ),
+        FlaxGetter("name", _flaxBinding67, _DiagnosticableNode_name),
         FlaxGetter(
           "showSeparator",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticableNode_showSeparator,
         ),
-        FlaxGetter(
-          "level",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
-          _DiagnosticableNode_level,
-        ),
-        FlaxGetter(
-          "showName",
-          FlaxTypeRef("bool"),
-          _DiagnosticableNode_showName,
-        ),
+        FlaxGetter("level", _flaxBinding71, _DiagnosticableNode_level),
+        FlaxGetter("showName", _flaxBinding10, _DiagnosticableNode_showName),
         FlaxGetter(
           "linePrefix",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _DiagnosticableNode_linePrefix,
         ),
         FlaxGetter(
           "emptyBodyDescription",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _DiagnosticableNode_emptyBodyDescription,
         ),
         FlaxGetter("value", types.ref<_Owner0>(), _DiagnosticableNode_value),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-          ),
-          _DiagnosticableNode_style,
-        ),
-        FlaxGetter(
-          "allowWrap",
-          FlaxTypeRef("bool"),
-          _DiagnosticableNode_allowWrap,
-        ),
+        FlaxGetter("style", _flaxBinding65, _DiagnosticableNode_style),
+        FlaxGetter("allowWrap", _flaxBinding10, _DiagnosticableNode_allowWrap),
         FlaxGetter(
           "allowNameWrap",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticableNode_allowNameWrap,
         ),
         FlaxGetter(
           "allowTruncate",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticableNode_allowTruncate,
         ),
         FlaxGetter(
           "textTreeConfiguration",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding80,
           _DiagnosticableNode_textTreeConfiguration,
         ),
-        FlaxGetter(
-          "builder",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-            nullable: true,
-          ),
-          _DiagnosticableNode_builder,
-        ),
+        FlaxGetter("builder", _flaxBinding77, _DiagnosticableNode_builder),
       ],
       {
         "toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _DiagnosticableNode_toDescription,
         ),
         "isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _DiagnosticableNode_isFiltered,
         ),
         "getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _DiagnosticableNode_getProperties,
         ),
         "getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _DiagnosticableNode_getChildren,
         ),
         "toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _DiagnosticableNode_toTimelineArguments,
         ),
         "toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _DiagnosticableNode_toJsonMap,
         ),
         "toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _DiagnosticableNode_toJsonMapIterative,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _DiagnosticableNode_toString,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _DiagnosticableNode_toStringDeep,
         ),
         "@super:toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch4_super_call_toDescription,
         ),
         "@super:isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_call_isFiltered,
         ),
         "@super:getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getProperties,
         ),
         "@super:getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getChildren,
         ),
         "@super:toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _FlaxProxyDispatch5_super_call_toTimelineArguments,
         ),
         "@super:toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMap,
         ),
         "@super:toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMapIterative,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toString,
         ),
         "@super:toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toStringDeep,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _DiagnosticableNode_super_get_value,
         ),
         "@super:get:builder": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding77,
           _DiagnosticableNode_super_get_builder,
         ),
         "@super:get:style": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-          ),
+          _flaxBinding156,
+          _flaxBinding65,
           _DiagnosticableNode_super_get_style,
         ),
         "@super:get:emptyBodyDescription": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch3_super_get_emptyBodyDescription,
         ),
         "@super:get:name": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_name,
         ),
         "@super:get:showSeparator": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showSeparator,
         ),
         "@super:get:level": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
+          _flaxBinding156,
+          _flaxBinding71,
           _FlaxProxyDispatch5_super_get_level,
         ),
         "@super:get:showName": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showName,
         ),
         "@super:get:linePrefix": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_linePrefix,
         ),
         "@super:get:allowWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowWrap,
         ),
         "@super:get:allowNameWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowNameWrap,
         ),
         "@super:get:allowTruncate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowTruncate,
         ),
         "@super:get:textTreeConfiguration": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding80,
           _FlaxProxyDispatch5_super_get_textTreeConfiguration,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("name", _flaxBinding67, required: false),
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
-          FlaxParameter(
-            "style",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-              nullable: true,
-            ),
-            required: true,
-          ),
+          FlaxParameter("style", _flaxBinding86, required: true),
         ],
       },
       create: _createDiagnosticableNode,
@@ -38111,16 +37372,12 @@ Function _flaxClass_DiagnosticableNode<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -38139,15 +37396,12 @@ Function _flaxClass_DiagnosticableNode<
             [
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function(api.DiagnosticLevel minLevel)>() + ":callback:<>(p:r:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->bool:",
           ),
           hasSuper: true,
@@ -38157,31 +37411,7 @@ Function _flaxClass_DiagnosticableNode<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -38191,31 +37421,7 @@ Function _flaxClass_DiagnosticableNode<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -38225,17 +37431,7 @@ Function _flaxClass_DiagnosticableNode<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "map",
-              nullable: true,
-              item: FlaxTypeRef("String"),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[String:][String:]",
-                _collection1Create,
-                _collection1Matches,
-              ),
-            ),
+            _flaxBinding73,
             id:
                 types.key<Map<String, String>? Function()>() +
                 ":callback:<>()->map?:[String:][String:]",
@@ -38249,24 +37445,12 @@ Function _flaxClass_DiagnosticableNode<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -38285,24 +37469,12 @@ Function _flaxClass_DiagnosticableNode<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -38321,25 +37493,18 @@ Function _flaxClass_DiagnosticableNode<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -38359,43 +37524,36 @@ Function _flaxClass_DiagnosticableNode<
             [
               FlaxCallbackParameter(
                 "prefixLineOne",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "prefixOtherLines",
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding67,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "wrapWidth",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -38426,11 +37584,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              nullable: true,
-            ),
+            _flaxBinding77,
             id: types.key<api.DiagnosticPropertiesBuilder? Function()>() + ":callback:<>()->object?:flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
           ),
           hasSuper: true,
@@ -38440,10 +37594,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            ),
+            _flaxBinding65,
             id: types.key<api.DiagnosticsTreeStyle Function()>() + ":callback:<>()->enum:flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
           ),
           hasSuper: true,
@@ -38453,7 +37604,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -38463,7 +37614,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -38473,7 +37624,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -38483,10 +37634,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             id: types.key<api.DiagnosticLevel Function()>() + ":callback:<>()->enum:flax.core/sdk_foundation#type:DiagnosticLevel",
           ),
           hasSuper: true,
@@ -38496,7 +37644,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -38506,7 +37654,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -38516,7 +37664,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -38526,7 +37674,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -38536,7 +37684,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -38546,11 +37694,7 @@ Function _flaxClass_DiagnosticableNode<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-              nullable: true,
-            ),
+            _flaxBinding80,
             id: types.key<api.TextTreeConfiguration? Function()>() + ":callback:<>()->object?:flax.core/sdk_foundation#type:TextTreeConfiguration",
           ),
           hasSuper: true,
@@ -38789,783 +37933,339 @@ Function _flaxClass_DiagnosticsProperty<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _DiagnosticsProperty_name,
-        ),
+        FlaxGetter("name", _flaxBinding67, _DiagnosticsProperty_name),
         FlaxGetter(
           "showSeparator",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticsProperty_showSeparator,
         ),
-        FlaxGetter(
-          "level",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
-          _DiagnosticsProperty_level,
-        ),
-        FlaxGetter(
-          "showName",
-          FlaxTypeRef("bool"),
-          _DiagnosticsProperty_showName,
-        ),
+        FlaxGetter("level", _flaxBinding71, _DiagnosticsProperty_level),
+        FlaxGetter("showName", _flaxBinding10, _DiagnosticsProperty_showName),
         FlaxGetter(
           "linePrefix",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _DiagnosticsProperty_linePrefix,
         ),
         FlaxGetter(
           "emptyBodyDescription",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _DiagnosticsProperty_emptyBodyDescription,
         ),
         FlaxGetter("value", types.ref<_Owner0?>(), _DiagnosticsProperty_value),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
-          _DiagnosticsProperty_style,
-        ),
-        FlaxGetter(
-          "allowWrap",
-          FlaxTypeRef("bool"),
-          _DiagnosticsProperty_allowWrap,
-        ),
+        FlaxGetter("style", _flaxBinding86, _DiagnosticsProperty_style),
+        FlaxGetter("allowWrap", _flaxBinding10, _DiagnosticsProperty_allowWrap),
         FlaxGetter(
           "allowNameWrap",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticsProperty_allowNameWrap,
         ),
         FlaxGetter(
           "allowTruncate",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticsProperty_allowTruncate,
         ),
         FlaxGetter(
           "textTreeConfiguration",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding80,
           _DiagnosticsProperty_textTreeConfiguration,
         ),
         FlaxGetter(
           "expandableValue",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticsProperty_expandableValue,
         ),
-        FlaxGetter(
-          "ifNull",
-          FlaxTypeRef("String", nullable: true),
-          _DiagnosticsProperty_ifNull,
-        ),
-        FlaxGetter(
-          "ifEmpty",
-          FlaxTypeRef("String", nullable: true),
-          _DiagnosticsProperty_ifEmpty,
-        ),
-        FlaxGetter(
-          "tooltip",
-          FlaxTypeRef("String", nullable: true),
-          _DiagnosticsProperty_tooltip,
-        ),
+        FlaxGetter("ifNull", _flaxBinding67, _DiagnosticsProperty_ifNull),
+        FlaxGetter("ifEmpty", _flaxBinding67, _DiagnosticsProperty_ifEmpty),
+        FlaxGetter("tooltip", _flaxBinding67, _DiagnosticsProperty_tooltip),
         FlaxGetter(
           "missingIfNull",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticsProperty_missingIfNull,
         ),
         FlaxGetter(
           "propertyType",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+          _flaxBinding88,
           _DiagnosticsProperty_propertyType,
         ),
-        FlaxGetter(
-          "exception",
-          FlaxTypeRef("any", nullable: true),
-          _DiagnosticsProperty_exception,
-        ),
+        FlaxGetter("exception", _flaxBinding8, _DiagnosticsProperty_exception),
         FlaxGetter(
           "defaultValue",
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _DiagnosticsProperty_defaultValue,
         ),
         FlaxGetter(
           "isInteresting",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _DiagnosticsProperty_isInteresting,
         ),
       ],
       {
         "toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _DiagnosticsProperty_toDescription,
         ),
         "isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _DiagnosticsProperty_isFiltered,
         ),
         "getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _DiagnosticsProperty_getProperties,
         ),
         "getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _DiagnosticsProperty_getChildren,
         ),
         "toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _DiagnosticsProperty_toTimelineArguments,
         ),
         "toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _DiagnosticsProperty_toJsonMap,
         ),
         "toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _DiagnosticsProperty_toJsonMapIterative,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _DiagnosticsProperty_toString,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _DiagnosticsProperty_toStringDeep,
         ),
         "valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _DiagnosticsProperty_valueToString,
         ),
         "@super:toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch4_super_call_toDescription,
         ),
         "@super:isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_call_isFiltered,
         ),
         "@super:getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getProperties,
         ),
         "@super:getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getChildren,
         ),
         "@super:toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _FlaxProxyDispatch5_super_call_toTimelineArguments,
         ),
         "@super:toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMap,
         ),
         "@super:toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMapIterative,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toString,
         ),
         "@super:toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toStringDeep,
         ),
         "@super:valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch12_super_call_valueToString,
         ),
         "@super:get:expandableValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_expandableValue,
         ),
         "@super:get:allowWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowWrap,
         ),
         "@super:get:allowNameWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowNameWrap,
         ),
         "@super:get:ifNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifNull,
         ),
         "@super:get:ifEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifEmpty,
         ),
         "@super:get:tooltip": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_tooltip,
         ),
         "@super:get:missingIfNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_missingIfNull,
         ),
         "@super:get:propertyType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+          _flaxBinding156,
+          _flaxBinding88,
           _FlaxProxyDispatch12_super_get_propertyType,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0?>(),
           _DiagnosticsProperty_super_get_value,
         ),
         "@super:get:exception": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_exception,
         ),
         "@super:get:defaultValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_defaultValue,
         ),
         "@super:get:isInteresting": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_isInteresting,
         ),
         "@super:get:level": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
+          _flaxBinding156,
+          _flaxBinding71,
           _FlaxProxyDispatch5_super_get_level,
         ),
         "@super:get:name": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_name,
         ),
         "@super:get:showSeparator": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showSeparator,
         ),
         "@super:get:showName": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showName,
         ),
         "@super:get:linePrefix": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_linePrefix,
         ),
         "@super:get:emptyBodyDescription": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _DiagnosticsProperty_super_get_emptyBodyDescription,
         ),
         "@super:get:style": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding86,
           _DiagnosticsProperty_super_get_style,
         ),
         "@super:get:allowTruncate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowTruncate,
         ),
         "@super:get:textTreeConfiguration": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding80,
           _FlaxProxyDispatch5_super_get_textTreeConfiguration,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String", nullable: true),
-            required: true,
-          ),
+          FlaxParameter("name", _flaxBinding67, required: true),
           FlaxParameter("value", types.ref<_Owner0?>(), required: true),
-          FlaxParameter(
-            "description",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "ifNull",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "ifEmpty",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("description", _flaxBinding67, required: false),
+          FlaxParameter("ifNull", _flaxBinding67, required: false),
+          FlaxParameter("ifEmpty", _flaxBinding67, required: false),
           FlaxParameter(
             "showName",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "showSeparator",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "defaultValue",
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "tooltip",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("tooltip", _flaxBinding67, required: false),
           FlaxParameter(
             "missingIfNull",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "linePrefix",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("linePrefix", _flaxBinding67, required: false),
           FlaxParameter(
             "expandableValue",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "allowWrap",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "allowNameWrap",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "style",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            ),
+            _flaxBinding65,
             required: false,
             defaultValue: api.DiagnosticsTreeStyle.singleLine,
           ),
           FlaxParameter(
             "level",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             required: false,
             defaultValue: api.DiagnosticLevel.info,
           ),
@@ -39591,16 +38291,12 @@ Function _flaxClass_DiagnosticsProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -39619,15 +38315,12 @@ Function _flaxClass_DiagnosticsProperty<
             [
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function(api.DiagnosticLevel minLevel)>() + ":callback:<>(p:r:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->bool:",
           ),
           hasSuper: true,
@@ -39637,31 +38330,7 @@ Function _flaxClass_DiagnosticsProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -39671,31 +38340,7 @@ Function _flaxClass_DiagnosticsProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -39705,17 +38350,7 @@ Function _flaxClass_DiagnosticsProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "map",
-              nullable: true,
-              item: FlaxTypeRef("String"),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[String:][String:]",
-                _collection1Create,
-                _collection1Matches,
-              ),
-            ),
+            _flaxBinding73,
             id:
                 types.key<Map<String, String>? Function()>() +
                 ":callback:<>()->map?:[String:][String:]",
@@ -39729,24 +38364,12 @@ Function _flaxClass_DiagnosticsProperty<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -39765,24 +38388,12 @@ Function _flaxClass_DiagnosticsProperty<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -39801,25 +38412,18 @@ Function _flaxClass_DiagnosticsProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -39839,43 +38443,36 @@ Function _flaxClass_DiagnosticsProperty<
             [
               FlaxCallbackParameter(
                 "prefixLineOne",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "prefixOtherLines",
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding67,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "wrapWidth",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -39898,16 +38495,12 @@ Function _flaxClass_DiagnosticsProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -39924,7 +38517,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -39934,7 +38527,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -39944,7 +38537,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -39954,7 +38547,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -39964,7 +38557,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -39974,7 +38567,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -39984,7 +38577,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -39994,7 +38587,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+            _flaxBinding88,
             id:
                 types.key<api3.Type Function()>() +
                 ":callback:<>()->object:flax.core/flutter#type:Type",
@@ -40018,7 +38611,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -40028,7 +38621,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -40038,7 +38631,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -40048,10 +38641,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             id: types.key<api.DiagnosticLevel Function()>() + ":callback:<>()->enum:flax.core/sdk_foundation#type:DiagnosticLevel",
           ),
           hasSuper: true,
@@ -40061,7 +38651,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -40071,7 +38661,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -40081,7 +38671,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -40091,7 +38681,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -40101,7 +38691,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -40111,11 +38701,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-              nullable: true,
-            ),
+            _flaxBinding86,
             id: types.key<api.DiagnosticsTreeStyle? Function()>() + ":callback:<>()->enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
           ),
           hasSuper: true,
@@ -40125,7 +38711,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -40135,11 +38721,7 @@ Function _flaxClass_DiagnosticsProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-              nullable: true,
-            ),
+            _flaxBinding80,
             id: types.key<api.TextTreeConfiguration? Function()>() + ":callback:<>()->object?:flax.core/sdk_foundation#type:TextTreeConfiguration",
           ),
           hasSuper: true,
@@ -40352,699 +38934,278 @@ Function _flaxClass_EnumProperty<
       [
         FlaxGetter(
           "expandableValue",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _EnumProperty_expandableValue,
         ),
-        FlaxGetter("allowWrap", FlaxTypeRef("bool"), _EnumProperty_allowWrap),
+        FlaxGetter("allowWrap", _flaxBinding10, _EnumProperty_allowWrap),
         FlaxGetter(
           "allowNameWrap",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _EnumProperty_allowNameWrap,
         ),
-        FlaxGetter(
-          "ifNull",
-          FlaxTypeRef("String", nullable: true),
-          _EnumProperty_ifNull,
-        ),
-        FlaxGetter(
-          "ifEmpty",
-          FlaxTypeRef("String", nullable: true),
-          _EnumProperty_ifEmpty,
-        ),
-        FlaxGetter(
-          "tooltip",
-          FlaxTypeRef("String", nullable: true),
-          _EnumProperty_tooltip,
-        ),
+        FlaxGetter("ifNull", _flaxBinding67, _EnumProperty_ifNull),
+        FlaxGetter("ifEmpty", _flaxBinding67, _EnumProperty_ifEmpty),
+        FlaxGetter("tooltip", _flaxBinding67, _EnumProperty_tooltip),
         FlaxGetter(
           "missingIfNull",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _EnumProperty_missingIfNull,
         ),
-        FlaxGetter(
-          "propertyType",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
-          _EnumProperty_propertyType,
-        ),
+        FlaxGetter("propertyType", _flaxBinding88, _EnumProperty_propertyType),
         FlaxGetter("value", types.ref<_Owner0?>(), _EnumProperty_value),
-        FlaxGetter(
-          "exception",
-          FlaxTypeRef("any", nullable: true),
-          _EnumProperty_exception,
-        ),
-        FlaxGetter(
-          "defaultValue",
-          FlaxTypeRef("any", nullable: true),
-          _EnumProperty_defaultValue,
-        ),
+        FlaxGetter("exception", _flaxBinding8, _EnumProperty_exception),
+        FlaxGetter("defaultValue", _flaxBinding8, _EnumProperty_defaultValue),
         FlaxGetter(
           "isInteresting",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _EnumProperty_isInteresting,
         ),
-        FlaxGetter(
-          "level",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
-          _EnumProperty_level,
-        ),
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _EnumProperty_name,
-        ),
+        FlaxGetter("level", _flaxBinding71, _EnumProperty_level),
+        FlaxGetter("name", _flaxBinding67, _EnumProperty_name),
         FlaxGetter(
           "showSeparator",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _EnumProperty_showSeparator,
         ),
-        FlaxGetter("showName", FlaxTypeRef("bool"), _EnumProperty_showName),
-        FlaxGetter(
-          "linePrefix",
-          FlaxTypeRef("String", nullable: true),
-          _EnumProperty_linePrefix,
-        ),
+        FlaxGetter("showName", _flaxBinding10, _EnumProperty_showName),
+        FlaxGetter("linePrefix", _flaxBinding67, _EnumProperty_linePrefix),
         FlaxGetter(
           "emptyBodyDescription",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _EnumProperty_emptyBodyDescription,
         ),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
-          _EnumProperty_style,
-        ),
+        FlaxGetter("style", _flaxBinding86, _EnumProperty_style),
         FlaxGetter(
           "allowTruncate",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _EnumProperty_allowTruncate,
         ),
         FlaxGetter(
           "textTreeConfiguration",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding80,
           _EnumProperty_textTreeConfiguration,
         ),
       ],
       {
         "toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _EnumProperty_toJsonMap,
         ),
         "valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _EnumProperty_valueToString,
         ),
         "toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _EnumProperty_toDescription,
         ),
         "getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _EnumProperty_getProperties,
         ),
         "getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _EnumProperty_getChildren,
         ),
         "isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _EnumProperty_isFiltered,
         ),
         "toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _EnumProperty_toTimelineArguments,
         ),
         "toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _EnumProperty_toJsonMapIterative,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _EnumProperty_toStringDeep,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _EnumProperty_toString,
         ),
         "@super:toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMap,
         ),
         "@super:valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch12_super_call_valueToString,
         ),
         "@super:toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch4_super_call_toDescription,
         ),
         "@super:getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getProperties,
         ),
         "@super:getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getChildren,
         ),
         "@super:isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_call_isFiltered,
         ),
         "@super:toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _FlaxProxyDispatch5_super_call_toTimelineArguments,
         ),
         "@super:toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMapIterative,
         ),
         "@super:toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toStringDeep,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toString,
         ),
         "@super:get:expandableValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_expandableValue,
         ),
         "@super:get:allowWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowWrap,
         ),
         "@super:get:allowNameWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowNameWrap,
         ),
         "@super:get:ifNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifNull,
         ),
         "@super:get:ifEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifEmpty,
         ),
         "@super:get:tooltip": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_tooltip,
         ),
         "@super:get:missingIfNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_missingIfNull,
         ),
         "@super:get:propertyType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+          _flaxBinding156,
+          _flaxBinding88,
           _FlaxProxyDispatch12_super_get_propertyType,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0?>(),
           _EnumProperty_super_get_value,
         ),
         "@super:get:exception": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_exception,
         ),
         "@super:get:defaultValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_defaultValue,
         ),
         "@super:get:isInteresting": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_isInteresting,
         ),
         "@super:get:level": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
+          _flaxBinding156,
+          _flaxBinding71,
           _FlaxProxyDispatch5_super_get_level,
         ),
         "@super:get:name": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_name,
         ),
         "@super:get:showSeparator": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showSeparator,
         ),
         "@super:get:showName": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showName,
         ),
         "@super:get:linePrefix": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_linePrefix,
         ),
         "@super:get:emptyBodyDescription": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _EnumProperty_super_get_emptyBodyDescription,
         ),
         "@super:get:style": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding86,
           _EnumProperty_super_get_style,
         ),
         "@super:get:allowTruncate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowTruncate,
         ),
         "@super:get:textTreeConfiguration": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding80,
           _FlaxProxyDispatch5_super_get_textTreeConfiguration,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
-          FlaxParameter("name", FlaxTypeRef("String"), required: true),
+          FlaxParameter("name", _flaxBinding14, required: true),
           FlaxParameter("value", types.ref<_Owner0?>(), required: true),
           FlaxParameter(
             "defaultValue",
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             required: false,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "level",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             required: false,
             defaultValue: api.DiagnosticLevel.info,
           ),
@@ -41071,24 +39232,12 @@ Function _flaxClass_EnumProperty<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -41107,16 +39256,12 @@ Function _flaxClass_EnumProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -41135,16 +39280,12 @@ Function _flaxClass_EnumProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -41161,31 +39302,7 @@ Function _flaxClass_EnumProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -41195,31 +39312,7 @@ Function _flaxClass_EnumProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -41231,15 +39324,12 @@ Function _flaxClass_EnumProperty<
             [
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function(api.DiagnosticLevel minLevel)>() + ":callback:<>(p:r:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->bool:",
           ),
           hasSuper: true,
@@ -41249,17 +39339,7 @@ Function _flaxClass_EnumProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "map",
-              nullable: true,
-              item: FlaxTypeRef("String"),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[String:][String:]",
-                _collection1Create,
-                _collection1Matches,
-              ),
-            ),
+            _flaxBinding73,
             id:
                 types.key<Map<String, String>? Function()>() +
                 ":callback:<>()->map?:[String:][String:]",
@@ -41273,24 +39353,12 @@ Function _flaxClass_EnumProperty<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -41309,43 +39377,36 @@ Function _flaxClass_EnumProperty<
             [
               FlaxCallbackParameter(
                 "prefixLineOne",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "prefixOtherLines",
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding67,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "wrapWidth",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -41368,25 +39429,18 @@ Function _flaxClass_EnumProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -41404,7 +39458,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -41414,7 +39468,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -41424,7 +39478,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -41434,7 +39488,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -41444,7 +39498,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -41454,7 +39508,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -41464,7 +39518,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -41474,7 +39528,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+            _flaxBinding88,
             id:
                 types.key<api3.Type Function()>() +
                 ":callback:<>()->object:flax.core/flutter#type:Type",
@@ -41498,7 +39552,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -41508,7 +39562,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -41518,7 +39572,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -41528,10 +39582,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             id: types.key<api.DiagnosticLevel Function()>() + ":callback:<>()->enum:flax.core/sdk_foundation#type:DiagnosticLevel",
           ),
           hasSuper: true,
@@ -41541,7 +39592,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -41551,7 +39602,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -41561,7 +39612,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -41571,7 +39622,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -41581,7 +39632,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -41591,11 +39642,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-              nullable: true,
-            ),
+            _flaxBinding86,
             id: types.key<api.DiagnosticsTreeStyle? Function()>() + ":callback:<>()->enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
           ),
           hasSuper: true,
@@ -41605,7 +39652,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -41615,11 +39662,7 @@ Function _flaxClass_EnumProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-              nullable: true,
-            ),
+            _flaxBinding80,
             id: types.key<api.TextTreeConfiguration? Function()>() + ":callback:<>()->object?:flax.core/sdk_foundation#type:TextTreeConfiguration",
           ),
           hasSuper: true,
@@ -41689,25 +39732,21 @@ Function _flaxClass_Factory<_Owner0 extends Object?>() =>
               ),
               _Factory_constructor,
             ),
-            FlaxGetter(
-              "type",
-              FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
-              _Factory_type,
-            ),
+            FlaxGetter("type", _flaxBinding88, _Factory_type),
           ],
           {
             "toString": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("String"),
+              _flaxBinding156,
+              _flaxBinding14,
               _Factory_toString,
             ),
             "@super:toString": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("String"),
+              _flaxBinding156,
+              _flaxBinding14,
               _FlaxProxyDispatch0_super_call_toString,
             ),
             "@super:get:constructor": FlaxInstanceMethod(
-              <FlaxParameter>[],
+              _flaxBinding156,
               types.define<_Owner0 Function()>(
                 FlaxTypeRef(
                   "callback",
@@ -41727,8 +39766,8 @@ Function _flaxClass_Factory<_Owner0 extends Object?>() =>
               _Factory_super_get_constructor,
             ),
             "@super:get:type": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+              _flaxBinding156,
+              _flaxBinding88,
               _Factory_super_get_type,
             ),
           },
@@ -41771,7 +39810,7 @@ Function _flaxClass_Factory<_Owner0 extends Object?>() =>
               0,
               FlaxCallbackBinding.signature(
                 [],
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 id: types.key<String Function()>() + ":callback:<>()->String:",
               ),
               hasSuper: true,
@@ -41809,7 +39848,7 @@ Function _flaxClass_Factory<_Owner0 extends Object?>() =>
               1,
               FlaxCallbackBinding.signature(
                 [],
-                FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+                _flaxBinding88,
                 id:
                     types.key<api3.Type Function()>() +
                     ":callback:<>()->object:flax.core/flutter#type:Type",
@@ -42018,718 +40057,293 @@ Function _flaxClass_FlagsSummary<
       [
         FlaxGetter(
           "expandableValue",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _FlagsSummary_expandableValue,
         ),
-        FlaxGetter("allowWrap", FlaxTypeRef("bool"), _FlagsSummary_allowWrap),
+        FlaxGetter("allowWrap", _flaxBinding10, _FlagsSummary_allowWrap),
         FlaxGetter(
           "allowNameWrap",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _FlagsSummary_allowNameWrap,
         ),
-        FlaxGetter(
-          "ifNull",
-          FlaxTypeRef("String", nullable: true),
-          _FlagsSummary_ifNull,
-        ),
-        FlaxGetter(
-          "ifEmpty",
-          FlaxTypeRef("String", nullable: true),
-          _FlagsSummary_ifEmpty,
-        ),
-        FlaxGetter(
-          "tooltip",
-          FlaxTypeRef("String", nullable: true),
-          _FlagsSummary_tooltip,
-        ),
+        FlaxGetter("ifNull", _flaxBinding67, _FlagsSummary_ifNull),
+        FlaxGetter("ifEmpty", _flaxBinding67, _FlagsSummary_ifEmpty),
+        FlaxGetter("tooltip", _flaxBinding67, _FlagsSummary_tooltip),
         FlaxGetter(
           "missingIfNull",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _FlagsSummary_missingIfNull,
         ),
-        FlaxGetter(
-          "propertyType",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
-          _FlagsSummary_propertyType,
-        ),
+        FlaxGetter("propertyType", _flaxBinding88, _FlagsSummary_propertyType),
         FlaxGetter(
           "value",
           types.ref<Map<String, _Owner0?>>(),
           _FlagsSummary_value,
         ),
-        FlaxGetter(
-          "exception",
-          FlaxTypeRef("any", nullable: true),
-          _FlagsSummary_exception,
-        ),
-        FlaxGetter(
-          "defaultValue",
-          FlaxTypeRef("any", nullable: true),
-          _FlagsSummary_defaultValue,
-        ),
+        FlaxGetter("exception", _flaxBinding8, _FlagsSummary_exception),
+        FlaxGetter("defaultValue", _flaxBinding8, _FlagsSummary_defaultValue),
         FlaxGetter(
           "isInteresting",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _FlagsSummary_isInteresting,
         ),
-        FlaxGetter(
-          "level",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
-          _FlagsSummary_level,
-        ),
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _FlagsSummary_name,
-        ),
+        FlaxGetter("level", _flaxBinding71, _FlagsSummary_level),
+        FlaxGetter("name", _flaxBinding67, _FlagsSummary_name),
         FlaxGetter(
           "showSeparator",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _FlagsSummary_showSeparator,
         ),
-        FlaxGetter("showName", FlaxTypeRef("bool"), _FlagsSummary_showName),
-        FlaxGetter(
-          "linePrefix",
-          FlaxTypeRef("String", nullable: true),
-          _FlagsSummary_linePrefix,
-        ),
+        FlaxGetter("showName", _flaxBinding10, _FlagsSummary_showName),
+        FlaxGetter("linePrefix", _flaxBinding67, _FlagsSummary_linePrefix),
         FlaxGetter(
           "emptyBodyDescription",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _FlagsSummary_emptyBodyDescription,
         ),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
-          _FlagsSummary_style,
-        ),
+        FlaxGetter("style", _flaxBinding86, _FlagsSummary_style),
         FlaxGetter(
           "allowTruncate",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _FlagsSummary_allowTruncate,
         ),
         FlaxGetter(
           "textTreeConfiguration",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding80,
           _FlagsSummary_textTreeConfiguration,
         ),
       ],
       {
         "toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlagsSummary_toJsonMap,
         ),
         "valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlagsSummary_valueToString,
         ),
         "toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlagsSummary_toDescription,
         ),
         "getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlagsSummary_getProperties,
         ),
         "getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlagsSummary_getChildren,
         ),
         "isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _FlagsSummary_isFiltered,
         ),
         "toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _FlagsSummary_toTimelineArguments,
         ),
         "toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlagsSummary_toJsonMapIterative,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _FlagsSummary_toStringDeep,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _FlagsSummary_toString,
         ),
         "@super:toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMap,
         ),
         "@super:valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch12_super_call_valueToString,
         ),
         "@super:toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch4_super_call_toDescription,
         ),
         "@super:getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getProperties,
         ),
         "@super:getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getChildren,
         ),
         "@super:isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_call_isFiltered,
         ),
         "@super:toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _FlaxProxyDispatch5_super_call_toTimelineArguments,
         ),
         "@super:toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMapIterative,
         ),
         "@super:toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toStringDeep,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toString,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<Map<String, _Owner0?>>(),
           _FlagsSummary_super_get_value,
         ),
         "@super:get:level": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
+          _flaxBinding156,
+          _flaxBinding71,
           _FlaxProxyDispatch5_super_get_level,
         ),
         "@super:get:expandableValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_expandableValue,
         ),
         "@super:get:allowWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowWrap,
         ),
         "@super:get:allowNameWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowNameWrap,
         ),
         "@super:get:ifNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifNull,
         ),
         "@super:get:ifEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifEmpty,
         ),
         "@super:get:tooltip": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_tooltip,
         ),
         "@super:get:missingIfNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_missingIfNull,
         ),
         "@super:get:propertyType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+          _flaxBinding156,
+          _flaxBinding88,
           _FlaxProxyDispatch12_super_get_propertyType,
         ),
         "@super:get:exception": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_exception,
         ),
         "@super:get:defaultValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_defaultValue,
         ),
         "@super:get:isInteresting": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_isInteresting,
         ),
         "@super:get:name": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_name,
         ),
         "@super:get:showSeparator": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showSeparator,
         ),
         "@super:get:showName": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showName,
         ),
         "@super:get:linePrefix": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_linePrefix,
         ),
         "@super:get:emptyBodyDescription": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlagsSummary_super_get_emptyBodyDescription,
         ),
         "@super:get:style": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding86,
           _FlagsSummary_super_get_style,
         ),
         "@super:get:allowTruncate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowTruncate,
         ),
         "@super:get:textTreeConfiguration": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding80,
           _FlaxProxyDispatch5_super_get_textTreeConfiguration,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
-          FlaxParameter("name", FlaxTypeRef("String"), required: true),
+          FlaxParameter("name", _flaxBinding14, required: true),
           FlaxParameter(
             "value",
             types.ref<Map<String, _Owner0?>>(),
             required: true,
           ),
-          FlaxParameter(
-            "ifEmpty",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("ifEmpty", _flaxBinding67, required: false),
           FlaxParameter(
             "showName",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "showSeparator",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "level",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             required: false,
             defaultValue: api.DiagnosticLevel.info,
           ),
@@ -42756,24 +40370,12 @@ Function _flaxClass_FlagsSummary<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -42792,16 +40394,12 @@ Function _flaxClass_FlagsSummary<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -42820,16 +40418,12 @@ Function _flaxClass_FlagsSummary<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -42846,31 +40440,7 @@ Function _flaxClass_FlagsSummary<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -42880,31 +40450,7 @@ Function _flaxClass_FlagsSummary<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -42916,15 +40462,12 @@ Function _flaxClass_FlagsSummary<
             [
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function(api.DiagnosticLevel minLevel)>() + ":callback:<>(p:r:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->bool:",
           ),
           hasSuper: true,
@@ -42934,17 +40477,7 @@ Function _flaxClass_FlagsSummary<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "map",
-              nullable: true,
-              item: FlaxTypeRef("String"),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[String:][String:]",
-                _collection1Create,
-                _collection1Matches,
-              ),
-            ),
+            _flaxBinding73,
             id:
                 types.key<Map<String, String>? Function()>() +
                 ":callback:<>()->map?:[String:][String:]",
@@ -42958,24 +40491,12 @@ Function _flaxClass_FlagsSummary<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -42994,43 +40515,36 @@ Function _flaxClass_FlagsSummary<
             [
               FlaxCallbackParameter(
                 "prefixLineOne",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "prefixOtherLines",
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding67,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "wrapWidth",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -43053,25 +40567,18 @@ Function _flaxClass_FlagsSummary<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -43101,10 +40608,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             id: types.key<api.DiagnosticLevel Function()>() + ":callback:<>()->enum:flax.core/sdk_foundation#type:DiagnosticLevel",
           ),
           hasSuper: true,
@@ -43114,7 +40618,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -43124,7 +40628,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -43134,7 +40638,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -43144,7 +40648,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -43154,7 +40658,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -43164,7 +40668,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -43174,7 +40678,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -43184,7 +40688,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+            _flaxBinding88,
             id:
                 types.key<api3.Type Function()>() +
                 ":callback:<>()->object:flax.core/flutter#type:Type",
@@ -43196,7 +40700,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -43206,7 +40710,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -43216,7 +40720,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -43226,7 +40730,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -43236,7 +40740,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -43246,7 +40750,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -43256,7 +40760,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -43266,7 +40770,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -43276,11 +40780,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-              nullable: true,
-            ),
+            _flaxBinding86,
             id: types.key<api.DiagnosticsTreeStyle? Function()>() + ":callback:<>()->enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
           ),
           hasSuper: true,
@@ -43290,7 +40790,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -43300,11 +40800,7 @@ Function _flaxClass_FlagsSummary<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-              nullable: true,
-            ),
+            _flaxBinding80,
             id: types.key<api.TextTreeConfiguration? Function()>() + ":callback:<>()->object?:flax.core/sdk_foundation#type:TextTreeConfiguration",
           ),
           hasSuper: true,
@@ -43321,7 +40817,11 @@ Function _flaxGeneric_HashedObserverList_cast<
     return (receiver as api.HashedObserverList<_Owner0>).cast<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_HashedObserverList_super_cast<
   _Owner0 extends Object?,
@@ -43332,7 +40832,11 @@ Function _flaxGeneric_HashedObserverList_super_cast<
         ._flaxSuper_cast<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_HashedObserverList_map<
   _Owner0 extends Object?,
@@ -43345,7 +40849,7 @@ Function _flaxGeneric_HashedObserverList_map<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElement",
         types.define<_Method0 Function(_Owner0 e)>(
@@ -43372,8 +40876,6 @@ Function _flaxGeneric_HashedObserverList_map<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -43392,7 +40894,7 @@ Function _flaxGeneric_HashedObserverList_super_map<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElement",
         types.define<_Method0 Function(_Owner0 e)>(
@@ -43419,8 +40921,6 @@ Function _flaxGeneric_HashedObserverList_super_map<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -43435,7 +40935,11 @@ Function _flaxGeneric_HashedObserverList_whereType<
     return (receiver as api.HashedObserverList<_Owner0>).whereType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_HashedObserverList_super_whereType<
   _Owner0 extends Object?,
@@ -43446,7 +40950,11 @@ Function _flaxGeneric_HashedObserverList_super_whereType<
         ._flaxSuper_whereType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_HashedObserverList_expand<
   _Owner0 extends Object?,
@@ -43459,7 +40967,7 @@ Function _flaxGeneric_HashedObserverList_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElements",
         types.define<Iterable<_Method0> Function(_Owner0 element)>(
@@ -43487,8 +40995,6 @@ Function _flaxGeneric_HashedObserverList_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -43507,7 +41013,7 @@ Function _flaxGeneric_HashedObserverList_super_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElements",
         types.define<Iterable<_Method0> Function(_Owner0 element)>(
@@ -43535,8 +41041,6 @@ Function _flaxGeneric_HashedObserverList_super_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -43556,14 +41060,8 @@ Function _flaxGeneric_HashedObserverList_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<
@@ -43605,8 +41103,6 @@ Function _flaxGeneric_HashedObserverList_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0>(),
@@ -43627,14 +41123,8 @@ Function _flaxGeneric_HashedObserverList_super_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<
@@ -43676,8 +41166,6 @@ Function _flaxGeneric_HashedObserverList_super_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0>(),
@@ -44554,13 +42042,13 @@ Function _flaxClass_HashedObserverList<
           types.ref<api3.Iterator<_Owner0>>(),
           _HashedObserverList_iterator,
         ),
-        FlaxGetter("isEmpty", FlaxTypeRef("bool"), _HashedObserverList_isEmpty),
+        FlaxGetter("isEmpty", _flaxBinding10, _HashedObserverList_isEmpty),
         FlaxGetter(
           "isNotEmpty",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _HashedObserverList_isNotEmpty,
         ),
-        FlaxGetter("length", FlaxTypeRef("int"), _HashedObserverList_length),
+        FlaxGetter("length", _flaxBinding6, _HashedObserverList_length),
         FlaxGetter("first", types.ref<_Owner0>(), _HashedObserverList_first),
         FlaxGetter("last", types.ref<_Owner0>(), _HashedObserverList_last),
         FlaxGetter("single", types.ref<_Owner0>(), _HashedObserverList_single),
@@ -44570,56 +42058,34 @@ Function _flaxClass_HashedObserverList<
           <FlaxParameter>[
             FlaxParameter("item", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _HashedObserverList_add,
         ),
         "remove": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("item", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _HashedObserverList_remove,
         ),
         "clear": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding156,
+          _flaxBinding1,
           _HashedObserverList_clear,
         ),
         "contains": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "element",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding993,
+          _flaxBinding10,
           _HashedObserverList_contains,
         ),
         "toList": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "growable",
-              FlaxTypeRef("bool"),
-              required: false,
-              defaultValue: true,
-            ),
-          ],
+          _flaxBinding237,
           types.ref<List<_Owner0>>(),
           _HashedObserverList_toList,
         ),
         "cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _HashedObserverList_cast,
           genericFactory: _flaxGeneric_HashedObserverList_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -44652,7 +42118,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                     id:
                         types.key<Object? Function(_Owner0 e)>() +
@@ -44665,16 +42131,7 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _HashedObserverList_map,
           genericFactory: _flaxGeneric_HashedObserverList_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -44696,7 +42153,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -44713,17 +42170,8 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_where,
         ),
         "whereType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _HashedObserverList_whereType,
           genericFactory: _flaxGeneric_HashedObserverList_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -44745,16 +42193,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("any", nullable: true),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[any?:]",
-                        _collection21Create,
-                        _collection21Matches,
-                        restore: _collection21Restore,
-                      ),
-                    ),
+                    _flaxBinding234,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -44772,16 +42211,7 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _HashedObserverList_expand,
           genericFactory: _flaxGeneric_HashedObserverList_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -44803,7 +42233,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 element)>() +
@@ -44816,7 +42246,7 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _HashedObserverList_forEach,
         ),
         "reduce": FlaxInstanceMethod(
@@ -44865,11 +42295,7 @@ Function _flaxClass_HashedObserverList<
         ),
         "fold": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "initialValue",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
+            FlaxParameter("initialValue", _flaxBinding8, required: true),
             FlaxParameter(
               "combine",
               types.define<
@@ -44882,7 +42308,7 @@ Function _flaxClass_HashedObserverList<
                     [
                       FlaxCallbackParameter(
                         "previousValue",
-                        FlaxTypeRef("any", nullable: true),
+                        _flaxBinding8,
                         required: true,
                         positional: true,
                       ),
@@ -44893,7 +42319,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                     id:
                         types
@@ -44914,7 +42340,7 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _HashedObserverList_fold,
           genericFactory: _flaxGeneric_HashedObserverList_fold,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -44936,7 +42362,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -44949,19 +42375,12 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _HashedObserverList_every,
         ),
         "join": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "separator",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding238,
+          _flaxBinding14,
           _HashedObserverList_join,
         ),
         "any": FlaxInstanceMethod(
@@ -44981,7 +42400,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -44994,18 +42413,16 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _HashedObserverList_any,
         ),
         "toSet": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<Set<_Owner0>>(),
           _HashedObserverList_toSet,
         ),
         "take": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _HashedObserverList_take,
         ),
@@ -45026,7 +42443,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -45043,9 +42460,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_takeWhile,
         ),
         "skip": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _HashedObserverList_skip,
         ),
@@ -45066,7 +42481,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -45099,7 +42514,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45152,7 +42567,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45205,7 +42620,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45242,9 +42657,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_singleWhere,
         ),
         "elementAt": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("index", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding236,
           types.ref<_Owner0>(),
           _HashedObserverList_elementAt,
         ),
@@ -45252,56 +42665,34 @@ Function _flaxClass_HashedObserverList<
           <FlaxParameter>[
             FlaxParameter("item", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _HashedObserverList_super_add,
         ),
         "@super:remove": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("item", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _HashedObserverList_super_remove,
         ),
         "@super:clear": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding156,
+          _flaxBinding1,
           _FlaxProxyDispatch17_super_call_clear,
         ),
         "@super:contains": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "element",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding993,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_call_contains,
         ),
         "@super:toList": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "growable",
-              FlaxTypeRef("bool"),
-              required: false,
-              defaultValue: true,
-            ),
-          ],
+          _flaxBinding237,
           types.ref<List<_Owner0>>(),
           _HashedObserverList_super_toList,
         ),
         "@super:cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _HashedObserverList_super_cast,
           genericFactory: _flaxGeneric_HashedObserverList_super_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -45334,7 +42725,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                     id:
                         types.key<Object? Function(_Owner0 e)>() +
@@ -45347,16 +42738,7 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _HashedObserverList_super_map,
           genericFactory: _flaxGeneric_HashedObserverList_super_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -45378,7 +42760,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45395,17 +42777,8 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_super_where,
         ),
         "@super:whereType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _HashedObserverList_super_whereType,
           genericFactory: _flaxGeneric_HashedObserverList_super_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -45427,16 +42800,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("any", nullable: true),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[any?:]",
-                        _collection21Create,
-                        _collection21Matches,
-                        restore: _collection21Restore,
-                      ),
-                    ),
+                    _flaxBinding234,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -45454,16 +42818,7 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _HashedObserverList_super_expand,
           genericFactory: _flaxGeneric_HashedObserverList_super_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -45485,7 +42840,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 element)>() +
@@ -45498,7 +42853,7 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _HashedObserverList_super_forEach,
         ),
         "@super:reduce": FlaxInstanceMethod(
@@ -45547,11 +42902,7 @@ Function _flaxClass_HashedObserverList<
         ),
         "@super:fold": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "initialValue",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
+            FlaxParameter("initialValue", _flaxBinding8, required: true),
             FlaxParameter(
               "combine",
               types.define<
@@ -45564,7 +42915,7 @@ Function _flaxClass_HashedObserverList<
                     [
                       FlaxCallbackParameter(
                         "previousValue",
-                        FlaxTypeRef("any", nullable: true),
+                        _flaxBinding8,
                         required: true,
                         positional: true,
                       ),
@@ -45575,7 +42926,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                     id:
                         types
@@ -45596,7 +42947,7 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _HashedObserverList_super_fold,
           genericFactory: _flaxGeneric_HashedObserverList_super_fold,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -45618,7 +42969,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45631,19 +42982,12 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _HashedObserverList_super_every,
         ),
         "@super:join": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "separator",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding238,
+          _flaxBinding14,
           _FlaxProxyDispatch1_super_call_join,
         ),
         "@super:any": FlaxInstanceMethod(
@@ -45663,7 +43007,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45676,18 +43020,16 @@ Function _flaxClass_HashedObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _HashedObserverList_super_any,
         ),
         "@super:toSet": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<Set<_Owner0>>(),
           _HashedObserverList_super_toSet,
         ),
         "@super:take": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _HashedObserverList_super_take,
         ),
@@ -45708,7 +43050,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -45725,9 +43067,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _HashedObserverList_super_skip,
         ),
@@ -45748,7 +43088,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -45781,7 +43121,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45834,7 +43174,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45887,7 +43227,7 @@ Function _flaxClass_HashedObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -45924,49 +43264,47 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_super_singleWhere,
         ),
         "@super:elementAt": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("index", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding236,
           types.ref<_Owner0>(),
           _HashedObserverList_super_elementAt,
         ),
         "@super:get:iterator": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<api3.Iterator<_Owner0>>(),
           _HashedObserverList_super_get_iterator,
         ),
         "@super:get:isEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_get_isEmpty,
         ),
         "@super:get:isNotEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_get_isNotEmpty,
         ),
         "@super:get:length": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding156,
+          _flaxBinding6,
           _FlaxProxyDispatch1_super_get_length,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _HashedObserverList_super_get_first,
         ),
         "@super:get:last": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _HashedObserverList_super_get_last,
         ),
         "@super:get:single": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _HashedObserverList_super_get_single,
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding156},
       create: _createHashedObserverList,
       matches: _isHashedObserverList,
       setters: [],
@@ -45989,7 +43327,7 @@ Function _flaxClass_HashedObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types.key<void Function(_Owner0 item)>() +
                 ":callback:<>(p:r:item:parameter:)->void:",
@@ -46008,7 +43346,7 @@ Function _flaxClass_HashedObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types.key<bool Function(_Owner0 item)>() +
                 ":callback:<>(p:r:item:parameter:)->bool:",
@@ -46020,7 +43358,7 @@ Function _flaxClass_HashedObserverList<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -46032,12 +43370,12 @@ Function _flaxClass_HashedObserverList<
             [
               FlaxCallbackParameter(
                 "element",
-                FlaxTypeRef("any", nullable: true),
+                _flaxBinding8,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types.key<bool Function(Object? element)>() +
                 ":callback:<>(p:r:element:any?:)->bool:",
@@ -46051,7 +43389,7 @@ Function _flaxClass_HashedObserverList<
             [
               FlaxCallbackParameter(
                 "growable",
-                FlaxTypeRef("bool"),
+                _flaxBinding10,
                 required: false,
                 positional: false,
               ),
@@ -46068,16 +43406,7 @@ Function _flaxClass_HashedObserverList<
           0,
           FlaxCallbackBinding(
             [],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback0,
             id:
                 types.key<Iterable<R> Function<R extends Object?>()>() +
@@ -46131,7 +43460,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding8,
                       FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                       id:
                           types.key<Object? Function(_Owner0 e)>() +
@@ -46146,16 +43475,7 @@ Function _flaxClass_HashedObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback1,
             id:
                 types
@@ -46192,7 +43512,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -46224,16 +43544,7 @@ Function _flaxClass_HashedObserverList<
           0,
           FlaxCallbackBinding(
             [],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback2,
             id:
                 types.key<Iterable<T> Function<T extends Object?>()>() +
@@ -46265,16 +43576,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef(
-                        "iterable",
-                        item: FlaxTypeRef("any", nullable: true),
-                        collection: FlaxCollectionBinding(
-                          "iterable:[any?:]",
-                          _collection21Create,
-                          _collection21Matches,
-                          restore: _collection21Restore,
-                        ),
-                      ),
+                      _flaxBinding234,
                       FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                       id:
                           types
@@ -46294,16 +43596,7 @@ Function _flaxClass_HashedObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback3,
             id:
                 types
@@ -46340,7 +43633,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("void"),
+                      _flaxBinding1,
                       FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                       id:
                           types.key<void Function(_Owner0 element)>() +
@@ -46355,7 +43648,7 @@ Function _flaxClass_HashedObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types
                     .key<
@@ -46431,7 +43724,7 @@ Function _flaxClass_HashedObserverList<
             [
               FlaxCallbackParameter(
                 "initialValue",
-                FlaxTypeRef("any", nullable: true),
+                _flaxBinding8,
                 required: true,
                 positional: true,
               ),
@@ -46447,7 +43740,7 @@ Function _flaxClass_HashedObserverList<
                       [
                         FlaxCallbackParameter(
                           "previousValue",
-                          FlaxTypeRef("any", nullable: true),
+                          _flaxBinding8,
                           required: true,
                           positional: true,
                         ),
@@ -46458,7 +43751,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding8,
                       FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                       id:
                           types
@@ -46481,7 +43774,7 @@ Function _flaxClass_HashedObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             _callback4,
             id:
                 types
@@ -46519,7 +43812,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -46534,7 +43827,7 @@ Function _flaxClass_HashedObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types
                     .key<bool Function(bool Function(_Owner0 element) test)>() +
@@ -46549,12 +43842,12 @@ Function _flaxClass_HashedObserverList<
             [
               FlaxCallbackParameter(
                 "separator",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types.key<String Function([String separator])>() +
                 ":callback:<>(p:o:separator:String:)->String:",
@@ -46581,7 +43874,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -46596,7 +43889,7 @@ Function _flaxClass_HashedObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types
                     .key<bool Function(bool Function(_Owner0 element) test)>() +
@@ -46623,7 +43916,7 @@ Function _flaxClass_HashedObserverList<
             [
               FlaxCallbackParameter(
                 "count",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -46655,7 +43948,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 value)>() +
@@ -46689,7 +43982,7 @@ Function _flaxClass_HashedObserverList<
             [
               FlaxCallbackParameter(
                 "count",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -46721,7 +44014,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 value)>() +
@@ -46768,7 +44061,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -46838,7 +44131,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -46908,7 +44201,7 @@ Function _flaxClass_HashedObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -46965,7 +44258,7 @@ Function _flaxClass_HashedObserverList<
             [
               FlaxCallbackParameter(
                 "index",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -46992,7 +44285,7 @@ Function _flaxClass_HashedObserverList<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -47002,7 +44295,7 @@ Function _flaxClass_HashedObserverList<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -47012,7 +44305,7 @@ Function _flaxClass_HashedObserverList<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding6,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -47270,42 +44563,26 @@ Function _flaxClass_IterableProperty<
       [
         FlaxGetter(
           "expandableValue",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _IterableProperty_expandableValue,
         ),
-        FlaxGetter(
-          "allowWrap",
-          FlaxTypeRef("bool"),
-          _IterableProperty_allowWrap,
-        ),
+        FlaxGetter("allowWrap", _flaxBinding10, _IterableProperty_allowWrap),
         FlaxGetter(
           "allowNameWrap",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _IterableProperty_allowNameWrap,
         ),
-        FlaxGetter(
-          "ifNull",
-          FlaxTypeRef("String", nullable: true),
-          _IterableProperty_ifNull,
-        ),
-        FlaxGetter(
-          "ifEmpty",
-          FlaxTypeRef("String", nullable: true),
-          _IterableProperty_ifEmpty,
-        ),
-        FlaxGetter(
-          "tooltip",
-          FlaxTypeRef("String", nullable: true),
-          _IterableProperty_tooltip,
-        ),
+        FlaxGetter("ifNull", _flaxBinding67, _IterableProperty_ifNull),
+        FlaxGetter("ifEmpty", _flaxBinding67, _IterableProperty_ifEmpty),
+        FlaxGetter("tooltip", _flaxBinding67, _IterableProperty_tooltip),
         FlaxGetter(
           "missingIfNull",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _IterableProperty_missingIfNull,
         ),
         FlaxGetter(
           "propertyType",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+          _flaxBinding88,
           _IterableProperty_propertyType,
         ),
         FlaxGetter(
@@ -47313,651 +44590,253 @@ Function _flaxClass_IterableProperty<
           types.ref<Iterable<_Owner0>?>(),
           _IterableProperty_value,
         ),
-        FlaxGetter(
-          "exception",
-          FlaxTypeRef("any", nullable: true),
-          _IterableProperty_exception,
-        ),
+        FlaxGetter("exception", _flaxBinding8, _IterableProperty_exception),
         FlaxGetter(
           "defaultValue",
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _IterableProperty_defaultValue,
         ),
         FlaxGetter(
           "isInteresting",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _IterableProperty_isInteresting,
         ),
-        FlaxGetter(
-          "level",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
-          _IterableProperty_level,
-        ),
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _IterableProperty_name,
-        ),
+        FlaxGetter("level", _flaxBinding71, _IterableProperty_level),
+        FlaxGetter("name", _flaxBinding67, _IterableProperty_name),
         FlaxGetter(
           "showSeparator",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _IterableProperty_showSeparator,
         ),
-        FlaxGetter("showName", FlaxTypeRef("bool"), _IterableProperty_showName),
-        FlaxGetter(
-          "linePrefix",
-          FlaxTypeRef("String", nullable: true),
-          _IterableProperty_linePrefix,
-        ),
+        FlaxGetter("showName", _flaxBinding10, _IterableProperty_showName),
+        FlaxGetter("linePrefix", _flaxBinding67, _IterableProperty_linePrefix),
         FlaxGetter(
           "emptyBodyDescription",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _IterableProperty_emptyBodyDescription,
         ),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
-          _IterableProperty_style,
-        ),
+        FlaxGetter("style", _flaxBinding86, _IterableProperty_style),
         FlaxGetter(
           "allowTruncate",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _IterableProperty_allowTruncate,
         ),
         FlaxGetter(
           "textTreeConfiguration",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding80,
           _IterableProperty_textTreeConfiguration,
         ),
       ],
       {
         "toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _IterableProperty_toJsonMap,
         ),
         "valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _IterableProperty_valueToString,
         ),
         "toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _IterableProperty_toDescription,
         ),
         "getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _IterableProperty_getProperties,
         ),
         "getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _IterableProperty_getChildren,
         ),
         "isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _IterableProperty_isFiltered,
         ),
         "toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _IterableProperty_toTimelineArguments,
         ),
         "toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _IterableProperty_toJsonMapIterative,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _IterableProperty_toStringDeep,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _IterableProperty_toString,
         ),
         "@super:toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMap,
         ),
         "@super:valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch12_super_call_valueToString,
         ),
         "@super:toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch4_super_call_toDescription,
         ),
         "@super:getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getProperties,
         ),
         "@super:getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getChildren,
         ),
         "@super:isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_call_isFiltered,
         ),
         "@super:toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _FlaxProxyDispatch5_super_call_toTimelineArguments,
         ),
         "@super:toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMapIterative,
         ),
         "@super:toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toStringDeep,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toString,
         ),
         "@super:get:level": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
+          _flaxBinding156,
+          _flaxBinding71,
           _FlaxProxyDispatch5_super_get_level,
         ),
         "@super:get:expandableValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_expandableValue,
         ),
         "@super:get:allowWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowWrap,
         ),
         "@super:get:allowNameWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowNameWrap,
         ),
         "@super:get:ifNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifNull,
         ),
         "@super:get:ifEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifEmpty,
         ),
         "@super:get:tooltip": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_tooltip,
         ),
         "@super:get:missingIfNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_missingIfNull,
         ),
         "@super:get:propertyType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+          _flaxBinding156,
+          _flaxBinding88,
           _FlaxProxyDispatch12_super_get_propertyType,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<Iterable<_Owner0>?>(),
           _IterableProperty_super_get_value,
         ),
         "@super:get:exception": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_exception,
         ),
         "@super:get:defaultValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_defaultValue,
         ),
         "@super:get:isInteresting": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_isInteresting,
         ),
         "@super:get:name": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_name,
         ),
         "@super:get:showSeparator": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showSeparator,
         ),
         "@super:get:showName": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showName,
         ),
         "@super:get:linePrefix": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_linePrefix,
         ),
         "@super:get:emptyBodyDescription": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _IterableProperty_super_get_emptyBodyDescription,
         ),
         "@super:get:style": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding86,
           _IterableProperty_super_get_style,
         ),
         "@super:get:allowTruncate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowTruncate,
         ),
         "@super:get:textTreeConfiguration": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding80,
           _FlaxProxyDispatch5_super_get_textTreeConfiguration,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
-          FlaxParameter("name", FlaxTypeRef("String"), required: true),
+          FlaxParameter("name", _flaxBinding14, required: true),
           FlaxParameter(
             "value",
             types.ref<Iterable<_Owner0>?>(),
@@ -47965,48 +44844,38 @@ Function _flaxClass_IterableProperty<
           ),
           FlaxParameter(
             "defaultValue",
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "ifNull",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("ifNull", _flaxBinding67, required: false),
           FlaxParameter(
             "ifEmpty",
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             required: false,
             defaultValue: '[]',
           ),
           FlaxParameter(
             "style",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            ),
+            _flaxBinding65,
             required: false,
             defaultValue: api.DiagnosticsTreeStyle.singleLine,
           ),
           FlaxParameter(
             "showName",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "showSeparator",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "level",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             required: false,
             defaultValue: api.DiagnosticLevel.info,
           ),
@@ -48033,24 +44902,12 @@ Function _flaxClass_IterableProperty<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -48069,16 +44926,12 @@ Function _flaxClass_IterableProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -48097,16 +44950,12 @@ Function _flaxClass_IterableProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -48123,31 +44972,7 @@ Function _flaxClass_IterableProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -48157,31 +44982,7 @@ Function _flaxClass_IterableProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -48193,15 +44994,12 @@ Function _flaxClass_IterableProperty<
             [
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function(api.DiagnosticLevel minLevel)>() + ":callback:<>(p:r:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->bool:",
           ),
           hasSuper: true,
@@ -48211,17 +45009,7 @@ Function _flaxClass_IterableProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "map",
-              nullable: true,
-              item: FlaxTypeRef("String"),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[String:][String:]",
-                _collection1Create,
-                _collection1Matches,
-              ),
-            ),
+            _flaxBinding73,
             id:
                 types.key<Map<String, String>? Function()>() +
                 ":callback:<>()->map?:[String:][String:]",
@@ -48235,24 +45023,12 @@ Function _flaxClass_IterableProperty<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -48271,43 +45047,36 @@ Function _flaxClass_IterableProperty<
             [
               FlaxCallbackParameter(
                 "prefixLineOne",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "prefixOtherLines",
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding67,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "wrapWidth",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -48330,25 +45099,18 @@ Function _flaxClass_IterableProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -48366,10 +45128,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             id: types.key<api.DiagnosticLevel Function()>() + ":callback:<>()->enum:flax.core/sdk_foundation#type:DiagnosticLevel",
           ),
           hasSuper: true,
@@ -48379,7 +45138,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -48389,7 +45148,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -48399,7 +45158,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -48409,7 +45168,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -48419,7 +45178,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -48429,7 +45188,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -48439,7 +45198,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -48449,7 +45208,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+            _flaxBinding88,
             id:
                 types.key<api3.Type Function()>() +
                 ":callback:<>()->object:flax.core/flutter#type:Type",
@@ -48473,7 +45232,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -48483,7 +45242,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -48493,7 +45252,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -48503,7 +45262,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -48513,7 +45272,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -48523,7 +45282,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -48533,7 +45292,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -48543,7 +45302,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -48553,11 +45312,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-              nullable: true,
-            ),
+            _flaxBinding86,
             id: types.key<api.DiagnosticsTreeStyle? Function()>() + ":callback:<>()->enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
           ),
           hasSuper: true,
@@ -48567,7 +45322,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -48577,11 +45332,7 @@ Function _flaxClass_IterableProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-              nullable: true,
-            ),
+            _flaxBinding80,
             id: types.key<api.TextTreeConfiguration? Function()>() + ":callback:<>()->object?:flax.core/sdk_foundation#type:TextTreeConfiguration",
           ),
           hasSuper: true,
@@ -48799,727 +45550,298 @@ Function _flaxClass_ObjectFlagProperty<
       [
         FlaxGetter(
           "expandableValue",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObjectFlagProperty_expandableValue,
         ),
-        FlaxGetter(
-          "allowWrap",
-          FlaxTypeRef("bool"),
-          _ObjectFlagProperty_allowWrap,
-        ),
+        FlaxGetter("allowWrap", _flaxBinding10, _ObjectFlagProperty_allowWrap),
         FlaxGetter(
           "allowNameWrap",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObjectFlagProperty_allowNameWrap,
         ),
-        FlaxGetter(
-          "ifNull",
-          FlaxTypeRef("String", nullable: true),
-          _ObjectFlagProperty_ifNull,
-        ),
-        FlaxGetter(
-          "ifEmpty",
-          FlaxTypeRef("String", nullable: true),
-          _ObjectFlagProperty_ifEmpty,
-        ),
-        FlaxGetter(
-          "tooltip",
-          FlaxTypeRef("String", nullable: true),
-          _ObjectFlagProperty_tooltip,
-        ),
+        FlaxGetter("ifNull", _flaxBinding67, _ObjectFlagProperty_ifNull),
+        FlaxGetter("ifEmpty", _flaxBinding67, _ObjectFlagProperty_ifEmpty),
+        FlaxGetter("tooltip", _flaxBinding67, _ObjectFlagProperty_tooltip),
         FlaxGetter(
           "missingIfNull",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObjectFlagProperty_missingIfNull,
         ),
         FlaxGetter(
           "propertyType",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+          _flaxBinding88,
           _ObjectFlagProperty_propertyType,
         ),
         FlaxGetter("value", types.ref<_Owner0?>(), _ObjectFlagProperty_value),
-        FlaxGetter(
-          "exception",
-          FlaxTypeRef("any", nullable: true),
-          _ObjectFlagProperty_exception,
-        ),
+        FlaxGetter("exception", _flaxBinding8, _ObjectFlagProperty_exception),
         FlaxGetter(
           "defaultValue",
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _ObjectFlagProperty_defaultValue,
         ),
         FlaxGetter(
           "isInteresting",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObjectFlagProperty_isInteresting,
         ),
-        FlaxGetter(
-          "level",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
-          _ObjectFlagProperty_level,
-        ),
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _ObjectFlagProperty_name,
-        ),
+        FlaxGetter("level", _flaxBinding71, _ObjectFlagProperty_level),
+        FlaxGetter("name", _flaxBinding67, _ObjectFlagProperty_name),
         FlaxGetter(
           "showSeparator",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObjectFlagProperty_showSeparator,
         ),
-        FlaxGetter(
-          "showName",
-          FlaxTypeRef("bool"),
-          _ObjectFlagProperty_showName,
-        ),
+        FlaxGetter("showName", _flaxBinding10, _ObjectFlagProperty_showName),
         FlaxGetter(
           "linePrefix",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _ObjectFlagProperty_linePrefix,
         ),
         FlaxGetter(
           "emptyBodyDescription",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding67,
           _ObjectFlagProperty_emptyBodyDescription,
         ),
-        FlaxGetter(
-          "style",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
-          _ObjectFlagProperty_style,
-        ),
+        FlaxGetter("style", _flaxBinding86, _ObjectFlagProperty_style),
         FlaxGetter(
           "allowTruncate",
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObjectFlagProperty_allowTruncate,
         ),
         FlaxGetter(
           "textTreeConfiguration",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding80,
           _ObjectFlagProperty_textTreeConfiguration,
         ),
-        FlaxGetter(
-          "ifPresent",
-          FlaxTypeRef("String", nullable: true),
-          _ObjectFlagProperty_ifPresent,
-        ),
+        FlaxGetter("ifPresent", _flaxBinding67, _ObjectFlagProperty_ifPresent),
       ],
       {
         "toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _ObjectFlagProperty_toJsonMap,
         ),
         "valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _ObjectFlagProperty_valueToString,
         ),
         "toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _ObjectFlagProperty_toDescription,
         ),
         "getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _ObjectFlagProperty_getProperties,
         ),
         "getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _ObjectFlagProperty_getChildren,
         ),
         "isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _ObjectFlagProperty_isFiltered,
         ),
         "toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _ObjectFlagProperty_toTimelineArguments,
         ),
         "toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _ObjectFlagProperty_toJsonMapIterative,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _ObjectFlagProperty_toStringDeep,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _ObjectFlagProperty_toString,
         ),
         "@super:toJsonMap": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMap,
         ),
         "@super:valueToString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch12_super_call_valueToString,
         ),
         "@super:toDescription": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding298,
+          _flaxBinding14,
           _FlaxProxyDispatch4_super_call_toDescription,
         ),
         "@super:getProperties": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getProperties,
         ),
         "@super:getChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection4Create,
-              _collection4Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection5Create,
-                _collection5Matches,
-                restore: _collection5Restore,
-              ),
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding63,
           _FlaxProxyDispatch4_super_call_getChildren,
         ),
         "@super:isFiltered": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding994,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_call_isFiltered,
         ),
         "@super:toTimelineArguments": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "map",
-            nullable: true,
-            item: FlaxTypeRef("String"),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[String:][String:]",
-              _collection1Create,
-              _collection1Matches,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding73,
           _FlaxProxyDispatch5_super_call_toTimelineArguments,
         ),
         "@super:toJsonMapIterative": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "delegate",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "map",
-            item: FlaxTypeRef("any", nullable: true),
-            key: FlaxTypeRef("String"),
-            collection: FlaxCollectionBinding(
-              "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
-            ),
-          ),
+          _flaxBinding995,
+          _flaxBinding35,
           _FlaxProxyDispatch5_super_call_toJsonMapIterative,
         ),
         "@super:toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding300,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toStringDeep,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api.DiagnosticLevel.info,
-            ),
-            FlaxParameter(
-              "parentConfiguration",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding299,
+          _flaxBinding14,
           _FlaxProxyDispatch5_super_call_toString,
         ),
         "@super:get:ifPresent": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _ObjectFlagProperty_super_get_ifPresent,
         ),
         "@super:get:showName": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showName,
         ),
         "@super:get:level": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-          ),
+          _flaxBinding156,
+          _flaxBinding71,
           _FlaxProxyDispatch5_super_get_level,
         ),
         "@super:get:expandableValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_expandableValue,
         ),
         "@super:get:allowWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowWrap,
         ),
         "@super:get:allowNameWrap": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowNameWrap,
         ),
         "@super:get:ifNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifNull,
         ),
         "@super:get:ifEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_ifEmpty,
         ),
         "@super:get:tooltip": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch12_super_get_tooltip,
         ),
         "@super:get:missingIfNull": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_missingIfNull,
         ),
         "@super:get:propertyType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+          _flaxBinding156,
+          _flaxBinding88,
           _FlaxProxyDispatch12_super_get_propertyType,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0?>(),
           _ObjectFlagProperty_super_get_value,
         ),
         "@super:get:exception": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_exception,
         ),
         "@super:get:defaultValue": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding156,
+          _flaxBinding8,
           _FlaxProxyDispatch12_super_get_defaultValue,
         ),
         "@super:get:isInteresting": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch12_super_get_isInteresting,
         ),
         "@super:get:name": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_name,
         ),
         "@super:get:showSeparator": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_showSeparator,
         ),
         "@super:get:linePrefix": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _FlaxProxyDispatch5_super_get_linePrefix,
         ),
         "@super:get:emptyBodyDescription": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding156,
+          _flaxBinding67,
           _ObjectFlagProperty_super_get_emptyBodyDescription,
         ),
         "@super:get:style": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding86,
           _ObjectFlagProperty_super_get_style,
         ),
         "@super:get:allowTruncate": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch5_super_get_allowTruncate,
         ),
         "@super:get:textTreeConfiguration": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-            nullable: true,
-          ),
+          _flaxBinding156,
+          _flaxBinding80,
           _FlaxProxyDispatch5_super_get_textTreeConfiguration,
         ),
       },
       constructors: {
         "@implementation": <FlaxParameter>[
-          FlaxParameter("name", FlaxTypeRef("String"), required: true),
+          FlaxParameter("name", _flaxBinding14, required: true),
           FlaxParameter("value", types.ref<_Owner0?>(), required: true),
-          FlaxParameter(
-            "ifPresent",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "ifNull",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("ifPresent", _flaxBinding67, required: false),
+          FlaxParameter("ifNull", _flaxBinding67, required: false),
           FlaxParameter(
             "showName",
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "level",
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             required: false,
             defaultValue: api.DiagnosticLevel.info,
           ),
@@ -49546,24 +45868,12 @@ Function _flaxClass_ObjectFlagProperty<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -49582,16 +45892,12 @@ Function _flaxClass_ObjectFlagProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -49610,16 +45916,12 @@ Function _flaxClass_ObjectFlagProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -49636,31 +45938,7 @@ Function _flaxClass_ObjectFlagProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -49670,31 +45948,7 @@ Function _flaxClass_ObjectFlagProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "list",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection4Create,
-                _collection4Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                  _collection5Create,
-                  _collection5Matches,
-                  restore: _collection5Restore,
-                ),
-              ),
-            ),
+            _flaxBinding63,
             id: types.key<List<api.DiagnosticsNode> Function()>() + ":callback:<>()->list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
           ),
           hasSuper: true,
@@ -49706,15 +45960,12 @@ Function _flaxClass_ObjectFlagProperty<
             [
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function(api.DiagnosticLevel minLevel)>() + ":callback:<>(p:r:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->bool:",
           ),
           hasSuper: true,
@@ -49724,17 +45975,7 @@ Function _flaxClass_ObjectFlagProperty<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "map",
-              nullable: true,
-              item: FlaxTypeRef("String"),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[String:][String:]",
-                _collection1Create,
-                _collection1Matches,
-              ),
-            ),
+            _flaxBinding73,
             id:
                 types.key<Map<String, String>? Function()>() +
                 ":callback:<>()->map?:[String:][String:]",
@@ -49748,24 +45989,12 @@ Function _flaxClass_ObjectFlagProperty<
             [
               FlaxCallbackParameter(
                 "delegate",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-                ),
+                _flaxBinding75,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "map",
-              item: FlaxTypeRef("any", nullable: true),
-              key: FlaxTypeRef("String"),
-              collection: FlaxCollectionBinding(
-                "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
-              ),
-            ),
+            _flaxBinding35,
             id:
                 types
                     .key<
@@ -49784,43 +46013,36 @@ Function _flaxClass_ObjectFlagProperty<
             [
               FlaxCallbackParameter(
                 "prefixLineOne",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "prefixOtherLines",
-                FlaxTypeRef("String", nullable: true),
+                _flaxBinding67,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "wrapWidth",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -49843,25 +46065,18 @@ Function _flaxClass_ObjectFlagProperty<
             [
               FlaxCallbackParameter(
                 "parentConfiguration",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-                  nullable: true,
-                ),
+                _flaxBinding80,
                 required: false,
                 positional: false,
               ),
               FlaxCallbackParameter(
                 "minLevel",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-                ),
+                _flaxBinding71,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types
                     .key<
@@ -49879,7 +46094,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -49889,7 +46104,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -49899,10 +46114,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-            ),
+            _flaxBinding71,
             id: types.key<api.DiagnosticLevel Function()>() + ":callback:<>()->enum:flax.core/sdk_foundation#type:DiagnosticLevel",
           ),
           hasSuper: true,
@@ -49912,7 +46124,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -49922,7 +46134,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -49932,7 +46144,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -49942,7 +46154,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -49952,7 +46164,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -49962,7 +46174,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -49972,7 +46184,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -49982,7 +46194,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Type"),
+            _flaxBinding88,
             id:
                 types.key<api3.Type Function()>() +
                 ":callback:<>()->object:flax.core/flutter#type:Type",
@@ -50006,7 +46218,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -50016,7 +46228,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             id: types.key<Object? Function()>() + ":callback:<>()->any?:",
           ),
           hasSuper: true,
@@ -50026,7 +46238,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -50036,7 +46248,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -50046,7 +46258,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -50056,7 +46268,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -50066,7 +46278,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String", nullable: true),
+            _flaxBinding67,
             id: types.key<String? Function()>() + ":callback:<>()->String?:",
           ),
           hasSuper: true,
@@ -50076,11 +46288,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-              nullable: true,
-            ),
+            _flaxBinding86,
             id: types.key<api.DiagnosticsTreeStyle? Function()>() + ":callback:<>()->enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
           ),
           hasSuper: true,
@@ -50090,7 +46298,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -50100,11 +46308,7 @@ Function _flaxClass_ObjectFlagProperty<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
-              nullable: true,
-            ),
+            _flaxBinding80,
             id: types.key<api.TextTreeConfiguration? Function()>() + ":callback:<>()->object?:flax.core/sdk_foundation#type:TextTreeConfiguration",
           ),
           hasSuper: true,
@@ -50121,7 +46325,11 @@ Function _flaxGeneric_ObserverList_cast<
     return (receiver as api.ObserverList<_Owner0>).cast<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_ObserverList_super_cast<
   _Owner0 extends Object?,
@@ -50132,7 +46340,11 @@ Function _flaxGeneric_ObserverList_super_cast<
         ._flaxSuper_cast<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_ObserverList_map<
   _Owner0 extends Object?,
@@ -50145,7 +46357,7 @@ Function _flaxGeneric_ObserverList_map<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElement",
         types.define<_Method0 Function(_Owner0 e)>(
@@ -50172,8 +46384,6 @@ Function _flaxGeneric_ObserverList_map<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -50191,7 +46401,7 @@ Function _flaxGeneric_ObserverList_super_map<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElement",
         types.define<_Method0 Function(_Owner0 e)>(
@@ -50218,8 +46428,6 @@ Function _flaxGeneric_ObserverList_super_map<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -50234,7 +46442,11 @@ Function _flaxGeneric_ObserverList_whereType<
     return (receiver as api.ObserverList<_Owner0>).whereType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_ObserverList_super_whereType<
   _Owner0 extends Object?,
@@ -50245,7 +46457,11 @@ Function _flaxGeneric_ObserverList_super_whereType<
         ._flaxSuper_whereType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding156,
+    types.ref<Iterable<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_ObserverList_expand<
   _Owner0 extends Object?,
@@ -50258,7 +46474,7 @@ Function _flaxGeneric_ObserverList_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElements",
         types.define<Iterable<_Method0> Function(_Owner0 element)>(
@@ -50286,8 +46502,6 @@ Function _flaxGeneric_ObserverList_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -50306,7 +46520,7 @@ Function _flaxGeneric_ObserverList_super_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "toElements",
         types.define<Iterable<_Method0> Function(_Owner0 element)>(
@@ -50334,8 +46548,6 @@ Function _flaxGeneric_ObserverList_super_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Iterable<_Method0>>(),
@@ -50355,14 +46567,8 @@ Function _flaxGeneric_ObserverList_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<
@@ -50404,8 +46610,6 @@ Function _flaxGeneric_ObserverList_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0>(),
@@ -50425,14 +46629,8 @@ Function _flaxGeneric_ObserverList_super_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<
@@ -50474,8 +46672,6 @@ Function _flaxGeneric_ObserverList_super_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0>(),
@@ -51282,9 +47478,9 @@ Function _flaxClass_ObserverList<
           types.ref<api3.Iterator<_Owner0>>(),
           _ObserverList_iterator,
         ),
-        FlaxGetter("isEmpty", FlaxTypeRef("bool"), _ObserverList_isEmpty),
-        FlaxGetter("isNotEmpty", FlaxTypeRef("bool"), _ObserverList_isNotEmpty),
-        FlaxGetter("length", FlaxTypeRef("int"), _ObserverList_length),
+        FlaxGetter("isEmpty", _flaxBinding10, _ObserverList_isEmpty),
+        FlaxGetter("isNotEmpty", _flaxBinding10, _ObserverList_isNotEmpty),
+        FlaxGetter("length", _flaxBinding6, _ObserverList_length),
         FlaxGetter("first", types.ref<_Owner0>(), _ObserverList_first),
         FlaxGetter("last", types.ref<_Owner0>(), _ObserverList_last),
         FlaxGetter("single", types.ref<_Owner0>(), _ObserverList_single),
@@ -51294,56 +47490,34 @@ Function _flaxClass_ObserverList<
           <FlaxParameter>[
             FlaxParameter("item", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _ObserverList_add,
         ),
         "remove": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("item", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObserverList_remove,
         ),
         "clear": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding156,
+          _flaxBinding1,
           _ObserverList_clear,
         ),
         "contains": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "element",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding993,
+          _flaxBinding10,
           _ObserverList_contains,
         ),
         "toList": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "growable",
-              FlaxTypeRef("bool"),
-              required: false,
-              defaultValue: true,
-            ),
-          ],
+          _flaxBinding237,
           types.ref<List<_Owner0>>(),
           _ObserverList_toList,
         ),
         "cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _ObserverList_cast,
           genericFactory: _flaxGeneric_ObserverList_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -51376,7 +47550,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                     id:
                         types.key<Object? Function(_Owner0 e)>() +
@@ -51389,16 +47563,7 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _ObserverList_map,
           genericFactory: _flaxGeneric_ObserverList_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -51420,7 +47585,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -51437,17 +47602,8 @@ Function _flaxClass_ObserverList<
           _ObserverList_where,
         ),
         "whereType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _ObserverList_whereType,
           genericFactory: _flaxGeneric_ObserverList_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -51469,16 +47625,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("any", nullable: true),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[any?:]",
-                        _collection21Create,
-                        _collection21Matches,
-                        restore: _collection21Restore,
-                      ),
-                    ),
+                    _flaxBinding234,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -51496,16 +47643,7 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _ObserverList_expand,
           genericFactory: _flaxGeneric_ObserverList_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -51527,7 +47665,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 element)>() +
@@ -51540,7 +47678,7 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _ObserverList_forEach,
         ),
         "reduce": FlaxInstanceMethod(
@@ -51589,11 +47727,7 @@ Function _flaxClass_ObserverList<
         ),
         "fold": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "initialValue",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
+            FlaxParameter("initialValue", _flaxBinding8, required: true),
             FlaxParameter(
               "combine",
               types.define<
@@ -51606,7 +47740,7 @@ Function _flaxClass_ObserverList<
                     [
                       FlaxCallbackParameter(
                         "previousValue",
-                        FlaxTypeRef("any", nullable: true),
+                        _flaxBinding8,
                         required: true,
                         positional: true,
                       ),
@@ -51617,7 +47751,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                     id:
                         types
@@ -51638,7 +47772,7 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _ObserverList_fold,
           genericFactory: _flaxGeneric_ObserverList_fold,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -51660,7 +47794,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -51673,19 +47807,12 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObserverList_every,
         ),
         "join": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "separator",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding238,
+          _flaxBinding14,
           _ObserverList_join,
         ),
         "any": FlaxInstanceMethod(
@@ -51705,7 +47832,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -51718,18 +47845,16 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObserverList_any,
         ),
         "toSet": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<Set<_Owner0>>(),
           _ObserverList_toSet,
         ),
         "take": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _ObserverList_take,
         ),
@@ -51750,7 +47875,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -51767,9 +47892,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_takeWhile,
         ),
         "skip": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _ObserverList_skip,
         ),
@@ -51790,7 +47913,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -51823,7 +47946,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -51876,7 +47999,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -51929,7 +48052,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -51966,9 +48089,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_singleWhere,
         ),
         "elementAt": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("index", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding236,
           types.ref<_Owner0>(),
           _ObserverList_elementAt,
         ),
@@ -51976,56 +48097,34 @@ Function _flaxClass_ObserverList<
           <FlaxParameter>[
             FlaxParameter("item", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _ObserverList_super_add,
         ),
         "@super:remove": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("item", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObserverList_super_remove,
         ),
         "@super:clear": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding156,
+          _flaxBinding1,
           _FlaxProxyDispatch17_super_call_clear,
         ),
         "@super:contains": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "element",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding993,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_call_contains,
         ),
         "@super:toList": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "growable",
-              FlaxTypeRef("bool"),
-              required: false,
-              defaultValue: true,
-            ),
-          ],
+          _flaxBinding237,
           types.ref<List<_Owner0>>(),
           _ObserverList_super_toList,
         ),
         "@super:cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _ObserverList_super_cast,
           genericFactory: _flaxGeneric_ObserverList_super_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -52058,7 +48157,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                     id:
                         types.key<Object? Function(_Owner0 e)>() +
@@ -52071,16 +48170,7 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _ObserverList_super_map,
           genericFactory: _flaxGeneric_ObserverList_super_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -52102,7 +48192,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -52119,17 +48209,8 @@ Function _flaxClass_ObserverList<
           _ObserverList_super_where,
         ),
         "@super:whereType": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding156,
+          _flaxBinding234,
           _ObserverList_super_whereType,
           genericFactory: _flaxGeneric_ObserverList_super_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -52151,16 +48232,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("any", nullable: true),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[any?:]",
-                        _collection21Create,
-                        _collection21Matches,
-                        restore: _collection21Restore,
-                      ),
-                    ),
+                    _flaxBinding234,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -52178,16 +48250,7 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef("any", nullable: true),
-            collection: FlaxCollectionBinding(
-              "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
-            ),
-          ),
+          _flaxBinding234,
           _ObserverList_super_expand,
           genericFactory: _flaxGeneric_ObserverList_super_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -52209,7 +48272,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 element)>() +
@@ -52222,7 +48285,7 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _ObserverList_super_forEach,
         ),
         "@super:reduce": FlaxInstanceMethod(
@@ -52271,11 +48334,7 @@ Function _flaxClass_ObserverList<
         ),
         "@super:fold": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "initialValue",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
+            FlaxParameter("initialValue", _flaxBinding8, required: true),
             FlaxParameter(
               "combine",
               types.define<
@@ -52288,7 +48347,7 @@ Function _flaxClass_ObserverList<
                     [
                       FlaxCallbackParameter(
                         "previousValue",
-                        FlaxTypeRef("any", nullable: true),
+                        _flaxBinding8,
                         required: true,
                         positional: true,
                       ),
@@ -52299,7 +48358,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding8,
                     FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                     id:
                         types
@@ -52320,7 +48379,7 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("any", nullable: true),
+          _flaxBinding8,
           _ObserverList_super_fold,
           genericFactory: _flaxGeneric_ObserverList_super_fold,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -52342,7 +48401,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -52355,19 +48414,12 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObserverList_super_every,
         ),
         "@super:join": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "separator",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding238,
+          _flaxBinding14,
           _FlaxProxyDispatch1_super_call_join,
         ),
         "@super:any": FlaxInstanceMethod(
@@ -52387,7 +48439,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -52400,18 +48452,16 @@ Function _flaxClass_ObserverList<
               required: true,
             ),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding10,
           _ObserverList_super_any,
         ),
         "@super:toSet": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<Set<_Owner0>>(),
           _ObserverList_super_toSet,
         ),
         "@super:take": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _ObserverList_super_take,
         ),
@@ -52432,7 +48482,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -52449,9 +48499,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding235,
           types.ref<Iterable<_Owner0>>(),
           _ObserverList_super_skip,
         ),
@@ -52472,7 +48520,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 value)>() +
@@ -52505,7 +48553,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -52558,7 +48606,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -52611,7 +48659,7 @@ Function _flaxClass_ObserverList<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -52648,49 +48696,47 @@ Function _flaxClass_ObserverList<
           _ObserverList_super_singleWhere,
         ),
         "@super:elementAt": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("index", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding236,
           types.ref<_Owner0>(),
           _ObserverList_super_elementAt,
         ),
         "@super:get:iterator": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<api3.Iterator<_Owner0>>(),
           _ObserverList_super_get_iterator,
         ),
         "@super:get:isEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_get_isEmpty,
         ),
         "@super:get:isNotEmpty": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch1_super_get_isNotEmpty,
         ),
         "@super:get:length": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("int"),
+          _flaxBinding156,
+          _flaxBinding6,
           _FlaxProxyDispatch1_super_get_length,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _ObserverList_super_get_first,
         ),
         "@super:get:last": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _ObserverList_super_get_last,
         ),
         "@super:get:single": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _ObserverList_super_get_single,
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding156},
       create: _createObserverList,
       matches: _isObserverList,
       setters: [],
@@ -52713,7 +48759,7 @@ Function _flaxClass_ObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types.key<void Function(_Owner0 item)>() +
                 ":callback:<>(p:r:item:parameter:)->void:",
@@ -52732,7 +48778,7 @@ Function _flaxClass_ObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types.key<bool Function(_Owner0 item)>() +
                 ":callback:<>(p:r:item:parameter:)->bool:",
@@ -52744,7 +48790,7 @@ Function _flaxClass_ObserverList<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -52756,12 +48802,12 @@ Function _flaxClass_ObserverList<
             [
               FlaxCallbackParameter(
                 "element",
-                FlaxTypeRef("any", nullable: true),
+                _flaxBinding8,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types.key<bool Function(Object? element)>() +
                 ":callback:<>(p:r:element:any?:)->bool:",
@@ -52775,7 +48821,7 @@ Function _flaxClass_ObserverList<
             [
               FlaxCallbackParameter(
                 "growable",
-                FlaxTypeRef("bool"),
+                _flaxBinding10,
                 required: false,
                 positional: false,
               ),
@@ -52792,16 +48838,7 @@ Function _flaxClass_ObserverList<
           0,
           FlaxCallbackBinding(
             [],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback0,
             id:
                 types.key<Iterable<R> Function<R extends Object?>()>() +
@@ -52855,7 +48892,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding8,
                       FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                       id:
                           types.key<Object? Function(_Owner0 e)>() +
@@ -52870,16 +48907,7 @@ Function _flaxClass_ObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback1,
             id:
                 types
@@ -52916,7 +48944,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -52948,16 +48976,7 @@ Function _flaxClass_ObserverList<
           0,
           FlaxCallbackBinding(
             [],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback2,
             id:
                 types.key<Iterable<T> Function<T extends Object?>()>() +
@@ -52989,16 +49008,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef(
-                        "iterable",
-                        item: FlaxTypeRef("any", nullable: true),
-                        collection: FlaxCollectionBinding(
-                          "iterable:[any?:]",
-                          _collection21Create,
-                          _collection21Matches,
-                          restore: _collection21Restore,
-                        ),
-                      ),
+                      _flaxBinding234,
                       FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                       id:
                           types
@@ -53018,16 +49028,7 @@ Function _flaxClass_ObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef("any", nullable: true),
-              collection: FlaxCollectionBinding(
-                "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
-              ),
-            ),
+            _flaxBinding234,
             _callback3,
             id:
                 types
@@ -53064,7 +49065,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("void"),
+                      _flaxBinding1,
                       FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                       id:
                           types.key<void Function(_Owner0 element)>() +
@@ -53079,7 +49080,7 @@ Function _flaxClass_ObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types
                     .key<
@@ -53155,7 +49156,7 @@ Function _flaxClass_ObserverList<
             [
               FlaxCallbackParameter(
                 "initialValue",
-                FlaxTypeRef("any", nullable: true),
+                _flaxBinding8,
                 required: true,
                 positional: true,
               ),
@@ -53171,7 +49172,7 @@ Function _flaxClass_ObserverList<
                       [
                         FlaxCallbackParameter(
                           "previousValue",
-                          FlaxTypeRef("any", nullable: true),
+                          _flaxBinding8,
                           required: true,
                           positional: true,
                         ),
@@ -53182,7 +49183,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding8,
                       FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                       id:
                           types
@@ -53205,7 +49206,7 @@ Function _flaxClass_ObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("any", nullable: true),
+            _flaxBinding8,
             _callback4,
             id:
                 types
@@ -53243,7 +49244,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -53258,7 +49259,7 @@ Function _flaxClass_ObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types
                     .key<bool Function(bool Function(_Owner0 element) test)>() +
@@ -53273,12 +49274,12 @@ Function _flaxClass_ObserverList<
             [
               FlaxCallbackParameter(
                 "separator",
-                FlaxTypeRef("String"),
+                _flaxBinding14,
                 required: false,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id:
                 types.key<String Function([String separator])>() +
                 ":callback:<>(p:o:separator:String:)->String:",
@@ -53305,7 +49306,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -53320,7 +49321,7 @@ Function _flaxClass_ObserverList<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id:
                 types
                     .key<bool Function(bool Function(_Owner0 element) test)>() +
@@ -53347,7 +49348,7 @@ Function _flaxClass_ObserverList<
             [
               FlaxCallbackParameter(
                 "count",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -53379,7 +49380,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 value)>() +
@@ -53413,7 +49414,7 @@ Function _flaxClass_ObserverList<
             [
               FlaxCallbackParameter(
                 "count",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -53445,7 +49446,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 value)>() +
@@ -53492,7 +49493,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -53562,7 +49563,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -53632,7 +49633,7 @@ Function _flaxClass_ObserverList<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("bool"),
+                      _flaxBinding10,
                       FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                       id:
                           types.key<bool Function(_Owner0 element)>() +
@@ -53689,7 +49690,7 @@ Function _flaxClass_ObserverList<
             [
               FlaxCallbackParameter(
                 "index",
-                FlaxTypeRef("int"),
+                _flaxBinding6,
                 required: true,
                 positional: true,
               ),
@@ -53716,7 +49717,7 @@ Function _flaxClass_ObserverList<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -53726,7 +49727,7 @@ Function _flaxClass_ObserverList<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -53736,7 +49737,7 @@ Function _flaxClass_ObserverList<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("int"),
+            _flaxBinding6,
             id: types.key<int Function()>() + ":callback:<>()->int:",
           ),
           hasSuper: true,
@@ -53872,8 +49873,8 @@ Function _flaxClass_PersistentHashMap<
         ),
       },
       constructors: {
-        "@implementation": <FlaxParameter>[],
-        "@implementation:empty": <FlaxParameter>[],
+        "@implementation": _flaxBinding156,
+        "@implementation:empty": _flaxBinding156,
       },
       create: _createPersistentHashMap,
       matches: _isPersistentHashMap,
@@ -53972,7 +49973,7 @@ Function _flaxGeneric_SynchronousFuture_then<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "onValue",
         types.define<api5.FutureOr<_Method0> Function(_Owner0 value)>(
@@ -53999,16 +50000,8 @@ Function _flaxGeneric_SynchronousFuture_then<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "onError",
-        FlaxTypeRef("function", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("onError", _flaxBinding839, required: false),
     ],
     types.ref<Future<_Method0>>(),
     invoke,
@@ -54046,7 +50039,7 @@ Function _flaxGeneric_SynchronousFuture_super_then<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "onValue",
         types.define<api5.FutureOr<_Method0> Function(_Owner0 value)>(
@@ -54073,16 +50066,8 @@ Function _flaxGeneric_SynchronousFuture_super_then<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "onError",
-        FlaxTypeRef("function", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("onError", _flaxBinding839, required: false),
     ],
     types.ref<Future<_Method0>>(),
     invoke,
@@ -54393,7 +50378,7 @@ Function _flaxClass_SynchronousFuture<
         ),
         FlaxCallbackParameter(
           "onError",
-          FlaxTypeRef("function", nullable: true),
+          _flaxBinding839,
           required: false,
           positional: false,
         ),
@@ -54495,13 +50480,13 @@ Function _flaxClass_SynchronousFuture<
       [],
       {
         "asStream": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<api5.Stream<_Owner0>>(),
           _SynchronousFuture_asStream,
         ),
         "catchError": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("onError", FlaxTypeRef("function"), required: true),
+            FlaxParameter("onError", _flaxBinding834, required: true),
             FlaxParameter(
               "test",
               FlaxTypeRef(
@@ -54511,12 +50496,12 @@ Function _flaxClass_SynchronousFuture<
                   [
                     FlaxCallbackParameter(
                       "error",
-                      FlaxTypeRef("any"),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("bool"),
+                  _flaxBinding10,
                   FlaxCallbackAdapters.wrap1<Object, bool>,
                   id:
                       types.key<bool Function(Object error)?>() +
@@ -54548,11 +50533,7 @@ Function _flaxClass_SynchronousFuture<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "futureOr",
-                      item: FlaxTypeRef("any", nullable: true),
-                      future: FlaxFutureBinding("any?:", _future5Adapt),
-                    ),
+                    _flaxBinding838,
                     _callback0,
                     id:
                         types
@@ -54567,28 +50548,16 @@ Function _flaxClass_SynchronousFuture<
               ),
               required: true,
             ),
-            FlaxParameter(
-              "onError",
-              FlaxTypeRef("function", nullable: true),
-              required: false,
-            ),
+            FlaxParameter("onError", _flaxBinding839, required: false),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future5Adapt),
-          ),
+          _flaxBinding847,
           _SynchronousFuture_then,
           genericFactory: _flaxGeneric_SynchronousFuture_then,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "timeout": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "timeLimit",
-              FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
-              required: true,
-            ),
+            FlaxParameter("timeLimit", _flaxBinding840, required: true),
             FlaxParameter(
               "onTimeout",
               types.define<api5.FutureOr<_Owner0> Function()?>(
@@ -54621,11 +50590,7 @@ Function _flaxClass_SynchronousFuture<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "futureOr",
-                    item: FlaxTypeRef("any", nullable: true),
-                    future: FlaxFutureBinding("any?:", _future5Adapt),
-                  ),
+                  _flaxBinding838,
                   _callback2,
                   id:
                       types.key<api5.FutureOr<Object?> Function()>() +
@@ -54641,13 +50606,13 @@ Function _flaxClass_SynchronousFuture<
           _SynchronousFuture_whenComplete,
         ),
         "@super:asStream": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<api5.Stream<_Owner0>>(),
           _SynchronousFuture_super_asStream,
         ),
         "@super:catchError": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("onError", FlaxTypeRef("function"), required: true),
+            FlaxParameter("onError", _flaxBinding834, required: true),
             FlaxParameter(
               "test",
               FlaxTypeRef(
@@ -54657,12 +50622,12 @@ Function _flaxClass_SynchronousFuture<
                   [
                     FlaxCallbackParameter(
                       "error",
-                      FlaxTypeRef("any"),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("bool"),
+                  _flaxBinding10,
                   FlaxCallbackAdapters.wrap1<Object, bool>,
                   id:
                       types.key<bool Function(Object error)?>() +
@@ -54694,11 +50659,7 @@ Function _flaxClass_SynchronousFuture<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "futureOr",
-                      item: FlaxTypeRef("any", nullable: true),
-                      future: FlaxFutureBinding("any?:", _future5Adapt),
-                    ),
+                    _flaxBinding838,
                     _callback3,
                     id:
                         types
@@ -54713,28 +50674,16 @@ Function _flaxClass_SynchronousFuture<
               ),
               required: true,
             ),
-            FlaxParameter(
-              "onError",
-              FlaxTypeRef("function", nullable: true),
-              required: false,
-            ),
+            FlaxParameter("onError", _flaxBinding839, required: false),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future5Adapt),
-          ),
+          _flaxBinding847,
           _SynchronousFuture_super_then,
           genericFactory: _flaxGeneric_SynchronousFuture_super_then,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:timeout": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "timeLimit",
-              FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
-              required: true,
-            ),
+            FlaxParameter("timeLimit", _flaxBinding840, required: true),
             FlaxParameter(
               "onTimeout",
               types.define<api5.FutureOr<_Owner0> Function()?>(
@@ -54767,11 +50716,7 @@ Function _flaxClass_SynchronousFuture<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "futureOr",
-                    item: FlaxTypeRef("any", nullable: true),
-                    future: FlaxFutureBinding("any?:", _future5Adapt),
-                  ),
+                  _flaxBinding838,
                   _callback2,
                   id:
                       types.key<api5.FutureOr<Object?> Function()>() +
@@ -54819,7 +50764,7 @@ Function _flaxClass_SynchronousFuture<
             [
               FlaxCallbackParameter(
                 "onError",
-                FlaxTypeRef("function"),
+                _flaxBinding834,
                 required: true,
                 positional: true,
               ),
@@ -54832,12 +50777,12 @@ Function _flaxClass_SynchronousFuture<
                     [
                       FlaxCallbackParameter(
                         "error",
-                        FlaxTypeRef("any"),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding10,
                     FlaxCallbackAdapters.wrap1<Object, bool>,
                     id:
                         types.key<bool Function(Object error)?>() +
@@ -54883,11 +50828,7 @@ Function _flaxClass_SynchronousFuture<
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef(
-                        "futureOr",
-                        item: FlaxTypeRef("any", nullable: true),
-                        future: FlaxFutureBinding("any?:", _future5Adapt),
-                      ),
+                      _flaxBinding838,
                       _callback4,
                       id:
                           types
@@ -54906,16 +50847,12 @@ Function _flaxClass_SynchronousFuture<
               ),
               FlaxCallbackParameter(
                 "onError",
-                FlaxTypeRef("function", nullable: true),
+                _flaxBinding839,
                 required: false,
                 positional: false,
               ),
             ],
-            FlaxTypeRef(
-              "future",
-              item: FlaxTypeRef("any", nullable: true),
-              future: FlaxFutureBinding("any?:", _future5Adapt),
-            ),
+            _flaxBinding847,
             _callback5,
             id:
                 types
@@ -54940,7 +50877,7 @@ Function _flaxClass_SynchronousFuture<
             [
               FlaxCallbackParameter(
                 "timeLimit",
-                FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+                _flaxBinding840,
                 required: true,
                 positional: true,
               ),
@@ -54991,11 +50928,7 @@ Function _flaxClass_SynchronousFuture<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef(
-                      "futureOr",
-                      item: FlaxTypeRef("any", nullable: true),
-                      future: FlaxFutureBinding("any?:", _future5Adapt),
-                    ),
+                    _flaxBinding838,
                     _callback7,
                     id:
                         types.key<api5.FutureOr<Object?> Function()>() +
@@ -55105,11 +51038,7 @@ Function _flaxClass_ValueNotifier<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "hasListeners",
-          FlaxTypeRef("bool"),
-          _ValueNotifier_hasListeners,
-        ),
+        FlaxGetter("hasListeners", _flaxBinding10, _ValueNotifier_hasListeners),
         FlaxGetter("value", types.ref<_Owner0>(), _ValueNotifier_value),
       ],
       {
@@ -55121,7 +51050,7 @@ Function _flaxClass_ValueNotifier<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding1,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -55131,7 +51060,7 @@ Function _flaxClass_ValueNotifier<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _ValueNotifier_addListener,
         ),
         "removeListener": FlaxInstanceMethod(
@@ -55142,7 +51071,7 @@ Function _flaxClass_ValueNotifier<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding1,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -55152,17 +51081,17 @@ Function _flaxClass_ValueNotifier<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _ValueNotifier_removeListener,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding156,
+          _flaxBinding1,
           _ValueNotifier_dispose,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding156,
+          _flaxBinding14,
           _ValueNotifier_toString,
         ),
         "@super:addListener": FlaxInstanceMethod(
@@ -55173,7 +51102,7 @@ Function _flaxClass_ValueNotifier<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding1,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -55183,7 +51112,7 @@ Function _flaxClass_ValueNotifier<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _FlaxProxyDispatch2_super_call_addListener,
         ),
         "@super:removeListener": FlaxInstanceMethod(
@@ -55194,7 +51123,7 @@ Function _flaxClass_ValueNotifier<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding1,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -55204,27 +51133,27 @@ Function _flaxClass_ValueNotifier<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding1,
           _FlaxProxyDispatch2_super_call_removeListener,
         ),
         "@super:dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding156,
+          _flaxBinding1,
           _FlaxProxyDispatch2_super_call_dispose,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding156,
+          _flaxBinding14,
           _FlaxProxyDispatch0_super_call_toString,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding156,
           types.ref<_Owner0>(),
           _ValueNotifier_super_get_value,
         ),
         "@super:get:hasListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding156,
+          _flaxBinding10,
           _FlaxProxyDispatch2_super_get_hasListeners,
         ),
         "@super:set:value": FlaxInstanceMethod(
@@ -55266,7 +51195,7 @@ Function _flaxClass_ValueNotifier<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -55277,7 +51206,7 @@ Function _flaxClass_ValueNotifier<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -55295,7 +51224,7 @@ Function _flaxClass_ValueNotifier<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding1,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -55306,7 +51235,7 @@ Function _flaxClass_ValueNotifier<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -55318,7 +51247,7 @@ Function _flaxClass_ValueNotifier<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -55328,7 +51257,7 @@ Function _flaxClass_ValueNotifier<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding14,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -55348,7 +51277,7 @@ Function _flaxClass_ValueNotifier<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding10,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -55365,7 +51294,7 @@ Function _flaxClass_ValueNotifier<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding1,
             id:
                 types.key<void Function(_Owner0 value)>() +
                 ":callback:<>(p:r:value:parameter:)->void:",
@@ -55937,7 +51866,7 @@ FlaxCallbackBinding _callback24Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "e",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -56031,7 +51960,7 @@ FlaxCallbackBinding _callback26Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -56265,7 +52194,7 @@ FlaxCallbackBinding _callback33Types<_Callback0 extends Object?>(
                 ),
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -56812,7 +52741,7 @@ FlaxCallbackBinding _callback61Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "e",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -56938,7 +52867,7 @@ FlaxCallbackBinding _callback64Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -57078,7 +53007,7 @@ FlaxCallbackBinding _callback67Types<_Callback0 extends Object?>(
                 ),
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -57627,7 +53556,7 @@ FlaxCallbackBinding _callback95Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "e",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -57753,7 +53682,7 @@ FlaxCallbackBinding _callback98Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -57893,7 +53822,7 @@ FlaxCallbackBinding _callback101Types<_Callback0 extends Object?>(
                 ),
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -58277,7 +54206,7 @@ FlaxCallbackBinding _callback116Types<_Callback0 extends Object?>(
               [
                 FlaxCallbackParameter(
                   "value",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding8,
                   required: true,
                   positional: true,
                 ),
@@ -58301,7 +54230,7 @@ FlaxCallbackBinding _callback116Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "onError",
-        FlaxTypeRef("function", nullable: true),
+        _flaxBinding839,
         required: false,
         positional: false,
       ),
@@ -68271,3 +64200,12 @@ const _flaxBinding992 = FlaxTypeRef(
   id: "flax.core/sdk_foundation#type:StackFrame",
   nullable: true,
 );
+const _flaxBinding993 = <FlaxParameter>[
+  FlaxParameter("element", _flaxBinding8, required: true),
+];
+const _flaxBinding994 = <FlaxParameter>[
+  FlaxParameter("minLevel", _flaxBinding71, required: true),
+];
+const _flaxBinding995 = <FlaxParameter>[
+  FlaxParameter("delegate", _flaxBinding75, required: true),
+];

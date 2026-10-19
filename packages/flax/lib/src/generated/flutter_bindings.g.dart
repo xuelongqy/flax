@@ -22825,23 +22825,11 @@ Function _flaxGenericFunction155<_Method0 extends api5.Enum>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Enum.compareByIndex",
-        [
-          FlaxParameter(
-            "value1",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value2",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("value1", types.ref<_Method0>(), required: true),
+          FlaxParameter("value2", types.ref<_Method0>(), required: true),
         ],
-        FlaxTypeRef("int"),
+        _flaxBinding473,
         invoke,
       );
     };
@@ -22856,23 +22844,11 @@ Function _flaxGenericFunction156<_Method0 extends api5.Enum>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Enum.compareByName",
-        [
-          FlaxParameter(
-            "value1",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "value2",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("value1", types.ref<_Method0>(), required: true),
+          FlaxParameter("value2", types.ref<_Method0>(), required: true),
         ],
-        FlaxTypeRef("int"),
+        _flaxBinding473,
         invoke,
       );
     };
@@ -22888,29 +22864,7 @@ Function _flaxGenericFunction645<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.pushNamed",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "routeName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
+        _flaxBinding1960,
         types.ref<Future<_Method0?>>(),
         invoke,
       );
@@ -22927,30 +22881,8 @@ Function _flaxGenericFunction646<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.restorablePushNamed",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "routeName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-        FlaxTypeRef("String"),
+        _flaxBinding1960,
+        _flaxBinding2,
         invoke,
       );
     };
@@ -22968,35 +22900,11 @@ _flaxGenericFunction647<_Method0 extends Object?, _Method1 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.pushReplacementNamed",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "routeName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method1?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("routeName", _flaxBinding2, required: true),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
+          FlaxParameter("result", types.ref<_Method1?>(), required: false),
         ],
         types.ref<Future<_Method0?>>(),
         invoke,
@@ -23016,37 +22924,13 @@ _flaxGenericFunction648<_Method0 extends Object?, _Method1 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.restorablePushReplacementNamed",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "routeName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method1?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("routeName", _flaxBinding2, required: true),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
+          FlaxParameter("result", types.ref<_Method1?>(), required: false),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -23064,35 +22948,11 @@ _flaxGenericFunction649<_Method0 extends Object?, _Method1 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.popAndPushNamed",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "routeName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method1?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("routeName", _flaxBinding2, required: true),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
+          FlaxParameter("result", types.ref<_Method1?>(), required: false),
         ],
         types.ref<Future<_Method0?>>(),
         invoke,
@@ -23112,37 +22972,13 @@ _flaxGenericFunction650<_Method0 extends Object?, _Method1 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.restorablePopAndPushNamed",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "routeName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method1?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("routeName", _flaxBinding2, required: true),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
+          FlaxParameter("result", types.ref<_Method1?>(), required: false),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -23159,21 +22995,9 @@ Function _flaxGenericFunction651<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.pushNamedAndRemoveUntil",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "newRouteName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("newRouteName", _flaxBinding2, required: true),
           FlaxParameter(
             "predicate",
             FlaxTypeRef(
@@ -23182,16 +23006,12 @@ Function _flaxGenericFunction651<_Method0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "route",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:Route",
-                      dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                    ),
+                    _flaxBinding696,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("bool"),
+                _flaxBinding117,
                 FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
                 id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
                 invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -23200,16 +23020,8 @@ Function _flaxGenericFunction651<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
         ],
         types.ref<Future<_Method0?>>(),
         invoke,
@@ -23228,21 +23040,9 @@ _flaxGenericFunction652<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/flutter#function:Navigator.restorablePushNamedAndRemoveUntil",
-    [
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "newRouteName",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("context", _flaxBinding10, required: true),
+      FlaxParameter("newRouteName", _flaxBinding2, required: true),
       FlaxParameter(
         "predicate",
         FlaxTypeRef(
@@ -23251,16 +23051,12 @@ _flaxGenericFunction652<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "route",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Route",
-                  dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                ),
+                _flaxBinding696,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
             id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
             invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -23268,18 +23064,10 @@ _flaxGenericFunction652<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
     ],
-    FlaxTypeRef("String"),
+    _flaxBinding2,
     invoke,
   );
 };
@@ -23294,20 +23082,12 @@ Function _flaxGenericFunction653<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.push",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "route",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0?>>(),
@@ -23330,14 +23110,8 @@ Function _flaxGenericFunction654<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.restorablePush",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "routeBuilder",
             types.define<
@@ -23353,16 +23127,13 @@ Function _flaxGenericFunction654<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding10,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "arguments",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
@@ -23387,18 +23158,10 @@ Function _flaxGenericFunction654<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -23415,28 +23178,14 @@ _flaxGenericFunction655<_Method0 extends Object?, _Method1 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.pushReplacement",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "newRoute",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method1?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("result", types.ref<_Method1?>(), required: false),
         ],
         types.ref<Future<_Method0?>>(),
         invoke,
@@ -23460,14 +23209,8 @@ _flaxGenericFunction656<_Method0 extends Object?, _Method1 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.restorablePushReplacement",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "routeBuilder",
             types.define<
@@ -23483,16 +23226,13 @@ _flaxGenericFunction656<_Method0 extends Object?, _Method1 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding10,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "arguments",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
@@ -23517,25 +23257,11 @@ _flaxGenericFunction656<_Method0 extends Object?, _Method1 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method1?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
+          FlaxParameter("result", types.ref<_Method1?>(), required: false),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -23551,20 +23277,12 @@ Function _flaxGenericFunction657<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.pushAndRemoveUntil",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "newRoute",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "predicate",
@@ -23574,16 +23292,12 @@ Function _flaxGenericFunction657<_Method0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "route",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:Route",
-                      dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                    ),
+                    _flaxBinding696,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("bool"),
+                _flaxBinding117,
                 FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
                 id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
                 invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -23592,8 +23306,6 @@ Function _flaxGenericFunction657<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0?>>(),
@@ -23617,14 +23329,8 @@ Function _flaxGenericFunction658<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.restorablePushAndRemoveUntil",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "newRouteBuilder",
             types.define<
@@ -23640,16 +23346,13 @@ Function _flaxGenericFunction658<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding10,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "arguments",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
@@ -23674,8 +23377,6 @@ Function _flaxGenericFunction658<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
           FlaxParameter(
             "predicate",
@@ -23685,16 +23386,12 @@ Function _flaxGenericFunction658<_Method0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "route",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:Route",
-                      dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                    ),
+                    _flaxBinding696,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("bool"),
+                _flaxBinding117,
                 FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
                 id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
                 invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -23703,18 +23400,10 @@ Function _flaxGenericFunction658<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -23731,34 +23420,16 @@ Function _flaxGenericFunction659<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.replace",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "newRoute",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "oldRoute",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Route",
-              dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("oldRoute", _flaxBinding696, required: true),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -23780,21 +23451,9 @@ Function _flaxGenericFunction660<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.restorableReplace",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
           FlaxParameter(
             "newRouteBuilder",
             types.define<
@@ -23810,16 +23469,13 @@ Function _flaxGenericFunction660<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding10,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "arguments",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
@@ -23844,22 +23500,10 @@ Function _flaxGenericFunction660<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "oldRoute",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Route",
-              dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("oldRoute", _flaxBinding696, required: true),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -23876,34 +23520,16 @@ Function _flaxGenericFunction661<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.replaceRouteBelow",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "anchorRoute",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Route",
-              dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("anchorRoute", _flaxBinding696, required: true),
           FlaxParameter(
             "newRoute",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -23925,32 +23551,10 @@ Function _flaxGenericFunction662<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.restorableReplaceRouteBelow",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "anchorRoute",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Route",
-              dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("anchorRoute", _flaxBinding696, required: true),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
           FlaxParameter(
             "newRouteBuilder",
             types.define<
@@ -23966,16 +23570,13 @@ Function _flaxGenericFunction662<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding10,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "arguments",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
@@ -24000,11 +23601,9 @@ Function _flaxGenericFunction662<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -24019,27 +23618,11 @@ Function _flaxGenericFunction664<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.maybePop",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("result", types.ref<_Method0?>(), required: false),
         ],
-        FlaxTypeRef(
-          "future",
-          item: FlaxTypeRef("bool"),
-          future: FlaxFutureBinding("bool:", _future1Adapt),
-        ),
+        _flaxBinding793,
         invoke,
       );
     };
@@ -24055,23 +23638,11 @@ Function _flaxGenericFunction665<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.pop",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
+          FlaxParameter("result", types.ref<_Method0?>(), required: false),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -24088,14 +23659,8 @@ Function _flaxGenericFunction667<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.popUntilWithResult",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "predicate",
             FlaxTypeRef(
@@ -24104,16 +23669,12 @@ Function _flaxGenericFunction667<_Method0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "route",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:Route",
-                      dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                    ),
+                    _flaxBinding696,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("bool"),
+                _flaxBinding117,
                 FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
                 id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
                 invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -24122,18 +23683,10 @@ Function _flaxGenericFunction667<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("result", types.ref<_Method0?>(), required: true),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -24150,30 +23703,16 @@ Function _flaxGenericFunction668<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.removeRoute",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "route",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("result", types.ref<_Method0?>(), required: false),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -24190,30 +23729,16 @@ Function _flaxGenericFunction669<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Navigator.removeRouteBelow",
-        [
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("context", _flaxBinding10, required: true),
           FlaxParameter(
             "anchorRoute",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("result", types.ref<_Method0?>(), required: false),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -24228,13 +23753,11 @@ _flaxGenericFunction962<_Method0 extends Object?, _Method1 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:Stream.castFrom",
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "source",
             types.ref<api9.Stream<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api9.Stream<_Method1>>(),
@@ -24258,13 +23781,11 @@ Function _flaxGenericFunction963<
 
   return FlaxFunctionBinding(
     "flax.core/flutter#function:StreamTransformer.castFrom",
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "source",
         types.ref<api9.StreamTransformer<_Method0, _Method1>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.StreamTransformer<_Method2, _Method3>>(),
@@ -24282,45 +23803,9 @@ Function _flaxGenericFunction1019<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:WidgetStateProperty.resolveAs",
-        [
-          FlaxParameter(
-            "value",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "states",
-            FlaxTypeRef(
-              "set",
-              item: FlaxTypeRef(
-                "enum",
-                id: "flax.core/flutter#type:WidgetState",
-              ),
-              collection: FlaxCollectionBinding(
-                "set:[enum:flax.core/flutter#type:WidgetState]",
-                _collection48Create,
-                _collection48Matches,
-              ),
-              iterable: FlaxTypeRef(
-                "iterable",
-                item: FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/flutter#type:WidgetState",
-                ),
-                collection: FlaxCollectionBinding(
-                  "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                  _collection49Create,
-                  _collection49Matches,
-                  restore: _collection49Restore,
-                ),
-              ),
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("value", types.ref<_Method0>(), required: true),
+          FlaxParameter("states", _flaxBinding1910, required: true),
         ],
         types.ref<_Method0>(),
         invoke,
@@ -24336,7 +23821,7 @@ _flaxGenericFunction1020<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/flutter#function:WidgetStateProperty.resolveWith",
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "callback",
         types.define<_Method0 Function(Set<api.WidgetState> states)>(
@@ -24347,31 +23832,7 @@ _flaxGenericFunction1020<_Method0 extends Object?>() => (FlaxDartTypes types) {
               [
                 FlaxCallbackParameter(
                   "states",
-                  FlaxTypeRef(
-                    "set",
-                    item: FlaxTypeRef(
-                      "enum",
-                      id: "flax.core/flutter#type:WidgetState",
-                    ),
-                    collection: FlaxCollectionBinding(
-                      "set:[enum:flax.core/flutter#type:WidgetState]",
-                      _collection48Create,
-                      _collection48Matches,
-                    ),
-                    iterable: FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/flutter#type:WidgetState",
-                      ),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                        _collection49Create,
-                        _collection49Matches,
-                        restore: _collection49Restore,
-                      ),
-                    ),
-                  ),
+                  _flaxBinding1910,
                   required: true,
                   positional: true,
                 ),
@@ -24387,8 +23848,6 @@ _flaxGenericFunction1020<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.WidgetStateProperty<_Method0>>(),
@@ -24405,14 +23864,8 @@ Function _flaxGenericFunction1021<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:WidgetStateProperty.all",
-        [
-          FlaxParameter(
-            "value",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("value", types.ref<_Method0>(), required: true),
         ],
         types.ref<api.WidgetStateProperty<_Method0>>(),
         invoke,
@@ -24456,28 +23909,18 @@ _flaxGenericFunction1022<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/flutter#function:WidgetStateProperty.lerp",
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "a",
         types.ref<api.WidgetStateProperty<_Method0>?>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "b",
         types.ref<api.WidgetStateProperty<_Method0>?>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "t",
-        FlaxTypeRef("double"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("t", _flaxBinding63, required: true),
       FlaxParameter(
         "lerpFunction",
         types.define<_Method0? Function(_Method0? p0, _Method0? p1, double p2)>(
@@ -24500,7 +23943,7 @@ _flaxGenericFunction1022<_Method0 extends Object?>() => (FlaxDartTypes types) {
                 ),
                 FlaxCallbackParameter(
                   "p2",
-                  FlaxTypeRef("double"),
+                  _flaxBinding63,
                   required: true,
                   positional: true,
                 ),
@@ -24523,8 +23966,6 @@ _flaxGenericFunction1022<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.WidgetStateProperty<_Method0?>?>(),
@@ -24541,13 +23982,11 @@ Function _flaxGenericFunction1023<_Method0 extends api5.Enum>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:EnumByName.method.asNameMap",
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "receiver",
             types.ref<Iterable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Map<String, _Method0>>(),
@@ -24564,21 +24003,13 @@ Function _flaxGenericFunction1024<_Method0 extends api5.Enum>() =>
 
       return FlaxFunctionBinding(
         "flax.core/flutter#function:EnumByName.method.byName",
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "receiver",
             types.ref<Iterable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("name", _flaxBinding2, required: true),
         ],
         types.ref<_Method0>(),
         invoke,
@@ -24586,164 +24017,140 @@ Function _flaxGenericFunction1024<_Method0 extends api5.Enum>() =>
     };
 Type _flaxType_AsyncSnapshot<_Owner0 extends Object?>() =>
     api.AsyncSnapshot<_Owner0>;
-Function _flaxClass_AsyncSnapshot<
-  _Owner0 extends Object?
->() => (FlaxDartTypes types, String id) {
-  // ignore: unused_element
-  bool _isAsyncSnapshot(Object value) => value is api.AsyncSnapshot<_Owner0>;
-  // ignore: unused_element
-  Object? _AsyncSnapshot_connectionState(Object value) =>
-      (value as api.AsyncSnapshot<_Owner0>).connectionState;
-  // ignore: unused_element
-  Object? _AsyncSnapshot_data(Object value) =>
-      (value as api.AsyncSnapshot<_Owner0>).data;
-  // ignore: unused_element
-  Object? _AsyncSnapshot_requireData(Object value) =>
-      (value as api.AsyncSnapshot<_Owner0>).requireData;
-  // ignore: unused_element
-  Object? _AsyncSnapshot_error(Object value) =>
-      (value as api.AsyncSnapshot<_Owner0>).error;
-  // ignore: unused_element
-  Object? _AsyncSnapshot_stackTrace(Object value) =>
-      (value as api.AsyncSnapshot<_Owner0>).stackTrace;
-  // ignore: unused_element
-  Object? _AsyncSnapshot_hasData(Object value) =>
-      (value as api.AsyncSnapshot<_Owner0>).hasData;
-  // ignore: unused_element
-  Object? _AsyncSnapshot_hasError(Object value) =>
-      (value as api.AsyncSnapshot<_Owner0>).hasError;
-  Object? _AsyncSnapshot_inState(Object receiver, Map<String, Object?> values) {
-    return (receiver as api.AsyncSnapshot<_Owner0>).inState(
-      values["state"] as api.ConnectionState,
-    );
-  }
-
-  Object? _AsyncSnapshot_toString(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.AsyncSnapshot<_Owner0>).toString();
-  }
-
-  // ignore: unused_element
-  Object _createAsyncSnapshot(String ctor, Map<String, Object?> values) {
-    switch (ctor) {
-      case "nothing":
-        return api.AsyncSnapshot<_Owner0>.nothing();
-      case "waiting":
-        return api.AsyncSnapshot<_Owner0>.waiting();
-      case "withData":
-        return api.AsyncSnapshot<_Owner0>.withData(
+Function _flaxClass_AsyncSnapshot<_Owner0 extends Object?>() =>
+    (FlaxDartTypes types, String id) {
+      // ignore: unused_element
+      bool _isAsyncSnapshot(Object value) =>
+          value is api.AsyncSnapshot<_Owner0>;
+      // ignore: unused_element
+      Object? _AsyncSnapshot_connectionState(Object value) =>
+          (value as api.AsyncSnapshot<_Owner0>).connectionState;
+      // ignore: unused_element
+      Object? _AsyncSnapshot_data(Object value) =>
+          (value as api.AsyncSnapshot<_Owner0>).data;
+      // ignore: unused_element
+      Object? _AsyncSnapshot_requireData(Object value) =>
+          (value as api.AsyncSnapshot<_Owner0>).requireData;
+      // ignore: unused_element
+      Object? _AsyncSnapshot_error(Object value) =>
+          (value as api.AsyncSnapshot<_Owner0>).error;
+      // ignore: unused_element
+      Object? _AsyncSnapshot_stackTrace(Object value) =>
+          (value as api.AsyncSnapshot<_Owner0>).stackTrace;
+      // ignore: unused_element
+      Object? _AsyncSnapshot_hasData(Object value) =>
+          (value as api.AsyncSnapshot<_Owner0>).hasData;
+      // ignore: unused_element
+      Object? _AsyncSnapshot_hasError(Object value) =>
+          (value as api.AsyncSnapshot<_Owner0>).hasError;
+      Object? _AsyncSnapshot_inState(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.AsyncSnapshot<_Owner0>).inState(
           values["state"] as api.ConnectionState,
-          values["data"] as _Owner0,
         );
-      case "withError":
-        if (!values.containsKey("stackTrace")) {
-          return api.AsyncSnapshot<_Owner0>.withError(
-            values["state"] as api.ConnectionState,
-            values["error"] as Object,
-          );
+      }
+
+      Object? _AsyncSnapshot_toString(
+        Object receiver,
+        Map<String, Object?> values,
+      ) {
+        return (receiver as api.AsyncSnapshot<_Owner0>).toString();
+      }
+
+      // ignore: unused_element
+      Object _createAsyncSnapshot(String ctor, Map<String, Object?> values) {
+        switch (ctor) {
+          case "nothing":
+            return api.AsyncSnapshot<_Owner0>.nothing();
+          case "waiting":
+            return api.AsyncSnapshot<_Owner0>.waiting();
+          case "withData":
+            return api.AsyncSnapshot<_Owner0>.withData(
+              values["state"] as api.ConnectionState,
+              values["data"] as _Owner0,
+            );
+          case "withError":
+            if (!values.containsKey("stackTrace")) {
+              return api.AsyncSnapshot<_Owner0>.withError(
+                values["state"] as api.ConnectionState,
+                values["error"] as Object,
+              );
+            }
+            return api.AsyncSnapshot<_Owner0>.withError(
+              values["state"] as api.ConnectionState,
+              values["error"] as Object,
+              values["stackTrace"] as api5.StackTrace,
+            );
+          default:
+            throw ArgumentError("Unknown constructor");
         }
-        return api.AsyncSnapshot<_Owner0>.withError(
-          values["state"] as api.ConnectionState,
-          values["error"] as Object,
-          values["stackTrace"] as api5.StackTrace,
-        );
-      default:
-        throw ArgumentError("Unknown constructor");
-    }
-  }
+      }
 
-  return FlaxDartClass(
-    api.AsyncSnapshot<_Owner0>,
-    FlaxObjectBinding(
-      id,
-      [
-        FlaxGetter(
-          "connectionState",
-          FlaxTypeRef("enum", id: "flax.core/flutter#type:ConnectionState"),
-          _AsyncSnapshot_connectionState,
-        ),
-        FlaxGetter("data", types.ref<_Owner0?>(), _AsyncSnapshot_data),
-        FlaxGetter(
-          "requireData",
-          types.ref<_Owner0>(),
-          _AsyncSnapshot_requireData,
-        ),
-        FlaxGetter(
-          "error",
-          FlaxTypeRef("any", nullable: true),
-          _AsyncSnapshot_error,
-          encode: const FlaxTypeRef("error"),
-        ),
-        FlaxGetter(
-          "stackTrace",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:StackTrace",
-            nullable: true,
-          ),
-          _AsyncSnapshot_stackTrace,
-        ),
-        FlaxGetter("hasData", FlaxTypeRef("bool"), _AsyncSnapshot_hasData),
-        FlaxGetter("hasError", FlaxTypeRef("bool"), _AsyncSnapshot_hasError),
-      ],
-      {
-        "inState": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "state",
-              FlaxTypeRef("enum", id: "flax.core/flutter#type:ConnectionState"),
-              required: true,
+      return FlaxDartClass(
+        api.AsyncSnapshot<_Owner0>,
+        FlaxObjectBinding(
+          id,
+          [
+            FlaxGetter(
+              "connectionState",
+              _flaxBinding148,
+              _AsyncSnapshot_connectionState,
             ),
+            FlaxGetter("data", types.ref<_Owner0?>(), _AsyncSnapshot_data),
+            FlaxGetter(
+              "requireData",
+              types.ref<_Owner0>(),
+              _AsyncSnapshot_requireData,
+            ),
+            FlaxGetter(
+              "error",
+              _flaxBinding15,
+              _AsyncSnapshot_error,
+              encode: const FlaxTypeRef("error"),
+            ),
+            FlaxGetter(
+              "stackTrace",
+              _flaxBinding151,
+              _AsyncSnapshot_stackTrace,
+            ),
+            FlaxGetter("hasData", _flaxBinding117, _AsyncSnapshot_hasData),
+            FlaxGetter("hasError", _flaxBinding117, _AsyncSnapshot_hasError),
           ],
-          types.ref<api.AsyncSnapshot<_Owner0>>(),
-          _AsyncSnapshot_inState,
+          {
+            "inState": FlaxInstanceMethod(
+              _flaxBinding155,
+              types.ref<api.AsyncSnapshot<_Owner0>>(),
+              _AsyncSnapshot_inState,
+            ),
+            "toString": FlaxInstanceMethod(
+              _flaxBinding69,
+              _flaxBinding2,
+              _AsyncSnapshot_toString,
+            ),
+          },
+          constructors: {
+            "nothing": _flaxBinding69,
+            "waiting": _flaxBinding69,
+            "withData": <FlaxParameter>[
+              FlaxParameter("state", _flaxBinding148, required: true),
+              FlaxParameter("data", types.ref<_Owner0>(), required: true),
+            ],
+            "withError": _flaxBinding159,
+          },
+          create: _createAsyncSnapshot,
+          matches: _isAsyncSnapshot,
+          setters: [],
+          supertypes: [
+            "flax.core/flutter#type:AsyncSnapshot",
+            ...["dart:core::Object"],
+          ],
+          listenerPairs: {},
+          disposeMethod: null,
         ),
-        "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
-          _AsyncSnapshot_toString,
-        ),
-      },
-      constructors: {
-        "nothing": <FlaxParameter>[],
-        "waiting": <FlaxParameter>[],
-        "withData": <FlaxParameter>[
-          FlaxParameter(
-            "state",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:ConnectionState"),
-            required: true,
-          ),
-          FlaxParameter("data", types.ref<_Owner0>(), required: true),
-        ],
-        "withError": <FlaxParameter>[
-          FlaxParameter(
-            "state",
-            FlaxTypeRef("enum", id: "flax.core/flutter#type:ConnectionState"),
-            required: true,
-          ),
-          FlaxParameter("error", FlaxTypeRef("any"), required: true),
-          FlaxParameter(
-            "stackTrace",
-            FlaxTypeRef("object", id: "flax.core/flutter#type:StackTrace"),
-            required: false,
-            omitWhenAbsent: true,
-          ),
-        ],
-      },
-      create: _createAsyncSnapshot,
-      matches: _isAsyncSnapshot,
-      setters: [],
-      supertypes: [
-        "flax.core/flutter#type:AsyncSnapshot",
-        ...["dart:core::Object"],
-      ],
-      listenerPairs: {},
-      disposeMethod: null,
-    ),
-  );
-};
+      );
+    };
 Function _flaxGeneric_BuildContext_dependOnInheritedWidgetOfExactType<
   _Method0 extends api.InheritedWidget
 >() => (FlaxDartTypes types) {
@@ -24752,19 +24159,7 @@ Function _flaxGeneric_BuildContext_dependOnInheritedWidgetOfExactType<
         .dependOnInheritedWidgetOfExactType<_Method0>(aspect: values["aspect"]);
   }
 
-  return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "aspect",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-    ],
-    types.ref<_Method0?>(),
-    invoke,
-  );
+  return FlaxInstanceMethod(_flaxBinding423, types.ref<_Method0?>(), invoke);
 };
 Function _flaxGeneric_BuildContext_getInheritedWidgetOfExactType<
   _Method0 extends api.InheritedWidget
@@ -24774,7 +24169,7 @@ Function _flaxGeneric_BuildContext_getInheritedWidgetOfExactType<
         .getInheritedWidgetOfExactType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<_Method0?>(), invoke);
+  return FlaxInstanceMethod(_flaxBinding69, types.ref<_Method0?>(), invoke);
 };
 Function _flaxGeneric_BuildContext_getElementForInheritedWidgetOfExactType<
   _Method0 extends api.InheritedWidget
@@ -24784,15 +24179,7 @@ Function _flaxGeneric_BuildContext_getElementForInheritedWidgetOfExactType<
         .getElementForInheritedWidgetOfExactType<_Method0>();
   }
 
-  return FlaxInstanceMethod(
-    [],
-    FlaxTypeRef(
-      "object",
-      id: "flax.core/sdk_widgets#type:InheritedElement",
-      nullable: true,
-    ),
-    invoke,
-  );
+  return FlaxInstanceMethod(_flaxBinding69, _flaxBinding424, invoke);
 };
 Function _flaxGeneric_BuildContext_findAncestorWidgetOfExactType<
   _Method0 extends api.Widget
@@ -24802,7 +24189,7 @@ Function _flaxGeneric_BuildContext_findAncestorWidgetOfExactType<
         .findAncestorWidgetOfExactType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<_Method0?>(), invoke);
+  return FlaxInstanceMethod(_flaxBinding69, types.ref<_Method0?>(), invoke);
 };
 Function _flaxGeneric_BuildContext_findAncestorStateOfType<
   _Method0 extends api.State<api.StatefulWidget>
@@ -24811,7 +24198,7 @@ Function _flaxGeneric_BuildContext_findAncestorStateOfType<
     return (receiver as api.BuildContext).findAncestorStateOfType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<_Method0?>(), invoke);
+  return FlaxInstanceMethod(_flaxBinding69, types.ref<_Method0?>(), invoke);
 };
 Function _flaxGeneric_BuildContext_findRootAncestorStateOfType<
   _Method0 extends api.State<api.StatefulWidget>
@@ -24821,7 +24208,7 @@ Function _flaxGeneric_BuildContext_findRootAncestorStateOfType<
         .findRootAncestorStateOfType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<_Method0?>(), invoke);
+  return FlaxInstanceMethod(_flaxBinding69, types.ref<_Method0?>(), invoke);
 };
 Function _flaxGeneric_BuildContext_findAncestorRenderObjectOfType<
   _Method0 extends api4.RenderObject
@@ -24831,7 +24218,7 @@ Function _flaxGeneric_BuildContext_findAncestorRenderObjectOfType<
         .findAncestorRenderObjectOfType<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<_Method0?>(), invoke);
+  return FlaxInstanceMethod(_flaxBinding69, types.ref<_Method0?>(), invoke);
 };
 Type _flaxType_Comparable<_Owner0 extends Object?>() =>
     api5.Comparable<_Owner0>;
@@ -24866,7 +24253,7 @@ Function _flaxClass_Comparable<_Owner0 extends Object?>() =>
               <FlaxParameter>[
                 FlaxParameter("other", types.ref<_Owner0>(), required: true),
               ],
-              FlaxTypeRef("int"),
+              _flaxBinding473,
               _Comparable_compareTo,
             ),
           },
@@ -24929,32 +24316,21 @@ Function _flaxClass_EventSink<_Owner0 extends Object?>() =>
               <FlaxParameter>[
                 FlaxParameter("event", types.ref<_Owner0>(), required: true),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               _EventSink_add,
             ),
             "close": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("void"),
+              _flaxBinding69,
+              _flaxBinding0,
               _EventSink_close,
             ),
             "addError": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("error", FlaxTypeRef("any"), required: true),
-                FlaxParameter(
-                  "stackTrace",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/flutter#type:StackTrace",
-                    nullable: true,
-                  ),
-                  required: false,
-                ),
-              ],
-              FlaxTypeRef("void"),
+              _flaxBinding671,
+              _flaxBinding0,
               _EventSink_addError,
             ),
           },
-          constructors: {"@implementation": <FlaxParameter>[]},
+          constructors: {"@implementation": _flaxBinding69},
           create: _createEventSink,
           matches: _isEventSink,
           setters: [],
@@ -24977,7 +24353,7 @@ Function _flaxClass_EventSink<_Owner0 extends Object?>() =>
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 id:
                     types.key<void Function(_Owner0 event)>() +
                     ":callback:<>(p:r:event:parameter:)->void:",
@@ -24988,7 +24364,7 @@ Function _flaxClass_EventSink<_Owner0 extends Object?>() =>
               0,
               FlaxCallbackBinding.signature(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 id: types.key<void Function()>() + ":callback:<>()->void:",
               ),
             ),
@@ -24999,22 +24375,18 @@ Function _flaxClass_EventSink<_Owner0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "error",
-                    FlaxTypeRef("any"),
+                    _flaxBinding157,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "stackTrace",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:StackTrace",
-                      nullable: true,
-                    ),
+                    _flaxBinding151,
                     required: false,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 id:
                     types
                         .key<
@@ -25057,8 +24429,8 @@ Function _flaxClass_Iterator<_Owner0 extends Object?>() =>
           [FlaxGetter("current", types.ref<_Owner0>(), _Iterator_current)],
           {
             "moveNext": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("bool"),
+              _flaxBinding69,
+              _flaxBinding117,
               _Iterator_moveNext,
             ),
           },
@@ -25116,8 +24488,8 @@ _flaxClass_MapEntry<_Owner0 extends Object?, _Owner1 extends Object?>() =>
           ],
           {
             "toString": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("String"),
+              _flaxBinding69,
+              _flaxBinding2,
               _MapEntry_toString,
             ),
           },
@@ -25323,7 +24695,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -25339,7 +24711,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -25355,7 +24727,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -25371,11 +24743,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "futureOr",
-                    item: FlaxTypeRef("void"),
-                    future: FlaxFutureBinding("void:", _future2Adapt),
-                  ),
+                  _flaxBinding1006,
                   _callback0,
                   id:
                       types.key<api9.FutureOr<void> Function()?>() +
@@ -25393,60 +24761,37 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
             ),
             FlaxGetter(
               "isClosed",
-              FlaxTypeRef("bool"),
+              _flaxBinding117,
               _MultiStreamController_isClosed,
             ),
             FlaxGetter(
               "isPaused",
-              FlaxTypeRef("bool"),
+              _flaxBinding117,
               _MultiStreamController_isPaused,
             ),
             FlaxGetter(
               "hasListener",
-              FlaxTypeRef("bool"),
+              _flaxBinding117,
               _MultiStreamController_hasListener,
             ),
-            FlaxGetter(
-              "done",
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
-              _MultiStreamController_done,
-            ),
+            FlaxGetter("done", _flaxBinding16, _MultiStreamController_done),
           ],
           {
             "add": FlaxInstanceMethod(
               <FlaxParameter>[
                 FlaxParameter("event", types.ref<_Owner0>(), required: true),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               _MultiStreamController_add,
             ),
             "addError": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("error", FlaxTypeRef("any"), required: true),
-                FlaxParameter(
-                  "stackTrace",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/flutter#type:StackTrace",
-                    nullable: true,
-                  ),
-                  required: false,
-                ),
-              ],
-              FlaxTypeRef("void"),
+              _flaxBinding671,
+              _flaxBinding0,
               _MultiStreamController_addError,
             ),
             "close": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
+              _flaxBinding69,
+              _flaxBinding16,
               _MultiStreamController_close,
             ),
             "addStream": FlaxInstanceMethod(
@@ -25456,45 +24801,26 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                   types.ref<api9.Stream<_Owner0>>(),
                   required: true,
                 ),
-                FlaxParameter(
-                  "cancelOnError",
-                  FlaxTypeRef("bool", nullable: true),
-                  required: false,
-                ),
+                FlaxParameter("cancelOnError", _flaxBinding34, required: false),
               ],
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
+              _flaxBinding16,
               _MultiStreamController_addStream,
             ),
             "addSync": FlaxInstanceMethod(
               <FlaxParameter>[
                 FlaxParameter("value", types.ref<_Owner0>(), required: true),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               _MultiStreamController_addSync,
             ),
             "addErrorSync": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("error", FlaxTypeRef("any"), required: true),
-                FlaxParameter(
-                  "stackTrace",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/flutter#type:StackTrace",
-                    nullable: true,
-                  ),
-                  required: false,
-                ),
-              ],
-              FlaxTypeRef("void"),
+              _flaxBinding671,
+              _flaxBinding0,
               _MultiStreamController_addErrorSync,
             ),
             "closeSync": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("void"),
+              _flaxBinding69,
+              _flaxBinding0,
               _MultiStreamController_closeSync,
             ),
           },
@@ -25509,7 +24835,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -25525,7 +24851,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -25541,7 +24867,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -25557,11 +24883,7 @@ Function _flaxClass_MultiStreamController<_Owner0 extends Object?>() =>
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "futureOr",
-                    item: FlaxTypeRef("void"),
-                    future: FlaxFutureBinding("void:", _future2Adapt),
-                  ),
+                  _flaxBinding1006,
                   _callback1,
                   id:
                       types.key<api9.FutureOr<void> Function()?>() +
@@ -25622,15 +24944,7 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
           id,
           {
             "": <FlaxParameter>[
-              FlaxParameter(
-                "key",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Key",
-                  nullable: true,
-                ),
-                required: false,
-              ),
+              FlaxParameter("key", _flaxBinding50, required: false),
               FlaxParameter(
                 "onPop",
                 FlaxTypeRef(
@@ -25638,7 +24952,7 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
                   nullable: true,
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()?>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -25662,7 +24976,7 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("void"),
+                      _flaxBinding0,
                       FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                       id:
                           types.key<void Function(_Owner0? result)?>() +
@@ -25676,11 +24990,11 @@ Function _flaxClass_NavigatorPopHandler<_Owner0 extends Object?>() =>
               ),
               FlaxParameter(
                 "enabled",
-                FlaxTypeRef("bool"),
+                _flaxBinding117,
                 required: false,
                 defaultValue: true,
               ),
-              FlaxParameter("child", FlaxTypeRef("widget"), required: true),
+              FlaxParameter("child", _flaxBinding11, required: true),
             ],
           },
           _NavigatorPopHandlerHost<_Owner0>.new,
@@ -25698,22 +25012,7 @@ Function _flaxGeneric_NavigatorState_pushNamed<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "routeName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
+        _flaxBinding1063,
         types.ref<Future<_Method0?>>(),
         invoke,
         startsRoute: true,
@@ -25729,26 +25028,7 @@ _flaxGeneric_NavigatorState_restorablePushNamed<_Method0 extends Object?>() =>
         );
       }
 
-      return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "routeName",
-            FlaxTypeRef("String"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-        ],
-        FlaxTypeRef("String"),
-        invoke,
-      );
+      return FlaxInstanceMethod(_flaxBinding1063, _flaxBinding2, invoke);
     };
 Function _flaxGeneric_NavigatorState_pushReplacementNamed<
   _Method0 extends Object?,
@@ -25764,28 +25044,10 @@ Function _flaxGeneric_NavigatorState_pushReplacementNamed<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "routeName",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "result",
-        types.ref<_Method1?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("routeName", _flaxBinding2, required: true),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
+      FlaxParameter("result", types.ref<_Method1?>(), required: false),
     ],
     types.ref<Future<_Method0?>>(),
     invoke,
@@ -25805,30 +25067,12 @@ Function _flaxGeneric_NavigatorState_restorablePushReplacementNamed<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "routeName",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "result",
-        types.ref<_Method1?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("routeName", _flaxBinding2, required: true),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
+      FlaxParameter("result", types.ref<_Method1?>(), required: false),
     ],
-    FlaxTypeRef("String"),
+    _flaxBinding2,
     invoke,
   );
 };
@@ -25845,28 +25089,10 @@ Function _flaxGeneric_NavigatorState_popAndPushNamed<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "routeName",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "result",
-        types.ref<_Method1?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("routeName", _flaxBinding2, required: true),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
+      FlaxParameter("result", types.ref<_Method1?>(), required: false),
     ],
     types.ref<Future<_Method0?>>(),
     invoke,
@@ -25886,30 +25112,12 @@ Function _flaxGeneric_NavigatorState_restorablePopAndPushNamed<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "routeName",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "result",
-        types.ref<_Method1?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("routeName", _flaxBinding2, required: true),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
+      FlaxParameter("result", types.ref<_Method1?>(), required: false),
     ],
-    FlaxTypeRef("String"),
+    _flaxBinding2,
     invoke,
   );
 };
@@ -25925,14 +25133,8 @@ Function _flaxGeneric_NavigatorState_pushNamedAndRemoveUntil<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "newRouteName",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("newRouteName", _flaxBinding2, required: true),
       FlaxParameter(
         "predicate",
         FlaxTypeRef(
@@ -25941,16 +25143,12 @@ Function _flaxGeneric_NavigatorState_pushNamedAndRemoveUntil<
             [
               FlaxCallbackParameter(
                 "route",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Route",
-                  dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                ),
+                _flaxBinding696,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
             id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
             invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -25958,16 +25156,8 @@ Function _flaxGeneric_NavigatorState_pushNamedAndRemoveUntil<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
     ],
     types.ref<Future<_Method0?>>(),
     invoke,
@@ -25986,14 +25176,8 @@ Function _flaxGeneric_NavigatorState_restorablePushNamedAndRemoveUntil<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "newRouteName",
-        FlaxTypeRef("String"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("newRouteName", _flaxBinding2, required: true),
       FlaxParameter(
         "predicate",
         FlaxTypeRef(
@@ -26002,16 +25186,12 @@ Function _flaxGeneric_NavigatorState_restorablePushNamedAndRemoveUntil<
             [
               FlaxCallbackParameter(
                 "route",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Route",
-                  dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                ),
+                _flaxBinding696,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
             id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
             invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -26019,18 +25199,10 @@ Function _flaxGeneric_NavigatorState_restorablePushNamedAndRemoveUntil<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
     ],
-    FlaxTypeRef("String"),
+    _flaxBinding2,
     invoke,
   );
 };
@@ -26043,13 +25215,11 @@ Function _flaxGeneric_NavigatorState_push<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "route",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0?>>(),
@@ -26072,7 +25242,7 @@ _flaxGeneric_NavigatorState_restorablePush<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "routeBuilder",
             types.define<
@@ -26088,16 +25258,13 @@ _flaxGeneric_NavigatorState_restorablePush<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding10,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "arguments",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
@@ -26122,18 +25289,10 @@ _flaxGeneric_NavigatorState_restorablePush<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("arguments", _flaxBinding15, required: false),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -26149,21 +25308,13 @@ Function _flaxGeneric_NavigatorState_pushReplacement<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "newRoute",
         types.ref<api.Route<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "result",
-        types.ref<_Method1?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("result", types.ref<_Method1?>(), required: false),
     ],
     types.ref<Future<_Method0?>>(),
     invoke,
@@ -26188,7 +25339,7 @@ Function _flaxGeneric_NavigatorState_restorablePushReplacement<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "routeBuilder",
         types.define<
@@ -26204,16 +25355,13 @@ Function _flaxGeneric_NavigatorState_restorablePushReplacement<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding10,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "arguments",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding15,
                   required: true,
                   positional: true,
                 ),
@@ -26238,25 +25386,11 @@ Function _flaxGeneric_NavigatorState_restorablePushReplacement<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "result",
-        types.ref<_Method1?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
+      FlaxParameter("result", types.ref<_Method1?>(), required: false),
     ],
-    FlaxTypeRef("String"),
+    _flaxBinding2,
     invoke,
   );
 };
@@ -26271,13 +25405,11 @@ Function _flaxGeneric_NavigatorState_pushAndRemoveUntil<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "newRoute",
         types.ref<api.Route<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "predicate",
@@ -26287,16 +25419,12 @@ Function _flaxGeneric_NavigatorState_pushAndRemoveUntil<
             [
               FlaxCallbackParameter(
                 "route",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Route",
-                  dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                ),
+                _flaxBinding696,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
             id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
             invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -26304,8 +25432,6 @@ Function _flaxGeneric_NavigatorState_pushAndRemoveUntil<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -26329,7 +25455,7 @@ Function _flaxGeneric_NavigatorState_restorablePushAndRemoveUntil<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "newRouteBuilder",
         types.define<
@@ -26345,16 +25471,13 @@ Function _flaxGeneric_NavigatorState_restorablePushAndRemoveUntil<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding10,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "arguments",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding15,
                   required: true,
                   positional: true,
                 ),
@@ -26379,8 +25502,6 @@ Function _flaxGeneric_NavigatorState_restorablePushAndRemoveUntil<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "predicate",
@@ -26390,16 +25511,12 @@ Function _flaxGeneric_NavigatorState_restorablePushAndRemoveUntil<
             [
               FlaxCallbackParameter(
                 "route",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Route",
-                  dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                ),
+                _flaxBinding696,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
             id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
             invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -26407,18 +25524,10 @@ Function _flaxGeneric_NavigatorState_restorablePushAndRemoveUntil<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
     ],
-    FlaxTypeRef("String"),
+    _flaxBinding2,
     invoke,
   );
 };
@@ -26433,27 +25542,15 @@ Function _flaxGeneric_NavigatorState_replace<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "newRoute",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "oldRoute",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Route",
-              dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("oldRoute", _flaxBinding696, required: true),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -26474,14 +25571,8 @@ _flaxGeneric_NavigatorState_restorableReplace<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("arguments", _flaxBinding15, required: false),
           FlaxParameter(
             "newRouteBuilder",
             types.define<
@@ -26497,16 +25588,13 @@ _flaxGeneric_NavigatorState_restorableReplace<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "context",
-                      FlaxTypeRef(
-                        "context",
-                        id: "flax.core/flutter#type:BuildContext",
-                      ),
+                      _flaxBinding10,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "arguments",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
@@ -26531,22 +25619,10 @@ _flaxGeneric_NavigatorState_restorableReplace<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "oldRoute",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Route",
-              dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("oldRoute", _flaxBinding696, required: true),
         ],
-        FlaxTypeRef("String"),
+        _flaxBinding2,
         invoke,
       );
     };
@@ -26562,27 +25638,15 @@ _flaxGeneric_NavigatorState_replaceRouteBelow<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "anchorRoute",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Route",
-              dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("anchorRoute", _flaxBinding696, required: true),
           FlaxParameter(
             "newRoute",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -26604,25 +25668,9 @@ Function _flaxGeneric_NavigatorState_restorableReplaceRouteBelow<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "anchorRoute",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Route",
-          dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "arguments",
-        FlaxTypeRef("any", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("anchorRoute", _flaxBinding696, required: true),
+      FlaxParameter("arguments", _flaxBinding15, required: false),
       FlaxParameter(
         "newRouteBuilder",
         types.define<
@@ -26638,16 +25686,13 @@ Function _flaxGeneric_NavigatorState_restorableReplaceRouteBelow<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding10,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "arguments",
-                  FlaxTypeRef("any", nullable: true),
+                  _flaxBinding15,
                   required: true,
                   positional: true,
                 ),
@@ -26672,11 +25717,9 @@ Function _flaxGeneric_NavigatorState_restorableReplaceRouteBelow<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
-    FlaxTypeRef("String"),
+    _flaxBinding2,
     invoke,
   );
 };
@@ -26689,20 +25732,10 @@ Function _flaxGeneric_NavigatorState_maybePop<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("result", types.ref<_Method0?>(), required: false),
         ],
-        FlaxTypeRef(
-          "future",
-          item: FlaxTypeRef("bool"),
-          future: FlaxFutureBinding("bool:", _future1Adapt),
-        ),
+        _flaxBinding793,
         invoke,
       );
     };
@@ -26716,16 +25749,10 @@ Function _flaxGeneric_NavigatorState_pop<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("result", types.ref<_Method0?>(), required: false),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -26741,7 +25768,7 @@ Function _flaxGeneric_NavigatorState_popUntilWithResult<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "predicate",
         FlaxTypeRef(
@@ -26750,16 +25777,12 @@ Function _flaxGeneric_NavigatorState_popUntilWithResult<
             [
               FlaxCallbackParameter(
                 "route",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Route",
-                  dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-                ),
+                _flaxBinding696,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             FlaxCallbackAdapters.wrap1<api.Route<Object?>, bool>,
             id: types.key<bool Function(api.Route<Object?> route)>() + ":callback:<>(p:r:route:object:flax.core/flutter#type:Route<any?:>)->bool:",
             invoke: FlaxCallbackAdapters.invoke1<api.Route<Object?>, bool>,
@@ -26767,18 +25790,10 @@ Function _flaxGeneric_NavigatorState_popUntilWithResult<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "result",
-        types.ref<_Method0?>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("result", types.ref<_Method0?>(), required: true),
     ],
-    FlaxTypeRef("void"),
+    _flaxBinding0,
     invoke,
   );
 };
@@ -26793,23 +25808,15 @@ Function _flaxGeneric_NavigatorState_removeRoute<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "route",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("result", types.ref<_Method0?>(), required: false),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -26825,23 +25832,15 @@ _flaxGeneric_NavigatorState_removeRouteBelow<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "anchorRoute",
             types.ref<api.Route<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "result",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("result", types.ref<_Method0?>(), required: false),
         ],
-        FlaxTypeRef("void"),
+        _flaxBinding0,
         invoke,
       );
     };
@@ -26894,26 +25893,10 @@ _flaxClass_Page<_Owner0 extends Object?>() => (FlaxDartTypes types, String id) {
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter("name", FlaxTypeRef("String", nullable: true), _Page_name),
-        FlaxGetter(
-          "arguments",
-          FlaxTypeRef("any", nullable: true),
-          _Page_arguments,
-        ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:LocalKey",
-            nullable: true,
-          ),
-          _Page_key,
-        ),
-        FlaxGetter(
-          "restorationId",
-          FlaxTypeRef("String", nullable: true),
-          _Page_restorationId,
-        ),
+        FlaxGetter("name", _flaxBinding20, _Page_name),
+        FlaxGetter("arguments", _flaxBinding15, _Page_arguments),
+        FlaxGetter("key", _flaxBinding1127, _Page_key),
+        FlaxGetter("restorationId", _flaxBinding20, _Page_restorationId),
         FlaxGetter(
           "onPopInvoked",
           types.define<void Function(bool didPop, _Owner0? result)>(
@@ -26924,7 +25907,7 @@ _flaxClass_Page<_Owner0 extends Object?>() => (FlaxDartTypes types, String id) {
                 [
                   FlaxCallbackParameter(
                     "didPop",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     required: true,
                     positional: true,
                   ),
@@ -26935,7 +25918,7 @@ _flaxClass_Page<_Owner0 extends Object?>() => (FlaxDartTypes types, String id) {
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 FlaxCallbackAdapters.wrapVoid2<bool, _Owner0?>,
                 id: types.key<void Function(bool didPop, _Owner0? result)>() + ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid2<bool, _Owner0?>,
@@ -26945,37 +25928,21 @@ _flaxClass_Page<_Owner0 extends Object?>() => (FlaxDartTypes types, String id) {
           ),
           _Page_onPopInvoked,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _Page_canPop),
+        FlaxGetter("canPop", _flaxBinding117, _Page_canPop),
       ],
       {
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding69,
+          _flaxBinding2,
           _Page_toString,
         ),
         "canUpdate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "other",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Page",
-                dartType: FlaxDartTypes.typeOf<api.Page<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding1131,
+          _flaxBinding117,
           _Page_canUpdate,
         ),
         "createRoute": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
+          _flaxBinding1132,
           types.ref<api.Route<_Owner0>>(),
           _Page_createRoute,
         ),
@@ -27023,19 +25990,11 @@ Function _flaxClass_PopScope<
       id,
       {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter("child", FlaxTypeRef("widget"), required: true),
+          FlaxParameter("key", _flaxBinding50, required: false),
+          FlaxParameter("child", _flaxBinding11, required: true),
           FlaxParameter(
             "canPop",
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             required: false,
             defaultValue: true,
           ),
@@ -27049,7 +26008,7 @@ Function _flaxClass_PopScope<
                   [
                     FlaxCallbackParameter(
                       "didPop",
-                      FlaxTypeRef("bool"),
+                      _flaxBinding117,
                       required: true,
                       positional: true,
                     ),
@@ -27060,7 +26019,7 @@ Function _flaxClass_PopScope<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid2<bool, _Owner0?>,
                   id:
                       types
@@ -27082,12 +26041,12 @@ Function _flaxClass_PopScope<
                 [
                   FlaxCallbackParameter(
                     "didPop",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 FlaxCallbackAdapters.wrapVoid1<bool>,
                 id:
                     types.key<void Function(bool didPop)?>() +
@@ -27258,70 +26217,19 @@ Function _flaxClass_Route<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter("requestFocus", FlaxTypeRef("bool"), _Route_requestFocus),
-        FlaxGetter(
-          "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
-          _Route_navigator,
-        ),
-        FlaxGetter(
-          "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
-          _Route_settings,
-        ),
+        FlaxGetter("requestFocus", _flaxBinding117, _Route_requestFocus),
+        FlaxGetter("navigator", _flaxBinding694, _Route_navigator),
+        FlaxGetter("settings", _flaxBinding1028, _Route_settings),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api3.ValueListenable<String?>>,
-          ),
+          _flaxBinding1285,
           _Route_restorationScopeId,
         ),
-        FlaxGetter(
-          "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection30Create,
-              _collection30Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection31Create,
-                _collection31Matches,
-                restore: _collection31Restore,
-              ),
-            ),
-          ),
-          _Route_overlayEntries,
-        ),
-        FlaxGetter(
-          "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
-          _Route_popDisposition,
-        ),
+        FlaxGetter("overlayEntries", _flaxBinding1289, _Route_overlayEntries),
+        FlaxGetter("popDisposition", _flaxBinding1291, _Route_popDisposition),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding117,
           _Route_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -27330,154 +26238,96 @@ Function _flaxClass_Route<
           _Route_currentResult,
         ),
         FlaxGetter("popped", types.ref<Future<_Owner0?>>(), _Route_popped),
-        FlaxGetter("isCurrent", FlaxTypeRef("bool"), _Route_isCurrent),
-        FlaxGetter("isFirst", FlaxTypeRef("bool"), _Route_isFirst),
+        FlaxGetter("isCurrent", _flaxBinding117, _Route_isCurrent),
+        FlaxGetter("isFirst", _flaxBinding117, _Route_isFirst),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding117,
           _Route_hasActiveRouteBelow,
         ),
-        FlaxGetter("isActive", FlaxTypeRef("bool"), _Route_isActive),
+        FlaxGetter("isActive", _flaxBinding117, _Route_isActive),
       ],
       {
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding69,
+          _flaxBinding0,
           _Route_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding69,
+          _flaxBinding1298,
           _Route_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding69,
+          _flaxBinding0,
           _Route_didAdd,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1299,
+          _flaxBinding0,
           _Route_didReplace,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future3Adapt,
-            ),
-          ),
+          _flaxBinding69,
+          _flaxBinding1300,
           _Route_willPop,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1301,
+          _flaxBinding0,
           _Route_onPopInvoked,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding117, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _Route_onPopInvokedWithResult,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding117,
           _Route_didPop,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _Route_didComplete,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1302,
+          _flaxBinding0,
           _Route_didPopNext,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1303,
+          _flaxBinding0,
           _Route_didChangeNext,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1304,
+          _flaxBinding0,
           _Route_didChangePrevious,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding69,
+          _flaxBinding0,
           _Route_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding69,
+          _flaxBinding0,
           _Route_changedExternalState,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding69,
+          _flaxBinding0,
           _Route_dispose,
         ),
       },
@@ -27503,7 +26353,11 @@ Function _flaxGeneric_Runes_cast<_Method0 extends Object?>() =>
         return (receiver as api5.Runes).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding69,
+        types.ref<Iterable<_Method0>>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_Runes_map<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -27514,7 +26368,7 @@ Function _flaxGeneric_Runes_map<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "toElement",
             types.define<_Method0 Function(int e)>(
@@ -27525,7 +26379,7 @@ Function _flaxGeneric_Runes_map<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "e",
-                      FlaxTypeRef("int"),
+                      _flaxBinding473,
                       required: true,
                       positional: true,
                     ),
@@ -27541,8 +26395,6 @@ Function _flaxGeneric_Runes_map<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Iterable<_Method0>>(),
@@ -27555,7 +26407,11 @@ Function _flaxGeneric_Runes_whereType<_Method0 extends Object?>() =>
         return (receiver as api5.Runes).whereType<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding69,
+        types.ref<Iterable<_Method0>>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_Runes_expand<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -27566,7 +26422,7 @@ Function _flaxGeneric_Runes_expand<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "toElements",
             types.define<Iterable<_Method0> Function(int element)>(
@@ -27577,7 +26433,7 @@ Function _flaxGeneric_Runes_expand<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "element",
-                      FlaxTypeRef("int"),
+                      _flaxBinding473,
                       required: true,
                       positional: true,
                     ),
@@ -27594,8 +26450,6 @@ Function _flaxGeneric_Runes_expand<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Iterable<_Method0>>(),
@@ -27613,14 +26467,8 @@ _flaxGeneric_Runes_fold<_Method0 extends Object?>() => (FlaxDartTypes types) {
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<_Method0 Function(_Method0 previousValue, int element)>(
@@ -27637,7 +26485,7 @@ _flaxGeneric_Runes_fold<_Method0 extends Object?>() => (FlaxDartTypes types) {
                 ),
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("int"),
+                  _flaxBinding473,
                   required: true,
                   positional: true,
                 ),
@@ -27656,8 +26504,6 @@ _flaxGeneric_Runes_fold<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<_Method0>(),
@@ -27693,7 +26539,7 @@ _flaxGeneric_SchedulerBinding_scheduleTask<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "task",
             types.define<api9.FutureOr<_Method0> Function()>(
@@ -27713,34 +26559,10 @@ _flaxGeneric_SchedulerBinding_scheduleTask<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "priority",
-            FlaxTypeRef("object", id: "flax.core/sdk_scheduler#type:Priority"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "debugLabel",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "flow",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_dependencies#type:Flow",
-              nullable: true,
-            ),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("priority", _flaxBinding1449, required: true),
+          FlaxParameter("debugLabel", _flaxBinding20, required: false),
+          FlaxParameter("flow", _flaxBinding1450, required: false),
         ],
         types.ref<Future<_Method0>>(),
         invoke,
@@ -27779,12 +26601,12 @@ Function _flaxClass_Sink<_Owner0 extends Object?>() =>
               <FlaxParameter>[
                 FlaxParameter("data", types.ref<_Owner0>(), required: true),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               _Sink_add,
             ),
             "close": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("void"),
+              _flaxBinding69,
+              _flaxBinding0,
               _Sink_close,
             ),
           },
@@ -27811,7 +26633,7 @@ _flaxGeneric_Stream_map<_Owner0 extends Object?, _Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "convert",
             types.define<_Method0 Function(_Owner0 event)>(
@@ -27838,8 +26660,6 @@ _flaxGeneric_Stream_map<_Owner0 extends Object?, _Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api9.Stream<_Method0>>(),
@@ -27876,7 +26696,7 @@ Function _flaxGeneric_Stream_asyncMap<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<api9.FutureOr<_Method0> Function(_Owner0 event)>(
@@ -27903,8 +26723,6 @@ Function _flaxGeneric_Stream_asyncMap<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -27922,7 +26740,7 @@ Function _flaxGeneric_Stream_asyncExpand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<api9.Stream<_Method0>? Function(_Owner0 event)>(
@@ -27949,8 +26767,6 @@ Function _flaxGeneric_Stream_asyncExpand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -27968,7 +26784,7 @@ Function _flaxGeneric_Stream_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<Iterable<_Method0> Function(_Owner0 element)>(
@@ -27996,8 +26812,6 @@ Function _flaxGeneric_Stream_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -28015,13 +26829,11 @@ Function _flaxGeneric_Stream_transform<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "streamTransformer",
         types.ref<api9.StreamTransformer<_Owner0, _Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -28041,14 +26853,8 @@ Function _flaxGeneric_Stream_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<_Method0 Function(_Method0 previous, _Owner0 element)>(
@@ -28085,8 +26891,6 @@ Function _flaxGeneric_Stream_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -28100,7 +26904,11 @@ _flaxGeneric_Stream_cast<_Owner0 extends Object?, _Method0 extends Object?>() =>
         return (receiver as api9.Stream<_Owner0>).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<api9.Stream<_Method0>>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding69,
+        types.ref<api9.Stream<_Method0>>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_Stream_drain<
   _Owner0 extends Object?,
@@ -28113,14 +26921,8 @@ Function _flaxGeneric_Stream_drain<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "futureValue",
-        types.ref<_Method0?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
     ],
     types.ref<Future<_Method0>>(),
     invoke,
@@ -28475,25 +27277,9 @@ Function _flaxClass_Stream<
     FlaxStreamTypeBinding(
       id,
       [
-        FlaxGetter("isBroadcast", FlaxTypeRef("bool"), _Stream_isBroadcast),
-        FlaxGetter(
-          "length",
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("int"),
-            future: FlaxFutureBinding("int:", _future7Adapt),
-          ),
-          _Stream_length,
-        ),
-        FlaxGetter(
-          "isEmpty",
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future1Adapt),
-          ),
-          _Stream_isEmpty,
-        ),
+        FlaxGetter("isBroadcast", _flaxBinding117, _Stream_isBroadcast),
+        FlaxGetter("length", _flaxBinding1562, _Stream_length),
+        FlaxGetter("isEmpty", _flaxBinding793, _Stream_isEmpty),
         FlaxGetter("first", types.ref<Future<_Owner0>>(), _Stream_first),
         FlaxGetter("last", types.ref<Future<_Owner0>>(), _Stream_last),
         FlaxGetter("single", types.ref<Future<_Owner0>>(), _Stream_single),
@@ -28520,7 +27306,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters
                         .wrapVoid1<api9.StreamSubscription<_Owner0>>,
                     id:
@@ -28559,7 +27345,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters
                         .wrapVoid1<api9.StreamSubscription<_Owner0>>,
                     id:
@@ -28600,7 +27386,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 event)?>() +
@@ -28612,11 +27398,7 @@ Function _flaxClass_Stream<
               ),
               required: true,
             ),
-            FlaxParameter(
-              "cancelOnError",
-              FlaxTypeRef("bool", nullable: true),
-              required: false,
-            ),
+            FlaxParameter("cancelOnError", _flaxBinding34, required: false),
             FlaxParameter(
               "onDone",
               FlaxTypeRef(
@@ -28624,7 +27406,7 @@ Function _flaxClass_Stream<
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -28642,22 +27424,19 @@ Function _flaxClass_Stream<
                   [
                     FlaxCallbackParameter(
                       "p0",
-                      FlaxTypeRef("any"),
+                      _flaxBinding157,
                       required: true,
                       positional: true,
                       encode: const FlaxTypeRef('error'),
                     ),
                     FlaxCallbackParameter(
                       "p1",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                      ),
+                      _flaxBinding158,
                       required: false,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   _callback0,
                   id:
                       types
@@ -28692,7 +27471,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 event)>() +
@@ -28725,7 +27504,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding15,
                     FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                     id:
                         types.key<Object? Function(_Owner0 event)>() +
@@ -28738,17 +27517,7 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _Stream_map,
           genericFactory: _flaxGeneric_Stream_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -28770,11 +27539,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "futureOr",
-                      item: FlaxTypeRef("any", nullable: true),
-                      future: FlaxFutureBinding("any?:", _future0Adapt),
-                    ),
+                    _flaxBinding1448,
                     _callback1,
                     id:
                         types
@@ -28790,17 +27555,7 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _Stream_asyncMap,
           genericFactory: _flaxGeneric_Stream_asyncMap,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -28822,18 +27577,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "stream",
-                      id: "flax.core/flutter#type:Stream",
-                      dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>?>,
-                      nullable: true,
-                      item: FlaxTypeRef("any", nullable: true),
-                      stream: FlaxStreamBinding(
-                        "stream:flax.core/flutter#type:Stream[any?:]",
-                        _stream0Matches,
-                        _stream0Adapt,
-                      ),
-                    ),
+                    _flaxBinding1568,
                     FlaxCallbackAdapters.wrap1<_Owner0, api9.Stream<Object?>?>,
                     id:
                         types
@@ -28851,17 +27595,7 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _Stream_asyncExpand,
           genericFactory: _flaxGeneric_Stream_asyncExpand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -28876,22 +27610,19 @@ Function _flaxClass_Stream<
                   [
                     FlaxCallbackParameter(
                       "p0",
-                      FlaxTypeRef("any"),
+                      _flaxBinding157,
                       required: true,
                       positional: true,
                       encode: const FlaxTypeRef('error'),
                     ),
                     FlaxCallbackParameter(
                       "p1",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                      ),
+                      _flaxBinding158,
                       required: false,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   _callback2,
                   id:
                       types
@@ -28914,12 +27645,12 @@ Function _flaxClass_Stream<
                   [
                     FlaxCallbackParameter(
                       "error",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("bool"),
+                  _flaxBinding117,
                   FlaxCallbackAdapters.wrap1<Object?, bool>,
                   id:
                       types.key<bool Function(Object? error)?>() +
@@ -28951,16 +27682,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("any", nullable: true),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[any?:]",
-                        _collection12Create,
-                        _collection12Matches,
-                        restore: _collection12Restore,
-                      ),
-                    ),
+                    _flaxBinding866,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -28978,17 +27700,7 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _Stream_expand,
           genericFactory: _flaxGeneric_Stream_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -29001,11 +27713,7 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding16,
           _Stream_pipe,
         ),
         "transform": FlaxInstanceMethod(
@@ -29016,17 +27724,7 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _Stream_transform,
           genericFactory: _flaxGeneric_Stream_transform,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -29080,11 +27778,7 @@ Function _flaxClass_Stream<
         ),
         "fold": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "initialValue",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
+            FlaxParameter("initialValue", _flaxBinding15, required: true),
             FlaxParameter(
               "combine",
               types.define<Object? Function(Object? previous, _Owner0 element)>(
@@ -29095,7 +27789,7 @@ Function _flaxClass_Stream<
                     [
                       FlaxCallbackParameter(
                         "previous",
-                        FlaxTypeRef("any", nullable: true),
+                        _flaxBinding15,
                         required: true,
                         positional: true,
                       ),
@@ -29106,7 +27800,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding15,
                     FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                     id:
                         types
@@ -29127,44 +27821,19 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding16,
           _Stream_fold,
           genericFactory: _flaxGeneric_Stream_fold,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "join": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "separator",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("String"),
-            future: FlaxFutureBinding("String:", _future5Adapt),
-          ),
+          _flaxBinding1349,
+          _flaxBinding1423,
           _Stream_join,
         ),
         "contains": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "needle",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future1Adapt),
-          ),
+          _flaxBinding1574,
+          _flaxBinding793,
           _Stream_contains,
         ),
         "forEach": FlaxInstanceMethod(
@@ -29184,7 +27853,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 element)>() +
@@ -29197,11 +27866,7 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("void"),
-            future: FlaxFutureBinding("void:", _future2Adapt),
-          ),
+          _flaxBinding1385,
           _Stream_forEach,
         ),
         "every": FlaxInstanceMethod(
@@ -29221,7 +27886,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -29234,11 +27899,7 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future1Adapt),
-          ),
+          _flaxBinding793,
           _Stream_every,
         ),
         "any": FlaxInstanceMethod(
@@ -29258,7 +27919,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -29271,61 +27932,35 @@ Function _flaxClass_Stream<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future1Adapt),
-          ),
+          _flaxBinding793,
           _Stream_any,
         ),
         "cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding69,
+          _flaxBinding1579,
           _Stream_cast,
           genericFactory: _flaxGeneric_Stream_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "toList": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding69,
           types.ref<Future<List<_Owner0>>>(),
           _Stream_toList,
         ),
         "toSet": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding69,
           types.ref<Future<Set<_Owner0>>>(),
           _Stream_toSet,
         ),
         "drain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "futureValue",
-              FlaxTypeRef("any", nullable: true),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding1961,
+          _flaxBinding16,
           _Stream_drain,
           genericFactory: _flaxGeneric_Stream_drain,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "take": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding1356,
           types.ref<api9.Stream<_Owner0>>(),
           _Stream_take,
         ),
@@ -29346,7 +27981,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -29363,9 +27998,7 @@ Function _flaxClass_Stream<
           _Stream_takeWhile,
         ),
         "skip": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding1356,
           types.ref<api9.Stream<_Owner0>>(),
           _Stream_skip,
         ),
@@ -29386,7 +28019,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -29425,7 +28058,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap2<_Owner0, _Owner0, bool>,
                     id:
                         types
@@ -29463,7 +28096,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -29516,7 +28149,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -29569,7 +28202,7 @@ Function _flaxClass_Stream<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -29606,19 +28239,13 @@ Function _flaxClass_Stream<
           _Stream_singleWhere,
         ),
         "elementAt": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("index", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding1370,
           types.ref<Future<_Owner0>>(),
           _Stream_elementAt,
         ),
         "timeout": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "timeLimit",
-              FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
-              required: true,
-            ),
+            FlaxParameter("timeLimit", _flaxBinding529, required: true),
             FlaxParameter(
               "onTimeout",
               types.define<void Function(api9.EventSink<_Owner0> sink)?>(
@@ -29637,7 +28264,7 @@ Function _flaxClass_Stream<
                         scoped: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api9.EventSink<_Owner0>>,
                     id:
                         types
@@ -29660,29 +28287,11 @@ Function _flaxClass_Stream<
         ),
       },
       constructors: {
-        "empty": <FlaxParameter>[
-          FlaxParameter(
-            "broadcast",
-            FlaxTypeRef("bool"),
-            required: false,
-            defaultValue: true,
-          ),
-        ],
+        "empty": _flaxBinding1577,
         "value": <FlaxParameter>[
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
         ],
-        "error": <FlaxParameter>[
-          FlaxParameter("error", FlaxTypeRef("any"), required: true),
-          FlaxParameter(
-            "stackTrace",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:StackTrace",
-              nullable: true,
-            ),
-            required: false,
-          ),
-        ],
+        "error": _flaxBinding671,
         "fromFuture": <FlaxParameter>[
           FlaxParameter("future", types.ref<Future<_Owner0>>(), required: true),
         ],
@@ -29718,7 +28327,7 @@ Function _flaxClass_Stream<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters
                       .wrapVoid1<api9.MultiStreamController<_Owner0>>,
                   id:
@@ -29740,17 +28349,13 @@ Function _flaxClass_Stream<
           ),
           FlaxParameter(
             "isBroadcast",
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             required: false,
             defaultValue: false,
           ),
         ],
         "periodic": <FlaxParameter>[
-          FlaxParameter(
-            "period",
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
-            required: true,
-          ),
+          FlaxParameter("period", _flaxBinding529, required: true),
           FlaxParameter(
             "computation",
             types.define<_Owner0 Function(int computationCount)?>(
@@ -29761,7 +28366,7 @@ Function _flaxClass_Stream<
                   [
                     FlaxCallbackParameter(
                       "computationCount",
-                      FlaxTypeRef("int"),
+                      _flaxBinding473,
                       required: true,
                       positional: true,
                     ),
@@ -29780,21 +28385,7 @@ Function _flaxClass_Stream<
           ),
         ],
         "eventTransformed": <FlaxParameter>[
-          FlaxParameter(
-            "source",
-            FlaxTypeRef(
-              "stream",
-              id: "flax.core/flutter#type:Stream",
-              dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-              item: FlaxTypeRef("any", nullable: true),
-              stream: FlaxStreamBinding(
-                "stream:flax.core/flutter#type:Stream[any?:]",
-                _stream0Matches,
-                _stream0Adapt,
-              ),
-            ),
-            required: true,
-          ),
+          FlaxParameter("source", _flaxBinding1579, required: true),
           FlaxParameter(
             "mapSink",
             types.define<
@@ -29812,11 +28403,7 @@ Function _flaxClass_Stream<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/flutter#type:EventSink",
-                    dartType: FlaxDartTypes.typeOf<api9.EventSink<Object?>>,
-                  ),
+                  _flaxBinding1576,
                   FlaxCallbackAdapters
                       .wrap1<api9.EventSink<_Owner0>, api9.EventSink<Object?>>,
                   id:
@@ -29883,15 +28470,7 @@ Function _flaxClass_StreamBuilder<_Owner0 extends Object?>() =>
           id,
           {
             "": <FlaxParameter>[
-              FlaxParameter(
-                "key",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Key",
-                  nullable: true,
-                ),
-                required: false,
-              ),
+              FlaxParameter("key", _flaxBinding50, required: false),
               FlaxParameter(
                 "initialData",
                 types.ref<_Owner0?>(),
@@ -29917,10 +28496,7 @@ Function _flaxClass_StreamBuilder<_Owner0 extends Object?>() =>
                       [
                         FlaxCallbackParameter(
                           "context",
-                          FlaxTypeRef(
-                            "context",
-                            id: "flax.core/flutter#type:BuildContext",
-                          ),
+                          _flaxBinding10,
                           required: true,
                           positional: true,
                         ),
@@ -29933,7 +28509,7 @@ Function _flaxClass_StreamBuilder<_Owner0 extends Object?>() =>
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("widget"),
+                      _flaxBinding11,
                       FlaxCallbackAdapters.wrap2<
                         api.BuildContext,
                         api.AsyncSnapshot<_Owner0>,
@@ -30021,24 +28597,16 @@ Function _flaxClass_StreamConsumer<_Owner0 extends Object?>() =>
                   required: true,
                 ),
               ],
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
+              _flaxBinding16,
               _StreamConsumer_addStream,
             ),
             "close": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
+              _flaxBinding69,
+              _flaxBinding16,
               _StreamConsumer_close,
             ),
           },
-          constructors: {"@implementation": <FlaxParameter>[]},
+          constructors: {"@implementation": _flaxBinding69},
           create: _createStreamConsumer,
           matches: _isStreamConsumer,
           setters: [],
@@ -30061,11 +28629,7 @@ Function _flaxClass_StreamConsumer<_Owner0 extends Object?>() =>
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef(
-                  "future",
-                  item: FlaxTypeRef("any", nullable: true),
-                  future: FlaxFutureBinding("any?:", _future0Adapt),
-                ),
+                _flaxBinding16,
                 id:
                     types
                         .key<
@@ -30079,11 +28643,7 @@ Function _flaxClass_StreamConsumer<_Owner0 extends Object?>() =>
               0,
               FlaxCallbackBinding.signature(
                 [],
-                FlaxTypeRef(
-                  "future",
-                  item: FlaxTypeRef("any", nullable: true),
-                  future: FlaxFutureBinding("any?:", _future0Adapt),
-                ),
+                _flaxBinding16,
                 id:
                     types.key<Future<Object?> Function()>() +
                     ":callback:<>()->future:[any?:]",
@@ -30258,15 +28818,7 @@ Function _flaxClass_StreamController<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "done",
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
-          _StreamController_done,
-        ),
+        FlaxGetter("done", _flaxBinding16, _StreamController_done),
         FlaxGetter(
           "stream",
           types.ref<api9.Stream<_Owner0>>(),
@@ -30279,7 +28831,7 @@ Function _flaxClass_StreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30295,7 +28847,7 @@ Function _flaxClass_StreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30311,7 +28863,7 @@ Function _flaxClass_StreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30327,11 +28879,7 @@ Function _flaxClass_StreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef(
-                "futureOr",
-                item: FlaxTypeRef("void"),
-                future: FlaxFutureBinding("void:", _future2Adapt),
-              ),
+              _flaxBinding1006,
               _callback0,
               id:
                   types.key<api9.FutureOr<void> Function()?>() +
@@ -30347,45 +28895,30 @@ Function _flaxClass_StreamController<
           types.ref<api9.StreamSink<_Owner0>>(),
           _StreamController_sink,
         ),
-        FlaxGetter("isClosed", FlaxTypeRef("bool"), _StreamController_isClosed),
-        FlaxGetter("isPaused", FlaxTypeRef("bool"), _StreamController_isPaused),
+        FlaxGetter("isClosed", _flaxBinding117, _StreamController_isClosed),
+        FlaxGetter("isPaused", _flaxBinding117, _StreamController_isPaused),
         FlaxGetter(
           "hasListener",
-          FlaxTypeRef("bool"),
+          _flaxBinding117,
           _StreamController_hasListener,
         ),
       ],
       {
         "close": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding69,
+          _flaxBinding16,
           _StreamController_close,
         ),
         "add": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("event", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _StreamController_add,
         ),
         "addError": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("error", FlaxTypeRef("any"), required: true),
-            FlaxParameter(
-              "stackTrace",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:StackTrace",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding671,
+          _flaxBinding0,
           _StreamController_addError,
         ),
         "addStream": FlaxInstanceMethod(
@@ -30395,17 +28928,9 @@ Function _flaxClass_StreamController<
               types.ref<api9.Stream<_Owner0>>(),
               required: true,
             ),
-            FlaxParameter(
-              "cancelOnError",
-              FlaxTypeRef("bool", nullable: true),
-              required: false,
-            ),
+            FlaxParameter("cancelOnError", _flaxBinding34, required: false),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding16,
           _StreamController_addStream,
         ),
       },
@@ -30418,7 +28943,7 @@ Function _flaxClass_StreamController<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30434,7 +28959,7 @@ Function _flaxClass_StreamController<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30450,7 +28975,7 @@ Function _flaxClass_StreamController<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30466,11 +28991,7 @@ Function _flaxClass_StreamController<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef(
-                  "futureOr",
-                  item: FlaxTypeRef("void"),
-                  future: FlaxFutureBinding("void:", _future2Adapt),
-                ),
+                _flaxBinding1006,
                 _callback2,
                 id:
                     types.key<api9.FutureOr<void> Function()?>() +
@@ -30483,7 +29004,7 @@ Function _flaxClass_StreamController<
           ),
           FlaxParameter(
             "sync",
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             required: false,
             defaultValue: false,
           ),
@@ -30496,7 +29017,7 @@ Function _flaxClass_StreamController<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30512,7 +29033,7 @@ Function _flaxClass_StreamController<
               nullable: true,
               callback: FlaxCallbackBinding(
                 [],
-                FlaxTypeRef("void"),
+                _flaxBinding0,
                 FlaxCallbackAdapters.wrapVoid0,
                 id: types.key<void Function()?>() + ":callback:<>()->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30523,7 +29044,7 @@ Function _flaxClass_StreamController<
           ),
           FlaxParameter(
             "sync",
-            FlaxTypeRef("bool"),
+            _flaxBinding117,
             required: false,
             defaultValue: false,
           ),
@@ -30539,7 +29060,7 @@ Function _flaxClass_StreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30555,7 +29076,7 @@ Function _flaxClass_StreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30571,7 +29092,7 @@ Function _flaxClass_StreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30587,11 +29108,7 @@ Function _flaxClass_StreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef(
-                "futureOr",
-                item: FlaxTypeRef("void"),
-                future: FlaxFutureBinding("void:", _future2Adapt),
-              ),
+              _flaxBinding1006,
               _callback1,
               id:
                   types.key<api9.FutureOr<void> Function()?>() +
@@ -30667,21 +29184,13 @@ Function _flaxClass_StreamIterator<_Owner0 extends Object?>() =>
           ],
           {
             "moveNext": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("bool"),
-                future: FlaxFutureBinding("bool:", _future1Adapt),
-              ),
+              _flaxBinding69,
+              _flaxBinding793,
               _StreamIterator_moveNext,
             ),
             "cancel": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
+              _flaxBinding69,
+              _flaxBinding16,
               _StreamIterator_cancel,
             ),
           },
@@ -30756,48 +29265,23 @@ Function _flaxClass_StreamSink<_Owner0 extends Object?>() =>
         api9.StreamSink<_Owner0>,
         FlaxObjectBinding(
           id,
-          [
-            FlaxGetter(
-              "done",
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
-              _StreamSink_done,
-            ),
-          ],
+          [FlaxGetter("done", _flaxBinding16, _StreamSink_done)],
           {
             "add": FlaxInstanceMethod(
               <FlaxParameter>[
                 FlaxParameter("event", types.ref<_Owner0>(), required: true),
               ],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               _StreamSink_add,
             ),
             "addError": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("error", FlaxTypeRef("any"), required: true),
-                FlaxParameter(
-                  "stackTrace",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/flutter#type:StackTrace",
-                    nullable: true,
-                  ),
-                  required: false,
-                ),
-              ],
-              FlaxTypeRef("void"),
+              _flaxBinding671,
+              _flaxBinding0,
               _StreamSink_addError,
             ),
             "close": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
+              _flaxBinding69,
+              _flaxBinding16,
               _StreamSink_close,
             ),
             "addStream": FlaxInstanceMethod(
@@ -30808,11 +29292,7 @@ Function _flaxClass_StreamSink<_Owner0 extends Object?>() =>
                   required: true,
                 ),
               ],
-              FlaxTypeRef(
-                "future",
-                item: FlaxTypeRef("any", nullable: true),
-                future: FlaxFutureBinding("any?:", _future0Adapt),
-              ),
+              _flaxBinding16,
               _StreamSink_addStream,
             ),
           },
@@ -30845,14 +29325,8 @@ Function _flaxGeneric_StreamSubscription_asFuture<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "futureValue",
-        types.ref<_Method0?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
     ],
     types.ref<Future<_Method0>>(),
     invoke,
@@ -30977,21 +29451,11 @@ Function _flaxClass_StreamSubscription<
     api9.StreamSubscription<_Owner0>,
     FlaxObjectBinding(
       id,
-      [
-        FlaxGetter(
-          "isPaused",
-          FlaxTypeRef("bool"),
-          _StreamSubscription_isPaused,
-        ),
-      ],
+      [FlaxGetter("isPaused", _flaxBinding117, _StreamSubscription_isPaused)],
       {
         "cancel": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("void"),
-            future: FlaxFutureBinding("void:", _future2Adapt),
-          ),
+          _flaxBinding69,
+          _flaxBinding1385,
           _StreamSubscription_cancel,
         ),
         "onData": FlaxInstanceMethod(
@@ -31011,7 +29475,7 @@ Function _flaxClass_StreamSubscription<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 data)?>() +
@@ -31024,7 +29488,7 @@ Function _flaxClass_StreamSubscription<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _StreamSubscription_onData,
         ),
         "onError": FlaxInstanceMethod(
@@ -31038,22 +29502,19 @@ Function _flaxClass_StreamSubscription<
                   [
                     FlaxCallbackParameter(
                       "p0",
-                      FlaxTypeRef("any"),
+                      _flaxBinding157,
                       required: true,
                       positional: true,
                       encode: const FlaxTypeRef('error'),
                     ),
                     FlaxCallbackParameter(
                       "p1",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                      ),
+                      _flaxBinding158,
                       required: false,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   _callback0,
                   id:
                       types
@@ -31068,7 +29529,7 @@ Function _flaxClass_StreamSubscription<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _StreamSubscription_onError,
         ),
         "onDone": FlaxInstanceMethod(
@@ -31080,7 +29541,7 @@ Function _flaxClass_StreamSubscription<
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -31090,43 +29551,22 @@ Function _flaxClass_StreamSubscription<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _StreamSubscription_onDone,
         ),
         "pause": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "resumeSignal",
-              FlaxTypeRef(
-                "future",
-                nullable: true,
-                item: FlaxTypeRef("void"),
-                future: FlaxFutureBinding("void:", _future2Adapt),
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding1604,
+          _flaxBinding0,
           _StreamSubscription_pause,
         ),
         "resume": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding69,
+          _flaxBinding0,
           _StreamSubscription_resume,
         ),
         "asFuture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "futureValue",
-              FlaxTypeRef("any", nullable: true),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding1961,
+          _flaxBinding16,
           _StreamSubscription_asFuture,
           genericFactory: _flaxGeneric_StreamSubscription_asFuture,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -31157,7 +29597,7 @@ Function _flaxGeneric_StreamTransformer_cast<
   }
 
   return FlaxInstanceMethod(
-    [],
+    _flaxBinding69,
     types.ref<api9.StreamTransformer<_Method0, _Method1>>(),
     invoke,
   );
@@ -31329,13 +29769,8 @@ Function _flaxClass_StreamTransformer<
           _StreamTransformer_bind,
         ),
         "cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:StreamTransformer",
-            dartType:
-                FlaxDartTypes.typeOf<api9.StreamTransformer<Object?, Object?>>,
-          ),
+          _flaxBinding69,
+          _flaxBinding1618,
           _StreamTransformer_cast,
           genericFactory: _flaxGeneric_StreamTransformer_cast,
           ownerTypes: [
@@ -31367,7 +29802,7 @@ Function _flaxClass_StreamTransformer<
                     ),
                     FlaxCallbackParameter(
                       "cancelOnError",
-                      FlaxTypeRef("bool"),
+                      _flaxBinding117,
                       required: true,
                       positional: true,
                     ),
@@ -31432,7 +29867,7 @@ Function _flaxClass_StreamTransformer<
                       scoped: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters
                       .wrapVoid2<_Owner0, api9.EventSink<_Owner1>>,
                   id:
@@ -31469,16 +29904,13 @@ Function _flaxClass_StreamTransformer<
                   [
                     FlaxCallbackParameter(
                       "error",
-                      FlaxTypeRef("any"),
+                      _flaxBinding157,
                       required: true,
                       positional: true,
                     ),
                     FlaxCallbackParameter(
                       "stackTrace",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                      ),
+                      _flaxBinding158,
                       required: true,
                       positional: true,
                     ),
@@ -31490,7 +29922,7 @@ Function _flaxClass_StreamTransformer<
                       scoped: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   _callback0,
                   id:
                       types
@@ -31525,7 +29957,7 @@ Function _flaxClass_StreamTransformer<
                       scoped: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api9.EventSink<_Owner1>>,
                   id:
                       types
@@ -31579,7 +30011,7 @@ Function _flaxClass_StreamTransformer<
             required: true,
           ),
         ],
-        "@implementation": <FlaxParameter>[],
+        "@implementation": _flaxBinding69,
       },
       create: _createStreamTransformer,
       matches: _isStreamTransformer,
@@ -31617,12 +30049,7 @@ Function _flaxClass_StreamTransformer<
           0,
           FlaxCallbackBinding(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:StreamTransformer",
-              dartType: FlaxDartTypes
-                  .typeOf<api9.StreamTransformer<Object?, Object?>>,
-            ),
+            _flaxBinding1618,
             _callback1,
             id:
                 types
@@ -31652,7 +30079,7 @@ Function _flaxGeneric_StreamTransformerBase_cast<
   }
 
   return FlaxInstanceMethod(
-    [],
+    _flaxBinding69,
     types.ref<api9.StreamTransformer<_Method0, _Method1>>(),
     invoke,
   );
@@ -31669,7 +30096,7 @@ Function _flaxGeneric_StreamTransformerBase_super_cast<
   }
 
   return FlaxInstanceMethod(
-    [],
+    _flaxBinding69,
     types.ref<api9.StreamTransformer<_Method0, _Method1>>(),
     invoke,
   );
@@ -31789,13 +30216,8 @@ Function _flaxClass_StreamTransformerBase<
           _StreamTransformerBase_bind,
         ),
         "cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:StreamTransformer",
-            dartType:
-                FlaxDartTypes.typeOf<api9.StreamTransformer<Object?, Object?>>,
-          ),
+          _flaxBinding69,
+          _flaxBinding1618,
           _StreamTransformerBase_cast,
           genericFactory: _flaxGeneric_StreamTransformerBase_cast,
           ownerTypes: [
@@ -31804,13 +30226,8 @@ Function _flaxClass_StreamTransformerBase<
           ],
         ),
         "@super:cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:StreamTransformer",
-            dartType:
-                FlaxDartTypes.typeOf<api9.StreamTransformer<Object?, Object?>>,
-          ),
+          _flaxBinding69,
+          _flaxBinding1618,
           _StreamTransformerBase_super_cast,
           genericFactory: _flaxGeneric_StreamTransformerBase_super_cast,
           ownerTypes: [
@@ -31819,7 +30236,7 @@ Function _flaxClass_StreamTransformerBase<
           ],
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding69},
       create: _createStreamTransformerBase,
       matches: _isStreamTransformerBase,
       setters: [],
@@ -31856,12 +30273,7 @@ Function _flaxClass_StreamTransformerBase<
           0,
           FlaxCallbackBinding(
             [],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:StreamTransformer",
-              dartType: FlaxDartTypes
-                  .typeOf<api9.StreamTransformer<Object?, Object?>>,
-            ),
+            _flaxBinding1618,
             _callback0,
             id:
                 types
@@ -31892,7 +30304,7 @@ Function _flaxGeneric_StreamView_map<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<_Method0 Function(_Owner0 event)>(
@@ -31919,8 +30331,6 @@ Function _flaxGeneric_StreamView_map<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -31957,7 +30367,7 @@ Function _flaxGeneric_StreamView_asyncMap<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<api9.FutureOr<_Method0> Function(_Owner0 event)>(
@@ -31984,8 +30394,6 @@ Function _flaxGeneric_StreamView_asyncMap<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -32003,7 +30411,7 @@ Function _flaxGeneric_StreamView_asyncExpand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<api9.Stream<_Method0>? Function(_Owner0 event)>(
@@ -32030,8 +30438,6 @@ Function _flaxGeneric_StreamView_asyncExpand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -32049,7 +30455,7 @@ Function _flaxGeneric_StreamView_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<Iterable<_Method0> Function(_Owner0 element)>(
@@ -32077,8 +30483,6 @@ Function _flaxGeneric_StreamView_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -32096,13 +30500,11 @@ Function _flaxGeneric_StreamView_transform<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "streamTransformer",
         types.ref<api9.StreamTransformer<_Owner0, _Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api9.Stream<_Method0>>(),
@@ -32122,14 +30524,8 @@ Function _flaxGeneric_StreamView_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<_Method0 Function(_Method0 previous, _Owner0 element)>(
@@ -32166,8 +30562,6 @@ Function _flaxGeneric_StreamView_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -32182,7 +30576,11 @@ Function _flaxGeneric_StreamView_cast<
     return (receiver as api9.StreamView<_Owner0>).cast<_Method0>();
   }
 
-  return FlaxInstanceMethod([], types.ref<api9.Stream<_Method0>>(), invoke);
+  return FlaxInstanceMethod(
+    _flaxBinding69,
+    types.ref<api9.Stream<_Method0>>(),
+    invoke,
+  );
 };
 Function _flaxGeneric_StreamView_drain<
   _Owner0 extends Object?,
@@ -32195,14 +30593,8 @@ Function _flaxGeneric_StreamView_drain<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "futureValue",
-        types.ref<_Method0?>(),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
     ],
     types.ref<Future<_Method0>>(),
     invoke,
@@ -32535,25 +30927,9 @@ Function _flaxClass_StreamView<
     FlaxStreamTypeBinding(
       id,
       [
-        FlaxGetter("isBroadcast", FlaxTypeRef("bool"), _StreamView_isBroadcast),
-        FlaxGetter(
-          "length",
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("int"),
-            future: FlaxFutureBinding("int:", _future7Adapt),
-          ),
-          _StreamView_length,
-        ),
-        FlaxGetter(
-          "isEmpty",
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future1Adapt),
-          ),
-          _StreamView_isEmpty,
-        ),
+        FlaxGetter("isBroadcast", _flaxBinding117, _StreamView_isBroadcast),
+        FlaxGetter("length", _flaxBinding1562, _StreamView_length),
+        FlaxGetter("isEmpty", _flaxBinding793, _StreamView_isEmpty),
         FlaxGetter("first", types.ref<Future<_Owner0>>(), _StreamView_first),
         FlaxGetter("last", types.ref<Future<_Owner0>>(), _StreamView_last),
         FlaxGetter("single", types.ref<Future<_Owner0>>(), _StreamView_single),
@@ -32580,7 +30956,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters
                         .wrapVoid1<api9.StreamSubscription<_Owner0>>,
                     id:
@@ -32619,7 +30995,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters
                         .wrapVoid1<api9.StreamSubscription<_Owner0>>,
                     id:
@@ -32660,7 +31036,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 value)?>() +
@@ -32672,11 +31048,7 @@ Function _flaxClass_StreamView<
               ),
               required: true,
             ),
-            FlaxParameter(
-              "cancelOnError",
-              FlaxTypeRef("bool", nullable: true),
-              required: false,
-            ),
+            FlaxParameter("cancelOnError", _flaxBinding34, required: false),
             FlaxParameter(
               "onDone",
               FlaxTypeRef(
@@ -32684,7 +31056,7 @@ Function _flaxClass_StreamView<
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()?>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -32702,22 +31074,19 @@ Function _flaxClass_StreamView<
                   [
                     FlaxCallbackParameter(
                       "p0",
-                      FlaxTypeRef("any"),
+                      _flaxBinding157,
                       required: true,
                       positional: true,
                       encode: const FlaxTypeRef('error'),
                     ),
                     FlaxCallbackParameter(
                       "p1",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                      ),
+                      _flaxBinding158,
                       required: false,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   _callback0,
                   id:
                       types
@@ -32752,7 +31121,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 event)>() +
@@ -32785,7 +31154,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding15,
                     FlaxCallbackAdapters.wrap1<_Owner0, Object?>,
                     id:
                         types.key<Object? Function(_Owner0 event)>() +
@@ -32798,17 +31167,7 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _StreamView_map,
           genericFactory: _flaxGeneric_StreamView_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -32830,11 +31189,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "futureOr",
-                      item: FlaxTypeRef("any", nullable: true),
-                      future: FlaxFutureBinding("any?:", _future0Adapt),
-                    ),
+                    _flaxBinding1448,
                     _callback1,
                     id:
                         types
@@ -32850,17 +31205,7 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _StreamView_asyncMap,
           genericFactory: _flaxGeneric_StreamView_asyncMap,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -32882,18 +31227,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "stream",
-                      id: "flax.core/flutter#type:Stream",
-                      dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>?>,
-                      nullable: true,
-                      item: FlaxTypeRef("any", nullable: true),
-                      stream: FlaxStreamBinding(
-                        "stream:flax.core/flutter#type:Stream[any?:]",
-                        _stream0Matches,
-                        _stream0Adapt,
-                      ),
-                    ),
+                    _flaxBinding1568,
                     FlaxCallbackAdapters.wrap1<_Owner0, api9.Stream<Object?>?>,
                     id:
                         types
@@ -32911,17 +31245,7 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _StreamView_asyncExpand,
           genericFactory: _flaxGeneric_StreamView_asyncExpand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -32936,22 +31260,19 @@ Function _flaxClass_StreamView<
                   [
                     FlaxCallbackParameter(
                       "p0",
-                      FlaxTypeRef("any"),
+                      _flaxBinding157,
                       required: true,
                       positional: true,
                       encode: const FlaxTypeRef('error'),
                     ),
                     FlaxCallbackParameter(
                       "p1",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/flutter#type:StackTrace",
-                      ),
+                      _flaxBinding158,
                       required: false,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   _callback2,
                   id:
                       types
@@ -32974,12 +31295,12 @@ Function _flaxClass_StreamView<
                   [
                     FlaxCallbackParameter(
                       "error",
-                      FlaxTypeRef("any", nullable: true),
+                      _flaxBinding15,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("bool"),
+                  _flaxBinding117,
                   FlaxCallbackAdapters.wrap1<Object?, bool>,
                   id:
                       types.key<bool Function(Object? error)?>() +
@@ -33011,16 +31332,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("any", nullable: true),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[any?:]",
-                        _collection12Create,
-                        _collection12Matches,
-                        restore: _collection12Restore,
-                      ),
-                    ),
+                    _flaxBinding866,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -33038,17 +31350,7 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _StreamView_expand,
           genericFactory: _flaxGeneric_StreamView_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -33061,11 +31363,7 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding16,
           _StreamView_pipe,
         ),
         "transform": FlaxInstanceMethod(
@@ -33076,17 +31374,7 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding1579,
           _StreamView_transform,
           genericFactory: _flaxGeneric_StreamView_transform,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -33140,11 +31428,7 @@ Function _flaxClass_StreamView<
         ),
         "fold": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "initialValue",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
+            FlaxParameter("initialValue", _flaxBinding15, required: true),
             FlaxParameter(
               "combine",
               types.define<Object? Function(Object? previous, _Owner0 element)>(
@@ -33155,7 +31439,7 @@ Function _flaxClass_StreamView<
                     [
                       FlaxCallbackParameter(
                         "previous",
-                        FlaxTypeRef("any", nullable: true),
+                        _flaxBinding15,
                         required: true,
                         positional: true,
                       ),
@@ -33166,7 +31450,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("any", nullable: true),
+                    _flaxBinding15,
                     FlaxCallbackAdapters.wrap2<Object?, _Owner0, Object?>,
                     id:
                         types
@@ -33187,44 +31471,19 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding16,
           _StreamView_fold,
           genericFactory: _flaxGeneric_StreamView_fold,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "join": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "separator",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("String"),
-            future: FlaxFutureBinding("String:", _future5Adapt),
-          ),
+          _flaxBinding1349,
+          _flaxBinding1423,
           _StreamView_join,
         ),
         "contains": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "needle",
-              FlaxTypeRef("any", nullable: true),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future1Adapt),
-          ),
+          _flaxBinding1574,
+          _flaxBinding793,
           _StreamView_contains,
         ),
         "forEach": FlaxInstanceMethod(
@@ -33244,7 +31503,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                     id:
                         types.key<void Function(_Owner0 element)>() +
@@ -33257,11 +31516,7 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("void"),
-            future: FlaxFutureBinding("void:", _future2Adapt),
-          ),
+          _flaxBinding1385,
           _StreamView_forEach,
         ),
         "every": FlaxInstanceMethod(
@@ -33281,7 +31536,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -33294,11 +31549,7 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future1Adapt),
-          ),
+          _flaxBinding793,
           _StreamView_every,
         ),
         "any": FlaxInstanceMethod(
@@ -33318,7 +31569,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -33331,61 +31582,35 @@ Function _flaxClass_StreamView<
               required: true,
             ),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("bool"),
-            future: FlaxFutureBinding("bool:", _future1Adapt),
-          ),
+          _flaxBinding793,
           _StreamView_any,
         ),
         "cast": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "stream",
-            id: "flax.core/flutter#type:Stream",
-            dartType: FlaxDartTypes.typeOf<api9.Stream<Object?>>,
-            item: FlaxTypeRef("any", nullable: true),
-            stream: FlaxStreamBinding(
-              "stream:flax.core/flutter#type:Stream[any?:]",
-              _stream0Matches,
-              _stream0Adapt,
-            ),
-          ),
+          _flaxBinding69,
+          _flaxBinding1579,
           _StreamView_cast,
           genericFactory: _flaxGeneric_StreamView_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "toList": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding69,
           types.ref<Future<List<_Owner0>>>(),
           _StreamView_toList,
         ),
         "toSet": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding69,
           types.ref<Future<Set<_Owner0>>>(),
           _StreamView_toSet,
         ),
         "drain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "futureValue",
-              FlaxTypeRef("any", nullable: true),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding1961,
+          _flaxBinding16,
           _StreamView_drain,
           genericFactory: _flaxGeneric_StreamView_drain,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "take": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding1356,
           types.ref<api9.Stream<_Owner0>>(),
           _StreamView_take,
         ),
@@ -33406,7 +31631,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -33423,9 +31648,7 @@ Function _flaxClass_StreamView<
           _StreamView_takeWhile,
         ),
         "skip": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("count", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding1356,
           types.ref<api9.Stream<_Owner0>>(),
           _StreamView_skip,
         ),
@@ -33446,7 +31669,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -33485,7 +31708,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap2<_Owner0, _Owner0, bool>,
                     id:
                         types
@@ -33523,7 +31746,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -33576,7 +31799,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -33629,7 +31852,7 @@ Function _flaxClass_StreamView<
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("bool"),
+                    _flaxBinding117,
                     FlaxCallbackAdapters.wrap1<_Owner0, bool>,
                     id:
                         types.key<bool Function(_Owner0 element)>() +
@@ -33666,19 +31889,13 @@ Function _flaxClass_StreamView<
           _StreamView_singleWhere,
         ),
         "elementAt": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("index", FlaxTypeRef("int"), required: true),
-          ],
+          _flaxBinding1370,
           types.ref<Future<_Owner0>>(),
           _StreamView_elementAt,
         ),
         "timeout": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter(
-              "timeLimit",
-              FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
-              required: true,
-            ),
+            FlaxParameter("timeLimit", _flaxBinding529, required: true),
             FlaxParameter(
               "onTimeout",
               types.define<void Function(api9.EventSink<_Owner0> sink)?>(
@@ -33697,7 +31914,7 @@ Function _flaxClass_StreamView<
                         scoped: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api9.EventSink<_Owner0>>,
                     id:
                         types
@@ -33888,7 +32105,7 @@ Function _flaxClass_SynchronousStreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -33904,7 +32121,7 @@ Function _flaxClass_SynchronousStreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -33920,7 +32137,7 @@ Function _flaxClass_SynchronousStreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -33936,11 +32153,7 @@ Function _flaxClass_SynchronousStreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef(
-                "futureOr",
-                item: FlaxTypeRef("void"),
-                future: FlaxFutureBinding("void:", _future2Adapt),
-              ),
+              _flaxBinding1006,
               _callback0,
               id:
                   types.key<api9.FutureOr<void> Function()?>() +
@@ -33958,60 +32171,37 @@ Function _flaxClass_SynchronousStreamController<
         ),
         FlaxGetter(
           "isClosed",
-          FlaxTypeRef("bool"),
+          _flaxBinding117,
           _SynchronousStreamController_isClosed,
         ),
         FlaxGetter(
           "isPaused",
-          FlaxTypeRef("bool"),
+          _flaxBinding117,
           _SynchronousStreamController_isPaused,
         ),
         FlaxGetter(
           "hasListener",
-          FlaxTypeRef("bool"),
+          _flaxBinding117,
           _SynchronousStreamController_hasListener,
         ),
-        FlaxGetter(
-          "done",
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
-          _SynchronousStreamController_done,
-        ),
+        FlaxGetter("done", _flaxBinding16, _SynchronousStreamController_done),
       ],
       {
         "add": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("data", types.ref<_Owner0>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _SynchronousStreamController_add,
         ),
         "addError": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("error", FlaxTypeRef("any"), required: true),
-            FlaxParameter(
-              "stackTrace",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:StackTrace",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding671,
+          _flaxBinding0,
           _SynchronousStreamController_addError,
         ),
         "close": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding69,
+          _flaxBinding16,
           _SynchronousStreamController_close,
         ),
         "addStream": FlaxInstanceMethod(
@@ -34021,17 +32211,9 @@ Function _flaxClass_SynchronousStreamController<
               types.ref<api9.Stream<_Owner0>>(),
               required: true,
             ),
-            FlaxParameter(
-              "cancelOnError",
-              FlaxTypeRef("bool", nullable: true),
-              required: false,
-            ),
+            FlaxParameter("cancelOnError", _flaxBinding34, required: false),
           ],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef("any", nullable: true),
-            future: FlaxFutureBinding("any?:", _future0Adapt),
-          ),
+          _flaxBinding16,
           _SynchronousStreamController_addStream,
         ),
       },
@@ -34046,7 +32228,7 @@ Function _flaxClass_SynchronousStreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -34062,7 +32244,7 @@ Function _flaxClass_SynchronousStreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -34078,7 +32260,7 @@ Function _flaxClass_SynchronousStreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef("void"),
+              _flaxBinding0,
               FlaxCallbackAdapters.wrapVoid0,
               id: types.key<void Function()?>() + ":callback:<>()->void:",
               invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -34094,11 +32276,7 @@ Function _flaxClass_SynchronousStreamController<
             nullable: true,
             callback: FlaxCallbackBinding(
               [],
-              FlaxTypeRef(
-                "futureOr",
-                item: FlaxTypeRef("void"),
-                future: FlaxFutureBinding("void:", _future2Adapt),
-              ),
+              _flaxBinding1006,
               _callback1,
               id:
                   types.key<api9.FutureOr<void> Function()?>() +
@@ -34155,8 +32333,8 @@ Function _flaxClass_ValueKey<_Owner0 extends Object?>() =>
           [FlaxGetter("value", types.ref<_Owner0>(), _ValueKey_value)],
           {
             "toString": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("String"),
+              _flaxBinding69,
+              _flaxBinding2,
               _ValueKey_toString,
             ),
           },
@@ -34236,7 +32414,7 @@ Function _flaxClass_ValueListenable<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -34246,7 +32424,7 @@ Function _flaxClass_ValueListenable<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _ValueListenable_addListener,
         ),
         "removeListener": FlaxInstanceMethod(
@@ -34257,7 +32435,7 @@ Function _flaxClass_ValueListenable<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -34267,11 +32445,11 @@ Function _flaxClass_ValueListenable<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _ValueListenable_removeListener,
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding69},
       create: _createValueListenable,
       matches: _isValueListenable,
       setters: [],
@@ -34293,7 +32471,7 @@ Function _flaxClass_ValueListenable<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -34304,7 +32482,7 @@ Function _flaxClass_ValueListenable<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -34321,7 +32499,7 @@ Function _flaxClass_ValueListenable<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -34332,7 +32510,7 @@ Function _flaxClass_ValueListenable<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -34422,15 +32600,7 @@ Function _flaxClass_ValueListenableBuilder<_Owner0 extends Object?>() =>
           id,
           {
             "": <FlaxParameter>[
-              FlaxParameter(
-                "key",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:Key",
-                  nullable: true,
-                ),
-                required: false,
-              ),
+              FlaxParameter("key", _flaxBinding50, required: false),
               FlaxParameter(
                 "valueListenable",
                 types.ref<api3.ValueListenable<_Owner0>>(),
@@ -34452,10 +32622,7 @@ Function _flaxClass_ValueListenableBuilder<_Owner0 extends Object?>() =>
                       [
                         FlaxCallbackParameter(
                           "context",
-                          FlaxTypeRef(
-                            "context",
-                            id: "flax.core/flutter#type:BuildContext",
-                          ),
+                          _flaxBinding10,
                           required: true,
                           positional: true,
                         ),
@@ -34467,12 +32634,12 @@ Function _flaxClass_ValueListenableBuilder<_Owner0 extends Object?>() =>
                         ),
                         FlaxCallbackParameter(
                           "child",
-                          FlaxTypeRef("widget", nullable: true),
+                          _flaxBinding56,
                           required: true,
                           positional: true,
                         ),
                       ],
-                      FlaxTypeRef("widget"),
+                      _flaxBinding11,
                       _callback0,
                       id:
                           types
@@ -34491,11 +32658,7 @@ Function _flaxClass_ValueListenableBuilder<_Owner0 extends Object?>() =>
                 ),
                 required: true,
               ),
-              FlaxParameter(
-                "child",
-                FlaxTypeRef("widget", nullable: true),
-                required: false,
-              ),
+              FlaxParameter("child", _flaxBinding56, required: false),
             ],
           },
           _ValueListenableBuilderHost<_Owner0>.new,
@@ -34550,37 +32713,7 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
           [],
           {
             "resolve": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter(
-                  "states",
-                  FlaxTypeRef(
-                    "set",
-                    item: FlaxTypeRef(
-                      "enum",
-                      id: "flax.core/flutter#type:WidgetState",
-                    ),
-                    collection: FlaxCollectionBinding(
-                      "set:[enum:flax.core/flutter#type:WidgetState]",
-                      _collection48Create,
-                      _collection48Matches,
-                    ),
-                    iterable: FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/flutter#type:WidgetState",
-                      ),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                        _collection49Create,
-                        _collection49Matches,
-                        restore: _collection49Restore,
-                      ),
-                    ),
-                  ),
-                  required: true,
-                ),
-              ],
+              _flaxBinding1911,
               types.ref<_Owner0>(),
               _WidgetStateProperty_resolve,
             ),
@@ -34618,31 +32751,7 @@ Function _flaxClass_WidgetStateProperty<_Owner0 extends Object?>() =>
                       [
                         FlaxCallbackParameter(
                           "states",
-                          FlaxTypeRef(
-                            "set",
-                            item: FlaxTypeRef(
-                              "enum",
-                              id: "flax.core/flutter#type:WidgetState",
-                            ),
-                            collection: FlaxCollectionBinding(
-                              "set:[enum:flax.core/flutter#type:WidgetState]",
-                              _collection48Create,
-                              _collection48Matches,
-                            ),
-                            iterable: FlaxTypeRef(
-                              "iterable",
-                              item: FlaxTypeRef(
-                                "enum",
-                                id: "flax.core/flutter#type:WidgetState",
-                              ),
-                              collection: FlaxCollectionBinding(
-                                "iterable:[enum:flax.core/flutter#type:WidgetState]",
-                                _collection49Create,
-                                _collection49Matches,
-                                restore: _collection49Restore,
-                              ),
-                            ),
-                          ),
+                          _flaxBinding1910,
                           required: true,
                           positional: true,
                         ),
@@ -49431,3 +47540,11 @@ const _flaxBinding1959 = FlaxTypeRef(
     _collection55Matches,
   ),
 );
+const _flaxBinding1960 = <FlaxParameter>[
+  FlaxParameter("context", _flaxBinding10, required: true),
+  FlaxParameter("routeName", _flaxBinding2, required: true),
+  FlaxParameter("arguments", _flaxBinding15, required: false),
+];
+const _flaxBinding1961 = <FlaxParameter>[
+  FlaxParameter("futureValue", _flaxBinding15, required: false),
+];

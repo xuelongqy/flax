@@ -482,6 +482,93 @@ void main() {
   );
 
   test(
+    'generic factories share fixed descriptions without sharing owner types',
+    () async {
+      final module = await parser.parse(
+        config(const {
+          'FixedFactory': FlaxCodegenClassSelection(
+            {
+              '': ['value', 'label'],
+            },
+            kind: 'object',
+            getters: [
+              'value',
+              'label',
+              'values',
+              'record',
+              'future',
+              'deferred',
+            ],
+            instanceMethods: {
+              'sum': ['values', 'offset'],
+              'choose': ['input', 'enabled'],
+              'call': ['callback'],
+            },
+          ),
+          'FixedDeferred': FlaxCodegenClassSelection(
+            {
+              '': ['value'],
+            },
+            kind: 'object',
+            getters: ['value'],
+            methods: {
+              'resolveWith': ['callback'],
+            },
+          ),
+        }),
+      );
+      final emitter = FlaxCodegenBindingEmitter([module]);
+      expect(emitter.dart(module), emitter.dart(module));
+      await compileFixture(
+        root.path,
+        emitter,
+        module,
+        dartTestSource: r'''
+void main() {
+  test('only fixed metadata is reused across typed factories', () async {
+    final strings = typedFixtureBinding(_flaxClass_FixedFactory<String>());
+    final numbers = typedFixtureBinding(_flaxClass_FixedFactory<int>());
+    FlaxGetter getter(FlaxObjectBinding binding, String name) =>
+      binding.getters.singleWhere((g) => g.name == name);
+    for (final name in ['label', 'values', 'record', 'future']) {
+      expect(getter(strings, name).type, same(getter(numbers, name).type));
+    }
+    expect(strings.instanceMethods['sum']!.parameters,
+      same(numbers.instanceMethods['sum']!.parameters));
+    expect(getter(strings, 'value').type.kind, 'String');
+    expect(getter(numbers, 'value').type.kind, 'int');
+    expect(strings.constructors['']!.last.defaultValue, 'fixed');
+    expect(strings.instanceMethods['sum']!.parameters.last.defaultValue, 3);
+    final value = strings.create('', {'value': 'kept', 'label': 'fixed'});
+    expect(getter(strings, 'label').read(value), 'fixed');
+    expect(getter(strings, 'record').read(value), ('fixed', 2));
+    expect(await (getter(strings, 'future').read(value) as Future<int>), 2);
+    expect(getter(strings, 'deferred').type.deferredFactories['resolveWith']!.id,
+      contains('FixedDeferred<int>'));
+    expect((getter(strings, 'deferred').read(value) as api.FixedDeferred<int>).value, 2);
+    expect(strings.instanceMethods['sum']!.invoke(value,
+      {'values': <int>[1, 2], 'offset': 3}), 6);
+    expect(strings.instanceMethods['sum']!.invoke(value,
+      {'values': <int>[1, 2], 'offset': 5}), 8);
+    expect(strings.instanceMethods['choose']!.invoke(value,
+      {'input': 'next', 'enabled': true}), 'next');
+    expect(() => strings.instanceMethods['choose']!.invoke(value,
+      {'input': 7, 'enabled': true}),
+      throwsA(isA<TypeError>()));
+    final callback = strings.instanceMethods['call']!.parameters.single.type.callback!;
+    expect(callback.invoke(({required String text}) => text.toUpperCase(), [],
+      {'text': 'fixed'}), 'FIXED');
+    expect(callback.matches(({required int text}) => '$text'), isFalse);
+    expect(strings.instanceMethods['call']!.invoke(value,
+      {'callback': ({required String text}) => text.toUpperCase()}), 'FIXED');
+  });
+}
+''',
+      );
+    },
+  );
+
+  test(
     'closed callbacks share adapters while captured generic scopes stay local',
     () async {
       final module = await parser.parse(

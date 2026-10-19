@@ -13595,7 +13595,7 @@ Function _flaxGenericFunction9<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_dart_ui#function:runOnPlatformThread",
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "computation",
             types.define<api3.FutureOr<_Method0> Function()>(
@@ -13615,8 +13615,6 @@ Function _flaxGenericFunction9<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0>>(),
@@ -13629,7 +13627,11 @@ Function _flaxGeneric_PathMetrics_cast<_Method0 extends Object?>() =>
         return (receiver as api.PathMetrics).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding224,
+        types.ref<Iterable<_Method0>>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_PathMetrics_map<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -13640,7 +13642,7 @@ Function _flaxGeneric_PathMetrics_map<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "toElement",
             types.define<_Method0 Function(api.PathMetric e)>(
@@ -13651,10 +13653,7 @@ Function _flaxGeneric_PathMetrics_map<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "e",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:PathMetric",
-                      ),
+                      _flaxBinding878,
                       required: true,
                       positional: true,
                     ),
@@ -13670,8 +13669,6 @@ Function _flaxGeneric_PathMetrics_map<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Iterable<_Method0>>(),
@@ -13684,7 +13681,11 @@ Function _flaxGeneric_PathMetrics_whereType<_Method0 extends Object?>() =>
         return (receiver as api.PathMetrics).whereType<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<Iterable<_Method0>>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding224,
+        types.ref<Iterable<_Method0>>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_PathMetrics_expand<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -13696,7 +13697,7 @@ Function _flaxGeneric_PathMetrics_expand<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "toElements",
             types.define<Iterable<_Method0> Function(api.PathMetric element)>(
@@ -13707,10 +13708,7 @@ Function _flaxGeneric_PathMetrics_expand<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "element",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:PathMetric",
-                      ),
+                      _flaxBinding878,
                       required: true,
                       positional: true,
                     ),
@@ -13732,8 +13730,6 @@ Function _flaxGeneric_PathMetrics_expand<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Iterable<_Method0>>(),
@@ -13754,14 +13750,8 @@ Function _flaxGeneric_PathMetrics_fold<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "initialValue",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
           FlaxParameter(
             "combine",
             types.define<
@@ -13780,10 +13770,7 @@ Function _flaxGeneric_PathMetrics_fold<_Method0 extends Object?>() =>
                     ),
                     FlaxCallbackParameter(
                       "element",
-                      FlaxTypeRef(
-                        "object",
-                        id: "flax.core/sdk_dart_ui#type:PathMetric",
-                      ),
+                      _flaxBinding878,
                       required: true,
                       positional: true,
                     ),
@@ -13808,8 +13795,6 @@ Function _flaxGeneric_PathMetrics_fold<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<_Method0>(),
@@ -13844,12 +13829,10 @@ Function _flaxClass_UniformArray<_Owner0 extends api.UniformType>() =>
         api.UniformArray<_Owner0>,
         FlaxObjectBinding(
           id,
-          [FlaxGetter("length", FlaxTypeRef("int"), _UniformArray_length)],
+          [FlaxGetter("length", _flaxBinding0, _UniformArray_length)],
           {
             "operatorGetIndex": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("index", FlaxTypeRef("int"), required: true),
-              ],
+              _flaxBinding931,
               types.ref<_Owner0>(),
               _UniformArray_operatorGetIndex,
             ),

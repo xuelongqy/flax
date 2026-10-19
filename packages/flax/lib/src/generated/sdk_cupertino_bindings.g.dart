@@ -23957,38 +23957,30 @@ _flaxProxySignature_CupertinoPageTransitionsBuilder_buildTransitions<
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding4,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding77,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding77,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding12,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding12,
     _callback0,
     id:
         types
@@ -26724,43 +26716,16 @@ _flaxGenericFunction2<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/sdk_cupertino#function:showCupertinoDialog",
-    [
-      FlaxParameter(
-        "anchorPoint",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Offset",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "barrierColor",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Color",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("anchorPoint", _flaxBinding11, required: false),
+      FlaxParameter("barrierColor", _flaxBinding47, required: false),
       FlaxParameter(
         "barrierDismissible",
-        FlaxTypeRef("bool"),
+        _flaxBinding16,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "barrierLabel",
-        FlaxTypeRef("String", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("barrierLabel", _flaxBinding60, required: false),
       FlaxParameter(
         "builder",
         FlaxTypeRef(
@@ -26769,15 +26734,12 @@ _flaxGenericFunction2<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding4,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding12,
             FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
             id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
@@ -26787,40 +26749,15 @@ _flaxGenericFunction2<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "requestFocus",
-        FlaxTypeRef("bool", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "routeSettings",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:RouteSettings",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding4, required: true),
+      FlaxParameter("requestFocus", _flaxBinding53, required: false),
+      FlaxParameter("routeSettings", _flaxBinding672, required: false),
       FlaxParameter(
         "useRootNavigator",
-        FlaxTypeRef("bool"),
+        _flaxBinding16,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -26862,31 +26799,19 @@ _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/sdk_cupertino#function:showCupertinoModalPopup",
-    [
-      FlaxParameter(
-        "anchorPoint",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:Offset",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("anchorPoint", _flaxBinding11, required: false),
       FlaxParameter(
         "barrierColor",
-        FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+        _flaxBinding24,
         required: false,
-        defaultValue: null,
         omitWhenAbsent: true,
       ),
       FlaxParameter(
         "barrierDismissible",
-        FlaxTypeRef("bool"),
+        _flaxBinding16,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "builder",
@@ -26896,15 +26821,12 @@ _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding4,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding12,
             FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
             id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
@@ -26914,58 +26836,22 @@ _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "filter",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:ImageFilter",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "requestFocus",
-        FlaxTypeRef("bool", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "routeSettings",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:RouteSettings",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding4, required: true),
+      FlaxParameter("filter", _flaxBinding598, required: false),
+      FlaxParameter("requestFocus", _flaxBinding53, required: false),
+      FlaxParameter("routeSettings", _flaxBinding672, required: false),
       FlaxParameter(
         "semanticsDismissible",
-        FlaxTypeRef("bool"),
+        _flaxBinding16,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "useRootNavigator",
-        FlaxTypeRef("bool"),
+        _flaxBinding16,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -26998,7 +26884,7 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
 
   return FlaxFunctionBinding(
     "flax.core/sdk_cupertino#function:showCupertinoSheet",
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "builder",
         FlaxTypeRef(
@@ -27008,15 +26894,12 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding4,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding12,
             FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
             id: types.key<api1.Widget Function(api1.BuildContext context)?>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
@@ -27026,22 +26909,13 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding4, required: true),
       FlaxParameter(
         "enableDrag",
-        FlaxTypeRef("bool"),
+        _flaxBinding16,
         required: false,
         defaultValue: true,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "pageBuilder",
@@ -27052,15 +26926,12 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding4,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding12,
             FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
             id: types.key<api1.Widget Function(api1.BuildContext context)?>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
@@ -27070,8 +26941,6 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
       FlaxParameter(
         "scrollableBuilder",
@@ -27082,24 +26951,18 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
             [
               FlaxCallbackParameter(
                 "context",
-                FlaxTypeRef(
-                  "context",
-                  id: "flax.core/flutter#type:BuildContext",
-                ),
+                _flaxBinding4,
                 required: true,
                 positional: true,
               ),
               FlaxCallbackParameter(
                 "scrollController",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/flutter#type:ScrollController",
-                ),
+                _flaxBinding1686,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("widget"),
+            _flaxBinding12,
             FlaxCallbackAdapters
                 .wrap2<api1.BuildContext, api1.ScrollController, api1.Widget>,
             id:
@@ -27122,40 +26985,20 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
           ),
         ),
         required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "settings",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/flutter#type:RouteSettings",
-          nullable: true,
-        ),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("settings", _flaxBinding672, required: false),
       FlaxParameter(
         "showDragHandle",
-        FlaxTypeRef("bool"),
+        _flaxBinding16,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "topGap",
-        FlaxTypeRef("double", nullable: true),
-        required: false,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("topGap", _flaxBinding45, required: false),
       FlaxParameter(
         "useNestedNavigation",
-        FlaxTypeRef("bool"),
+        _flaxBinding16,
         required: false,
         defaultValue: false,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0?>>(),
@@ -27176,52 +27019,18 @@ Function _flaxGenericFunction1395<_Method0 extends Object?>() =>
 
       return FlaxFunctionBinding(
         "flax.core/sdk_cupertino#function:CupertinoRouteTransitionMixin.buildPageTransitions",
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "route",
             types.ref<api1.PageRoute<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "animation",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:Animation",
-              dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "secondaryAnimation",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:Animation",
-              dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-            ),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
-          FlaxParameter(
-            "child",
-            FlaxTypeRef("widget"),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+          FlaxParameter("context", _flaxBinding4, required: true),
+          FlaxParameter("animation", _flaxBinding77, required: true),
+          FlaxParameter("secondaryAnimation", _flaxBinding77, required: true),
+          FlaxParameter("child", _flaxBinding12, required: true),
         ],
-        FlaxTypeRef("widget"),
+        _flaxBinding12,
         invoke,
       );
     };
@@ -28105,78 +27914,54 @@ Function _flaxClass_CupertinoDialogRoute<
       [
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_barrierDismissible,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding60,
           _CupertinoDialogRoute_barrierLabel,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoDialogRoute_barrierColor,
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoDialogRoute_transitionDuration,
         ),
         FlaxGetter(
           "anchorPoint",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Offset",
-            nullable: true,
-          ),
+          _flaxBinding11,
           _CupertinoDialogRoute_anchorPoint,
         ),
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_fullscreenDialog,
         ),
-        FlaxGetter("opaque", FlaxTypeRef("bool"), _CupertinoDialogRoute_opaque),
+        FlaxGetter("opaque", _flaxBinding16, _CupertinoDialogRoute_opaque),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_maintainState,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_allowSnapshotting,
         ),
-        FlaxGetter(
-          "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
-          _CupertinoDialogRoute_filter,
-        ),
+        FlaxGetter("filter", _flaxBinding598, _CupertinoDialogRoute_filter),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoDialogRoute_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoDialogRoute_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -28188,47 +27973,36 @@ Function _flaxClass_CupertinoDialogRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback0,
               id:
                   types
@@ -28257,47 +28031,36 @@ Function _flaxClass_CupertinoDialogRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback1,
               id:
                   types
@@ -28319,75 +28082,54 @@ Function _flaxClass_CupertinoDialogRoute<
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding247,
           _CupertinoDialogRoute_barrierCurve,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_popGestureInProgress,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_popGestureEnabled,
         ),
-        FlaxGetter(
-          "offstage",
-          FlaxTypeRef("bool"),
-          _CupertinoDialogRoute_offstage,
-        ),
+        FlaxGetter("offstage", _flaxBinding16, _CupertinoDialogRoute_offstage),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding610,
           _CupertinoDialogRoute_subtreeContext,
         ),
         FlaxGetter(
           "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoDialogRoute_animation,
         ),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoDialogRoute_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding615,
           _CupertinoDialogRoute_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_hasScopedWillPopCallback,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _CupertinoDialogRoute_canPop),
+        FlaxGetter("canPop", _flaxBinding16, _CupertinoDialogRoute_canPop),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_impliesAppBarDismissal,
         ),
         FlaxGetter(
@@ -28397,93 +28139,53 @@ Function _flaxClass_CupertinoDialogRoute<
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoDialogRoute_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding622,
           _CupertinoDialogRoute_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_willDisposeAnimationController,
         ),
         FlaxGetter(
           "debugLabel",
-          FlaxTypeRef("String"),
+          _flaxBinding31,
           _CupertinoDialogRoute_debugLabel,
         ),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding628,
           _CupertinoDialogRoute_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_requestFocus,
         ),
         FlaxGetter(
           "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
+          _flaxBinding631,
           _CupertinoDialogRoute_navigator,
         ),
-        FlaxGetter(
-          "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
-          _CupertinoDialogRoute_settings,
-        ),
+        FlaxGetter("settings", _flaxBinding271, _CupertinoDialogRoute_settings),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding634,
           _CupertinoDialogRoute_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -28498,24 +28200,16 @@ Function _flaxClass_CupertinoDialogRoute<
         ),
         FlaxGetter(
           "isCurrent",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_isCurrent,
         ),
-        FlaxGetter(
-          "isFirst",
-          FlaxTypeRef("bool"),
-          _CupertinoDialogRoute_isFirst,
-        ),
+        FlaxGetter("isFirst", _flaxBinding16, _CupertinoDialogRoute_isFirst),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_hasActiveRouteBelow,
         ),
-        FlaxGetter(
-          "isActive",
-          FlaxTypeRef("bool"),
-          _CupertinoDialogRoute_isActive,
-        ),
+        FlaxGetter("isActive", _flaxBinding16, _CupertinoDialogRoute_isActive),
         FlaxGetter(
           "transitionBuilder",
           FlaxTypeRef(
@@ -28525,41 +28219,30 @@ Function _flaxClass_CupertinoDialogRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding12,
               _callback2,
               id:
                   types
@@ -28581,62 +28264,13 @@ Function _flaxClass_CupertinoDialogRoute<
       ],
       {
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding644,
+          _flaxBinding12,
           _CupertinoDialogRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding645,
+          _flaxBinding12,
           _CupertinoDialogRoute_buildTransitions,
         ),
         "setState": FlaxInstanceMethod(
@@ -28647,7 +28281,7 @@ Function _flaxClass_CupertinoDialogRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -28657,48 +28291,35 @@ Function _flaxClass_CupertinoDialogRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoDialogRoute_setState,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoDialogRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding158,
+          _flaxBinding647,
           _CupertinoDialogRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoDialogRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future2Adapt,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding648,
           _CupertinoDialogRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding16, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoDialogRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -28709,11 +28330,7 @@ Function _flaxClass_CupertinoDialogRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback5,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -28725,7 +28342,7 @@ Function _flaxClass_CupertinoDialogRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoDialogRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -28736,11 +28353,7 @@ Function _flaxClass_CupertinoDialogRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback6,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -28752,279 +28365,146 @@ Function _flaxClass_CupertinoDialogRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoDialogRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoDialogRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoDialogRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding655,
+          _flaxBinding18,
           _CupertinoDialogRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding656,
+          _flaxBinding18,
           _CupertinoDialogRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding657,
+          _flaxBinding18,
           _CupertinoDialogRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoDialogRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoDialogRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding158,
+          _flaxBinding12,
           _CupertinoDialogRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding627,
           _CupertinoDialogRoute_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding158,
+          _flaxBinding16,
           _CupertinoDialogRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding158,
+          _flaxBinding658,
           _CupertinoDialogRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding158,
+          _flaxBinding77,
           _CupertinoDialogRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/sdk_physics#type:Simulation"),
+          _flaxBinding660,
+          _flaxBinding659,
           _CupertinoDialogRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding661,
+          _flaxBinding18,
           _CupertinoDialogRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding663,
+          _flaxBinding16,
           _CupertinoDialogRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding664,
+          _flaxBinding16,
           _CupertinoDialogRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding665,
+          _flaxBinding18,
           _CupertinoDialogRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding666,
+          _flaxBinding18,
           _CupertinoDialogRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoDialogRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoDialogRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoDialogRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding667,
+          _flaxBinding18,
           _CupertinoDialogRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoDialogRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoDialogRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoDialogRoute_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoDialogRoute_toString,
         ),
       },
@@ -29038,15 +28518,12 @@ Function _flaxClass_CupertinoDialogRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding4,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding12,
                 FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
                 id:
                     types
@@ -29062,34 +28539,18 @@ Function _flaxClass_CupertinoDialogRoute<
             ),
             required: true,
           ),
-          FlaxParameter(
-            "context",
-            FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-            required: true,
-          ),
+          FlaxParameter("context", _flaxBinding4, required: true),
           FlaxParameter(
             "barrierDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "barrierColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "barrierLabel",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("barrierColor", _flaxBinding47, required: false),
+          FlaxParameter("barrierLabel", _flaxBinding60, required: false),
           FlaxParameter(
             "transitionDuration",
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+            _flaxBinding75,
             required: false,
             omitWhenAbsent: true,
           ),
@@ -29102,41 +28563,30 @@ Function _flaxClass_CupertinoDialogRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding4,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "animation",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_animation#type:Animation",
-                      dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                    ),
+                    _flaxBinding77,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "secondaryAnimation",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/sdk_animation#type:Animation",
-                      dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                    ),
+                    _flaxBinding77,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "child",
-                    FlaxTypeRef("widget"),
+                    _flaxBinding12,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding12,
                 _callback7,
                 id:
                     types
@@ -29155,29 +28605,9 @@ Function _flaxClass_CupertinoDialogRoute<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "settings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "anchorPoint",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Offset",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("settings", _flaxBinding672, required: false),
+          FlaxParameter("requestFocus", _flaxBinding53, required: false),
+          FlaxParameter("anchorPoint", _flaxBinding11, required: false),
         ],
       },
       create: _createCupertinoDialogRoute,
@@ -29192,47 +28622,36 @@ Function _flaxClass_CupertinoDialogRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback3,
               id:
                   types
@@ -29254,12 +28673,12 @@ Function _flaxClass_CupertinoDialogRoute<
         ),
         FlaxSetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_set_offstage,
         ),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoDialogRoute_set_willDisposeAnimationController,
         ),
         FlaxSetter(
@@ -29271,41 +28690,30 @@ Function _flaxClass_CupertinoDialogRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget"),
+                  _flaxBinding12,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding12,
               _callback4,
               id:
                   types
@@ -30079,46 +29487,26 @@ Function _flaxClass_CupertinoModalPopupRoute<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "opaque",
-          FlaxTypeRef("bool"),
-          _CupertinoModalPopupRoute_opaque,
-        ),
+        FlaxGetter("opaque", _flaxBinding16, _CupertinoModalPopupRoute_opaque),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_maintainState,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_allowSnapshotting,
         ),
-        FlaxGetter(
-          "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
-          _CupertinoModalPopupRoute_filter,
-        ),
+        FlaxGetter("filter", _flaxBinding598, _CupertinoModalPopupRoute_filter),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoModalPopupRoute_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoModalPopupRoute_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -30130,47 +29518,36 @@ Function _flaxClass_CupertinoModalPopupRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback0,
               id:
                   types
@@ -30199,47 +29576,36 @@ Function _flaxClass_CupertinoModalPopupRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback1,
               id:
                   types
@@ -30261,103 +29627,78 @@ Function _flaxClass_CupertinoModalPopupRoute<
         ),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_barrierDismissible,
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoModalPopupRoute_barrierColor,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String"),
+          _flaxBinding31,
           _CupertinoModalPopupRoute_barrierLabel,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding247,
           _CupertinoModalPopupRoute_barrierCurve,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_popGestureInProgress,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_popGestureEnabled,
         ),
         FlaxGetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_offstage,
         ),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding610,
           _CupertinoModalPopupRoute_subtreeContext,
         ),
         FlaxGetter(
           "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoModalPopupRoute_animation,
         ),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoModalPopupRoute_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding615,
           _CupertinoModalPopupRoute_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_hasScopedWillPopCallback,
         ),
-        FlaxGetter(
-          "canPop",
-          FlaxTypeRef("bool"),
-          _CupertinoModalPopupRoute_canPop,
-        ),
+        FlaxGetter("canPop", _flaxBinding16, _CupertinoModalPopupRoute_canPop),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_impliesAppBarDismissal,
         ),
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_fullscreenDialog,
         ),
         FlaxGetter(
@@ -30367,98 +29708,62 @@ Function _flaxClass_CupertinoModalPopupRoute<
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoModalPopupRoute_transitionDuration,
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoModalPopupRoute_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding622,
           _CupertinoModalPopupRoute_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_willDisposeAnimationController,
         ),
         FlaxGetter(
           "debugLabel",
-          FlaxTypeRef("String"),
+          _flaxBinding31,
           _CupertinoModalPopupRoute_debugLabel,
         ),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding628,
           _CupertinoModalPopupRoute_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_requestFocus,
         ),
         FlaxGetter(
           "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
+          _flaxBinding631,
           _CupertinoModalPopupRoute_navigator,
         ),
         FlaxGetter(
           "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
+          _flaxBinding271,
           _CupertinoModalPopupRoute_settings,
         ),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding634,
           _CupertinoModalPopupRoute_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -30473,22 +29778,22 @@ Function _flaxClass_CupertinoModalPopupRoute<
         ),
         FlaxGetter(
           "isCurrent",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_isCurrent,
         ),
         FlaxGetter(
           "isFirst",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_isFirst,
         ),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_hasActiveRouteBelow,
         ),
         FlaxGetter(
           "isActive",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_isActive,
         ),
         FlaxGetter(
@@ -30499,15 +29804,12 @@ Function _flaxClass_CupertinoModalPopupRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding12,
               FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
               id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
               invoke:
@@ -30520,11 +29822,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
         ),
         FlaxGetter(
           "anchorPoint",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Offset",
-            nullable: true,
-          ),
+          _flaxBinding11,
           _CupertinoModalPopupRoute_anchorPoint,
         ),
       ],
@@ -30537,7 +29835,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -30547,107 +29845,45 @@ Function _flaxClass_CupertinoModalPopupRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoModalPopupRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding644,
+          _flaxBinding12,
           _CupertinoModalPopupRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding645,
+          _flaxBinding12,
           _CupertinoModalPopupRoute_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding158,
+          _flaxBinding647,
           _CupertinoModalPopupRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future2Adapt,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding648,
           _CupertinoModalPopupRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding16, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoModalPopupRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -30658,11 +29894,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -30674,7 +29906,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoModalPopupRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -30685,11 +29917,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -30701,279 +29929,146 @@ Function _flaxClass_CupertinoModalPopupRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoModalPopupRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding655,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding656,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding657,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding158,
+          _flaxBinding12,
           _CupertinoModalPopupRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding627,
           _CupertinoModalPopupRoute_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding158,
+          _flaxBinding16,
           _CupertinoModalPopupRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding158,
+          _flaxBinding658,
           _CupertinoModalPopupRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding158,
+          _flaxBinding77,
           _CupertinoModalPopupRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("object", id: "flax.core/sdk_physics#type:Simulation"),
+          _flaxBinding660,
+          _flaxBinding659,
           _CupertinoModalPopupRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding661,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding663,
+          _flaxBinding16,
           _CupertinoModalPopupRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding664,
+          _flaxBinding16,
           _CupertinoModalPopupRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding665,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding666,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding667,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoModalPopupRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoModalPopupRoute_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoModalPopupRoute_toString,
         ),
       },
@@ -30987,15 +30082,12 @@ Function _flaxClass_CupertinoModalPopupRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding4,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding12,
                 FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
                 id:
                     types
@@ -31013,64 +30105,32 @@ Function _flaxClass_CupertinoModalPopupRoute<
           ),
           FlaxParameter(
             "barrierLabel",
-            FlaxTypeRef("String"),
+            _flaxBinding31,
             required: false,
             defaultValue: 'Dismiss',
           ),
           FlaxParameter(
             "barrierColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
+            _flaxBinding47,
             required: false,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "barrierDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "semanticsDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "filter",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:ImageFilter",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "settings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "anchorPoint",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Offset",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("filter", _flaxBinding598, required: false),
+          FlaxParameter("settings", _flaxBinding672, required: false),
+          FlaxParameter("requestFocus", _flaxBinding53, required: false),
+          FlaxParameter("anchorPoint", _flaxBinding11, required: false),
         ],
       },
       create: _createCupertinoModalPopupRoute,
@@ -31085,47 +30145,36 @@ Function _flaxClass_CupertinoModalPopupRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback2,
               id:
                   types
@@ -31147,12 +30196,12 @@ Function _flaxClass_CupertinoModalPopupRoute<
         ),
         FlaxSetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_set_offstage,
         ),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoModalPopupRoute_set_willDisposeAnimationController,
         ),
       ],
@@ -31283,18 +30332,10 @@ Function _flaxClass_CupertinoPage<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:LocalKey",
-            nullable: true,
-          ),
-          _CupertinoPage_key,
-        ),
+        FlaxGetter("key", _flaxBinding1263, _CupertinoPage_key),
         FlaxGetter(
           "restorationId",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding60,
           _CupertinoPage_restorationId,
         ),
         FlaxGetter(
@@ -31307,7 +30348,7 @@ Function _flaxClass_CupertinoPage<
                 [
                   FlaxCallbackParameter(
                     "didPop",
-                    FlaxTypeRef("bool"),
+                    _flaxBinding16,
                     required: true,
                     positional: true,
                   ),
@@ -31318,7 +30359,7 @@ Function _flaxClass_CupertinoPage<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding18,
                 FlaxCallbackAdapters.wrapVoid2<bool, _Owner0?>,
                 id: types.key<void Function(bool didPop, _Owner0? result)>() + ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
                 invoke: FlaxCallbackAdapters.invokeVoid2<bool, _Owner0?>,
@@ -31328,101 +30369,69 @@ Function _flaxClass_CupertinoPage<
           ),
           _CupertinoPage_onPopInvoked,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _CupertinoPage_canPop),
-        FlaxGetter(
-          "name",
-          FlaxTypeRef("String", nullable: true),
-          _CupertinoPage_name,
-        ),
-        FlaxGetter(
-          "arguments",
-          FlaxTypeRef("any", nullable: true),
-          _CupertinoPage_arguments,
-        ),
-        FlaxGetter("child", FlaxTypeRef("widget"), _CupertinoPage_child),
-        FlaxGetter(
-          "title",
-          FlaxTypeRef("String", nullable: true),
-          _CupertinoPage_title,
-        ),
+        FlaxGetter("canPop", _flaxBinding16, _CupertinoPage_canPop),
+        FlaxGetter("name", _flaxBinding60, _CupertinoPage_name),
+        FlaxGetter("arguments", _flaxBinding141, _CupertinoPage_arguments),
+        FlaxGetter("child", _flaxBinding12, _CupertinoPage_child),
+        FlaxGetter("title", _flaxBinding60, _CupertinoPage_title),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPage_maintainState,
         ),
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPage_fullscreenDialog,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPage_allowSnapshotting,
         ),
       ],
       {
         "canUpdate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "other",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Page",
-                dartType: FlaxDartTypes.typeOf<api1.Page<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding1275,
+          _flaxBinding16,
           _CupertinoPage_canUpdate,
         ),
         "createRoute": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
+          _flaxBinding1276,
           types.ref<api1.Route<_Owner0>>(),
           _CupertinoPage_createRoute,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoPage_toString,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter("child", FlaxTypeRef("widget"), required: true),
+          FlaxParameter("child", _flaxBinding12, required: true),
           FlaxParameter(
             "maintainState",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: true,
           ),
-          FlaxParameter(
-            "title",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("title", _flaxBinding60, required: false),
           FlaxParameter(
             "fullscreenDialog",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "allowSnapshotting",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "canPop",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: true,
           ),
@@ -31436,7 +30445,7 @@ Function _flaxClass_CupertinoPage<
                   [
                     FlaxCallbackParameter(
                       "didPop",
-                      FlaxTypeRef("bool"),
+                      _flaxBinding16,
                       required: true,
                       positional: true,
                     ),
@@ -31447,7 +30456,7 @@ Function _flaxClass_CupertinoPage<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid2<bool, _Owner0?>,
                   id: types.key<void Function(bool didPop, _Owner0? result)>() + ":callback:<>(p:r:didPop:bool:,p:r:result:parameter?:)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid2<bool, _Owner0?>,
@@ -31458,30 +30467,10 @@ Function _flaxClass_CupertinoPage<
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:LocalKey",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "name",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "arguments",
-            FlaxTypeRef("any", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "restorationId",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding1263, required: false),
+          FlaxParameter("name", _flaxBinding60, required: false),
+          FlaxParameter("arguments", _flaxBinding141, required: false),
+          FlaxParameter("restorationId", _flaxBinding60, required: false),
         ],
       },
       create: _createCupertinoPage,
@@ -32214,50 +31203,34 @@ Function _flaxClass_CupertinoPageRoute<
       [
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_fullscreenDialog,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_allowSnapshotting,
         ),
-        FlaxGetter("opaque", FlaxTypeRef("bool"), _CupertinoPageRoute_opaque),
+        FlaxGetter("opaque", _flaxBinding16, _CupertinoPageRoute_opaque),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_barrierDismissible,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_popGestureEnabled,
         ),
-        FlaxGetter(
-          "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
-          _CupertinoPageRoute_filter,
-        ),
+        FlaxGetter("filter", _flaxBinding598, _CupertinoPageRoute_filter),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoPageRoute_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoPageRoute_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -32269,47 +31242,36 @@ Function _flaxClass_CupertinoPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback0,
               id:
                   types
@@ -32338,47 +31300,36 @@ Function _flaxClass_CupertinoPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback1,
               id:
                   types
@@ -32400,89 +31351,60 @@ Function _flaxClass_CupertinoPageRoute<
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoPageRoute_barrierColor,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding60,
           _CupertinoPageRoute_barrierLabel,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding247,
           _CupertinoPageRoute_barrierCurve,
         ),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_maintainState,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_popGestureInProgress,
         ),
-        FlaxGetter(
-          "offstage",
-          FlaxTypeRef("bool"),
-          _CupertinoPageRoute_offstage,
-        ),
+        FlaxGetter("offstage", _flaxBinding16, _CupertinoPageRoute_offstage),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding610,
           _CupertinoPageRoute_subtreeContext,
         ),
-        FlaxGetter(
-          "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
-          _CupertinoPageRoute_animation,
-        ),
+        FlaxGetter("animation", _flaxBinding612, _CupertinoPageRoute_animation),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoPageRoute_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding615,
           _CupertinoPageRoute_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_hasScopedWillPopCallback,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _CupertinoPageRoute_canPop),
+        FlaxGetter("canPop", _flaxBinding16, _CupertinoPageRoute_canPop),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_impliesAppBarDismissal,
         ),
         FlaxGetter(
@@ -32492,98 +31414,54 @@ Function _flaxClass_CupertinoPageRoute<
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoPageRoute_transitionDuration,
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoPageRoute_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding622,
           _CupertinoPageRoute_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_willDisposeAnimationController,
         ),
         FlaxGetter(
           "debugLabel",
-          FlaxTypeRef("String"),
+          _flaxBinding31,
           _CupertinoPageRoute_debugLabel,
         ),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding628,
           _CupertinoPageRoute_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_requestFocus,
         ),
-        FlaxGetter(
-          "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
-          _CupertinoPageRoute_navigator,
-        ),
-        FlaxGetter(
-          "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
-          _CupertinoPageRoute_settings,
-        ),
+        FlaxGetter("navigator", _flaxBinding631, _CupertinoPageRoute_navigator),
+        FlaxGetter("settings", _flaxBinding271, _CupertinoPageRoute_settings),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding634,
           _CupertinoPageRoute_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -32596,34 +31474,18 @@ Function _flaxClass_CupertinoPageRoute<
           types.ref<Future<_Owner0?>>(),
           _CupertinoPageRoute_popped,
         ),
-        FlaxGetter(
-          "isCurrent",
-          FlaxTypeRef("bool"),
-          _CupertinoPageRoute_isCurrent,
-        ),
-        FlaxGetter("isFirst", FlaxTypeRef("bool"), _CupertinoPageRoute_isFirst),
+        FlaxGetter("isCurrent", _flaxBinding16, _CupertinoPageRoute_isCurrent),
+        FlaxGetter("isFirst", _flaxBinding16, _CupertinoPageRoute_isFirst),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_hasActiveRouteBelow,
         ),
-        FlaxGetter(
-          "isActive",
-          FlaxTypeRef("bool"),
-          _CupertinoPageRoute_isActive,
-        ),
-        FlaxGetter(
-          "title",
-          FlaxTypeRef("String", nullable: true),
-          _CupertinoPageRoute_title,
-        ),
+        FlaxGetter("isActive", _flaxBinding16, _CupertinoPageRoute_isActive),
+        FlaxGetter("title", _flaxBinding60, _CupertinoPageRoute_title),
         FlaxGetter(
           "previousTitle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding634,
           _CupertinoPageRoute_previousTitle,
         ),
         FlaxGetter(
@@ -32634,15 +31496,12 @@ Function _flaxClass_CupertinoPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding12,
               FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
               id: types.key<api1.Widget Function(api1.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
               invoke:
@@ -32656,33 +31515,13 @@ Function _flaxClass_CupertinoPageRoute<
       ],
       {
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding663,
+          _flaxBinding16,
           _CupertinoPageRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding664,
+          _flaxBinding16,
           _CupertinoPageRoute_canTransitionFrom,
         ),
         "setState": FlaxInstanceMethod(
@@ -32693,7 +31532,7 @@ Function _flaxClass_CupertinoPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -32703,107 +31542,45 @@ Function _flaxClass_CupertinoPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoPageRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding644,
+          _flaxBinding12,
           _CupertinoPageRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding645,
+          _flaxBinding12,
           _CupertinoPageRoute_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoPageRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding158,
+          _flaxBinding647,
           _CupertinoPageRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoPageRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future2Adapt,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding648,
           _CupertinoPageRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding16, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoPageRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -32814,11 +31591,7 @@ Function _flaxClass_CupertinoPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -32830,7 +31603,7 @@ Function _flaxClass_CupertinoPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoPageRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -32841,11 +31614,7 @@ Function _flaxClass_CupertinoPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -32857,264 +31626,141 @@ Function _flaxClass_CupertinoPageRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoPageRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoPageRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoPageRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding655,
+          _flaxBinding18,
           _CupertinoPageRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding656,
+          _flaxBinding18,
           _CupertinoPageRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding657,
+          _flaxBinding18,
           _CupertinoPageRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoPageRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoPageRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding158,
+          _flaxBinding12,
           _CupertinoPageRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding627,
           _CupertinoPageRoute_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding158,
+          _flaxBinding16,
           _CupertinoPageRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding158,
+          _flaxBinding658,
           _CupertinoPageRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding158,
+          _flaxBinding77,
           _CupertinoPageRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_physics#type:Simulation",
-            nullable: true,
-          ),
+          _flaxBinding660,
+          _flaxBinding1323,
           _CupertinoPageRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding661,
+          _flaxBinding18,
           _CupertinoPageRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_didPop,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding665,
+          _flaxBinding18,
           _CupertinoPageRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding666,
+          _flaxBinding18,
           _CupertinoPageRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoPageRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoPageRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoPageRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding667,
+          _flaxBinding18,
           _CupertinoPageRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoPageRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoPageRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoPageRoute_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoPageRoute_toString,
         ),
         "buildContent": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1276,
+          _flaxBinding12,
           _CupertinoPageRoute_buildContent,
         ),
       },
@@ -33128,15 +31774,12 @@ Function _flaxClass_CupertinoPageRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding4,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding12,
                 FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
                 id:
                     types
@@ -33152,46 +31795,30 @@ Function _flaxClass_CupertinoPageRoute<
             ),
             required: true,
           ),
-          FlaxParameter(
-            "title",
-            FlaxTypeRef("String", nullable: true),
-            required: false,
-          ),
-          FlaxParameter(
-            "settings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "requestFocus",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("title", _flaxBinding60, required: false),
+          FlaxParameter("settings", _flaxBinding672, required: false),
+          FlaxParameter("requestFocus", _flaxBinding53, required: false),
           FlaxParameter(
             "maintainState",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "fullscreenDialog",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "allowSnapshotting",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "barrierDismissible",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
@@ -33209,47 +31836,36 @@ Function _flaxClass_CupertinoPageRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback2,
               id:
                   types
@@ -33271,12 +31887,12 @@ Function _flaxClass_CupertinoPageRoute<
         ),
         FlaxSetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_set_offstage,
         ),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoPageRoute_set_willDisposeAnimationController,
         ),
       ],
@@ -33314,52 +31930,18 @@ Function _flaxGeneric_CupertinoPageTransitionsBuilder_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding4, required: true),
+      FlaxParameter("animation", _flaxBinding77, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding77, required: true),
+      FlaxParameter("child", _flaxBinding12, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding12,
     invoke,
   );
 };
@@ -33378,52 +31960,18 @@ Function _flaxGeneric_CupertinoPageTransitionsBuilder_super_buildTransitions<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "route",
         types.ref<api1.PageRoute<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
-      FlaxParameter(
-        "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
-      FlaxParameter(
-        "child",
-        FlaxTypeRef("widget"),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+      FlaxParameter("context", _flaxBinding4, required: true),
+      FlaxParameter("animation", _flaxBinding77, required: true),
+      FlaxParameter("secondaryAnimation", _flaxBinding77, required: true),
+      FlaxParameter("child", _flaxBinding12, required: true),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding12,
     invoke,
   );
 };
@@ -33602,7 +32150,7 @@ Function _flaxClass_CupertinoRadio<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding18,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)?>() +
@@ -33614,241 +32162,76 @@ Function _flaxClass_CupertinoRadio<
           ),
           _CupertinoRadio_onChanged,
         ),
-        FlaxGetter(
-          "mouseCursor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:MouseCursor",
-            nullable: true,
-          ),
-          _CupertinoRadio_mouseCursor,
-        ),
-        FlaxGetter(
-          "toggleable",
-          FlaxTypeRef("bool"),
-          _CupertinoRadio_toggleable,
-        ),
+        FlaxGetter("mouseCursor", _flaxBinding178, _CupertinoRadio_mouseCursor),
+        FlaxGetter("toggleable", _flaxBinding16, _CupertinoRadio_toggleable),
         FlaxGetter(
           "useCheckmarkStyle",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRadio_useCheckmarkStyle,
         ),
-        FlaxGetter(
-          "activeColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _CupertinoRadio_activeColor,
-        ),
+        FlaxGetter("activeColor", _flaxBinding47, _CupertinoRadio_activeColor),
         FlaxGetter(
           "inactiveColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoRadio_inactiveColor,
         ),
-        FlaxGetter(
-          "fillColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _CupertinoRadio_fillColor,
-        ),
-        FlaxGetter(
-          "focusColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
-          _CupertinoRadio_focusColor,
-        ),
-        FlaxGetter(
-          "focusNode",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:FocusNode",
-            nullable: true,
-          ),
-          _CupertinoRadio_focusNode,
-        ),
-        FlaxGetter("autofocus", FlaxTypeRef("bool"), _CupertinoRadio_autofocus),
+        FlaxGetter("fillColor", _flaxBinding47, _CupertinoRadio_fillColor),
+        FlaxGetter("focusColor", _flaxBinding47, _CupertinoRadio_focusColor),
+        FlaxGetter("focusNode", _flaxBinding180, _CupertinoRadio_focusNode),
+        FlaxGetter("autofocus", _flaxBinding16, _CupertinoRadio_autofocus),
         FlaxGetter(
           "groupRegistry",
           types.ref<api1.RadioGroupRegistry<_Owner0>?>(),
           _CupertinoRadio_groupRegistry,
         ),
-        FlaxGetter(
-          "enabled",
-          FlaxTypeRef("bool", nullable: true),
-          _CupertinoRadio_enabled,
-        ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _CupertinoRadio_key,
-        ),
+        FlaxGetter("enabled", _flaxBinding53, _CupertinoRadio_enabled),
+        FlaxGetter("key", _flaxBinding155, _CupertinoRadio_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding158,
           types.ref<api1.State<api.CupertinoRadio<_Owner0>>>(),
           _CupertinoRadio_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding158,
+          _flaxBinding160,
           _CupertinoRadio_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoRadio_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding2412,
+          _flaxBinding18,
           _CupertinoRadio_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding165,
+          _flaxBinding31,
           _CupertinoRadio_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding167,
+          _flaxBinding31,
           _CupertinoRadio_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding170,
+          _flaxBinding132,
           _CupertinoRadio_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection12Create,
-              _collection12Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection13Create,
-                _collection13Matches,
-                restore: _collection13Restore,
-              ),
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding134,
           _CupertinoRadio_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding155, required: false),
           FlaxParameter("value", types.ref<_Owner0>(), required: true),
           FlaxParameter("groupValue", types.ref<_Owner0?>(), required: false),
           FlaxParameter(
@@ -33866,7 +32249,7 @@ Function _flaxClass_CupertinoRadio<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)?>() +
@@ -33878,83 +32261,31 @@ Function _flaxClass_CupertinoRadio<
             ),
             required: false,
           ),
-          FlaxParameter(
-            "mouseCursor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:MouseCursor",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("mouseCursor", _flaxBinding178, required: false),
           FlaxParameter(
             "toggleable",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "activeColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "inactiveColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "fillColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "focusNode",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:FocusNode",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("activeColor", _flaxBinding47, required: false),
+          FlaxParameter("inactiveColor", _flaxBinding47, required: false),
+          FlaxParameter("fillColor", _flaxBinding47, required: false),
+          FlaxParameter("focusColor", _flaxBinding47, required: false),
+          FlaxParameter("focusNode", _flaxBinding180, required: false),
           FlaxParameter(
             "autofocus",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "useCheckmarkStyle",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "enabled",
-            FlaxTypeRef("bool", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("enabled", _flaxBinding53, required: false),
           FlaxParameter(
             "groupRegistry",
             types.ref<api1.RadioGroupRegistry<_Owner0>?>(),
@@ -34708,54 +33039,42 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
       [
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_fullscreenDialog,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_allowSnapshotting,
         ),
         FlaxGetter(
           "opaque",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_opaque,
         ),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_barrierDismissible,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_popGestureEnabled,
         ),
         FlaxGetter(
           "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
+          _flaxBinding598,
           _CupertinoRouteTransitionMixin_filter,
         ),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoRouteTransitionMixin_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoRouteTransitionMixin_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -34767,47 +33086,36 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback0,
               id:
                   types
@@ -34836,47 +33144,36 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback1,
               id:
                   types
@@ -34898,93 +33195,72 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoRouteTransitionMixin_barrierColor,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding60,
           _CupertinoRouteTransitionMixin_barrierLabel,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding247,
           _CupertinoRouteTransitionMixin_barrierCurve,
         ),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_maintainState,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_popGestureInProgress,
         ),
         FlaxGetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_offstage,
         ),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding610,
           _CupertinoRouteTransitionMixin_subtreeContext,
         ),
         FlaxGetter(
           "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoRouteTransitionMixin_animation,
         ),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoRouteTransitionMixin_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding615,
           _CupertinoRouteTransitionMixin_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_hasScopedWillPopCallback,
         ),
         FlaxGetter(
           "canPop",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_canPop,
         ),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_impliesAppBarDismissal,
         ),
         FlaxGetter(
@@ -34994,98 +33270,62 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoRouteTransitionMixin_transitionDuration,
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoRouteTransitionMixin_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding622,
           _CupertinoRouteTransitionMixin_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_willDisposeAnimationController,
         ),
         FlaxGetter(
           "debugLabel",
-          FlaxTypeRef("String"),
+          _flaxBinding31,
           _CupertinoRouteTransitionMixin_debugLabel,
         ),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding628,
           _CupertinoRouteTransitionMixin_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_requestFocus,
         ),
         FlaxGetter(
           "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
+          _flaxBinding631,
           _CupertinoRouteTransitionMixin_navigator,
         ),
         FlaxGetter(
           "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
+          _flaxBinding271,
           _CupertinoRouteTransitionMixin_settings,
         ),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding634,
           _CupertinoRouteTransitionMixin_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -35100,68 +33340,44 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
         ),
         FlaxGetter(
           "isCurrent",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_isCurrent,
         ),
         FlaxGetter(
           "isFirst",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_isFirst,
         ),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_hasActiveRouteBelow,
         ),
         FlaxGetter(
           "isActive",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_isActive,
         ),
         FlaxGetter(
           "title",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding60,
           _CupertinoRouteTransitionMixin_title,
         ),
         FlaxGetter(
           "previousTitle",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding634,
           _CupertinoRouteTransitionMixin_previousTitle,
         ),
       ],
       {
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding663,
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding664,
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_canTransitionFrom,
         ),
         "setState": FlaxInstanceMethod(
@@ -35172,7 +33388,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -35182,107 +33398,45 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding644,
+          _flaxBinding12,
           _CupertinoRouteTransitionMixin_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding645,
+          _flaxBinding12,
           _CupertinoRouteTransitionMixin_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding158,
+          _flaxBinding647,
           _CupertinoRouteTransitionMixin_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future2Adapt,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding648,
           _CupertinoRouteTransitionMixin_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding16, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -35293,11 +33447,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -35309,7 +33459,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -35320,11 +33470,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -35336,264 +33482,141 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding655,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding656,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding657,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding158,
+          _flaxBinding12,
           _CupertinoRouteTransitionMixin_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding627,
           _CupertinoRouteTransitionMixin_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding158,
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding158,
+          _flaxBinding658,
           _CupertinoRouteTransitionMixin_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding158,
+          _flaxBinding77,
           _CupertinoRouteTransitionMixin_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_physics#type:Simulation",
-            nullable: true,
-          ),
+          _flaxBinding660,
+          _flaxBinding1323,
           _CupertinoRouteTransitionMixin_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding661,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_didPop,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding665,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding666,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding667,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoRouteTransitionMixin_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoRouteTransitionMixin_toString,
         ),
         "buildContent": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1276,
+          _flaxBinding12,
           _CupertinoRouteTransitionMixin_buildContent,
         ),
       },
@@ -35610,47 +33633,36 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback2,
               id:
                   types
@@ -35672,12 +33684,12 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
         ),
         FlaxSetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_set_offstage,
         ),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoRouteTransitionMixin_set_willDisposeAnimationController,
         ),
       ],
@@ -35888,7 +33900,7 @@ Function _flaxClass_CupertinoSegmentedControl<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding18,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                 id:
                     types.key<void Function(_Owner0 value)>() +
@@ -35902,65 +33914,37 @@ Function _flaxClass_CupertinoSegmentedControl<
         ),
         FlaxGetter(
           "unselectedColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoSegmentedControl_unselectedColor,
         ),
         FlaxGetter(
           "selectedColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoSegmentedControl_selectedColor,
         ),
         FlaxGetter(
           "borderColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoSegmentedControl_borderColor,
         ),
         FlaxGetter(
           "pressedColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoSegmentedControl_pressedColor,
         ),
         FlaxGetter(
           "disabledColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoSegmentedControl_disabledColor,
         ),
         FlaxGetter(
           "disabledTextColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoSegmentedControl_disabledTextColor,
         ),
         FlaxGetter(
           "padding",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsetsGeometry",
-            nullable: true,
-          ),
+          _flaxBinding359,
           _CupertinoSegmentedControl_padding,
         ),
         FlaxGetter(
@@ -35968,166 +33952,53 @@ Function _flaxClass_CupertinoSegmentedControl<
           types.ref<Set<_Owner0>>(),
           _CupertinoSegmentedControl_disabledChildren,
         ),
-        FlaxGetter(
-          "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
-          _CupertinoSegmentedControl_key,
-        ),
+        FlaxGetter("key", _flaxBinding155, _CupertinoSegmentedControl_key),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding158,
           types.ref<api1.State<api.CupertinoSegmentedControl<_Owner0>>>(),
           _CupertinoSegmentedControl_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding158,
+          _flaxBinding160,
           _CupertinoSegmentedControl_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoSegmentedControl_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding2412,
+          _flaxBinding18,
           _CupertinoSegmentedControl_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding165,
+          _flaxBinding31,
           _CupertinoSegmentedControl_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding167,
+          _flaxBinding31,
           _CupertinoSegmentedControl_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding170,
+          _flaxBinding132,
           _CupertinoSegmentedControl_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection12Create,
-              _collection12Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection13Create,
-                _collection13Matches,
-                restore: _collection13Restore,
-              ),
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding134,
           _CupertinoSegmentedControl_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding155, required: false),
           FlaxParameter(
             "children",
             types.ref<Map<_Owner0, api1.Widget>>(),
@@ -36148,7 +34019,7 @@ Function _flaxClass_CupertinoSegmentedControl<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0>,
                   id:
                       types.key<void Function(_Owner0 value)>() +
@@ -36161,69 +34032,13 @@ Function _flaxClass_CupertinoSegmentedControl<
             required: true,
           ),
           FlaxParameter("groupValue", types.ref<_Owner0?>(), required: false),
-          FlaxParameter(
-            "unselectedColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "selectedColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "borderColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "pressedColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "disabledColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "disabledTextColor",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Color",
-              nullable: true,
-            ),
-            required: false,
-          ),
-          FlaxParameter(
-            "padding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("unselectedColor", _flaxBinding47, required: false),
+          FlaxParameter("selectedColor", _flaxBinding47, required: false),
+          FlaxParameter("borderColor", _flaxBinding47, required: false),
+          FlaxParameter("pressedColor", _flaxBinding47, required: false),
+          FlaxParameter("disabledColor", _flaxBinding47, required: false),
+          FlaxParameter("disabledTextColor", _flaxBinding47, required: false),
+          FlaxParameter("padding", _flaxBinding359, required: false),
           FlaxParameter(
             "disabledChildren",
             types.ref<Set<_Owner0>>(),
@@ -36978,50 +34793,34 @@ Function _flaxClass_CupertinoSheetRoute<
       [
         FlaxGetter(
           "fullscreenDialog",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_fullscreenDialog,
         ),
         FlaxGetter(
           "allowSnapshotting",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_allowSnapshotting,
         ),
-        FlaxGetter("opaque", FlaxTypeRef("bool"), _CupertinoSheetRoute_opaque),
+        FlaxGetter("opaque", _flaxBinding16, _CupertinoSheetRoute_opaque),
         FlaxGetter(
           "barrierDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_barrierDismissible,
         ),
         FlaxGetter(
           "popGestureEnabled",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_popGestureEnabled,
         ),
-        FlaxGetter(
-          "filter",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ImageFilter",
-            nullable: true,
-          ),
-          _CupertinoSheetRoute_filter,
-        ),
+        FlaxGetter("filter", _flaxBinding598, _CupertinoSheetRoute_filter),
         FlaxGetter(
           "traversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoSheetRoute_traversalEdgeBehavior,
         ),
         FlaxGetter(
           "directionalTraversalEdgeBehavior",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:TraversalEdgeBehavior",
-            nullable: true,
-          ),
+          _flaxBinding600,
           _CupertinoSheetRoute_directionalTraversalEdgeBehavior,
         ),
         FlaxGetter(
@@ -37033,47 +34832,36 @@ Function _flaxClass_CupertinoSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback0,
               id:
                   types
@@ -37102,47 +34890,36 @@ Function _flaxClass_CupertinoSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback1,
               id:
                   types
@@ -37164,89 +34941,64 @@ Function _flaxClass_CupertinoSheetRoute<
         ),
         FlaxGetter(
           "semanticsDismissible",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_semanticsDismissible,
         ),
         FlaxGetter(
           "barrierColor",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Color",
-            nullable: true,
-          ),
+          _flaxBinding47,
           _CupertinoSheetRoute_barrierColor,
         ),
         FlaxGetter(
           "barrierLabel",
-          FlaxTypeRef("String", nullable: true),
+          _flaxBinding60,
           _CupertinoSheetRoute_barrierLabel,
         ),
         FlaxGetter(
           "barrierCurve",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Curve"),
+          _flaxBinding247,
           _CupertinoSheetRoute_barrierCurve,
         ),
         FlaxGetter(
           "maintainState",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_maintainState,
         ),
         FlaxGetter(
           "popGestureInProgress",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_popGestureInProgress,
         ),
-        FlaxGetter(
-          "offstage",
-          FlaxTypeRef("bool"),
-          _CupertinoSheetRoute_offstage,
-        ),
+        FlaxGetter("offstage", _flaxBinding16, _CupertinoSheetRoute_offstage),
         FlaxGetter(
           "subtreeContext",
-          FlaxTypeRef(
-            "context",
-            id: "flax.core/flutter#type:BuildContext",
-            nullable: true,
-          ),
+          _flaxBinding610,
           _CupertinoSheetRoute_subtreeContext,
         ),
         FlaxGetter(
           "animation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoSheetRoute_animation,
         ),
         FlaxGetter(
           "secondaryAnimation",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>?>,
-            nullable: true,
-          ),
+          _flaxBinding612,
           _CupertinoSheetRoute_secondaryAnimation,
         ),
         FlaxGetter(
           "popDisposition",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-          ),
+          _flaxBinding615,
           _CupertinoSheetRoute_popDisposition,
         ),
         FlaxGetter(
           "hasScopedWillPopCallback",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_hasScopedWillPopCallback,
         ),
-        FlaxGetter("canPop", FlaxTypeRef("bool"), _CupertinoSheetRoute_canPop),
+        FlaxGetter("canPop", _flaxBinding16, _CupertinoSheetRoute_canPop),
         FlaxGetter(
           "impliesAppBarDismissal",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_impliesAppBarDismissal,
         ),
         FlaxGetter(
@@ -37256,98 +35008,58 @@ Function _flaxClass_CupertinoSheetRoute<
         ),
         FlaxGetter(
           "transitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoSheetRoute_transitionDuration,
         ),
         FlaxGetter(
           "reverseTransitionDuration",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Duration"),
+          _flaxBinding75,
           _CupertinoSheetRoute_reverseTransitionDuration,
         ),
         FlaxGetter(
           "finishedWhenPopped",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_finishedWhenPopped,
         ),
         FlaxGetter(
           "controller",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-            nullable: true,
-          ),
+          _flaxBinding622,
           _CupertinoSheetRoute_controller,
         ),
         FlaxGetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_willDisposeAnimationController,
         ),
         FlaxGetter(
           "debugLabel",
-          FlaxTypeRef("String"),
+          _flaxBinding31,
           _CupertinoSheetRoute_debugLabel,
         ),
         FlaxGetter(
           "overlayEntries",
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection31Create,
-              _collection31Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:OverlayEntry",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-                _collection32Create,
-                _collection32Matches,
-                restore: _collection32Restore,
-              ),
-            ),
-          ),
+          _flaxBinding628,
           _CupertinoSheetRoute_overlayEntries,
         ),
         FlaxGetter(
           "requestFocus",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_requestFocus,
         ),
         FlaxGetter(
           "navigator",
-          FlaxTypeRef(
-            "state",
-            id: "flax.core/flutter#type:NavigatorState",
-            nullable: true,
-          ),
+          _flaxBinding631,
           _CupertinoSheetRoute_navigator,
         ),
-        FlaxGetter(
-          "settings",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:RouteSettings"),
-          _CupertinoSheetRoute_settings,
-        ),
+        FlaxGetter("settings", _flaxBinding271, _CupertinoSheetRoute_settings),
         FlaxGetter(
           "restorationScopeId",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:ValueListenable",
-            dartType: FlaxDartTypes.typeOf<api6.ValueListenable<String?>>,
-          ),
+          _flaxBinding634,
           _CupertinoSheetRoute_restorationScopeId,
         ),
         FlaxGetter(
           "willHandlePopInternally",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_willHandlePopInternally,
         ),
         FlaxGetter(
@@ -37360,26 +35072,14 @@ Function _flaxClass_CupertinoSheetRoute<
           types.ref<Future<_Owner0?>>(),
           _CupertinoSheetRoute_popped,
         ),
-        FlaxGetter(
-          "isCurrent",
-          FlaxTypeRef("bool"),
-          _CupertinoSheetRoute_isCurrent,
-        ),
-        FlaxGetter(
-          "isFirst",
-          FlaxTypeRef("bool"),
-          _CupertinoSheetRoute_isFirst,
-        ),
+        FlaxGetter("isCurrent", _flaxBinding16, _CupertinoSheetRoute_isCurrent),
+        FlaxGetter("isFirst", _flaxBinding16, _CupertinoSheetRoute_isFirst),
         FlaxGetter(
           "hasActiveRouteBelow",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_hasActiveRouteBelow,
         ),
-        FlaxGetter(
-          "isActive",
-          FlaxTypeRef("bool"),
-          _CupertinoSheetRoute_isActive,
-        ),
+        FlaxGetter("isActive", _flaxBinding16, _CupertinoSheetRoute_isActive),
         FlaxGetter(
           "builder",
           FlaxTypeRef(
@@ -37389,15 +35089,12 @@ Function _flaxClass_CupertinoSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding12,
               FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
               id:
                   types
@@ -37420,24 +35117,18 @@ Function _flaxClass_CupertinoSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "scrollController",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/flutter#type:ScrollController",
-                  ),
+                  _flaxBinding1686,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget"),
+              _flaxBinding12,
               FlaxCallbackAdapters
                   .wrap2<api1.BuildContext, api1.ScrollController, api1.Widget>,
               id:
@@ -37467,49 +35158,25 @@ Function _flaxClass_CupertinoSheetRoute<
         ),
         FlaxGetter(
           "enableDrag",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_enableDrag,
         ),
-        FlaxGetter(
-          "topGap",
-          FlaxTypeRef("double"),
-          _CupertinoSheetRoute_topGap,
-        ),
+        FlaxGetter("topGap", _flaxBinding1, _CupertinoSheetRoute_topGap),
         FlaxGetter(
           "showDragHandle",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_showDragHandle,
         ),
       ],
       {
         "canTransitionTo": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding663,
+          _flaxBinding16,
           _CupertinoSheetRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:TransitionRoute",
-                dartType: FlaxDartTypes.typeOf<api1.TransitionRoute<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("bool"),
+          _flaxBinding664,
+          _flaxBinding16,
           _CupertinoSheetRoute_canTransitionFrom,
         ),
         "setState": FlaxInstanceMethod(
@@ -37520,7 +35187,7 @@ Function _flaxClass_CupertinoSheetRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -37530,107 +35197,45 @@ Function _flaxClass_CupertinoSheetRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoSheetRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding644,
+          _flaxBinding12,
           _CupertinoSheetRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter(
-              "secondaryAnimation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-              ),
-              required: true,
-            ),
-            FlaxParameter("child", FlaxTypeRef("widget"), required: true),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding645,
+          _flaxBinding12,
           _CupertinoSheetRoute_buildTransitions,
         ),
         "install": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoSheetRoute_install,
         ),
         "didPush": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_scheduler#type:TickerFuture",
-          ),
+          _flaxBinding158,
+          _flaxBinding647,
           _CupertinoSheetRoute_didPush,
         ),
         "didAdd": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoSheetRoute_didAdd,
         ),
         "willPop": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "future",
-            item: FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_widgets#type:RoutePopDisposition",
-            ),
-            future: FlaxFutureBinding(
-              "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-              _future2Adapt,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding648,
           _CupertinoSheetRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod(
           <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
+            FlaxParameter("didPop", _flaxBinding16, required: true),
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoSheetRoute_onPopInvokedWithResult,
         ),
         "addScopedWillPopCallback": FlaxInstanceMethod(
@@ -37641,11 +35246,7 @@ Function _flaxClass_CupertinoSheetRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -37657,7 +35258,7 @@ Function _flaxClass_CupertinoSheetRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoSheetRoute_addScopedWillPopCallback,
         ),
         "removeScopedWillPopCallback": FlaxInstanceMethod(
@@ -37668,11 +35269,7 @@ Function _flaxClass_CupertinoSheetRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef(
-                    "future",
-                    item: FlaxTypeRef("bool"),
-                    future: FlaxFutureBinding("bool:", _future3Adapt),
-                  ),
+                  _flaxBinding649,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -37684,278 +35281,147 @@ Function _flaxClass_CupertinoSheetRoute<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoSheetRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoSheetRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "popEntry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:PopEntry",
-                dartType: FlaxDartTypes.typeOf<api1.PopEntry<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding654,
+          _flaxBinding18,
           _CupertinoSheetRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "previousRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding655,
+          _flaxBinding18,
           _CupertinoSheetRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding656,
+          _flaxBinding18,
           _CupertinoSheetRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "nextRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding657,
+          _flaxBinding18,
           _CupertinoSheetRoute_didPopNext,
         ),
         "changedInternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoSheetRoute_changedInternalState,
         ),
         "changedExternalState": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoSheetRoute_changedExternalState,
         ),
         "buildModalBarrier": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("widget"),
+          _flaxBinding158,
+          _flaxBinding12,
           _CupertinoSheetRoute_buildModalBarrier,
         ),
         "createOverlayEntries": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "iterable",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_widgets#type:OverlayEntry",
-            ),
-            collection: FlaxCollectionBinding(
-              "iterable:[object:flax.core/sdk_widgets#type:OverlayEntry]",
-              _collection32Create,
-              _collection32Matches,
-              restore: _collection32Restore,
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding627,
           _CupertinoSheetRoute_createOverlayEntries,
         ),
         "debugTransitionCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding158,
+          _flaxBinding16,
           _CupertinoSheetRoute_debugTransitionCompleted,
         ),
         "createAnimationController": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:AnimationController",
-          ),
+          _flaxBinding158,
+          _flaxBinding658,
           _CupertinoSheetRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-          ),
+          _flaxBinding158,
+          _flaxBinding77,
           _CupertinoSheetRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("forward", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_physics#type:Simulation",
-            nullable: true,
-          ),
+          _flaxBinding660,
+          _flaxBinding1323,
           _CupertinoSheetRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "oldRoute",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/flutter#type:Route",
-                dartType: FlaxDartTypes.typeOf<api1.Route<Object?>?>,
-                nullable: true,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding661,
+          _flaxBinding18,
           _CupertinoSheetRoute_didReplace,
         ),
         "didPop": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_didPop,
         ),
         "handleStartBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "progress",
-              FlaxTypeRef("double"),
-              required: false,
-              defaultValue: 0.0,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding665,
+          _flaxBinding18,
           _CupertinoSheetRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("progress", FlaxTypeRef("double"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding666,
+          _flaxBinding18,
           _CupertinoSheetRoute_handleUpdateBackGestureProgress,
         ),
         "handleCancelBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoSheetRoute_handleCancelBackGesture,
         ),
         "handleCommitBackGesture": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoSheetRoute_handleCommitBackGesture,
         ),
         "dispose": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding158,
+          _flaxBinding18,
           _CupertinoSheetRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("didPop", FlaxTypeRef("bool"), required: true),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding667,
+          _flaxBinding18,
           _CupertinoSheetRoute_onPopInvoked,
         ),
         "didComplete": FlaxInstanceMethod(
           <FlaxParameter>[
             FlaxParameter("result", types.ref<_Owner0?>(), required: true),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding18,
           _CupertinoSheetRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoSheetRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "entry",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding669,
+          _flaxBinding18,
           _CupertinoSheetRoute_removeLocalHistoryEntry,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoSheetRoute_toString,
         ),
         "buildContent": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "context",
-              FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("widget"),
+          _flaxBinding1276,
+          _flaxBinding12,
           _CupertinoSheetRoute_buildContent,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "settings",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:RouteSettings",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("settings", _flaxBinding672, required: false),
           FlaxParameter(
             "builder",
             FlaxTypeRef(
@@ -37965,15 +35431,12 @@ Function _flaxClass_CupertinoSheetRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding4,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding12,
                 FlaxCallbackAdapters.wrap1<api1.BuildContext, api1.Widget>,
                 id:
                     types
@@ -37998,24 +35461,18 @@ Function _flaxClass_CupertinoSheetRoute<
                 [
                   FlaxCallbackParameter(
                     "context",
-                    FlaxTypeRef(
-                      "context",
-                      id: "flax.core/flutter#type:BuildContext",
-                    ),
+                    _flaxBinding4,
                     required: true,
                     positional: true,
                   ),
                   FlaxCallbackParameter(
                     "scrollController",
-                    FlaxTypeRef(
-                      "object",
-                      id: "flax.core/flutter#type:ScrollController",
-                    ),
+                    _flaxBinding1686,
                     required: true,
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("widget"),
+                _flaxBinding12,
                 FlaxCallbackAdapters.wrap2<
                   api1.BuildContext,
                   api1.ScrollController,
@@ -38048,21 +35505,17 @@ Function _flaxClass_CupertinoSheetRoute<
           ),
           FlaxParameter(
             "enableDrag",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: true,
           ),
           FlaxParameter(
             "showDragHandle",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
-          FlaxParameter(
-            "topGap",
-            FlaxTypeRef("double", nullable: true),
-            required: false,
-          ),
+          FlaxParameter("topGap", _flaxBinding45, required: false),
         ],
       },
       create: _createCupertinoSheetRoute,
@@ -38077,47 +35530,36 @@ Function _flaxClass_CupertinoSheetRoute<
               [
                 FlaxCallbackParameter(
                   "context",
-                  FlaxTypeRef(
-                    "context",
-                    id: "flax.core/flutter#type:BuildContext",
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "animation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "secondaryAnimation",
-                  FlaxTypeRef(
-                    "object",
-                    id: "flax.core/sdk_animation#type:Animation",
-                    dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-                  ),
+                  _flaxBinding77,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "allowSnapshotting",
-                  FlaxTypeRef("bool"),
+                  _flaxBinding16,
                   required: true,
                   positional: true,
                 ),
                 FlaxCallbackParameter(
                   "child",
-                  FlaxTypeRef("widget", nullable: true),
+                  _flaxBinding78,
                   required: true,
                   positional: true,
                 ),
               ],
-              FlaxTypeRef("widget", nullable: true),
+              _flaxBinding78,
               _callback2,
               id:
                   types
@@ -38139,12 +35581,12 @@ Function _flaxClass_CupertinoSheetRoute<
         ),
         FlaxSetter(
           "offstage",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_set_offstage,
         ),
         FlaxSetter(
           "willDisposeAnimationController",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSheetRoute_set_willDisposeAnimationController,
         ),
       ],
@@ -38537,7 +35979,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
                     positional: true,
                   ),
                 ],
-                FlaxTypeRef("void"),
+                _flaxBinding18,
                 FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                 id:
                     types.key<void Function(_Owner0? value)>() +
@@ -38551,193 +35993,81 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
         ),
         FlaxGetter(
           "backgroundColor",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding24,
           _CupertinoSlidingSegmentedControl_backgroundColor,
         ),
         FlaxGetter(
           "proportionalWidth",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSlidingSegmentedControl_proportionalWidth,
         ),
         FlaxGetter(
           "thumbColor",
-          FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+          _flaxBinding24,
           _CupertinoSlidingSegmentedControl_thumbColor,
         ),
         FlaxGetter(
           "padding",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:EdgeInsetsGeometry",
-          ),
+          _flaxBinding801,
           _CupertinoSlidingSegmentedControl_padding,
         ),
         FlaxGetter(
           "isMomentary",
-          FlaxTypeRef("bool"),
+          _flaxBinding16,
           _CupertinoSlidingSegmentedControl_isMomentary,
         ),
         FlaxGetter(
           "key",
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/flutter#type:Key",
-            nullable: true,
-          ),
+          _flaxBinding155,
           _CupertinoSlidingSegmentedControl_key,
         ),
       ],
       {
         "createState": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding158,
           types
               .ref<api1.State<api.CupertinoSlidingSegmentedControl<_Owner0>>>(),
           _CupertinoSlidingSegmentedControl_createState,
         ),
         "createElement": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_widgets#type:StatefulElement",
-          ),
+          _flaxBinding158,
+          _flaxBinding160,
           _CupertinoSlidingSegmentedControl_createElement,
         ),
         "toStringShort": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding158,
+          _flaxBinding31,
           _CupertinoSlidingSegmentedControl_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "properties",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding2412,
+          _flaxBinding18,
           _CupertinoSlidingSegmentedControl_debugFillProperties,
         ),
         "toStringShallow": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "joiner",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: ', ',
-            ),
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding165,
+          _flaxBinding31,
           _CupertinoSlidingSegmentedControl_toStringShallow,
         ),
         "toStringDeep": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "minLevel",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticLevel",
-              ),
-              required: false,
-              defaultValue: api6.DiagnosticLevel.debug,
-            ),
-            FlaxParameter(
-              "prefixLineOne",
-              FlaxTypeRef("String"),
-              required: false,
-              defaultValue: '',
-            ),
-            FlaxParameter(
-              "prefixOtherLines",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "wrapWidth",
-              FlaxTypeRef("int"),
-              required: false,
-              defaultValue: 65,
-            ),
-          ],
-          FlaxTypeRef("String"),
+          _flaxBinding167,
+          _flaxBinding31,
           _CupertinoSlidingSegmentedControl_toStringDeep,
         ),
         "toDiagnosticsNode": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "name",
-              FlaxTypeRef("String", nullable: true),
-              required: false,
-            ),
-            FlaxParameter(
-              "style",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
-                nullable: true,
-              ),
-              required: false,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-          ),
+          _flaxBinding170,
+          _flaxBinding132,
           _CupertinoSlidingSegmentedControl_toDiagnosticsNode,
         ),
         "debugDescribeChildren": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "list",
-            item: FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-            ),
-            collection: FlaxCollectionBinding(
-              "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-              _collection12Create,
-              _collection12Matches,
-            ),
-            iterable: FlaxTypeRef(
-              "iterable",
-              item: FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_foundation#type:DiagnosticsNode",
-              ),
-              collection: FlaxCollectionBinding(
-                "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-                _collection13Create,
-                _collection13Matches,
-                restore: _collection13Restore,
-              ),
-            ),
-          ),
+          _flaxBinding158,
+          _flaxBinding134,
           _CupertinoSlidingSegmentedControl_debugDescribeChildren,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter(
-            "key",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:Key",
-              nullable: true,
-            ),
-            required: false,
-          ),
+          FlaxParameter("key", _flaxBinding155, required: false),
           FlaxParameter(
             "children",
             types.ref<Map<_Owner0, api1.Widget>>(),
@@ -38758,7 +36088,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding18,
                   FlaxCallbackAdapters.wrapVoid1<_Owner0?>,
                   id:
                       types.key<void Function(_Owner0? value)>() +
@@ -38779,34 +36109,31 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           FlaxParameter("groupValue", types.ref<_Owner0?>(), required: false),
           FlaxParameter(
             "thumbColor",
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+            _flaxBinding24,
             required: false,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "padding",
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/flutter#type:EdgeInsetsGeometry",
-            ),
+            _flaxBinding801,
             required: false,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "backgroundColor",
-            FlaxTypeRef("object", id: "flax.core/flutter#type:Color"),
+            _flaxBinding24,
             required: false,
             omitWhenAbsent: true,
           ),
           FlaxParameter(
             "proportionalWidth",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
           FlaxParameter(
             "isMomentary",
-            FlaxTypeRef("bool"),
+            _flaxBinding16,
             required: false,
             defaultValue: false,
           ),
@@ -39604,38 +36931,30 @@ FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter(
         "context",
-        FlaxTypeRef("context", id: "flax.core/flutter#type:BuildContext"),
+        _flaxBinding4,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "animation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding77,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "secondaryAnimation",
-        FlaxTypeRef(
-          "object",
-          id: "flax.core/sdk_animation#type:Animation",
-          dartType: FlaxDartTypes.typeOf<api3.Animation<double>>,
-        ),
+        _flaxBinding77,
         required: true,
         positional: true,
       ),
       FlaxCallbackParameter(
         "child",
-        FlaxTypeRef("widget"),
+        _flaxBinding12,
         required: true,
         positional: true,
       ),
     ],
-    FlaxTypeRef("widget"),
+    _flaxBinding12,
     _callback0,
     id:
         types
@@ -58885,3 +56204,6 @@ const _flaxBinding2411 = FlaxTypeRef(
   dartType: FlaxDartTypes
       .typeOf<api1.LocalizationsDelegate<api.CupertinoLocalizations>>,
 );
+const _flaxBinding2412 = <FlaxParameter>[
+  FlaxParameter("properties", _flaxBinding33, required: true),
+];

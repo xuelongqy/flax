@@ -8037,7 +8037,7 @@ Function _flaxGeneric_HttpClientResponse_map<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "convert",
             types.define<_Method0 Function(List<int> event)>(
@@ -8048,25 +8048,7 @@ Function _flaxGeneric_HttpClientResponse_map<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "event",
-                      FlaxTypeRef(
-                        "list",
-                        item: FlaxTypeRef("int"),
-                        collection: FlaxCollectionBinding(
-                          "list:[int:]",
-                          _collection0Create,
-                          _collection0Matches,
-                        ),
-                        iterable: FlaxTypeRef(
-                          "iterable",
-                          item: FlaxTypeRef("int"),
-                          collection: FlaxCollectionBinding(
-                            "iterable:[int:]",
-                            _collection1Create,
-                            _collection1Matches,
-                            restore: _collection1Restore,
-                          ),
-                        ),
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
@@ -8082,8 +8064,6 @@ Function _flaxGeneric_HttpClientResponse_map<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8119,7 +8099,7 @@ Function _flaxGeneric_HttpClientResponse_asyncMap<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<api5.FutureOr<_Method0> Function(List<int> event)>(
@@ -8130,25 +8110,7 @@ Function _flaxGeneric_HttpClientResponse_asyncMap<
               [
                 FlaxCallbackParameter(
                   "event",
-                  FlaxTypeRef(
-                    "list",
-                    item: FlaxTypeRef("int"),
-                    collection: FlaxCollectionBinding(
-                      "list:[int:]",
-                      _collection0Create,
-                      _collection0Matches,
-                    ),
-                    iterable: FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("int"),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[int:]",
-                        _collection1Create,
-                        _collection1Matches,
-                        restore: _collection1Restore,
-                      ),
-                    ),
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
@@ -8167,8 +8129,6 @@ Function _flaxGeneric_HttpClientResponse_asyncMap<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8185,7 +8145,7 @@ Function _flaxGeneric_HttpClientResponse_asyncExpand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<api5.Stream<_Method0>? Function(List<int> event)>(
@@ -8196,25 +8156,7 @@ Function _flaxGeneric_HttpClientResponse_asyncExpand<
               [
                 FlaxCallbackParameter(
                   "event",
-                  FlaxTypeRef(
-                    "list",
-                    item: FlaxTypeRef("int"),
-                    collection: FlaxCollectionBinding(
-                      "list:[int:]",
-                      _collection0Create,
-                      _collection0Matches,
-                    ),
-                    iterable: FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("int"),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[int:]",
-                        _collection1Create,
-                        _collection1Matches,
-                        restore: _collection1Restore,
-                      ),
-                    ),
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
@@ -8233,8 +8175,6 @@ Function _flaxGeneric_HttpClientResponse_asyncExpand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8251,7 +8191,7 @@ Function _flaxGeneric_HttpClientResponse_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<Iterable<_Method0> Function(List<int> element)>(
@@ -8262,25 +8202,7 @@ Function _flaxGeneric_HttpClientResponse_expand<
               [
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef(
-                    "list",
-                    item: FlaxTypeRef("int"),
-                    collection: FlaxCollectionBinding(
-                      "list:[int:]",
-                      _collection0Create,
-                      _collection0Matches,
-                    ),
-                    iterable: FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("int"),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[int:]",
-                        _collection1Create,
-                        _collection1Matches,
-                        restore: _collection1Restore,
-                      ),
-                    ),
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
@@ -8296,8 +8218,6 @@ Function _flaxGeneric_HttpClientResponse_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8315,13 +8235,11 @@ _flaxGeneric_HttpClientResponse_transform<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "streamTransformer",
             types.ref<api5.StreamTransformer<List<int>, _Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8340,14 +8258,8 @@ Function _flaxGeneric_HttpClientResponse_fold<
   }
 
   return FlaxInstanceMethod(
-    [
-      FlaxParameter(
-        "initialValue",
-        types.ref<_Method0>(),
-        required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
-      ),
+    <FlaxParameter>[
+      FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
       FlaxParameter(
         "combine",
         types.define<_Method0 Function(_Method0 previous, List<int> element)>(
@@ -8364,25 +8276,7 @@ Function _flaxGeneric_HttpClientResponse_fold<
                 ),
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef(
-                    "list",
-                    item: FlaxTypeRef("int"),
-                    collection: FlaxCollectionBinding(
-                      "list:[int:]",
-                      _collection0Create,
-                      _collection0Matches,
-                    ),
-                    iterable: FlaxTypeRef(
-                      "iterable",
-                      item: FlaxTypeRef("int"),
-                      collection: FlaxCollectionBinding(
-                        "iterable:[int:]",
-                        _collection1Create,
-                        _collection1Matches,
-                        restore: _collection1Restore,
-                      ),
-                    ),
-                  ),
+                  _flaxBinding4,
                   required: true,
                   positional: true,
                 ),
@@ -8403,8 +8297,6 @@ Function _flaxGeneric_HttpClientResponse_fold<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<Future<_Method0>>(),
@@ -8417,7 +8309,11 @@ Function _flaxGeneric_HttpClientResponse_cast<_Method0 extends Object?>() =>
         return (receiver as api3.HttpClientResponse).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<api5.Stream<_Method0>>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding42,
+        types.ref<api5.Stream<_Method0>>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_HttpClientResponse_drain<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -8428,14 +8324,8 @@ Function _flaxGeneric_HttpClientResponse_drain<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "futureValue",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
         ],
         types.ref<Future<_Method0>>(),
         invoke,
@@ -8450,7 +8340,7 @@ Function _flaxGeneric_SecureSocket_map<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "convert",
             types.define<_Method0 Function(api2.Uint8List event)>(
@@ -8461,7 +8351,7 @@ Function _flaxGeneric_SecureSocket_map<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "event",
-                      FlaxTypeRef("Uint8List"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
@@ -8479,8 +8369,6 @@ Function _flaxGeneric_SecureSocket_map<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8517,7 +8405,7 @@ Function _flaxGeneric_SecureSocket_asyncMap<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<api5.FutureOr<_Method0> Function(api2.Uint8List event)>(
@@ -8528,7 +8416,7 @@ Function _flaxGeneric_SecureSocket_asyncMap<
               [
                 FlaxCallbackParameter(
                   "event",
-                  FlaxTypeRef("Uint8List"),
+                  _flaxBinding14,
                   required: true,
                   positional: true,
                 ),
@@ -8547,8 +8435,6 @@ Function _flaxGeneric_SecureSocket_asyncMap<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8565,7 +8451,7 @@ Function _flaxGeneric_SecureSocket_asyncExpand<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "convert",
             types.define<api5.Stream<_Method0>? Function(api2.Uint8List event)>(
@@ -8576,7 +8462,7 @@ Function _flaxGeneric_SecureSocket_asyncExpand<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "event",
-                      FlaxTypeRef("Uint8List"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
@@ -8600,8 +8486,6 @@ Function _flaxGeneric_SecureSocket_asyncExpand<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8618,7 +8502,7 @@ Function _flaxGeneric_SecureSocket_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<Iterable<_Method0> Function(api2.Uint8List element)>(
@@ -8629,7 +8513,7 @@ Function _flaxGeneric_SecureSocket_expand<
               [
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("Uint8List"),
+                  _flaxBinding14,
                   required: true,
                   positional: true,
                 ),
@@ -8650,8 +8534,6 @@ Function _flaxGeneric_SecureSocket_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8668,13 +8550,11 @@ Function _flaxGeneric_SecureSocket_transform<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "streamTransformer",
             types.ref<api5.StreamTransformer<api2.Uint8List, _Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8692,14 +8572,8 @@ Function _flaxGeneric_SecureSocket_fold<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "initialValue",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
           FlaxParameter(
             "combine",
             types.define<
@@ -8718,7 +8592,7 @@ Function _flaxGeneric_SecureSocket_fold<_Method0 extends Object?>() =>
                     ),
                     FlaxCallbackParameter(
                       "element",
-                      FlaxTypeRef("Uint8List"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
@@ -8743,8 +8617,6 @@ Function _flaxGeneric_SecureSocket_fold<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0>>(),
@@ -8757,7 +8629,11 @@ Function _flaxGeneric_SecureSocket_cast<_Method0 extends Object?>() =>
         return (receiver as api3.SecureSocket).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<api5.Stream<_Method0>>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding42,
+        types.ref<api5.Stream<_Method0>>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_SecureSocket_drain<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -8768,14 +8644,8 @@ Function _flaxGeneric_SecureSocket_drain<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "futureValue",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
         ],
         types.ref<Future<_Method0>>(),
         invoke,
@@ -8790,7 +8660,7 @@ Function _flaxGeneric_Socket_map<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "convert",
             types.define<_Method0 Function(api2.Uint8List event)>(
@@ -8801,7 +8671,7 @@ Function _flaxGeneric_Socket_map<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "event",
-                      FlaxTypeRef("Uint8List"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
@@ -8819,8 +8689,6 @@ Function _flaxGeneric_Socket_map<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8857,7 +8725,7 @@ Function _flaxGeneric_Socket_asyncMap<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<api5.FutureOr<_Method0> Function(api2.Uint8List event)>(
@@ -8868,7 +8736,7 @@ Function _flaxGeneric_Socket_asyncMap<
               [
                 FlaxCallbackParameter(
                   "event",
-                  FlaxTypeRef("Uint8List"),
+                  _flaxBinding14,
                   required: true,
                   positional: true,
                 ),
@@ -8887,8 +8755,6 @@ Function _flaxGeneric_Socket_asyncMap<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -8905,7 +8771,7 @@ Function _flaxGeneric_Socket_asyncExpand<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "convert",
             types.define<api5.Stream<_Method0>? Function(api2.Uint8List event)>(
@@ -8916,7 +8782,7 @@ Function _flaxGeneric_Socket_asyncExpand<_Method0 extends Object?>() =>
                   [
                     FlaxCallbackParameter(
                       "event",
-                      FlaxTypeRef("Uint8List"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
@@ -8940,8 +8806,6 @@ Function _flaxGeneric_Socket_asyncExpand<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -8958,7 +8822,7 @@ Function _flaxGeneric_Socket_expand<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "convert",
         types.define<Iterable<_Method0> Function(api2.Uint8List element)>(
@@ -8969,7 +8833,7 @@ Function _flaxGeneric_Socket_expand<
               [
                 FlaxCallbackParameter(
                   "element",
-                  FlaxTypeRef("Uint8List"),
+                  _flaxBinding14,
                   required: true,
                   positional: true,
                 ),
@@ -8990,8 +8854,6 @@ Function _flaxGeneric_Socket_expand<
           ),
         ),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api5.Stream<_Method0>>(),
@@ -9008,13 +8870,11 @@ Function _flaxGeneric_Socket_transform<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "streamTransformer",
             types.ref<api5.StreamTransformer<api2.Uint8List, _Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api5.Stream<_Method0>>(),
@@ -9032,14 +8892,8 @@ Function _flaxGeneric_Socket_fold<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "initialValue",
-            types.ref<_Method0>(),
-            required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("initialValue", types.ref<_Method0>(), required: true),
           FlaxParameter(
             "combine",
             types.define<
@@ -9058,7 +8912,7 @@ Function _flaxGeneric_Socket_fold<_Method0 extends Object?>() =>
                     ),
                     FlaxCallbackParameter(
                       "element",
-                      FlaxTypeRef("Uint8List"),
+                      _flaxBinding14,
                       required: true,
                       positional: true,
                     ),
@@ -9083,8 +8937,6 @@ Function _flaxGeneric_Socket_fold<_Method0 extends Object?>() =>
               ),
             ),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<Future<_Method0>>(),
@@ -9097,7 +8949,11 @@ Function _flaxGeneric_Socket_cast<_Method0 extends Object?>() =>
         return (receiver as api3.Socket).cast<_Method0>();
       }
 
-      return FlaxInstanceMethod([], types.ref<api5.Stream<_Method0>>(), invoke);
+      return FlaxInstanceMethod(
+        _flaxBinding42,
+        types.ref<api5.Stream<_Method0>>(),
+        invoke,
+      );
     };
 Function _flaxGeneric_Socket_drain<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
@@ -9108,14 +8964,8 @@ Function _flaxGeneric_Socket_drain<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
-          FlaxParameter(
-            "futureValue",
-            types.ref<_Method0?>(),
-            required: false,
-            defaultValue: null,
-            omitWhenAbsent: false,
-          ),
+        <FlaxParameter>[
+          FlaxParameter("futureValue", types.ref<_Method0?>(), required: false),
         ],
         types.ref<Future<_Method0>>(),
         invoke,

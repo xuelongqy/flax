@@ -14303,13 +14303,11 @@ Function _flaxGeneric_AlwaysStoppedAnimation_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -14328,13 +14326,11 @@ Function _flaxGeneric_AlwaysStoppedAnimation_super_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -14518,14 +14514,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "status",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
-          _AlwaysStoppedAnimation_status,
-        ),
+        FlaxGetter("status", _flaxBinding4, _AlwaysStoppedAnimation_status),
         FlaxGetter(
           "value",
           types.ref<_Owner0>(),
@@ -14533,22 +14522,22 @@ Function _flaxClass_AlwaysStoppedAnimation<
         ),
         FlaxGetter(
           "isDismissed",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _AlwaysStoppedAnimation_isDismissed,
         ),
         FlaxGetter(
           "isCompleted",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _AlwaysStoppedAnimation_isCompleted,
         ),
         FlaxGetter(
           "isAnimating",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _AlwaysStoppedAnimation_isAnimating,
         ),
         FlaxGetter(
           "isForwardOrCompleted",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _AlwaysStoppedAnimation_isForwardOrCompleted,
         ),
       ],
@@ -14561,7 +14550,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -14571,7 +14560,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AlwaysStoppedAnimation_addListener,
         ),
         "removeListener": FlaxInstanceMethod(
@@ -14582,7 +14571,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -14592,7 +14581,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AlwaysStoppedAnimation_removeListener,
         ),
         "addStatusListener": FlaxInstanceMethod(
@@ -14605,15 +14594,12 @@ Function _flaxClass_AlwaysStoppedAnimation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -14624,7 +14610,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AlwaysStoppedAnimation_addStatusListener,
         ),
         "removeStatusListener": FlaxInstanceMethod(
@@ -14637,15 +14623,12 @@ Function _flaxClass_AlwaysStoppedAnimation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -14656,38 +14639,24 @@ Function _flaxClass_AlwaysStoppedAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AlwaysStoppedAnimation_removeStatusListener,
         ),
         "drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _AlwaysStoppedAnimation_drive,
           genericFactory: _flaxGeneric_AlwaysStoppedAnimation_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _AlwaysStoppedAnimation_toString,
         ),
         "toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _AlwaysStoppedAnimation_toStringDetails,
         ),
         "@super:addListener": FlaxInstanceMethod(
@@ -14698,7 +14667,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -14708,7 +14677,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_addListener,
         ),
         "@super:removeListener": FlaxInstanceMethod(
@@ -14719,7 +14688,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -14729,7 +14698,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_removeListener,
         ),
         "@super:addStatusListener": FlaxInstanceMethod(
@@ -14742,15 +14711,12 @@ Function _flaxClass_AlwaysStoppedAnimation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -14761,7 +14727,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_addStatusListener,
         ),
         "@super:removeStatusListener": FlaxInstanceMethod(
@@ -14774,15 +14740,12 @@ Function _flaxClass_AlwaysStoppedAnimation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -14793,71 +14756,54 @@ Function _flaxClass_AlwaysStoppedAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_removeStatusListener,
         ),
         "@super:drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _AlwaysStoppedAnimation_super_drive,
           genericFactory: _flaxGeneric_AlwaysStoppedAnimation_super_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0>(),
           _AlwaysStoppedAnimation_super_get_value,
         ),
         "@super:get:status": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
+          _flaxBinding105,
+          _flaxBinding4,
           _FlaxProxyDispatch0_super_get_status,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
       },
@@ -14892,7 +14838,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -14903,7 +14849,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -14921,7 +14867,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -14932,7 +14878,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -14952,15 +14898,12 @@ Function _flaxClass_AlwaysStoppedAnimation<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -14973,7 +14916,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -14998,15 +14941,12 @@ Function _flaxClass_AlwaysStoppedAnimation<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -15019,7 +14959,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -15038,20 +14978,12 @@ Function _flaxClass_AlwaysStoppedAnimation<
             [
               FlaxCallbackParameter(
                 "child",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-                ),
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:Animation",
-              dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-            ),
+            _flaxBinding113,
             _callback0,
             id:
                 types
@@ -15073,7 +15005,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -15083,7 +15015,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -15103,10 +15035,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_animation#type:AnimationStatus",
-            ),
+            _flaxBinding4,
             id: types.key<api.AnimationStatus Function()>() + ":callback:<>()->enum:flax.core/sdk_animation#type:AnimationStatus",
           ),
           hasSuper: true,
@@ -15116,7 +15045,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -15126,7 +15055,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -15136,7 +15065,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -15146,7 +15075,7 @@ Function _flaxClass_AlwaysStoppedAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -15229,104 +15158,42 @@ Function _flaxClass_Animatable<
       [],
       {
         "transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _Animatable_transform,
         ),
         "evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _Animatable_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _Animatable_animate,
         ),
         "chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _Animatable_chain,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _Animatable_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _Animatable_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _Animatable_super_chain,
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding105},
       create: _createAnimatable,
       matches: _isAnimatable,
       setters: [],
@@ -15344,7 +15211,7 @@ Function _flaxClass_Animatable<
             [
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -15362,11 +15229,7 @@ Function _flaxClass_Animatable<
             [
               FlaxCallbackParameter(
                 "animation",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -15383,11 +15246,7 @@ Function _flaxClass_Animatable<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -15411,11 +15270,7 @@ Function _flaxClass_Animatable<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-                ),
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -15447,13 +15302,11 @@ Function _flaxGeneric_Animation_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -15471,13 +15324,11 @@ Function _flaxGeneric_Animation_super_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -15639,20 +15490,13 @@ Function _flaxClass_Animation<
       id,
       [
         FlaxGetter("value", types.ref<_Owner0>(), _Animation_value),
-        FlaxGetter(
-          "status",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
-          _Animation_status,
-        ),
-        FlaxGetter("isDismissed", FlaxTypeRef("bool"), _Animation_isDismissed),
-        FlaxGetter("isCompleted", FlaxTypeRef("bool"), _Animation_isCompleted),
-        FlaxGetter("isAnimating", FlaxTypeRef("bool"), _Animation_isAnimating),
+        FlaxGetter("status", _flaxBinding4, _Animation_status),
+        FlaxGetter("isDismissed", _flaxBinding11, _Animation_isDismissed),
+        FlaxGetter("isCompleted", _flaxBinding11, _Animation_isCompleted),
+        FlaxGetter("isAnimating", _flaxBinding11, _Animation_isAnimating),
         FlaxGetter(
           "isForwardOrCompleted",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _Animation_isForwardOrCompleted,
         ),
       ],
@@ -15665,7 +15509,7 @@ Function _flaxClass_Animation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -15675,7 +15519,7 @@ Function _flaxClass_Animation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _Animation_addListener,
         ),
         "removeListener": FlaxInstanceMethod(
@@ -15686,7 +15530,7 @@ Function _flaxClass_Animation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -15696,7 +15540,7 @@ Function _flaxClass_Animation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _Animation_removeListener,
         ),
         "addStatusListener": FlaxInstanceMethod(
@@ -15709,15 +15553,12 @@ Function _flaxClass_Animation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -15728,7 +15569,7 @@ Function _flaxClass_Animation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _Animation_addStatusListener,
         ),
         "removeStatusListener": FlaxInstanceMethod(
@@ -15741,15 +15582,12 @@ Function _flaxClass_Animation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -15760,93 +15598,65 @@ Function _flaxClass_Animation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _Animation_removeStatusListener,
         ),
         "drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _Animation_drive,
           genericFactory: _flaxGeneric_Animation_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _Animation_toString,
         ),
         "toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _Animation_toStringDetails,
         ),
         "@super:drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _Animation_super_drive,
           genericFactory: _flaxGeneric_Animation_super_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
       },
-      constructors: {"@implementation": <FlaxParameter>[]},
+      constructors: {"@implementation": _flaxBinding105},
       create: _createAnimation,
       matches: _isAnimation,
       setters: [],
@@ -15872,7 +15682,7 @@ Function _flaxClass_Animation<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -15883,7 +15693,7 @@ Function _flaxClass_Animation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -15900,7 +15710,7 @@ Function _flaxClass_Animation<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -15911,7 +15721,7 @@ Function _flaxClass_Animation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -15930,15 +15740,12 @@ Function _flaxClass_Animation<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -15951,7 +15758,7 @@ Function _flaxClass_Animation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -15975,15 +15782,12 @@ Function _flaxClass_Animation<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -15996,7 +15800,7 @@ Function _flaxClass_Animation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -16014,20 +15818,12 @@ Function _flaxClass_Animation<
             [
               FlaxCallbackParameter(
                 "child",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-                ),
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:Animation",
-              dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-            ),
+            _flaxBinding113,
             _callback0,
             id:
                 types
@@ -16049,7 +15845,7 @@ Function _flaxClass_Animation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -16059,7 +15855,7 @@ Function _flaxClass_Animation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -16069,10 +15865,7 @@ Function _flaxClass_Animation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_animation#type:AnimationStatus",
-            ),
+            _flaxBinding4,
             id: types.key<api.AnimationStatus Function()>() + ":callback:<>()->enum:flax.core/sdk_animation#type:AnimationStatus",
           ),
         ),
@@ -16090,7 +15883,7 @@ Function _flaxClass_Animation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -16100,7 +15893,7 @@ Function _flaxClass_Animation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -16110,7 +15903,7 @@ Function _flaxClass_Animation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -16120,7 +15913,7 @@ Function _flaxClass_Animation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -16138,13 +15931,11 @@ Function _flaxGeneric_AnimationController_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -16161,13 +15952,11 @@ Function _flaxGeneric_AnimationController_super_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -16185,13 +15974,11 @@ Function _flaxGeneric_AnimationMax_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -16209,13 +15996,11 @@ Function _flaxGeneric_AnimationMax_super_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -16554,55 +16339,32 @@ Function _flaxClass_AnimationMax<
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMax_next,
         ),
-        FlaxGetter(
-          "status",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
-          _AnimationMax_status,
-        ),
+        FlaxGetter("status", _flaxBinding4, _AnimationMax_status),
         FlaxGetter("value", types.ref<_Owner0>(), _AnimationMax_value),
-        FlaxGetter(
-          "isDismissed",
-          FlaxTypeRef("bool"),
-          _AnimationMax_isDismissed,
-        ),
-        FlaxGetter(
-          "isCompleted",
-          FlaxTypeRef("bool"),
-          _AnimationMax_isCompleted,
-        ),
-        FlaxGetter(
-          "isAnimating",
-          FlaxTypeRef("bool"),
-          _AnimationMax_isAnimating,
-        ),
+        FlaxGetter("isDismissed", _flaxBinding11, _AnimationMax_isDismissed),
+        FlaxGetter("isCompleted", _flaxBinding11, _AnimationMax_isCompleted),
+        FlaxGetter("isAnimating", _flaxBinding11, _AnimationMax_isAnimating),
         FlaxGetter(
           "isForwardOrCompleted",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _AnimationMax_isForwardOrCompleted,
         ),
-        FlaxGetter(
-          "isListening",
-          FlaxTypeRef("bool"),
-          _AnimationMax_isListening,
-        ),
+        FlaxGetter("isListening", _flaxBinding11, _AnimationMax_isListening),
       ],
       {
         "didStartListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_didStartListening,
         ),
         "didStopListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_didStopListening,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _AnimationMax_toString,
         ),
         "addListener": FlaxInstanceMethod(
@@ -16613,7 +16375,7 @@ Function _flaxClass_AnimationMax<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -16623,7 +16385,7 @@ Function _flaxClass_AnimationMax<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationMax_addListener,
         ),
         "removeListener": FlaxInstanceMethod(
@@ -16634,7 +16396,7 @@ Function _flaxClass_AnimationMax<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -16644,7 +16406,7 @@ Function _flaxClass_AnimationMax<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationMax_removeListener,
         ),
         "addStatusListener": FlaxInstanceMethod(
@@ -16657,15 +16419,12 @@ Function _flaxClass_AnimationMax<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -16676,7 +16435,7 @@ Function _flaxClass_AnimationMax<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationMax_addStatusListener,
         ),
         "removeStatusListener": FlaxInstanceMethod(
@@ -16689,15 +16448,12 @@ Function _flaxClass_AnimationMax<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -16708,87 +16464,64 @@ Function _flaxClass_AnimationMax<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationMax_removeStatusListener,
         ),
         "drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _AnimationMax_drive,
           genericFactory: _flaxGeneric_AnimationMax_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _AnimationMax_toStringDetails,
         ),
         "didRegisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_didRegisterListener,
         ),
         "didUnregisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_didUnregisterListener,
         ),
         "clearListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_clearListeners,
         ),
         "notifyListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_notifyListeners,
         ),
         "clearStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_clearStatusListeners,
         ),
         "notifyStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "status",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_animation#type:AnimationStatus",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding626,
+          _flaxBinding0,
           _AnimationMax_notifyStatusListeners,
         ),
         "@super:didStartListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_super_didStartListening,
         ),
         "@super:didStopListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_super_didStopListening,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:addListener": FlaxInstanceMethod(
@@ -16799,7 +16532,7 @@ Function _flaxClass_AnimationMax<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -16809,7 +16542,7 @@ Function _flaxClass_AnimationMax<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_addListener,
         ),
         "@super:removeListener": FlaxInstanceMethod(
@@ -16820,7 +16553,7 @@ Function _flaxClass_AnimationMax<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -16830,7 +16563,7 @@ Function _flaxClass_AnimationMax<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_removeListener,
         ),
         "@super:addStatusListener": FlaxInstanceMethod(
@@ -16843,15 +16576,12 @@ Function _flaxClass_AnimationMax<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -16862,7 +16592,7 @@ Function _flaxClass_AnimationMax<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_addStatusListener,
         ),
         "@super:removeStatusListener": FlaxInstanceMethod(
@@ -16875,15 +16605,12 @@ Function _flaxClass_AnimationMax<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -16894,120 +16621,94 @@ Function _flaxClass_AnimationMax<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_removeStatusListener,
         ),
         "@super:drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _AnimationMax_super_drive,
           genericFactory: _flaxGeneric_AnimationMax_super_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
         "@super:didRegisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_super_didRegisterListener,
         ),
         "@super:didUnregisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_super_didUnregisterListener,
         ),
         "@super:clearListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_super_clearListeners,
         ),
         "@super:notifyListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_super_notifyListeners,
         ),
         "@super:clearStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMax_super_clearStatusListeners,
         ),
         "@super:notifyStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "status",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_animation#type:AnimationStatus",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding626,
+          _flaxBinding0,
           _AnimationMax_super_notifyStatusListeners,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0>(),
           _AnimationMax_super_get_value,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMax_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMax_super_get_next,
         ),
         "@super:get:status": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
+          _flaxBinding105,
+          _flaxBinding4,
           _FlaxProxyDispatch0_super_get_status,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
         "@super:get:isListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _AnimationMax_super_get_isListening,
         ),
       },
@@ -17049,7 +16750,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -17059,7 +16760,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -17069,7 +16770,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -17085,7 +16786,7 @@ Function _flaxClass_AnimationMax<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -17096,7 +16797,7 @@ Function _flaxClass_AnimationMax<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -17114,7 +16815,7 @@ Function _flaxClass_AnimationMax<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -17125,7 +16826,7 @@ Function _flaxClass_AnimationMax<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -17145,15 +16846,12 @@ Function _flaxClass_AnimationMax<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -17166,7 +16864,7 @@ Function _flaxClass_AnimationMax<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -17191,15 +16889,12 @@ Function _flaxClass_AnimationMax<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -17212,7 +16907,7 @@ Function _flaxClass_AnimationMax<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -17231,20 +16926,12 @@ Function _flaxClass_AnimationMax<
             [
               FlaxCallbackParameter(
                 "child",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-                ),
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:Animation",
-              dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-            ),
+            _flaxBinding113,
             _callback0,
             id:
                 types
@@ -17266,7 +16953,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -17276,7 +16963,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -17286,7 +16973,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -17296,7 +16983,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -17306,7 +16993,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -17316,7 +17003,7 @@ Function _flaxClass_AnimationMax<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -17328,15 +17015,12 @@ Function _flaxClass_AnimationMax<
             [
               FlaxCallbackParameter(
                 "status",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_animation#type:AnimationStatus",
-                ),
+                _flaxBinding4,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
           ),
           hasSuper: true,
@@ -17376,10 +17060,7 @@ Function _flaxClass_AnimationMax<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_animation#type:AnimationStatus",
-            ),
+            _flaxBinding4,
             id: types.key<api.AnimationStatus Function()>() + ":callback:<>()->enum:flax.core/sdk_animation#type:AnimationStatus",
           ),
           hasSuper: true,
@@ -17389,7 +17070,7 @@ Function _flaxClass_AnimationMax<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -17399,7 +17080,7 @@ Function _flaxClass_AnimationMax<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -17409,7 +17090,7 @@ Function _flaxClass_AnimationMax<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -17419,7 +17100,7 @@ Function _flaxClass_AnimationMax<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -17429,7 +17110,7 @@ Function _flaxClass_AnimationMax<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -17447,13 +17128,11 @@ Function _flaxGeneric_AnimationMean_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -17469,13 +17148,11 @@ Function _flaxGeneric_AnimationMean_super_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -17493,13 +17170,11 @@ Function _flaxGeneric_AnimationMin_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -17517,13 +17192,11 @@ Function _flaxGeneric_AnimationMin_super_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -17862,55 +17535,32 @@ Function _flaxClass_AnimationMin<
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMin_next,
         ),
-        FlaxGetter(
-          "status",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
-          _AnimationMin_status,
-        ),
+        FlaxGetter("status", _flaxBinding4, _AnimationMin_status),
         FlaxGetter("value", types.ref<_Owner0>(), _AnimationMin_value),
-        FlaxGetter(
-          "isDismissed",
-          FlaxTypeRef("bool"),
-          _AnimationMin_isDismissed,
-        ),
-        FlaxGetter(
-          "isCompleted",
-          FlaxTypeRef("bool"),
-          _AnimationMin_isCompleted,
-        ),
-        FlaxGetter(
-          "isAnimating",
-          FlaxTypeRef("bool"),
-          _AnimationMin_isAnimating,
-        ),
+        FlaxGetter("isDismissed", _flaxBinding11, _AnimationMin_isDismissed),
+        FlaxGetter("isCompleted", _flaxBinding11, _AnimationMin_isCompleted),
+        FlaxGetter("isAnimating", _flaxBinding11, _AnimationMin_isAnimating),
         FlaxGetter(
           "isForwardOrCompleted",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _AnimationMin_isForwardOrCompleted,
         ),
-        FlaxGetter(
-          "isListening",
-          FlaxTypeRef("bool"),
-          _AnimationMin_isListening,
-        ),
+        FlaxGetter("isListening", _flaxBinding11, _AnimationMin_isListening),
       ],
       {
         "didStartListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_didStartListening,
         ),
         "didStopListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_didStopListening,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _AnimationMin_toString,
         ),
         "addListener": FlaxInstanceMethod(
@@ -17921,7 +17571,7 @@ Function _flaxClass_AnimationMin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -17931,7 +17581,7 @@ Function _flaxClass_AnimationMin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationMin_addListener,
         ),
         "removeListener": FlaxInstanceMethod(
@@ -17942,7 +17592,7 @@ Function _flaxClass_AnimationMin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -17952,7 +17602,7 @@ Function _flaxClass_AnimationMin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationMin_removeListener,
         ),
         "addStatusListener": FlaxInstanceMethod(
@@ -17965,15 +17615,12 @@ Function _flaxClass_AnimationMin<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -17984,7 +17631,7 @@ Function _flaxClass_AnimationMin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationMin_addStatusListener,
         ),
         "removeStatusListener": FlaxInstanceMethod(
@@ -17997,15 +17644,12 @@ Function _flaxClass_AnimationMin<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -18016,87 +17660,64 @@ Function _flaxClass_AnimationMin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationMin_removeStatusListener,
         ),
         "drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _AnimationMin_drive,
           genericFactory: _flaxGeneric_AnimationMin_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _AnimationMin_toStringDetails,
         ),
         "didRegisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_didRegisterListener,
         ),
         "didUnregisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_didUnregisterListener,
         ),
         "clearListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_clearListeners,
         ),
         "notifyListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_notifyListeners,
         ),
         "clearStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_clearStatusListeners,
         ),
         "notifyStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "status",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_animation#type:AnimationStatus",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding626,
+          _flaxBinding0,
           _AnimationMin_notifyStatusListeners,
         ),
         "@super:didStartListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_super_didStartListening,
         ),
         "@super:didStopListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_super_didStopListening,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:addListener": FlaxInstanceMethod(
@@ -18107,7 +17728,7 @@ Function _flaxClass_AnimationMin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -18117,7 +17738,7 @@ Function _flaxClass_AnimationMin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_addListener,
         ),
         "@super:removeListener": FlaxInstanceMethod(
@@ -18128,7 +17749,7 @@ Function _flaxClass_AnimationMin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -18138,7 +17759,7 @@ Function _flaxClass_AnimationMin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_removeListener,
         ),
         "@super:addStatusListener": FlaxInstanceMethod(
@@ -18151,15 +17772,12 @@ Function _flaxClass_AnimationMin<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -18170,7 +17788,7 @@ Function _flaxClass_AnimationMin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_addStatusListener,
         ),
         "@super:removeStatusListener": FlaxInstanceMethod(
@@ -18183,15 +17801,12 @@ Function _flaxClass_AnimationMin<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -18202,120 +17817,94 @@ Function _flaxClass_AnimationMin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_removeStatusListener,
         ),
         "@super:drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _AnimationMin_super_drive,
           genericFactory: _flaxGeneric_AnimationMin_super_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
         "@super:didRegisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_super_didRegisterListener,
         ),
         "@super:didUnregisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_super_didUnregisterListener,
         ),
         "@super:clearListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_super_clearListeners,
         ),
         "@super:notifyListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_super_notifyListeners,
         ),
         "@super:clearStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _AnimationMin_super_clearStatusListeners,
         ),
         "@super:notifyStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "status",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_animation#type:AnimationStatus",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding626,
+          _flaxBinding0,
           _AnimationMin_super_notifyStatusListeners,
         ),
         "@super:get:value": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0>(),
           _AnimationMin_super_get_value,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMin_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<api.Animation<_Owner0>>(),
           _AnimationMin_super_get_next,
         ),
         "@super:get:status": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
+          _flaxBinding105,
+          _flaxBinding4,
           _FlaxProxyDispatch0_super_get_status,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
         "@super:get:isListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _AnimationMin_super_get_isListening,
         ),
       },
@@ -18357,7 +17946,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -18367,7 +17956,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -18377,7 +17966,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -18393,7 +17982,7 @@ Function _flaxClass_AnimationMin<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -18404,7 +17993,7 @@ Function _flaxClass_AnimationMin<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -18422,7 +18011,7 @@ Function _flaxClass_AnimationMin<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -18433,7 +18022,7 @@ Function _flaxClass_AnimationMin<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -18453,15 +18042,12 @@ Function _flaxClass_AnimationMin<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -18474,7 +18060,7 @@ Function _flaxClass_AnimationMin<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -18499,15 +18085,12 @@ Function _flaxClass_AnimationMin<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -18520,7 +18103,7 @@ Function _flaxClass_AnimationMin<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -18539,20 +18122,12 @@ Function _flaxClass_AnimationMin<
             [
               FlaxCallbackParameter(
                 "child",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-                ),
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:Animation",
-              dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-            ),
+            _flaxBinding113,
             _callback0,
             id:
                 types
@@ -18574,7 +18149,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -18584,7 +18159,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -18594,7 +18169,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -18604,7 +18179,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -18614,7 +18189,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -18624,7 +18199,7 @@ Function _flaxClass_AnimationMin<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -18636,15 +18211,12 @@ Function _flaxClass_AnimationMin<
             [
               FlaxCallbackParameter(
                 "status",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_animation#type:AnimationStatus",
-                ),
+                _flaxBinding4,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
           ),
           hasSuper: true,
@@ -18684,10 +18256,7 @@ Function _flaxClass_AnimationMin<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_animation#type:AnimationStatus",
-            ),
+            _flaxBinding4,
             id: types.key<api.AnimationStatus Function()>() + ":callback:<>()->enum:flax.core/sdk_animation#type:AnimationStatus",
           ),
           hasSuper: true,
@@ -18697,7 +18266,7 @@ Function _flaxClass_AnimationMin<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -18707,7 +18276,7 @@ Function _flaxClass_AnimationMin<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -18717,7 +18286,7 @@ Function _flaxClass_AnimationMin<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -18727,7 +18296,7 @@ Function _flaxClass_AnimationMin<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -18737,7 +18306,7 @@ Function _flaxClass_AnimationMin<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -18821,14 +18390,7 @@ Function _flaxClass_AnimationWithParentMixin<
           types.ref<api.Animation<_Owner0>>(),
           _AnimationWithParentMixin_parent,
         ),
-        FlaxGetter(
-          "status",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
-          _AnimationWithParentMixin_status,
-        ),
+        FlaxGetter("status", _flaxBinding4, _AnimationWithParentMixin_status),
       ],
       {
         "addListener": FlaxInstanceMethod(
@@ -18839,7 +18401,7 @@ Function _flaxClass_AnimationWithParentMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -18849,7 +18411,7 @@ Function _flaxClass_AnimationWithParentMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationWithParentMixin_addListener,
         ),
         "removeListener": FlaxInstanceMethod(
@@ -18860,7 +18422,7 @@ Function _flaxClass_AnimationWithParentMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -18870,7 +18432,7 @@ Function _flaxClass_AnimationWithParentMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationWithParentMixin_removeListener,
         ),
         "addStatusListener": FlaxInstanceMethod(
@@ -18883,15 +18445,12 @@ Function _flaxClass_AnimationWithParentMixin<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -18902,7 +18461,7 @@ Function _flaxClass_AnimationWithParentMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationWithParentMixin_addStatusListener,
         ),
         "removeStatusListener": FlaxInstanceMethod(
@@ -18915,15 +18474,12 @@ Function _flaxClass_AnimationWithParentMixin<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -18934,7 +18490,7 @@ Function _flaxClass_AnimationWithParentMixin<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _AnimationWithParentMixin_removeStatusListener,
         ),
       },
@@ -18962,13 +18518,11 @@ Function _flaxGeneric_CompoundAnimation_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -18987,13 +18541,11 @@ Function _flaxGeneric_CompoundAnimation_super_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -19330,38 +18882,31 @@ Function _flaxClass_CompoundAnimation<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter(
-          "status",
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
-          _CompoundAnimation_status,
-        ),
+        FlaxGetter("status", _flaxBinding4, _CompoundAnimation_status),
         FlaxGetter("value", types.ref<_Owner0>(), _CompoundAnimation_value),
         FlaxGetter(
           "isDismissed",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _CompoundAnimation_isDismissed,
         ),
         FlaxGetter(
           "isCompleted",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _CompoundAnimation_isCompleted,
         ),
         FlaxGetter(
           "isAnimating",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _CompoundAnimation_isAnimating,
         ),
         FlaxGetter(
           "isForwardOrCompleted",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _CompoundAnimation_isForwardOrCompleted,
         ),
         FlaxGetter(
           "isListening",
-          FlaxTypeRef("bool"),
+          _flaxBinding11,
           _CompoundAnimation_isListening,
         ),
         FlaxGetter(
@@ -19384,7 +18929,7 @@ Function _flaxClass_CompoundAnimation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -19394,7 +18939,7 @@ Function _flaxClass_CompoundAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _CompoundAnimation_addListener,
         ),
         "removeListener": FlaxInstanceMethod(
@@ -19405,7 +18950,7 @@ Function _flaxClass_CompoundAnimation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -19415,7 +18960,7 @@ Function _flaxClass_CompoundAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _CompoundAnimation_removeListener,
         ),
         "addStatusListener": FlaxInstanceMethod(
@@ -19428,15 +18973,12 @@ Function _flaxClass_CompoundAnimation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -19447,7 +18989,7 @@ Function _flaxClass_CompoundAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _CompoundAnimation_addStatusListener,
         ),
         "removeStatusListener": FlaxInstanceMethod(
@@ -19460,15 +19002,12 @@ Function _flaxClass_CompoundAnimation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -19479,87 +19018,64 @@ Function _flaxClass_CompoundAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _CompoundAnimation_removeStatusListener,
         ),
         "drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _CompoundAnimation_drive,
           genericFactory: _flaxGeneric_CompoundAnimation_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _CompoundAnimation_toString,
         ),
         "toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _CompoundAnimation_toStringDetails,
         ),
         "didRegisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_didRegisterListener,
         ),
         "didUnregisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_didUnregisterListener,
         ),
         "didStartListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_didStartListening,
         ),
         "didStopListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_didStopListening,
         ),
         "clearListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_clearListeners,
         ),
         "notifyListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_notifyListeners,
         ),
         "clearStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_clearStatusListeners,
         ),
         "notifyStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "status",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_animation#type:AnimationStatus",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding626,
+          _flaxBinding0,
           _CompoundAnimation_notifyStatusListeners,
         ),
         "@super:addListener": FlaxInstanceMethod(
@@ -19570,7 +19086,7 @@ Function _flaxClass_CompoundAnimation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -19580,7 +19096,7 @@ Function _flaxClass_CompoundAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_addListener,
         ),
         "@super:removeListener": FlaxInstanceMethod(
@@ -19591,7 +19107,7 @@ Function _flaxClass_CompoundAnimation<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid0,
                   id: types.key<void Function()>() + ":callback:<>()->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -19601,7 +19117,7 @@ Function _flaxClass_CompoundAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_removeListener,
         ),
         "@super:addStatusListener": FlaxInstanceMethod(
@@ -19614,15 +19130,12 @@ Function _flaxClass_CompoundAnimation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -19633,7 +19146,7 @@ Function _flaxClass_CompoundAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_addStatusListener,
         ),
         "@super:removeStatusListener": FlaxInstanceMethod(
@@ -19646,15 +19159,12 @@ Function _flaxClass_CompoundAnimation<
                   [
                     FlaxCallbackParameter(
                       "status",
-                      FlaxTypeRef(
-                        "enum",
-                        id: "flax.core/sdk_animation#type:AnimationStatus",
-                      ),
+                      _flaxBinding4,
                       required: true,
                       positional: true,
                     ),
                   ],
-                  FlaxTypeRef("void"),
+                  _flaxBinding0,
                   FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                   id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                   invoke: FlaxCallbackAdapters.invokeVoid1<api.AnimationStatus>,
@@ -19665,130 +19175,104 @@ Function _flaxClass_CompoundAnimation<
               required: true,
             ),
           ],
-          FlaxTypeRef("void"),
+          _flaxBinding0,
           _FlaxProxyDispatch0_super_call_removeStatusListener,
         ),
         "@super:drive": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "child",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef(
-            "object",
-            id: "flax.core/sdk_animation#type:Animation",
-            dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-          ),
+          _flaxBinding625,
+          _flaxBinding113,
           _CompoundAnimation_super_drive,
           genericFactory: _flaxGeneric_CompoundAnimation_super_drive,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:toStringDetails": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch2_super_call_toStringDetails,
         ),
         "@super:didRegisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_super_didRegisterListener,
         ),
         "@super:didUnregisterListener": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_super_didUnregisterListener,
         ),
         "@super:didStartListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_super_didStartListening,
         ),
         "@super:didStopListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_super_didStopListening,
         ),
         "@super:clearListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_super_clearListeners,
         ),
         "@super:notifyListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_super_notifyListeners,
         ),
         "@super:clearStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("void"),
+          _flaxBinding105,
+          _flaxBinding0,
           _CompoundAnimation_super_clearStatusListeners,
         ),
         "@super:notifyStatusListeners": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "status",
-              FlaxTypeRef(
-                "enum",
-                id: "flax.core/sdk_animation#type:AnimationStatus",
-              ),
-              required: true,
-            ),
-          ],
-          FlaxTypeRef("void"),
+          _flaxBinding626,
+          _flaxBinding0,
           _CompoundAnimation_super_notifyStatusListeners,
         ),
         "@super:get:first": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<api.Animation<_Owner0>>(),
           _CompoundAnimation_super_get_first,
         ),
         "@super:get:next": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<api.Animation<_Owner0>>(),
           _CompoundAnimation_super_get_next,
         ),
         "@super:get:status": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef(
-            "enum",
-            id: "flax.core/sdk_animation#type:AnimationStatus",
-          ),
+          _flaxBinding105,
+          _flaxBinding4,
           _FlaxProxyDispatch0_super_get_status,
         ),
         "@super:get:isDismissed": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isDismissed,
         ),
         "@super:get:isCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isCompleted,
         ),
         "@super:get:isAnimating": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isAnimating,
         ),
         "@super:get:isForwardOrCompleted": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _FlaxProxyDispatch2_super_get_isForwardOrCompleted,
         ),
         "@super:get:isListening": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("bool"),
+          _flaxBinding105,
+          _flaxBinding11,
           _CompoundAnimation_super_get_isListening,
         ),
       },
@@ -19835,7 +19319,7 @@ Function _flaxClass_CompoundAnimation<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -19846,7 +19330,7 @@ Function _flaxClass_CompoundAnimation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -19864,7 +19348,7 @@ Function _flaxClass_CompoundAnimation<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid0,
                     id: types.key<void Function()>() + ":callback:<>()->void:",
                     invoke: FlaxCallbackAdapters.invokeVoid0,
@@ -19875,7 +19359,7 @@ Function _flaxClass_CompoundAnimation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(void Function() listener)>() +
                 ":callback:<>(p:r:listener:callback:<>()->void:)->void:",
@@ -19895,15 +19379,12 @@ Function _flaxClass_CompoundAnimation<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -19916,7 +19397,7 @@ Function _flaxClass_CompoundAnimation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -19941,15 +19422,12 @@ Function _flaxClass_CompoundAnimation<
                     [
                       FlaxCallbackParameter(
                         "status",
-                        FlaxTypeRef(
-                          "enum",
-                          id: "flax.core/sdk_animation#type:AnimationStatus",
-                        ),
+                        _flaxBinding4,
                         required: true,
                         positional: true,
                       ),
                     ],
-                    FlaxTypeRef("void"),
+                    _flaxBinding0,
                     FlaxCallbackAdapters.wrapVoid1<api.AnimationStatus>,
                     id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
                     invoke:
@@ -19962,7 +19440,7 @@ Function _flaxClass_CompoundAnimation<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types
                     .key<
@@ -19981,20 +19459,12 @@ Function _flaxClass_CompoundAnimation<
             [
               FlaxCallbackParameter(
                 "child",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<Object?>>,
-                ),
+                _flaxBinding112,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef(
-              "object",
-              id: "flax.core/sdk_animation#type:Animation",
-              dartType: FlaxDartTypes.typeOf<api.Animation<Object?>>,
-            ),
+            _flaxBinding113,
             _callback0,
             id:
                 types
@@ -20016,7 +19486,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -20026,7 +19496,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -20036,7 +19506,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -20046,7 +19516,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -20056,7 +19526,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -20066,7 +19536,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -20076,7 +19546,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -20086,7 +19556,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -20096,7 +19566,7 @@ Function _flaxClass_CompoundAnimation<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function()>() + ":callback:<>()->void:",
           ),
           hasSuper: true,
@@ -20108,15 +19578,12 @@ Function _flaxClass_CompoundAnimation<
             [
               FlaxCallbackParameter(
                 "status",
-                FlaxTypeRef(
-                  "enum",
-                  id: "flax.core/sdk_animation#type:AnimationStatus",
-                ),
+                _flaxBinding4,
                 required: true,
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id: types.key<void Function(api.AnimationStatus status)>() + ":callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
           ),
           hasSuper: true,
@@ -20146,10 +19613,7 @@ Function _flaxClass_CompoundAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef(
-              "enum",
-              id: "flax.core/sdk_animation#type:AnimationStatus",
-            ),
+            _flaxBinding4,
             id: types.key<api.AnimationStatus Function()>() + ":callback:<>()->enum:flax.core/sdk_animation#type:AnimationStatus",
           ),
           hasSuper: true,
@@ -20168,7 +19632,7 @@ Function _flaxClass_CompoundAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -20178,7 +19642,7 @@ Function _flaxClass_CompoundAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -20188,7 +19652,7 @@ Function _flaxClass_CompoundAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -20198,7 +19662,7 @@ Function _flaxClass_CompoundAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -20208,7 +19672,7 @@ Function _flaxClass_CompoundAnimation<
           1,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("bool"),
+            _flaxBinding11,
             id: types.key<bool Function()>() + ":callback:<>()->bool:",
           ),
           hasSuper: true,
@@ -20375,140 +19839,72 @@ Function _flaxClass_ConstantTween<
       ],
       {
         "lerp": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _ConstantTween_lerp,
         ),
         "transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _ConstantTween_transform,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _ConstantTween_toString,
         ),
         "evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _ConstantTween_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _ConstantTween_animate,
         ),
         "chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _ConstantTween_chain,
         ),
         "@super:lerp": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _ConstantTween_super_lerp,
         ),
         "@super:transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _ConstantTween_super_transform,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _ConstantTween_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _ConstantTween_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _ConstantTween_super_chain,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0?>(),
           _ConstantTween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0?>(),
           _ConstantTween_super_get_end,
         ),
@@ -20552,7 +19948,7 @@ Function _flaxClass_ConstantTween<
             [
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -20571,7 +19967,7 @@ Function _flaxClass_ConstantTween<
             [
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -20588,7 +19984,7 @@ Function _flaxClass_ConstantTween<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -20600,11 +19996,7 @@ Function _flaxClass_ConstantTween<
             [
               FlaxCallbackParameter(
                 "animation",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -20621,11 +20013,7 @@ Function _flaxClass_ConstantTween<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -20649,11 +20037,7 @@ Function _flaxClass_ConstantTween<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-                ),
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -20706,7 +20090,7 @@ Function _flaxClass_ConstantTween<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(_Owner0? value)>() +
                 ":callback:<>(p:r:value:parameter?:)->void:",
@@ -20725,7 +20109,7 @@ Function _flaxClass_ConstantTween<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(_Owner0? value)>() +
                 ":callback:<>(p:r:value:parameter?:)->void:",
@@ -20745,13 +20129,11 @@ Function _flaxGeneric_CurvedAnimation_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -20767,13 +20149,11 @@ Function _flaxGeneric_CurvedAnimation_super_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -20847,45 +20227,37 @@ Function _flaxClass_ParametricCurve<_Owner0 extends Object?>() =>
           [],
           {
             "transform": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("t", FlaxTypeRef("double"), required: true),
-              ],
+              _flaxBinding121,
               types.ref<_Owner0>(),
               _ParametricCurve_transform,
             ),
             "transformInternal": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("t", FlaxTypeRef("double"), required: true),
-              ],
+              _flaxBinding121,
               types.ref<_Owner0>(),
               _ParametricCurve_transformInternal,
             ),
             "toString": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("String"),
+              _flaxBinding105,
+              _flaxBinding8,
               _ParametricCurve_toString,
             ),
             "@super:transform": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("t", FlaxTypeRef("double"), required: true),
-              ],
+              _flaxBinding121,
               types.ref<_Owner0>(),
               _ParametricCurve_super_transform,
             ),
             "@super:transformInternal": FlaxInstanceMethod(
-              <FlaxParameter>[
-                FlaxParameter("t", FlaxTypeRef("double"), required: true),
-              ],
+              _flaxBinding121,
               types.ref<_Owner0>(),
               _ParametricCurve_super_transformInternal,
             ),
             "@super:toString": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("String"),
+              _flaxBinding105,
+              _flaxBinding8,
               _FlaxProxyDispatch1_super_call_toString,
             ),
           },
-          constructors: {"@implementation": <FlaxParameter>[]},
+          constructors: {"@implementation": _flaxBinding105},
           create: _createParametricCurve,
           matches: _isParametricCurve,
           setters: [],
@@ -20903,7 +20275,7 @@ Function _flaxClass_ParametricCurve<_Owner0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "t",
-                    FlaxTypeRef("double"),
+                    _flaxBinding20,
                     required: true,
                     positional: true,
                   ),
@@ -20922,7 +20294,7 @@ Function _flaxClass_ParametricCurve<_Owner0 extends Object?>() =>
                 [
                   FlaxCallbackParameter(
                     "t",
-                    FlaxTypeRef("double"),
+                    _flaxBinding20,
                     required: true,
                     positional: true,
                   ),
@@ -20939,7 +20311,7 @@ Function _flaxClass_ParametricCurve<_Owner0 extends Object?>() =>
               0,
               FlaxCallbackBinding.signature(
                 [],
-                FlaxTypeRef("String"),
+                _flaxBinding8,
                 id: types.key<String Function()>() + ":callback:<>()->String:",
               ),
               hasSuper: true,
@@ -20957,13 +20329,11 @@ Function _flaxGeneric_ProxyAnimation_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -20979,13 +20349,11 @@ Function _flaxGeneric_ProxyAnimation_super_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -21001,13 +20369,11 @@ Function _flaxGeneric_ReverseAnimation_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -21024,13 +20390,11 @@ _flaxGeneric_ReverseAnimation_super_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -21201,145 +20565,77 @@ Function _flaxClass_ReverseTween<
       ],
       {
         "lerp": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _ReverseTween_lerp,
         ),
         "transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _ReverseTween_transform,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _ReverseTween_toString,
         ),
         "evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _ReverseTween_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _ReverseTween_animate,
         ),
         "chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _ReverseTween_chain,
         ),
         "@super:lerp": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _ReverseTween_super_lerp,
         ),
         "@super:transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _ReverseTween_super_transform,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _ReverseTween_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _ReverseTween_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _ReverseTween_super_chain,
         ),
         "@super:get:parent": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<api.Tween<_Owner0>>(),
           _ReverseTween_super_get_parent,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0?>(),
           _ReverseTween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0?>(),
           _ReverseTween_super_get_end,
         ),
@@ -21387,7 +20683,7 @@ Function _flaxClass_ReverseTween<
             [
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -21406,7 +20702,7 @@ Function _flaxClass_ReverseTween<
             [
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -21423,7 +20719,7 @@ Function _flaxClass_ReverseTween<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -21435,11 +20731,7 @@ Function _flaxClass_ReverseTween<
             [
               FlaxCallbackParameter(
                 "animation",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -21456,11 +20748,7 @@ Function _flaxClass_ReverseTween<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -21484,11 +20772,7 @@ Function _flaxClass_ReverseTween<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-                ),
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -21551,7 +20835,7 @@ Function _flaxClass_ReverseTween<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(_Owner0? value)>() +
                 ":callback:<>(p:r:value:parameter?:)->void:",
@@ -21570,7 +20854,7 @@ Function _flaxClass_ReverseTween<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(_Owner0? value)>() +
                 ":callback:<>(p:r:value:parameter?:)->void:",
@@ -21590,13 +20874,11 @@ Function _flaxGeneric_TrainHoppingAnimation_drive<_Method0 extends Object?>() =>
       }
 
       return FlaxInstanceMethod(
-        [
+        <FlaxParameter>[
           FlaxParameter(
             "child",
             types.ref<api.Animatable<_Method0>>(),
             required: true,
-            defaultValue: null,
-            omitWhenAbsent: false,
           ),
         ],
         types.ref<api.Animation<_Method0>>(),
@@ -21613,13 +20895,11 @@ Function _flaxGeneric_TrainHoppingAnimation_super_drive<
   }
 
   return FlaxInstanceMethod(
-    [
+    <FlaxParameter>[
       FlaxParameter(
         "child",
         types.ref<api.Animatable<_Method0>>(),
         required: true,
-        defaultValue: null,
-        omitWhenAbsent: false,
       ),
     ],
     types.ref<api.Animation<_Method0>>(),
@@ -21746,140 +21026,72 @@ Function _flaxClass_Tween<
       ],
       {
         "transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _Tween_transform,
         ),
         "evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _Tween_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _Tween_animate,
         ),
         "chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _Tween_chain,
         ),
         "lerp": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _Tween_lerp,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _Tween_toString,
         ),
         "@super:transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _Tween_super_transform,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _Tween_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _Tween_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _Tween_super_chain,
         ),
         "@super:lerp": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _Tween_super_lerp,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
         "@super:get:begin": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0?>(),
           _Tween_super_get_begin,
         ),
         "@super:get:end": FlaxInstanceMethod(
-          <FlaxParameter>[],
+          _flaxBinding105,
           types.ref<_Owner0?>(),
           _Tween_super_get_end,
         ),
@@ -21920,7 +21132,7 @@ Function _flaxClass_Tween<
             [
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -21939,11 +21151,7 @@ Function _flaxClass_Tween<
             [
               FlaxCallbackParameter(
                 "animation",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -21960,11 +21168,7 @@ Function _flaxClass_Tween<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -21988,11 +21192,7 @@ Function _flaxClass_Tween<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-                ),
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -22016,7 +21216,7 @@ Function _flaxClass_Tween<
             [
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -22033,7 +21233,7 @@ Function _flaxClass_Tween<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -22074,7 +21274,7 @@ Function _flaxClass_Tween<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(_Owner0? value)>() +
                 ":callback:<>(p:r:value:parameter?:)->void:",
@@ -22093,7 +21293,7 @@ Function _flaxClass_Tween<
                 positional: true,
               ),
             ],
-            FlaxTypeRef("void"),
+            _flaxBinding0,
             id:
                 types.key<void Function(_Owner0? value)>() +
                 ":callback:<>(p:r:value:parameter?:)->void:",
@@ -22204,117 +21404,53 @@ Function _flaxClass_TweenSequence<
       [],
       {
         "transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _TweenSequence_transform,
         ),
         "evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _TweenSequence_evaluate,
         ),
         "animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _TweenSequence_animate,
         ),
         "chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _TweenSequence_chain,
         ),
         "toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _TweenSequence_toString,
         ),
         "@super:transform": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter("t", FlaxTypeRef("double"), required: true),
-          ],
+          _flaxBinding121,
           types.ref<_Owner0>(),
           _TweenSequence_super_transform,
         ),
         "@super:evaluate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "animation",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding122,
           types.ref<_Owner0>(),
           _TweenSequence_super_evaluate,
         ),
         "@super:animate": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animation",
-                dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding123,
           types.ref<api.Animation<_Owner0>>(),
           _TweenSequence_super_animate,
         ),
         "@super:chain": FlaxInstanceMethod(
-          <FlaxParameter>[
-            FlaxParameter(
-              "parent",
-              FlaxTypeRef(
-                "object",
-                id: "flax.core/sdk_animation#type:Animatable",
-                dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-              ),
-              required: true,
-            ),
-          ],
+          _flaxBinding124,
           types.ref<api.Animatable<_Owner0>>(),
           _TweenSequence_super_chain,
         ),
         "@super:toString": FlaxInstanceMethod(
-          <FlaxParameter>[],
-          FlaxTypeRef("String"),
+          _flaxBinding105,
+          _flaxBinding8,
           _FlaxProxyDispatch1_super_call_toString,
         ),
       },
@@ -22344,7 +21480,7 @@ Function _flaxClass_TweenSequence<
             [
               FlaxCallbackParameter(
                 "t",
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 required: true,
                 positional: true,
               ),
@@ -22363,11 +21499,7 @@ Function _flaxClass_TweenSequence<
             [
               FlaxCallbackParameter(
                 "animation",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -22384,11 +21516,7 @@ Function _flaxClass_TweenSequence<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animation",
-                  dartType: FlaxDartTypes.typeOf<api.Animation<double>>,
-                ),
+                _flaxBinding26,
                 required: true,
                 positional: true,
               ),
@@ -22412,11 +21540,7 @@ Function _flaxClass_TweenSequence<
             [
               FlaxCallbackParameter(
                 "parent",
-                FlaxTypeRef(
-                  "object",
-                  id: "flax.core/sdk_animation#type:Animatable",
-                  dartType: FlaxDartTypes.typeOf<api.Animatable<double>>,
-                ),
+                _flaxBinding55,
                 required: true,
                 positional: true,
               ),
@@ -22438,7 +21562,7 @@ Function _flaxClass_TweenSequence<
           0,
           FlaxCallbackBinding.signature(
             [],
-            FlaxTypeRef("String"),
+            _flaxBinding8,
             id: types.key<String Function()>() + ":callback:<>()->String:",
           ),
           hasSuper: true,
@@ -22495,21 +21619,17 @@ Function _flaxClass_TweenSequenceItem<_Owner0 extends Object?>() =>
               types.ref<api.Animatable<_Owner0>>(),
               _TweenSequenceItem_tween,
             ),
-            FlaxGetter(
-              "weight",
-              FlaxTypeRef("double"),
-              _TweenSequenceItem_weight,
-            ),
+            FlaxGetter("weight", _flaxBinding20, _TweenSequenceItem_weight),
           ],
           {
             "@super:get:tween": FlaxInstanceMethod(
-              <FlaxParameter>[],
+              _flaxBinding105,
               types.ref<api.Animatable<_Owner0>>(),
               _TweenSequenceItem_super_get_tween,
             ),
             "@super:get:weight": FlaxInstanceMethod(
-              <FlaxParameter>[],
-              FlaxTypeRef("double"),
+              _flaxBinding105,
+              _flaxBinding20,
               _TweenSequenceItem_super_get_weight,
             ),
           },
@@ -22520,7 +21640,7 @@ Function _flaxClass_TweenSequenceItem<_Owner0 extends Object?>() =>
                 types.ref<api.Animatable<_Owner0>>(),
                 required: true,
               ),
-              FlaxParameter("weight", FlaxTypeRef("double"), required: true),
+              FlaxParameter("weight", _flaxBinding20, required: true),
             ],
           },
           create: _createTweenSequenceItem,
@@ -22548,7 +21668,7 @@ Function _flaxClass_TweenSequenceItem<_Owner0 extends Object?>() =>
               1,
               FlaxCallbackBinding.signature(
                 [],
-                FlaxTypeRef("double"),
+                _flaxBinding20,
                 id: types.key<double Function()>() + ":callback:<>()->double:",
               ),
               hasSuper: true,
@@ -29130,3 +28250,9 @@ const _flaxBinding624 = FlaxTypeRef(
   ),
   iterable: _flaxBinding623,
 );
+const _flaxBinding625 = <FlaxParameter>[
+  FlaxParameter("child", _flaxBinding112, required: true),
+];
+const _flaxBinding626 = <FlaxParameter>[
+  FlaxParameter("status", _flaxBinding4, required: true),
+];
