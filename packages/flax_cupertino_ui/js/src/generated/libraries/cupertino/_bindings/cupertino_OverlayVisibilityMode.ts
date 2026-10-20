@@ -1,0 +1,23 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/core/_bindings/flutter_Enum';
+import '@flax/dart/core/_bindings/flutter_Enum';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/cupertino-ui/_bindings/cupertino.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface OverlayVisibilityMode extends DartEnum, Omit<upstream0.Enum, typeof _flaxDartTypeValue | "__flaxBound:package:cupertino_ui/src/text_field.dart::OverlayVisibilityMode">, Readonly<{ "__flaxBound:package:cupertino_ui/src/text_field.dart::OverlayVisibilityMode": readonly [] }> { readonly __OverlayVisibilityMode: unique symbol;
+readonly [_flaxDartTypeValue]: OverlayVisibilityMode;
+readonly name: string;
+readonly index: number;
+
+}
+defineEnum("flax.cupertino/cupertino#type:OverlayVisibilityMode", ["never","editing","notEditing","always"], {
+}, [], ["flax.core/flutter#type:Enum","dart:core::Object"]);
+const _flaxEnum_OverlayVisibilityMode_api = {
+never: enumValue<OverlayVisibilityMode>("flax.cupertino/cupertino#type:OverlayVisibilityMode", "never"),
+editing: enumValue<OverlayVisibilityMode>("flax.cupertino/cupertino#type:OverlayVisibilityMode", "editing"),
+notEditing: enumValue<OverlayVisibilityMode>("flax.cupertino/cupertino#type:OverlayVisibilityMode", "notEditing"),
+always: enumValue<OverlayVisibilityMode>("flax.cupertino/cupertino#type:OverlayVisibilityMode", "always"),
+values: Object.freeze([enumValue<OverlayVisibilityMode>("flax.cupertino/cupertino#type:OverlayVisibilityMode", "never"), enumValue<OverlayVisibilityMode>("flax.cupertino/cupertino#type:OverlayVisibilityMode", "editing"), enumValue<OverlayVisibilityMode>("flax.cupertino/cupertino#type:OverlayVisibilityMode", "notEditing"), enumValue<OverlayVisibilityMode>("flax.cupertino/cupertino#type:OverlayVisibilityMode", "always")]),
+};
+export const OverlayVisibilityMode = Object.freeze(_flaxBindInstanceType<OverlayVisibilityMode, typeof _flaxEnum_OverlayVisibilityMode_api>(_flaxEnum_OverlayVisibilityMode_api, "flax.cupertino/cupertino#type:OverlayVisibilityMode", ["flax.core/flutter#type:Enum","dart:core::Object"]) as typeof _flaxEnum_OverlayVisibilityMode_api & _FlaxInstanceType<OverlayVisibilityMode> & _FlaxDartType<OverlayVisibilityMode, readonly ["class", "flax.cupertino/cupertino#type:OverlayVisibilityMode", readonly [], false]>);

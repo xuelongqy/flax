@@ -426,9 +426,11 @@ views do not become providers for unrelated functions or classes. See
 [dependency delivery](../../docs/architecture/packaging.md#binding-dependency-policy)
 for source/types export paths and installation requirements.
 
-The formal Core still generates Flutter's native Material and Cupertino libraries. The
-standalone `material_ui` and `cupertino_ui` selections remain curated; the policy and
-dependency subpaths do not constitute a completed full-library split migration.
+Core owns the Flutter framework and Dart SDK surfaces. Supported public `material_ui`
+and `cupertino_ui` bindings are generated in their independent packages with
+`automatic: true`; Core no longer registers native Material/Cupertino binding modules.
+The UI packages keep their provider graph and independent `intl` views. Their explicit
+skips, localization blacklist and host `runApp` boundary remain visible.
 
 Custom List, Map, Set and Iterable subclasses reuse ordinary object bindings and the
 existing typed collection operations. Selected Dart members take precedence over bridge

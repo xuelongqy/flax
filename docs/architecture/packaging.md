@@ -20,7 +20,7 @@ package has no concrete engine dependency.
 | Package                                              | Owned capability                                                                                                      |
 | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `flax` / `@flax/core-runtime`                        | Runtime interfaces, host base, supported Flutter SDK binding implementations, signals, sessions, and shared C ABI/JSI |
-| `flax_flutter` / `@flax/flutter`                     | Declaration-only public Flutter library surface (`foundation`, `widgets`, `material`, and related paths)              |
+| `flax_flutter` / `@flax/flutter`                     | Declaration-only public Flutter library surface (`foundation`, `widgets`, and related framework paths)                |
 | `flax_dart` / `@flax/dart`                           | Declaration-only public Dart SDK library surface (`core`, `async`)                                                    |
 | `flax_material_ui` / `@flax/material-ui-runtime`     | Third-party material_ui binding delivery and native Route/Page bindings                                               |
 | `flax_cupertino_ui` / `@flax/cupertino-ui-runtime`   | Third-party cupertino_ui bindings, module plugin, and package-local example                                           |
@@ -85,7 +85,7 @@ Application code imports Flutter and Dart APIs by their public library specifier
 ```typescript
 import { signal, computed, bind, batch } from '@flax/core';
 import { Text, Column, StatefulWidget, runApp } from '@flax/flutter/widgets';
-import { TextButton } from '@flax/flutter/material';
+import { TextButton } from '@flax/material-ui';
 import { Duration } from '@flax/dart/core';
 import { FlaxNavigatorObserver } from '@flax/core/navigation';
 import type { DartList, DartMap } from '@flax/core/bindings';
@@ -96,11 +96,23 @@ The public path is independent of the physical npm package that owns the JavaScr
 implementation. `@flax/flutter` and `@flax/dart` are declaration-only packages and are
 the authoritative TypeScript surface. Core physically delivers the supported Flutter SDK
 bindings under `@flax/flutter/*` and Dart SDK bindings under `@flax/dart/*`. The
-independent `material_ui` and `cupertino_ui` plugins use `@flax/material-ui` and
-`@flax/cupertino-ui`; they do not replace Flutter's own Material and Cupertino modules.
-The formal Core still includes both native Flutter libraries. The standalone UI binding
-selections remain curated; a full-library split has not been delivered.
-`@flax/core/navigation` remains a Core-owned public implementation entry.
+independent `material_ui` and `cupertino_ui` plugins own the supported complete public
+UI surfaces at `@flax/material-ui` and `@flax/cupertino-ui`. Core does not generate,
+register or deliver native Flutter Material/Cupertino bindings. The old
+`@flax/flutter/material` and `@flax/flutter/cupertino` specifiers are unavailable; they
+are not aliases for the standalone Dart classes. This removes binding code, not
+Flutter's native Dart libraries or their use by host applications and compatibility
+bridges. `@flax/core/navigation` remains a Core-owned public implementation entry.
+
+Standalone UI host delivery uses the same `dist/index.js` public source entry as Node
+consumers. Generated library directories remain the roots for public subpaths and
+binding helpers; package-level reexports must be visible in both environments.
+
+Migrate application imports to the standalone UI specifiers and install their host
+plugins, then regenerate prepared assets. `asDart` changes the registered view of a real
+Dart value; it does not convert Flutter's `ThemeData` into `material_ui.ThemeData`.
+Those are different Dart classes. The upstream compatibility widgets can adapt themes
+for mixed native subtrees without restoring a Core UI binding dependency.
 
 Host capabilities have separate public declarations and runtime delivery. `@flax/core`,
 `@flax/fetch`, `@flax/websocket`, `@flax/local-storage`, and `@flax/canvas` contain only
@@ -195,6 +207,11 @@ Core bindings are always injected. They cannot be duplicated, including through 
 opt-in list. Non-Core namespaces may bind the same selected Dart source independently;
 full identities must remain unique within one namespace. A declared provider with
 insufficient capabilities or ambiguous ownership is reported, not silently replaced.
+
+Generated Dart imports also need direct source-package dependencies, even when their JS
+view comes from Core or another provider. For example, the UI bindings declare
+`vector_math`, and Material declares `cupertino_ui` for its actual Dart signatures.
+These imports do not create another JS binding or change provider identity.
 
 The opt-in is package metadata, not an instruction to generate an entire dependency:
 
@@ -321,7 +338,6 @@ An application prepares the modules it can provide, for example:
     { "specifier": "@flax/core/host", "package": "@flax/core-runtime" },
     { "specifier": "@flax/core/navigation", "package": "@flax/core-runtime" },
     { "specifier": "@flax/flutter/widgets", "package": "@flax/core-runtime" },
-    { "specifier": "@flax/flutter/material", "package": "@flax/core-runtime" },
     { "specifier": "@flax/material-ui", "package": "@flax/material-ui-runtime" }
   ],
   "flutterProject": "..",

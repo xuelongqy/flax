@@ -468,6 +468,12 @@ test('real delivery metadata preserves public library binding topology', async (
       'utf8',
     ),
   );
+  const cupertino = JSON.parse(
+    await readFile(
+      join(repository, 'packages/flax_cupertino_ui/js/flax_modules.json'),
+      'utf8',
+    ),
+  );
   const entry = (delivery, specifier) =>
     delivery.modules.find((candidate) => candidate.specifier === specifier);
 
@@ -481,10 +487,30 @@ test('real delivery metadata preserves public library binding topology', async (
   assert.equal(widgets.source, 'dist/flutter/widgets.js');
   assert.equal(widgets.subpathRoot, 'dist/flutter/generated/libraries/widgets');
   const helpers = core.modules.flatMap((module) => module.helperSubpaths ?? []);
-  assert.equal(helpers.length, 17);
+  assert.equal(helpers.length, 15);
   assert.equal(new Set(helpers).size, helpers.length);
   assert.ok(helpers.includes('_bindings/components.__module'));
   assert.ok(helpers.includes('_bindings/sdk_widgets.__module'));
+  for (const library of ['material', 'cupertino']) {
+    assert.equal(entry(core, `@flax/flutter/${library}`), undefined);
+  }
+  for (const [delivery, library] of [
+    [material, 'material'],
+    [cupertino, 'cupertino'],
+  ]) {
+    assert.equal(entry(delivery, `@flax/${library}-ui`).source, 'dist/index.js');
+    const local = entry(delivery, `@flax/${library}-ui/dependencies/intl`);
+    const id = `flax.${library}/dependency_intl`;
+    assert.equal(local.source, 'dist/generated/dependencies/intl/index.js');
+    const owner = join(repository, `packages/flax_${library}_ui`);
+    await access(join(owner, 'js', local.source));
+    await access(join(owner, 'js-types/types/generated/dependencies/intl/index.d.ts'));
+    assert.deepEqual(
+      local.bindings.map((binding) => binding.moduleId),
+      [id],
+    );
+    assert.ok(local.bindings[0].types.includes(`${id}#type:DateFormat`));
+  }
   assert.deepEqual(entry(core, '@flax/flutter/vector_math').helperSubpaths, [
     '_bindings/sdk_dependencies.__module',
   ]);

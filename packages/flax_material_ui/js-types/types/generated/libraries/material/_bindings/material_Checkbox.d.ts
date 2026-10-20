@@ -4,6 +4,8 @@ import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import type * as upstream4 from '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
+import '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
 import '@flax/material-ui/_bindings/material_VisualDensity';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
@@ -53,6 +55,7 @@ export declare function _CheckboxFactory(options: {
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
     }> | null> | undefined;
     splashRadius?: Bindable<number | null> | undefined;
+    materialTapTargetSize?: Bindable<upstream4.MaterialTapTargetSize | null> | undefined;
     visualDensity?: Bindable<(Readonly<{
         "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
     }> & Readonly<{
@@ -117,6 +120,7 @@ export declare namespace _CheckboxFactory {
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.Color | null];
         }> | null> | undefined;
         splashRadius?: Bindable<number | null> | undefined;
+        materialTapTargetSize?: Bindable<upstream4.MaterialTapTargetSize | null> | undefined;
         visualDensity?: Bindable<(Readonly<{
             "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
         }> & Readonly<{

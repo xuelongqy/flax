@@ -3,34 +3,36 @@ import '@flax/flutter/foundation/_bindings/flutter_Key';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_GlobalKey';
 import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
 import '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
-import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream3 from '@flax/material-ui/_bindings/material_ScaffoldMessengerState';
+import '@flax/material-ui/_bindings/material_ScaffoldMessengerState';
+import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_Route';
+import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_Route';
 import '@flax/flutter/widgets/_bindings/flutter_Route';
-import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
+import type * as upstream6 from '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
 import '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
-import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_NavigationNotification';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/sdk_widgets_NavigationNotification';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_NavigationNotification';
-import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
 import '@flax/flutter/widgets/_bindings/flutter_NavigatorObserver';
 import '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/material-ui/_bindings/material_ThemeData';
-import type * as upstream10 from '@flax/material-ui/_bindings/material_ThemeMode';
+import type * as upstream11 from '@flax/material-ui/_bindings/material_ThemeMode';
 import '@flax/material-ui/_bindings/material_ThemeMode';
-import type * as upstream11 from '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream12 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/flutter/animation/_bindings/flutter_Curve';
-import type * as upstream13 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
+import type * as upstream14 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
-import type * as upstream14 from '@flax/flutter/widgets/_bindings/sdk_widgets_LocalizationsDelegate';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_LocalizationsDelegate';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_LocalizationsDelegate';
-import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_Intent';
+import type * as upstream16 from '@flax/flutter/widgets/_bindings/sdk_widgets_Intent';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Intent';
-import type * as upstream16 from '@flax/flutter/widgets/_bindings/sdk_widgets_ShortcutActivator';
+import type * as upstream17 from '@flax/flutter/widgets/_bindings/sdk_widgets_ShortcutActivator';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ShortcutActivator';
-import type * as upstream17 from '@flax/flutter/widgets/_bindings/sdk_widgets_Action';
+import type * as upstream18 from '@flax/flutter/widgets/_bindings/sdk_widgets_Action';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Action';
-import type * as upstream18 from '@flax/dart/core/_bindings/flutter_Type';
+import type * as upstream19 from '@flax/dart/core/_bindings/flutter_Type';
 import '@flax/dart/core/_bindings/flutter_Type';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollBehavior';
 import '@flax/flutter/animation/_bindings/sdk_animation_AnimationStyle';
@@ -39,9 +41,9 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformationParser';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RouterDelegate';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RouterConfig';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_BackButtonDispatcher';
-import type * as upstream26 from '@flax/flutter/widgets/_bindings/sdk_widgets_HeroController';
+import type * as upstream27 from '@flax/flutter/widgets/_bindings/sdk_widgets_HeroController';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_HeroController';
-import type * as upstream27 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
+import type * as upstream28 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MaterialApp extends WidgetDescription, Omit<Readonly<{
     "__flaxBound:package:material_ui/src/app.dart::MaterialApp": readonly [];
@@ -65,31 +67,36 @@ export declare function _MaterialAppFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }>) | null> | undefined;
+    scaffoldMessengerKey?: Bindable<(Readonly<{
+        "__flaxBound:package:flutter/src/widgets/framework.dart::GlobalKey": readonly [upstream3.ScaffoldMessengerState];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }>) | null> | undefined;
     home?: Bindable<Widget | null> | undefined;
-    routes?: Bindable<DartMapInput<string, ((context: upstream3.BuildContext) => Widget), string, ((context: upstream3.BuildContext) => Widget)>> | undefined;
+    routes?: Bindable<DartMapInput<string, ((context: upstream4.BuildContext) => Widget), string, ((context: upstream4.BuildContext) => Widget)>> | undefined;
     initialRoute?: Bindable<string | null> | undefined;
-    onGenerateRoute?: Bindable<((settings: upstream5.RouteSettings) => (Readonly<{
+    onGenerateRoute?: Bindable<((settings: upstream6.RouteSettings) => (Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::Route": readonly [unknown | null];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder": readonly [];
     }>) | null) | null> | undefined;
-    onGenerateInitialRoutes?: Bindable<((initialRoute: string) => DartListInput<upstream4.Route<unknown | null>, Readonly<{
+    onGenerateInitialRoutes?: Bindable<((initialRoute: string) => DartListInput<upstream5.Route<unknown | null>, Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::Route": readonly [unknown | null];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder": readonly [];
     }>>) | null> | undefined;
-    onUnknownRoute?: Bindable<((settings: upstream5.RouteSettings) => (Readonly<{
+    onUnknownRoute?: Bindable<((settings: upstream6.RouteSettings) => (Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::Route": readonly [unknown | null];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder": readonly [];
     }>) | null) | null> | undefined;
-    onNavigationNotification?: Bindable<((notification: upstream6.NavigationNotification) => boolean) | null> | undefined;
-    navigatorObservers?: Bindable<DartListInput<upstream7.NavigatorObserver, Readonly<{
+    onNavigationNotification?: Bindable<((notification: upstream7.NavigationNotification) => boolean) | null> | undefined;
+    navigatorObservers?: Bindable<DartListInput<upstream8.NavigatorObserver, Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::NavigatorObserver": readonly [];
     }>>> | undefined;
-    builder?: Bindable<((context: upstream3.BuildContext, child: Widget | null) => Widget) | null> | undefined;
+    builder?: Bindable<((context: upstream4.BuildContext, child: Widget | null) => Widget) | null> | undefined;
     title?: Bindable<string | null> | undefined;
-    onGenerateTitle?: Bindable<((context: upstream3.BuildContext) => string) | null> | undefined;
+    onGenerateTitle?: Bindable<((context: upstream4.BuildContext) => string) | null> | undefined;
     color?: Bindable<Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null> | undefined;
@@ -113,11 +120,11 @@ export declare function _MaterialAppFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null> | undefined;
-    themeMode?: Bindable<upstream10.ThemeMode | null> | undefined;
+    themeMode?: Bindable<upstream11.ThemeMode | null> | undefined;
     themeAnimationDuration?: Bindable<Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
     }> & Readonly<{
-        "__flaxBound:dart:core::Comparable": readonly [upstream11.Duration];
+        "__flaxBound:dart:core::Comparable": readonly [upstream12.Duration];
     }>> | undefined;
     themeAnimationCurve?: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
@@ -127,16 +134,16 @@ export declare function _MaterialAppFactory(options?: {
     locale?: Bindable<Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
     }> | null> | undefined;
-    localizationsDelegates?: Bindable<DartIterableInput<upstream14.LocalizationsDelegate<unknown | null>, Readonly<{
+    localizationsDelegates?: Bindable<DartIterableInput<upstream15.LocalizationsDelegate<unknown | null>, Readonly<{
         "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null];
     }>> | null> | undefined;
-    localeListResolutionCallback?: Bindable<((locales: DartList<upstream13.Locale> | null, supportedLocales: DartIterable<upstream13.Locale>) => Readonly<{
+    localeListResolutionCallback?: Bindable<((locales: DartList<upstream14.Locale> | null, supportedLocales: DartIterable<upstream14.Locale>) => Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
     }> | null) | null> | undefined;
-    localeResolutionCallback?: Bindable<((locale: upstream13.Locale | null, supportedLocales: DartIterable<upstream13.Locale>) => Readonly<{
+    localeResolutionCallback?: Bindable<((locale: upstream14.Locale | null, supportedLocales: DartIterable<upstream14.Locale>) => Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
     }> | null) | null> | undefined;
-    supportedLocales?: Bindable<DartIterableInput<upstream13.Locale, Readonly<{
+    supportedLocales?: Bindable<DartIterableInput<upstream14.Locale, Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
     }>>> | undefined;
     debugShowMaterialGrid?: Bindable<boolean> | undefined;
@@ -145,17 +152,17 @@ export declare function _MaterialAppFactory(options?: {
     checkerboardOffscreenLayers?: Bindable<boolean> | undefined;
     showSemanticsDebugger?: Bindable<boolean> | undefined;
     debugShowCheckedModeBanner?: Bindable<boolean> | undefined;
-    shortcuts?: Bindable<DartMapInput<upstream16.ShortcutActivator, upstream15.Intent, Readonly<{
+    shortcuts?: Bindable<DartMapInput<upstream17.ShortcutActivator, upstream16.Intent, Readonly<{
         "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
     }>, Readonly<{
         "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>> | null> | undefined;
-    actions?: Bindable<DartMapInput<upstream18.Type, upstream17.Action<upstream15.Intent>, Readonly<{
+    actions?: Bindable<DartMapInput<upstream19.Type, upstream18.Action<upstream16.Intent>, Readonly<{
         "__flaxBound:dart:core::Type": readonly [];
     }>, Readonly<{
-        "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream15.Intent];
+        "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream16.Intent];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>> | null> | undefined;
@@ -175,10 +182,15 @@ export declare namespace _MaterialAppFactory {
         key?: Readonly<{
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
+        scaffoldMessengerKey?: Bindable<(Readonly<{
+            "__flaxBound:package:flutter/src/widgets/framework.dart::GlobalKey": readonly [upstream3.ScaffoldMessengerState];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+        }>) | null> | undefined;
         routeInformationProvider?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream27.RouteInformation];
+            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream28.RouteInformation];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }>) | null> | undefined;
@@ -198,10 +210,10 @@ export declare namespace _MaterialAppFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/widgets/router.dart::_CallbackHookProvider": readonly [Promise<boolean>];
         }>) | null> | undefined;
-        builder?: Bindable<((context: upstream3.BuildContext, child: Widget | null) => Widget) | null> | undefined;
+        builder?: Bindable<((context: upstream4.BuildContext, child: Widget | null) => Widget) | null> | undefined;
         title?: Bindable<string | null> | undefined;
-        onGenerateTitle?: Bindable<((context: upstream3.BuildContext) => string) | null> | undefined;
-        onNavigationNotification?: Bindable<((notification: upstream6.NavigationNotification) => boolean) | null> | undefined;
+        onGenerateTitle?: Bindable<((context: upstream4.BuildContext) => string) | null> | undefined;
+        onNavigationNotification?: Bindable<((notification: upstream7.NavigationNotification) => boolean) | null> | undefined;
         color?: Bindable<Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null> | undefined;
@@ -225,11 +237,11 @@ export declare namespace _MaterialAppFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null> | undefined;
-        themeMode?: Bindable<upstream10.ThemeMode | null> | undefined;
+        themeMode?: Bindable<upstream11.ThemeMode | null> | undefined;
         themeAnimationDuration?: Bindable<Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
         }> & Readonly<{
-            "__flaxBound:dart:core::Comparable": readonly [upstream11.Duration];
+            "__flaxBound:dart:core::Comparable": readonly [upstream12.Duration];
         }>> | undefined;
         themeAnimationCurve?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
@@ -239,16 +251,16 @@ export declare namespace _MaterialAppFactory {
         locale?: Bindable<Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null> | undefined;
-        localizationsDelegates?: Bindable<DartIterableInput<upstream14.LocalizationsDelegate<unknown | null>, Readonly<{
+        localizationsDelegates?: Bindable<DartIterableInput<upstream15.LocalizationsDelegate<unknown | null>, Readonly<{
             "__flaxBound:package:flutter/src/widgets/localizations.dart::LocalizationsDelegate": readonly [unknown | null];
         }>> | null> | undefined;
-        localeListResolutionCallback?: Bindable<((locales: DartList<upstream13.Locale> | null, supportedLocales: DartIterable<upstream13.Locale>) => Readonly<{
+        localeListResolutionCallback?: Bindable<((locales: DartList<upstream14.Locale> | null, supportedLocales: DartIterable<upstream14.Locale>) => Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null) | null> | undefined;
-        localeResolutionCallback?: Bindable<((locale: upstream13.Locale | null, supportedLocales: DartIterable<upstream13.Locale>) => Readonly<{
+        localeResolutionCallback?: Bindable<((locale: upstream14.Locale | null, supportedLocales: DartIterable<upstream14.Locale>) => Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null) | null> | undefined;
-        supportedLocales?: Bindable<DartIterableInput<upstream13.Locale, Readonly<{
+        supportedLocales?: Bindable<DartIterableInput<upstream14.Locale, Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }>>> | undefined;
         debugShowMaterialGrid?: Bindable<boolean> | undefined;
@@ -257,17 +269,17 @@ export declare namespace _MaterialAppFactory {
         checkerboardOffscreenLayers?: Bindable<boolean> | undefined;
         showSemanticsDebugger?: Bindable<boolean> | undefined;
         debugShowCheckedModeBanner?: Bindable<boolean> | undefined;
-        shortcuts?: Bindable<DartMapInput<upstream16.ShortcutActivator, upstream15.Intent, Readonly<{
+        shortcuts?: Bindable<DartMapInput<upstream17.ShortcutActivator, upstream16.Intent, Readonly<{
             "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
         }>, Readonly<{
             "__flaxBound:package:flutter/src/widgets/actions.dart::Intent": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>> | null> | undefined;
-        actions?: Bindable<DartMapInput<upstream18.Type, upstream17.Action<upstream15.Intent>, Readonly<{
+        actions?: Bindable<DartMapInput<upstream19.Type, upstream18.Action<upstream16.Intent>, Readonly<{
             "__flaxBound:dart:core::Type": readonly [];
         }>, Readonly<{
-            "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream15.Intent];
+            "__flaxBound:package:flutter/src/widgets/actions.dart::Action": readonly [upstream16.Intent];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>> | null> | undefined;
@@ -284,6 +296,6 @@ export declare namespace _MaterialAppFactory {
     }): MaterialApp;
 }
 export declare namespace _MaterialAppFactory {
-    function createMaterialHeroController(): upstream26.HeroController;
+    function createMaterialHeroController(): upstream27.HeroController;
 }
 export declare const MaterialApp: typeof _MaterialAppFactory & _FlaxInstanceType<MaterialApp> & _FlaxDartType<MaterialApp, readonly ["class", "flax.material/material#type:MaterialApp", readonly [], false]>;

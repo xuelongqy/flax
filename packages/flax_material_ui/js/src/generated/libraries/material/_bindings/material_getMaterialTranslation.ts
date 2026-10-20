@@ -1,0 +1,19 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/material-ui/_bindings/material_GlobalMaterialLocalizations';
+import '@flax/material-ui/_bindings/material_GlobalMaterialLocalizations';
+import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
+import type * as upstream2 from '@flax/material-ui/dependencies/intl/_bindings/dependency_intl_DateFormat';
+import '@flax/material-ui/dependencies/intl/_bindings/dependency_intl_DateFormat';
+import type * as upstream3 from '@flax/material-ui/dependencies/intl/_bindings/dependency_intl_NumberFormat';
+import '@flax/material-ui/dependencies/intl/_bindings/dependency_intl_NumberFormat';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+function _flaxTopLevel_getMaterialTranslation(locale: Readonly<{ "__flaxBound:dart:ui::Locale": readonly [] }>, fullYearFormat: Readonly<{ "__flaxBound:package:intl/src/intl/date_format.dart::DateFormat": readonly [] }>, compactDateFormat: Readonly<{ "__flaxBound:package:intl/src/intl/date_format.dart::DateFormat": readonly [] }>, shortDateFormat: Readonly<{ "__flaxBound:package:intl/src/intl/date_format.dart::DateFormat": readonly [] }>, mediumDateFormat: Readonly<{ "__flaxBound:package:intl/src/intl/date_format.dart::DateFormat": readonly [] }>, longDateFormat: Readonly<{ "__flaxBound:package:intl/src/intl/date_format.dart::DateFormat": readonly [] }>, yearMonthFormat: Readonly<{ "__flaxBound:package:intl/src/intl/date_format.dart::DateFormat": readonly [] }>, shortMonthDayFormat: Readonly<{ "__flaxBound:package:intl/src/intl/date_format.dart::DateFormat": readonly [] }>, decimalFormat: Readonly<{ "__flaxBound:package:intl/src/intl/number_format.dart::NumberFormat": readonly [] }>, twoDigitZeroPaddedFormat: Readonly<{ "__flaxBound:package:intl/src/intl/number_format.dart::NumberFormat": readonly [] }>): upstream0.GlobalMaterialLocalizations | null {
+if (arguments.length > 10) throw new TypeError('Too many method arguments');
+const _flaxResult = invokeTopLevel("flax.material/material#function:getMaterialTranslation", [locale, fullYearFormat, compactDateFormat, shortDateFormat, mediumDateFormat, longDateFormat, yearMonthFormat, shortMonthDayFormat, decimalFormat, twoDigitZeroPaddedFormat]);
+return _flaxResult as upstream0.GlobalMaterialLocalizations | null;
+}
+export { _flaxTopLevel_getMaterialTranslation as getMaterialTranslation };

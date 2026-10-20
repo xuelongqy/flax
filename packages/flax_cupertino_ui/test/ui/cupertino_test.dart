@@ -5,9 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../support/harness.dart';
 
 void main() {
-  testWidgets('plugin installs bindings for the selected Cupertino slice', (
-    tester,
-  ) async {
+  testWidgets('plugin installs the public Cupertino bindings', (tester) async {
     final harness = CupertinoHarness();
     await tester.pumpWidget(harness.view());
     await tester.pumpAndSettle();

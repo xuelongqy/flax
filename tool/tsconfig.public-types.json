@@ -27,7 +27,15 @@
       "@flax/cupertino-ui/*": [
         "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/*"
       ],
-      "@flax/flutter/widgets": ["../packages/flax/js/src/flutter/widgets.ts"]
+      "@flax/flutter/widgets": ["../packages/flax/js/src/flutter/widgets.ts"],
+      "@flax/material-ui/dependencies/*": [
+        "../packages/flax_material_ui/js/src/generated/dependencies/*",
+        "../packages/flax_material_ui/js/src/generated/dependencies/*/index.ts"
+      ],
+      "@flax/cupertino-ui/dependencies/*": [
+        "../packages/flax_cupertino_ui/js/src/generated/dependencies/*",
+        "../packages/flax_cupertino_ui/js/src/generated/dependencies/*/index.ts"
+      ]
     }
   },
   "files": [
@@ -54,6 +62,8 @@
   ],
   "include": [
     "../packages/flax/js/src/flutter/generated/libraries/*/index.ts",
-    "../packages/flax/js/src/dart/generated/libraries/*/index.ts"
+    "../packages/flax/js/src/dart/generated/libraries/*/index.ts",
+    "../packages/flax_material_ui/js/src/generated/**/*.ts",
+    "../packages/flax_cupertino_ui/js/src/generated/**/*.ts"
   ]
 }

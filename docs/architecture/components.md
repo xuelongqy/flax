@@ -49,8 +49,8 @@ runApp(new Counter(3));
 ```
 
 The imports are `signal` from `@flax/core`, component/layout types from
-`@flax/flutter/widgets`, and `TextButton` from `@flax/flutter/material`. Existing
-generated constructors retain their function syntax.
+`@flax/flutter/widgets`, and `TextButton` from `@flax/material-ui`. Existing generated
+constructors retain their function syntax.
 
 Application components are class-based Flutter Widgets. An arbitrary JavaScript function
 that returns a Widget is not a component and receives no mount, State or lifecycle

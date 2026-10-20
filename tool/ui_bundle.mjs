@@ -51,10 +51,8 @@ const moduleEntries = [
   ['@flax/core/bindings', '@flax/core-runtime'],
   ...[
     'animation',
-    'cupertino',
     'foundation',
     'gestures',
-    'material',
     'painting',
     'physics',
     'rendering',

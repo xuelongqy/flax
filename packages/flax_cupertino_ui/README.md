@@ -1,17 +1,18 @@
 # flax_cupertino_ui
 
-Generated bindings for the supported standalone Cupertino UI subset.
+Generated bindings for the supported public `cupertino_ui` library.
 
 The public JavaScript module is `@flax/cupertino-ui`. The Dart package owns the
 corresponding binding registration and `FlaxCupertinoPlugin` opts the module into a
 `FlaxView` host. Flutter/Core-owned values keep their existing provider identity.
 
-The standalone selection remains curated. Core still generates Flutter's native Material
-and Cupertino libraries; this package is not a completed replacement or full-library
-split. Selection follows four shared rules: generate the configured `cupertino_ui`
-source, reuse Core and declared providers, allow explicitly opted-in owner-local
-external types, otherwise skip the affected signature. Core is implicit and cannot be
-duplicated.
+Automatic selection covers the public `cupertino_ui` entry, with explicit skip reasons
+and a blacklist for concrete localization language implementations. Core no longer
+contains native Flutter Material/Cupertino bindings. The removed
+`@flax/flutter/cupertino` entry is not an alias for these Dart classes. Selection
+follows four shared rules: generate the configured source, reuse Core and declared
+providers, allow opted-in owner-local external types, otherwise skip the affected
+signature. Core is implicit and cannot be duplicated.
 
 A reusable external provider needs matching direct Dart and public JS types
 dependencies. The source JS package must also depend on the provider's physical runtime
@@ -31,9 +32,8 @@ bindingDependencies:
 
 This additionally requires a direct `intl` dependency in `pubspec.yaml`; transitive
 dependencies are insufficient. Omission or an empty list generates no external views.
-The metadata allows `intl`, but the curated selection does not reference its types and
-therefore emits no `intl` views. Whole-library discovery can generate the required views
-without changing that selection. Generated owner-local views use
+The metadata allows `intl`, and full discovery generates only its referenced closure.
+Material's local `intl` views remain independent. Generated owner-local views use
 `@flax/cupertino-ui/dependencies/intl`, runtime source
 `dist/generated/dependencies/intl/index.js` and the matching directory `subpathRoot`.
 The specific types-only `./dependencies/*` export uses an array:
@@ -51,7 +51,7 @@ bindings. See the
 
 Whole-library automatic discovery (`--library`) reads `bindings/flax_overrides.yaml` and
 excludes the concrete `CupertinoLocalization*` language implementations. These classes
-are also absent from the current curated selection. When selecting localization APIs,
+remain absent from the generated public surface. When selecting localization APIs,
 applications normally use `GlobalCupertinoLocalizations.delegates`; Dart creates the
 date and number formatters internally. This does not require exposing `intl` objects to
 JavaScript. The base localization constructor and `getCupertinoTranslation` still accept

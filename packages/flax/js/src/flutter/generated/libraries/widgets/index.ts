@@ -138,8 +138,8 @@ export { TextSelection } from "@flax/flutter/services/_bindings/flutter_TextSele
 export { TextStyle } from "@flax/flutter/painting/_bindings/flutter_TextStyle";
 export { TickerProvider } from "@flax/flutter/scheduler/_bindings/flutter_TickerProvider";
 export { UnfocusDisposition } from "@flax/flutter/widgets/_bindings/flutter_UnfocusDisposition";
-export type { ValueChanged, ValueChangedInput } from "@flax/flutter/cupertino/_bindings/flutter_ValueChanged";
-export type { ValueGetter, ValueGetterInput } from "@flax/flutter/cupertino/_bindings/flutter_ValueGetter";
+export type { ValueChanged, ValueChangedInput } from "@flax/flutter/foundation/_bindings/flutter_ValueChanged";
+export type { ValueGetter, ValueGetterInput } from "@flax/flutter/foundation/_bindings/flutter_ValueGetter";
 export { ValueKey } from "@flax/flutter/foundation/_bindings/flutter_ValueKey";
 export { ValueListenableBuilder } from "@flax/flutter/widgets/_bindings/flutter_ValueListenableBuilder";
 export { VerticalDirection } from "@flax/flutter/painting/_bindings/flutter_VerticalDirection";

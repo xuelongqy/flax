@@ -1,4 +1,4 @@
-/// Generated bindings for the supported standalone Material UI subset.
+/// Generated bindings for the supported public material_ui library.
 library;
 
 import 'package:flax/flax.dart';
@@ -7,7 +7,7 @@ import 'src/generated/material_bindings.g.dart';
 
 export 'src/generated/material_bindings.g.dart';
 
-/// Enables host delivery of the public Flutter Material JavaScript module.
+/// Enables host delivery of the public material_ui JavaScript module.
 class FlaxMaterialPlugin extends FlaxPlugin {
   const FlaxMaterialPlugin();
 

@@ -9,10 +9,12 @@ import '@flax/flutter/painting/_bindings/flutter_TextStyle';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import type * as upstream9 from '@flax/material-ui/_bindings/material_ListTileTitleAlignment';
+import '@flax/material-ui/_bindings/material_ListTileTitleAlignment';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetStatesController';
-import type * as upstream10 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream11 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import type * as upstream11 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import type * as upstream12 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ListTile extends WidgetDescription, Omit<Readonly<{
     "__flaxBound:package:material_ui/src/list_tile.dart::ListTile": readonly [];
@@ -117,17 +119,18 @@ export declare function _ListTileFactory(options?: {
     minVerticalPadding?: Bindable<number | null> | undefined;
     minLeadingWidth?: Bindable<number | null> | undefined;
     minTileHeight?: Bindable<number | null> | undefined;
+    titleAlignment?: Bindable<upstream9.ListTileTitleAlignment | null> | undefined;
     internalAddSemanticForOnTap?: Bindable<boolean> | undefined;
     statesController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream11.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream12.WidgetState>];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream11.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream12.WidgetState>];
     }>) | null> | undefined;
 }): ListTile;
 export declare namespace _ListTileFactory {
@@ -135,7 +138,7 @@ export declare namespace _ListTileFactory {
         color?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
-        context?: upstream10.BuildContext | null | undefined;
+        context?: upstream11.BuildContext | null | undefined;
         tiles: DartIterableInput<Widget, Widget>;
     }): DartIterable<Widget>;
 }

@@ -51,8 +51,8 @@ export { TextOverflow } from "@flax/flutter/painting/_bindings/flutter_TextOverf
 export { TextRange } from "@flax/dart/ui/_bindings/flutter_TextRange";
 export { TextSelection } from "@flax/flutter/services/_bindings/flutter_TextSelection";
 export { TextStyle } from "@flax/flutter/painting/_bindings/flutter_TextStyle";
-export type { ValueChanged, ValueChangedInput } from "@flax/flutter/cupertino/_bindings/flutter_ValueChanged";
-export type { ValueGetter, ValueGetterInput } from "@flax/flutter/cupertino/_bindings/flutter_ValueGetter";
+export type { ValueChanged, ValueChangedInput } from "@flax/flutter/foundation/_bindings/flutter_ValueChanged";
+export type { ValueGetter, ValueGetterInput } from "@flax/flutter/foundation/_bindings/flutter_ValueGetter";
 export { VerticalDirection } from "@flax/flutter/painting/_bindings/flutter_VerticalDirection";
 export { WrapAlignment } from "@flax/flutter/rendering/_bindings/flutter_WrapAlignment";
 export { WrapCrossAlignment } from "@flax/flutter/rendering/_bindings/flutter_WrapCrossAlignment";

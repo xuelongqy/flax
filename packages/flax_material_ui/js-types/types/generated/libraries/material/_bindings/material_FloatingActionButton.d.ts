@@ -6,6 +6,8 @@ import '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
 import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_Clip';
 import '@flax/dart/ui/_bindings/flutter_Clip';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
+import type * as upstream6 from '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
+import '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/painting/_bindings/flutter_TextStyle';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -74,6 +76,7 @@ export declare function _FloatingActionButtonFactory(options: {
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }>) | null> | undefined;
     autofocus?: Bindable<boolean> | undefined;
+    materialTapTargetSize?: Bindable<upstream6.MaterialTapTargetSize | null> | undefined;
     isExtended?: Bindable<boolean> | undefined;
     enableFeedback?: Bindable<boolean | null> | undefined;
 }): FloatingActionButton;
@@ -129,6 +132,7 @@ export declare namespace _FloatingActionButtonFactory {
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }>) | null> | undefined;
         autofocus?: Bindable<boolean> | undefined;
+        materialTapTargetSize?: Bindable<upstream6.MaterialTapTargetSize | null> | undefined;
         enableFeedback?: Bindable<boolean | null> | undefined;
     }): FloatingActionButton;
 }
@@ -184,6 +188,7 @@ export declare namespace _FloatingActionButtonFactory {
             "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
         }>) | null> | undefined;
         autofocus?: Bindable<boolean> | undefined;
+        materialTapTargetSize?: Bindable<upstream6.MaterialTapTargetSize | null> | undefined;
         enableFeedback?: Bindable<boolean | null> | undefined;
     }): FloatingActionButton;
 }
@@ -224,6 +229,7 @@ export declare namespace _FloatingActionButtonFactory {
             "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
         }> | null> | undefined;
         isExtended?: Bindable<boolean> | undefined;
+        materialTapTargetSize?: Bindable<upstream6.MaterialTapTargetSize | null> | undefined;
         clipBehavior?: Bindable<upstream4.Clip> | undefined;
         focusNode?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];

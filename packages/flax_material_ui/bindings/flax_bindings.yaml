@@ -3,8 +3,7 @@ name: material
 imports:
   - flax
 library: package:material_ui/material_ui.dart
-additionalLibraries:
-  - package:flutter/services.dart
+automatic: true
 jsPackage: '@flax/material-ui'
 dartOutput: lib/src/generated/material_bindings.g.dart
 tsOutput: js/src/generated/bindings.ts
@@ -12,59 +11,14 @@ publicLibraries:
   package:material_ui/material_ui.dart:
     jsPackage: '@flax/material-ui'
     tsOutput: js/src/generated/libraries/material/index.ts
-topLevel:
-  getters:
-    - kToolbarHeight
-    - kTabScrollDuration
-types:
-  - Brightness
-  - ListTileStyle
-  - MaterialType
-  - NavigationDestinationLabelBehavior
-  - TextInputAction
-  - ThemeMode
-functions:
-  - showDialog
-classes:
-  - Material
-  - InkWell
-  - LinearProgressIndicator
-  - AlertDialog
-  - MaterialApp
-  - Scaffold
-  - RefreshIndicator
-  - ButtonStyle
-  - VisualDensity
-  - AppBar
-  - Theme
-  - ThemeData
-  - TextTheme
-  - ColorScheme
-  - InputDecoration
-  - TextField
-  - MaterialPageRoute
-  - MaterialPage
-  - TextButton
-  - ElevatedButton
-  - OutlinedButton
-  - FilledButton
-  - IconButton
-  - FloatingActionButton
-  - Drawer
-  - Divider
-  - VerticalDivider
-  - Card
-  - ListTile
-  - Checkbox
-  - Switch
-  - CircularProgressIndicator
-  - NavigationDestination
-  - NavigationBar
 overrides:
+  # The shared JS host owns application roots.
+  exclude: [runApp]
   classes:
     AppBar:
       widgetInterfaces:
         - PreferredSizeWidget
+    # Preserve the established reactive constructor API for rendering adapters.
     Material: &renderOnlyWidget
       getters: []
       setters: []

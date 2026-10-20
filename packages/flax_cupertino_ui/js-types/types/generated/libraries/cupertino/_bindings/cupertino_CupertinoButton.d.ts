@@ -1,5 +1,7 @@
 import { type FlaxInstanceType as _FlaxInstanceType, type Bindable, type Widget, type WidgetDescription } from '@flax/core/bindings';
 import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream1 from '@flax/cupertino-ui/_bindings/cupertino_CupertinoButtonSize';
+import '@flax/cupertino-ui/_bindings/cupertino_CupertinoButtonSize';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Size';
@@ -26,6 +28,7 @@ export declare function _CupertinoButtonFactory(options: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     child: Bindable<Widget>;
+    sizeStyle?: Bindable<upstream1.CupertinoButtonSize> | undefined;
     padding?: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
     }> | null> | undefined;
@@ -85,6 +88,7 @@ export declare namespace _CupertinoButtonFactory {
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
         child: Bindable<Widget>;
+        sizeStyle?: Bindable<upstream1.CupertinoButtonSize> | undefined;
         padding?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
         }> | null> | undefined;
@@ -145,6 +149,7 @@ export declare namespace _CupertinoButtonFactory {
             "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
         }> | null | undefined;
         child: Bindable<Widget>;
+        sizeStyle?: Bindable<upstream1.CupertinoButtonSize> | undefined;
         padding?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
         }> | null> | undefined;

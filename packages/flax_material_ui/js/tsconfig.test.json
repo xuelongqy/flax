@@ -13,6 +13,7 @@
     "test/shared_objects.types.ts",
     "test/fixtures/binding_slice.ts",
     "test/fixtures/shared_objects.ts",
+    "test/fixtures/theme.ts",
     "test/fixtures/widget_interfaces.ts",
     "test/fixtures/top_level.ts"
   ]

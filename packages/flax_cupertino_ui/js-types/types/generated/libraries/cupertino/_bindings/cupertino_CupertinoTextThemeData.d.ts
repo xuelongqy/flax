@@ -13,7 +13,8 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface CupertinoTextThemeData extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:cupertino_ui/src/text_theme.dart::CupertinoTextThemeData": readonly [];
 }>, Readonly<{
@@ -143,6 +144,237 @@ export declare function _CupertinoTextThemeDataFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
 }): CupertinoTextThemeData;
-export declare const CupertinoTextThemeData: typeof _CupertinoTextThemeDataFactory & _FlaxInstanceType<CupertinoTextThemeData> & _FlaxDartType<CupertinoTextThemeData, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextThemeData", readonly [], false]>;
+export interface _CupertinoTextThemeDataNative extends CupertinoTextThemeData {
+    readonly [_flaxDartTypeValue]: _CupertinoTextThemeDataNative;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream5.DiagnosticsTreeStyle | null | undefined;
+    }): upstream4.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    resolveFrom(context: upstream7.BuildContext): CupertinoTextThemeData;
+    copyWith(options?: {
+        primaryColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | null | undefined;
+        textStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        actionTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        actionSmallTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        tabLabelTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navTitleTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navLargeTitleTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navActionTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        pickerTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        dateTimePickerTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }): CupertinoTextThemeData;
+    get textStyle(): upstream2.TextStyle;
+    get actionTextStyle(): upstream2.TextStyle;
+    get actionSmallTextStyle(): upstream2.TextStyle;
+    get tabLabelTextStyle(): upstream2.TextStyle;
+    get navTitleTextStyle(): upstream2.TextStyle;
+    get navLargeTitleTextStyle(): upstream2.TextStyle;
+    get navActionTextStyle(): upstream2.TextStyle;
+    get pickerTextStyle(): upstream2.TextStyle;
+    get dateTimePickerTextStyle(): upstream2.TextStyle;
+}
+export declare abstract class _CupertinoTextThemeDataNative extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CupertinoTextThemeData>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: CupertinoTextThemeData;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextThemeData", readonly [], false];
+    constructor(options?: {
+        primaryColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | undefined;
+        textStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        actionTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        actionSmallTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        tabLabelTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navTitleTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navLargeTitleTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navActionTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        pickerTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        dateTimePickerTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    });
+}
+export declare namespace _CupertinoTextThemeDataFactory {
+    function implement(args: [options?: {
+        primaryColor?: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }> | undefined;
+        textStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        actionTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        actionSmallTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        tabLabelTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navTitleTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navLargeTitleTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        navActionTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        pickerTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+        dateTimePickerTextStyle?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>) | null | undefined;
+    }], implementation: {}): CupertinoTextThemeData;
+}
+declare const _CupertinoTextThemeDataBinding: typeof _CupertinoTextThemeDataFactory & (new (options?: {
+    primaryColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | undefined;
+    textStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    actionSmallTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    tabLabelTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    navTitleTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    navLargeTitleTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    navActionTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    pickerTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+    dateTimePickerTextStyle?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>) | null | undefined;
+}) => _CupertinoTextThemeDataNative);
+export declare const CupertinoTextThemeData: typeof _CupertinoTextThemeDataBinding & _FlaxInstanceType<CupertinoTextThemeData> & _FlaxDartType<CupertinoTextThemeData, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTextThemeData", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "textStyle" | "actionTextStyle" | "actionSmallTextStyle" | "tabLabelTextStyle" | "navTitleTextStyle" | "navLargeTitleTextStyle" | "navActionTextStyle" | "pickerTextStyle" | "dateTimePickerTextStyle" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "resolveFrom" | "copyWith" | "__flaxBound:package:cupertino_ui/src/text_theme.dart::CupertinoTextThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

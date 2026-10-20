@@ -4,11 +4,12 @@
 constructors, members, parameter types and defaults come from the existing
 analyzer-based automatic selector. Inline overrides retain adapter kinds, proxy choices,
 callback signatures and lifecycle policy. [flax_components.yaml](flax_components.yaml)
-keeps the fixed State mixin combinations. The `flax_sdk_*.yaml` files add all public
-Flutter libraries and `dart:ui` as automatic scopes in this same package. They reuse the
-existing Manifest source index: one implementation owns a declaration, and other public
-libraries reexport it. Config order does not decide parents or generic providers. See
-the [rules guide](../README.md).
+keeps the fixed State mixin combinations. The `flax_sdk_*.yaml` files add public Flutter
+framework libraries and `dart:ui` as automatic scopes. Material and Cupertino are owned
+by `flax_material_ui` and `flax_cupertino_ui`, not Core. They reuse the existing
+Manifest source index: one implementation owns a declaration, and other public libraries
+reexport it. Config order does not decide parents or generic providers. See the
+[rules guide](../README.md).
 
 The shared `renderOnlyWidget` YAML anchor clears instance members for Widgets that keep
 reactive constructor descriptions. Constructors/static members are still inferred.

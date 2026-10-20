@@ -1,9 +1,16 @@
 # material_ui Binding Selection
 
-[flax_bindings.yaml](flax_bindings.yaml) selects the public declarations. Ordinary
-members use automatic selection; inline overrides retain Widget interfaces and route
-builder metadata. Types and defaults come from analyzer rather than hand-maintained
-signatures. See the [rules guide](../README.md).
+[flax_bindings.yaml](flax_bindings.yaml) discovers the supported complete public
+`material_ui` entry. Ordinary declarations and members use shared automatic selection;
+inline overrides retain Widget interfaces, existing reactive rendering adapters, route
+builder metadata and host ownership of `runApp`. Required `intl` types are owner-local
+views; Cupertino APIs reuse their declared provider. Types and defaults come from
+analyzer rather than hand-maintained signatures. See the [rules guide](../README.md).
+
+Rendering adapters keep their existing `.bind` constructor inputs. Removing their
+member-selection overrides would switch them to immediate real-object construction; that
+is a different API contract. Newly discovered ordinary members use automatic selection
+without extra class-specific signatures.
 
 MaterialPageRoute and MaterialPage use ordinary object bindings, with Object? as their
 default result type. Explicit runtime type selection uses the shared checked type APIs.

@@ -7,7 +7,9 @@ import type * as upstream3 from '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/dart/core/_bindings/flutter_StackTrace';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_Icon';
-import type * as upstream6 from '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
+import type * as upstream6 from '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
+import '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
+import type * as upstream7 from '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
 import '@flax/flutter/gestures/_bindings/flutter_DragStartBehavior';
 import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
@@ -70,7 +72,8 @@ export declare function _SwitchFactory(options: {
     thumbIcon?: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Icon | null];
     }> | null> | undefined;
-    dragStartBehavior?: Bindable<upstream6.DragStartBehavior> | undefined;
+    materialTapTargetSize?: Bindable<upstream6.MaterialTapTargetSize | null> | undefined;
+    dragStartBehavior?: Bindable<upstream7.DragStartBehavior> | undefined;
     mouseCursor?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
     }> & Readonly<{
@@ -135,6 +138,7 @@ export declare namespace _SwitchFactory {
             "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
         }> | null> | undefined;
         onInactiveThumbImageError?: Bindable<((exception: {}, stackTrace: upstream3.StackTrace | null) => void) | null> | undefined;
+        materialTapTargetSize?: Bindable<upstream6.MaterialTapTargetSize | null> | undefined;
         thumbColor?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream1.Color | null];
         }> | null> | undefined;
@@ -150,7 +154,7 @@ export declare namespace _SwitchFactory {
         thumbIcon?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream5.Icon | null];
         }> | null> | undefined;
-        dragStartBehavior?: Bindable<upstream6.DragStartBehavior> | undefined;
+        dragStartBehavior?: Bindable<upstream7.DragStartBehavior> | undefined;
         mouseCursor?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/services/mouse_cursor.dart::MouseCursor": readonly [];
         }> & Readonly<{

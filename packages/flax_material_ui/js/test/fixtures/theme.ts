@@ -3,6 +3,9 @@ import {
   dartTypes as nativeTypes,
   asDart,
 } from '@flax/core/bindings';
+import { DateTime } from '@flax/dart/core';
+import { DateFormat as CupertinoDateFormat } from '@flax/cupertino-ui/dependencies/intl';
+import { DateFormat as MaterialDateFormat } from '@flax/material-ui/dependencies/intl';
 import { bind, signal } from '@flax/core';
 import {
   Builder,
@@ -24,6 +27,7 @@ import {
   TextTheme,
   Theme,
   ThemeData,
+  ThemeExtension,
 } from '@flax/material-ui';
 
 const StringKey = selectDartType(ValueKey, nativeTypes.string);
@@ -34,10 +38,19 @@ const hooks = {
     const base = asDart(cupertino, NoDefaultCupertinoThemeData);
     const material = ThemeData({ cupertinoOverrideTheme: cupertino });
     const returned = material.cupertinoOverrideTheme;
+    const format = MaterialDateFormat('yyyy-MM-dd', 'en_US');
+    const cupertinoFormat = asDart(format, CupertinoDateFormat);
+    const date = DateTime(2026, 10, 20);
     return (
+      ThemeData.light() instanceof ThemeData &&
+      typeof ThemeExtension === 'function' &&
       asDart(base, CupertinoThemeData) === cupertino &&
       returned instanceof NoDefaultCupertinoThemeData &&
-      returned.brightness === Brightness.dark
+      returned.brightness === Brightness.dark &&
+      !Object.is(format, cupertinoFormat) &&
+      asDart(cupertinoFormat, MaterialDateFormat) === format &&
+      format.format(date) === '2026-10-20' &&
+      cupertinoFormat.format(date) === '2026-10-20'
     );
   },
   Color,

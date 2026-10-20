@@ -83,12 +83,7 @@ MaterialApp, CupertinoApp or Navigator constructor:
 
 ```typescript
 import { Navigator, Text } from '@flax/flutter/widgets';
-import {
-  AlertDialog,
-  MaterialApp,
-  TextButton,
-  showDialog,
-} from '@flax/flutter/material';
+import { AlertDialog, MaterialApp, TextButton, showDialog } from '@flax/material-ui';
 
 const app = MaterialApp({ home });
 

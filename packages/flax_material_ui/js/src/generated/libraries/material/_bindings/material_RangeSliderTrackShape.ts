@@ -1,0 +1,44 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import type * as upstream3 from '@flax/material-ui/_bindings/material_SliderThemeData';
+import '@flax/material-ui/_bindings/material_SliderThemeData';
+import type * as upstream4 from '@flax/flutter/rendering/_bindings/sdk_rendering_PaintingContext';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_PaintingContext';
+import type * as upstream5 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import { _flaxMemberParameters14, _flaxMemberParameters240, _flaxMemberParameters2, _flaxMemberParameters241, _flaxMemberParameters242 } from "@flax/material-ui/_bindings/material.__module";
+import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface RangeSliderTrackShape extends Readonly<{ "__flaxBound:package:material_ui/src/range_slider_parts.dart::RangeSliderTrackShape": readonly [] }> { readonly __RangeSliderTrackShape: unique symbol;
+readonly [_flaxDartTypeValue]: RangeSliderTrackShape;
+
+}
+defineObject("flax.material/material#type:RangeSliderTrackShape", ["isRounded"], [], _flaxBindingMethods("flax.material/material#type:RangeSliderTrackShape", "object", {"getPreferredRect":_flaxMemberParameters14,"paint":_flaxMemberParameters240}, {}), []);
+const _RangeSliderTrackShapeProxy = {type: "flax.material/material#type:RangeSliderTrackShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredRect":_flaxMemberParameters241,"paint":_flaxMemberParameters242}, getters: ["isRounded"], setters: [], contextMembers: [], superMembers: ["get:isRounded"]} as const;
+export interface RangeSliderTrackShape {
+readonly [_flaxDartTypeValue]: RangeSliderTrackShape;
+
+get isRounded(): boolean;
+}
+export abstract class RangeSliderTrackShape extends _FlaxProxyBase {
+static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RangeSliderTrackShape>[typeof globalThis.Symbol.hasInstance];
+static declare [_flaxDartTypeValue]: RangeSliderTrackShape;
+static declare [_flaxDartTypeKey]: readonly ["class", "flax.material/material#type:RangeSliderTrackShape", readonly [], false];
+constructor() { super(_RangeSliderTrackShapeProxy, Array.from(arguments)); }
+abstract getPreferredRect(options: {parentBox: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; offset?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; sliderTheme: Readonly<{ "__flaxBound:package:material_ui/src/slider_theme.dart::SliderThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; isEnabled?: boolean | undefined; isDiscrete?: boolean | undefined}): upstream0.Rect;
+abstract paint(context: Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::PaintingContext": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/painting/clip.dart::ClipContext": readonly [] }>, offset: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, options: {parentBox: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; sliderTheme: Readonly<{ "__flaxBound:package:material_ui/src/slider_theme.dart::SliderThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; enableAnimation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>; startThumbCenter: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; endThumbCenter: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>; isEnabled?: boolean | undefined; isDiscrete?: boolean | undefined; textDirection: upstream6.TextDirection}): void;
+}
+_flaxDefineProxyBase(RangeSliderTrackShape.prototype, _RangeSliderTrackShapeProxy);
+export namespace RangeSliderTrackShape { export function implement(args: [], implementation: {getPreferredRect: ((options: { parentBox: upstream2.RenderBox; offset?: upstream1.Offset | undefined; sliderTheme: upstream3.SliderThemeData; isEnabled?: boolean | undefined; isDiscrete?: boolean | undefined }) => Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>); paint: ((context: upstream4.PaintingContext, offset: upstream1.Offset, options: { parentBox: upstream2.RenderBox; sliderTheme: upstream3.SliderThemeData; enableAnimation: upstream5.Animation<number>; startThumbCenter: upstream1.Offset; endThumbCenter: upstream1.Offset; isEnabled?: boolean | undefined; isDiscrete?: boolean | undefined; textDirection: upstream6.TextDirection }) => void)}): RangeSliderTrackShape {
+return constructProxy(_RangeSliderTrackShapeProxy, args, implementation) as RangeSliderTrackShape; } }
+_flaxBindInstanceType<RangeSliderTrackShape, typeof RangeSliderTrackShape>(RangeSliderTrackShape, "flax.material/material#type:RangeSliderTrackShape", ["dart:core::Object"]);

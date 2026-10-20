@@ -196,7 +196,7 @@ function uiSource(specifier, library) {
     subpathRoot = `dist/generated/dependencies/${dependency}`;
   }
   return {
-    source: `${subpathRoot}/index.js`,
+    source: specifier === publicName ? 'dist/index.js' : `${subpathRoot}/index.js`,
     subpathRoot,
   };
 }

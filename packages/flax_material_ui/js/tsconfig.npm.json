@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.json",
   "files": ["src/index.ts"],
-  "include": ["src/generated/libraries/material/_bindings/**/*.ts"]
+  "include": ["src/generated/**/*.ts"]
 }

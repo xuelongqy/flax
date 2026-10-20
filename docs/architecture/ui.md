@@ -27,7 +27,7 @@ cannot contain bindings.
 ```javascript
 import { signal, computed } from '@flax/core';
 import { Column, Text, runApp } from '@flax/flutter/widgets';
-import { TextButton } from '@flax/flutter/material';
+import { TextButton } from '@flax/material-ui';
 
 const count = signal(0);
 const label = computed(() => `Count: ${count.value}`);

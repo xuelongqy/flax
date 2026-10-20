@@ -672,9 +672,11 @@ Single-file generated consumers import public provider libraries. Split implemen
 keep their private declaration imports inside source preparation; business bundles never
 import private binding chunks directly.
 
-The formal Flutter SDK scopes are generated in Core (`packages/flax`), including native
-Flutter Material and Cupertino. Standalone `material_ui` and `cupertino_ui` selections
-remain curated; the dependency policy is not a completed full-library split migration.
+Core (`packages/flax`) owns the public Flutter framework scopes and Dart SDK bindings.
+The standalone `flax_material_ui` and `flax_cupertino_ui` packages automatically select
+the supported public UI libraries and own their binding implementations. Core does not
+contain native Flutter Material/Cupertino binding modules; UI packages reuse Core rather
+than creating a reverse dependency. Explicit skips and localization exclusions remain.
 `automatic: true` selects a public library through the existing automatic selector.
 Package generation plans sibling declaration ownership before parsing signatures, using
 the same source identity as dependency Manifests. Explicit adapters win; otherwise the
@@ -805,9 +807,9 @@ changes the provider's declaration.
 
 Core exposes `getKIsWeb()` and `getDefaultTargetPlatform()` from
 `@flax/flutter/foundation`, with `TargetPlatform`. Material exposes direct
-`kToolbarHeight` and runtime `getKTabScrollDuration()` from `@flax/flutter/material`,
-reusing Core's `Duration` identity. Mutable declarations use `getX()` and `setX(value)`;
-no `export let` or JavaScript property assignment is synthesized. Setter inputs follow
+`kToolbarHeight` and runtime `getKTabScrollDuration()` from `@flax/material-ui`, reusing
+Core's `Duration` identity. Mutable declarations use `getX()` and `setX(value)`; no
+`export let` or JavaScript property assignment is synthesized. Setter inputs follow
 their actual Dart signature, independently of the getter result type. Writes are
 synchronous, propagate Dart exceptions and return void; the next read observes current
 Dart state. Top-level state belongs to the Dart application and can be shared across

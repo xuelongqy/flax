@@ -1,0 +1,313 @@
+import { type FlaxInstanceType as _FlaxInstanceType } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/material-ui/_bindings/material_InteractiveInkFeature';
+import '@flax/material-ui/_bindings/material_InteractiveInkFeature';
+import type * as upstream1 from '@flax/material-ui/_bindings/material_InkFeature';
+import '@flax/material-ui/_bindings/material_InkFeature';
+import type * as upstream2 from '@flax/material-ui/_bindings/material_MaterialInkController';
+import '@flax/material-ui/_bindings/material_MaterialInkController';
+import type * as upstream3 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import '@flax/flutter/painting/_bindings/flutter_BorderRadius';
+import type * as upstream9 from '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
+import '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
+import type * as upstream10 from '@flax/material-ui/_bindings/material_InteractiveInkFeatureFactory';
+import '@flax/material-ui/_bindings/material_InteractiveInkFeatureFactory';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface InkSplash extends Omit<upstream0.InteractiveInkFeature, _flaxOwnMembers0>, Omit<upstream1.InkFeature, _flaxOwnMembers0 | keyof upstream0.InteractiveInkFeature>, Readonly<{
+    "__flaxBound:package:material_ui/src/ink_splash.dart::InkSplash": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:material_ui/src/ink_well.dart::InteractiveInkFeature": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:material_ui/src/material.dart::InkFeature": readonly [];
+}> {
+    readonly __InkSplash: unique symbol;
+    readonly [_flaxDartTypeValue]: InkSplash;
+    get color(): upstream6.Color;
+    get customBorder(): upstream9.ShapeBorder | null;
+    readonly controller: upstream2.MaterialInkController;
+    readonly referenceBox: upstream3.RenderBox;
+    readonly onRemoved: (() => void) | null;
+    confirm(): void;
+    cancel(): void;
+    paintInkCircle(options: {
+        borderRadius?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+        }>) | undefined;
+        canvas: Readonly<{
+            "__flaxBound:dart:ui::Canvas": readonly [];
+        }>;
+        center: Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+        clipCallback?: (() => Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }>) | null | undefined;
+        customBorder?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        paint: Readonly<{
+            "__flaxBound:dart:ui::Paint": readonly [];
+        }>;
+        radius: number;
+        textDirection?: upstream4.TextDirection | null | undefined;
+        transform: Readonly<{
+            "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+        }>;
+    }): void;
+    dispose(): void;
+    paintFeature(canvas: Readonly<{
+        "__flaxBound:dart:ui::Canvas": readonly [];
+    }>, transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>): void;
+    toString(): string;
+    set color(value: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>);
+    set customBorder(value: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null);
+}
+export declare function _InkSplashFactory(options: {
+    controller: Readonly<{
+        "__flaxBound:package:material_ui/src/material.dart::MaterialInkController": readonly [];
+    }>;
+    referenceBox: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    textDirection: upstream4.TextDirection;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    color: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    containedInkWell?: boolean | undefined;
+    rectCallback?: (() => Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>) | null | undefined;
+    borderRadius?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }>) | null | undefined;
+    customBorder?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    radius?: number | null | undefined;
+    onRemoved?: (() => void) | null | undefined;
+}): InkSplash;
+export interface _InkSplashNative extends InkSplash {
+    readonly [_flaxDartTypeValue]: _InkSplashNative;
+    confirm(): void;
+    cancel(): void;
+    paintInkCircle(options: {
+        canvas: Readonly<{
+            "__flaxBound:dart:ui::Canvas": readonly [];
+        }>;
+        transform: Readonly<{
+            "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+        }>;
+        paint: Readonly<{
+            "__flaxBound:dart:ui::Paint": readonly [];
+        }>;
+        center: Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>;
+        radius: number;
+        textDirection?: upstream4.TextDirection | null | undefined;
+        customBorder?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        borderRadius?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+        }>) | undefined;
+        clipCallback?: (() => Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }>) | null | undefined;
+    }): void;
+    dispose(): void;
+    paintFeature(canvas: Readonly<{
+        "__flaxBound:dart:ui::Canvas": readonly [];
+    }>, transform: Readonly<{
+        "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
+    }>): void;
+    toString(): string;
+    get color(): upstream6.Color;
+    get customBorder(): upstream9.ShapeBorder | null;
+    get controller(): upstream2.MaterialInkController;
+    get referenceBox(): upstream3.RenderBox;
+    get onRemoved(): (() => void) | null;
+    set color(value: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>);
+    set customBorder(value: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null);
+}
+export declare abstract class _InkSplashNative extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<InkSplash>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: InkSplash;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.material/material#type:InkSplash", readonly [], false];
+    constructor(options: {
+        controller: Readonly<{
+            "__flaxBound:package:material_ui/src/material.dart::MaterialInkController": readonly [];
+        }>;
+        referenceBox: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        textDirection: upstream4.TextDirection;
+        position?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        color: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        containedInkWell?: boolean | undefined;
+        rectCallback?: (() => Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }>) | null | undefined;
+        borderRadius?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+        }>) | null | undefined;
+        customBorder?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        radius?: number | null | undefined;
+        onRemoved?: (() => void) | null | undefined;
+    });
+}
+export declare namespace _InkSplashFactory {
+    function implement(args: [options: {
+        controller: Readonly<{
+            "__flaxBound:package:material_ui/src/material.dart::MaterialInkController": readonly [];
+        }>;
+        referenceBox: Readonly<{
+            "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+        }>;
+        textDirection: upstream4.TextDirection;
+        position?: (Readonly<{
+            "__flaxBound:dart:ui::Offset": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:ui::OffsetBase": readonly [];
+        }>) | null | undefined;
+        color: Readonly<{
+            "__flaxBound:dart:ui::Color": readonly [];
+        }>;
+        containedInkWell?: boolean | undefined;
+        rectCallback?: (() => Readonly<{
+            "__flaxBound:dart:ui::Rect": readonly [];
+        }>) | null | undefined;
+        borderRadius?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+        }>) | null | undefined;
+        customBorder?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+        }> | null | undefined;
+        radius?: number | null | undefined;
+        onRemoved?: (() => void) | null | undefined;
+    }], implementation: {}): InkSplash;
+}
+declare const _InkSplashBinding: typeof _InkSplashFactory & (new (options: {
+    controller: Readonly<{
+        "__flaxBound:package:material_ui/src/material.dart::MaterialInkController": readonly [];
+    }>;
+    referenceBox: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>;
+    textDirection: upstream4.TextDirection;
+    position?: (Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>) | null | undefined;
+    color: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }>;
+    containedInkWell?: boolean | undefined;
+    rectCallback?: (() => Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>) | null | undefined;
+    borderRadius?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
+    }>) | null | undefined;
+    customBorder?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    radius?: number | null | undefined;
+    onRemoved?: (() => void) | null | undefined;
+}) => _InkSplashNative);
+export declare namespace _InkSplashFactory {
+    const splashFactory: upstream10.InteractiveInkFeatureFactory;
+}
+export declare const InkSplash: typeof _InkSplashBinding & _FlaxInstanceType<InkSplash> & _FlaxDartType<InkSplash, readonly ["class", "flax.material/material#type:InkSplash", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "color" | "customBorder" | "controller" | "referenceBox" | "onRemoved" | "confirm" | "cancel" | "paintInkCircle" | "dispose" | "paintFeature" | "toString" | "__flaxBound:package:material_ui/src/ink_splash.dart::InkSplash" | "__flaxBound:package:material_ui/src/ink_well.dart::InteractiveInkFeature" | "__flaxBound:package:material_ui/src/material.dart::InkFeature";
+export {};

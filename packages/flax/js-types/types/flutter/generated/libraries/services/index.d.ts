@@ -31,7 +31,7 @@ export { TextEditingValue } from "@flax/flutter/services/_bindings/flutter_TextE
 export { TextInputFormatter } from "@flax/flutter/services/_bindings/flutter_TextInputFormatter";
 export { TextRange } from "@flax/dart/ui/_bindings/flutter_TextRange";
 export { TextSelection } from "@flax/flutter/services/_bindings/flutter_TextSelection";
-export type { ValueChanged, ValueChangedInput } from "@flax/flutter/cupertino/_bindings/flutter_ValueChanged";
+export type { ValueChanged, ValueChangedInput } from "@flax/flutter/foundation/_bindings/flutter_ValueChanged";
 export { Brightness } from "@flax/dart/ui/_bindings/sdk_dart_ui_Brightness";
 export { ChannelBuffers } from "@flax/dart/ui/_bindings/sdk_dart_ui_ChannelBuffers_c3l";
 export { ImmutableBuffer } from "@flax/dart/ui/_bindings/sdk_dart_ui_ImmutableBuffer";

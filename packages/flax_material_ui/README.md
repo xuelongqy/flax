@@ -1,13 +1,15 @@
 # flax_material_ui
 
-Exports materialBindings, generated from the standalone material_ui TextButton,
-TextField, Material, InkWell, progress, MaterialPageRoute, and MaterialPage APIs.
-Register it alongside flutterBindings in FlaxBindingRegistry. Generated host types use
-the public flax/bindings.dart extension and preserve Flutter Element matching.
+Owns generated bindings for the supported public `material_ui` library. Automatic
+selection covers its public declarations, retaining explicit skip reasons for
+unsupported signatures. Widget interfaces, existing reactive rendering adapters and
+dialog lifecycle metadata remain configured. Generated types use the shared
+`flax/bindings.dart` conversion and proxy mechanisms. `Brightness` and `TextInputAction`
+remain convenience exports of their Core providers, without new binding identities.
 
-This standalone selection is still curated. The formal Core continues to own Flutter's
-native Material and Cupertino bindings; this package does not replace them, and a
-full-library split migration is not complete.
+Core no longer generates Flutter Material or Cupertino bindings. Import this package's
+JS API from `@flax/material-ui`, and install `FlaxMaterialPlugin` in the host. The old
+`@flax/flutter/material` entry is removed; it is not an alias for these Dart classes.
 
 The public Material library is `@flax/material-ui`. It exports the safe primitive
 constant `kToolbarHeight` directly and exposes the Dart-backed duration through
@@ -57,8 +59,9 @@ For an external type without a provider, an owner-local opt-in such as
 `intl` entry in the Dart `pubspec.yaml` dependencies. It generates only needed types,
 not all of `intl`. Without a binding or opt-in, even an optional unbound parameter skips
 the whole signature rather than silently disappearing from it. The metadata allows
-`intl`, but the curated selection does not reference its types and emits no local `intl`
-views. Whole-library discovery can generate the required views independently.
+`intl`, and full discovery generates its required owner-local types. These retain
+separate identities from Cupertino's local `intl` views; use shared `asDart` for checked
+view conversion without copying the Dart value.
 
 When generated, these local views are exposed through
 `@flax/material-ui/dependencies/intl`. Their runtime source is

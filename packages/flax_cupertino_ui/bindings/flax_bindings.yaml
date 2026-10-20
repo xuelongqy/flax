@@ -3,6 +3,7 @@ name: cupertino
 imports:
   - flax
 library: package:cupertino_ui/cupertino_ui.dart
+automatic: true
 jsPackage: '@flax/cupertino-ui'
 dartOutput: lib/src/generated/cupertino_bindings.g.dart
 tsOutput: js/src/generated/bindings.ts
@@ -10,16 +11,10 @@ publicLibraries:
   package:cupertino_ui/cupertino_ui.dart:
     jsPackage: '@flax/cupertino-ui'
     tsOutput: js/src/generated/libraries/cupertino/index.ts
-classes:
-  - CupertinoApp
-  - CupertinoPageScaffold
-  - CupertinoButton
-  - CupertinoThemeData
-  - NoDefaultCupertinoThemeData
-  - CupertinoTextThemeData
-  - ObstructingPreferredSizeWidget
-  - CupertinoNavigationBar
 overrides:
+  # The shared JS host owns application roots.
+  exclude: [runApp]
+  # Flutter reads these interfaces on the actual native Widget.
   classes:
     ObstructingPreferredSizeWidget:
       kind: widgetInterface
@@ -27,6 +22,7 @@ overrides:
     CupertinoNavigationBar:
       widgetInterfaces:
         - ObstructingPreferredSizeWidget
+    # Preserve the established reactive constructor API for rendering adapters.
     CupertinoApp: &renderOnlyWidget
       getters: []
       setters: []

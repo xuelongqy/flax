@@ -37,6 +37,8 @@ Future<void> main(List<String> arguments) => command(() async {
 
   final temporary = Directory.systemTemp.createTempSync('flax-packages-');
   try {
+    // Pub must not inherit the parent checkout's ignore rule for local staging.
+    await run('git', ['init', '--quiet'], directory: temporary.path);
     final dartCopies = _prepareDartPackages(packages, temporary);
     final npmArchives = <String, _NpmArchive>{};
     for (final package in packages) {

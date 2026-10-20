@@ -8,13 +8,14 @@ import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import '@flax/material-ui/_bindings/material_InteractiveInkFeatureFactory';
 import '@flax/flutter/painting/_bindings/flutter_BorderRadius';
 import '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_WidgetStatesController';
-import type * as upstream10 from '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream11 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
-import type * as upstream11 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import type * as upstream12 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface InkWell extends WidgetDescription, Omit<Readonly<{
     "__flaxBound:package:material_ui/src/ink_well.dart::InkWell": readonly [];
@@ -69,6 +70,9 @@ export declare function _InkWellFactory(options?: {
     splashColor?: Bindable<Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null> | undefined;
+    splashFactory?: Bindable<Readonly<{
+        "__flaxBound:package:material_ui/src/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
+    }> | null> | undefined;
     radius?: Bindable<number | null> | undefined;
     borderRadius?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadius": readonly [];
@@ -99,18 +103,18 @@ export declare function _InkWellFactory(options?: {
     statesController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream11.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream12.WidgetState>];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream11.WidgetState>];
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream12.WidgetState>];
     }>) | null> | undefined;
     hoverDuration?: Bindable<(Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
     }> & Readonly<{
-        "__flaxBound:dart:core::Comparable": readonly [upstream10.Duration];
+        "__flaxBound:dart:core::Comparable": readonly [upstream11.Duration];
     }>) | null> | undefined;
 }): InkWell;
 export declare const InkWell: typeof _InkWellFactory & _FlaxInstanceType<InkWell> & _FlaxDartType<InkWell, readonly ["class", "flax.material/material#type:InkWell", readonly [], false]>;

@@ -55,11 +55,6 @@ void main() {
       var weak = new WeakRef(order);
       order.self = order;
       var comparison = order.compareTo(other);
-      var C = ${_require('@flax/flutter/cupertino')};
-      var M = ${_require('@flax/flutter/material')};
-      var factoryConstruction = C.CupertinoThemeData() instanceof C.CupertinoThemeData &&
-        M.ThemeData() instanceof M.ThemeData &&
-        M.ThemeData.light() instanceof M.ThemeData;
       var callable = typeof new P.AssetImage('not-loaded.png').resolve === 'function' &&
         typeof new P.ImageStreamCompleter().maybeDispose === 'function';
       W.registerPage('sdk', () => W.SizedBox());
@@ -74,7 +69,6 @@ void main() {
         await tester.pumpWidget(h.page('sdk'));
         expect(h.errors, isEmpty);
         expect(h.boolean('callable'), isTrue);
-        expect(h.boolean('factoryConstruction'), isTrue);
         expect(h.number('comparison'), -1);
         expect(h.number('calls'), 1);
         expect(peers, hasLength(2));
@@ -143,7 +137,6 @@ void main() {
       var C = ${_require('@flax/dart/convert')};
       var D = ${_require('@flax/dart/developer')};
       var Core = ${_require('@flax/dart/core')};
-      var M = ${_require('@flax/flutter/material')};
       var vector = V.Vector3(1, 2, 3);
       var matrix = W.Matrix4.translation(vector);
       var encoding = C.Utf8Codec();
@@ -163,7 +156,7 @@ void main() {
       painter.dispose();
       painter = createPainter(undefined); painter.dispose();
       var rejectedNull = String(createPainter(null).error).includes('Unexpected null');
-      var constructors = typeof W.Action === 'function' && typeof M.ThemeExtension === 'function';
+      var constructors = typeof W.Action === 'function';
       class NativeAction extends W.Action {
         invoke(intent) { return 'handled'; }
       }

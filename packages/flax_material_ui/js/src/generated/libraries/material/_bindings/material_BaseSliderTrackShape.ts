@@ -1,0 +1,22 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream2 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import type * as upstream3 from '@flax/material-ui/_bindings/material_SliderThemeData';
+import '@flax/material-ui/_bindings/material_SliderThemeData';
+import { _flaxMemberParameters14 } from "@flax/material-ui/_bindings/material.__module";
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface BaseSliderTrackShape extends Readonly<{ "__flaxBound:package:material_ui/src/slider_parts.dart::BaseSliderTrackShape": readonly [] }> { readonly __BaseSliderTrackShape: unique symbol;
+readonly [_flaxDartTypeValue]: BaseSliderTrackShape;
+
+readonly isRounded: boolean;
+getPreferredRect(options: {isDiscrete?: boolean | undefined; isEnabled?: boolean | undefined; offset?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | undefined; parentBox: Readonly<{ "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; sliderTheme: Readonly<{ "__flaxBound:package:material_ui/src/slider_theme.dart::SliderThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>}): upstream0.Rect;
+}
+defineObject("flax.material/material#type:BaseSliderTrackShape", ["isRounded"], [], _flaxBindingMethods("flax.material/material#type:BaseSliderTrackShape", "object", {"getPreferredRect":_flaxMemberParameters14}, {}), []);
+export const BaseSliderTrackShape: object & _FlaxInstanceType<BaseSliderTrackShape> & _FlaxDartType<BaseSliderTrackShape, readonly ["class", "flax.material/material#type:BaseSliderTrackShape", readonly [], false]> = _flaxBindInstanceType<BaseSliderTrackShape, object>({}, "flax.material/material#type:BaseSliderTrackShape", ["dart:core::Object"]) as object & _FlaxInstanceType<BaseSliderTrackShape> & _FlaxDartType<BaseSliderTrackShape, readonly ["class", "flax.material/material#type:BaseSliderTrackShape", readonly [], false]>;

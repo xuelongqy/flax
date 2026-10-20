@@ -19,14 +19,14 @@ const _targets = [
     directory: 'flax_material_ui',
     package: '@flax/material-ui-runtime',
     specifier: '@flax/material-ui',
-    source: 'dist/generated/libraries/material/index.js',
+    source: 'dist/index.js',
     subpathRoot: 'dist/generated/libraries/material',
   ),
   (
     directory: 'flax_cupertino_ui',
     package: '@flax/cupertino-ui-runtime',
     specifier: '@flax/cupertino-ui',
-    source: 'dist/generated/libraries/cupertino/index.js',
+    source: 'dist/index.js',
     subpathRoot: 'dist/generated/libraries/cupertino',
   ),
 ];

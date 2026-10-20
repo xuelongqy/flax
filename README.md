@@ -13,6 +13,11 @@ arm64 uses V8 JIT. Dart and JS business references participate in joint GC. See 
 [embedded example](examples/embedded/README.md) and
 [host contract](docs/architecture/ui.md).
 
+Core owns the public Flutter framework bindings. Material and Cupertino APIs come from
+the standalone `@flax/material-ui` and `@flax/cupertino-ui` packages with their host
+plugins. The former `@flax/flutter/material` and `@flax/flutter/cupertino` entries are
+removed; see [package ownership](docs/architecture/packaging.md).
+
 Generated Builder and LayoutBuilder callbacks run during Flutter build/layout. JS can
 read real BuildContext.mounted, call Directionality.of(context), and read immutable
 BoxConstraints fields. Flutter owns dependency tracking and Element lifetimes.

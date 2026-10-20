@@ -1,0 +1,171 @@
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type Widget } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import type * as upstream1 from '@flax/flutter/foundation/_bindings/flutter_Key';
+import '@flax/flutter/foundation/_bindings/flutter_Key';
+import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Color';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream3 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
+import type * as upstream4 from '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
+import '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
+import type * as upstream5 from '@flax/flutter/rendering/_bindings/flutter_HitTestBehavior';
+import '@flax/flutter/rendering/_bindings/flutter_HitTestBehavior';
+import type * as upstream6 from '@flax/material-ui/_bindings/material_SnackBarBehavior';
+import '@flax/material-ui/_bindings/material_SnackBarBehavior';
+import type * as upstream7 from '@flax/material-ui/_bindings/material_SnackBarAction';
+import type * as upstream8 from '@flax/dart/core/_bindings/flutter_Duration';
+import '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream9 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_DismissDirection';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_DismissDirection';
+import type * as upstream11 from '@flax/dart/ui/_bindings/flutter_Clip';
+import '@flax/dart/ui/_bindings/flutter_Clip';
+import type * as upstream12 from '@flax/flutter/animation/_bindings/sdk_animation_AnimationController';
+import '@flax/flutter/animation/_bindings/sdk_animation_AnimationController';
+import '@flax/flutter/scheduler/_bindings/flutter_TickerProvider';
+import type * as upstream14 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream19 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
+import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
+import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+export interface SnackBar extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _flaxOwnMembers0>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.StatefulWidget>, Readonly<{
+    "__flaxBound:package:material_ui/src/snack_bar.dart::SnackBar": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
+}>, Readonly<{
+    "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+}> {
+    readonly __SnackBar: unique symbol;
+    readonly [_flaxDartTypeValue]: SnackBar;
+    readonly content: Widget;
+    readonly backgroundColor: upstream2.Color | null;
+    readonly elevation: number | null;
+    readonly margin: upstream3.EdgeInsetsGeometry | null;
+    readonly padding: upstream3.EdgeInsetsGeometry | null;
+    readonly width: number | null;
+    readonly shape: upstream4.ShapeBorder | null;
+    readonly hitTestBehavior: upstream5.HitTestBehavior | null;
+    readonly behavior: upstream6.SnackBarBehavior | null;
+    readonly action: upstream7.SnackBarAction | null;
+    readonly actionOverflowThreshold: number | null;
+    readonly showCloseIcon: boolean | null;
+    readonly closeIconColor: upstream2.Color | null;
+    readonly duration: upstream8.Duration;
+    readonly persist: boolean;
+    readonly animation: upstream9.Animation<number> | null;
+    readonly onVisible: (() => void) | null;
+    readonly dismissDirection: upstream10.DismissDirection | null;
+    readonly clipBehavior: upstream11.Clip;
+    readonly key: upstream1.Key | null;
+    withAnimation(newAnimation: Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>, options?: {
+        fallbackKey?: Readonly<{
+            "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+        }> | null | undefined;
+    }): SnackBar;
+    createState(): upstream14.State<SnackBar>;
+    createElement(): upstream15.StatefulElement;
+    toStringShort(): string;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    toStringShallow(options?: {
+        joiner?: string | undefined;
+        minLevel?: upstream17.DiagnosticLevel | undefined;
+    }): string;
+    toStringDeep(options?: {
+        minLevel?: upstream17.DiagnosticLevel | undefined;
+        prefixLineOne?: string | undefined;
+        prefixOtherLines?: string | null | undefined;
+        wrapWidth?: number | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream19.DiagnosticsTreeStyle | null | undefined;
+    }): upstream18.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream18.DiagnosticsNode>;
+}
+export declare function _SnackBarFactory(options: {
+    key?: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
+    }> | null | undefined;
+    content: Widget;
+    backgroundColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    elevation?: number | null | undefined;
+    margin?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    padding?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }> | null | undefined;
+    width?: number | null | undefined;
+    shape?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
+    }> | null | undefined;
+    hitTestBehavior?: upstream5.HitTestBehavior | null | undefined;
+    behavior?: upstream6.SnackBarBehavior | null | undefined;
+    action?: upstream7.SnackBarAction | null | undefined;
+    actionOverflowThreshold?: number | null | undefined;
+    showCloseIcon?: boolean | null | undefined;
+    closeIconColor?: Readonly<{
+        "__flaxBound:dart:ui::Color": readonly [];
+    }> | null | undefined;
+    duration?: (Readonly<{
+        "__flaxBound:dart:core::Duration": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [upstream8.Duration];
+    }>) | undefined;
+    persist?: boolean | null | undefined;
+    animation?: (Readonly<{
+        "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    }>) | null | undefined;
+    onVisible?: (() => void) | null | undefined;
+    dismissDirection?: upstream10.DismissDirection | null | undefined;
+    clipBehavior?: upstream11.Clip | undefined;
+}): SnackBar;
+export declare namespace _SnackBarFactory {
+    function createAnimationController(options: {
+        duration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream8.Duration];
+        }>) | null | undefined;
+        reverseDuration?: (Readonly<{
+            "__flaxBound:dart:core::Duration": readonly [];
+        }> & Readonly<{
+            "__flaxBound:dart:core::Comparable": readonly [upstream8.Duration];
+        }>) | null | undefined;
+        vsync: Readonly<{
+            "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider": readonly [];
+        }>;
+    }): upstream12.AnimationController;
+}
+export declare const SnackBar: typeof _SnackBarFactory & _FlaxInstanceType<SnackBar> & _FlaxDartType<SnackBar, readonly ["class", "flax.material/material#type:SnackBar", readonly [], false]>;
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "content" | "backgroundColor" | "elevation" | "margin" | "padding" | "width" | "shape" | "hitTestBehavior" | "behavior" | "action" | "actionOverflowThreshold" | "showCloseIcon" | "closeIconColor" | "duration" | "persist" | "animation" | "onVisible" | "dismissDirection" | "clipBehavior" | "key" | "withAnimation" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/snack_bar.dart::SnackBar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+export {};

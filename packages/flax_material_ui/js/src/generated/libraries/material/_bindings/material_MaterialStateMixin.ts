@@ -1,0 +1,63 @@
+// GENERATED CODE. Selected public API subset; do not edit.
+// Regenerate with dart run melos run bindings:generate.
+import { defineStaticGetters as _flaxDefineStaticGetters, defineDartCallTypes as _flaxDefineDartCallTypes, installBindingModule as _flaxInstallBindingModule, type FlaxInstanceType as _FlaxInstanceType, bindingMethods as _flaxBindingMethods, type NavigationData, type DartIterable, type DartIterableInput, type DartList, type DartListInput, type DartMap, type DartMapInput, type DartSet, type DartSetInput, type FlaxStreamReference, type Bindable, type DartValue, type DartEnum, type DartInput, type Widget, type WidgetDescription, type ComponentContext } from '@flax/core/bindings';
+import type * as upstream0 from '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import '@flax/flutter/widgets/_bindings/components_StatefulWidget';
+import type * as upstream1 from '@flax/flutter/widgets/_bindings/components_State';
+import '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream2 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
+import type * as upstream3 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import type * as upstream4 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream5 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import { _flaxMemberParameters2, _flaxMemberParameters3, _flaxMemberParameters4, _flaxMemberParameters5, _flaxMemberParameters202, _flaxMemberParameters203, _flaxMemberParameters204, _flaxMemberParameters0, _flaxMemberParameters102, _flaxMemberParameters9 } from "@flax/material-ui/_bindings/material.__module";
+import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
+import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
+export interface MaterialStateMixin<T extends Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> = upstream0.StatefulWidget> extends Omit<upstream1.State<T>, _flaxOwnMembers0>, Omit<upstream2.Diagnosticable, _flaxOwnMembers0 | keyof upstream1.State<T>>, Readonly<{ "__flaxBound:package:material_ui/src/material_state_mixin.dart::MaterialStateMixin": readonly [T] }>, Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::State": readonly [T] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> { readonly __MaterialStateMixin: unique symbol;
+readonly [_flaxDartTypeValue]: MaterialStateMixin<T>;
+
+get materialStates(): DartSet<upstream3.WidgetState>;
+readonly isDisabled: boolean;
+readonly isDragged: boolean;
+readonly isErrored: boolean;
+readonly isFocused: boolean;
+readonly isHovered: boolean;
+readonly isPressed: boolean;
+readonly isScrolledUnder: boolean;
+readonly isSelected: boolean;
+readonly widget: T;
+readonly context: upstream4.BuildContext;
+readonly mounted: boolean;
+toStringShort(): string;
+toString(options?: {minLevel?: upstream5.DiagnosticLevel | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream7.DiagnosticsTreeStyle | null | undefined}): upstream6.DiagnosticsNode;
+debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
+updateMaterialState(key: upstream3.WidgetState, options?: {onChanged?: ((value: boolean) => void) | null | undefined}): ((value: boolean) => void);
+setMaterialState(state: upstream3.WidgetState, isSet: boolean): void;
+addMaterialState(state: upstream3.WidgetState): void;
+removeMaterialState(state: upstream3.WidgetState): void;
+initState(): void;
+didUpdateWidget(oldWidget: (T | DartInput<T>)): void;
+reassemble(): void;
+setState(fn: (() => void)): void;
+deactivate(): void;
+activate(): void;
+dispose(): void;
+build(context: upstream4.BuildContext): Widget;
+didChangeDependencies(): void;
+set materialStates(value: DartSetInput<upstream3.WidgetState, upstream3.WidgetState>);
+}
+defineObject("flax.material/material#type:MaterialStateMixin", ["materialStates","isDisabled","isDragged","isErrored","isFocused","isHovered","isPressed","isScrolledUnder","isSelected","widget","context","mounted"], ["materialStates"], _flaxBindingMethods("flax.material/material#type:MaterialStateMixin", "object", {"toStringShort":_flaxMemberParameters2,"toString":_flaxMemberParameters3,"toDiagnosticsNode":_flaxMemberParameters4,"debugFillProperties":_flaxMemberParameters5,"updateMaterialState":_flaxMemberParameters202,"setMaterialState":_flaxMemberParameters203,"addMaterialState":_flaxMemberParameters204,"removeMaterialState":_flaxMemberParameters204,"initState":_flaxMemberParameters2,"didUpdateWidget":_flaxMemberParameters0,"reassemble":_flaxMemberParameters2,"setState":_flaxMemberParameters102,"deactivate":_flaxMemberParameters2,"activate":_flaxMemberParameters2,"dispose":_flaxMemberParameters2,"build":_flaxMemberParameters9,"didChangeDependencies":_flaxMemberParameters2}, {}), []);
+export const MaterialStateMixin: object & _FlaxInstanceType<MaterialStateMixin<upstream0.StatefulWidget>> & _FlaxDartType<MaterialStateMixin<upstream0.StatefulWidget>, readonly ["class", "flax.material/material#type:MaterialStateMixin", readonly [readonly ["class", "flax.core/components#type:StatefulWidget", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0> = _flaxBindInstanceType<MaterialStateMixin<upstream0.StatefulWidget>, object>({}, "flax.material/material#type:MaterialStateMixin", ["flax.core/components#type:State","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as object & _FlaxInstanceType<MaterialStateMixin<upstream0.StatefulWidget>> & _FlaxDartType<MaterialStateMixin<upstream0.StatefulWidget>, readonly ["class", "flax.material/material#type:MaterialStateMixin", readonly [readonly ["class", "flax.core/components#type:StatefulWidget", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
+_flaxDefineDartTypes(MaterialStateMixin, "flax.material/material#type:MaterialStateMixin", {"category":"object","constructors":{}});
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "materialStates" | "isDisabled" | "isDragged" | "isErrored" | "isFocused" | "isHovered" | "isPressed" | "isScrolledUnder" | "isSelected" | "widget" | "context" | "mounted" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "updateMaterialState" | "setMaterialState" | "addMaterialState" | "removeMaterialState" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "activate" | "dispose" | "build" | "didChangeDependencies" | "__flaxBound:package:material_ui/src/material_state_mixin.dart::MaterialStateMixin" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+interface _FlaxSignature0 extends _FlaxDartSignature { readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/framework.dart::Widget": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>] ? {readonly prototype: MaterialStateMixin<_Selected0>;} & _FlaxInstanceType<MaterialStateMixin<_Selected0>> & _FlaxDartType<MaterialStateMixin<_Selected0>> : never : never; }

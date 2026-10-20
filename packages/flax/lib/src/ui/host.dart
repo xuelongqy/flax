@@ -19,12 +19,10 @@ abstract final class Flax {
 final _defaultBindingModules = <FlaxBindingModule>[
   flutterBindings,
   sdk_animationBindings,
-  sdk_cupertinoBindings,
   sdk_dart_uiBindings,
   sdk_dependenciesBindings,
   sdk_foundationBindings,
   sdk_gesturesBindings,
-  sdk_materialBindings,
   sdk_paintingBindings,
   sdk_physicsBindings,
   sdk_renderingBindings,

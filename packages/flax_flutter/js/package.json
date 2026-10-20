@@ -17,18 +17,6 @@
     "./gestures/*": {
       "types": "./types/generated/libraries/gestures/*.d.ts"
     },
-    "./cupertino": {
-      "types": "./types/generated/libraries/cupertino/index.d.ts"
-    },
-    "./cupertino/*": {
-      "types": "./types/generated/libraries/cupertino/*.d.ts"
-    },
-    "./material": {
-      "types": "./types/generated/libraries/material/index.d.ts"
-    },
-    "./material/*": {
-      "types": "./types/generated/libraries/material/*.d.ts"
-    },
     "./scheduler": {
       "types": "./types/generated/libraries/scheduler/index.d.ts"
     },

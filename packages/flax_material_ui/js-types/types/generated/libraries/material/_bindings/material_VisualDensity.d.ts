@@ -14,7 +14,8 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import type * as upstream7 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
-import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
+import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface VisualDensity extends Omit<upstream0.Diagnosticable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity": readonly [];
 }>, Readonly<{
@@ -50,6 +51,51 @@ export declare function _VisualDensityFactory(options?: {
     horizontal?: number | undefined;
     vertical?: number | undefined;
 }): VisualDensity;
+export interface _VisualDensityNative extends VisualDensity {
+    readonly [_flaxDartTypeValue]: _VisualDensityNative;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream3.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream5.DiagnosticsTreeStyle | null | undefined;
+    }): upstream4.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+    copyWith(options?: {
+        horizontal?: number | null | undefined;
+        vertical?: number | null | undefined;
+    }): VisualDensity;
+    effectiveConstraints(constraints: Readonly<{
+        "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
+    }>): upstream7.BoxConstraints;
+    get horizontal(): number;
+    get vertical(): number;
+    get baseSizeAdjustment(): upstream1.Offset;
+}
+export declare abstract class _VisualDensityNative extends _FlaxProxyBase {
+    static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<VisualDensity>[typeof globalThis.Symbol.hasInstance];
+    static [_flaxDartTypeValue]: VisualDensity;
+    static [_flaxDartTypeKey]: readonly ["class", "flax.material/material#type:VisualDensity", readonly [], false];
+    constructor(options?: {
+        horizontal?: number | undefined;
+        vertical?: number | undefined;
+    });
+}
+export declare namespace _VisualDensityFactory {
+    function implement(args: [options?: {
+        horizontal?: number | undefined;
+        vertical?: number | undefined;
+    }], implementation: {}): VisualDensity;
+}
+declare const _VisualDensityBinding: typeof _VisualDensityFactory & (new (options?: {
+    horizontal?: number | undefined;
+    vertical?: number | undefined;
+}) => _VisualDensityNative);
 export declare namespace _VisualDensityFactory {
     const minimumDensity: number;
 }
@@ -82,6 +128,6 @@ export declare namespace _VisualDensityFactory {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>, t: number): VisualDensity;
 }
-export declare const VisualDensity: typeof _VisualDensityFactory & _FlaxInstanceType<VisualDensity> & _FlaxDartType<VisualDensity, readonly ["class", "flax.material/material#type:VisualDensity", readonly [], false]>;
+export declare const VisualDensity: typeof _VisualDensityBinding & _FlaxInstanceType<VisualDensity> & _FlaxDartType<VisualDensity, readonly ["class", "flax.material/material#type:VisualDensity", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "horizontal" | "vertical" | "baseSizeAdjustment" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "effectiveConstraints" | "__flaxBound:package:material_ui/src/theme_data.dart::VisualDensity" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

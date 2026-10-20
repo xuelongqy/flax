@@ -13,40 +13,42 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_Pre
 import '@flax/flutter/widgets/_bindings/sdk_widgets_PredictiveBackRoute';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_LocalHistoryRoute';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_LocalHistoryRoute';
-import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream7 from '@flax/material-ui/_bindings/material_MaterialRouteTransitionMixin';
+import '@flax/material-ui/_bindings/material_MaterialRouteTransitionMixin';
+import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import type * as upstream8 from '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
+import type * as upstream9 from '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
 import '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
-import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_TraversalEdgeBehavior';
+import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_TraversalEdgeBehavior';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_TraversalEdgeBehavior';
-import type * as upstream10 from '@flax/dart/ui/_bindings/flutter_ImageFilter';
+import type * as upstream11 from '@flax/dart/ui/_bindings/flutter_ImageFilter';
 import '@flax/dart/ui/_bindings/flutter_ImageFilter';
-import type * as upstream11 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import type * as upstream12 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
-import type * as upstream12 from '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream13 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
-import type * as upstream13 from '@flax/flutter/animation/_bindings/flutter_Curve';
+import type * as upstream14 from '@flax/flutter/animation/_bindings/flutter_Curve';
 import '@flax/flutter/animation/_bindings/flutter_Curve';
-import type * as upstream14 from '@flax/flutter/widgets/_bindings/sdk_widgets_RoutePopDisposition';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_RoutePopDisposition';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RoutePopDisposition';
-import type * as upstream15 from '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream16 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
-import type * as upstream16 from '@flax/flutter/animation/_bindings/sdk_animation_AnimationController';
+import type * as upstream17 from '@flax/flutter/animation/_bindings/sdk_animation_AnimationController';
 import '@flax/flutter/animation/_bindings/sdk_animation_AnimationController';
-import type * as upstream17 from '@flax/flutter/widgets/_bindings/sdk_widgets_OverlayEntry';
+import type * as upstream18 from '@flax/flutter/widgets/_bindings/sdk_widgets_OverlayEntry';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_OverlayEntry';
-import type * as upstream18 from '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
+import type * as upstream19 from '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
 import '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
-import type * as upstream19 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
+import type * as upstream20 from '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
 import '@flax/flutter/foundation/_bindings/flutter_ValueListenable';
-import type * as upstream20 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_TickerFuture';
+import type * as upstream21 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_TickerFuture';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_TickerFuture';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_PopEntry';
-import type * as upstream22 from '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
+import type * as upstream23 from '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import '@flax/flutter/physics/_bindings/sdk_physics_Simulation';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_LocalHistoryEntry';
 import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface MaterialPageRoute<T extends unknown | null = unknown | null> extends Omit<upstream0.PageRoute<T>, _flaxOwnMembers0>, Omit<upstream1.ModalRoute<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T>>, Omit<upstream2.TransitionRoute<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T>>, Omit<upstream3.OverlayRoute<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T>>, Omit<upstream4.Route<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T> | keyof upstream3.OverlayRoute<T>>, Omit<upstream5.PredictiveBackRoute, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T> | keyof upstream3.OverlayRoute<T> | keyof upstream4.Route<T>>, Omit<upstream6.LocalHistoryRoute<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T> | keyof upstream3.OverlayRoute<T> | keyof upstream4.Route<T> | keyof upstream5.PredictiveBackRoute>, Readonly<{
+export interface MaterialPageRoute<T extends unknown | null = unknown | null> extends Omit<upstream0.PageRoute<T>, _flaxOwnMembers0>, Omit<upstream1.ModalRoute<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T>>, Omit<upstream2.TransitionRoute<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T>>, Omit<upstream3.OverlayRoute<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T>>, Omit<upstream4.Route<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T> | keyof upstream3.OverlayRoute<T>>, Omit<upstream5.PredictiveBackRoute, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T> | keyof upstream3.OverlayRoute<T> | keyof upstream4.Route<T>>, Omit<upstream6.LocalHistoryRoute<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T> | keyof upstream3.OverlayRoute<T> | keyof upstream4.Route<T> | keyof upstream5.PredictiveBackRoute>, Omit<upstream7.MaterialRouteTransitionMixin<T>, _flaxOwnMembers0 | keyof upstream0.PageRoute<T> | keyof upstream1.ModalRoute<T> | keyof upstream2.TransitionRoute<T> | keyof upstream3.OverlayRoute<T> | keyof upstream4.Route<T> | keyof upstream5.PredictiveBackRoute | keyof upstream6.LocalHistoryRoute<T>>, Readonly<{
     "__flaxBound:package:material_ui/src/page.dart::MaterialPageRoute": readonly [T];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute": readonly [T];
@@ -69,10 +71,10 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
 }> {
     readonly __MaterialPageRoute: unique symbol;
     readonly [_flaxDartTypeValue]: MaterialPageRoute<T>;
-    readonly filter: upstream10.ImageFilter | null;
-    readonly traversalEdgeBehavior: upstream9.TraversalEdgeBehavior | null;
-    readonly directionalTraversalEdgeBehavior: upstream9.TraversalEdgeBehavior | null;
-    readonly delegatedTransition: ((context: upstream7.BuildContext, animation: Readonly<{
+    readonly filter: upstream11.ImageFilter | null;
+    readonly traversalEdgeBehavior: upstream10.TraversalEdgeBehavior | null;
+    readonly directionalTraversalEdgeBehavior: upstream10.TraversalEdgeBehavior | null;
+    readonly delegatedTransition: ((context: upstream8.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
@@ -85,7 +87,7 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
-    get receivedTransition(): ((context: upstream7.BuildContext, animation: Readonly<{
+    get receivedTransition(): ((context: upstream8.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
@@ -100,35 +102,35 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
     readonly barrierDismissible: boolean;
     readonly semanticsDismissible: boolean;
-    readonly barrierColor: upstream12.Color | null;
+    readonly barrierColor: upstream13.Color | null;
     readonly barrierLabel: string | null;
-    readonly barrierCurve: upstream13.Curve;
+    readonly barrierCurve: upstream14.Curve;
     readonly maintainState: boolean;
     readonly popGestureInProgress: boolean;
     readonly popGestureEnabled: boolean;
     get offstage(): boolean;
-    readonly subtreeContext: upstream7.BuildContext | null;
-    readonly animation: upstream11.Animation<number> | null;
-    readonly secondaryAnimation: upstream11.Animation<number> | null;
-    readonly popDisposition: upstream14.RoutePopDisposition;
+    readonly subtreeContext: upstream8.BuildContext | null;
+    readonly animation: upstream12.Animation<number> | null;
+    readonly secondaryAnimation: upstream12.Animation<number> | null;
+    readonly popDisposition: upstream15.RoutePopDisposition;
     readonly hasScopedWillPopCallback: boolean;
     readonly canPop: boolean;
     readonly impliesAppBarDismissal: boolean;
     readonly fullscreenDialog: boolean;
     readonly completed: Promise<T | null>;
-    readonly transitionDuration: upstream15.Duration;
-    readonly reverseTransitionDuration: upstream15.Duration;
+    readonly transitionDuration: upstream16.Duration;
+    readonly reverseTransitionDuration: upstream16.Duration;
     readonly opaque: boolean;
     readonly allowSnapshotting: boolean;
     readonly finishedWhenPopped: boolean;
-    readonly controller: upstream16.AnimationController | null;
+    readonly controller: upstream17.AnimationController | null;
     get willDisposeAnimationController(): boolean;
     readonly debugLabel: string;
-    readonly overlayEntries: DartList<upstream17.OverlayEntry>;
+    readonly overlayEntries: DartList<upstream18.OverlayEntry>;
     readonly requestFocus: boolean;
-    readonly navigator: upstream18.NavigatorState | null;
-    readonly settings: upstream8.RouteSettings;
-    readonly restorationScopeId: upstream19.ValueListenable<string | null>;
+    readonly navigator: upstream19.NavigatorState | null;
+    readonly settings: upstream9.RouteSettings;
+    readonly restorationScopeId: upstream20.ValueListenable<string | null>;
     readonly willHandlePopInternally: boolean;
     readonly currentResult: T | null;
     readonly popped: Promise<T | null>;
@@ -136,9 +138,9 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     readonly isFirst: boolean;
     readonly hasActiveRouteBelow: boolean;
     readonly isActive: boolean;
-    readonly builder: ((context: upstream7.BuildContext) => Widget);
+    readonly builder: ((context: upstream8.BuildContext) => Widget);
     setState(fn: (() => void)): void;
-    buildPage(context: upstream7.BuildContext, animation: Readonly<{
+    buildPage(context: upstream8.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
@@ -151,7 +153,7 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>): Widget;
-    buildTransitions(context: upstream7.BuildContext, animation: Readonly<{
+    buildTransitions(context: upstream8.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
@@ -165,9 +167,9 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
         "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
     }>, child: Widget): Widget;
     install(): void;
-    didPush(): upstream20.TickerFuture;
+    didPush(): upstream21.TickerFuture;
     didAdd(): void;
-    willPop(): Promise<upstream14.RoutePopDisposition>;
+    willPop(): Promise<upstream15.RoutePopDisposition>;
     onPopInvokedWithResult(didPop: boolean, result: (T | DartInput<T>) | null): void;
     addScopedWillPopCallback(callback: (() => Promise<boolean>)): void;
     removeScopedWillPopCallback(callback: (() => Promise<boolean>)): void;
@@ -195,14 +197,14 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     changedInternalState(): void;
     changedExternalState(): void;
     buildModalBarrier(): Widget;
-    createOverlayEntries(): DartIterable<upstream17.OverlayEntry>;
+    createOverlayEntries(): DartIterable<upstream18.OverlayEntry>;
     toString(): string;
     debugTransitionCompleted(): boolean;
-    createAnimationController(): upstream16.AnimationController;
-    createAnimation(): upstream11.Animation<number>;
+    createAnimationController(): upstream17.AnimationController;
+    createAnimation(): upstream12.Animation<number>;
     createSimulation(options: {
         forward: boolean;
-    }): upstream22.Simulation | null;
+    }): upstream23.Simulation | null;
     didReplace(oldRoute: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::Route": readonly [unknown | null];
     }> & Readonly<{
@@ -248,13 +250,13 @@ export interface MaterialPageRoute<T extends unknown | null = unknown | null> ex
     removeLocalHistoryEntry(entry: Readonly<{
         "__flaxBound:package:flutter/src/widgets/routes.dart::LocalHistoryEntry": readonly [];
     }>): void;
-    buildContent(context: upstream7.BuildContext): Widget;
-    set receivedTransition(value: ((context: upstream7.BuildContext, animation: upstream11.Animation<number>, secondaryAnimation: upstream11.Animation<number>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null);
+    buildContent(context: upstream8.BuildContext): Widget;
+    set receivedTransition(value: ((context: upstream8.BuildContext, animation: upstream12.Animation<number>, secondaryAnimation: upstream12.Animation<number>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null);
     set offstage(value: boolean);
     set willDisposeAnimationController(value: boolean);
 }
 export declare function _MaterialPageRouteFactory<T extends unknown | null = unknown | null>(options: {
-    builder: ((context: upstream7.BuildContext) => Widget);
+    builder: ((context: upstream8.BuildContext) => Widget);
     settings?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
     }> | null | undefined;
@@ -263,11 +265,11 @@ export declare function _MaterialPageRouteFactory<T extends unknown | null = unk
     fullscreenDialog?: boolean | undefined;
     allowSnapshotting?: boolean | undefined;
     barrierDismissible?: boolean | undefined;
-    traversalEdgeBehavior?: upstream9.TraversalEdgeBehavior | null | undefined;
-    directionalTraversalEdgeBehavior?: upstream9.TraversalEdgeBehavior | null | undefined;
+    traversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
+    directionalTraversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
 }): MaterialPageRoute<T>;
 export declare function _MaterialPageRouteFactory(options: {
-    builder: ((context: upstream7.BuildContext) => Widget);
+    builder: ((context: upstream8.BuildContext) => Widget);
     settings?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
     }> | null | undefined;
@@ -276,15 +278,15 @@ export declare function _MaterialPageRouteFactory(options: {
     fullscreenDialog?: boolean | undefined;
     allowSnapshotting?: boolean | undefined;
     barrierDismissible?: boolean | undefined;
-    traversalEdgeBehavior?: upstream9.TraversalEdgeBehavior | null | undefined;
-    directionalTraversalEdgeBehavior?: upstream9.TraversalEdgeBehavior | null | undefined;
+    traversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
+    directionalTraversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
 }): MaterialPageRoute<unknown | null>;
 export declare const MaterialPageRoute: typeof _MaterialPageRouteFactory & _FlaxInstanceType<MaterialPageRoute<unknown | null>> & _FlaxDartType<MaterialPageRoute<unknown | null>, readonly ["class", "flax.material/material#type:MaterialPageRoute", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "filter" | "traversalEdgeBehavior" | "directionalTraversalEdgeBehavior" | "delegatedTransition" | "receivedTransition" | "barrierDismissible" | "semanticsDismissible" | "barrierColor" | "barrierLabel" | "barrierCurve" | "maintainState" | "popGestureInProgress" | "popGestureEnabled" | "offstage" | "subtreeContext" | "animation" | "secondaryAnimation" | "popDisposition" | "hasScopedWillPopCallback" | "canPop" | "impliesAppBarDismissal" | "fullscreenDialog" | "completed" | "transitionDuration" | "reverseTransitionDuration" | "opaque" | "allowSnapshotting" | "finishedWhenPopped" | "controller" | "willDisposeAnimationController" | "debugLabel" | "overlayEntries" | "requestFocus" | "navigator" | "settings" | "restorationScopeId" | "willHandlePopInternally" | "currentResult" | "popped" | "isCurrent" | "isFirst" | "hasActiveRouteBelow" | "isActive" | "builder" | "setState" | "buildPage" | "buildTransitions" | "install" | "didPush" | "didAdd" | "willPop" | "onPopInvokedWithResult" | "addScopedWillPopCallback" | "removeScopedWillPopCallback" | "registerPopEntry" | "unregisterPopEntry" | "didChangePrevious" | "didChangeNext" | "didPopNext" | "changedInternalState" | "changedExternalState" | "buildModalBarrier" | "createOverlayEntries" | "toString" | "debugTransitionCompleted" | "createAnimationController" | "createAnimation" | "createSimulation" | "didReplace" | "didPop" | "canTransitionTo" | "canTransitionFrom" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCancelBackGesture" | "handleCommitBackGesture" | "dispose" | "onPopInvoked" | "didComplete" | "addLocalHistoryEntry" | "removeLocalHistoryEntry" | "buildContent" | "__flaxBound:package:material_ui/src/page.dart::MaterialPageRoute" | "__flaxBound:package:flutter/src/widgets/pages.dart::PageRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::ModalRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::TransitionRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::OverlayRoute" | "__flaxBound:package:flutter/src/widgets/navigator.dart::Route" | "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder" | "__flaxBound:package:flutter/src/widgets/routes.dart::PredictiveBackRoute" | "__flaxBound:package:flutter/src/widgets/routes.dart::LocalHistoryRoute" | "__flaxBound:package:material_ui/src/page.dart::MaterialRouteTransitionMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         (options: {
-            builder: ((context: upstream7.BuildContext) => Widget);
+            builder: ((context: upstream8.BuildContext) => Widget);
             settings?: Readonly<{
                 "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
             }> | null | undefined;
@@ -293,8 +295,8 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             fullscreenDialog?: boolean | undefined;
             allowSnapshotting?: boolean | undefined;
             barrierDismissible?: boolean | undefined;
-            traversalEdgeBehavior?: upstream9.TraversalEdgeBehavior | null | undefined;
-            directionalTraversalEdgeBehavior?: upstream9.TraversalEdgeBehavior | null | undefined;
+            traversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
+            directionalTraversalEdgeBehavior?: upstream10.TraversalEdgeBehavior | null | undefined;
         }): MaterialPageRoute<_Selected0>;
         readonly prototype: MaterialPageRoute<_Selected0>;
     } & _FlaxInstanceType<MaterialPageRoute<_Selected0>> & _FlaxDartType<MaterialPageRoute<_Selected0>> : never : never;
