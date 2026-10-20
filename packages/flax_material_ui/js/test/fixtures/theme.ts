@@ -4,6 +4,7 @@ import {
   asDart,
 } from '@flax/core/bindings';
 import { DateTime } from '@flax/dart/core';
+import { Locale } from '@flax/dart/ui';
 import { DateFormat as CupertinoDateFormat } from '@flax/cupertino-ui/dependencies/intl';
 import { DateFormat as MaterialDateFormat } from '@flax/material-ui/dependencies/intl';
 import { bind, signal } from '@flax/core';
@@ -22,7 +23,10 @@ import { CupertinoThemeData, NoDefaultCupertinoThemeData } from '@flax/cupertino
 import {
   Brightness,
   ColorScheme,
+  GlobalMaterialLocalizations,
   InputDecoration,
+  MaterialApp,
+  MaterialLocalizations,
   TextField,
   TextTheme,
   Theme,
@@ -71,6 +75,22 @@ const hooks = {
   controller: null as TextEditingController | null,
 };
 Object.assign(globalThis, { themes: hooks });
+
+for (const language of ['en', 'zh']) {
+  registerPage(`localized-${language}`, () =>
+    MaterialApp({
+      locale: Locale(language),
+      supportedLocales: [Locale('en'), Locale('zh')],
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      home: Builder({
+        builder: (context) => {
+          const text = MaterialLocalizations.of(context);
+          return Text(`${text.okButtonLabel} / ${text.cancelButtonLabel}`);
+        },
+      }),
+    }),
+  );
+}
 
 registerPage('theme', (_, lifecycle) => {
   hooks.factories++;

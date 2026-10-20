@@ -7,6 +7,11 @@ builder metadata and host ownership of `runApp`. Required `intl` types are owner
 views; Cupertino APIs reuse their declared provider. Types and defaults come from
 analyzer rather than hand-maintained signatures. See the [rules guide](../README.md).
 
+The source-directory exclusion `package:material_ui/src/l10n/` keeps concrete language
+implementations, `getMaterialTranslation` and `kMaterialSupportedLanguages` out of JS
+bindings. Their Dart code remains available to `GlobalMaterialLocalizations.delegate`.
+The public `GlobalMaterialLocalizations` and `MaterialLocalizations` APIs stay bound.
+
 Rendering adapters keep their existing `.bind` constructor inputs. Removing their
 member-selection overrides would switch them to immediate real-object construction; that
 is a different API contract. Newly discovered ordinary members use automatic selection

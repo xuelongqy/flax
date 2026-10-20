@@ -26,6 +26,25 @@ ThemeData theme(
 );
 
 void main() {
+  testWidgets('public delegates load languages without concrete JS bindings', (
+    t,
+  ) async {
+    final h = OwnedHarness(fixture: 'theme');
+    try {
+      for (final (language, label) in [
+        ('en', 'OK / Cancel'),
+        ('zh', '确定 / 取消'),
+      ]) {
+        await t.pumpWidget(h.page('localized-$language'));
+        await t.pumpAndSettle();
+        expect(find.text(label), findsOneWidget);
+        expect(h.errors, isEmpty);
+      }
+    } finally {
+      await h.finish(t);
+    }
+  });
+
   testWidgets('Material injects Cupertino provider views without its plugin', (
     t,
   ) async {

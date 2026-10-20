@@ -15,7 +15,7 @@ import type * as upstream5 from '@flax/flutter/animation/_bindings/sdk_animation
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import { _flaxMemberParameters14, _flaxMemberParameters240, _flaxMemberParameters2, _flaxMemberParameters241, _flaxMemberParameters242 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters14, _flaxMemberParameters239, _flaxMemberParameters2, _flaxMemberParameters240, _flaxMemberParameters241 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -23,8 +23,8 @@ export interface RangeSliderTrackShape extends Readonly<{ "__flaxBound:package:m
 readonly [_flaxDartTypeValue]: RangeSliderTrackShape;
 
 }
-defineObject("flax.material/material#type:RangeSliderTrackShape", ["isRounded"], [], _flaxBindingMethods("flax.material/material#type:RangeSliderTrackShape", "object", {"getPreferredRect":_flaxMemberParameters14,"paint":_flaxMemberParameters240}, {}), []);
-const _RangeSliderTrackShapeProxy = {type: "flax.material/material#type:RangeSliderTrackShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredRect":_flaxMemberParameters241,"paint":_flaxMemberParameters242}, getters: ["isRounded"], setters: [], contextMembers: [], superMembers: ["get:isRounded"]} as const;
+defineObject("flax.material/material#type:RangeSliderTrackShape", ["isRounded"], [], _flaxBindingMethods("flax.material/material#type:RangeSliderTrackShape", "object", {"getPreferredRect":_flaxMemberParameters14,"paint":_flaxMemberParameters239}, {}), []);
+const _RangeSliderTrackShapeProxy = {type: "flax.material/material#type:RangeSliderTrackShape", parameters: _flaxMemberParameters2, constructors: {"": _flaxMemberParameters2}, methods: {"getPreferredRect":_flaxMemberParameters240,"paint":_flaxMemberParameters241}, getters: ["isRounded"], setters: [], contextMembers: [], superMembers: ["get:isRounded"]} as const;
 export interface RangeSliderTrackShape {
 readonly [_flaxDartTypeValue]: RangeSliderTrackShape;
 

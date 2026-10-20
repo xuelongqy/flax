@@ -333,7 +333,6 @@ export { getDebugProfileBuildsEnabled, setDebugProfileBuildsEnabled } from "@fla
 export { getDebugProfileBuildsEnabledUserWidgets, setDebugProfileBuildsEnabledUserWidgets } from "@flax/cupertino-ui/_bindings/cupertino_debugProfileBuildsEnabledUserWidgets";
 export { getEmptyTextSelectionControls } from "@flax/flutter/widgets/_bindings/sdk_widgets_emptyTextSelectionControls_c5mow";
 export { getFactory } from "@flax/flutter/foundation/_bindings/sdk_foundation_factory_c0";
-export { getCupertinoTranslation } from "@flax/cupertino-ui/_bindings/cupertino_getCupertinoTranslation";
 export { getImageCache } from "@flax/flutter/painting/_bindings/sdk_painting_imageCache_cw";
 export { getKAlwaysCompleteAnimation } from "@flax/flutter/animation/_bindings/sdk_animation_kAlwaysCompleteAnimation";
 export { getKAlwaysDismissedAnimation } from "@flax/flutter/animation/_bindings/sdk_animation_kAlwaysDismissedAnimation";
@@ -348,7 +347,6 @@ export { kCupertinoFocusColorBrightness } from "@flax/cupertino-ui/_bindings/cup
 export { kCupertinoFocusColorOpacity } from "@flax/cupertino-ui/_bindings/cupertino_kCupertinoFocusColorOpacity";
 export { kCupertinoFocusColorSaturation } from "@flax/cupertino-ui/_bindings/cupertino_kCupertinoFocusColorSaturation";
 export { getKCupertinoModalBarrierColor } from "@flax/cupertino-ui/_bindings/cupertino_kCupertinoModalBarrierColor";
-export { getKCupertinoSupportedLanguages } from "@flax/cupertino-ui/_bindings/cupertino_kCupertinoSupportedLanguages";
 export { getKDefaultContentInsertionMimeTypes } from "@flax/flutter/widgets/_bindings/sdk_widgets_kDefaultContentInsertionMimeTypes";
 export { kDefaultFontSize } from "@flax/flutter/painting/_bindings/sdk_painting_kDefaultFontSize";
 export { getKDefaultRouteDirectionalTraversalEdgeBehavior } from "@flax/flutter/widgets/_bindings/sdk_widgets_kDefaultRouteDirectionalTraversalEdgeBehavior";

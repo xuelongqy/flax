@@ -479,6 +479,15 @@ overrides:
   exclude: [internalHelper]
 ```
 
+`exclude` also accepts declaration-library URIs: `package:example/src/l10n/` excludes a
+directory recursively, and `package:example/src/internal.dart` excludes one library.
+Matching uses the original declaring library, including declarations reexported through
+public entries. Directory targets must end in `/`; unrelated neighboring directories are
+not matched. Targets that match no public declarations remain errors. Exclusion only
+removes bindings, not the underlying Dart implementation. Overlapping source targets are
+allowed. Generic-bound completion cannot reintroduce excluded types; dependent automatic
+signatures remain skipped.
+
 Override fields replace only those inferred fields; inferred constructors and ordinary
 members remain intact. An explicit override for an unknown or unbindable declaration is
 fail-closed. `bindings/flax_overrides.yaml` is reserved for `--library` mode and is

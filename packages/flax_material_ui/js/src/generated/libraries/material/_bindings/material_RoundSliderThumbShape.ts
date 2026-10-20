@@ -19,7 +19,7 @@ import type * as upstream7 from '@flax/material-ui/_bindings/material_SliderThem
 import '@flax/material-ui/_bindings/material_SliderThemeData';
 import type * as upstream8 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import { _flaxMemberParameters250, _flaxMemberParameters148, _flaxMemberParameters127 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters249, _flaxMemberParameters148, _flaxMemberParameters127 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -39,7 +39,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:RoundSliderThumbShape", "", [{"name":"enabledThumbRadius"},{"name":"disabledThumbRadius"},{"name":"elevation"},{"name":"pressedElevation"}], [], options) as RoundSliderThumbShape;
 }
-const _RoundSliderThumbShapeProxy = {type: "flax.material/material#type:RoundSliderThumbShape", parameters: _flaxMemberParameters250, constructors: {"": _flaxMemberParameters250}, methods: {"getPreferredSize":_flaxMemberParameters148,"paint":_flaxMemberParameters127}, getters: ["enabledThumbRadius","disabledThumbRadius","elevation","pressedElevation"], setters: [], contextMembers: [], superMembers: ["get:enabledThumbRadius","get:disabledThumbRadius","get:elevation","get:pressedElevation","getPreferredSize","paint"]} as const;
+const _RoundSliderThumbShapeProxy = {type: "flax.material/material#type:RoundSliderThumbShape", parameters: _flaxMemberParameters249, constructors: {"": _flaxMemberParameters249}, methods: {"getPreferredSize":_flaxMemberParameters148,"paint":_flaxMemberParameters127}, getters: ["enabledThumbRadius","disabledThumbRadius","elevation","pressedElevation"], setters: [], contextMembers: [], superMembers: ["get:enabledThumbRadius","get:disabledThumbRadius","get:elevation","get:pressedElevation","getPreferredSize","paint"]} as const;
 export interface _RoundSliderThumbShapeNative extends RoundSliderThumbShape {
 readonly [_flaxDartTypeValue]: _RoundSliderThumbShapeNative;
 

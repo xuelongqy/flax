@@ -107,6 +107,91 @@ overrides:
     }
   });
 
+  for (final target in [
+    'package:host/src/l10n/',
+    'package:host/src/l10n/translations.dart',
+  ]) {
+    test('source exclusion $target follows original reexports', () async {
+      final fixture = _Fixture();
+      final host = fixture.package(
+        'host',
+        source: '''
+export 'src/l10n/translations.dart';
+export 'src/l10n_extra/visible.dart';
+import 'src/l10n/translations.dart';
+class Local { Local(); }
+class Bounded<T extends Ignored> { Bounded(); }
+Ignored echo(Ignored value) => value;
+int own() => 1;
+''',
+      );
+      final translations = File(
+        p.join(host.path, 'lib/src/l10n/translations.dart'),
+      )..parent.createSync(recursive: true);
+      translations.writeAsStringSync('''
+class Ignored { Ignored(); }
+int messages = 0;
+int translate() => 1;
+''');
+      final neighbor = File(
+        p.join(host.path, 'lib/src/l10n_extra/visible.dart'),
+      )..parent.createSync(recursive: true);
+      neighbor.writeAsStringSync('class Neighbor { Neighbor(); }');
+      final exclusions = {target, 'package:host/src/l10n/'}.toList();
+      File(p.join(host.path, 'bindings/flax_overrides.yaml'))
+          .writeAsStringSync('''
+format: 2
+overrides:
+  exclude: ${jsonEncode(exclusions)}
+''');
+      fixture.writePackageConfig();
+      final config = p.join(host.path, 'bindings/flax_bindings.yaml');
+      for (final result in [
+        await FlaxCodegenPackagePipeline.validateConfig(config),
+        await FlaxCodegenPackagePipeline.validateLibrary(
+          'package:host/api.dart',
+          packageRoot: host.path,
+        ),
+      ]) {
+        final model = result.localModels.single;
+        expect(model.classes.map((c) => c.name), ['Local', 'Neighbor']);
+        expect(model.functions.map((f) => f.call.name), ['own']);
+        expect(model.topLevel?.getters ?? [], isEmpty);
+        expect(model.topLevel?.setters ?? [], isEmpty);
+        expect(
+          result.skips
+              .where((s) => s.code == 'excluded_by_override')
+              .map((s) => s.target),
+          containsAll(['Ignored', 'messages', 'translate']),
+        );
+        expect(
+          result.skips.any(
+            (s) =>
+                s.target == 'echo' && s.code == 'signature_depends_on_skipped',
+          ),
+          isTrue,
+        );
+        expect(
+          result.skips.any(
+            (s) =>
+                s.target == 'Bounded' &&
+                s.code == 'signature_depends_on_skipped',
+          ),
+          isTrue,
+        );
+      }
+      final file = File(config);
+      file.writeAsStringSync(
+        file.readAsStringSync().replaceFirst(
+          'automatic: true',
+          'classes: [Ignored, Local]',
+        ),
+      );
+      final scoped = await FlaxCodegenPackagePipeline.validateConfig(config);
+      expect(scoped.localModels.single.classes.map((c) => c.name), ['Local']);
+    });
+  }
+
   test('declared public types reuse the matching Dart provider', () async {
     final fixture = _Fixture();
     fixture.package('values', source: _values);

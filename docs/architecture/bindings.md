@@ -8,6 +8,12 @@ binding contracts below, skips unsupported declarations, and accepts optional ov
 for binding semantics that cannot be inferred safely. Explicit configuration remains
 fail-closed.
 
+Automatic `overrides.exclude` accepts declaration names or original `package:` library
+URIs. A trailing `/` selects an entire source directory, including public reexports; an
+exact URI selects one library. Excluded types use the existing dependent-signature skip
+rules. This removes JS bindings while leaving Dart's internal implementations available,
+such as Material's concrete translations behind its public delegates.
+
 Custom core collection subclasses reuse the same object member conversion and shared
 collection table. TypeScript keeps the most specific collection parent and selected
 native signatures; Dart supertype identities and legal JS proxy overrides remain intact.

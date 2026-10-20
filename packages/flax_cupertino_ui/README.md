@@ -50,7 +50,8 @@ bindings. See the
 [binding dependency policy](../../docs/architecture/packaging.md#binding-dependency-policy).
 
 Whole-library automatic discovery (`--library`) reads `bindings/flax_overrides.yaml` and
-excludes the concrete `CupertinoLocalization*` language implementations. These classes
+excludes the declaring directory `package:cupertino_ui/src/l10n/`. Its concrete
+`CupertinoLocalization*` classes and translation helpers stay inside Dart. These classes
 remain absent from the generated public surface. When selecting localization APIs,
 applications normally use `GlobalCupertinoLocalizations.delegates`; Dart creates the
 date and number formatters internally. This does not require exposing `intl` objects to

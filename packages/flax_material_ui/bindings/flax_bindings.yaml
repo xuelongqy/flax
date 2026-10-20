@@ -13,7 +13,10 @@ publicLibraries:
     tsOutput: js/src/generated/libraries/material/index.ts
 overrides:
   # The shared JS host owns application roots.
-  exclude: [runApp]
+  exclude:
+    - runApp
+    # Translation implementations stay in Dart behind the public delegate.
+    - package:material_ui/src/l10n/
   classes:
     AppBar:
       widgetInterfaces:

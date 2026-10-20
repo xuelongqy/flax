@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
+import 'package:flax_codegen/src/package_pipeline.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -1472,12 +1473,16 @@ AlignmentGeometry();
       text.constructors.single.parameters.any((p) => p.name == 'style'),
       isTrue,
     );
-    final material = await parser.parse(
-      FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax_material_ui/bindings/flax_bindings.yaml'),
-      ),
+    final package = await FlaxCodegenPackagePipeline.validateConfig(
+      p.join(root, 'packages/flax_material_ui/bindings/flax_bindings.yaml'),
     );
-    final key = module.types.singleWhere((t) => t.name == 'Key');
+    final localModules = package.localModels;
+    final contextModules = package.projection.modulesByModuleId;
+    final provider = contextModules['flax.core/flutter']!;
+    final material = localModules.singleWhere(
+      (module) => module.name == 'material',
+    );
+    final key = provider.types.singleWhere((t) => t.name == 'Key');
     final application = material.classes.singleWhere(
       (c) => c.name == 'MaterialApp',
     );
@@ -1507,16 +1512,24 @@ AlignmentGeometry();
     expect(appParams['themeMode']!.type.nullable, isTrue);
     expect(appParams['debugShowCheckedModeBanner']!.defaultCode, 'true');
     expect(application.widgetInterfaces, isEmpty);
-    expect(material.types.singleWhere((t) => t.name == 'Key').id, key.id);
-    final emitter = FlaxCodegenBindingEmitter([module, material]);
-    final materialTypescript = emitter
-        .typescriptOutputs(material)
-        .values
-        .join('\n');
-    final keySpecifier = flaxCodegenTypescriptOutputSpecifiers(module).entries
-        .singleWhere((entry) => entry.key.endsWith('/_bindings/flutter_Key.ts'))
+    expect(appParams['key']!.type.id, key.id);
+    expect(material.classes.any((type) => type.name == 'Key'), isFalse);
+    final emitter = FlaxCodegenBindingEmitter([module]);
+    final materialEmitter = FlaxCodegenBindingEmitter([
+      for (final entry in contextModules.entries)
+        if (entry.key != material.moduleId) entry.value,
+      material,
+    ]);
+    final materialOutputs = materialEmitter.typescriptOutputs(material);
+    final materialTypescript = materialOutputs.values.join('\n');
+    final keySpecifier = flaxCodegenTypescriptOutputSpecifiers(provider).entries
+        .singleWhere((entry) => p.basename(entry.key) == 'flutter_Key.ts')
         .value;
-    expect(materialTypescript, contains("from '$keySpecifier'"));
+    expect(
+      materialTypescript.contains("from '$keySpecifier'"),
+      isTrue,
+      reason: 'Material must import the Core provider for Key: $keySpecifier',
+    );
     expect(materialTypescript, isNot(contains('@flax/core/flutter')));
     expect(materialTypescript, isNot(contains('export interface Key')));
     final refresh = material.classes.singleWhere(
@@ -1636,9 +1649,17 @@ AlignmentGeometry();
     expect(decoration.omitWhenAbsent, isTrue);
     expect(decoration.type.nullable, isTrue);
     final style = module.classes.singleWhere((c) => c.name == 'TextStyle');
+    final providerStyle = provider.classes.singleWhere(
+      (c) => c.name == 'TextStyle',
+    );
     expect(
-      material.types.singleWhere((t) => t.name == 'TextStyle').id,
-      style.id,
+      field.constructors
+          .singleWhere((ctor) => ctor.name.isEmpty)
+          .parameters
+          .singleWhere((p) => p.name == 'style')
+          .type
+          .id,
+      providerStyle.id,
     );
     expect(style.setters, isEmpty);
     expect(style.methods.map((method) => method.name), contains('copyWith'));
@@ -1740,19 +1761,30 @@ AlignmentGeometry();
     final textTheme = material.classes.singleWhere(
       (c) => c.name == 'TextTheme',
     );
-    expect(
-      textTheme.getters.every((g) => g.type.id == style.id && g.type.nullable),
-      isTrue,
-    );
-    expect(emitter.typescript(material), contains('data: Bindable<Readonly<{'));
-    expect(
-      emitter.typescript(material),
-      contains('::ThemeData": readonly [] }>'),
-    );
-    expect(
-      emitter.typescript(material),
-      isNot(contains('export interface Color ')),
-    );
+    for (final name in [
+      'displayLarge',
+      'displayMedium',
+      'displaySmall',
+      'headlineLarge',
+      'headlineMedium',
+      'headlineSmall',
+      'titleLarge',
+      'titleMedium',
+      'titleSmall',
+      'bodyLarge',
+      'bodyMedium',
+      'bodySmall',
+      'labelLarge',
+      'labelMedium',
+      'labelSmall',
+    ]) {
+      final getter = textTheme.getters.singleWhere((g) => g.name == name);
+      expect(getter.type.id, providerStyle.id);
+      expect(getter.type.nullable, isTrue);
+    }
+    expect(materialTypescript, contains('data: Bindable<Readonly<{'));
+    expect(materialTypescript, contains('::ThemeData": readonly [] }>'));
+    expect(materialTypescript, isNot(contains('export interface Color ')));
     final omitted = field.constructors
         .singleWhere((ctor) => ctor.name.isEmpty)
         .parameters
@@ -1777,15 +1809,18 @@ AlignmentGeometry();
     };
     // Report bounded direct/apply constructor dispatch for the current selection.
     stdout.writeln('Selected constructor dispatch branches: $calls');
-    for (final (owner, current) in [
-      (p.join(root, 'packages/flax'), module),
-      (p.join(root, 'packages/flax_material_ui'), material),
+    for (final (owner, current, outputs) in [
+      (
+        p.join(root, 'packages/flax'),
+        module,
+        emitter.typescriptOutputs(module),
+      ),
+      (p.join(root, 'packages/flax_material_ui'), material, materialOutputs),
     ]) {
       stdout.writeln(
         'Generated size: ${current.dartOutput} = '
         '${File(p.join(owner, current.dartOutput)).lengthSync()} bytes',
       );
-      final outputs = emitter.typescriptOutputs(current);
       final totalBytes = outputs.values.fold<int>(
         0,
         (total, source) => total + utf8.encode(source).length,
@@ -1820,15 +1855,16 @@ AlignmentGeometry();
           .nullable,
       isTrue,
     );
-    expect(emitter.dart(module), contains('api.LayoutBuilder('));
+    final dart = emitter.dart(module);
+    expect(dart, contains('api.LayoutBuilder('));
     expect(
-      emitter.dart(module),
+      dart,
       contains(
         'FlaxCallbackAdapters.wrap2<api.BuildContext, '
         'api.BoxConstraints, api.Widget>',
       ),
     );
-  }, timeout: const Timeout(Duration(minutes: 3)));
+  }, timeout: const Timeout(Duration(minutes: 5)));
 
   test(
     'optional named inputs accept undefined with exact TypeScript properties',

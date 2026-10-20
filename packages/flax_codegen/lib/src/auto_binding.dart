@@ -73,6 +73,10 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final setters = <String>{...?seed.topLevel?.setters};
     final elements = <String, InterfaceElement>{};
     final excluded = overrides.exclude.toSet();
+    final excludedSources = excluded
+        .where((target) => target.startsWith('package:'))
+        .toList();
+    final excludedNames = <String>{};
     final seenOverrides = <String>{};
     final reusedDeclarations = <String>{};
     final hiddenTypes = <String>{};
@@ -85,12 +89,35 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             .toList()
           ..sort();
     for (final name in names) {
-      if (scoped && !requested.contains(name)) {
-        if (excluded.contains(name)) seenOverrides.add(name);
-        continue;
-      }
       final element = exports[name] ?? exports['$name='];
       if (element == null || element.isPrivate) continue;
+      final source = element.library?.uri.toString();
+      final exclusions = [
+        if (excluded.contains(name)) name,
+        for (final target in excludedSources)
+          if (source == target ||
+              target.endsWith('/') && (source?.startsWith(target) ?? false))
+            target,
+      ];
+      if (exclusions.isNotEmpty) {
+        if (element is InterfaceElement) hiddenTypes.add(identity(element));
+        seenOverrides.addAll(exclusions);
+        excludedNames.add(name);
+      }
+      if (scoped && !requested.contains(name)) continue;
+      if (exclusions.isNotEmpty) {
+        final exclusion = exclusions.first;
+        skips.add(
+          FlaxCodegenSkip(
+            target: name,
+            reason: exclusion == name
+                ? 'Excluded by auto override'
+                : 'Excluded by auto override: $exclusion',
+            code: 'excluded_by_override',
+          ),
+        );
+        continue;
+      }
       final localOwner = _localDeclarationOwners[_declarationSource(element)];
       if (seed.automaticLibrary &&
           localOwner != null &&
@@ -104,18 +131,6 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
             target: name,
             reason: 'Reuses sibling module $localOwner',
             code: 'existing_sibling',
-          ),
-        );
-        continue;
-      }
-      if (excluded.contains(name)) {
-        if (element is InterfaceElement) hiddenTypes.add(identity(element));
-        seenOverrides.add(name);
-        skips.add(
-          FlaxCodegenSkip(
-            target: name,
-            reason: 'Excluded by auto override',
-            code: 'excluded_by_override',
           ),
         );
         continue;
@@ -313,7 +328,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       final name = element.name!;
       if (!classes.containsKey(name) &&
           !types.contains(name) &&
-          !excluded.contains(name) &&
+          !excludedNames.contains(name) &&
           exports[name] == element &&
           !_autoHidden(element) &&
           _nativeJsValueType(element) == null &&
@@ -542,7 +557,7 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
       );
     }
 
-    for (final name in requested.difference(excluded)) {
+    for (final name in requested.difference(excludedNames)) {
       if (policySkipped.contains(name) ||
           skips.any(
             (skip) =>

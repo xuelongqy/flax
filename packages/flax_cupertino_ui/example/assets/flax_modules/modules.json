@@ -1184,7 +1184,7 @@
       "specifier": "@flax/cupertino-ui",
       "owner": "@flax/cupertino-ui-runtime:dist/index.js",
       "version": "0.0.0",
-      "artifact": "4c94921c954bffd59c09b49498b9761c29c1364a8b5f95bc79dd2e116cb4ac26",
+      "artifact": "1eadcb43327f62892cb1d319773cca2f860f497819ca5e9f27bce1a7aa650951",
       "asset": "assets/flax_modules/_flax_cupertino-ui-80e2a289ba26.js",
       "package": "@flax/cupertino-ui-runtime",
       "source": "dist/index.js",
@@ -1316,7 +1316,6 @@
             "flax.cupertino/cupertino#function:CupertinoPopupSurface.debugIsVibrancePainted%3D",
             "flax.cupertino/cupertino#function:createCupertinoColorProperty",
             "flax.cupertino/cupertino#function:debugCheckHasCupertinoLocalizations",
-            "flax.cupertino/cupertino#function:getCupertinoTranslation",
             "flax.cupertino/cupertino#function:showCupertinoDialog",
             "flax.cupertino/cupertino#function:showCupertinoModalPopup",
             "flax.cupertino/cupertino#function:showCupertinoSheet",
@@ -2720,8 +2719,7 @@
             "flax.cupertino/cupertino#read:kCupertinoButtonMinSize",
             "flax.cupertino/cupertino#read:kCupertinoButtonPadding",
             "flax.cupertino/cupertino#read:kCupertinoButtonSizeBorderRadius",
-            "flax.cupertino/cupertino#read:kCupertinoModalBarrierColor",
-            "flax.cupertino/cupertino#read:kCupertinoSupportedLanguages"
+            "flax.cupertino/cupertino#read:kCupertinoModalBarrierColor"
           ]
         }
       ],

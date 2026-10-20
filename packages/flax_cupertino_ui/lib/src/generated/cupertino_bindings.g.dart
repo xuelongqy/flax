@@ -2511,12 +2511,6 @@ const cupertinoBindings = FlaxBindingModule(
       _read_kCupertinoModalBarrierColor,
     ),
     FlaxFunctionBinding(
-      "flax.cupertino/cupertino#read:kCupertinoSupportedLanguages",
-      [],
-      _flaxBinding2398,
-      _read_kCupertinoSupportedLanguages,
-    ),
-    FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:kMinInteractiveDimensionCupertino",
       [],
       flaxDoubleType,
@@ -2547,12 +2541,12 @@ const cupertinoBindings = FlaxBindingModule(
         ),
         FlaxParameter(
           "style",
-          _flaxBinding2399,
+          _flaxBinding2398,
           required: false,
           defaultValue: api4.DiagnosticsTreeStyle.singleLine,
         ),
       ],
-      _flaxBinding2400,
+      _flaxBinding2399,
       _function_createCupertinoColorProperty,
     ),
     FlaxFunctionBinding(
@@ -2560,23 +2554,6 @@ const cupertinoBindings = FlaxBindingModule(
       [FlaxParameter.required("context", _flaxBinding2)],
       flaxBoolType,
       _function_debugCheckHasCupertinoLocalizations,
-    ),
-    FlaxFunctionBinding(
-      "flax.cupertino/cupertino#function:getCupertinoTranslation",
-      [
-        FlaxParameter.required("locale", _flaxBinding260),
-        FlaxParameter.required("fullYearFormat", _flaxBinding2287),
-        FlaxParameter.required("dayFormat", _flaxBinding2287),
-        FlaxParameter.required("weekdayFormat", _flaxBinding2287),
-        FlaxParameter.required("mediumDateFormat", _flaxBinding2287),
-        FlaxParameter.required("singleDigitHourFormat", _flaxBinding2287),
-        FlaxParameter.required("singleDigitMinuteFormat", _flaxBinding2287),
-        FlaxParameter.required("doubleDigitMinuteFormat", _flaxBinding2287),
-        FlaxParameter.required("singleDigitSecondFormat", _flaxBinding2287),
-        FlaxParameter.required("decimalFormat", _flaxBinding2288),
-      ],
-      _flaxBinding2401,
-      _function_getCupertinoTranslation,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:showCupertinoDialog",
@@ -2601,9 +2578,9 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: true,
         ),
       ],
-      _flaxBinding2402,
+      _flaxBinding2400,
       _function_showCupertinoDialog,
-      genericFactory: _flaxGenericFunction3,
+      genericFactory: _flaxGenericFunction2,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:showCupertinoModalPopup",
@@ -2639,9 +2616,9 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: true,
         ),
       ],
-      _flaxBinding2402,
+      _flaxBinding2400,
       _function_showCupertinoModalPopup,
-      genericFactory: _flaxGenericFunction4,
+      genericFactory: _flaxGenericFunction3,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:showCupertinoSheet",
@@ -2671,9 +2648,9 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: false,
         ),
       ],
-      _flaxBinding2402,
+      _flaxBinding2400,
       _function_showCupertinoSheet,
-      genericFactory: _flaxGenericFunction5,
+      genericFactory: _flaxGenericFunction4,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoAdaptiveTextSelectionToolbar.getAdaptiveButtons",
@@ -2687,7 +2664,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoApp.createCupertinoHeroController",
       [],
-      _flaxBinding2403,
+      _flaxBinding2401,
       _CupertinoApp_createCupertinoHeroController,
     ),
     FlaxFunctionBinding(
@@ -2723,7 +2700,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoLocalizations.of",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2405,
+      _flaxBinding2403,
       _CupertinoLocalizations_of,
     ),
     FlaxFunctionBinding(
@@ -2773,7 +2750,7 @@ const cupertinoBindings = FlaxBindingModule(
       ],
       flaxWidgetType,
       _CupertinoRouteTransitionMixin_buildPageTransitions,
-      genericFactory: _flaxGenericFunction1396,
+      genericFactory: _flaxGenericFunction1395,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoSheetRoute.hasParentSheet",
@@ -2820,7 +2797,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoTextField.inferIOSSpellCheckConfiguration",
       [FlaxParameter.required("configuration", _flaxBinding1930)],
-      _flaxBinding2407,
+      _flaxBinding2405,
       _CupertinoTextField_inferIOSSpellCheckConfiguration,
     ),
     FlaxFunctionBinding(
@@ -2841,7 +2818,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoTheme.brightnessOf",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2408,
+      _flaxBinding2406,
       _CupertinoTheme_brightnessOf,
     ),
     FlaxFunctionBinding(
@@ -2859,13 +2836,13 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoUserInterfaceLevel.maybeOf",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2409,
+      _flaxBinding2407,
       _CupertinoUserInterfaceLevel_maybeOf,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:DefaultCupertinoLocalizations.load",
       [FlaxParameter.required("locale", _flaxBinding260)],
-      _flaxBinding2410,
+      _flaxBinding2408,
       _DefaultCupertinoLocalizations_load,
     ),
   ],
@@ -3004,7 +2981,7 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoIcons.iconFontPackage":
           api.CupertinoIcons.iconFontPackage,
     }),
-    FlaxConstantGroup(_flaxBinding2404, {
+    FlaxConstantGroup(_flaxBinding2402, {
       "flax.cupertino/cupertino#read:CupertinoIcons.left_chevron":
           api.CupertinoIcons.left_chevron,
       "flax.cupertino/cupertino#read:CupertinoIcons.right_chevron":
@@ -5647,7 +5624,7 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoMagnifier.kDefaultSize":
           api.CupertinoMagnifier.kDefaultSize,
     }),
-    FlaxConstantGroup(_flaxBinding2406, {
+    FlaxConstantGroup(_flaxBinding2404, {
       "flax.cupertino/cupertino#read:CupertinoMenuItem.kDefaultDecoration":
           api.CupertinoMenuItem.kDefaultDecoration,
     }),
@@ -5665,13 +5642,13 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoTextField.cupertinoMisspelledTextStyle":
           api.CupertinoTextField.cupertinoMisspelledTextStyle,
     }),
-    FlaxConstantGroup(_flaxBinding2411, {
+    FlaxConstantGroup(_flaxBinding2409, {
       "flax.cupertino/cupertino#read:DefaultCupertinoLocalizations.delegate":
           api.DefaultCupertinoLocalizations.delegate,
       "flax.cupertino/cupertino#read:GlobalCupertinoLocalizations.delegate":
           api.GlobalCupertinoLocalizations.delegate,
     }),
-    FlaxConstantGroup(_flaxBinding2412, {
+    FlaxConstantGroup(_flaxBinding2410, {
       "flax.cupertino/cupertino#read:GlobalCupertinoLocalizations.delegates":
           api.GlobalCupertinoLocalizations.delegates,
     }),
@@ -6242,21 +6219,6 @@ Object? _function_debugCheckHasCupertinoLocalizations(
   );
 }
 
-Object? _function_getCupertinoTranslation(Map<String, Object?> values) {
-  return api.getCupertinoTranslation(
-    values["locale"] as api1.Locale,
-    values["fullYearFormat"] as api2.DateFormat,
-    values["dayFormat"] as api2.DateFormat,
-    values["weekdayFormat"] as api2.DateFormat,
-    values["mediumDateFormat"] as api2.DateFormat,
-    values["singleDigitHourFormat"] as api2.DateFormat,
-    values["singleDigitMinuteFormat"] as api2.DateFormat,
-    values["doubleDigitMinuteFormat"] as api2.DateFormat,
-    values["singleDigitSecondFormat"] as api2.DateFormat,
-    values["decimalFormat"] as api2.NumberFormat,
-  );
-}
-
 Object? _function_showCupertinoDialog(Map<String, Object?> values) {
   return api.showCupertinoDialog<Object?>(
     anchorPoint: values["anchorPoint"] as api1.Offset?,
@@ -6357,8 +6319,6 @@ Object? _read_kCupertinoFocusColorSaturation(Map<String, Object?> values) =>
     api.kCupertinoFocusColorSaturation;
 Object? _read_kCupertinoModalBarrierColor(Map<String, Object?> values) =>
     api.kCupertinoModalBarrierColor;
-Object? _read_kCupertinoSupportedLanguages(Map<String, Object?> values) =>
-    api.kCupertinoSupportedLanguages;
 Object? _read_kMinInteractiveDimensionCupertino(Map<String, Object?> values) =>
     api.kMinInteractiveDimensionCupertino;
 bool _isCupertinoActionSheet(Object value) => value is api.CupertinoActionSheet;
@@ -28539,7 +28499,7 @@ Object _deferred4(Map<String, Object?> values) {
 }
 
 Function
-_flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
+_flaxGenericFunction2<_Method0 extends Object?>() => (FlaxDartTypes types) {
   Object? invoke(Map<String, Object?> values) {
     return api.showCupertinoDialog<_Method0>(
       anchorPoint: values["anchorPoint"] as api1.Offset?,
@@ -28598,7 +28558,7 @@ _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
   );
 };
 Function
-_flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
+_flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
   Object? invoke(Map<String, Object?> values) {
     if (!values.containsKey("barrierColor")) {
       return api.showCupertinoModalPopup<_Method0>(
@@ -28684,7 +28644,7 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
   );
 };
 Function
-_flaxGenericFunction5<_Method0 extends Object?>() => (FlaxDartTypes types) {
+_flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
   Object? invoke(Map<String, Object?> values) {
     return api.showCupertinoSheet<_Method0>(
       builder:
@@ -28810,7 +28770,7 @@ _flaxGenericFunction5<_Method0 extends Object?>() => (FlaxDartTypes types) {
     invoke,
   );
 };
-Function _flaxGenericFunction1396<_Method0 extends Object?>() =>
+Function _flaxGenericFunction1395<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Map<String, Object?> values) {
         return api.CupertinoRouteTransitionMixin.buildPageTransitions<_Method0>(
@@ -33784,7 +33744,7 @@ Function _flaxClass_CupertinoRadio<
           _CupertinoRadio_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod.plain(
-          _flaxBinding2413,
+          _flaxBinding2411,
           flaxVoidType,
           _CupertinoRadio_debugFillProperties,
         ),
@@ -35482,7 +35442,7 @@ Function _flaxClass_CupertinoSegmentedControl<
           _CupertinoSegmentedControl_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod.plain(
-          _flaxBinding2413,
+          _flaxBinding2411,
           flaxVoidType,
           _CupertinoSegmentedControl_debugFillProperties,
         ),
@@ -37469,7 +37429,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           _CupertinoSlidingSegmentedControl_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod.plain(
-          _flaxBinding2413,
+          _flaxBinding2411,
           flaxVoidType,
           _CupertinoSlidingSegmentedControl_debugFillProperties,
         ),
@@ -38691,8 +38651,6 @@ bool _collection42Matches(Object value) =>
 Object _collection43Create() => <api.CupertinoButtonSize, api13.BorderRadius>{};
 bool _collection43Matches(Object value) =>
     value is Map<api.CupertinoButtonSize, api13.BorderRadius>;
-Object _collection44Create() => <String>{};
-bool _collection44Matches(Object value) => value is Set<String>;
 Future<Object?> _future0Adapt(Future<Object?> value) =>
     value.then<void>((_) {});
 Future<Object?> _future1Adapt(Future<Object?> value) => value;
@@ -56356,47 +56314,32 @@ const _flaxBinding2397 = FlaxTypeRef(
   ),
 );
 const _flaxBinding2398 = FlaxTypeRef(
-  "set",
-  item: flaxStringType,
-  collection: FlaxCollectionBinding(
-    "set:[String:]",
-    _collection44Create,
-    _collection44Matches,
-  ),
-  iterable: _flaxBinding51,
-);
-const _flaxBinding2399 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
 );
-const _flaxBinding2400 = FlaxTypeRef(
+const _flaxBinding2399 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticsProperty",
   dartType: FlaxDartTypes.typeOf<api4.DiagnosticsProperty<api1.Color>>,
 );
-const _flaxBinding2401 = FlaxTypeRef(
-  "object",
-  id: "flax.cupertino/cupertino#type:GlobalCupertinoLocalizations",
-  nullable: true,
-);
-const _flaxBinding2402 = FlaxTypeRef(
+const _flaxBinding2400 = FlaxTypeRef(
   "future",
   item: flaxNullableAnyType,
   future: FlaxFutureBinding("any?:", _future1Adapt),
 );
-const _flaxBinding2403 = FlaxTypeRef(
+const _flaxBinding2401 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:HeroController",
 );
-const _flaxBinding2404 = FlaxTypeRef(
+const _flaxBinding2402 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:IconData",
 );
-const _flaxBinding2405 = FlaxTypeRef(
+const _flaxBinding2403 = FlaxTypeRef(
   "object",
   id: "flax.cupertino/cupertino#type:CupertinoLocalizations",
 );
-const _flaxBinding2406 = FlaxTypeRef(
+const _flaxBinding2404 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType:
@@ -56409,34 +56352,34 @@ const _flaxBinding2406 = FlaxTypeRef(
     ),
   },
 );
-const _flaxBinding2407 = FlaxTypeRef(
+const _flaxBinding2405 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:SpellCheckConfiguration",
 );
-const _flaxBinding2408 = FlaxTypeRef(
+const _flaxBinding2406 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:Brightness",
 );
-const _flaxBinding2409 = FlaxTypeRef(
+const _flaxBinding2407 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevelData",
   nullable: true,
 );
-const _flaxBinding2410 = FlaxTypeRef(
+const _flaxBinding2408 = FlaxTypeRef(
   "future",
-  item: _flaxBinding2405,
+  item: _flaxBinding2403,
   future: FlaxFutureBinding(
     "object:flax.cupertino/cupertino#type:CupertinoLocalizations",
     _future4Adapt,
   ),
 );
-const _flaxBinding2411 = FlaxTypeRef(
+const _flaxBinding2409 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:LocalizationsDelegate",
   dartType: FlaxDartTypes
       .typeOf<api11.LocalizationsDelegate<api.CupertinoLocalizations>>,
 );
-const _flaxBinding2412 = FlaxTypeRef(
+const _flaxBinding2410 = FlaxTypeRef(
   "list",
   item: _flaxBinding258,
   collection: FlaxCollectionBinding(
@@ -56446,6 +56389,6 @@ const _flaxBinding2412 = FlaxTypeRef(
   ),
   iterable: _flaxBinding2164,
 );
-const _flaxBinding2413 = <FlaxParameter>[
+const _flaxBinding2411 = <FlaxParameter>[
   FlaxParameter.required("properties", _flaxBinding20),
 ];

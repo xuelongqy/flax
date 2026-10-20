@@ -120,7 +120,6 @@
             "flax.cupertino/cupertino#function:CupertinoPopupSurface.debugIsVibrancePainted%3D",
             "flax.cupertino/cupertino#function:createCupertinoColorProperty",
             "flax.cupertino/cupertino#function:debugCheckHasCupertinoLocalizations",
-            "flax.cupertino/cupertino#function:getCupertinoTranslation",
             "flax.cupertino/cupertino#function:showCupertinoDialog",
             "flax.cupertino/cupertino#function:showCupertinoModalPopup",
             "flax.cupertino/cupertino#function:showCupertinoSheet",
@@ -1524,8 +1523,7 @@
             "flax.cupertino/cupertino#read:kCupertinoButtonMinSize",
             "flax.cupertino/cupertino#read:kCupertinoButtonPadding",
             "flax.cupertino/cupertino#read:kCupertinoButtonSizeBorderRadius",
-            "flax.cupertino/cupertino#read:kCupertinoModalBarrierColor",
-            "flax.cupertino/cupertino#read:kCupertinoSupportedLanguages"
+            "flax.cupertino/cupertino#read:kCupertinoModalBarrierColor"
           ]
         }
       ]

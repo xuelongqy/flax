@@ -14,7 +14,7 @@ import type * as upstream4 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/sdk_widgets_PageRoute';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_PageRoute';
-import { _flaxMemberParameters136, _flaxMemberParameters229 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters136, _flaxMemberParameters228 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -33,7 +33,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:PredictiveBackPageTransitionsBuilder", "", [{"name":"fallbackColor"}], [], options) as PredictiveBackPageTransitionsBuilder;
 }
-const _PredictiveBackPageTransitionsBuilderProxy = {type: "flax.material/material#type:PredictiveBackPageTransitionsBuilder", parameters: _flaxMemberParameters229, constructors: {"": _flaxMemberParameters229}, methods: {"buildTransitions":_flaxMemberParameters136}, getters: ["fallbackColor","transitionDuration","delegatedTransition","reverseTransitionDuration"], setters: [], contextMembers: ["buildTransitions"], superMembers: ["get:fallbackColor","get:transitionDuration","get:delegatedTransition","get:reverseTransitionDuration","buildTransitions"]} as const;
+const _PredictiveBackPageTransitionsBuilderProxy = {type: "flax.material/material#type:PredictiveBackPageTransitionsBuilder", parameters: _flaxMemberParameters228, constructors: {"": _flaxMemberParameters228}, methods: {"buildTransitions":_flaxMemberParameters136}, getters: ["fallbackColor","transitionDuration","delegatedTransition","reverseTransitionDuration"], setters: [], contextMembers: ["buildTransitions"], superMembers: ["get:fallbackColor","get:transitionDuration","get:delegatedTransition","get:reverseTransitionDuration","buildTransitions"]} as const;
 export interface _PredictiveBackPageTransitionsBuilderNative extends PredictiveBackPageTransitionsBuilder {
 readonly [_flaxDartTypeValue]: _PredictiveBackPageTransitionsBuilderNative;
 readonly [_flaxDartMethodCases]?: {buildTransitions: _FlaxSignature1;};
