@@ -412,7 +412,7 @@ Source and declaration dependencies are validated separately; a public types dep
 in only one package does not satisfy the other package's imports.
 
 Owner-local dependency modules use the owner's namespace, for example
-`@flax/cupertino-ui/dependencies/intl`, with source at
+`@example/ui/dependencies/intl`, with source at
 `js/src/generated/dependencies/intl/index.ts`. Their Manifest 28 ownership rows carry
 the sparse `localDependency: true` marker; unmarked rows default to false. These views
 are excluded from automatic provider discovery. Format 27 is rejected; regenerate
@@ -429,8 +429,10 @@ for source/types export paths and installation requirements.
 Core owns the Flutter framework and Dart SDK surfaces. Supported public `material_ui`
 and `cupertino_ui` bindings are generated in their independent packages with
 `automatic: true`; Core no longer registers native Material/Cupertino binding modules.
-The UI packages keep their provider graph and independent `intl` views. Their explicit
-skips, localization blacklist and host `runApp` boundary remain visible.
+The UI packages keep their provider graph, but do not opt into Intl formatter bindings.
+Public localization delegate access remains bound; formatter-taking Global localization
+constructors are skipped. Their explicit skips, localization blacklist and host `runApp`
+boundary remain visible.
 
 Custom List, Map, Set and Iterable subclasses reuse ordinary object bindings and the
 existing typed collection operations. Selected Dart members take precedence over bridge

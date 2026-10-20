@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/flutter/painting/_bindings/flutter_ShapeB
 import '@flax/flutter/painting/_bindings/flutter_ShapeBorder';
 import type * as upstream2 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
-import { _flaxMemberParameters216 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters215 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -28,7 +28,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:NavigationRailDestination", "", [{"name":"icon","required":true},{"name":"selectedIcon"},{"name":"indicatorColor"},{"name":"indicatorShape"},{"name":"label","required":true},{"name":"padding"},{"name":"disabled"}], [], options) as NavigationRailDestination;
 }
-const _NavigationRailDestinationProxy = {type: "flax.material/material#type:NavigationRailDestination", parameters: _flaxMemberParameters216, constructors: {"": _flaxMemberParameters216}, methods: {}, getters: ["icon","selectedIcon","indicatorColor","indicatorShape","label","padding","disabled"], setters: [], contextMembers: [], superMembers: ["get:icon","get:selectedIcon","get:indicatorColor","get:indicatorShape","get:label","get:padding","get:disabled"]} as const;
+const _NavigationRailDestinationProxy = {type: "flax.material/material#type:NavigationRailDestination", parameters: _flaxMemberParameters215, constructors: {"": _flaxMemberParameters215}, methods: {}, getters: ["icon","selectedIcon","indicatorColor","indicatorShape","label","padding","disabled"], setters: [], contextMembers: [], superMembers: ["get:icon","get:selectedIcon","get:indicatorColor","get:indicatorShape","get:label","get:padding","get:disabled"]} as const;
 export interface _NavigationRailDestinationNative extends NavigationRailDestination {
 readonly [_flaxDartTypeValue]: _NavigationRailDestinationNative;
 

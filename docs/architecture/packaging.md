@@ -260,8 +260,8 @@ The generator validates provider types dependencies in the source and declaratio
 packages separately. A dependency declared in only one package cannot satisfy the other
 package's published imports, even if a workspace installation can resolve it.
 
-For Material and Cupertino owner-local `intl` views, the public subpath is respectively
-`@flax/material-ui/dependencies/intl` or `@flax/cupertino-ui/dependencies/intl`:
+An owner opting into an external dependency uses an owner-qualified public subpath, for
+example `@example/ui/dependencies/intl`:
 
 | Delivery artifact            | Path inside its package                        |
 | ---------------------------- | ---------------------------------------------- |
@@ -300,6 +300,12 @@ provider identities. To request another registered view of the same underlying D
 object, use the existing shared `asDart(value, Target)`: it selects the exact target
 view after actual Dart and generic type checks, without copying the object or adding a
 new GC ownership scheme.
+
+The shipped Material and Cupertino bindings do not opt into Intl. Their Global
+localization delegate access and ordinary localization queries remain available;
+formatter-taking Global constructors are skipped by the normal unresolved-dependency
+rule. Upstream Dart localization packages still depend on Intl internally. An Intl
+binding package may be added separately in the future; none is currently shipped.
 
 An inherited provider member retains its exact owner-local view in the descendant's
 signature. Resolution is per operation: two different methods, or a getter and setter,

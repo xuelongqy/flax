@@ -3,14 +3,16 @@
 [flax_bindings.yaml](flax_bindings.yaml) discovers the supported complete public
 `material_ui` entry. Ordinary declarations and members use shared automatic selection;
 inline overrides retain Widget interfaces, existing reactive rendering adapters, route
-builder metadata and host ownership of `runApp`. Required `intl` types are owner-local
-views; Cupertino APIs reuse their declared provider. Types and defaults come from
-analyzer rather than hand-maintained signatures. See the [rules guide](../README.md).
+builder metadata and host ownership of `runApp`. Intl is not opted in; formatter-taking
+constructors are skipped, while Cupertino APIs reuse their declared provider. Types and
+defaults come from analyzer rather than hand-maintained signatures. See the
+[rules guide](../README.md).
 
 The source-directory exclusion `package:material_ui/src/l10n/` keeps concrete language
 implementations, `getMaterialTranslation` and `kMaterialSupportedLanguages` out of JS
 bindings. Their Dart code remains available to `GlobalMaterialLocalizations.delegate`.
-The public `GlobalMaterialLocalizations` and `MaterialLocalizations` APIs stay bound.
+The public localization queries and `GlobalMaterialLocalizations.delegate/delegates`
+stay bound; its Intl-dependent constructor is not exposed to JS.
 
 Rendering adapters keep their existing `.bind` constructor inputs. Removing their
 member-selection overrides would switch them to immediate real-object construction; that

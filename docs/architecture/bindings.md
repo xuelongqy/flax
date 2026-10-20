@@ -660,13 +660,13 @@ dependencies, not host-capability plugins. See
 [package dependency delivery](packaging.md#binding-dependency-policy).
 
 Owner-local modules use owner-qualified public paths such as
-`@flax/cupertino-ui/dependencies/intl`; source, runtime and types exports stay in that
-owner's packages. Their shared Dart source identity does not merge independently
-generated JS views. Existing `asDart(value, Target)` selects the exact registered target
-view after real Dart and generic checks, retaining the same underlying Dart object and
-joint-GC ownership. No new cast helper or per-class lifecycle mechanism is required.
-Inherited signatures use the exact view recorded by the ancestor's provider; this class
-context never turns an owner-local view into a provider for unrelated APIs.
+`@example/ui/dependencies/intl`; source, runtime and types exports stay in that owner's
+packages. Their shared Dart source identity does not merge independently generated JS
+views. Existing `asDart(value, Target)` selects the exact registered target view after
+real Dart and generic checks, retaining the same underlying Dart object and joint-GC
+ownership. No new cast helper or per-class lifecycle mechanism is required. Inherited
+signatures use the exact view recorded by the ancestor's provider; this class context
+never turns an owner-local view into a provider for unrelated APIs.
 
 Automatic declaration scopes apply member and semantic overrides before checking a
 dependency's surface. Compatible overrides reuse the published binding without creating
@@ -683,6 +683,15 @@ The standalone `flax_material_ui` and `flax_cupertino_ui` packages automatically
 the supported public UI libraries and own their binding implementations. Core does not
 contain native Flutter Material/Cupertino binding modules; UI packages reuse Core rather
 than creating a reverse dependency. Explicit skips and localization exclusions remain.
+The UI packages do not opt into Intl formatter bindings: delegate access and ordinary
+localization queries remain available, while Intl-dependent Global constructors are
+skipped. Native Dart translations still create and use their formatters internally.
+
+Flutter's `widget_previews.dart` development annotations and preview configuration types
+are not selected. Core does not register or deliver a Preview binding module, and
+`@flax/flutter/widget_previews` is not a public JS entry. Native Flutter preview tooling
+is unchanged; Widget Inspector bindings remain selected.
+
 `automatic: true` selects a public library through the existing automatic selector.
 Package generation plans sibling declaration ownership before parsing signatures, using
 the same source identity as dependency Manifests. Explicit adapters win; otherwise the

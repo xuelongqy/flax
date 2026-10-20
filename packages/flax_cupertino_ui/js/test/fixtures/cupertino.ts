@@ -1,4 +1,5 @@
 import { bind, signal } from '@flax/core';
+import { Locale } from '@flax/dart/ui';
 import { Color } from '@flax/flutter/services';
 import { Text, runApp } from '@flax/flutter/widgets';
 import {
@@ -7,13 +8,18 @@ import {
   CupertinoPageScaffold,
   CupertinoNavigationBar,
   CupertinoThemeData,
+  GlobalCupertinoLocalizations,
 } from '@flax/cupertino-ui';
 
 const opaque = signal(true);
+const locale = signal(Locale('en'));
 const state = {
   presses: 0,
   setOpaque(value: boolean) {
     opaque.value = value;
+  },
+  setLanguage(language: string) {
+    locale.value = Locale(language);
   },
 };
 Object.assign(globalThis, { cupertinoPilot: state });
@@ -26,6 +32,9 @@ const theme = CupertinoThemeData({
 runApp(
   CupertinoApp({
     debugShowCheckedModeBanner: false,
+    locale: bind(() => locale.value),
+    supportedLocales: [Locale('en'), Locale('zh')],
+    localizationsDelegates: GlobalCupertinoLocalizations.delegates,
     theme,
     home: CupertinoPageScaffold({
       backgroundColor: Color(0xfffafafa),

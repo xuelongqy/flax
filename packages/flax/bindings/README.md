@@ -11,6 +11,11 @@ Manifest source index: one implementation owns a declaration, and other public l
 reexport it. Config order does not decide parents or generic providers. See the
 [rules guide](../README.md).
 
+Flutter's `widget_previews.dart` development annotations and preview configuration types
+are outside the binding selection. Core does not register a Preview module or publish
+`@flax/flutter/widget_previews`. Native Flutter preview tooling is unchanged; the
+ordinary Widget Inspector bindings remain available.
+
 The shared `renderOnlyWidget` YAML anchor clears instance members for Widgets that keep
 reactive constructor descriptions. Constructors/static members are still inferred.
 Native Widget views and proxies retain real-object delivery. Fixed generic description

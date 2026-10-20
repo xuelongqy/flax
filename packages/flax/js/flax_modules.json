@@ -21049,33 +21049,6 @@
       ]
     },
     {
-      "specifier": "@flax/flutter/widget_previews",
-      "source": "dist/flutter/generated/libraries/widget_previews/index.js",
-      "subpathRoot": "dist/flutter/generated/libraries/widget_previews",
-      "helperSubpaths": ["_bindings/sdk_widget_previews.__module"],
-      "bindings": [
-        {
-          "moduleId": "flax.core/sdk_widget_previews",
-          "uiProtocol": 24,
-          "requiredCapabilities": [
-            "generic-member-views",
-            "instance-checks",
-            "native-navigation-objects",
-            "native-widget-proxies"
-          ],
-          "types": [
-            "flax.core/sdk_widget_previews#type:MultiPreview",
-            "flax.core/sdk_widget_previews#type:MultiPreviewThemeData",
-            "flax.core/sdk_widget_previews#type:Preview",
-            "flax.core/sdk_widget_previews#type:PreviewBuilder",
-            "flax.core/sdk_widget_previews#type:PreviewLocalizationsData",
-            "flax.core/sdk_widget_previews#type:PreviewThemeData"
-          ],
-          "functions": []
-        }
-      ]
-    },
-    {
       "specifier": "@flax/flutter/widgets",
       "source": "dist/flutter/widgets.js",
       "subpathRoot": "dist/flutter/generated/libraries/widgets",

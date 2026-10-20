@@ -59,7 +59,6 @@ const moduleEntries = [
     'scheduler',
     'semantics',
     'services',
-    'widget_previews',
     'widgets',
     'vector_math',
   ].map((name) => [`@flax/flutter/${name}`, '@flax/core-runtime']),

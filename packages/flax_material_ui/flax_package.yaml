@@ -9,9 +9,6 @@ javascript:
 capabilities:
   - bindings
 bindingNamespace: flax.material
-bindingDependencies:
-  generate:
-    - intl
 registration:
   bindings:
     - materialBindings

@@ -5,6 +5,29 @@ import 'package:flutter_test/flutter_test.dart';
 import '../support/harness.dart';
 
 void main() {
+  testWidgets('public delegates load languages without Intl bindings', (
+    tester,
+  ) async {
+    final harness = CupertinoHarness();
+    try {
+      await tester.pumpWidget(harness.view());
+      for (final (language, label) in [('en', 'Paste'), ('zh', '粘贴')]) {
+        harness.number(
+          '(() => { cupertinoPilot.setLanguage("$language"); return 0; })()',
+        );
+        await tester.pumpAndSettle();
+        final context = tester.element(find.byType(CupertinoPageScaffold));
+        expect(CupertinoLocalizations.of(context).pasteButtonLabel, label);
+        expect(harness.errors, isEmpty);
+      }
+    } finally {
+      await flaxTestUnmount(tester);
+      await tester.pumpAndSettle();
+      expect(harness.runtime.isDisposed, isTrue);
+      expect(harness.runtime.handlesAtDispose, 0);
+    }
+  });
+
   testWidgets('plugin installs the public Cupertino bindings', (tester) async {
     final harness = CupertinoHarness();
     await tester.pumpWidget(harness.view());

@@ -15,5 +15,4 @@ export 'src/generated/sdk_rendering_bindings.g.dart';
 export 'src/generated/sdk_scheduler_bindings.g.dart';
 export 'src/generated/sdk_semantics_bindings.g.dart';
 export 'src/generated/sdk_services_bindings.g.dart';
-export 'src/generated/sdk_widget_previews_bindings.g.dart';
 export 'src/generated/sdk_widgets_bindings.g.dart';

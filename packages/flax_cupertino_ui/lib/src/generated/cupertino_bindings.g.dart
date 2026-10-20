@@ -7,25 +7,20 @@ import 'package:cupertino_ui/cupertino_ui.dart' as api;
 import 'package:flax/bindings.dart';
 
 import 'dart:ui' as api1;
+import 'dart:core' as api2;
 
-import 'package:intl/intl.dart' as api2;
+import 'package:flutter/foundation.dart' as api3;
+import 'package:flutter/gestures.dart' as api4;
 
-import 'dart:core' as api3;
+import 'dart:async' as api5;
+import 'dart:io' as api6;
 
-import 'package:flutter/foundation.dart' as api4;
-import 'package:flutter/gestures.dart' as api5;
-
-import 'dart:async' as api6;
-import 'dart:io' as api7;
-
-import 'package:flutter/services.dart' as api8;
-import 'package:vector_math/vector_math_64.dart' as api9;
-import 'package:flutter/rendering.dart' as api10;
-import 'package:flutter/widgets.dart' as api11;
-import 'package:flutter/animation.dart' as api12;
-import 'package:flutter/painting.dart' as api13;
-import "package:flax_cupertino_ui/src/generated/dependencies/intl_bindings.g.dart"
-    as _flaxBindings0;
+import 'package:flutter/services.dart' as api7;
+import 'package:vector_math/vector_math_64.dart' as api8;
+import 'package:flutter/rendering.dart' as api9;
+import 'package:flutter/widgets.dart' as api10;
+import 'package:flutter/animation.dart' as api11;
+import 'package:flutter/painting.dart' as api12;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -2412,36 +2407,36 @@ const cupertinoBindings = FlaxBindingModule(
     _flaxBinding2162,
     _flaxBinding2177,
     _flaxBinding2192,
-    _flaxBinding2253,
-    _flaxBinding2334,
-    _flaxBinding2352,
-    _flaxBinding2372,
+    _flaxBinding2237,
+    _flaxBinding2271,
+    _flaxBinding2289,
+    _flaxBinding2309,
     _flaxBinding1127,
-    _flaxBinding2393,
+    _flaxBinding2330,
   ],
   functions: [
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:cupertinoDesktopTextSelectionControls",
       [],
-      _flaxBinding2394,
+      _flaxBinding2331,
       _read_cupertinoDesktopTextSelectionControls,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:cupertinoDesktopTextSelectionHandleControls",
       [],
-      _flaxBinding2394,
+      _flaxBinding2331,
       _read_cupertinoDesktopTextSelectionHandleControls,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:cupertinoTextSelectionControls",
       [],
-      _flaxBinding2394,
+      _flaxBinding2331,
       _read_cupertinoTextSelectionControls,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:cupertinoTextSelectionHandleControls",
       [],
-      _flaxBinding2394,
+      _flaxBinding2331,
       _read_cupertinoTextSelectionHandleControls,
     ),
     FlaxFunctionBinding(
@@ -2453,19 +2448,19 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:kCupertinoButtonMinSize",
       [],
-      _flaxBinding2395,
+      _flaxBinding2332,
       _read_kCupertinoButtonMinSize,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:kCupertinoButtonPadding",
       [],
-      _flaxBinding2396,
+      _flaxBinding2333,
       _read_kCupertinoButtonPadding,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:kCupertinoButtonSizeBorderRadius",
       [],
-      _flaxBinding2397,
+      _flaxBinding2334,
       _read_kCupertinoButtonSizeBorderRadius,
     ),
     FlaxFunctionBinding(
@@ -2541,12 +2536,12 @@ const cupertinoBindings = FlaxBindingModule(
         ),
         FlaxParameter(
           "style",
-          _flaxBinding2398,
+          _flaxBinding2335,
           required: false,
-          defaultValue: api4.DiagnosticsTreeStyle.singleLine,
+          defaultValue: api3.DiagnosticsTreeStyle.singleLine,
         ),
       ],
-      _flaxBinding2399,
+      _flaxBinding2336,
       _function_createCupertinoColorProperty,
     ),
     FlaxFunctionBinding(
@@ -2578,7 +2573,7 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: true,
         ),
       ],
-      _flaxBinding2400,
+      _flaxBinding2337,
       _function_showCupertinoDialog,
       genericFactory: _flaxGenericFunction2,
     ),
@@ -2616,7 +2611,7 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: true,
         ),
       ],
-      _flaxBinding2400,
+      _flaxBinding2337,
       _function_showCupertinoModalPopup,
       genericFactory: _flaxGenericFunction3,
     ),
@@ -2648,7 +2643,7 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: false,
         ),
       ],
-      _flaxBinding2400,
+      _flaxBinding2337,
       _function_showCupertinoSheet,
       genericFactory: _flaxGenericFunction4,
     ),
@@ -2664,7 +2659,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoApp.createCupertinoHeroController",
       [],
-      _flaxBinding2401,
+      _flaxBinding2338,
       _CupertinoApp_createCupertinoHeroController,
     ),
     FlaxFunctionBinding(
@@ -2700,7 +2695,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoLocalizations.of",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2403,
+      _flaxBinding2340,
       _CupertinoLocalizations_of,
     ),
     FlaxFunctionBinding(
@@ -2797,7 +2792,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoTextField.inferIOSSpellCheckConfiguration",
       [FlaxParameter.required("configuration", _flaxBinding1930)],
-      _flaxBinding2405,
+      _flaxBinding2342,
       _CupertinoTextField_inferIOSSpellCheckConfiguration,
     ),
     FlaxFunctionBinding(
@@ -2818,7 +2813,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoTheme.brightnessOf",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2406,
+      _flaxBinding2343,
       _CupertinoTheme_brightnessOf,
     ),
     FlaxFunctionBinding(
@@ -2836,13 +2831,13 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoUserInterfaceLevel.maybeOf",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2407,
+      _flaxBinding2344,
       _CupertinoUserInterfaceLevel_maybeOf,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:DefaultCupertinoLocalizations.load",
       [FlaxParameter.required("locale", _flaxBinding260)],
-      _flaxBinding2408,
+      _flaxBinding2345,
       _DefaultCupertinoLocalizations_load,
     ),
   ],
@@ -2981,7 +2976,7 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoIcons.iconFontPackage":
           api.CupertinoIcons.iconFontPackage,
     }),
-    FlaxConstantGroup(_flaxBinding2402, {
+    FlaxConstantGroup(_flaxBinding2339, {
       "flax.cupertino/cupertino#read:CupertinoIcons.left_chevron":
           api.CupertinoIcons.left_chevron,
       "flax.cupertino/cupertino#read:CupertinoIcons.right_chevron":
@@ -5624,7 +5619,7 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoMagnifier.kDefaultSize":
           api.CupertinoMagnifier.kDefaultSize,
     }),
-    FlaxConstantGroup(_flaxBinding2404, {
+    FlaxConstantGroup(_flaxBinding2341, {
       "flax.cupertino/cupertino#read:CupertinoMenuItem.kDefaultDecoration":
           api.CupertinoMenuItem.kDefaultDecoration,
     }),
@@ -5642,13 +5637,13 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoTextField.cupertinoMisspelledTextStyle":
           api.CupertinoTextField.cupertinoMisspelledTextStyle,
     }),
-    FlaxConstantGroup(_flaxBinding2409, {
+    FlaxConstantGroup(_flaxBinding2346, {
       "flax.cupertino/cupertino#read:DefaultCupertinoLocalizations.delegate":
           api.DefaultCupertinoLocalizations.delegate,
       "flax.cupertino/cupertino#read:GlobalCupertinoLocalizations.delegate":
           api.GlobalCupertinoLocalizations.delegate,
     }),
-    FlaxConstantGroup(_flaxBinding2410, {
+    FlaxConstantGroup(_flaxBinding2347, {
       "flax.cupertino/cupertino#read:GlobalCupertinoLocalizations.delegates":
           api.GlobalCupertinoLocalizations.delegates,
     }),
@@ -5668,9 +5663,7 @@ const cupertinoBindings = FlaxBindingModule(
     "flax.core/sdk_scheduler",
     "flax.core/sdk_services",
     "flax.core/sdk_widgets",
-    "flax.cupertino/dependency_intl",
   ],
-  dependencies: [_flaxBindings0.dependency_intlBindings],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
     "dart-type-tokens",
@@ -6196,18 +6189,18 @@ Object? _function_createCupertinoColorProperty(Map<String, Object?> values) {
     return api.createCupertinoColorProperty(
       values["name"] as String,
       values["value"] as api1.Color?,
-      level: values["level"] as api4.DiagnosticLevel,
+      level: values["level"] as api3.DiagnosticLevel,
       showName: values["showName"] as bool,
-      style: values["style"] as api4.DiagnosticsTreeStyle,
+      style: values["style"] as api3.DiagnosticsTreeStyle,
     );
   }
   return api.createCupertinoColorProperty(
     values["name"] as String,
     values["value"] as api1.Color?,
     defaultValue: values["defaultValue"],
-    level: values["level"] as api4.DiagnosticLevel,
+    level: values["level"] as api3.DiagnosticLevel,
     showName: values["showName"] as bool,
-    style: values["style"] as api4.DiagnosticsTreeStyle,
+    style: values["style"] as api3.DiagnosticsTreeStyle,
   );
 }
 
@@ -6215,7 +6208,7 @@ Object? _function_debugCheckHasCupertinoLocalizations(
   Map<String, Object?> values,
 ) {
   return api.debugCheckHasCupertinoLocalizations(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -6226,10 +6219,10 @@ Object? _function_showCupertinoDialog(Map<String, Object?> values) {
     barrierDismissible: values["barrierDismissible"] as bool,
     barrierLabel: values["barrierLabel"] as String?,
     builder:
-        values["builder"] as api.Widget Function(api11.BuildContext context),
-    context: values["context"] as api11.BuildContext,
+        values["builder"] as api.Widget Function(api10.BuildContext context),
+    context: values["context"] as api10.BuildContext,
     requestFocus: values["requestFocus"] as bool?,
-    routeSettings: values["routeSettings"] as api11.RouteSettings?,
+    routeSettings: values["routeSettings"] as api10.RouteSettings?,
     useRootNavigator: values["useRootNavigator"] as bool,
   );
 }
@@ -6240,11 +6233,11 @@ Object? _function_showCupertinoModalPopup(Map<String, Object?> values) {
       anchorPoint: values["anchorPoint"] as api1.Offset?,
       barrierDismissible: values["barrierDismissible"] as bool,
       builder:
-          values["builder"] as api.Widget Function(api11.BuildContext context),
-      context: values["context"] as api11.BuildContext,
+          values["builder"] as api.Widget Function(api10.BuildContext context),
+      context: values["context"] as api10.BuildContext,
       filter: values["filter"] as api1.ImageFilter?,
       requestFocus: values["requestFocus"] as bool?,
-      routeSettings: values["routeSettings"] as api11.RouteSettings?,
+      routeSettings: values["routeSettings"] as api10.RouteSettings?,
       semanticsDismissible: values["semanticsDismissible"] as bool,
       useRootNavigator: values["useRootNavigator"] as bool,
     );
@@ -6254,11 +6247,11 @@ Object? _function_showCupertinoModalPopup(Map<String, Object?> values) {
     barrierColor: values["barrierColor"] as api1.Color,
     barrierDismissible: values["barrierDismissible"] as bool,
     builder:
-        values["builder"] as api.Widget Function(api11.BuildContext context),
-    context: values["context"] as api11.BuildContext,
+        values["builder"] as api.Widget Function(api10.BuildContext context),
+    context: values["context"] as api10.BuildContext,
     filter: values["filter"] as api1.ImageFilter?,
     requestFocus: values["requestFocus"] as bool?,
-    routeSettings: values["routeSettings"] as api11.RouteSettings?,
+    routeSettings: values["routeSettings"] as api10.RouteSettings?,
     semanticsDismissible: values["semanticsDismissible"] as bool,
     useRootNavigator: values["useRootNavigator"] as bool,
   );
@@ -6267,19 +6260,19 @@ Object? _function_showCupertinoModalPopup(Map<String, Object?> values) {
 Object? _function_showCupertinoSheet(Map<String, Object?> values) {
   return api.showCupertinoSheet<Object?>(
     builder:
-        values["builder"] as api.Widget Function(api11.BuildContext context)?,
-    context: values["context"] as api11.BuildContext,
+        values["builder"] as api.Widget Function(api10.BuildContext context)?,
+    context: values["context"] as api10.BuildContext,
     enableDrag: values["enableDrag"] as bool,
     pageBuilder:
         values["pageBuilder"]
-            as api.Widget Function(api11.BuildContext context)?,
+            as api.Widget Function(api10.BuildContext context)?,
     scrollableBuilder:
         values["scrollableBuilder"]
             as api.Widget Function(
-              api11.BuildContext context,
-              api11.ScrollController scrollController,
+              api10.BuildContext context,
+              api10.ScrollController scrollController,
             )?,
-    settings: values["settings"] as api11.RouteSettings?,
+    settings: values["settings"] as api10.RouteSettings?,
     showDragHandle: values["showDragHandle"] as bool,
     topGap: values["topGap"] as double?,
     useNestedNavigation: values["useNestedNavigation"] as bool,
@@ -6362,7 +6355,7 @@ Object? _CupertinoActionSheet_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoActionSheet).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -6373,7 +6366,7 @@ Object? _CupertinoActionSheet_toStringShallow(
 ) {
   return (receiver as api.CupertinoActionSheet).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -6382,7 +6375,7 @@ Object? _CupertinoActionSheet_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoActionSheet).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -6395,7 +6388,7 @@ Object? _CupertinoActionSheet_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoActionSheet).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -6413,14 +6406,14 @@ api.Widget _createCupertinoActionSheet(
   switch (ctor) {
     case "":
       return api.CupertinoActionSheet(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         title: values["title"] as api.Widget?,
         message: values["message"] as api.Widget?,
         actions: values["actions"] as List<api.Widget>?,
         messageScrollController:
-            values["messageScrollController"] as api11.ScrollController?,
+            values["messageScrollController"] as api10.ScrollController?,
         actionScrollController:
-            values["actionScrollController"] as api11.ScrollController?,
+            values["actionScrollController"] as api10.ScrollController?,
         cancelButton: values["cancelButton"] as api.Widget?,
       );
     default:
@@ -6472,7 +6465,7 @@ Object? _CupertinoActionSheetAction_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoActionSheetAction).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -6483,7 +6476,7 @@ Object? _CupertinoActionSheetAction_toStringShallow(
 ) {
   return (receiver as api.CupertinoActionSheetAction).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -6492,7 +6485,7 @@ Object? _CupertinoActionSheetAction_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoActionSheetAction).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -6505,7 +6498,7 @@ Object? _CupertinoActionSheetAction_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoActionSheetAction).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -6523,12 +6516,12 @@ api.Widget _createCupertinoActionSheetAction(
   switch (ctor) {
     case "":
       return api.CupertinoActionSheetAction(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         onPressed: values["onPressed"] as void Function(),
         isDefaultAction: values["isDefaultAction"] as bool,
         isDestructiveAction: values["isDestructiveAction"] as bool,
-        mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
-        focusNode: values["focusNode"] as api11.FocusNode?,
+        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
         focusColor: values["focusColor"] as api1.Color?,
         child: values["child"] as api.Widget,
       );
@@ -6575,7 +6568,7 @@ Object? _CupertinoActivityIndicator_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoActivityIndicator).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -6586,7 +6579,7 @@ Object? _CupertinoActivityIndicator_toStringShallow(
 ) {
   return (receiver as api.CupertinoActivityIndicator).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -6595,7 +6588,7 @@ Object? _CupertinoActivityIndicator_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoActivityIndicator).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -6608,7 +6601,7 @@ Object? _CupertinoActivityIndicator_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoActivityIndicator).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -6626,14 +6619,14 @@ api.Widget _createCupertinoActivityIndicator(
   switch (ctor) {
     case "":
       return api.CupertinoActivityIndicator(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         color: values["color"] as api1.Color?,
         animating: values["animating"] as bool,
         radius: values["radius"] as double,
       );
     case "partiallyRevealed":
       return api.CupertinoActivityIndicator.partiallyRevealed(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         color: values["color"] as api1.Color?,
         radius: values["radius"] as double,
         progress: values["progress"] as double,
@@ -6657,8 +6650,8 @@ Object? _CupertinoAdaptiveTextSelectionToolbar_getAdaptiveButtons(
   Map<String, Object?> values,
 ) {
   return api.CupertinoAdaptiveTextSelectionToolbar.getAdaptiveButtons(
-    values["context"] as api11.BuildContext,
-    values["buttonItems"] as List<api11.ContextMenuButtonItem>,
+    values["context"] as api10.BuildContext,
+    values["buttonItems"] as List<api10.ContextMenuButtonItem>,
   );
 }
 
@@ -6667,7 +6660,7 @@ Object? _CupertinoAdaptiveTextSelectionToolbar_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoAdaptiveTextSelectionToolbar).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -6692,7 +6685,7 @@ Object? _CupertinoAdaptiveTextSelectionToolbar_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoAdaptiveTextSelectionToolbar).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -6704,7 +6697,7 @@ Object? _CupertinoAdaptiveTextSelectionToolbar_toStringShallow(
   return (receiver as api.CupertinoAdaptiveTextSelectionToolbar)
       .toStringShallow(
         joiner: values["joiner"] as String,
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
       );
 }
 
@@ -6713,7 +6706,7 @@ Object? _CupertinoAdaptiveTextSelectionToolbar_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoAdaptiveTextSelectionToolbar).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -6727,7 +6720,7 @@ Object? _CupertinoAdaptiveTextSelectionToolbar_toDiagnosticsNode(
   return (receiver as api.CupertinoAdaptiveTextSelectionToolbar)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -6746,21 +6739,21 @@ api.Widget _createCupertinoAdaptiveTextSelectionToolbar(
   switch (ctor) {
     case "":
       return api.CupertinoAdaptiveTextSelectionToolbar(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         children: values["children"] as List<api.Widget>?,
-        anchors: values["anchors"] as api11.TextSelectionToolbarAnchors,
+        anchors: values["anchors"] as api10.TextSelectionToolbarAnchors,
       );
     case "buttonItems":
       return api.CupertinoAdaptiveTextSelectionToolbar.buttonItems(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         buttonItems:
-            values["buttonItems"] as List<api11.ContextMenuButtonItem>?,
-        anchors: values["anchors"] as api11.TextSelectionToolbarAnchors,
+            values["buttonItems"] as List<api10.ContextMenuButtonItem>?,
+        anchors: values["anchors"] as api10.TextSelectionToolbarAnchors,
       );
     case "editable":
       return api.CupertinoAdaptiveTextSelectionToolbar.editable(
-        key: values["key"] as api4.Key?,
-        clipboardStatus: values["clipboardStatus"] as api11.ClipboardStatus,
+        key: values["key"] as api3.Key?,
+        clipboardStatus: values["clipboardStatus"] as api10.ClipboardStatus,
         onCopy: values["onCopy"] as void Function()?,
         onCut: values["onCut"] as void Function()?,
         onPaste: values["onPaste"] as void Function()?,
@@ -6769,22 +6762,22 @@ api.Widget _createCupertinoAdaptiveTextSelectionToolbar(
         onSearchWeb: values["onSearchWeb"] as void Function()?,
         onShare: values["onShare"] as void Function()?,
         onLiveTextInput: values["onLiveTextInput"] as void Function()?,
-        anchors: values["anchors"] as api11.TextSelectionToolbarAnchors,
+        anchors: values["anchors"] as api10.TextSelectionToolbarAnchors,
       );
     case "editableText":
       return api.CupertinoAdaptiveTextSelectionToolbar.editableText(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         editableTextState:
-            values["editableTextState"] as api11.EditableTextState,
+            values["editableTextState"] as api10.EditableTextState,
       );
     case "selectable":
       return api.CupertinoAdaptiveTextSelectionToolbar.selectable(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         onCopy: values["onCopy"] as void Function(),
         onSelectAll: values["onSelectAll"] as void Function(),
         selectionGeometry:
-            values["selectionGeometry"] as api10.SelectionGeometry,
-        anchors: values["anchors"] as api11.TextSelectionToolbarAnchors,
+            values["selectionGeometry"] as api9.SelectionGeometry,
+        anchors: values["anchors"] as api10.TextSelectionToolbarAnchors,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -6834,7 +6827,7 @@ Object? _CupertinoAlertDialog_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoAlertDialog).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -6845,7 +6838,7 @@ Object? _CupertinoAlertDialog_toStringShallow(
 ) {
   return (receiver as api.CupertinoAlertDialog).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -6854,7 +6847,7 @@ Object? _CupertinoAlertDialog_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoAlertDialog).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -6867,7 +6860,7 @@ Object? _CupertinoAlertDialog_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoAlertDialog).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -6888,102 +6881,102 @@ api.Widget _createCupertinoAlertDialog(
         if (!values.containsKey("insetAnimationDuration")) {
           if (!values.containsKey("insetAnimationCurve")) {
             return api.CupertinoAlertDialog(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               title: values["title"] as api.Widget?,
               content: values["content"] as api.Widget?,
               scrollController:
-                  values["scrollController"] as api11.ScrollController?,
+                  values["scrollController"] as api10.ScrollController?,
               actionScrollController:
-                  values["actionScrollController"] as api11.ScrollController?,
+                  values["actionScrollController"] as api10.ScrollController?,
             );
           }
           return api.CupertinoAlertDialog(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             title: values["title"] as api.Widget?,
             content: values["content"] as api.Widget?,
             scrollController:
-                values["scrollController"] as api11.ScrollController?,
+                values["scrollController"] as api10.ScrollController?,
             actionScrollController:
-                values["actionScrollController"] as api11.ScrollController?,
-            insetAnimationCurve: values["insetAnimationCurve"] as api12.Curve,
+                values["actionScrollController"] as api10.ScrollController?,
+            insetAnimationCurve: values["insetAnimationCurve"] as api11.Curve,
           );
         }
         if (!values.containsKey("insetAnimationCurve")) {
           return api.CupertinoAlertDialog(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             title: values["title"] as api.Widget?,
             content: values["content"] as api.Widget?,
             scrollController:
-                values["scrollController"] as api11.ScrollController?,
+                values["scrollController"] as api10.ScrollController?,
             actionScrollController:
-                values["actionScrollController"] as api11.ScrollController?,
+                values["actionScrollController"] as api10.ScrollController?,
             insetAnimationDuration:
-                values["insetAnimationDuration"] as api3.Duration,
+                values["insetAnimationDuration"] as api2.Duration,
           );
         }
         return api.CupertinoAlertDialog(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           title: values["title"] as api.Widget?,
           content: values["content"] as api.Widget?,
           scrollController:
-              values["scrollController"] as api11.ScrollController?,
+              values["scrollController"] as api10.ScrollController?,
           actionScrollController:
-              values["actionScrollController"] as api11.ScrollController?,
+              values["actionScrollController"] as api10.ScrollController?,
           insetAnimationDuration:
-              values["insetAnimationDuration"] as api3.Duration,
-          insetAnimationCurve: values["insetAnimationCurve"] as api12.Curve,
+              values["insetAnimationDuration"] as api2.Duration,
+          insetAnimationCurve: values["insetAnimationCurve"] as api11.Curve,
         );
       }
       if (!values.containsKey("insetAnimationDuration")) {
         if (!values.containsKey("insetAnimationCurve")) {
           return api.CupertinoAlertDialog(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             title: values["title"] as api.Widget?,
             content: values["content"] as api.Widget?,
             actions: values["actions"] as List<api.Widget>,
             scrollController:
-                values["scrollController"] as api11.ScrollController?,
+                values["scrollController"] as api10.ScrollController?,
             actionScrollController:
-                values["actionScrollController"] as api11.ScrollController?,
+                values["actionScrollController"] as api10.ScrollController?,
           );
         }
         return api.CupertinoAlertDialog(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           title: values["title"] as api.Widget?,
           content: values["content"] as api.Widget?,
           actions: values["actions"] as List<api.Widget>,
           scrollController:
-              values["scrollController"] as api11.ScrollController?,
+              values["scrollController"] as api10.ScrollController?,
           actionScrollController:
-              values["actionScrollController"] as api11.ScrollController?,
-          insetAnimationCurve: values["insetAnimationCurve"] as api12.Curve,
+              values["actionScrollController"] as api10.ScrollController?,
+          insetAnimationCurve: values["insetAnimationCurve"] as api11.Curve,
         );
       }
       if (!values.containsKey("insetAnimationCurve")) {
         return api.CupertinoAlertDialog(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           title: values["title"] as api.Widget?,
           content: values["content"] as api.Widget?,
           actions: values["actions"] as List<api.Widget>,
           scrollController:
-              values["scrollController"] as api11.ScrollController?,
+              values["scrollController"] as api10.ScrollController?,
           actionScrollController:
-              values["actionScrollController"] as api11.ScrollController?,
+              values["actionScrollController"] as api10.ScrollController?,
           insetAnimationDuration:
-              values["insetAnimationDuration"] as api3.Duration,
+              values["insetAnimationDuration"] as api2.Duration,
         );
       }
       return api.CupertinoAlertDialog(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         title: values["title"] as api.Widget?,
         content: values["content"] as api.Widget?,
         actions: values["actions"] as List<api.Widget>,
-        scrollController: values["scrollController"] as api11.ScrollController?,
+        scrollController: values["scrollController"] as api10.ScrollController?,
         actionScrollController:
-            values["actionScrollController"] as api11.ScrollController?,
+            values["actionScrollController"] as api10.ScrollController?,
         insetAnimationDuration:
-            values["insetAnimationDuration"] as api3.Duration,
-        insetAnimationCurve: values["insetAnimationCurve"] as api12.Curve,
+            values["insetAnimationDuration"] as api2.Duration,
+        insetAnimationCurve: values["insetAnimationCurve"] as api11.Curve,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -7011,48 +7004,48 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
         if (!values.containsKey("navigatorObservers")) {
           if (!values.containsKey("supportedLocales")) {
             return api.CupertinoApp(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               navigatorKey:
                   values["navigatorKey"]
-                      as api11.GlobalKey<api11.NavigatorState>?,
+                      as api10.GlobalKey<api10.NavigatorState>?,
               home: values["home"] as api.Widget?,
               theme: values["theme"] as api.CupertinoThemeData?,
               initialRoute: values["initialRoute"] as String?,
               onGenerateRoute:
                   values["onGenerateRoute"]
-                      as api11.Route<Object?>? Function(
-                        api11.RouteSettings settings,
+                      as api10.Route<Object?>? Function(
+                        api10.RouteSettings settings,
                       )?,
               onGenerateInitialRoutes:
                   values["onGenerateInitialRoutes"]
-                      as List<api11.Route<Object?>> Function(
+                      as List<api10.Route<Object?>> Function(
                         String initialRoute,
                       )?,
               onUnknownRoute:
                   values["onUnknownRoute"]
-                      as api11.Route<Object?>? Function(
-                        api11.RouteSettings settings,
+                      as api10.Route<Object?>? Function(
+                        api10.RouteSettings settings,
                       )?,
               onNavigationNotification:
                   values["onNavigationNotification"]
                       as bool Function(
-                        api11.NavigationNotification notification,
+                        api10.NavigationNotification notification,
                       )?,
               builder:
                   values["builder"]
                       as api.Widget Function(
-                        api11.BuildContext context,
+                        api10.BuildContext context,
                         api.Widget? child,
                       )?,
               title: values["title"] as String?,
               onGenerateTitle:
                   values["onGenerateTitle"]
-                      as String Function(api11.BuildContext context)?,
+                      as String Function(api10.BuildContext context)?,
               color: values["color"] as api1.Color?,
               locale: values["locale"] as api1.Locale?,
               localizationsDelegates:
                   values["localizationsDelegates"]
-                      as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                      as Iterable<api10.LocalizationsDelegate<Object?>>?,
               localeListResolutionCallback:
                   values["localeListResolutionCallback"]
                       as api1.Locale? Function(
@@ -7075,58 +7068,58 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
                   values["debugShowCheckedModeBanner"] as bool,
               shortcuts:
                   values["shortcuts"]
-                      as Map<api11.ShortcutActivator, api11.Intent>?,
+                      as Map<api10.ShortcutActivator, api10.Intent>?,
               actions:
                   values["actions"]
-                      as Map<api3.Type, api11.Action<api11.Intent>>?,
+                      as Map<api2.Type, api10.Action<api10.Intent>>?,
               restorationScopeId: values["restorationScopeId"] as String?,
-              scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+              scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
               useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
             );
           }
           return api.CupertinoApp(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             navigatorKey:
                 values["navigatorKey"]
-                    as api11.GlobalKey<api11.NavigatorState>?,
+                    as api10.GlobalKey<api10.NavigatorState>?,
             home: values["home"] as api.Widget?,
             theme: values["theme"] as api.CupertinoThemeData?,
             initialRoute: values["initialRoute"] as String?,
             onGenerateRoute:
                 values["onGenerateRoute"]
-                    as api11.Route<Object?>? Function(
-                      api11.RouteSettings settings,
+                    as api10.Route<Object?>? Function(
+                      api10.RouteSettings settings,
                     )?,
             onGenerateInitialRoutes:
                 values["onGenerateInitialRoutes"]
-                    as List<api11.Route<Object?>> Function(
+                    as List<api10.Route<Object?>> Function(
                       String initialRoute,
                     )?,
             onUnknownRoute:
                 values["onUnknownRoute"]
-                    as api11.Route<Object?>? Function(
-                      api11.RouteSettings settings,
+                    as api10.Route<Object?>? Function(
+                      api10.RouteSettings settings,
                     )?,
             onNavigationNotification:
                 values["onNavigationNotification"]
                     as bool Function(
-                      api11.NavigationNotification notification,
+                      api10.NavigationNotification notification,
                     )?,
             builder:
                 values["builder"]
                     as api.Widget Function(
-                      api11.BuildContext context,
+                      api10.BuildContext context,
                       api.Widget? child,
                     )?,
             title: values["title"] as String?,
             onGenerateTitle:
                 values["onGenerateTitle"]
-                    as String Function(api11.BuildContext context)?,
+                    as String Function(api10.BuildContext context)?,
             color: values["color"] as api1.Color?,
             locale: values["locale"] as api1.Locale?,
             localizationsDelegates:
                 values["localizationsDelegates"]
-                    as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                    as Iterable<api10.LocalizationsDelegate<Object?>>?,
             localeListResolutionCallback:
                 values["localeListResolutionCallback"]
                     as api1.Locale? Function(
@@ -7151,61 +7144,61 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
                 values["debugShowCheckedModeBanner"] as bool,
             shortcuts:
                 values["shortcuts"]
-                    as Map<api11.ShortcutActivator, api11.Intent>?,
+                    as Map<api10.ShortcutActivator, api10.Intent>?,
             actions:
                 values["actions"]
-                    as Map<api3.Type, api11.Action<api11.Intent>>?,
+                    as Map<api2.Type, api10.Action<api10.Intent>>?,
             restorationScopeId: values["restorationScopeId"] as String?,
-            scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+            scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
             useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
           );
         }
         if (!values.containsKey("supportedLocales")) {
           return api.CupertinoApp(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             navigatorKey:
                 values["navigatorKey"]
-                    as api11.GlobalKey<api11.NavigatorState>?,
+                    as api10.GlobalKey<api10.NavigatorState>?,
             home: values["home"] as api.Widget?,
             theme: values["theme"] as api.CupertinoThemeData?,
             initialRoute: values["initialRoute"] as String?,
             onGenerateRoute:
                 values["onGenerateRoute"]
-                    as api11.Route<Object?>? Function(
-                      api11.RouteSettings settings,
+                    as api10.Route<Object?>? Function(
+                      api10.RouteSettings settings,
                     )?,
             onGenerateInitialRoutes:
                 values["onGenerateInitialRoutes"]
-                    as List<api11.Route<Object?>> Function(
+                    as List<api10.Route<Object?>> Function(
                       String initialRoute,
                     )?,
             onUnknownRoute:
                 values["onUnknownRoute"]
-                    as api11.Route<Object?>? Function(
-                      api11.RouteSettings settings,
+                    as api10.Route<Object?>? Function(
+                      api10.RouteSettings settings,
                     )?,
             onNavigationNotification:
                 values["onNavigationNotification"]
                     as bool Function(
-                      api11.NavigationNotification notification,
+                      api10.NavigationNotification notification,
                     )?,
             navigatorObservers:
-                values["navigatorObservers"] as List<api11.NavigatorObserver>,
+                values["navigatorObservers"] as List<api10.NavigatorObserver>,
             builder:
                 values["builder"]
                     as api.Widget Function(
-                      api11.BuildContext context,
+                      api10.BuildContext context,
                       api.Widget? child,
                     )?,
             title: values["title"] as String?,
             onGenerateTitle:
                 values["onGenerateTitle"]
-                    as String Function(api11.BuildContext context)?,
+                    as String Function(api10.BuildContext context)?,
             color: values["color"] as api1.Color?,
             locale: values["locale"] as api1.Locale?,
             localizationsDelegates:
                 values["localizationsDelegates"]
-                    as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                    as Iterable<api10.LocalizationsDelegate<Object?>>?,
             localeListResolutionCallback:
                 values["localeListResolutionCallback"]
                     as api1.Locale? Function(
@@ -7228,55 +7221,55 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
                 values["debugShowCheckedModeBanner"] as bool,
             shortcuts:
                 values["shortcuts"]
-                    as Map<api11.ShortcutActivator, api11.Intent>?,
+                    as Map<api10.ShortcutActivator, api10.Intent>?,
             actions:
                 values["actions"]
-                    as Map<api3.Type, api11.Action<api11.Intent>>?,
+                    as Map<api2.Type, api10.Action<api10.Intent>>?,
             restorationScopeId: values["restorationScopeId"] as String?,
-            scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+            scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
             useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
           );
         }
         return api.CupertinoApp(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           navigatorKey:
-              values["navigatorKey"] as api11.GlobalKey<api11.NavigatorState>?,
+              values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
           home: values["home"] as api.Widget?,
           theme: values["theme"] as api.CupertinoThemeData?,
           initialRoute: values["initialRoute"] as String?,
           onGenerateRoute:
               values["onGenerateRoute"]
-                  as api11.Route<Object?>? Function(
-                    api11.RouteSettings settings,
+                  as api10.Route<Object?>? Function(
+                    api10.RouteSettings settings,
                   )?,
           onGenerateInitialRoutes:
               values["onGenerateInitialRoutes"]
-                  as List<api11.Route<Object?>> Function(String initialRoute)?,
+                  as List<api10.Route<Object?>> Function(String initialRoute)?,
           onUnknownRoute:
               values["onUnknownRoute"]
-                  as api11.Route<Object?>? Function(
-                    api11.RouteSettings settings,
+                  as api10.Route<Object?>? Function(
+                    api10.RouteSettings settings,
                   )?,
           onNavigationNotification:
               values["onNavigationNotification"]
-                  as bool Function(api11.NavigationNotification notification)?,
+                  as bool Function(api10.NavigationNotification notification)?,
           navigatorObservers:
-              values["navigatorObservers"] as List<api11.NavigatorObserver>,
+              values["navigatorObservers"] as List<api10.NavigatorObserver>,
           builder:
               values["builder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
+                    api10.BuildContext context,
                     api.Widget? child,
                   )?,
           title: values["title"] as String?,
           onGenerateTitle:
               values["onGenerateTitle"]
-                  as String Function(api11.BuildContext context)?,
+                  as String Function(api10.BuildContext context)?,
           color: values["color"] as api1.Color?,
           locale: values["locale"] as api1.Locale?,
           localizationsDelegates:
               values["localizationsDelegates"]
-                  as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                  as Iterable<api10.LocalizationsDelegate<Object?>>?,
           localeListResolutionCallback:
               values["localeListResolutionCallback"]
                   as api1.Locale? Function(
@@ -7300,62 +7293,62 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
               values["debugShowCheckedModeBanner"] as bool,
           shortcuts:
               values["shortcuts"]
-                  as Map<api11.ShortcutActivator, api11.Intent>?,
+                  as Map<api10.ShortcutActivator, api10.Intent>?,
           actions:
-              values["actions"] as Map<api3.Type, api11.Action<api11.Intent>>?,
+              values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
           restorationScopeId: values["restorationScopeId"] as String?,
-          scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+          scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
           useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
         );
       }
       if (!values.containsKey("navigatorObservers")) {
         if (!values.containsKey("supportedLocales")) {
           return api.CupertinoApp(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             navigatorKey:
                 values["navigatorKey"]
-                    as api11.GlobalKey<api11.NavigatorState>?,
+                    as api10.GlobalKey<api10.NavigatorState>?,
             home: values["home"] as api.Widget?,
             theme: values["theme"] as api.CupertinoThemeData?,
             routes:
                 values["routes"]
-                    as Map<String, api.Widget Function(api11.BuildContext p0)>,
+                    as Map<String, api.Widget Function(api10.BuildContext p0)>,
             initialRoute: values["initialRoute"] as String?,
             onGenerateRoute:
                 values["onGenerateRoute"]
-                    as api11.Route<Object?>? Function(
-                      api11.RouteSettings settings,
+                    as api10.Route<Object?>? Function(
+                      api10.RouteSettings settings,
                     )?,
             onGenerateInitialRoutes:
                 values["onGenerateInitialRoutes"]
-                    as List<api11.Route<Object?>> Function(
+                    as List<api10.Route<Object?>> Function(
                       String initialRoute,
                     )?,
             onUnknownRoute:
                 values["onUnknownRoute"]
-                    as api11.Route<Object?>? Function(
-                      api11.RouteSettings settings,
+                    as api10.Route<Object?>? Function(
+                      api10.RouteSettings settings,
                     )?,
             onNavigationNotification:
                 values["onNavigationNotification"]
                     as bool Function(
-                      api11.NavigationNotification notification,
+                      api10.NavigationNotification notification,
                     )?,
             builder:
                 values["builder"]
                     as api.Widget Function(
-                      api11.BuildContext context,
+                      api10.BuildContext context,
                       api.Widget? child,
                     )?,
             title: values["title"] as String?,
             onGenerateTitle:
                 values["onGenerateTitle"]
-                    as String Function(api11.BuildContext context)?,
+                    as String Function(api10.BuildContext context)?,
             color: values["color"] as api1.Color?,
             locale: values["locale"] as api1.Locale?,
             localizationsDelegates:
                 values["localizationsDelegates"]
-                    as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                    as Iterable<api10.LocalizationsDelegate<Object?>>?,
             localeListResolutionCallback:
                 values["localeListResolutionCallback"]
                     as api1.Locale? Function(
@@ -7378,56 +7371,56 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
                 values["debugShowCheckedModeBanner"] as bool,
             shortcuts:
                 values["shortcuts"]
-                    as Map<api11.ShortcutActivator, api11.Intent>?,
+                    as Map<api10.ShortcutActivator, api10.Intent>?,
             actions:
                 values["actions"]
-                    as Map<api3.Type, api11.Action<api11.Intent>>?,
+                    as Map<api2.Type, api10.Action<api10.Intent>>?,
             restorationScopeId: values["restorationScopeId"] as String?,
-            scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+            scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
             useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
           );
         }
         return api.CupertinoApp(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           navigatorKey:
-              values["navigatorKey"] as api11.GlobalKey<api11.NavigatorState>?,
+              values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
           home: values["home"] as api.Widget?,
           theme: values["theme"] as api.CupertinoThemeData?,
           routes:
               values["routes"]
-                  as Map<String, api.Widget Function(api11.BuildContext p0)>,
+                  as Map<String, api.Widget Function(api10.BuildContext p0)>,
           initialRoute: values["initialRoute"] as String?,
           onGenerateRoute:
               values["onGenerateRoute"]
-                  as api11.Route<Object?>? Function(
-                    api11.RouteSettings settings,
+                  as api10.Route<Object?>? Function(
+                    api10.RouteSettings settings,
                   )?,
           onGenerateInitialRoutes:
               values["onGenerateInitialRoutes"]
-                  as List<api11.Route<Object?>> Function(String initialRoute)?,
+                  as List<api10.Route<Object?>> Function(String initialRoute)?,
           onUnknownRoute:
               values["onUnknownRoute"]
-                  as api11.Route<Object?>? Function(
-                    api11.RouteSettings settings,
+                  as api10.Route<Object?>? Function(
+                    api10.RouteSettings settings,
                   )?,
           onNavigationNotification:
               values["onNavigationNotification"]
-                  as bool Function(api11.NavigationNotification notification)?,
+                  as bool Function(api10.NavigationNotification notification)?,
           builder:
               values["builder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
+                    api10.BuildContext context,
                     api.Widget? child,
                   )?,
           title: values["title"] as String?,
           onGenerateTitle:
               values["onGenerateTitle"]
-                  as String Function(api11.BuildContext context)?,
+                  as String Function(api10.BuildContext context)?,
           color: values["color"] as api1.Color?,
           locale: values["locale"] as api1.Locale?,
           localizationsDelegates:
               values["localizationsDelegates"]
-                  as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                  as Iterable<api10.LocalizationsDelegate<Object?>>?,
           localeListResolutionCallback:
               values["localeListResolutionCallback"]
                   as api1.Locale? Function(
@@ -7451,58 +7444,58 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
               values["debugShowCheckedModeBanner"] as bool,
           shortcuts:
               values["shortcuts"]
-                  as Map<api11.ShortcutActivator, api11.Intent>?,
+                  as Map<api10.ShortcutActivator, api10.Intent>?,
           actions:
-              values["actions"] as Map<api3.Type, api11.Action<api11.Intent>>?,
+              values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
           restorationScopeId: values["restorationScopeId"] as String?,
-          scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+          scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
           useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
         );
       }
       if (!values.containsKey("supportedLocales")) {
         return api.CupertinoApp(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           navigatorKey:
-              values["navigatorKey"] as api11.GlobalKey<api11.NavigatorState>?,
+              values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
           home: values["home"] as api.Widget?,
           theme: values["theme"] as api.CupertinoThemeData?,
           routes:
               values["routes"]
-                  as Map<String, api.Widget Function(api11.BuildContext p0)>,
+                  as Map<String, api.Widget Function(api10.BuildContext p0)>,
           initialRoute: values["initialRoute"] as String?,
           onGenerateRoute:
               values["onGenerateRoute"]
-                  as api11.Route<Object?>? Function(
-                    api11.RouteSettings settings,
+                  as api10.Route<Object?>? Function(
+                    api10.RouteSettings settings,
                   )?,
           onGenerateInitialRoutes:
               values["onGenerateInitialRoutes"]
-                  as List<api11.Route<Object?>> Function(String initialRoute)?,
+                  as List<api10.Route<Object?>> Function(String initialRoute)?,
           onUnknownRoute:
               values["onUnknownRoute"]
-                  as api11.Route<Object?>? Function(
-                    api11.RouteSettings settings,
+                  as api10.Route<Object?>? Function(
+                    api10.RouteSettings settings,
                   )?,
           onNavigationNotification:
               values["onNavigationNotification"]
-                  as bool Function(api11.NavigationNotification notification)?,
+                  as bool Function(api10.NavigationNotification notification)?,
           navigatorObservers:
-              values["navigatorObservers"] as List<api11.NavigatorObserver>,
+              values["navigatorObservers"] as List<api10.NavigatorObserver>,
           builder:
               values["builder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
+                    api10.BuildContext context,
                     api.Widget? child,
                   )?,
           title: values["title"] as String?,
           onGenerateTitle:
               values["onGenerateTitle"]
-                  as String Function(api11.BuildContext context)?,
+                  as String Function(api10.BuildContext context)?,
           color: values["color"] as api1.Color?,
           locale: values["locale"] as api1.Locale?,
           localizationsDelegates:
               values["localizationsDelegates"]
-                  as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                  as Iterable<api10.LocalizationsDelegate<Object?>>?,
           localeListResolutionCallback:
               values["localeListResolutionCallback"]
                   as api1.Locale? Function(
@@ -7525,57 +7518,57 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
               values["debugShowCheckedModeBanner"] as bool,
           shortcuts:
               values["shortcuts"]
-                  as Map<api11.ShortcutActivator, api11.Intent>?,
+                  as Map<api10.ShortcutActivator, api10.Intent>?,
           actions:
-              values["actions"] as Map<api3.Type, api11.Action<api11.Intent>>?,
+              values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
           restorationScopeId: values["restorationScopeId"] as String?,
-          scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+          scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
           useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
         );
       }
       return api.CupertinoApp(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         navigatorKey:
-            values["navigatorKey"] as api11.GlobalKey<api11.NavigatorState>?,
+            values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
         home: values["home"] as api.Widget?,
         theme: values["theme"] as api.CupertinoThemeData?,
         routes:
             values["routes"]
-                as Map<String, api.Widget Function(api11.BuildContext p0)>,
+                as Map<String, api.Widget Function(api10.BuildContext p0)>,
         initialRoute: values["initialRoute"] as String?,
         onGenerateRoute:
             values["onGenerateRoute"]
-                as api11.Route<Object?>? Function(
-                  api11.RouteSettings settings,
+                as api10.Route<Object?>? Function(
+                  api10.RouteSettings settings,
                 )?,
         onGenerateInitialRoutes:
             values["onGenerateInitialRoutes"]
-                as List<api11.Route<Object?>> Function(String initialRoute)?,
+                as List<api10.Route<Object?>> Function(String initialRoute)?,
         onUnknownRoute:
             values["onUnknownRoute"]
-                as api11.Route<Object?>? Function(
-                  api11.RouteSettings settings,
+                as api10.Route<Object?>? Function(
+                  api10.RouteSettings settings,
                 )?,
         onNavigationNotification:
             values["onNavigationNotification"]
-                as bool Function(api11.NavigationNotification notification)?,
+                as bool Function(api10.NavigationNotification notification)?,
         navigatorObservers:
-            values["navigatorObservers"] as List<api11.NavigatorObserver>,
+            values["navigatorObservers"] as List<api10.NavigatorObserver>,
         builder:
             values["builder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
+                  api10.BuildContext context,
                   api.Widget? child,
                 )?,
         title: values["title"] as String?,
         onGenerateTitle:
             values["onGenerateTitle"]
-                as String Function(api11.BuildContext context)?,
+                as String Function(api10.BuildContext context)?,
         color: values["color"] as api1.Color?,
         locale: values["locale"] as api1.Locale?,
         localizationsDelegates:
             values["localizationsDelegates"]
-                as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                as Iterable<api10.LocalizationsDelegate<Object?>>?,
         localeListResolutionCallback:
             values["localeListResolutionCallback"]
                 as api1.Locale? Function(
@@ -7598,47 +7591,47 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
         debugShowCheckedModeBanner:
             values["debugShowCheckedModeBanner"] as bool,
         shortcuts:
-            values["shortcuts"] as Map<api11.ShortcutActivator, api11.Intent>?,
+            values["shortcuts"] as Map<api10.ShortcutActivator, api10.Intent>?,
         actions:
-            values["actions"] as Map<api3.Type, api11.Action<api11.Intent>>?,
+            values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
         restorationScopeId: values["restorationScopeId"] as String?,
-        scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+        scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
         useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
       );
     case "router":
       if (!values.containsKey("supportedLocales")) {
         return api.CupertinoApp.router(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           routeInformationProvider:
               values["routeInformationProvider"]
-                  as api11.RouteInformationProvider?,
+                  as api10.RouteInformationProvider?,
           routeInformationParser:
               values["routeInformationParser"]
-                  as api11.RouteInformationParser<Object>?,
+                  as api10.RouteInformationParser<Object>?,
           routerDelegate:
-              values["routerDelegate"] as api11.RouterDelegate<Object>?,
+              values["routerDelegate"] as api10.RouterDelegate<Object>?,
           backButtonDispatcher:
-              values["backButtonDispatcher"] as api11.BackButtonDispatcher?,
-          routerConfig: values["routerConfig"] as api11.RouterConfig<Object>?,
+              values["backButtonDispatcher"] as api10.BackButtonDispatcher?,
+          routerConfig: values["routerConfig"] as api10.RouterConfig<Object>?,
           theme: values["theme"] as api.CupertinoThemeData?,
           builder:
               values["builder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
+                    api10.BuildContext context,
                     api.Widget? child,
                   )?,
           title: values["title"] as String?,
           onGenerateTitle:
               values["onGenerateTitle"]
-                  as String Function(api11.BuildContext context)?,
+                  as String Function(api10.BuildContext context)?,
           onNavigationNotification:
               values["onNavigationNotification"]
-                  as bool Function(api11.NavigationNotification notification)?,
+                  as bool Function(api10.NavigationNotification notification)?,
           color: values["color"] as api1.Color?,
           locale: values["locale"] as api1.Locale?,
           localizationsDelegates:
               values["localizationsDelegates"]
-                  as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                  as Iterable<api10.LocalizationsDelegate<Object?>>?,
           localeListResolutionCallback:
               values["localeListResolutionCallback"]
                   as api1.Locale? Function(
@@ -7661,46 +7654,46 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
               values["debugShowCheckedModeBanner"] as bool,
           shortcuts:
               values["shortcuts"]
-                  as Map<api11.ShortcutActivator, api11.Intent>?,
+                  as Map<api10.ShortcutActivator, api10.Intent>?,
           actions:
-              values["actions"] as Map<api3.Type, api11.Action<api11.Intent>>?,
+              values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
           restorationScopeId: values["restorationScopeId"] as String?,
-          scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+          scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
           useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
         );
       }
       return api.CupertinoApp.router(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         routeInformationProvider:
             values["routeInformationProvider"]
-                as api11.RouteInformationProvider?,
+                as api10.RouteInformationProvider?,
         routeInformationParser:
             values["routeInformationParser"]
-                as api11.RouteInformationParser<Object>?,
+                as api10.RouteInformationParser<Object>?,
         routerDelegate:
-            values["routerDelegate"] as api11.RouterDelegate<Object>?,
+            values["routerDelegate"] as api10.RouterDelegate<Object>?,
         backButtonDispatcher:
-            values["backButtonDispatcher"] as api11.BackButtonDispatcher?,
-        routerConfig: values["routerConfig"] as api11.RouterConfig<Object>?,
+            values["backButtonDispatcher"] as api10.BackButtonDispatcher?,
+        routerConfig: values["routerConfig"] as api10.RouterConfig<Object>?,
         theme: values["theme"] as api.CupertinoThemeData?,
         builder:
             values["builder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
+                  api10.BuildContext context,
                   api.Widget? child,
                 )?,
         title: values["title"] as String?,
         onGenerateTitle:
             values["onGenerateTitle"]
-                as String Function(api11.BuildContext context)?,
+                as String Function(api10.BuildContext context)?,
         onNavigationNotification:
             values["onNavigationNotification"]
-                as bool Function(api11.NavigationNotification notification)?,
+                as bool Function(api10.NavigationNotification notification)?,
         color: values["color"] as api1.Color?,
         locale: values["locale"] as api1.Locale?,
         localizationsDelegates:
             values["localizationsDelegates"]
-                as Iterable<api11.LocalizationsDelegate<Object?>>?,
+                as Iterable<api10.LocalizationsDelegate<Object?>>?,
         localeListResolutionCallback:
             values["localeListResolutionCallback"]
                 as api1.Locale? Function(
@@ -7723,11 +7716,11 @@ api.Widget _createCupertinoApp(String ctor, Map<String, Object?> values) {
         debugShowCheckedModeBanner:
             values["debugShowCheckedModeBanner"] as bool,
         shortcuts:
-            values["shortcuts"] as Map<api11.ShortcutActivator, api11.Intent>?,
+            values["shortcuts"] as Map<api10.ShortcutActivator, api10.Intent>?,
         actions:
-            values["actions"] as Map<api3.Type, api11.Action<api11.Intent>>?,
+            values["actions"] as Map<api2.Type, api10.Action<api10.Intent>>?,
         restorationScopeId: values["restorationScopeId"] as String?,
-        scrollBehavior: values["scrollBehavior"] as api11.ScrollBehavior?,
+        scrollBehavior: values["scrollBehavior"] as api10.ScrollBehavior?,
         useInheritedMediaQuery: values["useInheritedMediaQuery"] as bool,
       );
     default:
@@ -7753,87 +7746,87 @@ api.Widget _createCupertinoButton(String ctor, Map<String, Object?> values) {
       if (!values.containsKey("disabledColor")) {
         if (!values.containsKey("alignment")) {
           return api.CupertinoButton(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             child: values["child"] as api.Widget,
             sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-            padding: values["padding"] as api13.EdgeInsetsGeometry?,
+            padding: values["padding"] as api12.EdgeInsetsGeometry?,
             color: values["color"] as api1.Color?,
             foregroundColor: values["foregroundColor"] as api1.Color?,
             minSize: values["minSize"] as double?,
             minimumSize: values["minimumSize"] as api1.Size?,
             pressedOpacity: values["pressedOpacity"] as double?,
-            borderRadius: values["borderRadius"] as api13.BorderRadius?,
+            borderRadius: values["borderRadius"] as api12.BorderRadius?,
             focusColor: values["focusColor"] as api1.Color?,
-            focusNode: values["focusNode"] as api11.FocusNode?,
+            focusNode: values["focusNode"] as api10.FocusNode?,
             onFocusChange:
                 values["onFocusChange"] as void Function(bool value)?,
             autofocus: values["autofocus"] as bool,
-            mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+            mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
             onLongPress: values["onLongPress"] as void Function()?,
             onPressed: values["onPressed"] as void Function()?,
           );
         }
         return api.CupertinoButton(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           child: values["child"] as api.Widget,
           sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
           color: values["color"] as api1.Color?,
           foregroundColor: values["foregroundColor"] as api1.Color?,
           minSize: values["minSize"] as double?,
           minimumSize: values["minimumSize"] as api1.Size?,
           pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api13.BorderRadius?,
-          alignment: values["alignment"] as api13.AlignmentGeometry,
+          borderRadius: values["borderRadius"] as api12.BorderRadius?,
+          alignment: values["alignment"] as api12.AlignmentGeometry,
           focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
           onFocusChange: values["onFocusChange"] as void Function(bool value)?,
           autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
           onLongPress: values["onLongPress"] as void Function()?,
           onPressed: values["onPressed"] as void Function()?,
         );
       }
       if (!values.containsKey("alignment")) {
         return api.CupertinoButton(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           child: values["child"] as api.Widget,
           sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
           color: values["color"] as api1.Color?,
           foregroundColor: values["foregroundColor"] as api1.Color?,
           disabledColor: values["disabledColor"] as api1.Color,
           minSize: values["minSize"] as double?,
           minimumSize: values["minimumSize"] as api1.Size?,
           pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api13.BorderRadius?,
+          borderRadius: values["borderRadius"] as api12.BorderRadius?,
           focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
           onFocusChange: values["onFocusChange"] as void Function(bool value)?,
           autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
           onLongPress: values["onLongPress"] as void Function()?,
           onPressed: values["onPressed"] as void Function()?,
         );
       }
       return api.CupertinoButton(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         child: values["child"] as api.Widget,
         sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
         color: values["color"] as api1.Color?,
         foregroundColor: values["foregroundColor"] as api1.Color?,
         disabledColor: values["disabledColor"] as api1.Color,
         minSize: values["minSize"] as double?,
         minimumSize: values["minimumSize"] as api1.Size?,
         pressedOpacity: values["pressedOpacity"] as double?,
-        borderRadius: values["borderRadius"] as api13.BorderRadius?,
-        alignment: values["alignment"] as api13.AlignmentGeometry,
+        borderRadius: values["borderRadius"] as api12.BorderRadius?,
+        alignment: values["alignment"] as api12.AlignmentGeometry,
         focusColor: values["focusColor"] as api1.Color?,
-        focusNode: values["focusNode"] as api11.FocusNode?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
         onFocusChange: values["onFocusChange"] as void Function(bool value)?,
         autofocus: values["autofocus"] as bool,
-        mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
         onLongPress: values["onLongPress"] as void Function()?,
         onPressed: values["onPressed"] as void Function()?,
       );
@@ -7841,87 +7834,87 @@ api.Widget _createCupertinoButton(String ctor, Map<String, Object?> values) {
       if (!values.containsKey("disabledColor")) {
         if (!values.containsKey("alignment")) {
           return api.CupertinoButton.tinted(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             child: values["child"] as api.Widget,
             sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-            padding: values["padding"] as api13.EdgeInsetsGeometry?,
+            padding: values["padding"] as api12.EdgeInsetsGeometry?,
             color: values["color"] as api1.Color?,
             foregroundColor: values["foregroundColor"] as api1.Color?,
             minSize: values["minSize"] as double?,
             minimumSize: values["minimumSize"] as api1.Size?,
             pressedOpacity: values["pressedOpacity"] as double?,
-            borderRadius: values["borderRadius"] as api13.BorderRadius?,
+            borderRadius: values["borderRadius"] as api12.BorderRadius?,
             focusColor: values["focusColor"] as api1.Color?,
-            focusNode: values["focusNode"] as api11.FocusNode?,
+            focusNode: values["focusNode"] as api10.FocusNode?,
             onFocusChange:
                 values["onFocusChange"] as void Function(bool value)?,
             autofocus: values["autofocus"] as bool,
-            mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+            mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
             onLongPress: values["onLongPress"] as void Function()?,
             onPressed: values["onPressed"] as void Function()?,
           );
         }
         return api.CupertinoButton.tinted(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           child: values["child"] as api.Widget,
           sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
           color: values["color"] as api1.Color?,
           foregroundColor: values["foregroundColor"] as api1.Color?,
           minSize: values["minSize"] as double?,
           minimumSize: values["minimumSize"] as api1.Size?,
           pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api13.BorderRadius?,
-          alignment: values["alignment"] as api13.AlignmentGeometry,
+          borderRadius: values["borderRadius"] as api12.BorderRadius?,
+          alignment: values["alignment"] as api12.AlignmentGeometry,
           focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
           onFocusChange: values["onFocusChange"] as void Function(bool value)?,
           autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
           onLongPress: values["onLongPress"] as void Function()?,
           onPressed: values["onPressed"] as void Function()?,
         );
       }
       if (!values.containsKey("alignment")) {
         return api.CupertinoButton.tinted(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           child: values["child"] as api.Widget,
           sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
           color: values["color"] as api1.Color?,
           foregroundColor: values["foregroundColor"] as api1.Color?,
           disabledColor: values["disabledColor"] as api1.Color,
           minSize: values["minSize"] as double?,
           minimumSize: values["minimumSize"] as api1.Size?,
           pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api13.BorderRadius?,
+          borderRadius: values["borderRadius"] as api12.BorderRadius?,
           focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
           onFocusChange: values["onFocusChange"] as void Function(bool value)?,
           autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
           onLongPress: values["onLongPress"] as void Function()?,
           onPressed: values["onPressed"] as void Function()?,
         );
       }
       return api.CupertinoButton.tinted(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         child: values["child"] as api.Widget,
         sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
         color: values["color"] as api1.Color?,
         foregroundColor: values["foregroundColor"] as api1.Color?,
         disabledColor: values["disabledColor"] as api1.Color,
         minSize: values["minSize"] as double?,
         minimumSize: values["minimumSize"] as api1.Size?,
         pressedOpacity: values["pressedOpacity"] as double?,
-        borderRadius: values["borderRadius"] as api13.BorderRadius?,
-        alignment: values["alignment"] as api13.AlignmentGeometry,
+        borderRadius: values["borderRadius"] as api12.BorderRadius?,
+        alignment: values["alignment"] as api12.AlignmentGeometry,
         focusColor: values["focusColor"] as api1.Color?,
-        focusNode: values["focusNode"] as api11.FocusNode?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
         onFocusChange: values["onFocusChange"] as void Function(bool value)?,
         autofocus: values["autofocus"] as bool,
-        mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
         onLongPress: values["onLongPress"] as void Function()?,
         onPressed: values["onPressed"] as void Function()?,
       );
@@ -7929,87 +7922,87 @@ api.Widget _createCupertinoButton(String ctor, Map<String, Object?> values) {
       if (!values.containsKey("disabledColor")) {
         if (!values.containsKey("alignment")) {
           return api.CupertinoButton.filled(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             child: values["child"] as api.Widget,
             sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-            padding: values["padding"] as api13.EdgeInsetsGeometry?,
+            padding: values["padding"] as api12.EdgeInsetsGeometry?,
             color: values["color"] as api1.Color?,
             foregroundColor: values["foregroundColor"] as api1.Color?,
             minSize: values["minSize"] as double?,
             minimumSize: values["minimumSize"] as api1.Size?,
             pressedOpacity: values["pressedOpacity"] as double?,
-            borderRadius: values["borderRadius"] as api13.BorderRadius?,
+            borderRadius: values["borderRadius"] as api12.BorderRadius?,
             focusColor: values["focusColor"] as api1.Color?,
-            focusNode: values["focusNode"] as api11.FocusNode?,
+            focusNode: values["focusNode"] as api10.FocusNode?,
             onFocusChange:
                 values["onFocusChange"] as void Function(bool value)?,
             autofocus: values["autofocus"] as bool,
-            mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+            mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
             onLongPress: values["onLongPress"] as void Function()?,
             onPressed: values["onPressed"] as void Function()?,
           );
         }
         return api.CupertinoButton.filled(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           child: values["child"] as api.Widget,
           sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
           color: values["color"] as api1.Color?,
           foregroundColor: values["foregroundColor"] as api1.Color?,
           minSize: values["minSize"] as double?,
           minimumSize: values["minimumSize"] as api1.Size?,
           pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api13.BorderRadius?,
-          alignment: values["alignment"] as api13.AlignmentGeometry,
+          borderRadius: values["borderRadius"] as api12.BorderRadius?,
+          alignment: values["alignment"] as api12.AlignmentGeometry,
           focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
           onFocusChange: values["onFocusChange"] as void Function(bool value)?,
           autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
           onLongPress: values["onLongPress"] as void Function()?,
           onPressed: values["onPressed"] as void Function()?,
         );
       }
       if (!values.containsKey("alignment")) {
         return api.CupertinoButton.filled(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           child: values["child"] as api.Widget,
           sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
           color: values["color"] as api1.Color?,
           disabledColor: values["disabledColor"] as api1.Color,
           foregroundColor: values["foregroundColor"] as api1.Color?,
           minSize: values["minSize"] as double?,
           minimumSize: values["minimumSize"] as api1.Size?,
           pressedOpacity: values["pressedOpacity"] as double?,
-          borderRadius: values["borderRadius"] as api13.BorderRadius?,
+          borderRadius: values["borderRadius"] as api12.BorderRadius?,
           focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
           onFocusChange: values["onFocusChange"] as void Function(bool value)?,
           autofocus: values["autofocus"] as bool,
-          mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
           onLongPress: values["onLongPress"] as void Function()?,
           onPressed: values["onPressed"] as void Function()?,
         );
       }
       return api.CupertinoButton.filled(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         child: values["child"] as api.Widget,
         sizeStyle: values["sizeStyle"] as api.CupertinoButtonSize,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
         color: values["color"] as api1.Color?,
         disabledColor: values["disabledColor"] as api1.Color,
         foregroundColor: values["foregroundColor"] as api1.Color?,
         minSize: values["minSize"] as double?,
         minimumSize: values["minimumSize"] as api1.Size?,
         pressedOpacity: values["pressedOpacity"] as double?,
-        borderRadius: values["borderRadius"] as api13.BorderRadius?,
-        alignment: values["alignment"] as api13.AlignmentGeometry,
+        borderRadius: values["borderRadius"] as api12.BorderRadius?,
+        alignment: values["alignment"] as api12.AlignmentGeometry,
         focusColor: values["focusColor"] as api1.Color?,
-        focusNode: values["focusNode"] as api11.FocusNode?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
         onFocusChange: values["onFocusChange"] as void Function(bool value)?,
         autofocus: values["autofocus"] as bool,
-        mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
         onLongPress: values["onLongPress"] as void Function()?,
         onPressed: values["onPressed"] as void Function()?,
       );
@@ -8077,7 +8070,7 @@ Object? _CupertinoCheckbox_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoCheckbox).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -8088,7 +8081,7 @@ Object? _CupertinoCheckbox_toStringShallow(
 ) {
   return (receiver as api.CupertinoCheckbox).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -8097,7 +8090,7 @@ Object? _CupertinoCheckbox_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoCheckbox).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -8110,7 +8103,7 @@ Object? _CupertinoCheckbox_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoCheckbox).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -8125,21 +8118,21 @@ api.Widget _createCupertinoCheckbox(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.CupertinoCheckbox(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         value: values["value"] as bool?,
         tristate: values["tristate"] as bool,
         onChanged: values["onChanged"] as void Function(bool? value)?,
-        mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
         activeColor: values["activeColor"] as api1.Color?,
         inactiveColor: values["inactiveColor"] as api1.Color?,
         fillColor:
-            values["fillColor"] as api11.WidgetStateProperty<api1.Color?>?,
+            values["fillColor"] as api10.WidgetStateProperty<api1.Color?>?,
         checkColor: values["checkColor"] as api1.Color?,
         focusColor: values["focusColor"] as api1.Color?,
-        focusNode: values["focusNode"] as api11.FocusNode?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
         autofocus: values["autofocus"] as bool,
-        side: values["side"] as api13.BorderSide?,
-        shape: values["shape"] as api13.OutlinedBorder?,
+        side: values["side"] as api12.BorderSide?,
+        shape: values["shape"] as api12.OutlinedBorder?,
         tapTargetSize: values["tapTargetSize"] as api1.Size?,
         semanticLabel: values["semanticLabel"] as String?,
       );
@@ -8191,7 +8184,7 @@ Object? _CupertinoContextMenu_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoContextMenu).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -8202,7 +8195,7 @@ Object? _CupertinoContextMenu_toStringShallow(
 ) {
   return (receiver as api.CupertinoContextMenu).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -8211,7 +8204,7 @@ Object? _CupertinoContextMenu_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoContextMenu).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -8224,7 +8217,7 @@ Object? _CupertinoContextMenu_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoContextMenu).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -8242,20 +8235,20 @@ api.Widget _createCupertinoContextMenu(
   switch (ctor) {
     case "":
       return api.CupertinoContextMenu(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         actions: values["actions"] as List<api.Widget>,
         child: values["child"] as api.Widget,
         enableHapticFeedback: values["enableHapticFeedback"] as bool,
       );
     case "builder":
       return api.CupertinoContextMenu.builder(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         actions: values["actions"] as List<api.Widget>,
         builder:
             values["builder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
-                  api12.Animation<double> animation,
+                  api10.BuildContext context,
+                  api11.Animation<double> animation,
                 ),
         enableHapticFeedback: values["enableHapticFeedback"] as bool,
       );
@@ -8304,7 +8297,7 @@ Object? _CupertinoContextMenuAction_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoContextMenuAction).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -8315,7 +8308,7 @@ Object? _CupertinoContextMenuAction_toStringShallow(
 ) {
   return (receiver as api.CupertinoContextMenuAction).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -8324,7 +8317,7 @@ Object? _CupertinoContextMenuAction_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoContextMenuAction).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -8337,7 +8330,7 @@ Object? _CupertinoContextMenuAction_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoContextMenuAction).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -8355,12 +8348,12 @@ api.Widget _createCupertinoContextMenuAction(
   switch (ctor) {
     case "":
       return api.CupertinoContextMenuAction(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         child: values["child"] as api.Widget,
         isDefaultAction: values["isDefaultAction"] as bool,
         isDestructiveAction: values["isDestructiveAction"] as bool,
         onPressed: values["onPressed"] as void Function()?,
-        trailingIcon: values["trailingIcon"] as api11.IconData?,
+        trailingIcon: values["trailingIcon"] as api10.IconData?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -8430,7 +8423,7 @@ Object? _CupertinoDatePicker_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDatePicker).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -8441,7 +8434,7 @@ Object? _CupertinoDatePicker_toStringShallow(
 ) {
   return (receiver as api.CupertinoDatePicker).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -8450,7 +8443,7 @@ Object? _CupertinoDatePicker_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDatePicker).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -8463,7 +8456,7 @@ Object? _CupertinoDatePicker_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoDatePicker).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -8481,13 +8474,13 @@ api.Widget _createCupertinoDatePicker(
   switch (ctor) {
     case "":
       return api.CupertinoDatePicker(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         mode: values["mode"] as api.CupertinoDatePickerMode,
         onDateTimeChanged:
-            values["onDateTimeChanged"] as void Function(api3.DateTime value),
-        initialDateTime: values["initialDateTime"] as api3.DateTime?,
-        minimumDate: values["minimumDate"] as api3.DateTime?,
-        maximumDate: values["maximumDate"] as api3.DateTime?,
+            values["onDateTimeChanged"] as void Function(api2.DateTime value),
+        initialDateTime: values["initialDateTime"] as api2.DateTime?,
+        minimumDate: values["minimumDate"] as api2.DateTime?,
+        maximumDate: values["maximumDate"] as api2.DateTime?,
         minimumYear: values["minimumYear"] as int,
         maximumYear: values["maximumYear"] as int?,
         minuteInterval: values["minuteInterval"] as int,
@@ -8500,15 +8493,15 @@ api.Widget _createCupertinoDatePicker(
         selectionOverlayBuilder:
             values["selectionOverlayBuilder"]
                 as api.Widget? Function(
-                  api11.BuildContext context, {
+                  api10.BuildContext context, {
                   required int columnCount,
                   required int selectedIndex,
                 })?,
         selectableDayPredicate:
             values["selectableDayPredicate"]
-                as bool Function(api3.DateTime day)?,
+                as bool Function(api2.DateTime day)?,
         changeReportingBehavior:
-            values["changeReportingBehavior"] as api11.ChangeReportingBehavior,
+            values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -8522,8 +8515,8 @@ Object? _CupertinoDesktopTextSelectionControls_buildHandle(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionControls).buildHandle(
-    values["context"] as api11.BuildContext,
-    values["type"] as api10.TextSelectionHandleType,
+    values["context"] as api10.BuildContext,
+    values["type"] as api9.TextSelectionHandleType,
     values["textLineHeight"] as double,
     values["onTap"] as void Function()?,
   );
@@ -8535,7 +8528,7 @@ Object? _CupertinoDesktopTextSelectionControls_getHandleAnchor(
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionControls)
       .getHandleAnchor(
-        values["type"] as api10.TextSelectionHandleType,
+        values["type"] as api9.TextSelectionHandleType,
         values["textLineHeight"] as double,
       );
 }
@@ -8545,13 +8538,13 @@ Object? _CupertinoDesktopTextSelectionControls_buildToolbar(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionControls).buildToolbar(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
     values["globalEditableRegion"] as api1.Rect,
     values["textLineHeight"] as double,
     values["selectionMidpoint"] as api1.Offset,
-    values["endpoints"] as List<api10.TextSelectionPoint>,
-    values["delegate"] as api8.TextSelectionDelegate,
-    values["clipboardStatus"] as api4.ValueListenable<api11.ClipboardStatus>?,
+    values["endpoints"] as List<api9.TextSelectionPoint>,
+    values["delegate"] as api7.TextSelectionDelegate,
+    values["clipboardStatus"] as api3.ValueListenable<api10.ClipboardStatus>?,
     values["lastSecondaryTapDownPosition"] as api1.Offset?,
   );
 }
@@ -8570,7 +8563,7 @@ Object? _CupertinoDesktopTextSelectionControls_canCut(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionControls).canCut(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8579,7 +8572,7 @@ Object? _CupertinoDesktopTextSelectionControls_canCopy(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionControls).canCopy(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8588,7 +8581,7 @@ Object? _CupertinoDesktopTextSelectionControls_canPaste(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionControls).canPaste(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8597,7 +8590,7 @@ Object? _CupertinoDesktopTextSelectionControls_canSelectAll(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionControls).canSelectAll(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8606,7 +8599,7 @@ Object? _CupertinoDesktopTextSelectionControls_handleCut(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDesktopTextSelectionControls).handleCut(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -8616,7 +8609,7 @@ Object? _CupertinoDesktopTextSelectionControls_handleCopy(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDesktopTextSelectionControls).handleCopy(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -8626,7 +8619,7 @@ Object? _CupertinoDesktopTextSelectionControls_handlePaste(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionControls).handlePaste(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8635,7 +8628,7 @@ Object? _CupertinoDesktopTextSelectionControls_handleSelectAll(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDesktopTextSelectionControls).handleSelectAll(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -8645,8 +8638,8 @@ Object? _FlaxProxyDispatch0_super_call_buildHandle(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch0)._flaxSuper_buildHandle(
-    values["context"] as api11.BuildContext,
-    values["type"] as api10.TextSelectionHandleType,
+    values["context"] as api10.BuildContext,
+    values["type"] as api9.TextSelectionHandleType,
     values["textLineHeight"] as double,
     values["onTap"] as void Function()?,
   );
@@ -8657,7 +8650,7 @@ Object? _FlaxProxyDispatch0_super_call_getHandleAnchor(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch0)._flaxSuper_getHandleAnchor(
-    values["type"] as api10.TextSelectionHandleType,
+    values["type"] as api9.TextSelectionHandleType,
     values["textLineHeight"] as double,
   );
 }
@@ -8667,13 +8660,13 @@ Object? _FlaxProxyDispatch0_super_call_buildToolbar(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch0)._flaxSuper_buildToolbar(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
     values["globalEditableRegion"] as api1.Rect,
     values["textLineHeight"] as double,
     values["selectionMidpoint"] as api1.Offset,
-    values["endpoints"] as List<api10.TextSelectionPoint>,
-    values["delegate"] as api8.TextSelectionDelegate,
-    values["clipboardStatus"] as api4.ValueListenable<api11.ClipboardStatus>?,
+    values["endpoints"] as List<api9.TextSelectionPoint>,
+    values["delegate"] as api7.TextSelectionDelegate,
+    values["clipboardStatus"] as api3.ValueListenable<api10.ClipboardStatus>?,
     values["lastSecondaryTapDownPosition"] as api1.Offset?,
   );
 }
@@ -8692,7 +8685,7 @@ Object? _FlaxProxyDispatch0_super_call_canCut(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch0)._flaxSuper_canCut(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8701,7 +8694,7 @@ Object? _FlaxProxyDispatch0_super_call_canCopy(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch0)._flaxSuper_canCopy(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8710,7 +8703,7 @@ Object? _FlaxProxyDispatch0_super_call_canPaste(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch0)._flaxSuper_canPaste(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8719,7 +8712,7 @@ Object? _FlaxProxyDispatch0_super_call_canSelectAll(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch0)._flaxSuper_canSelectAll(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8728,7 +8721,7 @@ Object? _FlaxProxyDispatch1_super_call_handleCut(
   Map<String, Object?> values,
 ) {
   (receiver as _FlaxProxyDispatch1)._flaxSuper_handleCut(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -8738,7 +8731,7 @@ Object? _FlaxProxyDispatch1_super_call_handleCopy(
   Map<String, Object?> values,
 ) {
   (receiver as _FlaxProxyDispatch1)._flaxSuper_handleCopy(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -8748,7 +8741,7 @@ Object? _FlaxProxyDispatch0_super_call_handlePaste(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch0)._flaxSuper_handlePaste(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -8757,7 +8750,7 @@ Object? _FlaxProxyDispatch0_super_call_handleSelectAll(
   Map<String, Object?> values,
 ) {
   (receiver as _FlaxProxyDispatch0)._flaxSuper_handleSelectAll(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -8791,7 +8784,7 @@ Object? _CupertinoDesktopTextSelectionToolbar_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionToolbar).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -8814,7 +8807,7 @@ Object? _CupertinoDesktopTextSelectionToolbar_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDesktopTextSelectionToolbar).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -8825,7 +8818,7 @@ Object? _CupertinoDesktopTextSelectionToolbar_toStringShallow(
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionToolbar).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -8834,7 +8827,7 @@ Object? _CupertinoDesktopTextSelectionToolbar_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionToolbar).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -8848,7 +8841,7 @@ Object? _CupertinoDesktopTextSelectionToolbar_toDiagnosticsNode(
   return (receiver as api.CupertinoDesktopTextSelectionToolbar)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -8867,7 +8860,7 @@ api.Widget _createCupertinoDesktopTextSelectionToolbar(
   switch (ctor) {
     case "":
       return api.CupertinoDesktopTextSelectionToolbar(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         anchor: values["anchor"] as api1.Offset,
         children: values["children"] as List<api.Widget>,
       );
@@ -8918,7 +8911,7 @@ Object? _CupertinoDesktopTextSelectionToolbarButton_debugFillProperties(
 ) {
   (receiver as api.CupertinoDesktopTextSelectionToolbarButton)
       .debugFillProperties(
-        values["properties"] as api4.DiagnosticPropertiesBuilder,
+        values["properties"] as api3.DiagnosticPropertiesBuilder,
       );
   return null;
 }
@@ -8930,7 +8923,7 @@ Object? _CupertinoDesktopTextSelectionToolbarButton_toStringShallow(
   return (receiver as api.CupertinoDesktopTextSelectionToolbarButton)
       .toStringShallow(
         joiner: values["joiner"] as String,
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
       );
 }
 
@@ -8940,7 +8933,7 @@ Object? _CupertinoDesktopTextSelectionToolbarButton_toStringDeep(
 ) {
   return (receiver as api.CupertinoDesktopTextSelectionToolbarButton)
       .toStringDeep(
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
         prefixLineOne: values["prefixLineOne"] as String,
         prefixOtherLines: values["prefixOtherLines"] as String?,
         wrapWidth: values["wrapWidth"] as int,
@@ -8954,7 +8947,7 @@ Object? _CupertinoDesktopTextSelectionToolbarButton_toDiagnosticsNode(
   return (receiver as api.CupertinoDesktopTextSelectionToolbarButton)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -8973,20 +8966,20 @@ api.Widget _createCupertinoDesktopTextSelectionToolbarButton(
   switch (ctor) {
     case "":
       return api.CupertinoDesktopTextSelectionToolbarButton(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         onPressed: values["onPressed"] as void Function()?,
         child: values["child"] as api.Widget,
       );
     case "text":
       return api.CupertinoDesktopTextSelectionToolbarButton.text(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         onPressed: values["onPressed"] as void Function()?,
         text: values["text"] as String?,
       );
     case "buttonItem":
       return api.CupertinoDesktopTextSelectionToolbarButton.buttonItem(
-        key: values["key"] as api4.Key?,
-        buttonItem: values["buttonItem"] as api11.ContextMenuButtonItem,
+        key: values["key"] as api3.Key?,
+        buttonItem: values["buttonItem"] as api10.ContextMenuButtonItem,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -9035,7 +9028,7 @@ Object? _CupertinoDialogAction_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogAction).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -9046,7 +9039,7 @@ Object? _CupertinoDialogAction_toStringShallow(
 ) {
   return (receiver as api.CupertinoDialogAction).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -9055,7 +9048,7 @@ Object? _CupertinoDialogAction_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDialogAction).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -9068,7 +9061,7 @@ Object? _CupertinoDialogAction_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoDialogAction).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -9086,12 +9079,12 @@ api.Widget _createCupertinoDialogAction(
   switch (ctor) {
     case "":
       return api.CupertinoDialogAction(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         onPressed: values["onPressed"] as void Function()?,
         isDefaultAction: values["isDefaultAction"] as bool,
         isDestructiveAction: values["isDestructiveAction"] as bool,
-        textStyle: values["textStyle"] as api13.TextStyle?,
-        mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+        textStyle: values["textStyle"] as api12.TextStyle?,
+        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
         child: values["child"] as api.Widget,
       );
     default:
@@ -9199,9 +9192,9 @@ void _CupertinoDialogRoute_set_receivedTransition(
   (receiver as api.CupertinoDialogRoute<Object?>).receivedTransition =
       value
           as api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           )?;
@@ -9227,9 +9220,9 @@ void _CupertinoDialogRoute_set_transitionBuilder(
   (receiver as api.CupertinoDialogRoute<Object?>).transitionBuilder =
       value
           as api.Widget Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             api.Widget child,
           )?;
 }
@@ -9249,9 +9242,9 @@ Object? _CupertinoDialogRoute_buildPage(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDialogRoute<Object?>).buildPage(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
   );
 }
 
@@ -9260,9 +9253,9 @@ Object? _CupertinoDialogRoute_buildTransitions(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDialogRoute<Object?>).buildTransitions(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
     values["child"] as api.Widget,
   );
 }
@@ -9333,7 +9326,7 @@ Object? _CupertinoDialogRoute_registerPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogRoute<Object?>).registerPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -9343,7 +9336,7 @@ Object? _CupertinoDialogRoute_unregisterPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogRoute<Object?>).unregisterPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -9353,7 +9346,7 @@ Object? _CupertinoDialogRoute_didChangePrevious(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogRoute<Object?>).didChangePrevious(
-    values["previousRoute"] as api11.Route<Object?>?,
+    values["previousRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -9363,7 +9356,7 @@ Object? _CupertinoDialogRoute_didChangeNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogRoute<Object?>).didChangeNext(
-    values["nextRoute"] as api11.Route<Object?>?,
+    values["nextRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -9373,7 +9366,7 @@ Object? _CupertinoDialogRoute_didPopNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogRoute<Object?>).didPopNext(
-    values["nextRoute"] as api11.Route<Object?>,
+    values["nextRoute"] as api10.Route<Object?>,
   );
   return null;
 }
@@ -9445,7 +9438,7 @@ Object? _CupertinoDialogRoute_didReplace(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogRoute<Object?>).didReplace(
-    values["oldRoute"] as api11.Route<Object?>?,
+    values["oldRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -9464,7 +9457,7 @@ Object? _CupertinoDialogRoute_canTransitionTo(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDialogRoute<Object?>).canTransitionTo(
-    values["nextRoute"] as api11.TransitionRoute<Object?>,
+    values["nextRoute"] as api10.TransitionRoute<Object?>,
   );
 }
 
@@ -9473,7 +9466,7 @@ Object? _CupertinoDialogRoute_canTransitionFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDialogRoute<Object?>).canTransitionFrom(
-    values["previousRoute"] as api11.TransitionRoute<Object?>,
+    values["previousRoute"] as api10.TransitionRoute<Object?>,
   );
 }
 
@@ -9543,7 +9536,7 @@ Object? _CupertinoDialogRoute_addLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogRoute<Object?>).addLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -9553,7 +9546,7 @@ Object? _CupertinoDialogRoute_removeLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDialogRoute<Object?>).removeLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -9572,20 +9565,20 @@ Object _createCupertinoDialogRoute(String ctor, Map<String, Object?> values) {
         return api.CupertinoDialogRoute<Object?>(
           builder:
               values["builder"]
-                  as api.Widget Function(api11.BuildContext context),
-          context: values["context"] as api11.BuildContext,
+                  as api.Widget Function(api10.BuildContext context),
+          context: values["context"] as api10.BuildContext,
           barrierDismissible: values["barrierDismissible"] as bool,
           barrierColor: values["barrierColor"] as api1.Color?,
           barrierLabel: values["barrierLabel"] as String?,
           transitionBuilder:
               values["transitionBuilder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
-                    api12.Animation<double> animation,
-                    api12.Animation<double> secondaryAnimation,
+                    api10.BuildContext context,
+                    api11.Animation<double> animation,
+                    api11.Animation<double> secondaryAnimation,
                     api.Widget child,
                   )?,
-          settings: values["settings"] as api11.RouteSettings?,
+          settings: values["settings"] as api10.RouteSettings?,
           requestFocus: values["requestFocus"] as bool?,
           anchorPoint: values["anchorPoint"] as api1.Offset?,
         );
@@ -9593,21 +9586,21 @@ Object _createCupertinoDialogRoute(String ctor, Map<String, Object?> values) {
       return api.CupertinoDialogRoute<Object?>(
         builder:
             values["builder"]
-                as api.Widget Function(api11.BuildContext context),
-        context: values["context"] as api11.BuildContext,
+                as api.Widget Function(api10.BuildContext context),
+        context: values["context"] as api10.BuildContext,
         barrierDismissible: values["barrierDismissible"] as bool,
         barrierColor: values["barrierColor"] as api1.Color?,
         barrierLabel: values["barrierLabel"] as String?,
-        transitionDuration: values["transitionDuration"] as api3.Duration,
+        transitionDuration: values["transitionDuration"] as api2.Duration,
         transitionBuilder:
             values["transitionBuilder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
-                  api12.Animation<double> animation,
-                  api12.Animation<double> secondaryAnimation,
+                  api10.BuildContext context,
+                  api11.Animation<double> animation,
+                  api11.Animation<double> secondaryAnimation,
                   api.Widget child,
                 )?,
-        settings: values["settings"] as api11.RouteSettings?,
+        settings: values["settings"] as api10.RouteSettings?,
         requestFocus: values["requestFocus"] as bool?,
         anchorPoint: values["anchorPoint"] as api1.Offset?,
       );
@@ -9659,14 +9652,14 @@ Object? _CupertinoDynamicColor_darkHighContrastElevatedColor(Object value) =>
 Object? _CupertinoDynamicColor_resolve(Map<String, Object?> values) {
   return api.CupertinoDynamicColor.resolve(
     values["resolvable"] as api1.Color,
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
 Object? _CupertinoDynamicColor_maybeResolve(Map<String, Object?> values) {
   return api.CupertinoDynamicColor.maybeResolve(
     values["resolvable"] as api1.Color?,
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -9739,7 +9732,7 @@ Object? _CupertinoDynamicColor_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDynamicColor).toString(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -9756,7 +9749,7 @@ Object? _CupertinoDynamicColor_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoDynamicColor).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -9765,7 +9758,7 @@ Object? _CupertinoDynamicColor_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoDynamicColor).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -9775,7 +9768,7 @@ Object? _CupertinoDynamicColor_resolveFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoDynamicColor).resolveFrom(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -9857,7 +9850,7 @@ Object? _FlaxProxyDispatch2_super_call_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as _FlaxProxyDispatch2)._flaxSuper_toString(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -9874,7 +9867,7 @@ Object? _FlaxProxyDispatch2_super_call_toDiagnosticsNode(
 ) {
   return (receiver as _FlaxProxyDispatch2)._flaxSuper_toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -9883,7 +9876,7 @@ Object? _FlaxProxyDispatch2_super_call_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as _FlaxProxyDispatch2)._flaxSuper_debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -9893,7 +9886,7 @@ Object? _CupertinoDynamicColor_super_resolveFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoDynamicColorProxy)._flaxSuper_resolveFrom(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -10080,7 +10073,7 @@ Object? _CupertinoExpansionTile_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoExpansionTile).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -10091,7 +10084,7 @@ Object? _CupertinoExpansionTile_toStringShallow(
 ) {
   return (receiver as api.CupertinoExpansionTile).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -10100,7 +10093,7 @@ Object? _CupertinoExpansionTile_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoExpansionTile).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -10113,7 +10106,7 @@ Object? _CupertinoExpansionTile_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoExpansionTile).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -10131,10 +10124,10 @@ api.Widget _createCupertinoExpansionTile(
   switch (ctor) {
     case "":
       return api.CupertinoExpansionTile(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         title: values["title"] as api.Widget,
         child: values["child"] as api.Widget,
-        controller: values["controller"] as api11.ExpansibleController?,
+        controller: values["controller"] as api10.ExpansibleController?,
         transitionMode:
             values["transitionMode"] as api.ExpansionTileTransitionMode,
       );
@@ -10174,7 +10167,7 @@ Object? _CupertinoFocusHalo_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoFocusHalo).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -10185,7 +10178,7 @@ Object? _CupertinoFocusHalo_toStringShallow(
 ) {
   return (receiver as api.CupertinoFocusHalo).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -10194,7 +10187,7 @@ Object? _CupertinoFocusHalo_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoFocusHalo).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -10207,7 +10200,7 @@ Object? _CupertinoFocusHalo_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoFocusHalo).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -10223,19 +10216,19 @@ api.Widget _createCupertinoFocusHalo(String ctor, Map<String, Object?> values) {
     case "withRect":
       return api.CupertinoFocusHalo.withRect(
         child: values["child"] as api.Widget,
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
       );
     case "withRRect":
       return api.CupertinoFocusHalo.withRRect(
         child: values["child"] as api.Widget,
-        borderRadius: values["borderRadius"] as api13.BorderRadiusGeometry,
-        key: values["key"] as api4.Key?,
+        borderRadius: values["borderRadius"] as api12.BorderRadiusGeometry,
+        key: values["key"] as api3.Key?,
       );
     case "withRoundedSuperellipse":
       return api.CupertinoFocusHalo.withRoundedSuperellipse(
         child: values["child"] as api.Widget,
-        borderRadius: values["borderRadius"] as api13.BorderRadiusGeometry,
-        key: values["key"] as api4.Key?,
+        borderRadius: values["borderRadius"] as api12.BorderRadiusGeometry,
+        key: values["key"] as api3.Key?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -10257,7 +10250,7 @@ Object? _CupertinoFormRow_key(Object value) =>
     (value as api.CupertinoFormRow).key;
 Object? _CupertinoFormRow_build(Object receiver, Map<String, Object?> values) {
   return (receiver as api.CupertinoFormRow).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -10280,7 +10273,7 @@ Object? _CupertinoFormRow_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoFormRow).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -10291,7 +10284,7 @@ Object? _CupertinoFormRow_toStringShallow(
 ) {
   return (receiver as api.CupertinoFormRow).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -10300,7 +10293,7 @@ Object? _CupertinoFormRow_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoFormRow).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -10313,7 +10306,7 @@ Object? _CupertinoFormRow_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoFormRow).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -10328,10 +10321,10 @@ api.Widget _createCupertinoFormRow(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.CupertinoFormRow(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         child: values["child"] as api.Widget,
         prefix: values["prefix"] as api.Widget?,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
         helper: values["helper"] as api.Widget?,
         error: values["error"] as api.Widget?,
       );
@@ -10362,7 +10355,7 @@ Object? _CupertinoFormSection_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoFormSection).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -10385,7 +10378,7 @@ Object? _CupertinoFormSection_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoFormSection).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -10396,7 +10389,7 @@ Object? _CupertinoFormSection_toStringShallow(
 ) {
   return (receiver as api.CupertinoFormSection).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -10405,7 +10398,7 @@ Object? _CupertinoFormSection_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoFormSection).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -10418,7 +10411,7 @@ Object? _CupertinoFormSection_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoFormSection).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -10438,86 +10431,86 @@ api.Widget _createCupertinoFormSection(
       if (!values.containsKey("margin")) {
         if (!values.containsKey("backgroundColor")) {
           return api.CupertinoFormSection(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as List<api.Widget>,
             header: values["header"] as api.Widget?,
             footer: values["footer"] as api.Widget?,
-            decoration: values["decoration"] as api13.BoxDecoration?,
+            decoration: values["decoration"] as api12.BoxDecoration?,
             clipBehavior: values["clipBehavior"] as api1.Clip,
           );
         }
         return api.CupertinoFormSection(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as List<api.Widget>,
           header: values["header"] as api.Widget?,
           footer: values["footer"] as api.Widget?,
           backgroundColor: values["backgroundColor"] as api1.Color,
-          decoration: values["decoration"] as api13.BoxDecoration?,
+          decoration: values["decoration"] as api12.BoxDecoration?,
           clipBehavior: values["clipBehavior"] as api1.Clip,
         );
       }
       if (!values.containsKey("backgroundColor")) {
         return api.CupertinoFormSection(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as List<api.Widget>,
           header: values["header"] as api.Widget?,
           footer: values["footer"] as api.Widget?,
-          margin: values["margin"] as api13.EdgeInsetsGeometry,
-          decoration: values["decoration"] as api13.BoxDecoration?,
+          margin: values["margin"] as api12.EdgeInsetsGeometry,
+          decoration: values["decoration"] as api12.BoxDecoration?,
           clipBehavior: values["clipBehavior"] as api1.Clip,
         );
       }
       return api.CupertinoFormSection(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         children: values["children"] as List<api.Widget>,
         header: values["header"] as api.Widget?,
         footer: values["footer"] as api.Widget?,
-        margin: values["margin"] as api13.EdgeInsetsGeometry,
+        margin: values["margin"] as api12.EdgeInsetsGeometry,
         backgroundColor: values["backgroundColor"] as api1.Color,
-        decoration: values["decoration"] as api13.BoxDecoration?,
+        decoration: values["decoration"] as api12.BoxDecoration?,
         clipBehavior: values["clipBehavior"] as api1.Clip,
       );
     case "insetGrouped":
       if (!values.containsKey("margin")) {
         if (!values.containsKey("backgroundColor")) {
           return api.CupertinoFormSection.insetGrouped(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as List<api.Widget>,
             header: values["header"] as api.Widget?,
             footer: values["footer"] as api.Widget?,
-            decoration: values["decoration"] as api13.BoxDecoration?,
+            decoration: values["decoration"] as api12.BoxDecoration?,
             clipBehavior: values["clipBehavior"] as api1.Clip,
           );
         }
         return api.CupertinoFormSection.insetGrouped(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as List<api.Widget>,
           header: values["header"] as api.Widget?,
           footer: values["footer"] as api.Widget?,
           backgroundColor: values["backgroundColor"] as api1.Color,
-          decoration: values["decoration"] as api13.BoxDecoration?,
+          decoration: values["decoration"] as api12.BoxDecoration?,
           clipBehavior: values["clipBehavior"] as api1.Clip,
         );
       }
       if (!values.containsKey("backgroundColor")) {
         return api.CupertinoFormSection.insetGrouped(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as List<api.Widget>,
           header: values["header"] as api.Widget?,
           footer: values["footer"] as api.Widget?,
-          margin: values["margin"] as api13.EdgeInsetsGeometry,
-          decoration: values["decoration"] as api13.BoxDecoration?,
+          margin: values["margin"] as api12.EdgeInsetsGeometry,
+          decoration: values["decoration"] as api12.BoxDecoration?,
           clipBehavior: values["clipBehavior"] as api1.Clip,
         );
       }
       return api.CupertinoFormSection.insetGrouped(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         children: values["children"] as List<api.Widget>,
         header: values["header"] as api.Widget?,
         footer: values["footer"] as api.Widget?,
-        margin: values["margin"] as api13.EdgeInsetsGeometry,
+        margin: values["margin"] as api12.EdgeInsetsGeometry,
         backgroundColor: values["backgroundColor"] as api1.Color,
-        decoration: values["decoration"] as api13.BoxDecoration?,
+        decoration: values["decoration"] as api12.BoxDecoration?,
         clipBehavior: values["clipBehavior"] as api1.Clip,
       );
     default:
@@ -10565,7 +10558,7 @@ Object? _CupertinoFullscreenDialogTransition_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoFullscreenDialogTransition).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -10576,7 +10569,7 @@ Object? _CupertinoFullscreenDialogTransition_toStringShallow(
 ) {
   return (receiver as api.CupertinoFullscreenDialogTransition).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -10585,7 +10578,7 @@ Object? _CupertinoFullscreenDialogTransition_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoFullscreenDialogTransition).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -10599,7 +10592,7 @@ Object? _CupertinoFullscreenDialogTransition_toDiagnosticsNode(
   return (receiver as api.CupertinoFullscreenDialogTransition)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -10618,11 +10611,11 @@ api.Widget _createCupertinoFullscreenDialogTransition(
   switch (ctor) {
     case "":
       return api.CupertinoFullscreenDialogTransition(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         primaryRouteAnimation:
-            values["primaryRouteAnimation"] as api12.Animation<double>,
+            values["primaryRouteAnimation"] as api11.Animation<double>,
         secondaryRouteAnimation:
-            values["secondaryRouteAnimation"] as api12.Animation<double>,
+            values["secondaryRouteAnimation"] as api11.Animation<double>,
         child: values["child"] as api.Widget,
         linearTransition: values["linearTransition"] as bool,
       );
@@ -10665,7 +10658,7 @@ Object? _CupertinoIconThemeData_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoIconThemeData).toString(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -10675,7 +10668,7 @@ Object? _CupertinoIconThemeData_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoIconThemeData).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -10684,7 +10677,7 @@ Object? _CupertinoIconThemeData_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoIconThemeData).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -10711,7 +10704,7 @@ Object? _CupertinoIconThemeData_merge(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoIconThemeData).merge(
-    values["other"] as api11.IconThemeData?,
+    values["other"] as api10.IconThemeData?,
   );
 }
 
@@ -10720,7 +10713,7 @@ Object? _CupertinoIconThemeData_resolve(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoIconThemeData).resolve(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -10746,7 +10739,7 @@ Object? _CupertinoIconThemeData_super_merge(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoIconThemeDataProxy)._flaxSuper_merge(
-    values["other"] as api11.IconThemeData?,
+    values["other"] as api10.IconThemeData?,
   );
 }
 
@@ -10755,7 +10748,7 @@ Object? _CupertinoIconThemeData_super_resolve(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoIconThemeDataProxy)._flaxSuper_resolve(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -10849,7 +10842,7 @@ Object? _CupertinoLinearActivityIndicator_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoLinearActivityIndicator).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -10872,7 +10865,7 @@ Object? _CupertinoLinearActivityIndicator_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoLinearActivityIndicator).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -10883,7 +10876,7 @@ Object? _CupertinoLinearActivityIndicator_toStringShallow(
 ) {
   return (receiver as api.CupertinoLinearActivityIndicator).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -10892,7 +10885,7 @@ Object? _CupertinoLinearActivityIndicator_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoLinearActivityIndicator).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -10905,7 +10898,7 @@ Object? _CupertinoLinearActivityIndicator_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoLinearActivityIndicator).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -10924,7 +10917,7 @@ api.Widget _createCupertinoLinearActivityIndicator(
   switch (ctor) {
     case "":
       return api.CupertinoLinearActivityIndicator(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         progress: values["progress"] as double,
         height: values["height"] as double,
         color: values["color"] as api1.Color?,
@@ -10966,7 +10959,7 @@ Object? _CupertinoListSection_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoListSection).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -10989,7 +10982,7 @@ Object? _CupertinoListSection_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoListSection).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -11000,7 +10993,7 @@ Object? _CupertinoListSection_toStringShallow(
 ) {
   return (receiver as api.CupertinoListSection).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -11009,7 +11002,7 @@ Object? _CupertinoListSection_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoListSection).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -11022,7 +11015,7 @@ Object? _CupertinoListSection_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoListSection).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -11042,11 +11035,11 @@ api.Widget _createCupertinoListSection(
       if (!values.containsKey("margin")) {
         if (!values.containsKey("backgroundColor")) {
           return api.CupertinoListSection(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as List<api.Widget>?,
             header: values["header"] as api.Widget?,
             footer: values["footer"] as api.Widget?,
-            decoration: values["decoration"] as api13.BoxDecoration?,
+            decoration: values["decoration"] as api12.BoxDecoration?,
             clipBehavior: values["clipBehavior"] as api1.Clip,
             dividerMargin: values["dividerMargin"] as double,
             additionalDividerMargin:
@@ -11057,12 +11050,12 @@ api.Widget _createCupertinoListSection(
           );
         }
         return api.CupertinoListSection(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as List<api.Widget>?,
           header: values["header"] as api.Widget?,
           footer: values["footer"] as api.Widget?,
           backgroundColor: values["backgroundColor"] as api1.Color,
-          decoration: values["decoration"] as api13.BoxDecoration?,
+          decoration: values["decoration"] as api12.BoxDecoration?,
           clipBehavior: values["clipBehavior"] as api1.Clip,
           dividerMargin: values["dividerMargin"] as double,
           additionalDividerMargin: values["additionalDividerMargin"] as double?,
@@ -11073,12 +11066,12 @@ api.Widget _createCupertinoListSection(
       }
       if (!values.containsKey("backgroundColor")) {
         return api.CupertinoListSection(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as List<api.Widget>?,
           header: values["header"] as api.Widget?,
           footer: values["footer"] as api.Widget?,
-          margin: values["margin"] as api13.EdgeInsetsGeometry,
-          decoration: values["decoration"] as api13.BoxDecoration?,
+          margin: values["margin"] as api12.EdgeInsetsGeometry,
+          decoration: values["decoration"] as api12.BoxDecoration?,
           clipBehavior: values["clipBehavior"] as api1.Clip,
           dividerMargin: values["dividerMargin"] as double,
           additionalDividerMargin: values["additionalDividerMargin"] as double?,
@@ -11088,13 +11081,13 @@ api.Widget _createCupertinoListSection(
         );
       }
       return api.CupertinoListSection(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         children: values["children"] as List<api.Widget>?,
         header: values["header"] as api.Widget?,
         footer: values["footer"] as api.Widget?,
-        margin: values["margin"] as api13.EdgeInsetsGeometry,
+        margin: values["margin"] as api12.EdgeInsetsGeometry,
         backgroundColor: values["backgroundColor"] as api1.Color,
-        decoration: values["decoration"] as api13.BoxDecoration?,
+        decoration: values["decoration"] as api12.BoxDecoration?,
         clipBehavior: values["clipBehavior"] as api1.Clip,
         dividerMargin: values["dividerMargin"] as double,
         additionalDividerMargin: values["additionalDividerMargin"] as double?,
@@ -11105,12 +11098,12 @@ api.Widget _createCupertinoListSection(
     case "insetGrouped":
       if (!values.containsKey("backgroundColor")) {
         return api.CupertinoListSection.insetGrouped(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as List<api.Widget>?,
           header: values["header"] as api.Widget?,
           footer: values["footer"] as api.Widget?,
-          margin: values["margin"] as api13.EdgeInsetsGeometry?,
-          decoration: values["decoration"] as api13.BoxDecoration?,
+          margin: values["margin"] as api12.EdgeInsetsGeometry?,
+          decoration: values["decoration"] as api12.BoxDecoration?,
           clipBehavior: values["clipBehavior"] as api1.Clip,
           dividerMargin: values["dividerMargin"] as double,
           additionalDividerMargin: values["additionalDividerMargin"] as double?,
@@ -11120,13 +11113,13 @@ api.Widget _createCupertinoListSection(
         );
       }
       return api.CupertinoListSection.insetGrouped(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         children: values["children"] as List<api.Widget>?,
         header: values["header"] as api.Widget?,
         footer: values["footer"] as api.Widget?,
-        margin: values["margin"] as api13.EdgeInsetsGeometry?,
+        margin: values["margin"] as api12.EdgeInsetsGeometry?,
         backgroundColor: values["backgroundColor"] as api1.Color,
-        decoration: values["decoration"] as api13.BoxDecoration?,
+        decoration: values["decoration"] as api12.BoxDecoration?,
         clipBehavior: values["clipBehavior"] as api1.Clip,
         dividerMargin: values["dividerMargin"] as double,
         additionalDividerMargin: values["additionalDividerMargin"] as double?,
@@ -11190,7 +11183,7 @@ Object? _CupertinoListTile_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoListTile).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -11201,7 +11194,7 @@ Object? _CupertinoListTile_toStringShallow(
 ) {
   return (receiver as api.CupertinoListTile).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -11210,7 +11203,7 @@ Object? _CupertinoListTile_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoListTile).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -11223,7 +11216,7 @@ Object? _CupertinoListTile_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoListTile).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -11238,33 +11231,33 @@ api.Widget _createCupertinoListTile(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.CupertinoListTile(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         title: values["title"] as api.Widget,
         subtitle: values["subtitle"] as api.Widget?,
         additionalInfo: values["additionalInfo"] as api.Widget?,
         leading: values["leading"] as api.Widget?,
         trailing: values["trailing"] as api.Widget?,
-        onTap: values["onTap"] as api6.FutureOr<void> Function()?,
+        onTap: values["onTap"] as api5.FutureOr<void> Function()?,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         backgroundColorActivated:
             values["backgroundColorActivated"] as api1.Color?,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
         leadingSize: values["leadingSize"] as double,
         leadingToTitle: values["leadingToTitle"] as double,
       );
     case "notched":
       return api.CupertinoListTile.notched(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         title: values["title"] as api.Widget,
         subtitle: values["subtitle"] as api.Widget?,
         additionalInfo: values["additionalInfo"] as api.Widget?,
         leading: values["leading"] as api.Widget?,
         trailing: values["trailing"] as api.Widget?,
-        onTap: values["onTap"] as api6.FutureOr<void> Function()?,
+        onTap: values["onTap"] as api5.FutureOr<void> Function()?,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         backgroundColorActivated:
             values["backgroundColorActivated"] as api1.Color?,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
         leadingSize: values["leadingSize"] as double,
         leadingToTitle: values["leadingToTitle"] as double,
       );
@@ -11282,7 +11275,7 @@ Object? _CupertinoListTileChevron_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoListTileChevron).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -11305,7 +11298,7 @@ Object? _CupertinoListTileChevron_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoListTileChevron).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -11316,7 +11309,7 @@ Object? _CupertinoListTileChevron_toStringShallow(
 ) {
   return (receiver as api.CupertinoListTileChevron).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -11325,7 +11318,7 @@ Object? _CupertinoListTileChevron_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoListTileChevron).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -11338,7 +11331,7 @@ Object? _CupertinoListTileChevron_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoListTileChevron).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -11355,7 +11348,7 @@ api.Widget _createCupertinoListTileChevron(
 ) {
   switch (ctor) {
     case "":
-      return api.CupertinoListTileChevron(key: values["key"] as api4.Key?);
+      return api.CupertinoListTileChevron(key: values["key"] as api3.Key?);
     default:
       throw ArgumentError('Unknown generated constructor');
   }
@@ -11422,7 +11415,7 @@ Object? _CupertinoLocalizations_expandedHint(Object value) =>
 Object? _CupertinoLocalizations_collapsedHint(Object value) =>
     (value as api.CupertinoLocalizations).collapsedHint;
 Object? _CupertinoLocalizations_of(Map<String, Object?> values) {
-  return api.CupertinoLocalizations.of(values["context"] as api11.BuildContext);
+  return api.CupertinoLocalizations.of(values["context"] as api10.BuildContext);
 }
 
 Object? _CupertinoLocalizations_datePickerYear(
@@ -11467,7 +11460,7 @@ Object? _CupertinoLocalizations_datePickerMediumDate(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoLocalizations).datePickerMediumDate(
-    values["date"] as api3.DateTime,
+    values["date"] as api2.DateTime,
   );
 }
 
@@ -11570,32 +11563,32 @@ Object? _CupertinoLocalizations_timerPickerSecondLabel(
   );
 }
 
-Object? _FlaxProxyDispatch5_super_get_expansionTileExpandedHint(
+Object? _FlaxProxyDispatch4_super_get_expansionTileExpandedHint(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch5)._flaxSuperGet_expansionTileExpandedHint;
-Object? _FlaxProxyDispatch5_super_get_expansionTileCollapsedHint(
+) => (receiver as _FlaxProxyDispatch4)._flaxSuperGet_expansionTileExpandedHint;
+Object? _FlaxProxyDispatch4_super_get_expansionTileCollapsedHint(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch5)._flaxSuperGet_expansionTileCollapsedHint;
-Object? _FlaxProxyDispatch5_super_get_expansionTileExpandedTapHint(
+) => (receiver as _FlaxProxyDispatch4)._flaxSuperGet_expansionTileCollapsedHint;
+Object? _FlaxProxyDispatch4_super_get_expansionTileExpandedTapHint(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch5)
+) => (receiver as _FlaxProxyDispatch4)
     ._flaxSuperGet_expansionTileExpandedTapHint;
-Object? _FlaxProxyDispatch5_super_get_expansionTileCollapsedTapHint(
+Object? _FlaxProxyDispatch4_super_get_expansionTileCollapsedTapHint(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch5)
+) => (receiver as _FlaxProxyDispatch4)
     ._flaxSuperGet_expansionTileCollapsedTapHint;
-Object? _FlaxProxyDispatch5_super_get_expandedHint(
+Object? _FlaxProxyDispatch4_super_get_expandedHint(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch5)._flaxSuperGet_expandedHint;
-Object? _FlaxProxyDispatch5_super_get_collapsedHint(
+) => (receiver as _FlaxProxyDispatch4)._flaxSuperGet_expandedHint;
+Object? _FlaxProxyDispatch4_super_get_collapsedHint(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch5)._flaxSuperGet_collapsedHint;
+) => (receiver as _FlaxProxyDispatch4)._flaxSuperGet_collapsedHint;
 Object _createCupertinoLocalizations(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case '@implementation':
@@ -11629,7 +11622,7 @@ Object? _CupertinoMagnifier_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoMagnifier).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -11652,7 +11645,7 @@ Object? _CupertinoMagnifier_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoMagnifier).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -11663,7 +11656,7 @@ Object? _CupertinoMagnifier_toStringShallow(
 ) {
   return (receiver as api.CupertinoMagnifier).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -11672,7 +11665,7 @@ Object? _CupertinoMagnifier_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoMagnifier).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -11685,7 +11678,7 @@ Object? _CupertinoMagnifier_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoMagnifier).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -11705,86 +11698,86 @@ api.Widget _createCupertinoMagnifier(String ctor, Map<String, Object?> values) {
             if (!values.containsKey("shadows")) {
               if (!values.containsKey("borderSide")) {
                 return api.CupertinoMagnifier(
-                  key: values["key"] as api4.Key?,
+                  key: values["key"] as api3.Key?,
                   clipBehavior: values["clipBehavior"] as api1.Clip,
                   inOutAnimation:
-                      values["inOutAnimation"] as api12.Animation<double>?,
+                      values["inOutAnimation"] as api11.Animation<double>?,
                   magnificationScale: values["magnificationScale"] as double,
                 );
               }
               return api.CupertinoMagnifier(
-                key: values["key"] as api4.Key?,
+                key: values["key"] as api3.Key?,
                 clipBehavior: values["clipBehavior"] as api1.Clip,
-                borderSide: values["borderSide"] as api13.BorderSide,
+                borderSide: values["borderSide"] as api12.BorderSide,
                 inOutAnimation:
-                    values["inOutAnimation"] as api12.Animation<double>?,
+                    values["inOutAnimation"] as api11.Animation<double>?,
                 magnificationScale: values["magnificationScale"] as double,
               );
             }
             if (!values.containsKey("borderSide")) {
               return api.CupertinoMagnifier(
-                key: values["key"] as api4.Key?,
-                shadows: values["shadows"] as List<api13.BoxShadow>,
+                key: values["key"] as api3.Key?,
+                shadows: values["shadows"] as List<api12.BoxShadow>,
                 clipBehavior: values["clipBehavior"] as api1.Clip,
                 inOutAnimation:
-                    values["inOutAnimation"] as api12.Animation<double>?,
+                    values["inOutAnimation"] as api11.Animation<double>?,
                 magnificationScale: values["magnificationScale"] as double,
               );
             }
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
-              shadows: values["shadows"] as List<api13.BoxShadow>,
+              key: values["key"] as api3.Key?,
+              shadows: values["shadows"] as List<api12.BoxShadow>,
               clipBehavior: values["clipBehavior"] as api1.Clip,
-              borderSide: values["borderSide"] as api13.BorderSide,
+              borderSide: values["borderSide"] as api12.BorderSide,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           if (!values.containsKey("shadows")) {
             if (!values.containsKey("borderSide")) {
               return api.CupertinoMagnifier(
-                key: values["key"] as api4.Key?,
+                key: values["key"] as api3.Key?,
                 additionalFocalPointOffset:
                     values["additionalFocalPointOffset"] as api1.Offset,
                 clipBehavior: values["clipBehavior"] as api1.Clip,
                 inOutAnimation:
-                    values["inOutAnimation"] as api12.Animation<double>?,
+                    values["inOutAnimation"] as api11.Animation<double>?,
                 magnificationScale: values["magnificationScale"] as double,
               );
             }
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               additionalFocalPointOffset:
                   values["additionalFocalPointOffset"] as api1.Offset,
               clipBehavior: values["clipBehavior"] as api1.Clip,
-              borderSide: values["borderSide"] as api13.BorderSide,
+              borderSide: values["borderSide"] as api12.BorderSide,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           if (!values.containsKey("borderSide")) {
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               additionalFocalPointOffset:
                   values["additionalFocalPointOffset"] as api1.Offset,
-              shadows: values["shadows"] as List<api13.BoxShadow>,
+              shadows: values["shadows"] as List<api12.BoxShadow>,
               clipBehavior: values["clipBehavior"] as api1.Clip,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             additionalFocalPointOffset:
                 values["additionalFocalPointOffset"] as api1.Offset,
-            shadows: values["shadows"] as List<api13.BoxShadow>,
+            shadows: values["shadows"] as List<api12.BoxShadow>,
             clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api13.BorderSide,
+            borderSide: values["borderSide"] as api12.BorderSide,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
@@ -11792,93 +11785,93 @@ api.Widget _createCupertinoMagnifier(String ctor, Map<String, Object?> values) {
           if (!values.containsKey("shadows")) {
             if (!values.containsKey("borderSide")) {
               return api.CupertinoMagnifier(
-                key: values["key"] as api4.Key?,
-                borderRadius: values["borderRadius"] as api13.BorderRadius,
+                key: values["key"] as api3.Key?,
+                borderRadius: values["borderRadius"] as api12.BorderRadius,
                 clipBehavior: values["clipBehavior"] as api1.Clip,
                 inOutAnimation:
-                    values["inOutAnimation"] as api12.Animation<double>?,
+                    values["inOutAnimation"] as api11.Animation<double>?,
                 magnificationScale: values["magnificationScale"] as double,
               );
             }
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
-              borderRadius: values["borderRadius"] as api13.BorderRadius,
+              key: values["key"] as api3.Key?,
+              borderRadius: values["borderRadius"] as api12.BorderRadius,
               clipBehavior: values["clipBehavior"] as api1.Clip,
-              borderSide: values["borderSide"] as api13.BorderSide,
+              borderSide: values["borderSide"] as api12.BorderSide,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           if (!values.containsKey("borderSide")) {
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
-              borderRadius: values["borderRadius"] as api13.BorderRadius,
-              shadows: values["shadows"] as List<api13.BoxShadow>,
+              key: values["key"] as api3.Key?,
+              borderRadius: values["borderRadius"] as api12.BorderRadius,
+              shadows: values["shadows"] as List<api12.BoxShadow>,
               clipBehavior: values["clipBehavior"] as api1.Clip,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
-            borderRadius: values["borderRadius"] as api13.BorderRadius,
-            shadows: values["shadows"] as List<api13.BoxShadow>,
+            key: values["key"] as api3.Key?,
+            borderRadius: values["borderRadius"] as api12.BorderRadius,
+            shadows: values["shadows"] as List<api12.BoxShadow>,
             clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api13.BorderSide,
+            borderSide: values["borderSide"] as api12.BorderSide,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         if (!values.containsKey("shadows")) {
           if (!values.containsKey("borderSide")) {
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
-              borderRadius: values["borderRadius"] as api13.BorderRadius,
+              key: values["key"] as api3.Key?,
+              borderRadius: values["borderRadius"] as api12.BorderRadius,
               additionalFocalPointOffset:
                   values["additionalFocalPointOffset"] as api1.Offset,
               clipBehavior: values["clipBehavior"] as api1.Clip,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
-            borderRadius: values["borderRadius"] as api13.BorderRadius,
+            key: values["key"] as api3.Key?,
+            borderRadius: values["borderRadius"] as api12.BorderRadius,
             additionalFocalPointOffset:
                 values["additionalFocalPointOffset"] as api1.Offset,
             clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api13.BorderSide,
+            borderSide: values["borderSide"] as api12.BorderSide,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         if (!values.containsKey("borderSide")) {
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
-            borderRadius: values["borderRadius"] as api13.BorderRadius,
+            key: values["key"] as api3.Key?,
+            borderRadius: values["borderRadius"] as api12.BorderRadius,
             additionalFocalPointOffset:
                 values["additionalFocalPointOffset"] as api1.Offset,
-            shadows: values["shadows"] as List<api13.BoxShadow>,
+            shadows: values["shadows"] as List<api12.BoxShadow>,
             clipBehavior: values["clipBehavior"] as api1.Clip,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         return api.CupertinoMagnifier(
-          key: values["key"] as api4.Key?,
-          borderRadius: values["borderRadius"] as api13.BorderRadius,
+          key: values["key"] as api3.Key?,
+          borderRadius: values["borderRadius"] as api12.BorderRadius,
           additionalFocalPointOffset:
               values["additionalFocalPointOffset"] as api1.Offset,
-          shadows: values["shadows"] as List<api13.BoxShadow>,
+          shadows: values["shadows"] as List<api12.BoxShadow>,
           clipBehavior: values["clipBehavior"] as api1.Clip,
-          borderSide: values["borderSide"] as api13.BorderSide,
-          inOutAnimation: values["inOutAnimation"] as api12.Animation<double>?,
+          borderSide: values["borderSide"] as api12.BorderSide,
+          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
           magnificationScale: values["magnificationScale"] as double,
         );
       }
@@ -11887,93 +11880,93 @@ api.Widget _createCupertinoMagnifier(String ctor, Map<String, Object?> values) {
           if (!values.containsKey("shadows")) {
             if (!values.containsKey("borderSide")) {
               return api.CupertinoMagnifier(
-                key: values["key"] as api4.Key?,
+                key: values["key"] as api3.Key?,
                 size: values["size"] as api1.Size,
                 clipBehavior: values["clipBehavior"] as api1.Clip,
                 inOutAnimation:
-                    values["inOutAnimation"] as api12.Animation<double>?,
+                    values["inOutAnimation"] as api11.Animation<double>?,
                 magnificationScale: values["magnificationScale"] as double,
               );
             }
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               size: values["size"] as api1.Size,
               clipBehavior: values["clipBehavior"] as api1.Clip,
-              borderSide: values["borderSide"] as api13.BorderSide,
+              borderSide: values["borderSide"] as api12.BorderSide,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           if (!values.containsKey("borderSide")) {
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               size: values["size"] as api1.Size,
-              shadows: values["shadows"] as List<api13.BoxShadow>,
+              shadows: values["shadows"] as List<api12.BoxShadow>,
               clipBehavior: values["clipBehavior"] as api1.Clip,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             size: values["size"] as api1.Size,
-            shadows: values["shadows"] as List<api13.BoxShadow>,
+            shadows: values["shadows"] as List<api12.BoxShadow>,
             clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api13.BorderSide,
+            borderSide: values["borderSide"] as api12.BorderSide,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         if (!values.containsKey("shadows")) {
           if (!values.containsKey("borderSide")) {
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               size: values["size"] as api1.Size,
               additionalFocalPointOffset:
                   values["additionalFocalPointOffset"] as api1.Offset,
               clipBehavior: values["clipBehavior"] as api1.Clip,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             size: values["size"] as api1.Size,
             additionalFocalPointOffset:
                 values["additionalFocalPointOffset"] as api1.Offset,
             clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api13.BorderSide,
+            borderSide: values["borderSide"] as api12.BorderSide,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         if (!values.containsKey("borderSide")) {
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             size: values["size"] as api1.Size,
             additionalFocalPointOffset:
                 values["additionalFocalPointOffset"] as api1.Offset,
-            shadows: values["shadows"] as List<api13.BoxShadow>,
+            shadows: values["shadows"] as List<api12.BoxShadow>,
             clipBehavior: values["clipBehavior"] as api1.Clip,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         return api.CupertinoMagnifier(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           size: values["size"] as api1.Size,
           additionalFocalPointOffset:
               values["additionalFocalPointOffset"] as api1.Offset,
-          shadows: values["shadows"] as List<api13.BoxShadow>,
+          shadows: values["shadows"] as List<api12.BoxShadow>,
           clipBehavior: values["clipBehavior"] as api1.Clip,
-          borderSide: values["borderSide"] as api13.BorderSide,
-          inOutAnimation: values["inOutAnimation"] as api12.Animation<double>?,
+          borderSide: values["borderSide"] as api12.BorderSide,
+          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
           magnificationScale: values["magnificationScale"] as double,
         );
       }
@@ -11981,98 +11974,98 @@ api.Widget _createCupertinoMagnifier(String ctor, Map<String, Object?> values) {
         if (!values.containsKey("shadows")) {
           if (!values.containsKey("borderSide")) {
             return api.CupertinoMagnifier(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               size: values["size"] as api1.Size,
-              borderRadius: values["borderRadius"] as api13.BorderRadius,
+              borderRadius: values["borderRadius"] as api12.BorderRadius,
               clipBehavior: values["clipBehavior"] as api1.Clip,
               inOutAnimation:
-                  values["inOutAnimation"] as api12.Animation<double>?,
+                  values["inOutAnimation"] as api11.Animation<double>?,
               magnificationScale: values["magnificationScale"] as double,
             );
           }
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             size: values["size"] as api1.Size,
-            borderRadius: values["borderRadius"] as api13.BorderRadius,
+            borderRadius: values["borderRadius"] as api12.BorderRadius,
             clipBehavior: values["clipBehavior"] as api1.Clip,
-            borderSide: values["borderSide"] as api13.BorderSide,
+            borderSide: values["borderSide"] as api12.BorderSide,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         if (!values.containsKey("borderSide")) {
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             size: values["size"] as api1.Size,
-            borderRadius: values["borderRadius"] as api13.BorderRadius,
-            shadows: values["shadows"] as List<api13.BoxShadow>,
+            borderRadius: values["borderRadius"] as api12.BorderRadius,
+            shadows: values["shadows"] as List<api12.BoxShadow>,
             clipBehavior: values["clipBehavior"] as api1.Clip,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         return api.CupertinoMagnifier(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           size: values["size"] as api1.Size,
-          borderRadius: values["borderRadius"] as api13.BorderRadius,
-          shadows: values["shadows"] as List<api13.BoxShadow>,
+          borderRadius: values["borderRadius"] as api12.BorderRadius,
+          shadows: values["shadows"] as List<api12.BoxShadow>,
           clipBehavior: values["clipBehavior"] as api1.Clip,
-          borderSide: values["borderSide"] as api13.BorderSide,
-          inOutAnimation: values["inOutAnimation"] as api12.Animation<double>?,
+          borderSide: values["borderSide"] as api12.BorderSide,
+          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
           magnificationScale: values["magnificationScale"] as double,
         );
       }
       if (!values.containsKey("shadows")) {
         if (!values.containsKey("borderSide")) {
           return api.CupertinoMagnifier(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             size: values["size"] as api1.Size,
-            borderRadius: values["borderRadius"] as api13.BorderRadius,
+            borderRadius: values["borderRadius"] as api12.BorderRadius,
             additionalFocalPointOffset:
                 values["additionalFocalPointOffset"] as api1.Offset,
             clipBehavior: values["clipBehavior"] as api1.Clip,
             inOutAnimation:
-                values["inOutAnimation"] as api12.Animation<double>?,
+                values["inOutAnimation"] as api11.Animation<double>?,
             magnificationScale: values["magnificationScale"] as double,
           );
         }
         return api.CupertinoMagnifier(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           size: values["size"] as api1.Size,
-          borderRadius: values["borderRadius"] as api13.BorderRadius,
+          borderRadius: values["borderRadius"] as api12.BorderRadius,
           additionalFocalPointOffset:
               values["additionalFocalPointOffset"] as api1.Offset,
           clipBehavior: values["clipBehavior"] as api1.Clip,
-          borderSide: values["borderSide"] as api13.BorderSide,
-          inOutAnimation: values["inOutAnimation"] as api12.Animation<double>?,
+          borderSide: values["borderSide"] as api12.BorderSide,
+          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
           magnificationScale: values["magnificationScale"] as double,
         );
       }
       if (!values.containsKey("borderSide")) {
         return api.CupertinoMagnifier(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           size: values["size"] as api1.Size,
-          borderRadius: values["borderRadius"] as api13.BorderRadius,
+          borderRadius: values["borderRadius"] as api12.BorderRadius,
           additionalFocalPointOffset:
               values["additionalFocalPointOffset"] as api1.Offset,
-          shadows: values["shadows"] as List<api13.BoxShadow>,
+          shadows: values["shadows"] as List<api12.BoxShadow>,
           clipBehavior: values["clipBehavior"] as api1.Clip,
-          inOutAnimation: values["inOutAnimation"] as api12.Animation<double>?,
+          inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
           magnificationScale: values["magnificationScale"] as double,
         );
       }
       return api.CupertinoMagnifier(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         size: values["size"] as api1.Size,
-        borderRadius: values["borderRadius"] as api13.BorderRadius,
+        borderRadius: values["borderRadius"] as api12.BorderRadius,
         additionalFocalPointOffset:
             values["additionalFocalPointOffset"] as api1.Offset,
-        shadows: values["shadows"] as List<api13.BoxShadow>,
+        shadows: values["shadows"] as List<api12.BoxShadow>,
         clipBehavior: values["clipBehavior"] as api1.Clip,
-        borderSide: values["borderSide"] as api13.BorderSide,
-        inOutAnimation: values["inOutAnimation"] as api12.Animation<double>?,
+        borderSide: values["borderSide"] as api12.BorderSide,
+        inOutAnimation: values["inOutAnimation"] as api11.Animation<double>?,
         magnificationScale: values["magnificationScale"] as double,
       );
     default:
@@ -12115,7 +12108,7 @@ Object? _CupertinoMenuAnchor_key(Object value) =>
     (value as api.CupertinoMenuAnchor).key;
 Object? _CupertinoMenuAnchor_maybeHasLeadingOf(Map<String, Object?> values) {
   return api.CupertinoMenuAnchor.maybeHasLeadingOf(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -12138,7 +12131,7 @@ Object? _CupertinoMenuAnchor_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoMenuAnchor).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -12163,7 +12156,7 @@ Object? _CupertinoMenuAnchor_toStringShallow(
 ) {
   return (receiver as api.CupertinoMenuAnchor).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -12172,7 +12165,7 @@ Object? _CupertinoMenuAnchor_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoMenuAnchor).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -12185,7 +12178,7 @@ Object? _CupertinoMenuAnchor_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoMenuAnchor).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -12197,14 +12190,14 @@ api.Widget _createCupertinoMenuAnchor(
     case "":
       if (!values.containsKey("overlayPadding")) {
         return api.CupertinoMenuAnchor(
-          key: values["key"] as api4.Key?,
-          controller: values["controller"] as api11.MenuController?,
+          key: values["key"] as api3.Key?,
+          controller: values["controller"] as api10.MenuController?,
           onOpen: values["onOpen"] as void Function()?,
           onClose: values["onClose"] as void Function()?,
           onAnimationStatusChanged:
               values["onAnimationStatusChanged"]
-                  as void Function(api12.AnimationStatus status)?,
-          constraints: values["constraints"] as api10.BoxConstraints?,
+                  as void Function(api11.AnimationStatus status)?,
+          constraints: values["constraints"] as api9.BoxConstraints?,
           constrainCrossAxis: values["constrainCrossAxis"] as bool,
           consumeOutsideTaps: values["consumeOutsideTaps"] as bool,
           enableSwipe: values["enableSwipe"] as bool,
@@ -12214,39 +12207,39 @@ api.Widget _createCupertinoMenuAnchor(
           builder:
               values["builder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
-                    api11.MenuController controller,
+                    api10.BuildContext context,
+                    api10.MenuController controller,
                     api.Widget? child,
                   )?,
           child: values["child"] as api.Widget?,
-          childFocusNode: values["childFocusNode"] as api11.FocusNode?,
+          childFocusNode: values["childFocusNode"] as api10.FocusNode?,
         );
       }
       return api.CupertinoMenuAnchor(
-        key: values["key"] as api4.Key?,
-        controller: values["controller"] as api11.MenuController?,
+        key: values["key"] as api3.Key?,
+        controller: values["controller"] as api10.MenuController?,
         onOpen: values["onOpen"] as void Function()?,
         onClose: values["onClose"] as void Function()?,
         onAnimationStatusChanged:
             values["onAnimationStatusChanged"]
-                as void Function(api12.AnimationStatus status)?,
-        constraints: values["constraints"] as api10.BoxConstraints?,
+                as void Function(api11.AnimationStatus status)?,
+        constraints: values["constraints"] as api9.BoxConstraints?,
         constrainCrossAxis: values["constrainCrossAxis"] as bool,
         consumeOutsideTaps: values["consumeOutsideTaps"] as bool,
         enableSwipe: values["enableSwipe"] as bool,
         enableLongPressToOpen: values["enableLongPressToOpen"] as bool,
         useRootOverlay: values["useRootOverlay"] as bool,
-        overlayPadding: values["overlayPadding"] as api13.EdgeInsetsGeometry,
+        overlayPadding: values["overlayPadding"] as api12.EdgeInsetsGeometry,
         menuChildren: values["menuChildren"] as List<api.Widget>,
         builder:
             values["builder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
-                  api11.MenuController controller,
+                  api10.BuildContext context,
+                  api10.MenuController controller,
                   api.Widget? child,
                 )?,
         child: values["child"] as api.Widget?,
-        childFocusNode: values["childFocusNode"] as api11.FocusNode?,
+        childFocusNode: values["childFocusNode"] as api10.FocusNode?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -12263,7 +12256,7 @@ Object? _CupertinoMenuDivider_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoMenuDivider).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -12286,7 +12279,7 @@ Object? _CupertinoMenuDivider_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoMenuDivider).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -12297,7 +12290,7 @@ Object? _CupertinoMenuDivider_toStringShallow(
 ) {
   return (receiver as api.CupertinoMenuDivider).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -12306,7 +12299,7 @@ Object? _CupertinoMenuDivider_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoMenuDivider).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -12319,7 +12312,7 @@ Object? _CupertinoMenuDivider_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoMenuDivider).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -12337,10 +12330,10 @@ api.Widget _createCupertinoMenuDivider(
   switch (ctor) {
     case "":
       if (!values.containsKey("color")) {
-        return api.CupertinoMenuDivider(key: values["key"] as api4.Key?);
+        return api.CupertinoMenuDivider(key: values["key"] as api3.Key?);
       }
       return api.CupertinoMenuDivider(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         color: values["color"] as api1.Color,
       );
     default:
@@ -12356,7 +12349,7 @@ Object? _CupertinoMenuEntry_hasLeading(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoMenuEntry).hasLeading(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -12416,7 +12409,7 @@ Object? _CupertinoMenuItem_key(Object value) =>
     (value as api.CupertinoMenuItem).key;
 Object? _CupertinoMenuItem_build(Object receiver, Map<String, Object?> values) {
   return (receiver as api.CupertinoMenuItem).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -12425,7 +12418,7 @@ Object? _CupertinoMenuItem_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoMenuItem).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -12450,7 +12443,7 @@ Object? _CupertinoMenuItem_toStringShallow(
 ) {
   return (receiver as api.CupertinoMenuItem).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -12459,7 +12452,7 @@ Object? _CupertinoMenuItem_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoMenuItem).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -12472,7 +12465,7 @@ Object? _CupertinoMenuItem_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoMenuItem).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -12487,31 +12480,31 @@ api.Widget _createCupertinoMenuItem(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.CupertinoMenuItem(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         child: values["child"] as api.Widget,
         subtitle: values["subtitle"] as api.Widget?,
         leading: values["leading"] as api.Widget?,
         leadingWidth: values["leadingWidth"] as double?,
         leadingMidpointAlignment:
-            values["leadingMidpointAlignment"] as api13.AlignmentGeometry?,
+            values["leadingMidpointAlignment"] as api12.AlignmentGeometry?,
         trailing: values["trailing"] as api.Widget?,
         trailingWidth: values["trailingWidth"] as double?,
         trailingMidpointAlignment:
-            values["trailingMidpointAlignment"] as api13.AlignmentGeometry?,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
-        constraints: values["constraints"] as api10.BoxConstraints?,
+            values["trailingMidpointAlignment"] as api12.AlignmentGeometry?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
+        constraints: values["constraints"] as api9.BoxConstraints?,
         autofocus: values["autofocus"] as bool,
-        focusNode: values["focusNode"] as api11.FocusNode?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
         onFocusChange: values["onFocusChange"] as void Function(bool value)?,
         onHover: values["onHover"] as void Function(bool value)?,
         onPressed: values["onPressed"] as void Function()?,
         decoration:
             values["decoration"]
-                as api11.WidgetStateProperty<api13.BoxDecoration>?,
+                as api10.WidgetStateProperty<api12.BoxDecoration>?,
         mouseCursor:
             values["mouseCursor"]
-                as api11.WidgetStateProperty<api8.MouseCursor>?,
-        behavior: values["behavior"] as api10.HitTestBehavior,
+                as api10.WidgetStateProperty<api7.MouseCursor>?,
+        behavior: values["behavior"] as api9.HitTestBehavior,
         requestCloseOnActivate: values["requestCloseOnActivate"] as bool,
         requestFocusOnHover: values["requestFocusOnHover"] as bool,
         isDestructiveAction: values["isDestructiveAction"] as bool,
@@ -12624,9 +12617,9 @@ void _CupertinoModalPopupRoute_set_receivedTransition(
   (receiver as api.CupertinoModalPopupRoute<Object?>).receivedTransition =
       value
           as api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           )?;
@@ -12660,9 +12653,9 @@ Object? _CupertinoModalPopupRoute_buildPage(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoModalPopupRoute<Object?>).buildPage(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
   );
 }
 
@@ -12671,9 +12664,9 @@ Object? _CupertinoModalPopupRoute_buildTransitions(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoModalPopupRoute<Object?>).buildTransitions(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
     values["child"] as api.Widget,
   );
 }
@@ -12745,7 +12738,7 @@ Object? _CupertinoModalPopupRoute_registerPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoModalPopupRoute<Object?>).registerPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -12755,7 +12748,7 @@ Object? _CupertinoModalPopupRoute_unregisterPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoModalPopupRoute<Object?>).unregisterPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -12765,7 +12758,7 @@ Object? _CupertinoModalPopupRoute_didChangePrevious(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoModalPopupRoute<Object?>).didChangePrevious(
-    values["previousRoute"] as api11.Route<Object?>?,
+    values["previousRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -12775,7 +12768,7 @@ Object? _CupertinoModalPopupRoute_didChangeNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoModalPopupRoute<Object?>).didChangeNext(
-    values["nextRoute"] as api11.Route<Object?>?,
+    values["nextRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -12785,7 +12778,7 @@ Object? _CupertinoModalPopupRoute_didPopNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoModalPopupRoute<Object?>).didPopNext(
-    values["nextRoute"] as api11.Route<Object?>,
+    values["nextRoute"] as api10.Route<Object?>,
   );
   return null;
 }
@@ -12866,7 +12859,7 @@ Object? _CupertinoModalPopupRoute_didReplace(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoModalPopupRoute<Object?>).didReplace(
-    values["oldRoute"] as api11.Route<Object?>?,
+    values["oldRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -12885,7 +12878,7 @@ Object? _CupertinoModalPopupRoute_canTransitionTo(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoModalPopupRoute<Object?>).canTransitionTo(
-    values["nextRoute"] as api11.TransitionRoute<Object?>,
+    values["nextRoute"] as api10.TransitionRoute<Object?>,
   );
 }
 
@@ -12894,7 +12887,7 @@ Object? _CupertinoModalPopupRoute_canTransitionFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoModalPopupRoute<Object?>).canTransitionFrom(
-    values["previousRoute"] as api11.TransitionRoute<Object?>,
+    values["previousRoute"] as api10.TransitionRoute<Object?>,
   );
 }
 
@@ -12966,7 +12959,7 @@ Object? _CupertinoModalPopupRoute_addLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoModalPopupRoute<Object?>).addLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -12976,7 +12969,7 @@ Object? _CupertinoModalPopupRoute_removeLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoModalPopupRoute<Object?>).removeLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -12991,12 +12984,12 @@ Object _createCupertinoModalPopupRoute(
         return api.CupertinoModalPopupRoute<Object?>(
           builder:
               values["builder"]
-                  as api.Widget Function(api11.BuildContext context),
+                  as api.Widget Function(api10.BuildContext context),
           barrierLabel: values["barrierLabel"] as String,
           barrierDismissible: values["barrierDismissible"] as bool,
           semanticsDismissible: values["semanticsDismissible"] as bool,
           filter: values["filter"] as api1.ImageFilter?,
-          settings: values["settings"] as api11.RouteSettings?,
+          settings: values["settings"] as api10.RouteSettings?,
           requestFocus: values["requestFocus"] as bool?,
           anchorPoint: values["anchorPoint"] as api1.Offset?,
         );
@@ -13004,13 +12997,13 @@ Object _createCupertinoModalPopupRoute(
       return api.CupertinoModalPopupRoute<Object?>(
         builder:
             values["builder"]
-                as api.Widget Function(api11.BuildContext context),
+                as api.Widget Function(api10.BuildContext context),
         barrierLabel: values["barrierLabel"] as String,
         barrierColor: values["barrierColor"] as api1.Color?,
         barrierDismissible: values["barrierDismissible"] as bool,
         semanticsDismissible: values["semanticsDismissible"] as bool,
         filter: values["filter"] as api1.ImageFilter?,
-        settings: values["settings"] as api11.RouteSettings?,
+        settings: values["settings"] as api10.RouteSettings?,
         requestFocus: values["requestFocus"] as bool?,
         anchorPoint: values["anchorPoint"] as api1.Offset?,
       );
@@ -13078,7 +13071,7 @@ api.Widget _createCupertinoNavigationBar(
       if (!values.containsKey("border")) {
         if (!values.containsKey("heroTag")) {
           return api.CupertinoNavigationBar(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             leading: values["leading"] as api.Widget?,
             automaticallyImplyLeading:
                 values["automaticallyImplyLeading"] as bool,
@@ -13093,13 +13086,13 @@ api.Widget _createCupertinoNavigationBar(
             enableBackgroundFilterBlur:
                 values["enableBackgroundFilterBlur"] as bool,
             brightness: values["brightness"] as api1.Brightness?,
-            padding: values["padding"] as api13.EdgeInsetsDirectional?,
+            padding: values["padding"] as api12.EdgeInsetsDirectional?,
             transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-            bottom: values["bottom"] as api11.PreferredSizeWidget?,
+            bottom: values["bottom"] as api10.PreferredSizeWidget?,
           );
         }
         return api.CupertinoNavigationBar(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           leading: values["leading"] as api.Widget?,
           automaticallyImplyLeading:
               values["automaticallyImplyLeading"] as bool,
@@ -13113,15 +13106,15 @@ api.Widget _createCupertinoNavigationBar(
           enableBackgroundFilterBlur:
               values["enableBackgroundFilterBlur"] as bool,
           brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api13.EdgeInsetsDirectional?,
+          padding: values["padding"] as api12.EdgeInsetsDirectional?,
           transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
           heroTag: values["heroTag"] as Object,
-          bottom: values["bottom"] as api11.PreferredSizeWidget?,
+          bottom: values["bottom"] as api10.PreferredSizeWidget?,
         );
       }
       if (!values.containsKey("heroTag")) {
         return api.CupertinoNavigationBar(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           leading: values["leading"] as api.Widget?,
           automaticallyImplyLeading:
               values["automaticallyImplyLeading"] as bool,
@@ -13129,43 +13122,43 @@ api.Widget _createCupertinoNavigationBar(
           previousPageTitle: values["previousPageTitle"] as String?,
           middle: values["middle"] as api.Widget?,
           trailing: values["trailing"] as api.Widget?,
-          border: values["border"] as api13.Border?,
+          border: values["border"] as api12.Border?,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           automaticBackgroundVisibility:
               values["automaticBackgroundVisibility"] as bool,
           enableBackgroundFilterBlur:
               values["enableBackgroundFilterBlur"] as bool,
           brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api13.EdgeInsetsDirectional?,
+          padding: values["padding"] as api12.EdgeInsetsDirectional?,
           transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          bottom: values["bottom"] as api11.PreferredSizeWidget?,
+          bottom: values["bottom"] as api10.PreferredSizeWidget?,
         );
       }
       return api.CupertinoNavigationBar(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         leading: values["leading"] as api.Widget?,
         automaticallyImplyLeading: values["automaticallyImplyLeading"] as bool,
         automaticallyImplyMiddle: values["automaticallyImplyMiddle"] as bool,
         previousPageTitle: values["previousPageTitle"] as String?,
         middle: values["middle"] as api.Widget?,
         trailing: values["trailing"] as api.Widget?,
-        border: values["border"] as api13.Border?,
+        border: values["border"] as api12.Border?,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         automaticBackgroundVisibility:
             values["automaticBackgroundVisibility"] as bool,
         enableBackgroundFilterBlur:
             values["enableBackgroundFilterBlur"] as bool,
         brightness: values["brightness"] as api1.Brightness?,
-        padding: values["padding"] as api13.EdgeInsetsDirectional?,
+        padding: values["padding"] as api12.EdgeInsetsDirectional?,
         transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
         heroTag: values["heroTag"] as Object,
-        bottom: values["bottom"] as api11.PreferredSizeWidget?,
+        bottom: values["bottom"] as api10.PreferredSizeWidget?,
       );
     case "large":
       if (!values.containsKey("border")) {
         if (!values.containsKey("heroTag")) {
           return api.CupertinoNavigationBar.large(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             largeTitle: values["largeTitle"] as api.Widget?,
             leading: values["leading"] as api.Widget?,
             automaticallyImplyLeading:
@@ -13179,13 +13172,13 @@ api.Widget _createCupertinoNavigationBar(
             enableBackgroundFilterBlur:
                 values["enableBackgroundFilterBlur"] as bool,
             brightness: values["brightness"] as api1.Brightness?,
-            padding: values["padding"] as api13.EdgeInsetsDirectional?,
+            padding: values["padding"] as api12.EdgeInsetsDirectional?,
             transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-            bottom: values["bottom"] as api11.PreferredSizeWidget?,
+            bottom: values["bottom"] as api10.PreferredSizeWidget?,
           );
         }
         return api.CupertinoNavigationBar.large(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           largeTitle: values["largeTitle"] as api.Widget?,
           leading: values["leading"] as api.Widget?,
           automaticallyImplyLeading:
@@ -13199,15 +13192,15 @@ api.Widget _createCupertinoNavigationBar(
           enableBackgroundFilterBlur:
               values["enableBackgroundFilterBlur"] as bool,
           brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api13.EdgeInsetsDirectional?,
+          padding: values["padding"] as api12.EdgeInsetsDirectional?,
           transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
           heroTag: values["heroTag"] as Object,
-          bottom: values["bottom"] as api11.PreferredSizeWidget?,
+          bottom: values["bottom"] as api10.PreferredSizeWidget?,
         );
       }
       if (!values.containsKey("heroTag")) {
         return api.CupertinoNavigationBar.large(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           largeTitle: values["largeTitle"] as api.Widget?,
           leading: values["leading"] as api.Widget?,
           automaticallyImplyLeading:
@@ -13215,37 +13208,37 @@ api.Widget _createCupertinoNavigationBar(
           automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
           previousPageTitle: values["previousPageTitle"] as String?,
           trailing: values["trailing"] as api.Widget?,
-          border: values["border"] as api13.Border?,
+          border: values["border"] as api12.Border?,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           automaticBackgroundVisibility:
               values["automaticBackgroundVisibility"] as bool,
           enableBackgroundFilterBlur:
               values["enableBackgroundFilterBlur"] as bool,
           brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api13.EdgeInsetsDirectional?,
+          padding: values["padding"] as api12.EdgeInsetsDirectional?,
           transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
-          bottom: values["bottom"] as api11.PreferredSizeWidget?,
+          bottom: values["bottom"] as api10.PreferredSizeWidget?,
         );
       }
       return api.CupertinoNavigationBar.large(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         largeTitle: values["largeTitle"] as api.Widget?,
         leading: values["leading"] as api.Widget?,
         automaticallyImplyLeading: values["automaticallyImplyLeading"] as bool,
         automaticallyImplyTitle: values["automaticallyImplyTitle"] as bool,
         previousPageTitle: values["previousPageTitle"] as String?,
         trailing: values["trailing"] as api.Widget?,
-        border: values["border"] as api13.Border?,
+        border: values["border"] as api12.Border?,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         automaticBackgroundVisibility:
             values["automaticBackgroundVisibility"] as bool,
         enableBackgroundFilterBlur:
             values["enableBackgroundFilterBlur"] as bool,
         brightness: values["brightness"] as api1.Brightness?,
-        padding: values["padding"] as api13.EdgeInsetsDirectional?,
+        padding: values["padding"] as api12.EdgeInsetsDirectional?,
         transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
         heroTag: values["heroTag"] as Object,
-        bottom: values["bottom"] as api11.PreferredSizeWidget?,
+        bottom: values["bottom"] as api10.PreferredSizeWidget?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -13267,7 +13260,7 @@ Object? _CupertinoNavigationBarBackButton_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoNavigationBarBackButton).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -13290,7 +13283,7 @@ Object? _CupertinoNavigationBarBackButton_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoNavigationBarBackButton).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -13301,7 +13294,7 @@ Object? _CupertinoNavigationBarBackButton_toStringShallow(
 ) {
   return (receiver as api.CupertinoNavigationBarBackButton).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -13310,7 +13303,7 @@ Object? _CupertinoNavigationBarBackButton_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoNavigationBarBackButton).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -13323,7 +13316,7 @@ Object? _CupertinoNavigationBarBackButton_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoNavigationBarBackButton).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -13342,7 +13335,7 @@ api.Widget _createCupertinoNavigationBarBackButton(
   switch (ctor) {
     case "":
       return api.CupertinoNavigationBarBackButton(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         color: values["color"] as api1.Color?,
         previousPageTitle: values["previousPageTitle"] as String?,
         onPressed: values["onPressed"] as void Function()?,
@@ -13381,7 +13374,7 @@ Object? _CupertinoPage_toString(Object receiver, Map<String, Object?> values) {
 
 Object? _CupertinoPage_canUpdate(Object receiver, Map<String, Object?> values) {
   return (receiver as api.CupertinoPage<Object?>).canUpdate(
-    values["other"] as api11.Page<Object?>,
+    values["other"] as api10.Page<Object?>,
   );
 }
 
@@ -13390,7 +13383,7 @@ Object? _CupertinoPage_createRoute(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPage<Object?>).createRoute(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -13405,7 +13398,7 @@ Object _createCupertinoPage(String ctor, Map<String, Object?> values) {
           fullscreenDialog: values["fullscreenDialog"] as bool,
           allowSnapshotting: values["allowSnapshotting"] as bool,
           canPop: values["canPop"] as bool,
-          key: values["key"] as api4.LocalKey?,
+          key: values["key"] as api3.LocalKey?,
           name: values["name"] as String?,
           arguments: values["arguments"],
           restorationId: values["restorationId"] as String?,
@@ -13421,7 +13414,7 @@ Object _createCupertinoPage(String ctor, Map<String, Object?> values) {
         onPopInvoked:
             values["onPopInvoked"]
                 as void Function(bool didPop, Object? result),
-        key: values["key"] as api4.LocalKey?,
+        key: values["key"] as api3.LocalKey?,
         name: values["name"] as String?,
         arguments: values["arguments"],
         restorationId: values["restorationId"] as String?,
@@ -13532,9 +13525,9 @@ void _CupertinoPageRoute_set_receivedTransition(
   (receiver as api.CupertinoPageRoute<Object?>).receivedTransition =
       value
           as api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           )?;
@@ -13567,9 +13560,9 @@ Object? _CupertinoPageRoute_buildPage(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPageRoute<Object?>).buildPage(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
   );
 }
 
@@ -13578,9 +13571,9 @@ Object? _CupertinoPageRoute_buildTransitions(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPageRoute<Object?>).buildTransitions(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
     values["child"] as api.Widget,
   );
 }
@@ -13651,7 +13644,7 @@ Object? _CupertinoPageRoute_registerPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageRoute<Object?>).registerPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -13661,7 +13654,7 @@ Object? _CupertinoPageRoute_unregisterPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageRoute<Object?>).unregisterPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -13671,7 +13664,7 @@ Object? _CupertinoPageRoute_didChangePrevious(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageRoute<Object?>).didChangePrevious(
-    values["previousRoute"] as api11.Route<Object?>?,
+    values["previousRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -13681,7 +13674,7 @@ Object? _CupertinoPageRoute_didChangeNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageRoute<Object?>).didChangeNext(
-    values["nextRoute"] as api11.Route<Object?>?,
+    values["nextRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -13691,7 +13684,7 @@ Object? _CupertinoPageRoute_didPopNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageRoute<Object?>).didPopNext(
-    values["nextRoute"] as api11.Route<Object?>,
+    values["nextRoute"] as api10.Route<Object?>,
   );
   return null;
 }
@@ -13770,7 +13763,7 @@ Object? _CupertinoPageRoute_didReplace(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageRoute<Object?>).didReplace(
-    values["oldRoute"] as api11.Route<Object?>?,
+    values["oldRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -13787,7 +13780,7 @@ Object? _CupertinoPageRoute_canTransitionTo(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPageRoute<Object?>).canTransitionTo(
-    values["nextRoute"] as api11.TransitionRoute<Object?>,
+    values["nextRoute"] as api10.TransitionRoute<Object?>,
   );
 }
 
@@ -13796,7 +13789,7 @@ Object? _CupertinoPageRoute_canTransitionFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPageRoute<Object?>).canTransitionFrom(
-    values["previousRoute"] as api11.TransitionRoute<Object?>,
+    values["previousRoute"] as api10.TransitionRoute<Object?>,
   );
 }
 
@@ -13867,7 +13860,7 @@ Object? _CupertinoPageRoute_addLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageRoute<Object?>).addLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -13877,7 +13870,7 @@ Object? _CupertinoPageRoute_removeLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageRoute<Object?>).removeLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -13887,7 +13880,7 @@ Object? _CupertinoPageRoute_buildContent(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPageRoute<Object?>).buildContent(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -13897,9 +13890,9 @@ Object _createCupertinoPageRoute(String ctor, Map<String, Object?> values) {
       return api.CupertinoPageRoute<Object?>(
         builder:
             values["builder"]
-                as api.Widget Function(api11.BuildContext context),
+                as api.Widget Function(api10.BuildContext context),
         title: values["title"] as String?,
-        settings: values["settings"] as api11.RouteSettings?,
+        settings: values["settings"] as api10.RouteSettings?,
         requestFocus: values["requestFocus"] as bool?,
         maintainState: values["maintainState"] as bool,
         fullscreenDialog: values["fullscreenDialog"] as bool,
@@ -13928,7 +13921,7 @@ api.Widget _createCupertinoPageScaffold(
   switch (ctor) {
     case "":
       return api.CupertinoPageScaffold(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         navigationBar:
             values["navigationBar"] as api.ObstructingPreferredSizeWidget?,
         backgroundColor: values["backgroundColor"] as api1.Color?,
@@ -13952,7 +13945,7 @@ Object? _CupertinoPageScaffoldBackgroundColor_maybeOf(
   Map<String, Object?> values,
 ) {
   return api.CupertinoPageScaffoldBackgroundColor.maybeOf(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -13971,7 +13964,7 @@ Object? _CupertinoPageScaffoldBackgroundColor_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageScaffoldBackgroundColor).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -13996,7 +13989,7 @@ Object? _CupertinoPageScaffoldBackgroundColor_toStringShallow(
 ) {
   return (receiver as api.CupertinoPageScaffoldBackgroundColor).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -14005,7 +13998,7 @@ Object? _CupertinoPageScaffoldBackgroundColor_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPageScaffoldBackgroundColor).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -14019,7 +14012,7 @@ Object? _CupertinoPageScaffoldBackgroundColor_toDiagnosticsNode(
   return (receiver as api.CupertinoPageScaffoldBackgroundColor)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -14040,7 +14033,7 @@ api.Widget _createCupertinoPageScaffoldBackgroundColor(
       return api.CupertinoPageScaffoldBackgroundColor(
         child: values["child"] as api.Widget,
         color: values["color"] as api1.Color,
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14063,9 +14056,9 @@ Object? _CupertinoPageTransition_delegatedTransition(
   Map<String, Object?> values,
 ) {
   return api.CupertinoPageTransition.delegatedTransition(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
     values["allowSnapshotting"] as bool,
     values["child"] as api.Widget?,
   );
@@ -14097,7 +14090,7 @@ Object? _CupertinoPageTransition_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPageTransition).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -14108,7 +14101,7 @@ Object? _CupertinoPageTransition_toStringShallow(
 ) {
   return (receiver as api.CupertinoPageTransition).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -14117,7 +14110,7 @@ Object? _CupertinoPageTransition_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPageTransition).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -14130,7 +14123,7 @@ Object? _CupertinoPageTransition_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoPageTransition).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -14148,11 +14141,11 @@ api.Widget _createCupertinoPageTransition(
   switch (ctor) {
     case "":
       return api.CupertinoPageTransition(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         primaryRouteAnimation:
-            values["primaryRouteAnimation"] as api12.Animation<double>,
+            values["primaryRouteAnimation"] as api11.Animation<double>,
         secondaryRouteAnimation:
-            values["secondaryRouteAnimation"] as api12.Animation<double>,
+            values["secondaryRouteAnimation"] as api11.Animation<double>,
         child: values["child"] as api.Widget,
         linearTransition: values["linearTransition"] as bool,
       );
@@ -14176,10 +14169,10 @@ Object? _CupertinoPageTransitionsBuilder_buildTransitions(
 ) {
   return (receiver as api.CupertinoPageTransitionsBuilder)
       .buildTransitions<Object?>(
-        values["route"] as api11.PageRoute<Object?>,
-        values["context"] as api11.BuildContext,
-        values["animation"] as api12.Animation<double>,
-        values["secondaryAnimation"] as api12.Animation<double>,
+        values["route"] as api10.PageRoute<Object?>,
+        values["context"] as api10.BuildContext,
+        values["animation"] as api11.Animation<double>,
+        values["secondaryAnimation"] as api11.Animation<double>,
         values["child"] as api.Widget,
       );
 }
@@ -14190,10 +14183,10 @@ Object? _CupertinoPageTransitionsBuilder_super_buildTransitions(
 ) {
   return (receiver as _CupertinoPageTransitionsBuilderProxy)
       ._flaxSuper_buildTransitions<Object?>(
-        values["route"] as api11.PageRoute<Object?>,
-        values["context"] as api11.BuildContext,
-        values["animation"] as api12.Animation<double>,
-        values["secondaryAnimation"] as api12.Animation<double>,
+        values["route"] as api10.PageRoute<Object?>,
+        values["context"] as api10.BuildContext,
+        values["animation"] as api11.Animation<double>,
+        values["secondaryAnimation"] as api11.Animation<double>,
         values["child"] as api.Widget,
       );
 }
@@ -14282,7 +14275,7 @@ Object? _CupertinoPicker_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPicker).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -14293,7 +14286,7 @@ Object? _CupertinoPicker_toStringShallow(
 ) {
   return (receiver as api.CupertinoPicker).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -14302,7 +14295,7 @@ Object? _CupertinoPicker_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPicker).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -14315,7 +14308,7 @@ Object? _CupertinoPicker_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoPicker).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -14331,18 +14324,18 @@ api.Widget _createCupertinoPicker(String ctor, Map<String, Object?> values) {
     case "":
       if (!values.containsKey("selectionOverlay")) {
         return api.CupertinoPicker(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           diameterRatio: values["diameterRatio"] as double,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           offAxisFraction: values["offAxisFraction"] as double,
           useMagnifier: values["useMagnifier"] as bool,
           magnification: values["magnification"] as double,
           scrollController:
-              values["scrollController"] as api11.FixedExtentScrollController?,
+              values["scrollController"] as api10.FixedExtentScrollController?,
           squeeze: values["squeeze"] as double,
           changeReportingBehavior:
               values["changeReportingBehavior"]
-                  as api11.ChangeReportingBehavior,
+                  as api10.ChangeReportingBehavior,
           itemExtent: values["itemExtent"] as double,
           onSelectedItemChanged:
               values["onSelectedItemChanged"] as void Function(int value)?,
@@ -14351,17 +14344,17 @@ api.Widget _createCupertinoPicker(String ctor, Map<String, Object?> values) {
         );
       }
       return api.CupertinoPicker(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         diameterRatio: values["diameterRatio"] as double,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         offAxisFraction: values["offAxisFraction"] as double,
         useMagnifier: values["useMagnifier"] as bool,
         magnification: values["magnification"] as double,
         scrollController:
-            values["scrollController"] as api11.FixedExtentScrollController?,
+            values["scrollController"] as api10.FixedExtentScrollController?,
         squeeze: values["squeeze"] as double,
         changeReportingBehavior:
-            values["changeReportingBehavior"] as api11.ChangeReportingBehavior,
+            values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
         itemExtent: values["itemExtent"] as double,
         onSelectedItemChanged:
             values["onSelectedItemChanged"] as void Function(int value)?,
@@ -14372,48 +14365,48 @@ api.Widget _createCupertinoPicker(String ctor, Map<String, Object?> values) {
     case "builder":
       if (!values.containsKey("selectionOverlay")) {
         return api.CupertinoPicker.builder(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           diameterRatio: values["diameterRatio"] as double,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           offAxisFraction: values["offAxisFraction"] as double,
           useMagnifier: values["useMagnifier"] as bool,
           magnification: values["magnification"] as double,
           scrollController:
-              values["scrollController"] as api11.FixedExtentScrollController?,
+              values["scrollController"] as api10.FixedExtentScrollController?,
           squeeze: values["squeeze"] as double,
           changeReportingBehavior:
               values["changeReportingBehavior"]
-                  as api11.ChangeReportingBehavior,
+                  as api10.ChangeReportingBehavior,
           itemExtent: values["itemExtent"] as double,
           onSelectedItemChanged:
               values["onSelectedItemChanged"] as void Function(int value)?,
           itemBuilder:
               values["itemBuilder"]
                   as api.Widget? Function(
-                    api11.BuildContext context,
+                    api10.BuildContext context,
                     int index,
                   ),
           childCount: values["childCount"] as int?,
         );
       }
       return api.CupertinoPicker.builder(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         diameterRatio: values["diameterRatio"] as double,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         offAxisFraction: values["offAxisFraction"] as double,
         useMagnifier: values["useMagnifier"] as bool,
         magnification: values["magnification"] as double,
         scrollController:
-            values["scrollController"] as api11.FixedExtentScrollController?,
+            values["scrollController"] as api10.FixedExtentScrollController?,
         squeeze: values["squeeze"] as double,
         changeReportingBehavior:
-            values["changeReportingBehavior"] as api11.ChangeReportingBehavior,
+            values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
         itemExtent: values["itemExtent"] as double,
         onSelectedItemChanged:
             values["onSelectedItemChanged"] as void Function(int value)?,
         itemBuilder:
             values["itemBuilder"]
-                as api.Widget? Function(api11.BuildContext context, int index),
+                as api.Widget? Function(api10.BuildContext context, int index),
         childCount: values["childCount"] as int?,
         selectionOverlay: values["selectionOverlay"] as api.Widget?,
       );
@@ -14437,7 +14430,7 @@ Object? _CupertinoPickerDefaultSelectionOverlay_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPickerDefaultSelectionOverlay).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -14462,7 +14455,7 @@ Object? _CupertinoPickerDefaultSelectionOverlay_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPickerDefaultSelectionOverlay).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -14474,7 +14467,7 @@ Object? _CupertinoPickerDefaultSelectionOverlay_toStringShallow(
   return (receiver as api.CupertinoPickerDefaultSelectionOverlay)
       .toStringShallow(
         joiner: values["joiner"] as String,
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
       );
 }
 
@@ -14483,7 +14476,7 @@ Object? _CupertinoPickerDefaultSelectionOverlay_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPickerDefaultSelectionOverlay).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -14497,7 +14490,7 @@ Object? _CupertinoPickerDefaultSelectionOverlay_toDiagnosticsNode(
   return (receiver as api.CupertinoPickerDefaultSelectionOverlay)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -14517,13 +14510,13 @@ api.Widget _createCupertinoPickerDefaultSelectionOverlay(
     case "":
       if (!values.containsKey("background")) {
         return api.CupertinoPickerDefaultSelectionOverlay(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           capStartEdge: values["capStartEdge"] as bool,
           capEndEdge: values["capEndEdge"] as bool,
         );
       }
       return api.CupertinoPickerDefaultSelectionOverlay(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         background: values["background"] as api1.Color,
         capStartEdge: values["capStartEdge"] as bool,
         capEndEdge: values["capEndEdge"] as bool,
@@ -14558,7 +14551,7 @@ Object? _CupertinoPopupSurface_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPopupSurface).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -14581,7 +14574,7 @@ Object? _CupertinoPopupSurface_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoPopupSurface).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -14592,7 +14585,7 @@ Object? _CupertinoPopupSurface_toStringShallow(
 ) {
   return (receiver as api.CupertinoPopupSurface).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -14601,7 +14594,7 @@ Object? _CupertinoPopupSurface_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoPopupSurface).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -14614,7 +14607,7 @@ Object? _CupertinoPopupSurface_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoPopupSurface).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -14632,7 +14625,7 @@ api.Widget _createCupertinoPopupSurface(
   switch (ctor) {
     case "":
       return api.CupertinoPopupSurface(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         blurSigma: values["blurSigma"] as double,
         isSurfacePainted: values["isSurfacePainted"] as bool,
         child: values["child"] as api.Widget,
@@ -14699,7 +14692,7 @@ Object? _CupertinoRadio_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRadio<Object?>).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -14710,7 +14703,7 @@ Object? _CupertinoRadio_toStringShallow(
 ) {
   return (receiver as api.CupertinoRadio<Object?>).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -14719,7 +14712,7 @@ Object? _CupertinoRadio_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoRadio<Object?>).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -14732,7 +14725,7 @@ Object? _CupertinoRadio_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoRadio<Object?>).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -14747,22 +14740,22 @@ api.Widget _createCupertinoRadio(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.CupertinoRadio<Object?>(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         value: values["value"],
         groupValue: values["groupValue"],
         onChanged: values["onChanged"] as void Function(Object? value)?,
-        mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+        mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
         toggleable: values["toggleable"] as bool,
         activeColor: values["activeColor"] as api1.Color?,
         inactiveColor: values["inactiveColor"] as api1.Color?,
         fillColor: values["fillColor"] as api1.Color?,
         focusColor: values["focusColor"] as api1.Color?,
-        focusNode: values["focusNode"] as api11.FocusNode?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
         autofocus: values["autofocus"] as bool,
         useCheckmarkStyle: values["useCheckmarkStyle"] as bool,
         enabled: values["enabled"] as bool?,
         groupRegistry:
-            values["groupRegistry"] as api11.RadioGroupRegistry<Object?>?,
+            values["groupRegistry"] as api10.RadioGroupRegistry<Object?>?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14877,9 +14870,9 @@ void _CupertinoRouteTransitionMixin_set_receivedTransition(
   (receiver as api.CupertinoRouteTransitionMixin<Object?>).receivedTransition =
       value
           as api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           )?;
@@ -14906,10 +14899,10 @@ Object? _CupertinoRouteTransitionMixin_buildPageTransitions(
   Map<String, Object?> values,
 ) {
   return api.CupertinoRouteTransitionMixin.buildPageTransitions<Object?>(
-    values["route"] as api11.PageRoute<Object?>,
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["route"] as api10.PageRoute<Object?>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
     values["child"] as api.Widget,
   );
 }
@@ -14929,9 +14922,9 @@ Object? _CupertinoRouteTransitionMixin_buildPage(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoRouteTransitionMixin<Object?>).buildPage(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
   );
 }
 
@@ -14941,9 +14934,9 @@ Object? _CupertinoRouteTransitionMixin_buildTransitions(
 ) {
   return (receiver as api.CupertinoRouteTransitionMixin<Object?>)
       .buildTransitions(
-        values["context"] as api11.BuildContext,
-        values["animation"] as api12.Animation<double>,
-        values["secondaryAnimation"] as api12.Animation<double>,
+        values["context"] as api10.BuildContext,
+        values["animation"] as api11.Animation<double>,
+        values["secondaryAnimation"] as api11.Animation<double>,
         values["child"] as api.Widget,
       );
 }
@@ -15012,7 +15005,7 @@ Object? _CupertinoRouteTransitionMixin_registerPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRouteTransitionMixin<Object?>).registerPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -15022,7 +15015,7 @@ Object? _CupertinoRouteTransitionMixin_unregisterPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRouteTransitionMixin<Object?>).unregisterPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -15032,7 +15025,7 @@ Object? _CupertinoRouteTransitionMixin_didChangePrevious(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRouteTransitionMixin<Object?>).didChangePrevious(
-    values["previousRoute"] as api11.Route<Object?>?,
+    values["previousRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -15042,7 +15035,7 @@ Object? _CupertinoRouteTransitionMixin_didChangeNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRouteTransitionMixin<Object?>).didChangeNext(
-    values["nextRoute"] as api11.Route<Object?>?,
+    values["nextRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -15052,7 +15045,7 @@ Object? _CupertinoRouteTransitionMixin_didPopNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRouteTransitionMixin<Object?>).didPopNext(
-    values["nextRoute"] as api11.Route<Object?>,
+    values["nextRoute"] as api10.Route<Object?>,
   );
   return null;
 }
@@ -15135,7 +15128,7 @@ Object? _CupertinoRouteTransitionMixin_didReplace(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRouteTransitionMixin<Object?>).didReplace(
-    values["oldRoute"] as api11.Route<Object?>?,
+    values["oldRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -15154,7 +15147,7 @@ Object? _CupertinoRouteTransitionMixin_canTransitionTo(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoRouteTransitionMixin<Object?>)
-      .canTransitionTo(values["nextRoute"] as api11.TransitionRoute<Object?>);
+      .canTransitionTo(values["nextRoute"] as api10.TransitionRoute<Object?>);
 }
 
 Object? _CupertinoRouteTransitionMixin_canTransitionFrom(
@@ -15163,7 +15156,7 @@ Object? _CupertinoRouteTransitionMixin_canTransitionFrom(
 ) {
   return (receiver as api.CupertinoRouteTransitionMixin<Object?>)
       .canTransitionFrom(
-        values["previousRoute"] as api11.TransitionRoute<Object?>,
+        values["previousRoute"] as api10.TransitionRoute<Object?>,
       );
 }
 
@@ -15236,7 +15229,7 @@ Object? _CupertinoRouteTransitionMixin_addLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRouteTransitionMixin<Object?>).addLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -15246,7 +15239,7 @@ Object? _CupertinoRouteTransitionMixin_removeLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoRouteTransitionMixin<Object?>)
-      .removeLocalHistoryEntry(values["entry"] as api11.LocalHistoryEntry);
+      .removeLocalHistoryEntry(values["entry"] as api10.LocalHistoryEntry);
   return null;
 }
 
@@ -15255,7 +15248,7 @@ Object? _CupertinoRouteTransitionMixin_buildContent(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoRouteTransitionMixin<Object?>).buildContent(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -15277,14 +15270,14 @@ Object? _CupertinoScrollBehavior_copyWith(
     dragDevices: values["dragDevices"] as Set<api1.PointerDeviceKind>?,
     keyboardDismissBehavior:
         values["keyboardDismissBehavior"]
-            as api11.ScrollViewKeyboardDismissBehavior?,
+            as api10.ScrollViewKeyboardDismissBehavior?,
     multitouchDragStrategy:
-        values["multitouchDragStrategy"] as api5.MultitouchDragStrategy?,
+        values["multitouchDragStrategy"] as api4.MultitouchDragStrategy?,
     overscroll: values["overscroll"] as bool?,
-    physics: values["physics"] as api11.ScrollPhysics?,
-    platform: values["platform"] as api4.TargetPlatform?,
+    physics: values["physics"] as api10.ScrollPhysics?,
+    platform: values["platform"] as api3.TargetPlatform?,
     pointerAxisModifiers:
-        values["pointerAxisModifiers"] as Set<api8.LogicalKeyboardKey>?,
+        values["pointerAxisModifiers"] as Set<api7.LogicalKeyboardKey>?,
     scrollbars: values["scrollbars"] as bool?,
   );
 }
@@ -15294,7 +15287,7 @@ Object? _CupertinoScrollBehavior_getPlatform(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollBehavior).getPlatform(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -15303,7 +15296,7 @@ Object? _CupertinoScrollBehavior_getMultitouchDragStrategy(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollBehavior).getMultitouchDragStrategy(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -15312,9 +15305,9 @@ Object? _CupertinoScrollBehavior_buildScrollbar(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollBehavior).buildScrollbar(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
     values["child"] as api.Widget,
-    values["details"] as api11.ScrollableDetails,
+    values["details"] as api10.ScrollableDetails,
   );
 }
 
@@ -15323,9 +15316,9 @@ Object? _CupertinoScrollBehavior_buildOverscrollIndicator(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollBehavior).buildOverscrollIndicator(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
     values["child"] as api.Widget,
-    values["details"] as api11.ScrollableDetails,
+    values["details"] as api10.ScrollableDetails,
   );
 }
 
@@ -15334,7 +15327,7 @@ Object? _CupertinoScrollBehavior_velocityTrackerBuilder(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollBehavior).velocityTrackerBuilder(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -15343,7 +15336,7 @@ Object? _CupertinoScrollBehavior_getScrollPhysics(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollBehavior).getScrollPhysics(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -15352,7 +15345,7 @@ Object? _CupertinoScrollBehavior_shouldNotify(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollBehavior).shouldNotify(
-    values["oldDelegate"] as api11.ScrollBehavior,
+    values["oldDelegate"] as api10.ScrollBehavior,
   );
 }
 
@@ -15361,7 +15354,7 @@ Object? _CupertinoScrollBehavior_getKeyboardDismissBehavior(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollBehavior).getKeyboardDismissBehavior(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -15380,14 +15373,14 @@ Object? _CupertinoScrollBehavior_super_copyWith(
     dragDevices: values["dragDevices"] as Set<api1.PointerDeviceKind>?,
     keyboardDismissBehavior:
         values["keyboardDismissBehavior"]
-            as api11.ScrollViewKeyboardDismissBehavior?,
+            as api10.ScrollViewKeyboardDismissBehavior?,
     multitouchDragStrategy:
-        values["multitouchDragStrategy"] as api5.MultitouchDragStrategy?,
+        values["multitouchDragStrategy"] as api4.MultitouchDragStrategy?,
     overscroll: values["overscroll"] as bool?,
-    physics: values["physics"] as api11.ScrollPhysics?,
-    platform: values["platform"] as api4.TargetPlatform?,
+    physics: values["physics"] as api10.ScrollPhysics?,
+    platform: values["platform"] as api3.TargetPlatform?,
     pointerAxisModifiers:
-        values["pointerAxisModifiers"] as Set<api8.LogicalKeyboardKey>?,
+        values["pointerAxisModifiers"] as Set<api7.LogicalKeyboardKey>?,
     scrollbars: values["scrollbars"] as bool?,
   );
 }
@@ -15397,7 +15390,7 @@ Object? _CupertinoScrollBehavior_super_getPlatform(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoScrollBehaviorProxy)._flaxSuper_getPlatform(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -15407,7 +15400,7 @@ Object? _CupertinoScrollBehavior_super_getMultitouchDragStrategy(
 ) {
   return (receiver as _CupertinoScrollBehaviorProxy)
       ._flaxSuper_getMultitouchDragStrategy(
-        values["context"] as api11.BuildContext,
+        values["context"] as api10.BuildContext,
       );
 }
 
@@ -15416,9 +15409,9 @@ Object? _CupertinoScrollBehavior_super_buildScrollbar(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoScrollBehaviorProxy)._flaxSuper_buildScrollbar(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
     values["child"] as api.Widget,
-    values["details"] as api11.ScrollableDetails,
+    values["details"] as api10.ScrollableDetails,
   );
 }
 
@@ -15428,9 +15421,9 @@ Object? _CupertinoScrollBehavior_super_buildOverscrollIndicator(
 ) {
   return (receiver as _CupertinoScrollBehaviorProxy)
       ._flaxSuper_buildOverscrollIndicator(
-        values["context"] as api11.BuildContext,
+        values["context"] as api10.BuildContext,
         values["child"] as api.Widget,
-        values["details"] as api11.ScrollableDetails,
+        values["details"] as api10.ScrollableDetails,
       );
 }
 
@@ -15440,7 +15433,7 @@ Object? _CupertinoScrollBehavior_super_velocityTrackerBuilder(
 ) {
   return (receiver as _CupertinoScrollBehaviorProxy)
       ._flaxSuper_velocityTrackerBuilder(
-        values["context"] as api11.BuildContext,
+        values["context"] as api10.BuildContext,
       );
 }
 
@@ -15449,7 +15442,7 @@ Object? _CupertinoScrollBehavior_super_getScrollPhysics(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoScrollBehaviorProxy)
-      ._flaxSuper_getScrollPhysics(values["context"] as api11.BuildContext);
+      ._flaxSuper_getScrollPhysics(values["context"] as api10.BuildContext);
 }
 
 Object? _CupertinoScrollBehavior_super_shouldNotify(
@@ -15457,7 +15450,7 @@ Object? _CupertinoScrollBehavior_super_shouldNotify(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoScrollBehaviorProxy)._flaxSuper_shouldNotify(
-    values["oldDelegate"] as api11.ScrollBehavior,
+    values["oldDelegate"] as api10.ScrollBehavior,
   );
 }
 
@@ -15467,7 +15460,7 @@ Object? _CupertinoScrollBehavior_super_getKeyboardDismissBehavior(
 ) {
   return (receiver as _CupertinoScrollBehaviorProxy)
       ._flaxSuper_getKeyboardDismissBehavior(
-        values["context"] as api11.BuildContext,
+        values["context"] as api10.BuildContext,
       );
 }
 
@@ -15578,7 +15571,7 @@ Object? _CupertinoScrollbar_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoScrollbar).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -15589,7 +15582,7 @@ Object? _CupertinoScrollbar_toStringShallow(
 ) {
   return (receiver as api.CupertinoScrollbar).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -15598,7 +15591,7 @@ Object? _CupertinoScrollbar_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoScrollbar).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -15611,7 +15604,7 @@ Object? _CupertinoScrollbar_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoScrollbar).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -15628,57 +15621,57 @@ api.Widget _createCupertinoScrollbar(String ctor, Map<String, Object?> values) {
       if (!values.containsKey("radius")) {
         if (!values.containsKey("radiusWhileDragging")) {
           return api.CupertinoScrollbar(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             child: values["child"] as api.Widget,
-            controller: values["controller"] as api11.ScrollController?,
+            controller: values["controller"] as api10.ScrollController?,
             thumbVisibility: values["thumbVisibility"] as bool?,
             thickness: values["thickness"] as double,
             thicknessWhileDragging: values["thicknessWhileDragging"] as double,
             notificationPredicate:
                 values["notificationPredicate"]
-                    as bool Function(api11.ScrollNotification notification)?,
+                    as bool Function(api10.ScrollNotification notification)?,
             scrollbarOrientation:
-                values["scrollbarOrientation"] as api11.ScrollbarOrientation?,
+                values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
             mainAxisMargin: values["mainAxisMargin"] as double,
           );
         }
         return api.CupertinoScrollbar(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           child: values["child"] as api.Widget,
-          controller: values["controller"] as api11.ScrollController?,
+          controller: values["controller"] as api10.ScrollController?,
           thumbVisibility: values["thumbVisibility"] as bool?,
           thickness: values["thickness"] as double,
           thicknessWhileDragging: values["thicknessWhileDragging"] as double,
           radiusWhileDragging: values["radiusWhileDragging"] as api1.Radius,
           notificationPredicate:
               values["notificationPredicate"]
-                  as bool Function(api11.ScrollNotification notification)?,
+                  as bool Function(api10.ScrollNotification notification)?,
           scrollbarOrientation:
-              values["scrollbarOrientation"] as api11.ScrollbarOrientation?,
+              values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
           mainAxisMargin: values["mainAxisMargin"] as double,
         );
       }
       if (!values.containsKey("radiusWhileDragging")) {
         return api.CupertinoScrollbar(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           child: values["child"] as api.Widget,
-          controller: values["controller"] as api11.ScrollController?,
+          controller: values["controller"] as api10.ScrollController?,
           thumbVisibility: values["thumbVisibility"] as bool?,
           thickness: values["thickness"] as double,
           thicknessWhileDragging: values["thicknessWhileDragging"] as double,
           radius: values["radius"] as api1.Radius,
           notificationPredicate:
               values["notificationPredicate"]
-                  as bool Function(api11.ScrollNotification notification)?,
+                  as bool Function(api10.ScrollNotification notification)?,
           scrollbarOrientation:
-              values["scrollbarOrientation"] as api11.ScrollbarOrientation?,
+              values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
           mainAxisMargin: values["mainAxisMargin"] as double,
         );
       }
       return api.CupertinoScrollbar(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         child: values["child"] as api.Widget,
-        controller: values["controller"] as api11.ScrollController?,
+        controller: values["controller"] as api10.ScrollController?,
         thumbVisibility: values["thumbVisibility"] as bool?,
         thickness: values["thickness"] as double,
         thicknessWhileDragging: values["thicknessWhileDragging"] as double,
@@ -15686,9 +15679,9 @@ api.Widget _createCupertinoScrollbar(String ctor, Map<String, Object?> values) {
         radiusWhileDragging: values["radiusWhileDragging"] as api1.Radius,
         notificationPredicate:
             values["notificationPredicate"]
-                as bool Function(api11.ScrollNotification notification)?,
+                as bool Function(api10.ScrollNotification notification)?,
         scrollbarOrientation:
-            values["scrollbarOrientation"] as api11.ScrollbarOrientation?,
+            values["scrollbarOrientation"] as api10.ScrollbarOrientation?,
         mainAxisMargin: values["mainAxisMargin"] as double,
       );
     default:
@@ -15792,7 +15785,7 @@ Object? _CupertinoSearchTextField_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSearchTextField).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -15803,7 +15796,7 @@ Object? _CupertinoSearchTextField_toStringShallow(
 ) {
   return (receiver as api.CupertinoSearchTextField).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -15812,7 +15805,7 @@ Object? _CupertinoSearchTextField_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSearchTextField).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -15825,7 +15818,7 @@ Object? _CupertinoSearchTextField_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoSearchTextField).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -15846,37 +15839,37 @@ api.Widget _createCupertinoSearchTextField(
         api.CupertinoSearchTextField.new,
         <Object?>[],
         <Symbol, Object?>{
-          #key: values["key"] as api4.Key?,
-          #controller: values["controller"] as api11.TextEditingController?,
+          #key: values["key"] as api3.Key?,
+          #controller: values["controller"] as api10.TextEditingController?,
           #onChanged: values["onChanged"] as void Function(String value)?,
           #onSubmitted: values["onSubmitted"] as void Function(String value)?,
-          #style: values["style"] as api13.TextStyle?,
+          #style: values["style"] as api12.TextStyle?,
           #placeholder: values["placeholder"] as String?,
-          #placeholderStyle: values["placeholderStyle"] as api13.TextStyle?,
-          #decoration: values["decoration"] as api13.BoxDecoration?,
+          #placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
+          #decoration: values["decoration"] as api12.BoxDecoration?,
           #backgroundColor: values["backgroundColor"] as api1.Color?,
-          #borderRadius: values["borderRadius"] as api13.BorderRadius?,
+          #borderRadius: values["borderRadius"] as api12.BorderRadius?,
           if (values.containsKey("keyboardType"))
-            #keyboardType: values["keyboardType"] as api8.TextInputType?,
+            #keyboardType: values["keyboardType"] as api7.TextInputType?,
           if (values.containsKey("padding"))
-            #padding: values["padding"] as api13.EdgeInsetsGeometry,
+            #padding: values["padding"] as api12.EdgeInsetsGeometry,
           if (values.containsKey("itemColor"))
             #itemColor: values["itemColor"] as api1.Color,
           #itemSize: values["itemSize"] as double,
           if (values.containsKey("prefixInsets"))
-            #prefixInsets: values["prefixInsets"] as api13.EdgeInsetsGeometry,
+            #prefixInsets: values["prefixInsets"] as api12.EdgeInsetsGeometry,
           if (values.containsKey("prefixIcon"))
             #prefixIcon: values["prefixIcon"] as api.Widget,
           if (values.containsKey("suffixInsets"))
-            #suffixInsets: values["suffixInsets"] as api13.EdgeInsetsGeometry,
+            #suffixInsets: values["suffixInsets"] as api12.EdgeInsetsGeometry,
           if (values.containsKey("suffixIcon"))
-            #suffixIcon: values["suffixIcon"] as api11.Icon,
+            #suffixIcon: values["suffixIcon"] as api10.Icon,
           #suffixMode: values["suffixMode"] as api.OverlayVisibilityMode,
           #onSuffixTap: values["onSuffixTap"] as void Function()?,
           #restorationId: values["restorationId"] as String?,
-          #focusNode: values["focusNode"] as api11.FocusNode?,
-          #smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
-          #smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
+          #focusNode: values["focusNode"] as api10.FocusNode?,
+          #smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
+          #smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
           #enableIMEPersonalizedLearning:
               values["enableIMEPersonalizedLearning"] as bool,
           #autofocus: values["autofocus"] as bool,
@@ -15948,7 +15941,7 @@ Object? _CupertinoSegmentedControl_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSegmentedControl<Object>).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -15959,7 +15952,7 @@ Object? _CupertinoSegmentedControl_toStringShallow(
 ) {
   return (receiver as api.CupertinoSegmentedControl<Object>).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -15968,7 +15961,7 @@ Object? _CupertinoSegmentedControl_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSegmentedControl<Object>).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -15981,7 +15974,7 @@ Object? _CupertinoSegmentedControl_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoSegmentedControl<Object>).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -16001,7 +15994,7 @@ api.Widget _createCupertinoSegmentedControl(
     case "":
       if (!values.containsKey("disabledChildren")) {
         return api.CupertinoSegmentedControl<Object>(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as Map<Object, api.Widget>,
           onValueChanged:
               values["onValueChanged"] as void Function(Object value),
@@ -16012,11 +16005,11 @@ api.Widget _createCupertinoSegmentedControl(
           pressedColor: values["pressedColor"] as api1.Color?,
           disabledColor: values["disabledColor"] as api1.Color?,
           disabledTextColor: values["disabledTextColor"] as api1.Color?,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
         );
       }
       return api.CupertinoSegmentedControl<Object>(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         children: values["children"] as Map<Object, api.Widget>,
         onValueChanged: values["onValueChanged"] as void Function(Object value),
         groupValue: values["groupValue"],
@@ -16026,7 +16019,7 @@ api.Widget _createCupertinoSegmentedControl(
         pressedColor: values["pressedColor"] as api1.Color?,
         disabledColor: values["disabledColor"] as api1.Color?,
         disabledTextColor: values["disabledTextColor"] as api1.Color?,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
         disabledChildren: values["disabledChildren"] as Set<Object>,
       );
     default:
@@ -16140,9 +16133,9 @@ void _CupertinoSheetRoute_set_receivedTransition(
   (receiver as api.CupertinoSheetRoute<Object?>).receivedTransition =
       value
           as api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           )?;
@@ -16163,12 +16156,12 @@ void _CupertinoSheetRoute_set_willDisposeAnimationController(
 
 Object? _CupertinoSheetRoute_hasParentSheet(Map<String, Object?> values) {
   return api.CupertinoSheetRoute.hasParentSheet(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
 Object? _CupertinoSheetRoute_popSheet(Map<String, Object?> values) {
-  api.CupertinoSheetRoute.popSheet(values["context"] as api11.BuildContext);
+  api.CupertinoSheetRoute.popSheet(values["context"] as api10.BuildContext);
   return null;
 }
 
@@ -16187,9 +16180,9 @@ Object? _CupertinoSheetRoute_buildPage(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSheetRoute<Object?>).buildPage(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
   );
 }
 
@@ -16198,9 +16191,9 @@ Object? _CupertinoSheetRoute_buildTransitions(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSheetRoute<Object?>).buildTransitions(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
     values["child"] as api.Widget,
   );
 }
@@ -16271,7 +16264,7 @@ Object? _CupertinoSheetRoute_registerPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetRoute<Object?>).registerPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -16281,7 +16274,7 @@ Object? _CupertinoSheetRoute_unregisterPopEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetRoute<Object?>).unregisterPopEntry(
-    values["popEntry"] as api11.PopEntry<Object?>,
+    values["popEntry"] as api10.PopEntry<Object?>,
   );
   return null;
 }
@@ -16291,7 +16284,7 @@ Object? _CupertinoSheetRoute_didChangePrevious(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetRoute<Object?>).didChangePrevious(
-    values["previousRoute"] as api11.Route<Object?>?,
+    values["previousRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -16301,7 +16294,7 @@ Object? _CupertinoSheetRoute_didChangeNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetRoute<Object?>).didChangeNext(
-    values["nextRoute"] as api11.Route<Object?>?,
+    values["nextRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -16311,7 +16304,7 @@ Object? _CupertinoSheetRoute_didPopNext(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetRoute<Object?>).didPopNext(
-    values["nextRoute"] as api11.Route<Object?>,
+    values["nextRoute"] as api10.Route<Object?>,
   );
   return null;
 }
@@ -16390,7 +16383,7 @@ Object? _CupertinoSheetRoute_didReplace(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetRoute<Object?>).didReplace(
-    values["oldRoute"] as api11.Route<Object?>?,
+    values["oldRoute"] as api10.Route<Object?>?,
   );
   return null;
 }
@@ -16409,7 +16402,7 @@ Object? _CupertinoSheetRoute_canTransitionTo(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSheetRoute<Object?>).canTransitionTo(
-    values["nextRoute"] as api11.TransitionRoute<Object?>,
+    values["nextRoute"] as api10.TransitionRoute<Object?>,
   );
 }
 
@@ -16418,7 +16411,7 @@ Object? _CupertinoSheetRoute_canTransitionFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSheetRoute<Object?>).canTransitionFrom(
-    values["previousRoute"] as api11.TransitionRoute<Object?>,
+    values["previousRoute"] as api10.TransitionRoute<Object?>,
   );
 }
 
@@ -16488,7 +16481,7 @@ Object? _CupertinoSheetRoute_addLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetRoute<Object?>).addLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -16498,7 +16491,7 @@ Object? _CupertinoSheetRoute_removeLocalHistoryEntry(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetRoute<Object?>).removeLocalHistoryEntry(
-    values["entry"] as api11.LocalHistoryEntry,
+    values["entry"] as api10.LocalHistoryEntry,
   );
   return null;
 }
@@ -16508,7 +16501,7 @@ Object? _CupertinoSheetRoute_buildContent(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSheetRoute<Object?>).buildContent(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -16516,15 +16509,15 @@ Object _createCupertinoSheetRoute(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.CupertinoSheetRoute<Object?>(
-        settings: values["settings"] as api11.RouteSettings?,
+        settings: values["settings"] as api10.RouteSettings?,
         builder:
             values["builder"]
-                as api.Widget Function(api11.BuildContext context)?,
+                as api.Widget Function(api10.BuildContext context)?,
         scrollableBuilder:
             values["scrollableBuilder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
-                  api11.ScrollController scrollController,
+                  api10.BuildContext context,
+                  api10.ScrollController scrollController,
                 )?,
         enableDrag: values["enableDrag"] as bool,
         showDragHandle: values["showDragHandle"] as bool,
@@ -16553,9 +16546,9 @@ Object? _CupertinoSheetTransition_delegateTransition(
   Map<String, Object?> values,
 ) {
   return api.CupertinoSheetTransition.delegateTransition(
-    values["context"] as api11.BuildContext,
-    values["animation"] as api12.Animation<double>,
-    values["secondaryAnimation"] as api12.Animation<double>,
+    values["context"] as api10.BuildContext,
+    values["animation"] as api11.Animation<double>,
+    values["secondaryAnimation"] as api11.Animation<double>,
     values["allowSnapshotting"] as bool,
     values["child"] as api.Widget?,
   );
@@ -16587,7 +16580,7 @@ Object? _CupertinoSheetTransition_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSheetTransition).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -16598,7 +16591,7 @@ Object? _CupertinoSheetTransition_toStringShallow(
 ) {
   return (receiver as api.CupertinoSheetTransition).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -16607,7 +16600,7 @@ Object? _CupertinoSheetTransition_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSheetTransition).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -16620,7 +16613,7 @@ Object? _CupertinoSheetTransition_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoSheetTransition).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -16638,11 +16631,11 @@ api.Widget _createCupertinoSheetTransition(
   switch (ctor) {
     case "":
       return api.CupertinoSheetTransition(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         primaryRouteAnimation:
-            values["primaryRouteAnimation"] as api12.Animation<double>,
+            values["primaryRouteAnimation"] as api11.Animation<double>,
         secondaryRouteAnimation:
-            values["secondaryRouteAnimation"] as api12.Animation<double>,
+            values["secondaryRouteAnimation"] as api11.Animation<double>,
         child: values["child"] as api.Widget,
         linearTransition: values["linearTransition"] as bool,
         topGap: values["topGap"] as double,
@@ -16685,7 +16678,7 @@ Object? _CupertinoSlider_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSlider).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -16710,7 +16703,7 @@ Object? _CupertinoSlider_toStringShallow(
 ) {
   return (receiver as api.CupertinoSlider).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -16719,7 +16712,7 @@ Object? _CupertinoSlider_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSlider).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -16732,7 +16725,7 @@ Object? _CupertinoSlider_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoSlider).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -16748,7 +16741,7 @@ api.Widget _createCupertinoSlider(String ctor, Map<String, Object?> values) {
     case "":
       if (!values.containsKey("thumbColor")) {
         return api.CupertinoSlider(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           value: values["value"] as double,
           onChanged: values["onChanged"] as void Function(double value)?,
           onChangeStart:
@@ -16761,7 +16754,7 @@ api.Widget _createCupertinoSlider(String ctor, Map<String, Object?> values) {
         );
       }
       return api.CupertinoSlider(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         value: values["value"] as double,
         onChanged: values["onChanged"] as void Function(double value)?,
         onChangeStart: values["onChangeStart"] as void Function(double value)?,
@@ -16829,7 +16822,7 @@ Object? _CupertinoSlidingSegmentedControl_debugFillProperties(
 ) {
   (receiver as api.CupertinoSlidingSegmentedControl<Object>)
       .debugFillProperties(
-        values["properties"] as api4.DiagnosticPropertiesBuilder,
+        values["properties"] as api3.DiagnosticPropertiesBuilder,
       );
   return null;
 }
@@ -16841,7 +16834,7 @@ Object? _CupertinoSlidingSegmentedControl_toStringShallow(
   return (receiver as api.CupertinoSlidingSegmentedControl<Object>)
       .toStringShallow(
         joiner: values["joiner"] as String,
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
       );
 }
 
@@ -16851,7 +16844,7 @@ Object? _CupertinoSlidingSegmentedControl_toStringDeep(
 ) {
   return (receiver as api.CupertinoSlidingSegmentedControl<Object>)
       .toStringDeep(
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
         prefixLineOne: values["prefixLineOne"] as String,
         prefixOtherLines: values["prefixOtherLines"] as String?,
         wrapWidth: values["wrapWidth"] as int,
@@ -16865,7 +16858,7 @@ Object? _CupertinoSlidingSegmentedControl_toDiagnosticsNode(
   return (receiver as api.CupertinoSlidingSegmentedControl<Object>)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -16888,7 +16881,7 @@ api.Widget _createCupertinoSlidingSegmentedControl(
           if (!values.containsKey("padding")) {
             if (!values.containsKey("backgroundColor")) {
               return api.CupertinoSlidingSegmentedControl<Object>(
-                key: values["key"] as api4.Key?,
+                key: values["key"] as api3.Key?,
                 children: values["children"] as Map<Object, api.Widget>,
                 onValueChanged:
                     values["onValueChanged"] as void Function(Object? value),
@@ -16898,7 +16891,7 @@ api.Widget _createCupertinoSlidingSegmentedControl(
               );
             }
             return api.CupertinoSlidingSegmentedControl<Object>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<Object, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(Object? value),
@@ -16910,23 +16903,23 @@ api.Widget _createCupertinoSlidingSegmentedControl(
           }
           if (!values.containsKey("backgroundColor")) {
             return api.CupertinoSlidingSegmentedControl<Object>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<Object, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(Object? value),
               groupValue: values["groupValue"],
-              padding: values["padding"] as api13.EdgeInsetsGeometry,
+              padding: values["padding"] as api12.EdgeInsetsGeometry,
               proportionalWidth: values["proportionalWidth"] as bool,
               isMomentary: values["isMomentary"] as bool,
             );
           }
           return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<Object, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(Object? value),
             groupValue: values["groupValue"],
-            padding: values["padding"] as api13.EdgeInsetsGeometry,
+            padding: values["padding"] as api12.EdgeInsetsGeometry,
             backgroundColor: values["backgroundColor"] as api1.Color,
             proportionalWidth: values["proportionalWidth"] as bool,
             isMomentary: values["isMomentary"] as bool,
@@ -16935,7 +16928,7 @@ api.Widget _createCupertinoSlidingSegmentedControl(
         if (!values.containsKey("padding")) {
           if (!values.containsKey("backgroundColor")) {
             return api.CupertinoSlidingSegmentedControl<Object>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<Object, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(Object? value),
@@ -16946,7 +16939,7 @@ api.Widget _createCupertinoSlidingSegmentedControl(
             );
           }
           return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<Object, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(Object? value),
@@ -16959,25 +16952,25 @@ api.Widget _createCupertinoSlidingSegmentedControl(
         }
         if (!values.containsKey("backgroundColor")) {
           return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<Object, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(Object? value),
             groupValue: values["groupValue"],
             thumbColor: values["thumbColor"] as api1.Color,
-            padding: values["padding"] as api13.EdgeInsetsGeometry,
+            padding: values["padding"] as api12.EdgeInsetsGeometry,
             proportionalWidth: values["proportionalWidth"] as bool,
             isMomentary: values["isMomentary"] as bool,
           );
         }
         return api.CupertinoSlidingSegmentedControl<Object>(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as Map<Object, api.Widget>,
           onValueChanged:
               values["onValueChanged"] as void Function(Object? value),
           groupValue: values["groupValue"],
           thumbColor: values["thumbColor"] as api1.Color,
-          padding: values["padding"] as api13.EdgeInsetsGeometry,
+          padding: values["padding"] as api12.EdgeInsetsGeometry,
           backgroundColor: values["backgroundColor"] as api1.Color,
           proportionalWidth: values["proportionalWidth"] as bool,
           isMomentary: values["isMomentary"] as bool,
@@ -16987,7 +16980,7 @@ api.Widget _createCupertinoSlidingSegmentedControl(
         if (!values.containsKey("padding")) {
           if (!values.containsKey("backgroundColor")) {
             return api.CupertinoSlidingSegmentedControl<Object>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<Object, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(Object? value),
@@ -16998,7 +16991,7 @@ api.Widget _createCupertinoSlidingSegmentedControl(
             );
           }
           return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<Object, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(Object? value),
@@ -17011,25 +17004,25 @@ api.Widget _createCupertinoSlidingSegmentedControl(
         }
         if (!values.containsKey("backgroundColor")) {
           return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<Object, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(Object? value),
             disabledChildren: values["disabledChildren"] as Set<Object>,
             groupValue: values["groupValue"],
-            padding: values["padding"] as api13.EdgeInsetsGeometry,
+            padding: values["padding"] as api12.EdgeInsetsGeometry,
             proportionalWidth: values["proportionalWidth"] as bool,
             isMomentary: values["isMomentary"] as bool,
           );
         }
         return api.CupertinoSlidingSegmentedControl<Object>(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as Map<Object, api.Widget>,
           onValueChanged:
               values["onValueChanged"] as void Function(Object? value),
           disabledChildren: values["disabledChildren"] as Set<Object>,
           groupValue: values["groupValue"],
-          padding: values["padding"] as api13.EdgeInsetsGeometry,
+          padding: values["padding"] as api12.EdgeInsetsGeometry,
           backgroundColor: values["backgroundColor"] as api1.Color,
           proportionalWidth: values["proportionalWidth"] as bool,
           isMomentary: values["isMomentary"] as bool,
@@ -17038,7 +17031,7 @@ api.Widget _createCupertinoSlidingSegmentedControl(
       if (!values.containsKey("padding")) {
         if (!values.containsKey("backgroundColor")) {
           return api.CupertinoSlidingSegmentedControl<Object>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<Object, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(Object? value),
@@ -17050,7 +17043,7 @@ api.Widget _createCupertinoSlidingSegmentedControl(
           );
         }
         return api.CupertinoSlidingSegmentedControl<Object>(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as Map<Object, api.Widget>,
           onValueChanged:
               values["onValueChanged"] as void Function(Object? value),
@@ -17064,27 +17057,27 @@ api.Widget _createCupertinoSlidingSegmentedControl(
       }
       if (!values.containsKey("backgroundColor")) {
         return api.CupertinoSlidingSegmentedControl<Object>(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as Map<Object, api.Widget>,
           onValueChanged:
               values["onValueChanged"] as void Function(Object? value),
           disabledChildren: values["disabledChildren"] as Set<Object>,
           groupValue: values["groupValue"],
           thumbColor: values["thumbColor"] as api1.Color,
-          padding: values["padding"] as api13.EdgeInsetsGeometry,
+          padding: values["padding"] as api12.EdgeInsetsGeometry,
           proportionalWidth: values["proportionalWidth"] as bool,
           isMomentary: values["isMomentary"] as bool,
         );
       }
       return api.CupertinoSlidingSegmentedControl<Object>(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         children: values["children"] as Map<Object, api.Widget>,
         onValueChanged:
             values["onValueChanged"] as void Function(Object? value),
         disabledChildren: values["disabledChildren"] as Set<Object>,
         groupValue: values["groupValue"],
         thumbColor: values["thumbColor"] as api1.Color,
-        padding: values["padding"] as api13.EdgeInsetsGeometry,
+        padding: values["padding"] as api12.EdgeInsetsGeometry,
         backgroundColor: values["backgroundColor"] as api1.Color,
         proportionalWidth: values["proportionalWidth"] as bool,
         isMomentary: values["isMomentary"] as bool,
@@ -17170,7 +17163,7 @@ Object? _CupertinoSliverNavigationBar_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSliverNavigationBar).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -17181,7 +17174,7 @@ Object? _CupertinoSliverNavigationBar_toStringShallow(
 ) {
   return (receiver as api.CupertinoSliverNavigationBar).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -17190,7 +17183,7 @@ Object? _CupertinoSliverNavigationBar_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSliverNavigationBar).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -17203,7 +17196,7 @@ Object? _CupertinoSliverNavigationBar_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoSliverNavigationBar).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -17223,7 +17216,7 @@ api.Widget _createCupertinoSliverNavigationBar(
       if (!values.containsKey("border")) {
         if (!values.containsKey("heroTag")) {
           return api.CupertinoSliverNavigationBar(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             largeTitle: values["largeTitle"] as api.Widget?,
             leading: values["leading"] as api.Widget?,
             automaticallyImplyLeading:
@@ -17239,15 +17232,15 @@ api.Widget _createCupertinoSliverNavigationBar(
             enableBackgroundFilterBlur:
                 values["enableBackgroundFilterBlur"] as bool,
             brightness: values["brightness"] as api1.Brightness?,
-            padding: values["padding"] as api13.EdgeInsetsDirectional?,
+            padding: values["padding"] as api12.EdgeInsetsDirectional?,
             transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
             stretch: values["stretch"] as bool,
-            bottom: values["bottom"] as api11.PreferredSizeWidget?,
+            bottom: values["bottom"] as api10.PreferredSizeWidget?,
             bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
           );
         }
         return api.CupertinoSliverNavigationBar(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           largeTitle: values["largeTitle"] as api.Widget?,
           leading: values["leading"] as api.Widget?,
           automaticallyImplyLeading:
@@ -17263,17 +17256,17 @@ api.Widget _createCupertinoSliverNavigationBar(
           enableBackgroundFilterBlur:
               values["enableBackgroundFilterBlur"] as bool,
           brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api13.EdgeInsetsDirectional?,
+          padding: values["padding"] as api12.EdgeInsetsDirectional?,
           transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
           heroTag: values["heroTag"] as Object,
           stretch: values["stretch"] as bool,
-          bottom: values["bottom"] as api11.PreferredSizeWidget?,
+          bottom: values["bottom"] as api10.PreferredSizeWidget?,
           bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
         );
       }
       if (!values.containsKey("heroTag")) {
         return api.CupertinoSliverNavigationBar(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           largeTitle: values["largeTitle"] as api.Widget?,
           leading: values["leading"] as api.Widget?,
           automaticallyImplyLeading:
@@ -17283,22 +17276,22 @@ api.Widget _createCupertinoSliverNavigationBar(
           previousPageTitle: values["previousPageTitle"] as String?,
           middle: values["middle"] as api.Widget?,
           trailing: values["trailing"] as api.Widget?,
-          border: values["border"] as api13.Border?,
+          border: values["border"] as api12.Border?,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           automaticBackgroundVisibility:
               values["automaticBackgroundVisibility"] as bool,
           enableBackgroundFilterBlur:
               values["enableBackgroundFilterBlur"] as bool,
           brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api13.EdgeInsetsDirectional?,
+          padding: values["padding"] as api12.EdgeInsetsDirectional?,
           transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
           stretch: values["stretch"] as bool,
-          bottom: values["bottom"] as api11.PreferredSizeWidget?,
+          bottom: values["bottom"] as api10.PreferredSizeWidget?,
           bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
         );
       }
       return api.CupertinoSliverNavigationBar(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         largeTitle: values["largeTitle"] as api.Widget?,
         leading: values["leading"] as api.Widget?,
         automaticallyImplyLeading: values["automaticallyImplyLeading"] as bool,
@@ -17307,25 +17300,25 @@ api.Widget _createCupertinoSliverNavigationBar(
         previousPageTitle: values["previousPageTitle"] as String?,
         middle: values["middle"] as api.Widget?,
         trailing: values["trailing"] as api.Widget?,
-        border: values["border"] as api13.Border?,
+        border: values["border"] as api12.Border?,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         automaticBackgroundVisibility:
             values["automaticBackgroundVisibility"] as bool,
         enableBackgroundFilterBlur:
             values["enableBackgroundFilterBlur"] as bool,
         brightness: values["brightness"] as api1.Brightness?,
-        padding: values["padding"] as api13.EdgeInsetsDirectional?,
+        padding: values["padding"] as api12.EdgeInsetsDirectional?,
         transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
         heroTag: values["heroTag"] as Object,
         stretch: values["stretch"] as bool,
-        bottom: values["bottom"] as api11.PreferredSizeWidget?,
+        bottom: values["bottom"] as api10.PreferredSizeWidget?,
         bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
       );
     case "search":
       if (!values.containsKey("border")) {
         if (!values.containsKey("heroTag")) {
           return api.CupertinoSliverNavigationBar.search(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             searchField: values["searchField"] as api.Widget,
             largeTitle: values["largeTitle"] as api.Widget?,
             leading: values["leading"] as api.Widget?,
@@ -17342,7 +17335,7 @@ api.Widget _createCupertinoSliverNavigationBar(
             enableBackgroundFilterBlur:
                 values["enableBackgroundFilterBlur"] as bool,
             brightness: values["brightness"] as api1.Brightness?,
-            padding: values["padding"] as api13.EdgeInsetsDirectional?,
+            padding: values["padding"] as api12.EdgeInsetsDirectional?,
             transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
             stretch: values["stretch"] as bool,
             bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
@@ -17351,7 +17344,7 @@ api.Widget _createCupertinoSliverNavigationBar(
           );
         }
         return api.CupertinoSliverNavigationBar.search(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           searchField: values["searchField"] as api.Widget,
           largeTitle: values["largeTitle"] as api.Widget?,
           leading: values["leading"] as api.Widget?,
@@ -17368,7 +17361,7 @@ api.Widget _createCupertinoSliverNavigationBar(
           enableBackgroundFilterBlur:
               values["enableBackgroundFilterBlur"] as bool,
           brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api13.EdgeInsetsDirectional?,
+          padding: values["padding"] as api12.EdgeInsetsDirectional?,
           transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
           heroTag: values["heroTag"] as Object,
           stretch: values["stretch"] as bool,
@@ -17379,7 +17372,7 @@ api.Widget _createCupertinoSliverNavigationBar(
       }
       if (!values.containsKey("heroTag")) {
         return api.CupertinoSliverNavigationBar.search(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           searchField: values["searchField"] as api.Widget,
           largeTitle: values["largeTitle"] as api.Widget?,
           leading: values["leading"] as api.Widget?,
@@ -17390,14 +17383,14 @@ api.Widget _createCupertinoSliverNavigationBar(
           previousPageTitle: values["previousPageTitle"] as String?,
           middle: values["middle"] as api.Widget?,
           trailing: values["trailing"] as api.Widget?,
-          border: values["border"] as api13.Border?,
+          border: values["border"] as api12.Border?,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           automaticBackgroundVisibility:
               values["automaticBackgroundVisibility"] as bool,
           enableBackgroundFilterBlur:
               values["enableBackgroundFilterBlur"] as bool,
           brightness: values["brightness"] as api1.Brightness?,
-          padding: values["padding"] as api13.EdgeInsetsDirectional?,
+          padding: values["padding"] as api12.EdgeInsetsDirectional?,
           transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
           stretch: values["stretch"] as bool,
           bottomMode: values["bottomMode"] as api.NavigationBarBottomMode?,
@@ -17406,7 +17399,7 @@ api.Widget _createCupertinoSliverNavigationBar(
         );
       }
       return api.CupertinoSliverNavigationBar.search(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         searchField: values["searchField"] as api.Widget,
         largeTitle: values["largeTitle"] as api.Widget?,
         leading: values["leading"] as api.Widget?,
@@ -17416,14 +17409,14 @@ api.Widget _createCupertinoSliverNavigationBar(
         previousPageTitle: values["previousPageTitle"] as String?,
         middle: values["middle"] as api.Widget?,
         trailing: values["trailing"] as api.Widget?,
-        border: values["border"] as api13.Border?,
+        border: values["border"] as api12.Border?,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         automaticBackgroundVisibility:
             values["automaticBackgroundVisibility"] as bool,
         enableBackgroundFilterBlur:
             values["enableBackgroundFilterBlur"] as bool,
         brightness: values["brightness"] as api1.Brightness?,
-        padding: values["padding"] as api13.EdgeInsetsDirectional?,
+        padding: values["padding"] as api12.EdgeInsetsDirectional?,
         transitionBetweenRoutes: values["transitionBetweenRoutes"] as bool,
         heroTag: values["heroTag"] as Object,
         stretch: values["stretch"] as bool,
@@ -17453,7 +17446,7 @@ Object? _CupertinoSliverRefreshControl_buildRefreshIndicator(
   Map<String, Object?> values,
 ) {
   return api.CupertinoSliverRefreshControl.buildRefreshIndicator(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
     values["refreshState"] as api.RefreshIndicatorMode,
     values["pulledExtent"] as double,
     values["refreshTriggerPullDistance"] as double,
@@ -17487,7 +17480,7 @@ Object? _CupertinoSliverRefreshControl_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSliverRefreshControl).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -17498,7 +17491,7 @@ Object? _CupertinoSliverRefreshControl_toStringShallow(
 ) {
   return (receiver as api.CupertinoSliverRefreshControl).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -17507,7 +17500,7 @@ Object? _CupertinoSliverRefreshControl_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSliverRefreshControl).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -17520,7 +17513,7 @@ Object? _CupertinoSliverRefreshControl_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoSliverRefreshControl).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -17540,7 +17533,7 @@ api.Widget _createCupertinoSliverRefreshControl(
     case "":
       if (!values.containsKey("builder")) {
         return api.CupertinoSliverRefreshControl(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           refreshTriggerPullDistance:
               values["refreshTriggerPullDistance"] as double,
           refreshIndicatorExtent: values["refreshIndicatorExtent"] as double,
@@ -17548,14 +17541,14 @@ api.Widget _createCupertinoSliverRefreshControl(
         );
       }
       return api.CupertinoSliverRefreshControl(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         refreshTriggerPullDistance:
             values["refreshTriggerPullDistance"] as double,
         refreshIndicatorExtent: values["refreshIndicatorExtent"] as double,
         builder:
             values["builder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
+                  api10.BuildContext context,
                   api.RefreshIndicatorMode refreshState,
                   double pulledExtent,
                   double refreshTriggerPullDistance,
@@ -17580,7 +17573,7 @@ Object? _CupertinoSpellCheckSuggestionsToolbar_buildButtonItems(
   Map<String, Object?> values,
 ) {
   return api.CupertinoSpellCheckSuggestionsToolbar.buildButtonItems(
-    values["editableTextState"] as api11.EditableTextState,
+    values["editableTextState"] as api10.EditableTextState,
   );
 }
 
@@ -17589,7 +17582,7 @@ Object? _CupertinoSpellCheckSuggestionsToolbar_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSpellCheckSuggestionsToolbar).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -17614,7 +17607,7 @@ Object? _CupertinoSpellCheckSuggestionsToolbar_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSpellCheckSuggestionsToolbar).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -17626,7 +17619,7 @@ Object? _CupertinoSpellCheckSuggestionsToolbar_toStringShallow(
   return (receiver as api.CupertinoSpellCheckSuggestionsToolbar)
       .toStringShallow(
         joiner: values["joiner"] as String,
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
       );
 }
 
@@ -17635,7 +17628,7 @@ Object? _CupertinoSpellCheckSuggestionsToolbar_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSpellCheckSuggestionsToolbar).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -17649,7 +17642,7 @@ Object? _CupertinoSpellCheckSuggestionsToolbar_toDiagnosticsNode(
   return (receiver as api.CupertinoSpellCheckSuggestionsToolbar)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -17668,15 +17661,15 @@ api.Widget _createCupertinoSpellCheckSuggestionsToolbar(
   switch (ctor) {
     case "":
       return api.CupertinoSpellCheckSuggestionsToolbar(
-        key: values["key"] as api4.Key?,
-        anchors: values["anchors"] as api11.TextSelectionToolbarAnchors,
-        buttonItems: values["buttonItems"] as List<api11.ContextMenuButtonItem>,
+        key: values["key"] as api3.Key?,
+        anchors: values["anchors"] as api10.TextSelectionToolbarAnchors,
+        buttonItems: values["buttonItems"] as List<api10.ContextMenuButtonItem>,
       );
     case "editableText":
       return api.CupertinoSpellCheckSuggestionsToolbar.editableText(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         editableTextState:
-            values["editableTextState"] as api11.EditableTextState,
+            values["editableTextState"] as api10.EditableTextState,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -17746,7 +17739,7 @@ Object? _CupertinoSwitch_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoSwitch).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -17771,7 +17764,7 @@ Object? _CupertinoSwitch_toStringShallow(
 ) {
   return (receiver as api.CupertinoSwitch).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -17780,7 +17773,7 @@ Object? _CupertinoSwitch_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoSwitch).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -17793,7 +17786,7 @@ Object? _CupertinoSwitch_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoSwitch).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -17808,7 +17801,7 @@ api.Widget _createCupertinoSwitch(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.CupertinoSwitch(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         value: values["value"] as bool,
         onChanged: values["onChanged"] as void Function(bool value)?,
         activeColor: values["activeColor"] as api1.Color?,
@@ -17822,36 +17815,36 @@ api.Widget _createCupertinoSwitch(String ctor, Map<String, Object?> values) {
         onLabelColor: values["onLabelColor"] as api1.Color?,
         offLabelColor: values["offLabelColor"] as api1.Color?,
         activeThumbImage:
-            values["activeThumbImage"] as api13.ImageProvider<Object>?,
+            values["activeThumbImage"] as api12.ImageProvider<Object>?,
         onActiveThumbImageError:
             values["onActiveThumbImageError"]
                 as void Function(
                   Object exception,
-                  api3.StackTrace? stackTrace,
+                  api2.StackTrace? stackTrace,
                 )?,
         inactiveThumbImage:
-            values["inactiveThumbImage"] as api13.ImageProvider<Object>?,
+            values["inactiveThumbImage"] as api12.ImageProvider<Object>?,
         onInactiveThumbImageError:
             values["onInactiveThumbImageError"]
                 as void Function(
                   Object exception,
-                  api3.StackTrace? stackTrace,
+                  api2.StackTrace? stackTrace,
                 )?,
         trackOutlineColor:
             values["trackOutlineColor"]
-                as api11.WidgetStateProperty<api1.Color?>?,
+                as api10.WidgetStateProperty<api1.Color?>?,
         trackOutlineWidth:
-            values["trackOutlineWidth"] as api11.WidgetStateProperty<double?>?,
+            values["trackOutlineWidth"] as api10.WidgetStateProperty<double?>?,
         thumbIcon:
-            values["thumbIcon"] as api11.WidgetStateProperty<api11.Icon?>?,
+            values["thumbIcon"] as api10.WidgetStateProperty<api10.Icon?>?,
         mouseCursor:
             values["mouseCursor"]
-                as api11.WidgetStateProperty<api8.MouseCursor>?,
-        focusNode: values["focusNode"] as api11.FocusNode?,
+                as api10.WidgetStateProperty<api7.MouseCursor>?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
         onFocusChange: values["onFocusChange"] as void Function(bool value)?,
         autofocus: values["autofocus"] as bool,
         dragStartBehavior:
-            values["dragStartBehavior"] as api5.DragStartBehavior,
+            values["dragStartBehavior"] as api4.DragStartBehavior,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -17893,7 +17886,7 @@ Object? _CupertinoTabBar_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTabBar).toString(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -17903,7 +17896,7 @@ Object? _CupertinoTabBar_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTabBar).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -17912,7 +17905,7 @@ Object? _CupertinoTabBar_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTabBar).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -17923,7 +17916,7 @@ Object? _CupertinoTabBar_toStringShallow(
 ) {
   return (receiver as api.CupertinoTabBar).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -17932,7 +17925,7 @@ Object? _CupertinoTabBar_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTabBar).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -17948,13 +17941,13 @@ Object? _CupertinoTabBar_debugDescribeChildren(
 
 Object? _CupertinoTabBar_opaque(Object receiver, Map<String, Object?> values) {
   return (receiver as api.CupertinoTabBar).opaque(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
 Object? _CupertinoTabBar_build(Object receiver, Map<String, Object?> values) {
   return (receiver as api.CupertinoTabBar).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -17965,13 +17958,13 @@ Object? _CupertinoTabBar_copyWith(
   return (receiver as api.CupertinoTabBar).copyWith(
     activeColor: values["activeColor"] as api1.Color?,
     backgroundColor: values["backgroundColor"] as api1.Color?,
-    border: values["border"] as api13.Border?,
+    border: values["border"] as api12.Border?,
     currentIndex: values["currentIndex"] as int?,
     height: values["height"] as double?,
     iconSize: values["iconSize"] as double?,
     inactiveColor: values["inactiveColor"] as api1.Color?,
-    items: values["items"] as List<api11.BottomNavigationBarItem>?,
-    key: values["key"] as api4.Key?,
+    items: values["items"] as List<api10.BottomNavigationBarItem>?,
+    key: values["key"] as api3.Key?,
     onTap: values["onTap"] as void Function(int value)?,
   );
 }
@@ -17989,8 +17982,8 @@ api.Widget _createCupertinoTabBar(String ctor, Map<String, Object?> values) {
       if (!values.containsKey("inactiveColor")) {
         if (!values.containsKey("border")) {
           return api.CupertinoTabBar(
-            key: values["key"] as api4.Key?,
-            items: values["items"] as List<api11.BottomNavigationBarItem>,
+            key: values["key"] as api3.Key?,
+            items: values["items"] as List<api10.BottomNavigationBarItem>,
             onTap: values["onTap"] as void Function(int value)?,
             currentIndex: values["currentIndex"] as int,
             backgroundColor: values["backgroundColor"] as api1.Color?,
@@ -18000,21 +17993,21 @@ api.Widget _createCupertinoTabBar(String ctor, Map<String, Object?> values) {
           );
         }
         return api.CupertinoTabBar(
-          key: values["key"] as api4.Key?,
-          items: values["items"] as List<api11.BottomNavigationBarItem>,
+          key: values["key"] as api3.Key?,
+          items: values["items"] as List<api10.BottomNavigationBarItem>,
           onTap: values["onTap"] as void Function(int value)?,
           currentIndex: values["currentIndex"] as int,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           activeColor: values["activeColor"] as api1.Color?,
           iconSize: values["iconSize"] as double,
           height: values["height"] as double,
-          border: values["border"] as api13.Border?,
+          border: values["border"] as api12.Border?,
         );
       }
       if (!values.containsKey("border")) {
         return api.CupertinoTabBar(
-          key: values["key"] as api4.Key?,
-          items: values["items"] as List<api11.BottomNavigationBarItem>,
+          key: values["key"] as api3.Key?,
+          items: values["items"] as List<api10.BottomNavigationBarItem>,
           onTap: values["onTap"] as void Function(int value)?,
           currentIndex: values["currentIndex"] as int,
           backgroundColor: values["backgroundColor"] as api1.Color?,
@@ -18025,8 +18018,8 @@ api.Widget _createCupertinoTabBar(String ctor, Map<String, Object?> values) {
         );
       }
       return api.CupertinoTabBar(
-        key: values["key"] as api4.Key?,
-        items: values["items"] as List<api11.BottomNavigationBarItem>,
+        key: values["key"] as api3.Key?,
+        items: values["items"] as List<api10.BottomNavigationBarItem>,
         onTap: values["onTap"] as void Function(int value)?,
         currentIndex: values["currentIndex"] as int,
         backgroundColor: values["backgroundColor"] as api1.Color?,
@@ -18034,7 +18027,7 @@ api.Widget _createCupertinoTabBar(String ctor, Map<String, Object?> values) {
         inactiveColor: values["inactiveColor"] as api1.Color,
         iconSize: values["iconSize"] as double,
         height: values["height"] as double,
-        border: values["border"] as api13.Border?,
+        border: values["border"] as api12.Border?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -18079,31 +18072,31 @@ Object? _CupertinoTabController_dispose(
   return null;
 }
 
-Object? _FlaxProxyDispatch6_super_call_addListener(
+Object? _FlaxProxyDispatch5_super_call_addListener(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  (receiver as _FlaxProxyDispatch6)._flaxSuper_addListener(
+  (receiver as _FlaxProxyDispatch5)._flaxSuper_addListener(
     values["listener"] as void Function(),
   );
   return null;
 }
 
-Object? _FlaxProxyDispatch6_super_call_removeListener(
+Object? _FlaxProxyDispatch5_super_call_removeListener(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  (receiver as _FlaxProxyDispatch6)._flaxSuper_removeListener(
+  (receiver as _FlaxProxyDispatch5)._flaxSuper_removeListener(
     values["listener"] as void Function(),
   );
   return null;
 }
 
-Object? _FlaxProxyDispatch6_super_call_dispose(
+Object? _FlaxProxyDispatch5_super_call_dispose(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  (receiver as _FlaxProxyDispatch6)._flaxSuper_dispose();
+  (receiver as _FlaxProxyDispatch5)._flaxSuper_dispose();
   return null;
 }
 
@@ -18111,10 +18104,10 @@ Object? _CupertinoTabController_super_get_index(
   Object receiver,
   Map<String, Object?> values,
 ) => (receiver as _CupertinoTabControllerProxy)._flaxSuperGet_index;
-Object? _FlaxProxyDispatch6_super_get_hasListeners(
+Object? _FlaxProxyDispatch5_super_get_hasListeners(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch6)._flaxSuperGet_hasListeners;
+) => (receiver as _FlaxProxyDispatch5)._flaxSuperGet_hasListeners;
 Object? _CupertinoTabController_super_set_index(
   Object receiver,
   Map<String, Object?> values,
@@ -18182,7 +18175,7 @@ Object? _CupertinoTabScaffold_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTabScaffold).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -18193,7 +18186,7 @@ Object? _CupertinoTabScaffold_toStringShallow(
 ) {
   return (receiver as api.CupertinoTabScaffold).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -18202,7 +18195,7 @@ Object? _CupertinoTabScaffold_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTabScaffold).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -18215,7 +18208,7 @@ Object? _CupertinoTabScaffold_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTabScaffold).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -18233,11 +18226,11 @@ api.Widget _createCupertinoTabScaffold(
   switch (ctor) {
     case "":
       return api.CupertinoTabScaffold(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         tabBar: values["tabBar"] as api.CupertinoTabBar,
         tabBuilder:
             values["tabBuilder"]
-                as api.Widget Function(api11.BuildContext context, int index),
+                as api.Widget Function(api10.BuildContext context, int index),
         controller: values["controller"] as api.CupertinoTabController?,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         resizeToAvoidBottomInset: values["resizeToAvoidBottomInset"] as bool,
@@ -18293,7 +18286,7 @@ Object? _CupertinoTabView_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTabView).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -18304,7 +18297,7 @@ Object? _CupertinoTabView_toStringShallow(
 ) {
   return (receiver as api.CupertinoTabView).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -18313,7 +18306,7 @@ Object? _CupertinoTabView_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTabView).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -18326,7 +18319,7 @@ Object? _CupertinoTabView_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTabView).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -18342,58 +18335,58 @@ api.Widget _createCupertinoTabView(String ctor, Map<String, Object?> values) {
     case "":
       if (!values.containsKey("navigatorObservers")) {
         return api.CupertinoTabView(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           builder:
               values["builder"]
-                  as api.Widget Function(api11.BuildContext context)?,
+                  as api.Widget Function(api10.BuildContext context)?,
           navigatorKey:
-              values["navigatorKey"] as api11.GlobalKey<api11.NavigatorState>?,
+              values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
           defaultTitle: values["defaultTitle"] as String?,
           routes:
               values["routes"]
                   as Map<
                     String,
-                    api.Widget Function(api11.BuildContext context)
+                    api.Widget Function(api10.BuildContext context)
                   >?,
           onGenerateRoute:
               values["onGenerateRoute"]
-                  as api11.Route<Object?>? Function(
-                    api11.RouteSettings settings,
+                  as api10.Route<Object?>? Function(
+                    api10.RouteSettings settings,
                   )?,
           onUnknownRoute:
               values["onUnknownRoute"]
-                  as api11.Route<Object?>? Function(
-                    api11.RouteSettings settings,
+                  as api10.Route<Object?>? Function(
+                    api10.RouteSettings settings,
                   )?,
           restorationScopeId: values["restorationScopeId"] as String?,
         );
       }
       return api.CupertinoTabView(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         builder:
             values["builder"]
-                as api.Widget Function(api11.BuildContext context)?,
+                as api.Widget Function(api10.BuildContext context)?,
         navigatorKey:
-            values["navigatorKey"] as api11.GlobalKey<api11.NavigatorState>?,
+            values["navigatorKey"] as api10.GlobalKey<api10.NavigatorState>?,
         defaultTitle: values["defaultTitle"] as String?,
         routes:
             values["routes"]
                 as Map<
                   String,
-                  api.Widget Function(api11.BuildContext context)
+                  api.Widget Function(api10.BuildContext context)
                 >?,
         onGenerateRoute:
             values["onGenerateRoute"]
-                as api11.Route<Object?>? Function(
-                  api11.RouteSettings settings,
+                as api10.Route<Object?>? Function(
+                  api10.RouteSettings settings,
                 )?,
         onUnknownRoute:
             values["onUnknownRoute"]
-                as api11.Route<Object?>? Function(
-                  api11.RouteSettings settings,
+                as api10.Route<Object?>? Function(
+                  api10.RouteSettings settings,
                 )?,
         navigatorObservers:
-            values["navigatorObservers"] as List<api11.NavigatorObserver>,
+            values["navigatorObservers"] as List<api10.NavigatorObserver>,
         restorationScopeId: values["restorationScopeId"] as String?,
       );
     default:
@@ -18554,7 +18547,7 @@ Object? _CupertinoTextField_inferIOSSpellCheckConfiguration(
   Map<String, Object?> values,
 ) {
   return api.CupertinoTextField.inferIOSSpellCheckConfiguration(
-    values["configuration"] as api11.SpellCheckConfiguration?,
+    values["configuration"] as api10.SpellCheckConfiguration?,
   );
 }
 
@@ -18570,7 +18563,7 @@ Object? _CupertinoTextField_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextField).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -18595,7 +18588,7 @@ Object? _CupertinoTextField_toStringShallow(
 ) {
   return (receiver as api.CupertinoTextField).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -18604,7 +18597,7 @@ Object? _CupertinoTextField_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextField).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -18617,7 +18610,7 @@ Object? _CupertinoTextField_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTextField).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -18635,67 +18628,67 @@ api.Widget _createCupertinoTextField(String ctor, Map<String, Object?> values) {
         api.CupertinoTextField.new,
         <Object?>[],
         <Symbol, Object?>{
-          #key: values["key"] as api4.Key?,
+          #key: values["key"] as api3.Key?,
           if (values.containsKey("groupId"))
             #groupId: values["groupId"] as Object,
-          #controller: values["controller"] as api11.TextEditingController?,
-          #focusNode: values["focusNode"] as api11.FocusNode?,
+          #controller: values["controller"] as api10.TextEditingController?,
+          #focusNode: values["focusNode"] as api10.FocusNode?,
           #undoController:
-              values["undoController"] as api11.UndoHistoryController?,
+              values["undoController"] as api10.UndoHistoryController?,
           if (values.containsKey("decoration"))
-            #decoration: values["decoration"] as api13.BoxDecoration?,
+            #decoration: values["decoration"] as api12.BoxDecoration?,
           if (values.containsKey("padding"))
-            #padding: values["padding"] as api13.EdgeInsetsGeometry,
+            #padding: values["padding"] as api12.EdgeInsetsGeometry,
           #placeholder: values["placeholder"] as String?,
           if (values.containsKey("placeholderStyle"))
-            #placeholderStyle: values["placeholderStyle"] as api13.TextStyle?,
+            #placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
           #prefix: values["prefix"] as api.Widget?,
           #prefixMode: values["prefixMode"] as api.OverlayVisibilityMode,
           #suffix: values["suffix"] as api.Widget?,
           #suffixMode: values["suffixMode"] as api.OverlayVisibilityMode,
           #crossAxisAlignment:
-              values["crossAxisAlignment"] as api10.CrossAxisAlignment,
+              values["crossAxisAlignment"] as api9.CrossAxisAlignment,
           #clearButtonMode:
               values["clearButtonMode"] as api.OverlayVisibilityMode,
           #clearButtonSemanticLabel:
               values["clearButtonSemanticLabel"] as String?,
-          #keyboardType: values["keyboardType"] as api8.TextInputType?,
-          #textInputAction: values["textInputAction"] as api8.TextInputAction?,
+          #keyboardType: values["keyboardType"] as api7.TextInputType?,
+          #textInputAction: values["textInputAction"] as api7.TextInputAction?,
           #textCapitalization:
-              values["textCapitalization"] as api8.TextCapitalization,
-          #style: values["style"] as api13.TextStyle?,
-          #strutStyle: values["strutStyle"] as api13.StrutStyle?,
+              values["textCapitalization"] as api7.TextCapitalization,
+          #style: values["style"] as api12.TextStyle?,
+          #strutStyle: values["strutStyle"] as api12.StrutStyle?,
           #textAlign: values["textAlign"] as api1.TextAlign,
           #textAlignVertical:
-              values["textAlignVertical"] as api13.TextAlignVertical?,
+              values["textAlignVertical"] as api12.TextAlignVertical?,
           #textDirection: values["textDirection"] as api1.TextDirection?,
           #readOnly: values["readOnly"] as bool,
-          #toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+          #toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
           #showCursor: values["showCursor"] as bool?,
           #autofocus: values["autofocus"] as bool,
           #obscuringCharacter: values["obscuringCharacter"] as String,
           #obscureText: values["obscureText"] as bool,
           #autocorrect: values["autocorrect"] as bool?,
-          #smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-          #smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+          #smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+          #smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
           #enableSuggestions: values["enableSuggestions"] as bool,
           #maxLines: values["maxLines"] as int?,
           #minLines: values["minLines"] as int?,
           #expands: values["expands"] as bool,
           #maxLength: values["maxLength"] as int?,
           #maxLengthEnforcement:
-              values["maxLengthEnforcement"] as api8.MaxLengthEnforcement?,
+              values["maxLengthEnforcement"] as api7.MaxLengthEnforcement?,
           #onChanged: values["onChanged"] as void Function(String value)?,
           #onEditingComplete: values["onEditingComplete"] as void Function()?,
           #onSubmitted: values["onSubmitted"] as void Function(String value)?,
           #onTapOutside:
               values["onTapOutside"]
-                  as void Function(api5.PointerDownEvent event)?,
+                  as void Function(api4.PointerDownEvent event)?,
           #onTapUpOutside:
               values["onTapUpOutside"]
-                  as void Function(api5.PointerDownEvent event)?,
+                  as void Function(api4.PointerDownEvent event)?,
           #inputFormatters:
-              values["inputFormatters"] as List<api8.TextInputFormatter>?,
+              values["inputFormatters"] as List<api7.TextInputFormatter>?,
           #enabled: values["enabled"] as bool,
           #cursorWidth: values["cursorWidth"] as double,
           #cursorHeight: values["cursorHeight"] as double?,
@@ -18709,23 +18702,23 @@ api.Widget _createCupertinoTextField(String ctor, Map<String, Object?> values) {
               values["selectionWidthStyle"] as api1.BoxWidthStyle?,
           #keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
           if (values.containsKey("scrollPadding"))
-            #scrollPadding: values["scrollPadding"] as api13.EdgeInsets,
+            #scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
           #dragStartBehavior:
-              values["dragStartBehavior"] as api5.DragStartBehavior,
+              values["dragStartBehavior"] as api4.DragStartBehavior,
           #enableInteractiveSelection:
               values["enableInteractiveSelection"] as bool?,
           #selectAllOnFocus: values["selectAllOnFocus"] as bool?,
           #selectionControls:
-              values["selectionControls"] as api11.TextSelectionControls?,
+              values["selectionControls"] as api10.TextSelectionControls?,
           #onTap: values["onTap"] as void Function()?,
           #scrollController:
-              values["scrollController"] as api11.ScrollController?,
-          #scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+              values["scrollController"] as api10.ScrollController?,
+          #scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
           if (values.containsKey("autofillHints"))
             #autofillHints: values["autofillHints"] as Iterable<String>?,
           #contentInsertionConfiguration:
               values["contentInsertionConfiguration"]
-                  as api11.ContentInsertionConfiguration?,
+                  as api10.ContentInsertionConfiguration?,
           #clipBehavior: values["clipBehavior"] as api1.Clip,
           #restorationId: values["restorationId"] as String?,
           #scribbleEnabled: values["scribbleEnabled"] as bool,
@@ -18737,15 +18730,15 @@ api.Widget _createCupertinoTextField(String ctor, Map<String, Object?> values) {
             #contextMenuBuilder:
                 values["contextMenuBuilder"]
                     as api.Widget Function(
-                      api11.BuildContext context,
-                      api11.EditableTextState editableTextState,
+                      api10.BuildContext context,
+                      api10.EditableTextState editableTextState,
                     )?,
           #spellCheckConfiguration:
               values["spellCheckConfiguration"]
-                  as api11.SpellCheckConfiguration?,
+                  as api10.SpellCheckConfiguration?,
           #magnifierConfiguration:
               values["magnifierConfiguration"]
-                  as api11.TextMagnifierConfiguration?,
+                  as api10.TextMagnifierConfiguration?,
         },
       ) as api.CupertinoTextField;
     case "borderless":
@@ -18753,66 +18746,66 @@ api.Widget _createCupertinoTextField(String ctor, Map<String, Object?> values) {
         api.CupertinoTextField.borderless,
         <Object?>[],
         <Symbol, Object?>{
-          #key: values["key"] as api4.Key?,
+          #key: values["key"] as api3.Key?,
           if (values.containsKey("groupId"))
             #groupId: values["groupId"] as Object,
-          #controller: values["controller"] as api11.TextEditingController?,
-          #focusNode: values["focusNode"] as api11.FocusNode?,
+          #controller: values["controller"] as api10.TextEditingController?,
+          #focusNode: values["focusNode"] as api10.FocusNode?,
           #undoController:
-              values["undoController"] as api11.UndoHistoryController?,
-          #decoration: values["decoration"] as api13.BoxDecoration?,
+              values["undoController"] as api10.UndoHistoryController?,
+          #decoration: values["decoration"] as api12.BoxDecoration?,
           if (values.containsKey("padding"))
-            #padding: values["padding"] as api13.EdgeInsetsGeometry,
+            #padding: values["padding"] as api12.EdgeInsetsGeometry,
           #placeholder: values["placeholder"] as String?,
           if (values.containsKey("placeholderStyle"))
-            #placeholderStyle: values["placeholderStyle"] as api13.TextStyle?,
+            #placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
           #prefix: values["prefix"] as api.Widget?,
           #prefixMode: values["prefixMode"] as api.OverlayVisibilityMode,
           #suffix: values["suffix"] as api.Widget?,
           #suffixMode: values["suffixMode"] as api.OverlayVisibilityMode,
           #crossAxisAlignment:
-              values["crossAxisAlignment"] as api10.CrossAxisAlignment,
+              values["crossAxisAlignment"] as api9.CrossAxisAlignment,
           #clearButtonMode:
               values["clearButtonMode"] as api.OverlayVisibilityMode,
           #clearButtonSemanticLabel:
               values["clearButtonSemanticLabel"] as String?,
-          #keyboardType: values["keyboardType"] as api8.TextInputType?,
-          #textInputAction: values["textInputAction"] as api8.TextInputAction?,
+          #keyboardType: values["keyboardType"] as api7.TextInputType?,
+          #textInputAction: values["textInputAction"] as api7.TextInputAction?,
           #textCapitalization:
-              values["textCapitalization"] as api8.TextCapitalization,
-          #style: values["style"] as api13.TextStyle?,
-          #strutStyle: values["strutStyle"] as api13.StrutStyle?,
+              values["textCapitalization"] as api7.TextCapitalization,
+          #style: values["style"] as api12.TextStyle?,
+          #strutStyle: values["strutStyle"] as api12.StrutStyle?,
           #textAlign: values["textAlign"] as api1.TextAlign,
           #textAlignVertical:
-              values["textAlignVertical"] as api13.TextAlignVertical?,
+              values["textAlignVertical"] as api12.TextAlignVertical?,
           #textDirection: values["textDirection"] as api1.TextDirection?,
           #readOnly: values["readOnly"] as bool,
-          #toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+          #toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
           #showCursor: values["showCursor"] as bool?,
           #autofocus: values["autofocus"] as bool,
           #obscuringCharacter: values["obscuringCharacter"] as String,
           #obscureText: values["obscureText"] as bool,
           #autocorrect: values["autocorrect"] as bool?,
-          #smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-          #smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+          #smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+          #smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
           #enableSuggestions: values["enableSuggestions"] as bool,
           #maxLines: values["maxLines"] as int?,
           #minLines: values["minLines"] as int?,
           #expands: values["expands"] as bool,
           #maxLength: values["maxLength"] as int?,
           #maxLengthEnforcement:
-              values["maxLengthEnforcement"] as api8.MaxLengthEnforcement?,
+              values["maxLengthEnforcement"] as api7.MaxLengthEnforcement?,
           #onChanged: values["onChanged"] as void Function(String value)?,
           #onEditingComplete: values["onEditingComplete"] as void Function()?,
           #onSubmitted: values["onSubmitted"] as void Function(String value)?,
           #onTapOutside:
               values["onTapOutside"]
-                  as void Function(api5.PointerDownEvent event)?,
+                  as void Function(api4.PointerDownEvent event)?,
           #onTapUpOutside:
               values["onTapUpOutside"]
-                  as void Function(api5.PointerDownEvent event)?,
+                  as void Function(api4.PointerDownEvent event)?,
           #inputFormatters:
-              values["inputFormatters"] as List<api8.TextInputFormatter>?,
+              values["inputFormatters"] as List<api7.TextInputFormatter>?,
           #enabled: values["enabled"] as bool,
           #cursorWidth: values["cursorWidth"] as double,
           #cursorHeight: values["cursorHeight"] as double?,
@@ -18826,23 +18819,23 @@ api.Widget _createCupertinoTextField(String ctor, Map<String, Object?> values) {
               values["selectionWidthStyle"] as api1.BoxWidthStyle?,
           #keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
           if (values.containsKey("scrollPadding"))
-            #scrollPadding: values["scrollPadding"] as api13.EdgeInsets,
+            #scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
           #dragStartBehavior:
-              values["dragStartBehavior"] as api5.DragStartBehavior,
+              values["dragStartBehavior"] as api4.DragStartBehavior,
           #enableInteractiveSelection:
               values["enableInteractiveSelection"] as bool?,
           #selectAllOnFocus: values["selectAllOnFocus"] as bool?,
           #selectionControls:
-              values["selectionControls"] as api11.TextSelectionControls?,
+              values["selectionControls"] as api10.TextSelectionControls?,
           #onTap: values["onTap"] as void Function()?,
           #scrollController:
-              values["scrollController"] as api11.ScrollController?,
-          #scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+              values["scrollController"] as api10.ScrollController?,
+          #scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
           if (values.containsKey("autofillHints"))
             #autofillHints: values["autofillHints"] as Iterable<String>?,
           #contentInsertionConfiguration:
               values["contentInsertionConfiguration"]
-                  as api11.ContentInsertionConfiguration?,
+                  as api10.ContentInsertionConfiguration?,
           #clipBehavior: values["clipBehavior"] as api1.Clip,
           #restorationId: values["restorationId"] as String?,
           #scribbleEnabled: values["scribbleEnabled"] as bool,
@@ -18854,15 +18847,15 @@ api.Widget _createCupertinoTextField(String ctor, Map<String, Object?> values) {
             #contextMenuBuilder:
                 values["contextMenuBuilder"]
                     as api.Widget Function(
-                      api11.BuildContext context,
-                      api11.EditableTextState editableTextState,
+                      api10.BuildContext context,
+                      api10.EditableTextState editableTextState,
                     )?,
           #spellCheckConfiguration:
               values["spellCheckConfiguration"]
-                  as api11.SpellCheckConfiguration?,
+                  as api10.SpellCheckConfiguration?,
           #magnifierConfiguration:
               values["magnifierConfiguration"]
-                  as api11.TextMagnifierConfiguration?,
+                  as api10.TextMagnifierConfiguration?,
         },
       ) as api.CupertinoTextField;
     default:
@@ -18928,7 +18921,7 @@ Object? _CupertinoTextFormFieldRow_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextFormFieldRow).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -18939,7 +18932,7 @@ Object? _CupertinoTextFormFieldRow_toStringShallow(
 ) {
   return (receiver as api.CupertinoTextFormFieldRow).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -18948,7 +18941,7 @@ Object? _CupertinoTextFormFieldRow_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextFormFieldRow).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -18961,7 +18954,7 @@ Object? _CupertinoTextFormFieldRow_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTextFormFieldRow).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -18982,35 +18975,35 @@ api.Widget _createCupertinoTextFormFieldRow(
         if (!values.containsKey("placeholderStyle")) {
           if (!values.containsKey("contextMenuBuilder")) {
             return api.CupertinoTextFormFieldRow(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               prefix: values["prefix"] as api.Widget?,
-              padding: values["padding"] as api13.EdgeInsetsGeometry?,
-              controller: values["controller"] as api11.TextEditingController?,
+              padding: values["padding"] as api12.EdgeInsetsGeometry?,
+              controller: values["controller"] as api10.TextEditingController?,
               initialValue: values["initialValue"] as String?,
-              focusNode: values["focusNode"] as api11.FocusNode?,
-              decoration: values["decoration"] as api13.BoxDecoration?,
-              keyboardType: values["keyboardType"] as api8.TextInputType?,
+              focusNode: values["focusNode"] as api10.FocusNode?,
+              decoration: values["decoration"] as api12.BoxDecoration?,
+              keyboardType: values["keyboardType"] as api7.TextInputType?,
               textCapitalization:
-                  values["textCapitalization"] as api8.TextCapitalization,
+                  values["textCapitalization"] as api7.TextCapitalization,
               textInputAction:
-                  values["textInputAction"] as api8.TextInputAction?,
-              style: values["style"] as api13.TextStyle?,
-              strutStyle: values["strutStyle"] as api13.StrutStyle?,
+                  values["textInputAction"] as api7.TextInputAction?,
+              style: values["style"] as api12.TextStyle?,
+              strutStyle: values["strutStyle"] as api12.StrutStyle?,
               textDirection: values["textDirection"] as api1.TextDirection?,
               textAlign: values["textAlign"] as api1.TextAlign,
               textAlignVertical:
-                  values["textAlignVertical"] as api13.TextAlignVertical?,
+                  values["textAlignVertical"] as api12.TextAlignVertical?,
               autofocus: values["autofocus"] as bool,
               readOnly: values["readOnly"] as bool,
-              toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+              toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
               showCursor: values["showCursor"] as bool?,
               obscuringCharacter: values["obscuringCharacter"] as String,
               obscureText: values["obscureText"] as bool,
               autocorrect: values["autocorrect"] as bool,
               smartDashesType:
-                  values["smartDashesType"] as api8.SmartDashesType?,
+                  values["smartDashesType"] as api7.SmartDashesType?,
               smartQuotesType:
-                  values["smartQuotesType"] as api8.SmartQuotesType?,
+                  values["smartQuotesType"] as api7.SmartQuotesType?,
               enableSuggestions: values["enableSuggestions"] as bool,
               maxLines: values["maxLines"] as int?,
               minLines: values["minLines"] as int?,
@@ -19026,7 +19019,7 @@ api.Widget _createCupertinoTextFormFieldRow(
               validator:
                   values["validator"] as String? Function(String? value)?,
               inputFormatters:
-                  values["inputFormatters"] as List<api8.TextInputFormatter>?,
+                  values["inputFormatters"] as List<api7.TextInputFormatter>?,
               enabled: values["enabled"] as bool?,
               cursorWidth: values["cursorWidth"] as double,
               cursorHeight: values["cursorHeight"] as double?,
@@ -19036,15 +19029,15 @@ api.Widget _createCupertinoTextFormFieldRow(
               enableInteractiveSelection:
                   values["enableInteractiveSelection"] as bool,
               selectionControls:
-                  values["selectionControls"] as api11.TextSelectionControls?,
-              scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+                  values["selectionControls"] as api10.TextSelectionControls?,
+              scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
               autofillHints: values["autofillHints"] as Iterable<String>?,
               autovalidateMode:
-                  values["autovalidateMode"] as api11.AutovalidateMode,
+                  values["autovalidateMode"] as api10.AutovalidateMode,
               placeholder: values["placeholder"] as String?,
               spellCheckConfiguration:
                   values["spellCheckConfiguration"]
-                      as api11.SpellCheckConfiguration?,
+                      as api10.SpellCheckConfiguration?,
               selectionHeightStyle:
                   values["selectionHeightStyle"] as api1.BoxHeightStyle?,
               selectionWidthStyle:
@@ -19053,32 +19046,32 @@ api.Widget _createCupertinoTextFormFieldRow(
             );
           }
           return api.CupertinoTextFormFieldRow(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             prefix: values["prefix"] as api.Widget?,
-            padding: values["padding"] as api13.EdgeInsetsGeometry?,
-            controller: values["controller"] as api11.TextEditingController?,
+            padding: values["padding"] as api12.EdgeInsetsGeometry?,
+            controller: values["controller"] as api10.TextEditingController?,
             initialValue: values["initialValue"] as String?,
-            focusNode: values["focusNode"] as api11.FocusNode?,
-            decoration: values["decoration"] as api13.BoxDecoration?,
-            keyboardType: values["keyboardType"] as api8.TextInputType?,
+            focusNode: values["focusNode"] as api10.FocusNode?,
+            decoration: values["decoration"] as api12.BoxDecoration?,
+            keyboardType: values["keyboardType"] as api7.TextInputType?,
             textCapitalization:
-                values["textCapitalization"] as api8.TextCapitalization,
-            textInputAction: values["textInputAction"] as api8.TextInputAction?,
-            style: values["style"] as api13.TextStyle?,
-            strutStyle: values["strutStyle"] as api13.StrutStyle?,
+                values["textCapitalization"] as api7.TextCapitalization,
+            textInputAction: values["textInputAction"] as api7.TextInputAction?,
+            style: values["style"] as api12.TextStyle?,
+            strutStyle: values["strutStyle"] as api12.StrutStyle?,
             textDirection: values["textDirection"] as api1.TextDirection?,
             textAlign: values["textAlign"] as api1.TextAlign,
             textAlignVertical:
-                values["textAlignVertical"] as api13.TextAlignVertical?,
+                values["textAlignVertical"] as api12.TextAlignVertical?,
             autofocus: values["autofocus"] as bool,
             readOnly: values["readOnly"] as bool,
-            toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+            toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
             showCursor: values["showCursor"] as bool?,
             obscuringCharacter: values["obscuringCharacter"] as String,
             obscureText: values["obscureText"] as bool,
             autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+            smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+            smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
             enableSuggestions: values["enableSuggestions"] as bool,
             maxLines: values["maxLines"] as int?,
             minLines: values["minLines"] as int?,
@@ -19092,7 +19085,7 @@ api.Widget _createCupertinoTextFormFieldRow(
             onSaved: values["onSaved"] as void Function(String? newValue)?,
             validator: values["validator"] as String? Function(String? value)?,
             inputFormatters:
-                values["inputFormatters"] as List<api8.TextInputFormatter>?,
+                values["inputFormatters"] as List<api7.TextInputFormatter>?,
             enabled: values["enabled"] as bool?,
             cursorWidth: values["cursorWidth"] as double,
             cursorHeight: values["cursorHeight"] as double?,
@@ -19102,21 +19095,21 @@ api.Widget _createCupertinoTextFormFieldRow(
             enableInteractiveSelection:
                 values["enableInteractiveSelection"] as bool,
             selectionControls:
-                values["selectionControls"] as api11.TextSelectionControls?,
-            scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+                values["selectionControls"] as api10.TextSelectionControls?,
+            scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
             autofillHints: values["autofillHints"] as Iterable<String>?,
             autovalidateMode:
-                values["autovalidateMode"] as api11.AutovalidateMode,
+                values["autovalidateMode"] as api10.AutovalidateMode,
             placeholder: values["placeholder"] as String?,
             contextMenuBuilder:
                 values["contextMenuBuilder"]
                     as api.Widget Function(
-                      api11.BuildContext context,
-                      api11.EditableTextState editableTextState,
+                      api10.BuildContext context,
+                      api10.EditableTextState editableTextState,
                     )?,
             spellCheckConfiguration:
                 values["spellCheckConfiguration"]
-                    as api11.SpellCheckConfiguration?,
+                    as api10.SpellCheckConfiguration?,
             selectionHeightStyle:
                 values["selectionHeightStyle"] as api1.BoxHeightStyle?,
             selectionWidthStyle:
@@ -19126,32 +19119,32 @@ api.Widget _createCupertinoTextFormFieldRow(
         }
         if (!values.containsKey("contextMenuBuilder")) {
           return api.CupertinoTextFormFieldRow(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             prefix: values["prefix"] as api.Widget?,
-            padding: values["padding"] as api13.EdgeInsetsGeometry?,
-            controller: values["controller"] as api11.TextEditingController?,
+            padding: values["padding"] as api12.EdgeInsetsGeometry?,
+            controller: values["controller"] as api10.TextEditingController?,
             initialValue: values["initialValue"] as String?,
-            focusNode: values["focusNode"] as api11.FocusNode?,
-            decoration: values["decoration"] as api13.BoxDecoration?,
-            keyboardType: values["keyboardType"] as api8.TextInputType?,
+            focusNode: values["focusNode"] as api10.FocusNode?,
+            decoration: values["decoration"] as api12.BoxDecoration?,
+            keyboardType: values["keyboardType"] as api7.TextInputType?,
             textCapitalization:
-                values["textCapitalization"] as api8.TextCapitalization,
-            textInputAction: values["textInputAction"] as api8.TextInputAction?,
-            style: values["style"] as api13.TextStyle?,
-            strutStyle: values["strutStyle"] as api13.StrutStyle?,
+                values["textCapitalization"] as api7.TextCapitalization,
+            textInputAction: values["textInputAction"] as api7.TextInputAction?,
+            style: values["style"] as api12.TextStyle?,
+            strutStyle: values["strutStyle"] as api12.StrutStyle?,
             textDirection: values["textDirection"] as api1.TextDirection?,
             textAlign: values["textAlign"] as api1.TextAlign,
             textAlignVertical:
-                values["textAlignVertical"] as api13.TextAlignVertical?,
+                values["textAlignVertical"] as api12.TextAlignVertical?,
             autofocus: values["autofocus"] as bool,
             readOnly: values["readOnly"] as bool,
-            toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+            toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
             showCursor: values["showCursor"] as bool?,
             obscuringCharacter: values["obscuringCharacter"] as String,
             obscureText: values["obscureText"] as bool,
             autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+            smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+            smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
             enableSuggestions: values["enableSuggestions"] as bool,
             maxLines: values["maxLines"] as int?,
             minLines: values["minLines"] as int?,
@@ -19165,7 +19158,7 @@ api.Widget _createCupertinoTextFormFieldRow(
             onSaved: values["onSaved"] as void Function(String? newValue)?,
             validator: values["validator"] as String? Function(String? value)?,
             inputFormatters:
-                values["inputFormatters"] as List<api8.TextInputFormatter>?,
+                values["inputFormatters"] as List<api7.TextInputFormatter>?,
             enabled: values["enabled"] as bool?,
             cursorWidth: values["cursorWidth"] as double,
             cursorHeight: values["cursorHeight"] as double?,
@@ -19175,16 +19168,16 @@ api.Widget _createCupertinoTextFormFieldRow(
             enableInteractiveSelection:
                 values["enableInteractiveSelection"] as bool,
             selectionControls:
-                values["selectionControls"] as api11.TextSelectionControls?,
-            scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+                values["selectionControls"] as api10.TextSelectionControls?,
+            scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
             autofillHints: values["autofillHints"] as Iterable<String>?,
             autovalidateMode:
-                values["autovalidateMode"] as api11.AutovalidateMode,
+                values["autovalidateMode"] as api10.AutovalidateMode,
             placeholder: values["placeholder"] as String?,
-            placeholderStyle: values["placeholderStyle"] as api13.TextStyle?,
+            placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
             spellCheckConfiguration:
                 values["spellCheckConfiguration"]
-                    as api11.SpellCheckConfiguration?,
+                    as api10.SpellCheckConfiguration?,
             selectionHeightStyle:
                 values["selectionHeightStyle"] as api1.BoxHeightStyle?,
             selectionWidthStyle:
@@ -19193,32 +19186,32 @@ api.Widget _createCupertinoTextFormFieldRow(
           );
         }
         return api.CupertinoTextFormFieldRow(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           prefix: values["prefix"] as api.Widget?,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
-          controller: values["controller"] as api11.TextEditingController?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
+          controller: values["controller"] as api10.TextEditingController?,
           initialValue: values["initialValue"] as String?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
-          decoration: values["decoration"] as api13.BoxDecoration?,
-          keyboardType: values["keyboardType"] as api8.TextInputType?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
+          decoration: values["decoration"] as api12.BoxDecoration?,
+          keyboardType: values["keyboardType"] as api7.TextInputType?,
           textCapitalization:
-              values["textCapitalization"] as api8.TextCapitalization,
-          textInputAction: values["textInputAction"] as api8.TextInputAction?,
-          style: values["style"] as api13.TextStyle?,
-          strutStyle: values["strutStyle"] as api13.StrutStyle?,
+              values["textCapitalization"] as api7.TextCapitalization,
+          textInputAction: values["textInputAction"] as api7.TextInputAction?,
+          style: values["style"] as api12.TextStyle?,
+          strutStyle: values["strutStyle"] as api12.StrutStyle?,
           textDirection: values["textDirection"] as api1.TextDirection?,
           textAlign: values["textAlign"] as api1.TextAlign,
           textAlignVertical:
-              values["textAlignVertical"] as api13.TextAlignVertical?,
+              values["textAlignVertical"] as api12.TextAlignVertical?,
           autofocus: values["autofocus"] as bool,
           readOnly: values["readOnly"] as bool,
-          toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+          toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
           showCursor: values["showCursor"] as bool?,
           obscuringCharacter: values["obscuringCharacter"] as String,
           obscureText: values["obscureText"] as bool,
           autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+          smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+          smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
           enableSuggestions: values["enableSuggestions"] as bool,
           maxLines: values["maxLines"] as int?,
           minLines: values["minLines"] as int?,
@@ -19232,7 +19225,7 @@ api.Widget _createCupertinoTextFormFieldRow(
           onSaved: values["onSaved"] as void Function(String? newValue)?,
           validator: values["validator"] as String? Function(String? value)?,
           inputFormatters:
-              values["inputFormatters"] as List<api8.TextInputFormatter>?,
+              values["inputFormatters"] as List<api7.TextInputFormatter>?,
           enabled: values["enabled"] as bool?,
           cursorWidth: values["cursorWidth"] as double,
           cursorHeight: values["cursorHeight"] as double?,
@@ -19241,22 +19234,22 @@ api.Widget _createCupertinoTextFormFieldRow(
           enableInteractiveSelection:
               values["enableInteractiveSelection"] as bool,
           selectionControls:
-              values["selectionControls"] as api11.TextSelectionControls?,
-          scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+              values["selectionControls"] as api10.TextSelectionControls?,
+          scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
           autofillHints: values["autofillHints"] as Iterable<String>?,
           autovalidateMode:
-              values["autovalidateMode"] as api11.AutovalidateMode,
+              values["autovalidateMode"] as api10.AutovalidateMode,
           placeholder: values["placeholder"] as String?,
-          placeholderStyle: values["placeholderStyle"] as api13.TextStyle?,
+          placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
           contextMenuBuilder:
               values["contextMenuBuilder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
-                    api11.EditableTextState editableTextState,
+                    api10.BuildContext context,
+                    api10.EditableTextState editableTextState,
                   )?,
           spellCheckConfiguration:
               values["spellCheckConfiguration"]
-                  as api11.SpellCheckConfiguration?,
+                  as api10.SpellCheckConfiguration?,
           selectionHeightStyle:
               values["selectionHeightStyle"] as api1.BoxHeightStyle?,
           selectionWidthStyle:
@@ -19267,32 +19260,32 @@ api.Widget _createCupertinoTextFormFieldRow(
       if (!values.containsKey("placeholderStyle")) {
         if (!values.containsKey("contextMenuBuilder")) {
           return api.CupertinoTextFormFieldRow(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             prefix: values["prefix"] as api.Widget?,
-            padding: values["padding"] as api13.EdgeInsetsGeometry?,
-            controller: values["controller"] as api11.TextEditingController?,
+            padding: values["padding"] as api12.EdgeInsetsGeometry?,
+            controller: values["controller"] as api10.TextEditingController?,
             initialValue: values["initialValue"] as String?,
-            focusNode: values["focusNode"] as api11.FocusNode?,
-            decoration: values["decoration"] as api13.BoxDecoration?,
-            keyboardType: values["keyboardType"] as api8.TextInputType?,
+            focusNode: values["focusNode"] as api10.FocusNode?,
+            decoration: values["decoration"] as api12.BoxDecoration?,
+            keyboardType: values["keyboardType"] as api7.TextInputType?,
             textCapitalization:
-                values["textCapitalization"] as api8.TextCapitalization,
-            textInputAction: values["textInputAction"] as api8.TextInputAction?,
-            style: values["style"] as api13.TextStyle?,
-            strutStyle: values["strutStyle"] as api13.StrutStyle?,
+                values["textCapitalization"] as api7.TextCapitalization,
+            textInputAction: values["textInputAction"] as api7.TextInputAction?,
+            style: values["style"] as api12.TextStyle?,
+            strutStyle: values["strutStyle"] as api12.StrutStyle?,
             textDirection: values["textDirection"] as api1.TextDirection?,
             textAlign: values["textAlign"] as api1.TextAlign,
             textAlignVertical:
-                values["textAlignVertical"] as api13.TextAlignVertical?,
+                values["textAlignVertical"] as api12.TextAlignVertical?,
             autofocus: values["autofocus"] as bool,
             readOnly: values["readOnly"] as bool,
-            toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+            toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
             showCursor: values["showCursor"] as bool?,
             obscuringCharacter: values["obscuringCharacter"] as String,
             obscureText: values["obscureText"] as bool,
             autocorrect: values["autocorrect"] as bool,
-            smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-            smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+            smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+            smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
             enableSuggestions: values["enableSuggestions"] as bool,
             maxLines: values["maxLines"] as int?,
             minLines: values["minLines"] as int?,
@@ -19306,26 +19299,26 @@ api.Widget _createCupertinoTextFormFieldRow(
             onSaved: values["onSaved"] as void Function(String? newValue)?,
             validator: values["validator"] as String? Function(String? value)?,
             inputFormatters:
-                values["inputFormatters"] as List<api8.TextInputFormatter>?,
+                values["inputFormatters"] as List<api7.TextInputFormatter>?,
             enabled: values["enabled"] as bool?,
             cursorWidth: values["cursorWidth"] as double,
             cursorHeight: values["cursorHeight"] as double?,
             cursorColor: values["cursorColor"] as api1.Color?,
             keyboardAppearance:
                 values["keyboardAppearance"] as api1.Brightness?,
-            scrollPadding: values["scrollPadding"] as api13.EdgeInsets,
+            scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
             enableInteractiveSelection:
                 values["enableInteractiveSelection"] as bool,
             selectionControls:
-                values["selectionControls"] as api11.TextSelectionControls?,
-            scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+                values["selectionControls"] as api10.TextSelectionControls?,
+            scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
             autofillHints: values["autofillHints"] as Iterable<String>?,
             autovalidateMode:
-                values["autovalidateMode"] as api11.AutovalidateMode,
+                values["autovalidateMode"] as api10.AutovalidateMode,
             placeholder: values["placeholder"] as String?,
             spellCheckConfiguration:
                 values["spellCheckConfiguration"]
-                    as api11.SpellCheckConfiguration?,
+                    as api10.SpellCheckConfiguration?,
             selectionHeightStyle:
                 values["selectionHeightStyle"] as api1.BoxHeightStyle?,
             selectionWidthStyle:
@@ -19334,32 +19327,32 @@ api.Widget _createCupertinoTextFormFieldRow(
           );
         }
         return api.CupertinoTextFormFieldRow(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           prefix: values["prefix"] as api.Widget?,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
-          controller: values["controller"] as api11.TextEditingController?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
+          controller: values["controller"] as api10.TextEditingController?,
           initialValue: values["initialValue"] as String?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
-          decoration: values["decoration"] as api13.BoxDecoration?,
-          keyboardType: values["keyboardType"] as api8.TextInputType?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
+          decoration: values["decoration"] as api12.BoxDecoration?,
+          keyboardType: values["keyboardType"] as api7.TextInputType?,
           textCapitalization:
-              values["textCapitalization"] as api8.TextCapitalization,
-          textInputAction: values["textInputAction"] as api8.TextInputAction?,
-          style: values["style"] as api13.TextStyle?,
-          strutStyle: values["strutStyle"] as api13.StrutStyle?,
+              values["textCapitalization"] as api7.TextCapitalization,
+          textInputAction: values["textInputAction"] as api7.TextInputAction?,
+          style: values["style"] as api12.TextStyle?,
+          strutStyle: values["strutStyle"] as api12.StrutStyle?,
           textDirection: values["textDirection"] as api1.TextDirection?,
           textAlign: values["textAlign"] as api1.TextAlign,
           textAlignVertical:
-              values["textAlignVertical"] as api13.TextAlignVertical?,
+              values["textAlignVertical"] as api12.TextAlignVertical?,
           autofocus: values["autofocus"] as bool,
           readOnly: values["readOnly"] as bool,
-          toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+          toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
           showCursor: values["showCursor"] as bool?,
           obscuringCharacter: values["obscuringCharacter"] as String,
           obscureText: values["obscureText"] as bool,
           autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+          smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+          smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
           enableSuggestions: values["enableSuggestions"] as bool,
           maxLines: values["maxLines"] as int?,
           minLines: values["minLines"] as int?,
@@ -19373,31 +19366,31 @@ api.Widget _createCupertinoTextFormFieldRow(
           onSaved: values["onSaved"] as void Function(String? newValue)?,
           validator: values["validator"] as String? Function(String? value)?,
           inputFormatters:
-              values["inputFormatters"] as List<api8.TextInputFormatter>?,
+              values["inputFormatters"] as List<api7.TextInputFormatter>?,
           enabled: values["enabled"] as bool?,
           cursorWidth: values["cursorWidth"] as double,
           cursorHeight: values["cursorHeight"] as double?,
           cursorColor: values["cursorColor"] as api1.Color?,
           keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-          scrollPadding: values["scrollPadding"] as api13.EdgeInsets,
+          scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
           enableInteractiveSelection:
               values["enableInteractiveSelection"] as bool,
           selectionControls:
-              values["selectionControls"] as api11.TextSelectionControls?,
-          scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+              values["selectionControls"] as api10.TextSelectionControls?,
+          scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
           autofillHints: values["autofillHints"] as Iterable<String>?,
           autovalidateMode:
-              values["autovalidateMode"] as api11.AutovalidateMode,
+              values["autovalidateMode"] as api10.AutovalidateMode,
           placeholder: values["placeholder"] as String?,
           contextMenuBuilder:
               values["contextMenuBuilder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
-                    api11.EditableTextState editableTextState,
+                    api10.BuildContext context,
+                    api10.EditableTextState editableTextState,
                   )?,
           spellCheckConfiguration:
               values["spellCheckConfiguration"]
-                  as api11.SpellCheckConfiguration?,
+                  as api10.SpellCheckConfiguration?,
           selectionHeightStyle:
               values["selectionHeightStyle"] as api1.BoxHeightStyle?,
           selectionWidthStyle:
@@ -19407,32 +19400,32 @@ api.Widget _createCupertinoTextFormFieldRow(
       }
       if (!values.containsKey("contextMenuBuilder")) {
         return api.CupertinoTextFormFieldRow(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           prefix: values["prefix"] as api.Widget?,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
-          controller: values["controller"] as api11.TextEditingController?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
+          controller: values["controller"] as api10.TextEditingController?,
           initialValue: values["initialValue"] as String?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
-          decoration: values["decoration"] as api13.BoxDecoration?,
-          keyboardType: values["keyboardType"] as api8.TextInputType?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
+          decoration: values["decoration"] as api12.BoxDecoration?,
+          keyboardType: values["keyboardType"] as api7.TextInputType?,
           textCapitalization:
-              values["textCapitalization"] as api8.TextCapitalization,
-          textInputAction: values["textInputAction"] as api8.TextInputAction?,
-          style: values["style"] as api13.TextStyle?,
-          strutStyle: values["strutStyle"] as api13.StrutStyle?,
+              values["textCapitalization"] as api7.TextCapitalization,
+          textInputAction: values["textInputAction"] as api7.TextInputAction?,
+          style: values["style"] as api12.TextStyle?,
+          strutStyle: values["strutStyle"] as api12.StrutStyle?,
           textDirection: values["textDirection"] as api1.TextDirection?,
           textAlign: values["textAlign"] as api1.TextAlign,
           textAlignVertical:
-              values["textAlignVertical"] as api13.TextAlignVertical?,
+              values["textAlignVertical"] as api12.TextAlignVertical?,
           autofocus: values["autofocus"] as bool,
           readOnly: values["readOnly"] as bool,
-          toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+          toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
           showCursor: values["showCursor"] as bool?,
           obscuringCharacter: values["obscuringCharacter"] as String,
           obscureText: values["obscureText"] as bool,
           autocorrect: values["autocorrect"] as bool,
-          smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-          smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+          smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+          smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
           enableSuggestions: values["enableSuggestions"] as bool,
           maxLines: values["maxLines"] as int?,
           minLines: values["minLines"] as int?,
@@ -19446,26 +19439,26 @@ api.Widget _createCupertinoTextFormFieldRow(
           onSaved: values["onSaved"] as void Function(String? newValue)?,
           validator: values["validator"] as String? Function(String? value)?,
           inputFormatters:
-              values["inputFormatters"] as List<api8.TextInputFormatter>?,
+              values["inputFormatters"] as List<api7.TextInputFormatter>?,
           enabled: values["enabled"] as bool?,
           cursorWidth: values["cursorWidth"] as double,
           cursorHeight: values["cursorHeight"] as double?,
           cursorColor: values["cursorColor"] as api1.Color?,
           keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-          scrollPadding: values["scrollPadding"] as api13.EdgeInsets,
+          scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
           enableInteractiveSelection:
               values["enableInteractiveSelection"] as bool,
           selectionControls:
-              values["selectionControls"] as api11.TextSelectionControls?,
-          scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+              values["selectionControls"] as api10.TextSelectionControls?,
+          scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
           autofillHints: values["autofillHints"] as Iterable<String>?,
           autovalidateMode:
-              values["autovalidateMode"] as api11.AutovalidateMode,
+              values["autovalidateMode"] as api10.AutovalidateMode,
           placeholder: values["placeholder"] as String?,
-          placeholderStyle: values["placeholderStyle"] as api13.TextStyle?,
+          placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
           spellCheckConfiguration:
               values["spellCheckConfiguration"]
-                  as api11.SpellCheckConfiguration?,
+                  as api10.SpellCheckConfiguration?,
           selectionHeightStyle:
               values["selectionHeightStyle"] as api1.BoxHeightStyle?,
           selectionWidthStyle:
@@ -19474,32 +19467,32 @@ api.Widget _createCupertinoTextFormFieldRow(
         );
       }
       return api.CupertinoTextFormFieldRow(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         prefix: values["prefix"] as api.Widget?,
-        padding: values["padding"] as api13.EdgeInsetsGeometry?,
-        controller: values["controller"] as api11.TextEditingController?,
+        padding: values["padding"] as api12.EdgeInsetsGeometry?,
+        controller: values["controller"] as api10.TextEditingController?,
         initialValue: values["initialValue"] as String?,
-        focusNode: values["focusNode"] as api11.FocusNode?,
-        decoration: values["decoration"] as api13.BoxDecoration?,
-        keyboardType: values["keyboardType"] as api8.TextInputType?,
+        focusNode: values["focusNode"] as api10.FocusNode?,
+        decoration: values["decoration"] as api12.BoxDecoration?,
+        keyboardType: values["keyboardType"] as api7.TextInputType?,
         textCapitalization:
-            values["textCapitalization"] as api8.TextCapitalization,
-        textInputAction: values["textInputAction"] as api8.TextInputAction?,
-        style: values["style"] as api13.TextStyle?,
-        strutStyle: values["strutStyle"] as api13.StrutStyle?,
+            values["textCapitalization"] as api7.TextCapitalization,
+        textInputAction: values["textInputAction"] as api7.TextInputAction?,
+        style: values["style"] as api12.TextStyle?,
+        strutStyle: values["strutStyle"] as api12.StrutStyle?,
         textDirection: values["textDirection"] as api1.TextDirection?,
         textAlign: values["textAlign"] as api1.TextAlign,
         textAlignVertical:
-            values["textAlignVertical"] as api13.TextAlignVertical?,
+            values["textAlignVertical"] as api12.TextAlignVertical?,
         autofocus: values["autofocus"] as bool,
         readOnly: values["readOnly"] as bool,
-        toolbarOptions: values["toolbarOptions"] as api11.ToolbarOptions?,
+        toolbarOptions: values["toolbarOptions"] as api10.ToolbarOptions?,
         showCursor: values["showCursor"] as bool?,
         obscuringCharacter: values["obscuringCharacter"] as String,
         obscureText: values["obscureText"] as bool,
         autocorrect: values["autocorrect"] as bool,
-        smartDashesType: values["smartDashesType"] as api8.SmartDashesType?,
-        smartQuotesType: values["smartQuotesType"] as api8.SmartQuotesType?,
+        smartDashesType: values["smartDashesType"] as api7.SmartDashesType?,
+        smartQuotesType: values["smartQuotesType"] as api7.SmartQuotesType?,
         enableSuggestions: values["enableSuggestions"] as bool,
         maxLines: values["maxLines"] as int?,
         minLines: values["minLines"] as int?,
@@ -19513,30 +19506,30 @@ api.Widget _createCupertinoTextFormFieldRow(
         onSaved: values["onSaved"] as void Function(String? newValue)?,
         validator: values["validator"] as String? Function(String? value)?,
         inputFormatters:
-            values["inputFormatters"] as List<api8.TextInputFormatter>?,
+            values["inputFormatters"] as List<api7.TextInputFormatter>?,
         enabled: values["enabled"] as bool?,
         cursorWidth: values["cursorWidth"] as double,
         cursorHeight: values["cursorHeight"] as double?,
         cursorColor: values["cursorColor"] as api1.Color?,
         keyboardAppearance: values["keyboardAppearance"] as api1.Brightness?,
-        scrollPadding: values["scrollPadding"] as api13.EdgeInsets,
+        scrollPadding: values["scrollPadding"] as api12.EdgeInsets,
         enableInteractiveSelection:
             values["enableInteractiveSelection"] as bool,
         selectionControls:
-            values["selectionControls"] as api11.TextSelectionControls?,
-        scrollPhysics: values["scrollPhysics"] as api11.ScrollPhysics?,
+            values["selectionControls"] as api10.TextSelectionControls?,
+        scrollPhysics: values["scrollPhysics"] as api10.ScrollPhysics?,
         autofillHints: values["autofillHints"] as Iterable<String>?,
-        autovalidateMode: values["autovalidateMode"] as api11.AutovalidateMode,
+        autovalidateMode: values["autovalidateMode"] as api10.AutovalidateMode,
         placeholder: values["placeholder"] as String?,
-        placeholderStyle: values["placeholderStyle"] as api13.TextStyle?,
+        placeholderStyle: values["placeholderStyle"] as api12.TextStyle?,
         contextMenuBuilder:
             values["contextMenuBuilder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
-                  api11.EditableTextState editableTextState,
+                  api10.BuildContext context,
+                  api10.EditableTextState editableTextState,
                 )?,
         spellCheckConfiguration:
-            values["spellCheckConfiguration"] as api11.SpellCheckConfiguration?,
+            values["spellCheckConfiguration"] as api10.SpellCheckConfiguration?,
         selectionHeightStyle:
             values["selectionHeightStyle"] as api1.BoxHeightStyle?,
         selectionWidthStyle:
@@ -19590,7 +19583,7 @@ Object? _CupertinoTextMagnifier_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextMagnifier).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -19601,7 +19594,7 @@ Object? _CupertinoTextMagnifier_toStringShallow(
 ) {
   return (receiver as api.CupertinoTextMagnifier).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -19610,7 +19603,7 @@ Object? _CupertinoTextMagnifier_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextMagnifier).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -19623,7 +19616,7 @@ Object? _CupertinoTextMagnifier_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTextMagnifier).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -19642,27 +19635,27 @@ api.Widget _createCupertinoTextMagnifier(
     case "":
       if (!values.containsKey("animationCurve")) {
         return api.CupertinoTextMagnifier(
-          key: values["key"] as api4.Key?,
-          controller: values["controller"] as api11.MagnifierController,
+          key: values["key"] as api3.Key?,
+          controller: values["controller"] as api10.MagnifierController,
           dragResistance: values["dragResistance"] as double,
           hideBelowThreshold: values["hideBelowThreshold"] as double,
           horizontalScreenEdgePadding:
               values["horizontalScreenEdgePadding"] as double,
           magnifierInfo:
               values["magnifierInfo"]
-                  as api4.ValueNotifier<api11.MagnifierInfo>,
+                  as api3.ValueNotifier<api10.MagnifierInfo>,
         );
       }
       return api.CupertinoTextMagnifier(
-        key: values["key"] as api4.Key?,
-        animationCurve: values["animationCurve"] as api12.Curve,
-        controller: values["controller"] as api11.MagnifierController,
+        key: values["key"] as api3.Key?,
+        animationCurve: values["animationCurve"] as api11.Curve,
+        controller: values["controller"] as api10.MagnifierController,
         dragResistance: values["dragResistance"] as double,
         hideBelowThreshold: values["hideBelowThreshold"] as double,
         horizontalScreenEdgePadding:
             values["horizontalScreenEdgePadding"] as double,
         magnifierInfo:
-            values["magnifierInfo"] as api4.ValueNotifier<api11.MagnifierInfo>,
+            values["magnifierInfo"] as api3.ValueNotifier<api10.MagnifierInfo>,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -19676,8 +19669,8 @@ Object? _CupertinoTextSelectionControls_buildHandle(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionControls).buildHandle(
-    values["context"] as api11.BuildContext,
-    values["type"] as api10.TextSelectionHandleType,
+    values["context"] as api10.BuildContext,
+    values["type"] as api9.TextSelectionHandleType,
     values["textLineHeight"] as double,
     values["onTap"] as void Function()?,
   );
@@ -19688,7 +19681,7 @@ Object? _CupertinoTextSelectionControls_getHandleAnchor(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionControls).getHandleAnchor(
-    values["type"] as api10.TextSelectionHandleType,
+    values["type"] as api9.TextSelectionHandleType,
     values["textLineHeight"] as double,
   );
 }
@@ -19698,13 +19691,13 @@ Object? _CupertinoTextSelectionControls_buildToolbar(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionControls).buildToolbar(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
     values["globalEditableRegion"] as api1.Rect,
     values["textLineHeight"] as double,
     values["selectionMidpoint"] as api1.Offset,
-    values["endpoints"] as List<api10.TextSelectionPoint>,
-    values["delegate"] as api8.TextSelectionDelegate,
-    values["clipboardStatus"] as api4.ValueListenable<api11.ClipboardStatus>?,
+    values["endpoints"] as List<api9.TextSelectionPoint>,
+    values["delegate"] as api7.TextSelectionDelegate,
+    values["clipboardStatus"] as api3.ValueListenable<api10.ClipboardStatus>?,
     values["lastSecondaryTapDownPosition"] as api1.Offset?,
   );
 }
@@ -19723,7 +19716,7 @@ Object? _CupertinoTextSelectionControls_canCut(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionControls).canCut(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -19732,7 +19725,7 @@ Object? _CupertinoTextSelectionControls_canCopy(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionControls).canCopy(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -19741,7 +19734,7 @@ Object? _CupertinoTextSelectionControls_canPaste(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionControls).canPaste(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -19750,7 +19743,7 @@ Object? _CupertinoTextSelectionControls_canSelectAll(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionControls).canSelectAll(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -19759,7 +19752,7 @@ Object? _CupertinoTextSelectionControls_handleCut(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextSelectionControls).handleCut(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -19769,7 +19762,7 @@ Object? _CupertinoTextSelectionControls_handleCopy(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextSelectionControls).handleCopy(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -19779,7 +19772,7 @@ Object? _CupertinoTextSelectionControls_handlePaste(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionControls).handlePaste(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
 }
 
@@ -19788,7 +19781,7 @@ Object? _CupertinoTextSelectionControls_handleSelectAll(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextSelectionControls).handleSelectAll(
-    values["delegate"] as api8.TextSelectionDelegate,
+    values["delegate"] as api7.TextSelectionDelegate,
   );
   return null;
 }
@@ -19816,8 +19809,8 @@ Object? _CupertinoTextSelectionHandleControls_handleCut(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextSelectionHandleControls).handleCut(
-    values["delegate"] as api8.TextSelectionDelegate,
-    values["clipboardStatus"] as api11.ClipboardStatusNotifier?,
+    values["delegate"] as api7.TextSelectionDelegate,
+    values["clipboardStatus"] as api10.ClipboardStatusNotifier?,
   );
   return null;
 }
@@ -19827,8 +19820,8 @@ Object? _CupertinoTextSelectionHandleControls_handleCopy(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextSelectionHandleControls).handleCopy(
-    values["delegate"] as api8.TextSelectionDelegate,
-    values["clipboardStatus"] as api11.ClipboardStatusNotifier?,
+    values["delegate"] as api7.TextSelectionDelegate,
+    values["clipboardStatus"] as api10.ClipboardStatusNotifier?,
   );
   return null;
 }
@@ -19838,8 +19831,8 @@ Object? _CupertinoTextSelectionHandleControls_super_handleCut(
   Map<String, Object?> values,
 ) {
   (receiver as _CupertinoTextSelectionHandleControlsProxy)._flaxSuper_handleCut(
-    values["delegate"] as api8.TextSelectionDelegate,
-    values["clipboardStatus"] as api11.ClipboardStatusNotifier?,
+    values["delegate"] as api7.TextSelectionDelegate,
+    values["clipboardStatus"] as api10.ClipboardStatusNotifier?,
   );
   return null;
 }
@@ -19850,8 +19843,8 @@ Object? _CupertinoTextSelectionHandleControls_super_handleCopy(
 ) {
   (receiver as _CupertinoTextSelectionHandleControlsProxy)
       ._flaxSuper_handleCopy(
-        values["delegate"] as api8.TextSelectionDelegate,
-        values["clipboardStatus"] as api11.ClipboardStatusNotifier?,
+        values["delegate"] as api7.TextSelectionDelegate,
+        values["clipboardStatus"] as api10.ClipboardStatusNotifier?,
       );
   return null;
 }
@@ -19889,7 +19882,7 @@ Object? _CupertinoTextSelectionToolbar_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionToolbar).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -19912,7 +19905,7 @@ Object? _CupertinoTextSelectionToolbar_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextSelectionToolbar).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -19923,7 +19916,7 @@ Object? _CupertinoTextSelectionToolbar_toStringShallow(
 ) {
   return (receiver as api.CupertinoTextSelectionToolbar).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -19932,7 +19925,7 @@ Object? _CupertinoTextSelectionToolbar_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionToolbar).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -19945,7 +19938,7 @@ Object? _CupertinoTextSelectionToolbar_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTextSelectionToolbar).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -19965,21 +19958,21 @@ api.Widget _createCupertinoTextSelectionToolbar(
     case "":
       if (!values.containsKey("toolbarBuilder")) {
         return api.CupertinoTextSelectionToolbar(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           anchorAbove: values["anchorAbove"] as api1.Offset,
           anchorBelow: values["anchorBelow"] as api1.Offset,
           children: values["children"] as List<api.Widget>,
         );
       }
       return api.CupertinoTextSelectionToolbar(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         anchorAbove: values["anchorAbove"] as api1.Offset,
         anchorBelow: values["anchorBelow"] as api1.Offset,
         children: values["children"] as List<api.Widget>,
         toolbarBuilder:
             values["toolbarBuilder"]
                 as api.Widget Function(
-                  api11.BuildContext context,
+                  api10.BuildContext context,
                   api1.Offset anchorAbove,
                   api1.Offset anchorBelow,
                   api.Widget child,
@@ -20006,8 +19999,8 @@ Object? _CupertinoTextSelectionToolbarButton_getButtonLabel(
   Map<String, Object?> values,
 ) {
   return api.CupertinoTextSelectionToolbarButton.getButtonLabel(
-    values["context"] as api11.BuildContext,
-    values["buttonItem"] as api11.ContextMenuButtonItem,
+    values["context"] as api10.BuildContext,
+    values["buttonItem"] as api10.ContextMenuButtonItem,
   );
 }
 
@@ -20037,7 +20030,7 @@ Object? _CupertinoTextSelectionToolbarButton_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextSelectionToolbarButton).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -20048,7 +20041,7 @@ Object? _CupertinoTextSelectionToolbarButton_toStringShallow(
 ) {
   return (receiver as api.CupertinoTextSelectionToolbarButton).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -20057,7 +20050,7 @@ Object? _CupertinoTextSelectionToolbarButton_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextSelectionToolbarButton).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -20071,7 +20064,7 @@ Object? _CupertinoTextSelectionToolbarButton_toDiagnosticsNode(
   return (receiver as api.CupertinoTextSelectionToolbarButton)
       .toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -20090,20 +20083,20 @@ api.Widget _createCupertinoTextSelectionToolbarButton(
   switch (ctor) {
     case "":
       return api.CupertinoTextSelectionToolbarButton(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         onPressed: values["onPressed"] as void Function()?,
         child: values["child"] as api.Widget,
       );
     case "text":
       return api.CupertinoTextSelectionToolbarButton.text(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         onPressed: values["onPressed"] as void Function()?,
         text: values["text"] as String?,
       );
     case "buttonItem":
       return api.CupertinoTextSelectionToolbarButton.buttonItem(
-        key: values["key"] as api4.Key?,
-        buttonItem: values["buttonItem"] as api11.ContextMenuButtonItem,
+        key: values["key"] as api3.Key?,
+        buttonItem: values["buttonItem"] as api10.ContextMenuButtonItem,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -20142,7 +20135,7 @@ Object? _CupertinoTextThemeData_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextThemeData).toString(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -20152,7 +20145,7 @@ Object? _CupertinoTextThemeData_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTextThemeData).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -20161,7 +20154,7 @@ Object? _CupertinoTextThemeData_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTextThemeData).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -20171,7 +20164,7 @@ Object? _CupertinoTextThemeData_resolveFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextThemeData).resolveFrom(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -20180,18 +20173,18 @@ Object? _CupertinoTextThemeData_copyWith(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTextThemeData).copyWith(
-    actionSmallTextStyle: values["actionSmallTextStyle"] as api13.TextStyle?,
-    actionTextStyle: values["actionTextStyle"] as api13.TextStyle?,
+    actionSmallTextStyle: values["actionSmallTextStyle"] as api12.TextStyle?,
+    actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
     dateTimePickerTextStyle:
-        values["dateTimePickerTextStyle"] as api13.TextStyle?,
-    navActionTextStyle: values["navActionTextStyle"] as api13.TextStyle?,
+        values["dateTimePickerTextStyle"] as api12.TextStyle?,
+    navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
     navLargeTitleTextStyle:
-        values["navLargeTitleTextStyle"] as api13.TextStyle?,
-    navTitleTextStyle: values["navTitleTextStyle"] as api13.TextStyle?,
-    pickerTextStyle: values["pickerTextStyle"] as api13.TextStyle?,
+        values["navLargeTitleTextStyle"] as api12.TextStyle?,
+    navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
+    pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
     primaryColor: values["primaryColor"] as api1.Color?,
-    tabLabelTextStyle: values["tabLabelTextStyle"] as api13.TextStyle?,
-    textStyle: values["textStyle"] as api13.TextStyle?,
+    tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
+    textStyle: values["textStyle"] as api12.TextStyle?,
   );
 }
 
@@ -20200,7 +20193,7 @@ Object? _CupertinoTextThemeData_super_resolveFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoTextThemeDataProxy)._flaxSuper_resolveFrom(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -20209,18 +20202,18 @@ Object? _CupertinoTextThemeData_super_copyWith(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoTextThemeDataProxy)._flaxSuper_copyWith(
-    actionSmallTextStyle: values["actionSmallTextStyle"] as api13.TextStyle?,
-    actionTextStyle: values["actionTextStyle"] as api13.TextStyle?,
+    actionSmallTextStyle: values["actionSmallTextStyle"] as api12.TextStyle?,
+    actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
     dateTimePickerTextStyle:
-        values["dateTimePickerTextStyle"] as api13.TextStyle?,
-    navActionTextStyle: values["navActionTextStyle"] as api13.TextStyle?,
+        values["dateTimePickerTextStyle"] as api12.TextStyle?,
+    navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
     navLargeTitleTextStyle:
-        values["navLargeTitleTextStyle"] as api13.TextStyle?,
-    navTitleTextStyle: values["navTitleTextStyle"] as api13.TextStyle?,
-    pickerTextStyle: values["pickerTextStyle"] as api13.TextStyle?,
+        values["navLargeTitleTextStyle"] as api12.TextStyle?,
+    navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
+    pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
     primaryColor: values["primaryColor"] as api1.Color?,
-    tabLabelTextStyle: values["tabLabelTextStyle"] as api13.TextStyle?,
-    textStyle: values["textStyle"] as api13.TextStyle?,
+    tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
+    textStyle: values["textStyle"] as api12.TextStyle?,
   );
 }
 
@@ -20269,68 +20262,68 @@ Object _createCupertinoTextThemeData(String ctor, Map<String, Object?> values) {
     case "":
       if (!values.containsKey("primaryColor")) {
         return api.CupertinoTextThemeData(
-          textStyle: values["textStyle"] as api13.TextStyle?,
-          actionTextStyle: values["actionTextStyle"] as api13.TextStyle?,
+          textStyle: values["textStyle"] as api12.TextStyle?,
+          actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
           actionSmallTextStyle:
-              values["actionSmallTextStyle"] as api13.TextStyle?,
-          tabLabelTextStyle: values["tabLabelTextStyle"] as api13.TextStyle?,
-          navTitleTextStyle: values["navTitleTextStyle"] as api13.TextStyle?,
+              values["actionSmallTextStyle"] as api12.TextStyle?,
+          tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
+          navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
           navLargeTitleTextStyle:
-              values["navLargeTitleTextStyle"] as api13.TextStyle?,
-          navActionTextStyle: values["navActionTextStyle"] as api13.TextStyle?,
-          pickerTextStyle: values["pickerTextStyle"] as api13.TextStyle?,
+              values["navLargeTitleTextStyle"] as api12.TextStyle?,
+          navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
+          pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
           dateTimePickerTextStyle:
-              values["dateTimePickerTextStyle"] as api13.TextStyle?,
+              values["dateTimePickerTextStyle"] as api12.TextStyle?,
         );
       }
       return api.CupertinoTextThemeData(
         primaryColor: values["primaryColor"] as api1.Color,
-        textStyle: values["textStyle"] as api13.TextStyle?,
-        actionTextStyle: values["actionTextStyle"] as api13.TextStyle?,
+        textStyle: values["textStyle"] as api12.TextStyle?,
+        actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
         actionSmallTextStyle:
-            values["actionSmallTextStyle"] as api13.TextStyle?,
-        tabLabelTextStyle: values["tabLabelTextStyle"] as api13.TextStyle?,
-        navTitleTextStyle: values["navTitleTextStyle"] as api13.TextStyle?,
+            values["actionSmallTextStyle"] as api12.TextStyle?,
+        tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
+        navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
         navLargeTitleTextStyle:
-            values["navLargeTitleTextStyle"] as api13.TextStyle?,
-        navActionTextStyle: values["navActionTextStyle"] as api13.TextStyle?,
-        pickerTextStyle: values["pickerTextStyle"] as api13.TextStyle?,
+            values["navLargeTitleTextStyle"] as api12.TextStyle?,
+        navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
+        pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
         dateTimePickerTextStyle:
-            values["dateTimePickerTextStyle"] as api13.TextStyle?,
+            values["dateTimePickerTextStyle"] as api12.TextStyle?,
       );
     case '@implementation':
       if (!values.containsKey("primaryColor")) {
         return _CupertinoTextThemeDataProxy(
           values['@peer'] as FlaxProxyPeer,
-          textStyle: values["textStyle"] as api13.TextStyle?,
-          actionTextStyle: values["actionTextStyle"] as api13.TextStyle?,
+          textStyle: values["textStyle"] as api12.TextStyle?,
+          actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
           actionSmallTextStyle:
-              values["actionSmallTextStyle"] as api13.TextStyle?,
-          tabLabelTextStyle: values["tabLabelTextStyle"] as api13.TextStyle?,
-          navTitleTextStyle: values["navTitleTextStyle"] as api13.TextStyle?,
+              values["actionSmallTextStyle"] as api12.TextStyle?,
+          tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
+          navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
           navLargeTitleTextStyle:
-              values["navLargeTitleTextStyle"] as api13.TextStyle?,
-          navActionTextStyle: values["navActionTextStyle"] as api13.TextStyle?,
-          pickerTextStyle: values["pickerTextStyle"] as api13.TextStyle?,
+              values["navLargeTitleTextStyle"] as api12.TextStyle?,
+          navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
+          pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
           dateTimePickerTextStyle:
-              values["dateTimePickerTextStyle"] as api13.TextStyle?,
+              values["dateTimePickerTextStyle"] as api12.TextStyle?,
         );
       }
       return _CupertinoTextThemeDataProxy(
         values['@peer'] as FlaxProxyPeer,
         primaryColor: values["primaryColor"] as api1.Color,
-        textStyle: values["textStyle"] as api13.TextStyle?,
-        actionTextStyle: values["actionTextStyle"] as api13.TextStyle?,
+        textStyle: values["textStyle"] as api12.TextStyle?,
+        actionTextStyle: values["actionTextStyle"] as api12.TextStyle?,
         actionSmallTextStyle:
-            values["actionSmallTextStyle"] as api13.TextStyle?,
-        tabLabelTextStyle: values["tabLabelTextStyle"] as api13.TextStyle?,
-        navTitleTextStyle: values["navTitleTextStyle"] as api13.TextStyle?,
+            values["actionSmallTextStyle"] as api12.TextStyle?,
+        tabLabelTextStyle: values["tabLabelTextStyle"] as api12.TextStyle?,
+        navTitleTextStyle: values["navTitleTextStyle"] as api12.TextStyle?,
         navLargeTitleTextStyle:
-            values["navLargeTitleTextStyle"] as api13.TextStyle?,
-        navActionTextStyle: values["navActionTextStyle"] as api13.TextStyle?,
-        pickerTextStyle: values["pickerTextStyle"] as api13.TextStyle?,
+            values["navLargeTitleTextStyle"] as api12.TextStyle?,
+        navActionTextStyle: values["navActionTextStyle"] as api12.TextStyle?,
+        pickerTextStyle: values["pickerTextStyle"] as api12.TextStyle?,
         dateTimePickerTextStyle:
-            values["dateTimePickerTextStyle"] as api13.TextStyle?,
+            values["dateTimePickerTextStyle"] as api12.TextStyle?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -20344,24 +20337,24 @@ Object? _CupertinoTheme_child(Object value) =>
     (value as api.CupertinoTheme).child;
 Object? _CupertinoTheme_key(Object value) => (value as api.CupertinoTheme).key;
 Object? _CupertinoTheme_of(Map<String, Object?> values) {
-  return api.CupertinoTheme.of(values["context"] as api11.BuildContext);
+  return api.CupertinoTheme.of(values["context"] as api10.BuildContext);
 }
 
 Object? _CupertinoTheme_brightnessOf(Map<String, Object?> values) {
   return api.CupertinoTheme.brightnessOf(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
 Object? _CupertinoTheme_maybeBrightnessOf(Map<String, Object?> values) {
   return api.CupertinoTheme.maybeBrightnessOf(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
 Object? _CupertinoTheme_build(Object receiver, Map<String, Object?> values) {
   return (receiver as api.CupertinoTheme).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -20370,7 +20363,7 @@ Object? _CupertinoTheme_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTheme).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -20395,7 +20388,7 @@ Object? _CupertinoTheme_toStringShallow(
 ) {
   return (receiver as api.CupertinoTheme).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -20404,7 +20397,7 @@ Object? _CupertinoTheme_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTheme).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -20417,7 +20410,7 @@ Object? _CupertinoTheme_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTheme).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -20432,7 +20425,7 @@ api.Widget _createCupertinoTheme(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.CupertinoTheme(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         data: values["data"] as api.CupertinoThemeData,
         child: values["child"] as api.Widget,
       );
@@ -20461,7 +20454,7 @@ Object? _CupertinoThemeData_resolveFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoThemeData).resolveFrom(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -20493,7 +20486,7 @@ Object? _CupertinoThemeData_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoThemeData).toString(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -20503,7 +20496,7 @@ Object? _CupertinoThemeData_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoThemeData).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -20512,16 +20505,16 @@ Object? _CupertinoThemeData_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoThemeData).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
 
-Object? _FlaxProxyDispatch7_super_call_noDefault(
+Object? _FlaxProxyDispatch6_super_call_noDefault(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch7)._flaxSuper_noDefault();
+  return (receiver as _FlaxProxyDispatch6)._flaxSuper_noDefault();
 }
 
 Object? _CupertinoThemeData_super_resolveFrom(
@@ -20529,7 +20522,7 @@ Object? _CupertinoThemeData_super_resolveFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as _CupertinoThemeDataProxy)._flaxSuper_resolveFrom(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -20579,10 +20572,10 @@ Object? _CupertinoThemeData_super_get_applyThemeToAll(
   Object receiver,
   Map<String, Object?> values,
 ) => (receiver as _CupertinoThemeDataProxy)._flaxSuperGet_applyThemeToAll;
-Object? _FlaxProxyDispatch7_super_get_brightness(
+Object? _FlaxProxyDispatch6_super_get_brightness(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch7)._flaxSuperGet_brightness;
+) => (receiver as _FlaxProxyDispatch6)._flaxSuperGet_brightness;
 Object _createCupertinoThemeData(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -20680,7 +20673,7 @@ Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
           return api.CupertinoThumbPainter();
         }
         return api.CupertinoThumbPainter(
-          shadows: values["shadows"] as List<api13.BoxShadow>,
+          shadows: values["shadows"] as List<api12.BoxShadow>,
         );
       }
       if (!values.containsKey("shadows")) {
@@ -20688,7 +20681,7 @@ Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
       }
       return api.CupertinoThumbPainter(
         color: values["color"] as api1.Color,
-        shadows: values["shadows"] as List<api13.BoxShadow>,
+        shadows: values["shadows"] as List<api12.BoxShadow>,
       );
     case "switchThumb":
       if (!values.containsKey("color")) {
@@ -20696,7 +20689,7 @@ Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
           return api.CupertinoThumbPainter.switchThumb();
         }
         return api.CupertinoThumbPainter.switchThumb(
-          shadows: values["shadows"] as List<api13.BoxShadow>,
+          shadows: values["shadows"] as List<api12.BoxShadow>,
         );
       }
       if (!values.containsKey("shadows")) {
@@ -20706,7 +20699,7 @@ Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
       }
       return api.CupertinoThumbPainter.switchThumb(
         color: values["color"] as api1.Color,
-        shadows: values["shadows"] as List<api13.BoxShadow>,
+        shadows: values["shadows"] as List<api12.BoxShadow>,
       );
     case '@implementation':
       if (!values.containsKey("color")) {
@@ -20715,7 +20708,7 @@ Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
         }
         return _CupertinoThumbPainterProxy(
           values['@peer'] as FlaxProxyPeer,
-          shadows: values["shadows"] as List<api13.BoxShadow>,
+          shadows: values["shadows"] as List<api12.BoxShadow>,
         );
       }
       if (!values.containsKey("shadows")) {
@@ -20727,7 +20720,7 @@ Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
       return _CupertinoThumbPainterProxy(
         values['@peer'] as FlaxProxyPeer,
         color: values["color"] as api1.Color,
-        shadows: values["shadows"] as List<api13.BoxShadow>,
+        shadows: values["shadows"] as List<api12.BoxShadow>,
       );
     case "@implementation:switchThumb":
       if (!values.containsKey("color")) {
@@ -20738,7 +20731,7 @@ Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
         }
         return _CupertinoThumbPainterProxy.switchThumb(
           values['@peer'] as FlaxProxyPeer,
-          shadows: values["shadows"] as List<api13.BoxShadow>,
+          shadows: values["shadows"] as List<api12.BoxShadow>,
         );
       }
       if (!values.containsKey("shadows")) {
@@ -20750,7 +20743,7 @@ Object _createCupertinoThumbPainter(String ctor, Map<String, Object?> values) {
       return _CupertinoThumbPainterProxy.switchThumb(
         values['@peer'] as FlaxProxyPeer,
         color: values["color"] as api1.Color,
-        shadows: values["shadows"] as List<api13.BoxShadow>,
+        shadows: values["shadows"] as List<api12.BoxShadow>,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -20806,7 +20799,7 @@ Object? _CupertinoTimerPicker_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoTimerPicker).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -20817,7 +20810,7 @@ Object? _CupertinoTimerPicker_toStringShallow(
 ) {
   return (receiver as api.CupertinoTimerPicker).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -20826,7 +20819,7 @@ Object? _CupertinoTimerPicker_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoTimerPicker).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -20839,7 +20832,7 @@ Object? _CupertinoTimerPicker_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoTimerPicker).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -20859,7 +20852,7 @@ api.Widget _createCupertinoTimerPicker(
       if (!values.containsKey("initialTimerDuration")) {
         if (!values.containsKey("alignment")) {
           return api.CupertinoTimerPicker(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             mode: values["mode"] as api.CupertinoTimerPickerMode,
             minuteInterval: values["minuteInterval"] as int,
             secondInterval: values["secondInterval"] as int,
@@ -20867,37 +20860,37 @@ api.Widget _createCupertinoTimerPicker(
             itemExtent: values["itemExtent"] as double,
             onTimerDurationChanged:
                 values["onTimerDurationChanged"]
-                    as void Function(api3.Duration value),
+                    as void Function(api2.Duration value),
             changeReportingBehavior:
                 values["changeReportingBehavior"]
-                    as api11.ChangeReportingBehavior,
+                    as api10.ChangeReportingBehavior,
             selectionOverlayBuilder:
                 values["selectionOverlayBuilder"]
                     as api.Widget? Function(
-                      api11.BuildContext context, {
+                      api10.BuildContext context, {
                       required int columnCount,
                       required int selectedIndex,
                     })?,
           );
         }
         return api.CupertinoTimerPicker(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           mode: values["mode"] as api.CupertinoTimerPickerMode,
           minuteInterval: values["minuteInterval"] as int,
           secondInterval: values["secondInterval"] as int,
-          alignment: values["alignment"] as api13.AlignmentGeometry,
+          alignment: values["alignment"] as api12.AlignmentGeometry,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           itemExtent: values["itemExtent"] as double,
           onTimerDurationChanged:
               values["onTimerDurationChanged"]
-                  as void Function(api3.Duration value),
+                  as void Function(api2.Duration value),
           changeReportingBehavior:
               values["changeReportingBehavior"]
-                  as api11.ChangeReportingBehavior,
+                  as api10.ChangeReportingBehavior,
           selectionOverlayBuilder:
               values["selectionOverlayBuilder"]
                   as api.Widget? Function(
-                    api11.BuildContext context, {
+                    api10.BuildContext context, {
                     required int columnCount,
                     required int selectedIndex,
                   })?,
@@ -20905,46 +20898,46 @@ api.Widget _createCupertinoTimerPicker(
       }
       if (!values.containsKey("alignment")) {
         return api.CupertinoTimerPicker(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           mode: values["mode"] as api.CupertinoTimerPickerMode,
-          initialTimerDuration: values["initialTimerDuration"] as api3.Duration,
+          initialTimerDuration: values["initialTimerDuration"] as api2.Duration,
           minuteInterval: values["minuteInterval"] as int,
           secondInterval: values["secondInterval"] as int,
           backgroundColor: values["backgroundColor"] as api1.Color?,
           itemExtent: values["itemExtent"] as double,
           onTimerDurationChanged:
               values["onTimerDurationChanged"]
-                  as void Function(api3.Duration value),
+                  as void Function(api2.Duration value),
           changeReportingBehavior:
               values["changeReportingBehavior"]
-                  as api11.ChangeReportingBehavior,
+                  as api10.ChangeReportingBehavior,
           selectionOverlayBuilder:
               values["selectionOverlayBuilder"]
                   as api.Widget? Function(
-                    api11.BuildContext context, {
+                    api10.BuildContext context, {
                     required int columnCount,
                     required int selectedIndex,
                   })?,
         );
       }
       return api.CupertinoTimerPicker(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         mode: values["mode"] as api.CupertinoTimerPickerMode,
-        initialTimerDuration: values["initialTimerDuration"] as api3.Duration,
+        initialTimerDuration: values["initialTimerDuration"] as api2.Duration,
         minuteInterval: values["minuteInterval"] as int,
         secondInterval: values["secondInterval"] as int,
-        alignment: values["alignment"] as api13.AlignmentGeometry,
+        alignment: values["alignment"] as api12.AlignmentGeometry,
         backgroundColor: values["backgroundColor"] as api1.Color?,
         itemExtent: values["itemExtent"] as double,
         onTimerDurationChanged:
             values["onTimerDurationChanged"]
-                as void Function(api3.Duration value),
+                as void Function(api2.Duration value),
         changeReportingBehavior:
-            values["changeReportingBehavior"] as api11.ChangeReportingBehavior,
+            values["changeReportingBehavior"] as api10.ChangeReportingBehavior,
         selectionOverlayBuilder:
             values["selectionOverlayBuilder"]
                 as api.Widget? Function(
-                  api11.BuildContext context, {
+                  api10.BuildContext context, {
                   required int columnCount,
                   required int selectedIndex,
                 })?,
@@ -20967,7 +20960,7 @@ Object? _CupertinoUiCompatibilityBridge_build(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoUiCompatibilityBridge).build(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -20990,7 +20983,7 @@ Object? _CupertinoUiCompatibilityBridge_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoUiCompatibilityBridge).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -21001,7 +20994,7 @@ Object? _CupertinoUiCompatibilityBridge_toStringShallow(
 ) {
   return (receiver as api.CupertinoUiCompatibilityBridge).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -21010,7 +21003,7 @@ Object? _CupertinoUiCompatibilityBridge_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoUiCompatibilityBridge).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -21023,7 +21016,7 @@ Object? _CupertinoUiCompatibilityBridge_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoUiCompatibilityBridge).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -21042,10 +21035,10 @@ api.Widget _createCupertinoUiCompatibilityBridge(
   switch (ctor) {
     case "":
       return api.CupertinoUiCompatibilityBridge(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         child: values["child"] as api.Widget,
         delegates:
-            values["delegates"] as List<api11.LocalizationsDelegate<Object?>>?,
+            values["delegates"] as List<api10.LocalizationsDelegate<Object?>>?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -21060,13 +21053,13 @@ Object? _CupertinoUserInterfaceLevel_key(Object value) =>
     (value as api.CupertinoUserInterfaceLevel).key;
 Object? _CupertinoUserInterfaceLevel_of(Map<String, Object?> values) {
   return api.CupertinoUserInterfaceLevel.of(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
 Object? _CupertinoUserInterfaceLevel_maybeOf(Map<String, Object?> values) {
   return api.CupertinoUserInterfaceLevel.maybeOf(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -21084,7 +21077,7 @@ Object? _CupertinoUserInterfaceLevel_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.CupertinoUserInterfaceLevel).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -21109,7 +21102,7 @@ Object? _CupertinoUserInterfaceLevel_toStringShallow(
 ) {
   return (receiver as api.CupertinoUserInterfaceLevel).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -21118,7 +21111,7 @@ Object? _CupertinoUserInterfaceLevel_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.CupertinoUserInterfaceLevel).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -21131,7 +21124,7 @@ Object? _CupertinoUserInterfaceLevel_toDiagnosticsNode(
 ) {
   return (receiver as api.CupertinoUserInterfaceLevel).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -21149,7 +21142,7 @@ api.Widget _createCupertinoUserInterfaceLevel(
   switch (ctor) {
     case "":
       return api.CupertinoUserInterfaceLevel(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         data: values["data"] as api.CupertinoUserInterfaceLevelData,
         child: values["child"] as api.Widget,
       );
@@ -21209,59 +21202,55 @@ Object? _DefaultCupertinoLocalizations_timerPickerSecondLabel(
   );
 }
 
-Object? _FlaxProxyDispatch8_super_call_datePickerYear(
+Object? _DefaultCupertinoLocalizations_super_datePickerYear(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_datePickerYear(
-    values["yearIndex"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_datePickerYear(values["yearIndex"] as int);
 }
 
-Object? _FlaxProxyDispatch8_super_call_datePickerMonth(
+Object? _DefaultCupertinoLocalizations_super_datePickerMonth(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_datePickerMonth(
-    values["monthIndex"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_datePickerMonth(values["monthIndex"] as int);
 }
 
-Object? _FlaxProxyDispatch8_super_call_datePickerStandaloneMonth(
+Object? _DefaultCupertinoLocalizations_super_datePickerStandaloneMonth(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_datePickerStandaloneMonth(
-    values["monthIndex"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_datePickerStandaloneMonth(values["monthIndex"] as int);
 }
 
-Object? _FlaxProxyDispatch8_super_call_datePickerDayOfMonth(
+Object? _DefaultCupertinoLocalizations_super_datePickerDayOfMonth(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_datePickerDayOfMonth(
-    values["dayIndex"] as int,
-    values["weekDay"] as int?,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_datePickerDayOfMonth(
+        values["dayIndex"] as int,
+        values["weekDay"] as int?,
+      );
 }
 
-Object? _FlaxProxyDispatch8_super_call_datePickerMediumDate(
+Object? _DefaultCupertinoLocalizations_super_datePickerMediumDate(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_datePickerMediumDate(
-    values["date"] as api3.DateTime,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_datePickerMediumDate(values["date"] as api2.DateTime);
 }
 
-Object? _FlaxProxyDispatch8_super_call_datePickerHour(
+Object? _DefaultCupertinoLocalizations_super_datePickerHour(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_datePickerHour(
-    values["hour"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_datePickerHour(values["hour"] as int);
 }
 
 Object? _DefaultCupertinoLocalizations_super_datePickerHourSemanticsLabel(
@@ -21272,13 +21261,12 @@ Object? _DefaultCupertinoLocalizations_super_datePickerHourSemanticsLabel(
       ._flaxSuper_datePickerHourSemanticsLabel(values["hour"] as int);
 }
 
-Object? _FlaxProxyDispatch8_super_call_datePickerMinute(
+Object? _DefaultCupertinoLocalizations_super_datePickerMinute(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_datePickerMinute(
-    values["minute"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_datePickerMinute(values["minute"] as int);
 }
 
 Object? _DefaultCupertinoLocalizations_super_datePickerMinuteSemanticsLabel(
@@ -21289,41 +21277,39 @@ Object? _DefaultCupertinoLocalizations_super_datePickerMinuteSemanticsLabel(
       ._flaxSuper_datePickerMinuteSemanticsLabel(values["minute"] as int);
 }
 
-Object? _FlaxProxyDispatch8_super_call_tabSemanticsLabel(
+Object? _DefaultCupertinoLocalizations_super_tabSemanticsLabel(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_tabSemanticsLabel(
-    tabCount: values["tabCount"] as int,
-    tabIndex: values["tabIndex"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_tabSemanticsLabel(
+        tabCount: values["tabCount"] as int,
+        tabIndex: values["tabIndex"] as int,
+      );
 }
 
-Object? _FlaxProxyDispatch8_super_call_timerPickerHour(
+Object? _DefaultCupertinoLocalizations_super_timerPickerHour(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_timerPickerHour(
-    values["hour"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_timerPickerHour(values["hour"] as int);
 }
 
-Object? _FlaxProxyDispatch8_super_call_timerPickerMinute(
+Object? _DefaultCupertinoLocalizations_super_timerPickerMinute(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_timerPickerMinute(
-    values["minute"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_timerPickerMinute(values["minute"] as int);
 }
 
-Object? _FlaxProxyDispatch8_super_call_timerPickerSecond(
+Object? _DefaultCupertinoLocalizations_super_timerPickerSecond(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  return (receiver as _FlaxProxyDispatch8)._flaxSuper_timerPickerSecond(
-    values["second"] as int,
-  );
+  return (receiver as _DefaultCupertinoLocalizationsProxy)
+      ._flaxSuper_timerPickerSecond(values["second"] as int);
 }
 
 Object? _DefaultCupertinoLocalizations_super_timerPickerHourLabel(
@@ -21350,14 +21336,16 @@ Object? _DefaultCupertinoLocalizations_super_timerPickerSecondLabel(
       ._flaxSuper_timerPickerSecondLabel(values["second"] as int);
 }
 
-Object? _FlaxProxyDispatch8_super_get_datePickerDateOrder(
+Object? _DefaultCupertinoLocalizations_super_get_datePickerDateOrder(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch8)._flaxSuperGet_datePickerDateOrder;
-Object? _FlaxProxyDispatch8_super_get_datePickerDateTimeOrder(
+) => (receiver as _DefaultCupertinoLocalizationsProxy)
+    ._flaxSuperGet_datePickerDateOrder;
+Object? _DefaultCupertinoLocalizations_super_get_datePickerDateTimeOrder(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch8)._flaxSuperGet_datePickerDateTimeOrder;
+) => (receiver as _DefaultCupertinoLocalizationsProxy)
+    ._flaxSuperGet_datePickerDateTimeOrder;
 Object? _DefaultCupertinoLocalizations_super_get_anteMeridiemAbbreviation(
   Object receiver,
   Map<String, Object?> values,
@@ -21377,18 +21365,21 @@ Object? _DefaultCupertinoLocalizations_super_get_alertDialogLabel(
   Map<String, Object?> values,
 ) => (receiver as _DefaultCupertinoLocalizationsProxy)
     ._flaxSuperGet_alertDialogLabel;
-Object? _FlaxProxyDispatch8_super_get_timerPickerHourLabels(
+Object? _DefaultCupertinoLocalizations_super_get_timerPickerHourLabels(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch8)._flaxSuperGet_timerPickerHourLabels;
-Object? _FlaxProxyDispatch8_super_get_timerPickerMinuteLabels(
+) => (receiver as _DefaultCupertinoLocalizationsProxy)
+    ._flaxSuperGet_timerPickerHourLabels;
+Object? _DefaultCupertinoLocalizations_super_get_timerPickerMinuteLabels(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch8)._flaxSuperGet_timerPickerMinuteLabels;
-Object? _FlaxProxyDispatch8_super_get_timerPickerSecondLabels(
+) => (receiver as _DefaultCupertinoLocalizationsProxy)
+    ._flaxSuperGet_timerPickerMinuteLabels;
+Object? _DefaultCupertinoLocalizations_super_get_timerPickerSecondLabels(
   Object receiver,
   Map<String, Object?> values,
-) => (receiver as _FlaxProxyDispatch8)._flaxSuperGet_timerPickerSecondLabels;
+) => (receiver as _DefaultCupertinoLocalizationsProxy)
+    ._flaxSuperGet_timerPickerSecondLabels;
 Object? _DefaultCupertinoLocalizations_super_get_cutButtonLabel(
   Object receiver,
   Map<String, Object?> values,
@@ -21575,206 +21566,10 @@ Object? _GlobalCupertinoLocalizations_timerPickerSecondLabelMany(
 Object? _GlobalCupertinoLocalizations_timerPickerSecondLabelOther(
   Object value,
 ) => (value as api.GlobalCupertinoLocalizations).timerPickerSecondLabelOther;
-Object? _GlobalCupertinoLocalizations_super_datePickerHourSemanticsLabel(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as _GlobalCupertinoLocalizationsProxy)
-      ._flaxSuper_datePickerHourSemanticsLabel(values["hour"] as int);
-}
-
-Object? _GlobalCupertinoLocalizations_super_datePickerMinuteSemanticsLabel(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as _GlobalCupertinoLocalizationsProxy)
-      ._flaxSuper_datePickerMinuteSemanticsLabel(values["minute"] as int);
-}
-
-Object? _GlobalCupertinoLocalizations_super_timerPickerHourLabel(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as _GlobalCupertinoLocalizationsProxy)
-      ._flaxSuper_timerPickerHourLabel(values["hour"] as int);
-}
-
-Object? _GlobalCupertinoLocalizations_super_timerPickerMinuteLabel(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as _GlobalCupertinoLocalizationsProxy)
-      ._flaxSuper_timerPickerMinuteLabel(values["minute"] as int);
-}
-
-Object? _GlobalCupertinoLocalizations_super_timerPickerSecondLabel(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as _GlobalCupertinoLocalizationsProxy)
-      ._flaxSuper_timerPickerSecondLabel(values["second"] as int);
-}
-
-Object?
-_GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelZero(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerHourSemanticsLabelZero;
-Object? _GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelOne(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerHourSemanticsLabelOne;
-Object? _GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelTwo(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerHourSemanticsLabelTwo;
-Object? _GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelFew(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerHourSemanticsLabelFew;
-Object?
-_GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelMany(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerHourSemanticsLabelMany;
-Object?
-_GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelZero(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerMinuteSemanticsLabelZero;
-Object?
-_GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelOne(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerMinuteSemanticsLabelOne;
-Object?
-_GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelTwo(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerMinuteSemanticsLabelTwo;
-Object?
-_GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelFew(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerMinuteSemanticsLabelFew;
-Object?
-_GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelMany(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_datePickerMinuteSemanticsLabelMany;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelZero(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerHourLabelZero;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelOne(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerHourLabelOne;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelTwo(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerHourLabelTwo;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelFew(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerHourLabelFew;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelMany(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerHourLabelMany;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelZero(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerMinuteLabelZero;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelOne(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerMinuteLabelOne;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelTwo(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerMinuteLabelTwo;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelFew(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerMinuteLabelFew;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelMany(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerMinuteLabelMany;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelZero(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerSecondLabelZero;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelOne(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerSecondLabelOne;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelTwo(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerSecondLabelTwo;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelFew(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerSecondLabelFew;
-Object? _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelMany(
-  Object receiver,
-  Map<String, Object?> values,
-) => (receiver as _GlobalCupertinoLocalizationsProxy)
-    ._flaxSuperGet_timerPickerSecondLabelMany;
 Object _createGlobalCupertinoLocalizations(
   String ctor,
   Map<String, Object?> values,
-) {
-  switch (ctor) {
-    case '@implementation':
-      return _GlobalCupertinoLocalizationsProxy(
-        values['@peer'] as FlaxProxyPeer,
-        localeName: values["localeName"] as String,
-        fullYearFormat: values["fullYearFormat"] as api2.DateFormat,
-        dayFormat: values["dayFormat"] as api2.DateFormat,
-        weekdayFormat: values["weekdayFormat"] as api2.DateFormat,
-        mediumDateFormat: values["mediumDateFormat"] as api2.DateFormat,
-        singleDigitHourFormat:
-            values["singleDigitHourFormat"] as api2.DateFormat,
-        singleDigitMinuteFormat:
-            values["singleDigitMinuteFormat"] as api2.DateFormat,
-        doubleDigitMinuteFormat:
-            values["doubleDigitMinuteFormat"] as api2.DateFormat,
-        singleDigitSecondFormat:
-            values["singleDigitSecondFormat"] as api2.DateFormat,
-        decimalFormat: values["decimalFormat"] as api2.NumberFormat,
-      );
-    default:
-      throw ArgumentError('Unknown generated constructor');
-  }
-}
-
+) => throw ArgumentError('Abstract object has no constructor');
 bool _isInheritedCupertinoTheme(Object value) =>
     value is api.InheritedCupertinoTheme;
 Object? _InheritedCupertinoTheme_theme(Object value) =>
@@ -21788,7 +21583,7 @@ Object? _InheritedCupertinoTheme_wrap(
   Map<String, Object?> values,
 ) {
   return (receiver as api.InheritedCupertinoTheme).wrap(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
     values["child"] as api.Widget,
   );
 }
@@ -21821,7 +21616,7 @@ Object? _InheritedCupertinoTheme_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.InheritedCupertinoTheme).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -21832,7 +21627,7 @@ Object? _InheritedCupertinoTheme_toStringShallow(
 ) {
   return (receiver as api.InheritedCupertinoTheme).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -21841,7 +21636,7 @@ Object? _InheritedCupertinoTheme_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.InheritedCupertinoTheme).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -21854,7 +21649,7 @@ Object? _InheritedCupertinoTheme_toDiagnosticsNode(
 ) {
   return (receiver as api.InheritedCupertinoTheme).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -21872,7 +21667,7 @@ api.Widget _createInheritedCupertinoTheme(
   switch (ctor) {
     case "":
       return api.InheritedCupertinoTheme(
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
         theme: values["theme"] as api.CupertinoTheme,
         child: values["child"] as api.Widget,
       );
@@ -21911,7 +21706,7 @@ Object? _NoDefaultCupertinoThemeData_resolveFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as api.NoDefaultCupertinoThemeData).resolveFrom(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -21936,7 +21731,7 @@ Object? _NoDefaultCupertinoThemeData_super_resolveFrom(
   Map<String, Object?> values,
 ) {
   return (receiver as _NoDefaultCupertinoThemeDataProxy)._flaxSuper_resolveFrom(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -22036,7 +21831,7 @@ Object? _ObstructingPreferredSizeWidget_toStringShallow(
 ) {
   return (receiver as api.ObstructingPreferredSizeWidget).toStringShallow(
     joiner: values["joiner"] as String,
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -22045,7 +21840,7 @@ Object? _ObstructingPreferredSizeWidget_toStringDeep(
   Map<String, Object?> values,
 ) {
   return (receiver as api.ObstructingPreferredSizeWidget).toStringDeep(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
     prefixLineOne: values["prefixLineOne"] as String,
     prefixOtherLines: values["prefixOtherLines"] as String?,
     wrapWidth: values["wrapWidth"] as int,
@@ -22065,7 +21860,7 @@ Object? _ObstructingPreferredSizeWidget_toDiagnosticsNode(
 ) {
   return (receiver as api.ObstructingPreferredSizeWidget).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api4.DiagnosticsTreeStyle?,
+    style: values["style"] as api3.DiagnosticsTreeStyle?,
   );
 }
 
@@ -22082,7 +21877,7 @@ Object? _ObstructingPreferredSizeWidget_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.ObstructingPreferredSizeWidget).debugFillProperties(
-    values["properties"] as api4.DiagnosticPropertiesBuilder,
+    values["properties"] as api3.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -22092,7 +21887,7 @@ Object? _ObstructingPreferredSizeWidget_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as api.ObstructingPreferredSizeWidget).toString(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -22101,7 +21896,7 @@ Object? _ObstructingPreferredSizeWidget_shouldFullyObstruct(
   Map<String, Object?> values,
 ) {
   return (receiver as api.ObstructingPreferredSizeWidget).shouldFullyObstruct(
-    values["context"] as api11.BuildContext,
+    values["context"] as api10.BuildContext,
   );
 }
 
@@ -22112,7 +21907,7 @@ Object? _ObstructingPreferredSizeWidget_super_toStringShallow(
   return (receiver as _ObstructingPreferredSizeWidgetProxy)
       ._flaxSuper_toStringShallow(
         joiner: values["joiner"] as String,
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
       );
 }
 
@@ -22122,7 +21917,7 @@ Object? _ObstructingPreferredSizeWidget_super_toStringDeep(
 ) {
   return (receiver as _ObstructingPreferredSizeWidgetProxy)
       ._flaxSuper_toStringDeep(
-        minLevel: values["minLevel"] as api4.DiagnosticLevel,
+        minLevel: values["minLevel"] as api3.DiagnosticLevel,
         prefixLineOne: values["prefixLineOne"] as String,
         prefixOtherLines: values["prefixOtherLines"] as String?,
         wrapWidth: values["wrapWidth"] as int,
@@ -22144,7 +21939,7 @@ Object? _ObstructingPreferredSizeWidget_super_toDiagnosticsNode(
   return (receiver as _ObstructingPreferredSizeWidgetProxy)
       ._flaxSuper_toDiagnosticsNode(
         name: values["name"] as String?,
-        style: values["style"] as api4.DiagnosticsTreeStyle?,
+        style: values["style"] as api3.DiagnosticsTreeStyle?,
       );
 }
 
@@ -22162,7 +21957,7 @@ Object? _ObstructingPreferredSizeWidget_super_debugFillProperties(
 ) {
   (receiver as _ObstructingPreferredSizeWidgetProxy)
       ._flaxSuper_debugFillProperties(
-        values["properties"] as api4.DiagnosticPropertiesBuilder,
+        values["properties"] as api3.DiagnosticPropertiesBuilder,
       );
   return null;
 }
@@ -22172,7 +21967,7 @@ Object? _ObstructingPreferredSizeWidget_super_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as _ObstructingPreferredSizeWidgetProxy)._flaxSuper_toString(
-    minLevel: values["minLevel"] as api4.DiagnosticLevel,
+    minLevel: values["minLevel"] as api3.DiagnosticLevel,
   );
 }
 
@@ -22184,7 +21979,7 @@ Object _createObstructingPreferredSizeWidget(
     case '@implementation':
       return _ObstructingPreferredSizeWidgetProxy(
         values['@peer'] as FlaxProxyPeer,
-        key: values["key"] as api4.Key?,
+        key: values["key"] as api3.Key?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -22338,39 +22133,39 @@ Object _createRestorableCupertinoTabController(
 abstract interface class _FlaxProxyDispatch0 {
   FlaxProxyPeer get _flaxPeer;
   api.Widget _flaxSuper_buildHandle(
-    api11.BuildContext context,
-    api10.TextSelectionHandleType type,
+    api10.BuildContext context,
+    api9.TextSelectionHandleType type,
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]);
   api1.Offset _flaxSuper_getHandleAnchor(
-    api10.TextSelectionHandleType type,
+    api9.TextSelectionHandleType type,
     double textLineHeight,
   );
   api.Widget _flaxSuper_buildToolbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api1.Rect globalEditableRegion,
     double textLineHeight,
     api1.Offset selectionMidpoint,
-    List<api10.TextSelectionPoint> endpoints,
-    api8.TextSelectionDelegate delegate,
-    api4.ValueListenable<api11.ClipboardStatus>? clipboardStatus,
+    List<api9.TextSelectionPoint> endpoints,
+    api7.TextSelectionDelegate delegate,
+    api3.ValueListenable<api10.ClipboardStatus>? clipboardStatus,
     api1.Offset? lastSecondaryTapDownPosition,
   );
   api1.Size _flaxSuper_getHandleSize(double textLineHeight);
-  bool _flaxSuper_canCut(api8.TextSelectionDelegate delegate);
-  bool _flaxSuper_canCopy(api8.TextSelectionDelegate delegate);
-  bool _flaxSuper_canPaste(api8.TextSelectionDelegate delegate);
-  bool _flaxSuper_canSelectAll(api8.TextSelectionDelegate delegate);
-  Future<void> _flaxSuper_handlePaste(api8.TextSelectionDelegate delegate);
-  void _flaxSuper_handleSelectAll(api8.TextSelectionDelegate delegate);
+  bool _flaxSuper_canCut(api7.TextSelectionDelegate delegate);
+  bool _flaxSuper_canCopy(api7.TextSelectionDelegate delegate);
+  bool _flaxSuper_canPaste(api7.TextSelectionDelegate delegate);
+  bool _flaxSuper_canSelectAll(api7.TextSelectionDelegate delegate);
+  Future<void> _flaxSuper_handlePaste(api7.TextSelectionDelegate delegate);
+  void _flaxSuper_handleSelectAll(api7.TextSelectionDelegate delegate);
 }
 
 api.Widget _FlaxProxyDispatch0_call_buildHandle(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api11.BuildContext context,
-  api10.TextSelectionHandleType type,
+  api10.BuildContext context,
+  api9.TextSelectionHandleType type,
   double textLineHeight, [
   Object? onTap = _flaxOmitted,
 ]) {
@@ -22395,7 +22190,7 @@ api.Widget _FlaxProxyDispatch0_call_buildHandle(
 api1.Offset _FlaxProxyDispatch0_call_getHandleAnchor(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api10.TextSelectionHandleType type,
+  api9.TextSelectionHandleType type,
   double textLineHeight,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
@@ -22412,13 +22207,13 @@ api1.Offset _FlaxProxyDispatch0_call_getHandleAnchor(
 api.Widget _FlaxProxyDispatch0_call_buildToolbar(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api11.BuildContext context,
+  api10.BuildContext context,
   api1.Rect globalEditableRegion,
   double textLineHeight,
   api1.Offset selectionMidpoint,
-  List<api10.TextSelectionPoint> endpoints,
-  api8.TextSelectionDelegate delegate,
-  api4.ValueListenable<api11.ClipboardStatus>? clipboardStatus,
+  List<api9.TextSelectionPoint> endpoints,
+  api7.TextSelectionDelegate delegate,
+  api3.ValueListenable<api10.ClipboardStatus>? clipboardStatus,
   api1.Offset? lastSecondaryTapDownPosition,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
@@ -22465,7 +22260,7 @@ api1.Size _FlaxProxyDispatch0_call_getHandleSize(
 bool _FlaxProxyDispatch0_call_canCut(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api8.TextSelectionDelegate delegate,
+  api7.TextSelectionDelegate delegate,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     delegate,
@@ -22480,7 +22275,7 @@ bool _FlaxProxyDispatch0_call_canCut(
 bool _FlaxProxyDispatch0_call_canCopy(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api8.TextSelectionDelegate delegate,
+  api7.TextSelectionDelegate delegate,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     delegate,
@@ -22495,7 +22290,7 @@ bool _FlaxProxyDispatch0_call_canCopy(
 bool _FlaxProxyDispatch0_call_canPaste(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api8.TextSelectionDelegate delegate,
+  api7.TextSelectionDelegate delegate,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     delegate,
@@ -22510,7 +22305,7 @@ bool _FlaxProxyDispatch0_call_canPaste(
 bool _FlaxProxyDispatch0_call_canSelectAll(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api8.TextSelectionDelegate delegate,
+  api7.TextSelectionDelegate delegate,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     delegate,
@@ -22525,7 +22320,7 @@ bool _FlaxProxyDispatch0_call_canSelectAll(
 Future<void> _FlaxProxyDispatch0_call_handlePaste(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api8.TextSelectionDelegate delegate,
+  api7.TextSelectionDelegate delegate,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     delegate,
@@ -22542,7 +22337,7 @@ Future<void> _FlaxProxyDispatch0_call_handlePaste(
 void _FlaxProxyDispatch0_call_handleSelectAll(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  api8.TextSelectionDelegate delegate,
+  api7.TextSelectionDelegate delegate,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     delegate,
@@ -22554,516 +22349,6 @@ void _FlaxProxyDispatch0_call_handleSelectAll(
   return;
 }
 
-abstract interface class _FlaxProxyDispatch4 {
-  FlaxProxyPeer get _flaxPeer;
-}
-
-String _FlaxProxyDispatch4_get_anteMeridiemAbbreviation(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_postMeridiemAbbreviation(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_todayLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_alertDialogLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_cutButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_copyButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_pasteButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_clearButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_noSpellCheckReplacementsLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_selectAllButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_lookUpButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_searchWebButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_shareButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_searchTextFieldPlaceholderLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_modalBarrierDismissLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_menuDismissLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_cancelButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch4_get_backButtonLabel(
-  _FlaxProxyDispatch4 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-abstract interface class _FlaxProxyDispatch8 {
-  FlaxProxyPeer get _flaxPeer;
-  String _flaxSuper_datePickerYear(int yearIndex);
-  String _flaxSuper_datePickerMonth(int monthIndex);
-  String _flaxSuper_datePickerStandaloneMonth(int monthIndex);
-  String _flaxSuper_datePickerDayOfMonth(
-    int dayIndex, [
-    Object? weekDay = _flaxOmitted,
-  ]);
-  String _flaxSuper_datePickerMediumDate(api3.DateTime date);
-  String _flaxSuper_datePickerHour(int hour);
-  String _flaxSuper_datePickerMinute(int minute);
-  String _flaxSuper_tabSemanticsLabel({
-    required int tabIndex,
-    required int tabCount,
-  });
-  String _flaxSuper_timerPickerHour(int hour);
-  String _flaxSuper_timerPickerMinute(int minute);
-  String _flaxSuper_timerPickerSecond(int second);
-  api.DatePickerDateOrder get _flaxSuperGet_datePickerDateOrder;
-  api.DatePickerDateTimeOrder get _flaxSuperGet_datePickerDateTimeOrder;
-  List<String> get _flaxSuperGet_timerPickerHourLabels;
-  List<String> get _flaxSuperGet_timerPickerMinuteLabels;
-  List<String> get _flaxSuperGet_timerPickerSecondLabels;
-}
-
-String _FlaxProxyDispatch8_call_datePickerYear(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int yearIndex,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    yearIndex,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_datePickerYear(yearIndex);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_datePickerMonth(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int monthIndex,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    monthIndex,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_datePickerMonth(monthIndex);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_datePickerStandaloneMonth(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int monthIndex,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    monthIndex,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_datePickerStandaloneMonth(monthIndex);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_datePickerDayOfMonth(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int dayIndex, [
-  Object? weekDay = _flaxOmitted,
-]) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    dayIndex,
-    if (!identical(weekDay, _flaxOmitted)) weekDay,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_datePickerDayOfMonth(dayIndex, weekDay);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_datePickerMediumDate(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  api3.DateTime date,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    date,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_datePickerMediumDate(date);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_datePickerHour(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int hour,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    hour,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_datePickerHour(hour);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_datePickerMinute(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int minute,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    minute,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_datePickerMinute(minute);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_tabSemanticsLabel(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember, {
-  required int tabIndex,
-  required int tabCount,
-}) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    <Object?>[],
-    <String, Object?>{"tabIndex": tabIndex, "tabCount": tabCount},
-  );
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_tabSemanticsLabel(
-      tabIndex: tabIndex,
-      tabCount: tabCount,
-    );
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_timerPickerHour(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int hour,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    hour,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_timerPickerHour(hour);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_timerPickerMinute(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int minute,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    minute,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_timerPickerMinute(minute);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-String _FlaxProxyDispatch8_call_timerPickerSecond(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-  int second,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
-    second,
-  ], <String, Object?>{});
-  if (!_flaxResult.$1) {
-    return _flaxReceiver._flaxSuper_timerPickerSecond(second);
-  }
-  final _flaxConvertedResult = _flaxResult.$2 as String;
-  return _flaxConvertedResult;
-}
-
-api.DatePickerDateOrder _FlaxProxyDispatch8_get_datePickerDateOrder(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_datePickerDateOrder;
-  final _flaxConvertedResult = _flaxResult.$2 as api.DatePickerDateOrder;
-  return _flaxConvertedResult;
-}
-
-api.DatePickerDateTimeOrder _FlaxProxyDispatch8_get_datePickerDateTimeOrder(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  if (!_flaxResult.$1)
-    return _flaxReceiver._flaxSuperGet_datePickerDateTimeOrder;
-  final _flaxConvertedResult = _flaxResult.$2 as api.DatePickerDateTimeOrder;
-  return _flaxConvertedResult;
-}
-
-List<String> _FlaxProxyDispatch8_get_timerPickerHourLabels(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_timerPickerHourLabels;
-  final _flaxConvertedResult = _flaxResult.$2 as List<String>;
-  return _flaxConvertedResult;
-}
-
-List<String> _FlaxProxyDispatch8_get_timerPickerMinuteLabels(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  if (!_flaxResult.$1)
-    return _flaxReceiver._flaxSuperGet_timerPickerMinuteLabels;
-  final _flaxConvertedResult = _flaxResult.$2 as List<String>;
-  return _flaxConvertedResult;
-}
-
-List<String> _FlaxProxyDispatch8_get_timerPickerSecondLabels(
-  _FlaxProxyDispatch8 _flaxReceiver,
-  int _flaxMember,
-) {
-  final _flaxResult = _flaxReceiver._flaxPeer.call(
-    _flaxMember,
-    const [],
-    const {},
-  );
-  if (!_flaxResult.$1)
-    return _flaxReceiver._flaxSuperGet_timerPickerSecondLabels;
-  final _flaxConvertedResult = _flaxResult.$2 as List<String>;
-  return _flaxConvertedResult;
-}
-
 abstract interface class _FlaxProxyDispatch2 {
   FlaxProxyPeer get _flaxPeer;
   String? get _flaxActiveSuperMember;
@@ -23072,12 +22357,12 @@ abstract interface class _FlaxProxyDispatch2 {
   set _flaxCalledSuper(bool value);
   String _flaxSuper_toString({Object? minLevel = _flaxOmitted});
   String _flaxSuper_toStringShort();
-  api4.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
+  api3.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   });
   void _flaxSuper_debugFillProperties(
-    api4.DiagnosticPropertiesBuilder properties,
+    api3.DiagnosticPropertiesBuilder properties,
   );
 }
 
@@ -23116,7 +22401,7 @@ String _FlaxProxyDispatch2_call_toStringShort(
   return _flaxConvertedResult;
 }
 
-api4.DiagnosticsNode _FlaxProxyDispatch2_call_toDiagnosticsNode(
+api3.DiagnosticsNode _FlaxProxyDispatch2_call_toDiagnosticsNode(
   _FlaxProxyDispatch2 _flaxReceiver,
   int _flaxMember, {
   Object? name = _flaxOmitted,
@@ -23133,7 +22418,7 @@ api4.DiagnosticsNode _FlaxProxyDispatch2_call_toDiagnosticsNode(
   if (!_flaxResult.$1) {
     return _flaxReceiver._flaxSuper_toDiagnosticsNode(name: name, style: style);
   }
-  final _flaxConvertedResult = _flaxResult.$2 as api4.DiagnosticsNode;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.DiagnosticsNode;
   return _flaxConvertedResult;
 }
 
@@ -23141,7 +22426,7 @@ api4.DiagnosticsNode _FlaxProxyDispatch2_call_toDiagnosticsNode(
 void _FlaxProxyDispatch2_call_debugFillProperties(
   _FlaxProxyDispatch2 _flaxReceiver,
   int _flaxMember,
-  api4.DiagnosticPropertiesBuilder properties,
+  api3.DiagnosticPropertiesBuilder properties,
 ) {
   if (!_flaxReceiver._flaxPeer.active) return;
   final _flaxPreviousSuperMember = _flaxReceiver._flaxActiveSuperMember;
@@ -23167,7 +22452,7 @@ void _FlaxProxyDispatch2_call_debugFillProperties(
   }
 }
 
-abstract interface class _FlaxProxyDispatch5 {
+abstract interface class _FlaxProxyDispatch4 {
   FlaxProxyPeer get _flaxPeer;
   String get _flaxSuperGet_expansionTileExpandedHint;
   String get _flaxSuperGet_expansionTileCollapsedHint;
@@ -23177,8 +22462,8 @@ abstract interface class _FlaxProxyDispatch5 {
   String get _flaxSuperGet_collapsedHint;
 }
 
-String _FlaxProxyDispatch5_get_expansionTileExpandedHint(
-  _FlaxProxyDispatch5 _flaxReceiver,
+String _FlaxProxyDispatch4_get_expansionTileExpandedHint(
+  _FlaxProxyDispatch4 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23192,8 +22477,8 @@ String _FlaxProxyDispatch5_get_expansionTileExpandedHint(
   return _flaxConvertedResult;
 }
 
-String _FlaxProxyDispatch5_get_expansionTileCollapsedHint(
-  _FlaxProxyDispatch5 _flaxReceiver,
+String _FlaxProxyDispatch4_get_expansionTileCollapsedHint(
+  _FlaxProxyDispatch4 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23207,8 +22492,8 @@ String _FlaxProxyDispatch5_get_expansionTileCollapsedHint(
   return _flaxConvertedResult;
 }
 
-String _FlaxProxyDispatch5_get_expansionTileExpandedTapHint(
-  _FlaxProxyDispatch5 _flaxReceiver,
+String _FlaxProxyDispatch4_get_expansionTileExpandedTapHint(
+  _FlaxProxyDispatch4 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23222,8 +22507,8 @@ String _FlaxProxyDispatch5_get_expansionTileExpandedTapHint(
   return _flaxConvertedResult;
 }
 
-String _FlaxProxyDispatch5_get_expansionTileCollapsedTapHint(
-  _FlaxProxyDispatch5 _flaxReceiver,
+String _FlaxProxyDispatch4_get_expansionTileCollapsedTapHint(
+  _FlaxProxyDispatch4 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23237,8 +22522,8 @@ String _FlaxProxyDispatch5_get_expansionTileCollapsedTapHint(
   return _flaxConvertedResult;
 }
 
-String _FlaxProxyDispatch5_get_expandedHint(
-  _FlaxProxyDispatch5 _flaxReceiver,
+String _FlaxProxyDispatch4_get_expandedHint(
+  _FlaxProxyDispatch4 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23251,8 +22536,8 @@ String _FlaxProxyDispatch5_get_expandedHint(
   return _flaxConvertedResult;
 }
 
-String _FlaxProxyDispatch5_get_collapsedHint(
-  _FlaxProxyDispatch5 _flaxReceiver,
+String _FlaxProxyDispatch4_get_collapsedHint(
+  _FlaxProxyDispatch4 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23265,7 +22550,7 @@ String _FlaxProxyDispatch5_get_collapsedHint(
   return _flaxConvertedResult;
 }
 
-abstract interface class _FlaxProxyDispatch6 {
+abstract interface class _FlaxProxyDispatch5 {
   FlaxProxyPeer get _flaxPeer;
   String? get _flaxActiveSuperMember;
   set _flaxActiveSuperMember(String? value);
@@ -23277,8 +22562,8 @@ abstract interface class _FlaxProxyDispatch6 {
   bool get _flaxSuperGet_hasListeners;
 }
 
-void _FlaxProxyDispatch6_call_addListener(
-  _FlaxProxyDispatch6 _flaxReceiver,
+void _FlaxProxyDispatch5_call_addListener(
+  _FlaxProxyDispatch5 _flaxReceiver,
   int _flaxMember,
   void Function() listener,
 ) {
@@ -23292,8 +22577,8 @@ void _FlaxProxyDispatch6_call_addListener(
   return;
 }
 
-void _FlaxProxyDispatch6_call_removeListener(
-  _FlaxProxyDispatch6 _flaxReceiver,
+void _FlaxProxyDispatch5_call_removeListener(
+  _FlaxProxyDispatch5 _flaxReceiver,
   int _flaxMember,
   void Function() listener,
 ) {
@@ -23308,8 +22593,8 @@ void _FlaxProxyDispatch6_call_removeListener(
 }
 
 // ignore: must_call_super
-void _FlaxProxyDispatch6_call_dispose(
-  _FlaxProxyDispatch6 _flaxReceiver,
+void _FlaxProxyDispatch5_call_dispose(
+  _FlaxProxyDispatch5 _flaxReceiver,
   int _flaxMember,
 ) {
   if (!_flaxReceiver._flaxPeer.active) return;
@@ -23336,8 +22621,8 @@ void _FlaxProxyDispatch6_call_dispose(
   }
 }
 
-bool _FlaxProxyDispatch6_get_hasListeners(
-  _FlaxProxyDispatch6 _flaxReceiver,
+bool _FlaxProxyDispatch5_get_hasListeners(
+  _FlaxProxyDispatch5 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23352,14 +22637,14 @@ bool _FlaxProxyDispatch6_get_hasListeners(
 
 abstract interface class _FlaxProxyDispatch1 {
   FlaxProxyPeer get _flaxPeer;
-  void _flaxSuper_handleCut(api8.TextSelectionDelegate delegate);
-  void _flaxSuper_handleCopy(api8.TextSelectionDelegate delegate);
+  void _flaxSuper_handleCut(api7.TextSelectionDelegate delegate);
+  void _flaxSuper_handleCopy(api7.TextSelectionDelegate delegate);
 }
 
 void _FlaxProxyDispatch1_call_handleCut(
   _FlaxProxyDispatch1 _flaxReceiver,
   int _flaxMember,
-  api8.TextSelectionDelegate delegate,
+  api7.TextSelectionDelegate delegate,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     delegate,
@@ -23374,7 +22659,7 @@ void _FlaxProxyDispatch1_call_handleCut(
 void _FlaxProxyDispatch1_call_handleCopy(
   _FlaxProxyDispatch1 _flaxReceiver,
   int _flaxMember,
-  api8.TextSelectionDelegate delegate,
+  api7.TextSelectionDelegate delegate,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     delegate,
@@ -23386,14 +22671,14 @@ void _FlaxProxyDispatch1_call_handleCopy(
   return;
 }
 
-abstract interface class _FlaxProxyDispatch7 {
+abstract interface class _FlaxProxyDispatch6 {
   FlaxProxyPeer get _flaxPeer;
   api.NoDefaultCupertinoThemeData _flaxSuper_noDefault();
   api1.Brightness? get _flaxSuperGet_brightness;
 }
 
-api.NoDefaultCupertinoThemeData _FlaxProxyDispatch7_call_noDefault(
-  _FlaxProxyDispatch7 _flaxReceiver,
+api.NoDefaultCupertinoThemeData _FlaxProxyDispatch6_call_noDefault(
+  _FlaxProxyDispatch6 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23409,8 +22694,8 @@ api.NoDefaultCupertinoThemeData _FlaxProxyDispatch7_call_noDefault(
   return _flaxConvertedResult;
 }
 
-api1.Brightness? _FlaxProxyDispatch7_get_brightness(
-  _FlaxProxyDispatch7 _flaxReceiver,
+api1.Brightness? _FlaxProxyDispatch6_get_brightness(
+  _FlaxProxyDispatch6 _flaxReceiver,
   int _flaxMember,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(
@@ -23449,8 +22734,8 @@ final class _CupertinoDesktopTextSelectionControlsProxy
   _CupertinoDesktopTextSelectionControlsProxy(this._flaxPeer);
   @override
   api.Widget buildHandle(
-    api11.BuildContext context,
-    api10.TextSelectionHandleType type,
+    api10.BuildContext context,
+    api9.TextSelectionHandleType type,
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
@@ -23465,8 +22750,8 @@ final class _CupertinoDesktopTextSelectionControlsProxy
   }
 
   api.Widget _flaxSuper_buildHandle(
-    api11.BuildContext context,
-    api10.TextSelectionHandleType type,
+    api10.BuildContext context,
+    api9.TextSelectionHandleType type,
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
@@ -23483,7 +22768,7 @@ final class _CupertinoDesktopTextSelectionControlsProxy
 
   @override
   api1.Offset getHandleAnchor(
-    api10.TextSelectionHandleType type,
+    api9.TextSelectionHandleType type,
     double textLineHeight,
   ) {
     return _FlaxProxyDispatch0_call_getHandleAnchor(
@@ -23495,7 +22780,7 @@ final class _CupertinoDesktopTextSelectionControlsProxy
   }
 
   api1.Offset _flaxSuper_getHandleAnchor(
-    api10.TextSelectionHandleType type,
+    api9.TextSelectionHandleType type,
     double textLineHeight,
   ) {
     return super.getHandleAnchor(type, textLineHeight);
@@ -23503,13 +22788,13 @@ final class _CupertinoDesktopTextSelectionControlsProxy
 
   @override
   api.Widget buildToolbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api1.Rect globalEditableRegion,
     double textLineHeight,
     api1.Offset selectionMidpoint,
-    List<api10.TextSelectionPoint> endpoints,
-    api8.TextSelectionDelegate delegate,
-    api4.ValueListenable<api11.ClipboardStatus>? clipboardStatus,
+    List<api9.TextSelectionPoint> endpoints,
+    api7.TextSelectionDelegate delegate,
+    api3.ValueListenable<api10.ClipboardStatus>? clipboardStatus,
     api1.Offset? lastSecondaryTapDownPosition,
   ) {
     return _FlaxProxyDispatch0_call_buildToolbar(
@@ -23527,13 +22812,13 @@ final class _CupertinoDesktopTextSelectionControlsProxy
   }
 
   api.Widget _flaxSuper_buildToolbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api1.Rect globalEditableRegion,
     double textLineHeight,
     api1.Offset selectionMidpoint,
-    List<api10.TextSelectionPoint> endpoints,
-    api8.TextSelectionDelegate delegate,
-    api4.ValueListenable<api11.ClipboardStatus>? clipboardStatus,
+    List<api9.TextSelectionPoint> endpoints,
+    api7.TextSelectionDelegate delegate,
+    api3.ValueListenable<api10.ClipboardStatus>? clipboardStatus,
     api1.Offset? lastSecondaryTapDownPosition,
   ) {
     return super.buildToolbar(
@@ -23558,76 +22843,76 @@ final class _CupertinoDesktopTextSelectionControlsProxy
   }
 
   @override
-  bool canCut(api8.TextSelectionDelegate delegate) {
+  bool canCut(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canCut(this, 4, delegate);
   }
 
-  bool _flaxSuper_canCut(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canCut(api7.TextSelectionDelegate delegate) {
     return super.canCut(delegate);
   }
 
   @override
-  bool canCopy(api8.TextSelectionDelegate delegate) {
+  bool canCopy(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canCopy(this, 5, delegate);
   }
 
-  bool _flaxSuper_canCopy(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canCopy(api7.TextSelectionDelegate delegate) {
     return super.canCopy(delegate);
   }
 
   @override
-  bool canPaste(api8.TextSelectionDelegate delegate) {
+  bool canPaste(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canPaste(this, 6, delegate);
   }
 
-  bool _flaxSuper_canPaste(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canPaste(api7.TextSelectionDelegate delegate) {
     return super.canPaste(delegate);
   }
 
   @override
-  bool canSelectAll(api8.TextSelectionDelegate delegate) {
+  bool canSelectAll(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canSelectAll(this, 7, delegate);
   }
 
-  bool _flaxSuper_canSelectAll(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canSelectAll(api7.TextSelectionDelegate delegate) {
     return super.canSelectAll(delegate);
   }
 
   @override
-  void handleCut(api8.TextSelectionDelegate delegate) {
+  void handleCut(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch1_call_handleCut(this, 8, delegate);
   }
 
-  void _flaxSuper_handleCut(api8.TextSelectionDelegate delegate) {
+  void _flaxSuper_handleCut(api7.TextSelectionDelegate delegate) {
     super.handleCut(delegate);
     return;
   }
 
   @override
-  void handleCopy(api8.TextSelectionDelegate delegate) {
+  void handleCopy(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch1_call_handleCopy(this, 9, delegate);
   }
 
-  void _flaxSuper_handleCopy(api8.TextSelectionDelegate delegate) {
+  void _flaxSuper_handleCopy(api7.TextSelectionDelegate delegate) {
     super.handleCopy(delegate);
     return;
   }
 
   @override
-  Future<void> handlePaste(api8.TextSelectionDelegate delegate) {
+  Future<void> handlePaste(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_handlePaste(this, 10, delegate);
   }
 
-  Future<void> _flaxSuper_handlePaste(api8.TextSelectionDelegate delegate) {
+  Future<void> _flaxSuper_handlePaste(api7.TextSelectionDelegate delegate) {
     return super.handlePaste(delegate);
   }
 
   @override
-  void handleSelectAll(api8.TextSelectionDelegate delegate) {
+  void handleSelectAll(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_handleSelectAll(this, 11, delegate);
   }
 
-  void _flaxSuper_handleSelectAll(api8.TextSelectionDelegate delegate) {
+  void _flaxSuper_handleSelectAll(api7.TextSelectionDelegate delegate) {
     super.handleSelectAll(delegate);
     return;
   }
@@ -23998,7 +23283,7 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
     if (identical(minLevel, _flaxOmitted)) {
       return super.toString();
     }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
   }
 
   @override
@@ -24011,7 +23296,7 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
   }
 
   @override
-  api4.DiagnosticsNode toDiagnosticsNode({
+  api3.DiagnosticsNode toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -24023,7 +23308,7 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
     );
   }
 
-  api4.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
+  api3.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -24032,7 +23317,7 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
         return super.toDiagnosticsNode();
       }
       return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
+        style: style as api3.DiagnosticsTreeStyle?,
       );
     }
     if (identical(style, _flaxOmitted)) {
@@ -24040,18 +23325,18 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
     }
     return super.toDiagnosticsNode(
       name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
+      style: style as api3.DiagnosticsTreeStyle?,
     );
   }
 
   @override
   // ignore: must_call_super
-  void debugFillProperties(api4.DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(api3.DiagnosticPropertiesBuilder properties) {
     return _FlaxProxyDispatch2_call_debugFillProperties(this, 11, properties);
   }
 
   void _flaxSuper_debugFillProperties(
-    api4.DiagnosticPropertiesBuilder properties,
+    api3.DiagnosticPropertiesBuilder properties,
   ) {
     if (_flaxActiveSuperMember == "debugFillProperties")
       _flaxCalledSuper = true;
@@ -24060,7 +23345,7 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
   }
 
   @override
-  api.CupertinoDynamicColor resolveFrom(api11.BuildContext context) {
+  api.CupertinoDynamicColor resolveFrom(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(12, <Object?>[
       context,
     ], <String, Object?>{});
@@ -24071,7 +23356,7 @@ final class _CupertinoDynamicColorProxy extends api.CupertinoDynamicColor
     return _flaxConvertedResult;
   }
 
-  api.CupertinoDynamicColor _flaxSuper_resolveFrom(api11.BuildContext context) {
+  api.CupertinoDynamicColor _flaxSuper_resolveFrom(api10.BuildContext context) {
     return super.resolveFrom(context);
   }
 
@@ -24335,11 +23620,11 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
     if (identical(minLevel, _flaxOmitted)) {
       return super.toString();
     }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
   }
 
   @override
-  api4.DiagnosticsNode toDiagnosticsNode({
+  api3.DiagnosticsNode toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -24351,7 +23636,7 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
     );
   }
 
-  api4.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
+  api3.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -24360,7 +23645,7 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
         return super.toDiagnosticsNode();
       }
       return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
+        style: style as api3.DiagnosticsTreeStyle?,
       );
     }
     if (identical(style, _flaxOmitted)) {
@@ -24368,18 +23653,18 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
     }
     return super.toDiagnosticsNode(
       name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
+      style: style as api3.DiagnosticsTreeStyle?,
     );
   }
 
   @override
   // ignore: must_call_super
-  void debugFillProperties(api4.DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(api3.DiagnosticPropertiesBuilder properties) {
     return _FlaxProxyDispatch2_call_debugFillProperties(this, 3, properties);
   }
 
   void _flaxSuper_debugFillProperties(
-    api4.DiagnosticPropertiesBuilder properties,
+    api3.DiagnosticPropertiesBuilder properties,
   ) {
     if (_flaxActiveSuperMember == "debugFillProperties")
       _flaxCalledSuper = true;
@@ -24456,34 +23741,34 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
   }
 
   @override
-  api11.IconThemeData merge(api11.IconThemeData? other) {
+  api10.IconThemeData merge(api10.IconThemeData? other) {
     final _flaxResult = _flaxPeer.call(5, <Object?>[
       other,
     ], <String, Object?>{});
     if (!_flaxResult.$1) {
       return _flaxSuper_merge(other);
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api11.IconThemeData;
+    final _flaxConvertedResult = _flaxResult.$2 as api10.IconThemeData;
     return _flaxConvertedResult;
   }
 
-  api11.IconThemeData _flaxSuper_merge(api11.IconThemeData? other) {
+  api10.IconThemeData _flaxSuper_merge(api10.IconThemeData? other) {
     return super.merge(other);
   }
 
   @override
-  api11.IconThemeData resolve(api11.BuildContext context) {
+  api10.IconThemeData resolve(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(6, <Object?>[
       context,
     ], <String, Object?>{});
     if (!_flaxResult.$1) {
       return _flaxSuper_resolve(context);
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api11.IconThemeData;
+    final _flaxConvertedResult = _flaxResult.$2 as api10.IconThemeData;
     return _flaxConvertedResult;
   }
 
-  api11.IconThemeData _flaxSuper_resolve(api11.BuildContext context) {
+  api10.IconThemeData _flaxSuper_resolve(api10.BuildContext context) {
     return super.resolve(context);
   }
 
@@ -24609,7 +23894,7 @@ final class _CupertinoIconThemeDataProxy extends api.CupertinoIconThemeData
 }
 
 final class _CupertinoLocalizationsProxy extends api.CupertinoLocalizations
-    implements _FlaxProxyDispatch4, _FlaxProxyDispatch5 {
+    implements _FlaxProxyDispatch4 {
   final FlaxProxyPeer _flaxPeer;
   _CupertinoLocalizationsProxy(this._flaxPeer);
   @override
@@ -24662,7 +23947,7 @@ final class _CupertinoLocalizationsProxy extends api.CupertinoLocalizations
   }
 
   @override
-  String datePickerMediumDate(api3.DateTime date) {
+  String datePickerMediumDate(api2.DateTime date) {
     final _flaxResult = _flaxPeer.call(4, <Object?>[date], <String, Object?>{});
     if (!_flaxResult.$1) {
       throw StateError('Missing proxy method: datePickerMediumDate');
@@ -24815,16 +24100,33 @@ final class _CupertinoLocalizationsProxy extends api.CupertinoLocalizations
   }
 
   @override
-  String get anteMeridiemAbbreviation =>
-      _FlaxProxyDispatch4_get_anteMeridiemAbbreviation(this, 18);
+  String get anteMeridiemAbbreviation {
+    final _flaxResult = _flaxPeer.call(18, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get postMeridiemAbbreviation =>
-      _FlaxProxyDispatch4_get_postMeridiemAbbreviation(this, 19);
+  String get postMeridiemAbbreviation {
+    final _flaxResult = _flaxPeer.call(19, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get todayLabel => _FlaxProxyDispatch4_get_todayLabel(this, 20);
+  String get todayLabel {
+    final _flaxResult = _flaxPeer.call(20, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get alertDialogLabel =>
-      _FlaxProxyDispatch4_get_alertDialogLabel(this, 21);
+  String get alertDialogLabel {
+    final _flaxResult = _flaxPeer.call(21, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
   List<String> get timerPickerHourLabels {
     final _flaxResult = _flaxPeer.call(22, const [], const {});
@@ -24847,82 +24149,139 @@ final class _CupertinoLocalizationsProxy extends api.CupertinoLocalizations
   }
 
   @override
-  String get cutButtonLabel => _FlaxProxyDispatch4_get_cutButtonLabel(this, 25);
+  String get cutButtonLabel {
+    final _flaxResult = _flaxPeer.call(25, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get copyButtonLabel =>
-      _FlaxProxyDispatch4_get_copyButtonLabel(this, 26);
+  String get copyButtonLabel {
+    final _flaxResult = _flaxPeer.call(26, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get pasteButtonLabel =>
-      _FlaxProxyDispatch4_get_pasteButtonLabel(this, 27);
+  String get pasteButtonLabel {
+    final _flaxResult = _flaxPeer.call(27, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get clearButtonLabel =>
-      _FlaxProxyDispatch4_get_clearButtonLabel(this, 28);
+  String get clearButtonLabel {
+    final _flaxResult = _flaxPeer.call(28, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get noSpellCheckReplacementsLabel =>
-      _FlaxProxyDispatch4_get_noSpellCheckReplacementsLabel(this, 29);
+  String get noSpellCheckReplacementsLabel {
+    final _flaxResult = _flaxPeer.call(29, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get selectAllButtonLabel =>
-      _FlaxProxyDispatch4_get_selectAllButtonLabel(this, 30);
+  String get selectAllButtonLabel {
+    final _flaxResult = _flaxPeer.call(30, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get lookUpButtonLabel =>
-      _FlaxProxyDispatch4_get_lookUpButtonLabel(this, 31);
+  String get lookUpButtonLabel {
+    final _flaxResult = _flaxPeer.call(31, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get searchWebButtonLabel =>
-      _FlaxProxyDispatch4_get_searchWebButtonLabel(this, 32);
+  String get searchWebButtonLabel {
+    final _flaxResult = _flaxPeer.call(32, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get shareButtonLabel =>
-      _FlaxProxyDispatch4_get_shareButtonLabel(this, 33);
+  String get shareButtonLabel {
+    final _flaxResult = _flaxPeer.call(33, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get searchTextFieldPlaceholderLabel =>
-      _FlaxProxyDispatch4_get_searchTextFieldPlaceholderLabel(this, 34);
+  String get searchTextFieldPlaceholderLabel {
+    final _flaxResult = _flaxPeer.call(34, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get modalBarrierDismissLabel =>
-      _FlaxProxyDispatch4_get_modalBarrierDismissLabel(this, 35);
+  String get modalBarrierDismissLabel {
+    final _flaxResult = _flaxPeer.call(35, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get menuDismissLabel =>
-      _FlaxProxyDispatch4_get_menuDismissLabel(this, 36);
+  String get menuDismissLabel {
+    final _flaxResult = _flaxPeer.call(36, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get cancelButtonLabel =>
-      _FlaxProxyDispatch4_get_cancelButtonLabel(this, 37);
+  String get cancelButtonLabel {
+    final _flaxResult = _flaxPeer.call(37, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
-  String get backButtonLabel =>
-      _FlaxProxyDispatch4_get_backButtonLabel(this, 38);
+  String get backButtonLabel {
+    final _flaxResult = _flaxPeer.call(38, const [], const {});
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
+  }
+
   @override
   String get expansionTileExpandedHint =>
-      _FlaxProxyDispatch5_get_expansionTileExpandedHint(this, 39);
+      _FlaxProxyDispatch4_get_expansionTileExpandedHint(this, 39);
   String get _flaxSuperGet_expansionTileExpandedHint {
     return super.expansionTileExpandedHint;
   }
 
   @override
   String get expansionTileCollapsedHint =>
-      _FlaxProxyDispatch5_get_expansionTileCollapsedHint(this, 40);
+      _FlaxProxyDispatch4_get_expansionTileCollapsedHint(this, 40);
   String get _flaxSuperGet_expansionTileCollapsedHint {
     return super.expansionTileCollapsedHint;
   }
 
   @override
   String get expansionTileExpandedTapHint =>
-      _FlaxProxyDispatch5_get_expansionTileExpandedTapHint(this, 41);
+      _FlaxProxyDispatch4_get_expansionTileExpandedTapHint(this, 41);
   String get _flaxSuperGet_expansionTileExpandedTapHint {
     return super.expansionTileExpandedTapHint;
   }
 
   @override
   String get expansionTileCollapsedTapHint =>
-      _FlaxProxyDispatch5_get_expansionTileCollapsedTapHint(this, 42);
+      _FlaxProxyDispatch4_get_expansionTileCollapsedTapHint(this, 42);
   String get _flaxSuperGet_expansionTileCollapsedTapHint {
     return super.expansionTileCollapsedTapHint;
   }
 
   @override
-  String get expandedHint => _FlaxProxyDispatch5_get_expandedHint(this, 43);
+  String get expandedHint => _FlaxProxyDispatch4_get_expandedHint(this, 43);
   String get _flaxSuperGet_expandedHint {
     return super.expandedHint;
   }
 
   @override
-  String get collapsedHint => _FlaxProxyDispatch5_get_collapsedHint(this, 44);
+  String get collapsedHint => _FlaxProxyDispatch4_get_collapsedHint(this, 44);
   String get _flaxSuperGet_collapsedHint {
     return super.collapsedHint;
   }
@@ -24932,7 +24291,7 @@ final class _CupertinoMenuEntryProxy implements api.CupertinoMenuEntry {
   final FlaxProxyPeer _flaxPeer;
   _CupertinoMenuEntryProxy(this._flaxPeer);
   @override
-  bool hasLeading(api11.BuildContext context) {
+  bool hasLeading(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       context,
     ], <String, Object?>{});
@@ -24957,10 +24316,10 @@ final class _CupertinoPageTransitionsBuilderProxy
   _CupertinoPageTransitionsBuilderProxy(this._flaxPeer);
   @override
   api.Widget buildTransitions<T extends Object?>(
-    api11.PageRoute<T> route,
-    api11.BuildContext context,
-    api12.Animation<double> animation,
-    api12.Animation<double> secondaryAnimation,
+    api10.PageRoute<T> route,
+    api10.BuildContext context,
+    api11.Animation<double> animation,
+    api11.Animation<double> secondaryAnimation,
     api.Widget child,
   ) {
     final _flaxSignature = _flaxPeer.active
@@ -24973,10 +24332,10 @@ final class _CupertinoPageTransitionsBuilderProxy
           )
         : null;
     api.Widget _flaxContextSuper(
-      api11.PageRoute<T> route,
-      api11.BuildContext context,
-      api12.Animation<double> animation,
-      api12.Animation<double> secondaryAnimation,
+      api10.PageRoute<T> route,
+      api10.BuildContext context,
+      api11.Animation<double> animation,
+      api11.Animation<double> secondaryAnimation,
       api.Widget child,
     ) {
       return _flaxSuper_buildTransitions<T>(
@@ -25011,10 +24370,10 @@ final class _CupertinoPageTransitionsBuilderProxy
   }
 
   api.Widget _flaxSuper_buildTransitions<T extends Object?>(
-    api11.PageRoute<T> route,
-    api11.BuildContext context,
-    api12.Animation<double> animation,
-    api12.Animation<double> secondaryAnimation,
+    api10.PageRoute<T> route,
+    api10.BuildContext context,
+    api11.Animation<double> animation,
+    api11.Animation<double> secondaryAnimation,
     api.Widget child,
   ) {
     return super.buildTransitions<T>(
@@ -25027,22 +24386,22 @@ final class _CupertinoPageTransitionsBuilderProxy
   }
 
   @override
-  api3.Duration get transitionDuration {
+  api2.Duration get transitionDuration {
     final _flaxResult = _flaxPeer.call(1, const [], const {});
     if (!_flaxResult.$1) return super.transitionDuration;
-    final _flaxConvertedResult = _flaxResult.$2 as api3.Duration;
+    final _flaxConvertedResult = _flaxResult.$2 as api2.Duration;
     return _flaxConvertedResult;
   }
 
-  api3.Duration get _flaxSuperGet_transitionDuration {
+  api2.Duration get _flaxSuperGet_transitionDuration {
     return super.transitionDuration;
   }
 
   @override
   api.Widget? Function(
-    api11.BuildContext context,
-    api12.Animation<double> animation,
-    api12.Animation<double> secondaryAnimation,
+    api10.BuildContext context,
+    api11.Animation<double> animation,
+    api11.Animation<double> secondaryAnimation,
     bool allowSnapshotting,
     api.Widget? child,
   )?
@@ -25052,9 +24411,9 @@ final class _CupertinoPageTransitionsBuilderProxy
     final _flaxConvertedResult =
         _flaxResult.$2
             as api.Widget? Function(
-              api11.BuildContext context,
-              api12.Animation<double> animation,
-              api12.Animation<double> secondaryAnimation,
+              api10.BuildContext context,
+              api11.Animation<double> animation,
+              api11.Animation<double> secondaryAnimation,
               bool allowSnapshotting,
               api.Widget? child,
             )?;
@@ -25062,9 +24421,9 @@ final class _CupertinoPageTransitionsBuilderProxy
   }
 
   api.Widget? Function(
-    api11.BuildContext context,
-    api12.Animation<double> animation,
-    api12.Animation<double> secondaryAnimation,
+    api10.BuildContext context,
+    api11.Animation<double> animation,
+    api11.Animation<double> secondaryAnimation,
     bool allowSnapshotting,
     api.Widget? child,
   )?
@@ -25073,14 +24432,14 @@ final class _CupertinoPageTransitionsBuilderProxy
   }
 
   @override
-  api3.Duration get reverseTransitionDuration {
+  api2.Duration get reverseTransitionDuration {
     final _flaxResult = _flaxPeer.call(3, const [], const {});
     if (!_flaxResult.$1) return super.reverseTransitionDuration;
-    final _flaxConvertedResult = _flaxResult.$2 as api3.Duration;
+    final _flaxConvertedResult = _flaxResult.$2 as api2.Duration;
     return _flaxConvertedResult;
   }
 
-  api3.Duration get _flaxSuperGet_reverseTransitionDuration {
+  api2.Duration get _flaxSuperGet_reverseTransitionDuration {
     return super.reverseTransitionDuration;
   }
 }
@@ -25091,10 +24450,10 @@ _flaxProxySignature_CupertinoPageTransitionsBuilder_buildTransitions<
 >(FlaxDartTypes types) {
   Object _callback0(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.PageRoute<T> p0,
-        api11.BuildContext p1,
-        api12.Animation<double> p2,
-        api12.Animation<double> p3,
+        api10.PageRoute<T> p0,
+        api10.BuildContext p1,
+        api11.Animation<double> p2,
+        api11.Animation<double> p3,
         api.Widget p4,
       ) {
         final positional = <Object?>[];
@@ -25109,10 +24468,10 @@ _flaxProxySignature_CupertinoPageTransitionsBuilder_buildTransitions<
   bool _callback0Matches(Object value) =>
       value
           is api.Widget Function(
-            api11.PageRoute<T> route,
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.PageRoute<T> route,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             api.Widget child,
           );
   Object? _callback0Invoke(
@@ -25122,16 +24481,16 @@ _flaxProxySignature_CupertinoPageTransitionsBuilder_buildTransitions<
   ) {
     return (function
         as api.Widget Function(
-          api11.PageRoute<T> route,
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.PageRoute<T> route,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           api.Widget child,
         ))(
-      positional[0] as api11.PageRoute<T>,
-      positional[1] as api11.BuildContext,
-      positional[2] as api12.Animation<double>,
-      positional[3] as api12.Animation<double>,
+      positional[0] as api10.PageRoute<T>,
+      positional[1] as api10.BuildContext,
+      positional[2] as api11.Animation<double>,
+      positional[3] as api11.Animation<double>,
       positional[4] as api.Widget,
     );
   }
@@ -25140,7 +24499,7 @@ _flaxProxySignature_CupertinoPageTransitionsBuilder_buildTransitions<
     [
       FlaxCallbackParameter.plain(
         "route",
-        types.ref<api11.PageRoute<T>>(withinCallback: true),
+        types.ref<api10.PageRoute<T>>(withinCallback: true),
       ),
       FlaxCallbackParameter.plain("context", _flaxBinding2),
       FlaxCallbackParameter.plain("animation", _flaxBinding56),
@@ -25153,10 +24512,10 @@ _flaxProxySignature_CupertinoPageTransitionsBuilder_buildTransitions<
         types
             .key<
               api.Widget Function(
-                api11.PageRoute<T> route,
-                api11.BuildContext context,
-                api12.Animation<double> animation,
-                api12.Animation<double> secondaryAnimation,
+                api10.PageRoute<T> route,
+                api10.BuildContext context,
+                api11.Animation<double> animation,
+                api11.Animation<double> secondaryAnimation,
                 api.Widget child,
               )
             >() +
@@ -25170,7 +24529,7 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
   final FlaxProxyPeer _flaxPeer;
   _CupertinoScrollBehaviorProxy(this._flaxPeer);
   @override
-  api11.ScrollBehavior copyWith({
+  api10.ScrollBehavior copyWith({
     Object? scrollbars = _flaxOmitted,
     Object? overscroll = _flaxOmitted,
     Object? dragDevices = _flaxOmitted,
@@ -25205,11 +24564,11 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
         keyboardDismissBehavior: keyboardDismissBehavior,
       );
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api11.ScrollBehavior;
+    final _flaxConvertedResult = _flaxResult.$2 as api10.ScrollBehavior;
     return _flaxConvertedResult;
   }
 
-  api11.ScrollBehavior _flaxSuper_copyWith({
+  api10.ScrollBehavior _flaxSuper_copyWith({
     Object? scrollbars = _flaxOmitted,
     Object? overscroll = _flaxOmitted,
     Object? dragDevices = _flaxOmitted,
@@ -25228,39 +24587,39 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
         #dragDevices: dragDevices as Set<api1.PointerDeviceKind>?,
       if (!identical(multitouchDragStrategy, _flaxOmitted))
         #multitouchDragStrategy:
-            multitouchDragStrategy as api5.MultitouchDragStrategy?,
+            multitouchDragStrategy as api4.MultitouchDragStrategy?,
       if (!identical(pointerAxisModifiers, _flaxOmitted))
         #pointerAxisModifiers:
-            pointerAxisModifiers as Set<api8.LogicalKeyboardKey>?,
+            pointerAxisModifiers as Set<api7.LogicalKeyboardKey>?,
       if (!identical(physics, _flaxOmitted))
-        #physics: physics as api11.ScrollPhysics?,
+        #physics: physics as api10.ScrollPhysics?,
       if (!identical(platform, _flaxOmitted))
-        #platform: platform as api4.TargetPlatform?,
+        #platform: platform as api3.TargetPlatform?,
       if (!identical(keyboardDismissBehavior, _flaxOmitted))
         #keyboardDismissBehavior:
-            keyboardDismissBehavior as api11.ScrollViewKeyboardDismissBehavior?,
-    }) as api11.ScrollBehavior);
+            keyboardDismissBehavior as api10.ScrollViewKeyboardDismissBehavior?,
+    }) as api10.ScrollBehavior);
   }
 
   @override
-  api4.TargetPlatform getPlatform(api11.BuildContext context) {
+  api3.TargetPlatform getPlatform(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(1, <Object?>[
       context,
     ], <String, Object?>{});
     if (!_flaxResult.$1) {
       return _flaxSuper_getPlatform(context);
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api4.TargetPlatform;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.TargetPlatform;
     return _flaxConvertedResult;
   }
 
-  api4.TargetPlatform _flaxSuper_getPlatform(api11.BuildContext context) {
+  api3.TargetPlatform _flaxSuper_getPlatform(api10.BuildContext context) {
     return super.getPlatform(context);
   }
 
   @override
-  api5.MultitouchDragStrategy getMultitouchDragStrategy(
-    api11.BuildContext context,
+  api4.MultitouchDragStrategy getMultitouchDragStrategy(
+    api10.BuildContext context,
   ) {
     final _flaxResult = _flaxPeer.call(2, <Object?>[
       context,
@@ -25268,21 +24627,21 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
     if (!_flaxResult.$1) {
       return _flaxSuper_getMultitouchDragStrategy(context);
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api5.MultitouchDragStrategy;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.MultitouchDragStrategy;
     return _flaxConvertedResult;
   }
 
-  api5.MultitouchDragStrategy _flaxSuper_getMultitouchDragStrategy(
-    api11.BuildContext context,
+  api4.MultitouchDragStrategy _flaxSuper_getMultitouchDragStrategy(
+    api10.BuildContext context,
   ) {
     return super.getMultitouchDragStrategy(context);
   }
 
   @override
   api.Widget buildScrollbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api.Widget child,
-    api11.ScrollableDetails details,
+    api10.ScrollableDetails details,
   ) {
     final _flaxResult = _flaxPeer.call(3, <Object?>[
       context,
@@ -25297,18 +24656,18 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
   }
 
   api.Widget _flaxSuper_buildScrollbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api.Widget child,
-    api11.ScrollableDetails details,
+    api10.ScrollableDetails details,
   ) {
     return super.buildScrollbar(context, child, details);
   }
 
   @override
   api.Widget buildOverscrollIndicator(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api.Widget child,
-    api11.ScrollableDetails details,
+    api10.ScrollableDetails details,
   ) {
     final _flaxResult = _flaxPeer.call(4, <Object?>[
       context,
@@ -25323,16 +24682,16 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
   }
 
   api.Widget _flaxSuper_buildOverscrollIndicator(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api.Widget child,
-    api11.ScrollableDetails details,
+    api10.ScrollableDetails details,
   ) {
     return super.buildOverscrollIndicator(context, child, details);
   }
 
   @override
-  api5.VelocityTracker Function(api5.PointerEvent event) velocityTrackerBuilder(
-    api11.BuildContext context,
+  api4.VelocityTracker Function(api4.PointerEvent event) velocityTrackerBuilder(
+    api10.BuildContext context,
   ) {
     final _flaxResult = _flaxPeer.call(5, <Object?>[
       context,
@@ -25342,33 +24701,33 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
     }
     final _flaxConvertedResult =
         _flaxResult.$2
-            as api5.VelocityTracker Function(api5.PointerEvent event);
+            as api4.VelocityTracker Function(api4.PointerEvent event);
     return _flaxConvertedResult;
   }
 
-  api5.VelocityTracker Function(api5.PointerEvent event)
-  _flaxSuper_velocityTrackerBuilder(api11.BuildContext context) {
+  api4.VelocityTracker Function(api4.PointerEvent event)
+  _flaxSuper_velocityTrackerBuilder(api10.BuildContext context) {
     return super.velocityTrackerBuilder(context);
   }
 
   @override
-  api11.ScrollPhysics getScrollPhysics(api11.BuildContext context) {
+  api10.ScrollPhysics getScrollPhysics(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(6, <Object?>[
       context,
     ], <String, Object?>{});
     if (!_flaxResult.$1) {
       return _flaxSuper_getScrollPhysics(context);
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api11.ScrollPhysics;
+    final _flaxConvertedResult = _flaxResult.$2 as api10.ScrollPhysics;
     return _flaxConvertedResult;
   }
 
-  api11.ScrollPhysics _flaxSuper_getScrollPhysics(api11.BuildContext context) {
+  api10.ScrollPhysics _flaxSuper_getScrollPhysics(api10.BuildContext context) {
     return super.getScrollPhysics(context);
   }
 
   @override
-  bool shouldNotify(api11.ScrollBehavior oldDelegate) {
+  bool shouldNotify(api10.ScrollBehavior oldDelegate) {
     final _flaxResult = _flaxPeer.call(7, <Object?>[
       oldDelegate,
     ], <String, Object?>{});
@@ -25379,13 +24738,13 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
     return _flaxConvertedResult;
   }
 
-  bool _flaxSuper_shouldNotify(api11.ScrollBehavior oldDelegate) {
+  bool _flaxSuper_shouldNotify(api10.ScrollBehavior oldDelegate) {
     return super.shouldNotify(oldDelegate);
   }
 
   @override
-  api11.ScrollViewKeyboardDismissBehavior getKeyboardDismissBehavior(
-    api11.BuildContext context,
+  api10.ScrollViewKeyboardDismissBehavior getKeyboardDismissBehavior(
+    api10.BuildContext context,
   ) {
     final _flaxResult = _flaxPeer.call(8, <Object?>[
       context,
@@ -25394,12 +24753,12 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
       return _flaxSuper_getKeyboardDismissBehavior(context);
     }
     final _flaxConvertedResult =
-        _flaxResult.$2 as api11.ScrollViewKeyboardDismissBehavior;
+        _flaxResult.$2 as api10.ScrollViewKeyboardDismissBehavior;
     return _flaxConvertedResult;
   }
 
-  api11.ScrollViewKeyboardDismissBehavior _flaxSuper_getKeyboardDismissBehavior(
-    api11.BuildContext context,
+  api10.ScrollViewKeyboardDismissBehavior _flaxSuper_getKeyboardDismissBehavior(
+    api10.BuildContext context,
   ) {
     return super.getKeyboardDismissBehavior(context);
   }
@@ -25431,14 +24790,14 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
   }
 
   @override
-  Set<api8.LogicalKeyboardKey> get pointerAxisModifiers {
+  Set<api7.LogicalKeyboardKey> get pointerAxisModifiers {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.pointerAxisModifiers;
-    final _flaxConvertedResult = _flaxResult.$2 as Set<api8.LogicalKeyboardKey>;
+    final _flaxConvertedResult = _flaxResult.$2 as Set<api7.LogicalKeyboardKey>;
     return _flaxConvertedResult;
   }
 
-  Set<api8.LogicalKeyboardKey> get _flaxSuperGet_pointerAxisModifiers {
+  Set<api7.LogicalKeyboardKey> get _flaxSuperGet_pointerAxisModifiers {
     return super.pointerAxisModifiers;
   }
 }
@@ -25446,14 +24805,14 @@ final class _CupertinoScrollBehaviorProxy extends api.CupertinoScrollBehavior {
 // Only bridge super-call bookkeeping is mutable.
 // ignore: must_be_immutable
 final class _CupertinoTabControllerProxy extends api.CupertinoTabController
-    implements _FlaxProxyDispatch6 {
+    implements _FlaxProxyDispatch5 {
   final FlaxProxyPeer _flaxPeer;
   String? _flaxActiveSuperMember;
   bool _flaxCalledSuper = false;
   _CupertinoTabControllerProxy(this._flaxPeer, {int super.initialIndex});
   @override
   void addListener(void Function() listener) {
-    return _FlaxProxyDispatch6_call_addListener(this, 0, listener);
+    return _FlaxProxyDispatch5_call_addListener(this, 0, listener);
   }
 
   void _flaxSuper_addListener(void Function() listener) {
@@ -25463,7 +24822,7 @@ final class _CupertinoTabControllerProxy extends api.CupertinoTabController
 
   @override
   void removeListener(void Function() listener) {
-    return _FlaxProxyDispatch6_call_removeListener(this, 1, listener);
+    return _FlaxProxyDispatch5_call_removeListener(this, 1, listener);
   }
 
   void _flaxSuper_removeListener(void Function() listener) {
@@ -25474,7 +24833,7 @@ final class _CupertinoTabControllerProxy extends api.CupertinoTabController
   @override
   // ignore: must_call_super
   void dispose() {
-    return _FlaxProxyDispatch6_call_dispose(this, 2);
+    return _FlaxProxyDispatch5_call_dispose(this, 2);
   }
 
   void _flaxSuper_dispose() {
@@ -25496,7 +24855,7 @@ final class _CupertinoTabControllerProxy extends api.CupertinoTabController
   }
 
   @override
-  bool get hasListeners => _FlaxProxyDispatch6_get_hasListeners(this, 4);
+  bool get hasListeners => _FlaxProxyDispatch5_get_hasListeners(this, 4);
   bool get _flaxSuperGet_hasListeners {
     return super.hasListeners;
   }
@@ -25522,8 +24881,8 @@ final class _CupertinoTextSelectionControlsProxy
   _CupertinoTextSelectionControlsProxy(this._flaxPeer);
   @override
   api.Widget buildHandle(
-    api11.BuildContext context,
-    api10.TextSelectionHandleType type,
+    api10.BuildContext context,
+    api9.TextSelectionHandleType type,
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
@@ -25538,8 +24897,8 @@ final class _CupertinoTextSelectionControlsProxy
   }
 
   api.Widget _flaxSuper_buildHandle(
-    api11.BuildContext context,
-    api10.TextSelectionHandleType type,
+    api10.BuildContext context,
+    api9.TextSelectionHandleType type,
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
@@ -25556,7 +24915,7 @@ final class _CupertinoTextSelectionControlsProxy
 
   @override
   api1.Offset getHandleAnchor(
-    api10.TextSelectionHandleType type,
+    api9.TextSelectionHandleType type,
     double textLineHeight,
   ) {
     return _FlaxProxyDispatch0_call_getHandleAnchor(
@@ -25568,7 +24927,7 @@ final class _CupertinoTextSelectionControlsProxy
   }
 
   api1.Offset _flaxSuper_getHandleAnchor(
-    api10.TextSelectionHandleType type,
+    api9.TextSelectionHandleType type,
     double textLineHeight,
   ) {
     return super.getHandleAnchor(type, textLineHeight);
@@ -25576,13 +24935,13 @@ final class _CupertinoTextSelectionControlsProxy
 
   @override
   api.Widget buildToolbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api1.Rect globalEditableRegion,
     double textLineHeight,
     api1.Offset selectionMidpoint,
-    List<api10.TextSelectionPoint> endpoints,
-    api8.TextSelectionDelegate delegate,
-    api4.ValueListenable<api11.ClipboardStatus>? clipboardStatus,
+    List<api9.TextSelectionPoint> endpoints,
+    api7.TextSelectionDelegate delegate,
+    api3.ValueListenable<api10.ClipboardStatus>? clipboardStatus,
     api1.Offset? lastSecondaryTapDownPosition,
   ) {
     return _FlaxProxyDispatch0_call_buildToolbar(
@@ -25600,13 +24959,13 @@ final class _CupertinoTextSelectionControlsProxy
   }
 
   api.Widget _flaxSuper_buildToolbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api1.Rect globalEditableRegion,
     double textLineHeight,
     api1.Offset selectionMidpoint,
-    List<api10.TextSelectionPoint> endpoints,
-    api8.TextSelectionDelegate delegate,
-    api4.ValueListenable<api11.ClipboardStatus>? clipboardStatus,
+    List<api9.TextSelectionPoint> endpoints,
+    api7.TextSelectionDelegate delegate,
+    api3.ValueListenable<api10.ClipboardStatus>? clipboardStatus,
     api1.Offset? lastSecondaryTapDownPosition,
   ) {
     return super.buildToolbar(
@@ -25631,76 +24990,76 @@ final class _CupertinoTextSelectionControlsProxy
   }
 
   @override
-  bool canCut(api8.TextSelectionDelegate delegate) {
+  bool canCut(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canCut(this, 4, delegate);
   }
 
-  bool _flaxSuper_canCut(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canCut(api7.TextSelectionDelegate delegate) {
     return super.canCut(delegate);
   }
 
   @override
-  bool canCopy(api8.TextSelectionDelegate delegate) {
+  bool canCopy(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canCopy(this, 5, delegate);
   }
 
-  bool _flaxSuper_canCopy(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canCopy(api7.TextSelectionDelegate delegate) {
     return super.canCopy(delegate);
   }
 
   @override
-  bool canPaste(api8.TextSelectionDelegate delegate) {
+  bool canPaste(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canPaste(this, 6, delegate);
   }
 
-  bool _flaxSuper_canPaste(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canPaste(api7.TextSelectionDelegate delegate) {
     return super.canPaste(delegate);
   }
 
   @override
-  bool canSelectAll(api8.TextSelectionDelegate delegate) {
+  bool canSelectAll(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canSelectAll(this, 7, delegate);
   }
 
-  bool _flaxSuper_canSelectAll(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canSelectAll(api7.TextSelectionDelegate delegate) {
     return super.canSelectAll(delegate);
   }
 
   @override
-  void handleCut(api8.TextSelectionDelegate delegate) {
+  void handleCut(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch1_call_handleCut(this, 8, delegate);
   }
 
-  void _flaxSuper_handleCut(api8.TextSelectionDelegate delegate) {
+  void _flaxSuper_handleCut(api7.TextSelectionDelegate delegate) {
     super.handleCut(delegate);
     return;
   }
 
   @override
-  void handleCopy(api8.TextSelectionDelegate delegate) {
+  void handleCopy(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch1_call_handleCopy(this, 9, delegate);
   }
 
-  void _flaxSuper_handleCopy(api8.TextSelectionDelegate delegate) {
+  void _flaxSuper_handleCopy(api7.TextSelectionDelegate delegate) {
     super.handleCopy(delegate);
     return;
   }
 
   @override
-  Future<void> handlePaste(api8.TextSelectionDelegate delegate) {
+  Future<void> handlePaste(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_handlePaste(this, 10, delegate);
   }
 
-  Future<void> _flaxSuper_handlePaste(api8.TextSelectionDelegate delegate) {
+  Future<void> _flaxSuper_handlePaste(api7.TextSelectionDelegate delegate) {
     return super.handlePaste(delegate);
   }
 
   @override
-  void handleSelectAll(api8.TextSelectionDelegate delegate) {
+  void handleSelectAll(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_handleSelectAll(this, 11, delegate);
   }
 
-  void _flaxSuper_handleSelectAll(api8.TextSelectionDelegate delegate) {
+  void _flaxSuper_handleSelectAll(api7.TextSelectionDelegate delegate) {
     super.handleSelectAll(delegate);
     return;
   }
@@ -25722,13 +25081,13 @@ final class _CupertinoTextSelectionHandleControlsProxy
 
   @override
   api.Widget buildToolbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api1.Rect globalEditableRegion,
     double textLineHeight,
     api1.Offset selectionMidpoint,
-    List<api10.TextSelectionPoint> endpoints,
-    api8.TextSelectionDelegate delegate,
-    api4.ValueListenable<api11.ClipboardStatus>? clipboardStatus,
+    List<api9.TextSelectionPoint> endpoints,
+    api7.TextSelectionDelegate delegate,
+    api3.ValueListenable<api10.ClipboardStatus>? clipboardStatus,
     api1.Offset? lastSecondaryTapDownPosition,
   ) {
     return _FlaxProxyDispatch0_call_buildToolbar(
@@ -25746,13 +25105,13 @@ final class _CupertinoTextSelectionHandleControlsProxy
   }
 
   api.Widget _flaxSuper_buildToolbar(
-    api11.BuildContext context,
+    api10.BuildContext context,
     api1.Rect globalEditableRegion,
     double textLineHeight,
     api1.Offset selectionMidpoint,
-    List<api10.TextSelectionPoint> endpoints,
-    api8.TextSelectionDelegate delegate,
-    api4.ValueListenable<api11.ClipboardStatus>? clipboardStatus,
+    List<api9.TextSelectionPoint> endpoints,
+    api7.TextSelectionDelegate delegate,
+    api3.ValueListenable<api10.ClipboardStatus>? clipboardStatus,
     api1.Offset? lastSecondaryTapDownPosition,
   ) {
     return super.buildToolbar(
@@ -25769,8 +25128,8 @@ final class _CupertinoTextSelectionHandleControlsProxy
 
   @override
   api.Widget buildHandle(
-    api11.BuildContext context,
-    api10.TextSelectionHandleType type,
+    api10.BuildContext context,
+    api9.TextSelectionHandleType type,
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
@@ -25785,8 +25144,8 @@ final class _CupertinoTextSelectionHandleControlsProxy
   }
 
   api.Widget _flaxSuper_buildHandle(
-    api11.BuildContext context,
-    api10.TextSelectionHandleType type,
+    api10.BuildContext context,
+    api9.TextSelectionHandleType type,
     double textLineHeight, [
     Object? onTap = _flaxOmitted,
   ]) {
@@ -25803,7 +25162,7 @@ final class _CupertinoTextSelectionHandleControlsProxy
 
   @override
   api1.Offset getHandleAnchor(
-    api10.TextSelectionHandleType type,
+    api9.TextSelectionHandleType type,
     double textLineHeight,
   ) {
     return _FlaxProxyDispatch0_call_getHandleAnchor(
@@ -25815,51 +25174,51 @@ final class _CupertinoTextSelectionHandleControlsProxy
   }
 
   api1.Offset _flaxSuper_getHandleAnchor(
-    api10.TextSelectionHandleType type,
+    api9.TextSelectionHandleType type,
     double textLineHeight,
   ) {
     return super.getHandleAnchor(type, textLineHeight);
   }
 
   @override
-  bool canCut(api8.TextSelectionDelegate delegate) {
+  bool canCut(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canCut(this, 4, delegate);
   }
 
-  bool _flaxSuper_canCut(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canCut(api7.TextSelectionDelegate delegate) {
     return super.canCut(delegate);
   }
 
   @override
-  bool canCopy(api8.TextSelectionDelegate delegate) {
+  bool canCopy(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canCopy(this, 5, delegate);
   }
 
-  bool _flaxSuper_canCopy(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canCopy(api7.TextSelectionDelegate delegate) {
     return super.canCopy(delegate);
   }
 
   @override
-  bool canPaste(api8.TextSelectionDelegate delegate) {
+  bool canPaste(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canPaste(this, 6, delegate);
   }
 
-  bool _flaxSuper_canPaste(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canPaste(api7.TextSelectionDelegate delegate) {
     return super.canPaste(delegate);
   }
 
   @override
-  bool canSelectAll(api8.TextSelectionDelegate delegate) {
+  bool canSelectAll(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_canSelectAll(this, 7, delegate);
   }
 
-  bool _flaxSuper_canSelectAll(api8.TextSelectionDelegate delegate) {
+  bool _flaxSuper_canSelectAll(api7.TextSelectionDelegate delegate) {
     return super.canSelectAll(delegate);
   }
 
   @override
   void handleCut(
-    api8.TextSelectionDelegate delegate, [
+    api7.TextSelectionDelegate delegate, [
     Object? clipboardStatus = _flaxOmitted,
   ]) {
     final _flaxResult = _flaxPeer.call(8, <Object?>[
@@ -25874,7 +25233,7 @@ final class _CupertinoTextSelectionHandleControlsProxy
   }
 
   void _flaxSuper_handleCut(
-    api8.TextSelectionDelegate delegate, [
+    api7.TextSelectionDelegate delegate, [
     Object? clipboardStatus = _flaxOmitted,
   ]) {
     if (identical(clipboardStatus, _flaxOmitted)) {
@@ -25883,14 +25242,14 @@ final class _CupertinoTextSelectionHandleControlsProxy
     }
     super.handleCut(
       delegate,
-      clipboardStatus as api11.ClipboardStatusNotifier?,
+      clipboardStatus as api10.ClipboardStatusNotifier?,
     );
     return;
   }
 
   @override
   void handleCopy(
-    api8.TextSelectionDelegate delegate, [
+    api7.TextSelectionDelegate delegate, [
     Object? clipboardStatus = _flaxOmitted,
   ]) {
     final _flaxResult = _flaxPeer.call(9, <Object?>[
@@ -25905,7 +25264,7 @@ final class _CupertinoTextSelectionHandleControlsProxy
   }
 
   void _flaxSuper_handleCopy(
-    api8.TextSelectionDelegate delegate, [
+    api7.TextSelectionDelegate delegate, [
     Object? clipboardStatus = _flaxOmitted,
   ]) {
     if (identical(clipboardStatus, _flaxOmitted)) {
@@ -25914,26 +25273,26 @@ final class _CupertinoTextSelectionHandleControlsProxy
     }
     super.handleCopy(
       delegate,
-      clipboardStatus as api11.ClipboardStatusNotifier?,
+      clipboardStatus as api10.ClipboardStatusNotifier?,
     );
     return;
   }
 
   @override
-  Future<void> handlePaste(api8.TextSelectionDelegate delegate) {
+  Future<void> handlePaste(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_handlePaste(this, 10, delegate);
   }
 
-  Future<void> _flaxSuper_handlePaste(api8.TextSelectionDelegate delegate) {
+  Future<void> _flaxSuper_handlePaste(api7.TextSelectionDelegate delegate) {
     return super.handlePaste(delegate);
   }
 
   @override
-  void handleSelectAll(api8.TextSelectionDelegate delegate) {
+  void handleSelectAll(api7.TextSelectionDelegate delegate) {
     return _FlaxProxyDispatch0_call_handleSelectAll(this, 11, delegate);
   }
 
-  void _flaxSuper_handleSelectAll(api8.TextSelectionDelegate delegate) {
+  void _flaxSuper_handleSelectAll(api7.TextSelectionDelegate delegate) {
     super.handleSelectAll(delegate);
     return;
   }
@@ -25949,15 +25308,15 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
   _CupertinoTextThemeDataProxy(
     this._flaxPeer, {
     api1.Color super.primaryColor,
-    api13.TextStyle? super.textStyle,
-    api13.TextStyle? super.actionTextStyle,
-    api13.TextStyle? super.actionSmallTextStyle,
-    api13.TextStyle? super.tabLabelTextStyle,
-    api13.TextStyle? super.navTitleTextStyle,
-    api13.TextStyle? super.navLargeTitleTextStyle,
-    api13.TextStyle? super.navActionTextStyle,
-    api13.TextStyle? super.pickerTextStyle,
-    api13.TextStyle? super.dateTimePickerTextStyle,
+    api12.TextStyle? super.textStyle,
+    api12.TextStyle? super.actionTextStyle,
+    api12.TextStyle? super.actionSmallTextStyle,
+    api12.TextStyle? super.tabLabelTextStyle,
+    api12.TextStyle? super.navTitleTextStyle,
+    api12.TextStyle? super.navLargeTitleTextStyle,
+    api12.TextStyle? super.navActionTextStyle,
+    api12.TextStyle? super.pickerTextStyle,
+    api12.TextStyle? super.dateTimePickerTextStyle,
   });
   @override
   String toStringShort() {
@@ -25977,11 +25336,11 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
     if (identical(minLevel, _flaxOmitted)) {
       return super.toString();
     }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
   }
 
   @override
-  api4.DiagnosticsNode toDiagnosticsNode({
+  api3.DiagnosticsNode toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -25993,7 +25352,7 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
     );
   }
 
-  api4.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
+  api3.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -26002,7 +25361,7 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
         return super.toDiagnosticsNode();
       }
       return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
+        style: style as api3.DiagnosticsTreeStyle?,
       );
     }
     if (identical(style, _flaxOmitted)) {
@@ -26010,18 +25369,18 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
     }
     return super.toDiagnosticsNode(
       name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
+      style: style as api3.DiagnosticsTreeStyle?,
     );
   }
 
   @override
   // ignore: must_call_super
-  void debugFillProperties(api4.DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(api3.DiagnosticPropertiesBuilder properties) {
     return _FlaxProxyDispatch2_call_debugFillProperties(this, 3, properties);
   }
 
   void _flaxSuper_debugFillProperties(
-    api4.DiagnosticPropertiesBuilder properties,
+    api3.DiagnosticPropertiesBuilder properties,
   ) {
     if (_flaxActiveSuperMember == "debugFillProperties")
       _flaxCalledSuper = true;
@@ -26030,7 +25389,7 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
   }
 
   @override
-  api.CupertinoTextThemeData resolveFrom(api11.BuildContext context) {
+  api.CupertinoTextThemeData resolveFrom(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(4, <Object?>[
       context,
     ], <String, Object?>{});
@@ -26042,7 +25401,7 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
   }
 
   api.CupertinoTextThemeData _flaxSuper_resolveFrom(
-    api11.BuildContext context,
+    api10.BuildContext context,
   ) {
     return super.resolveFrom(context);
   }
@@ -26114,131 +25473,131 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
       if (!identical(primaryColor, _flaxOmitted))
         #primaryColor: primaryColor as api1.Color?,
       if (!identical(textStyle, _flaxOmitted))
-        #textStyle: textStyle as api13.TextStyle?,
+        #textStyle: textStyle as api12.TextStyle?,
       if (!identical(actionTextStyle, _flaxOmitted))
-        #actionTextStyle: actionTextStyle as api13.TextStyle?,
+        #actionTextStyle: actionTextStyle as api12.TextStyle?,
       if (!identical(actionSmallTextStyle, _flaxOmitted))
-        #actionSmallTextStyle: actionSmallTextStyle as api13.TextStyle?,
+        #actionSmallTextStyle: actionSmallTextStyle as api12.TextStyle?,
       if (!identical(tabLabelTextStyle, _flaxOmitted))
-        #tabLabelTextStyle: tabLabelTextStyle as api13.TextStyle?,
+        #tabLabelTextStyle: tabLabelTextStyle as api12.TextStyle?,
       if (!identical(navTitleTextStyle, _flaxOmitted))
-        #navTitleTextStyle: navTitleTextStyle as api13.TextStyle?,
+        #navTitleTextStyle: navTitleTextStyle as api12.TextStyle?,
       if (!identical(navLargeTitleTextStyle, _flaxOmitted))
-        #navLargeTitleTextStyle: navLargeTitleTextStyle as api13.TextStyle?,
+        #navLargeTitleTextStyle: navLargeTitleTextStyle as api12.TextStyle?,
       if (!identical(navActionTextStyle, _flaxOmitted))
-        #navActionTextStyle: navActionTextStyle as api13.TextStyle?,
+        #navActionTextStyle: navActionTextStyle as api12.TextStyle?,
       if (!identical(pickerTextStyle, _flaxOmitted))
-        #pickerTextStyle: pickerTextStyle as api13.TextStyle?,
+        #pickerTextStyle: pickerTextStyle as api12.TextStyle?,
       if (!identical(dateTimePickerTextStyle, _flaxOmitted))
-        #dateTimePickerTextStyle: dateTimePickerTextStyle as api13.TextStyle?,
+        #dateTimePickerTextStyle: dateTimePickerTextStyle as api12.TextStyle?,
     }) as api.CupertinoTextThemeData);
   }
 
   @override
-  api13.TextStyle get textStyle {
+  api12.TextStyle get textStyle {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.textStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_textStyle {
+  api12.TextStyle get _flaxSuperGet_textStyle {
     return super.textStyle;
   }
 
   @override
-  api13.TextStyle get actionTextStyle {
+  api12.TextStyle get actionTextStyle {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.actionTextStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_actionTextStyle {
+  api12.TextStyle get _flaxSuperGet_actionTextStyle {
     return super.actionTextStyle;
   }
 
   @override
-  api13.TextStyle get actionSmallTextStyle {
+  api12.TextStyle get actionSmallTextStyle {
     final _flaxResult = _flaxPeer.call(8, const [], const {});
     if (!_flaxResult.$1) return super.actionSmallTextStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_actionSmallTextStyle {
+  api12.TextStyle get _flaxSuperGet_actionSmallTextStyle {
     return super.actionSmallTextStyle;
   }
 
   @override
-  api13.TextStyle get tabLabelTextStyle {
+  api12.TextStyle get tabLabelTextStyle {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.tabLabelTextStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_tabLabelTextStyle {
+  api12.TextStyle get _flaxSuperGet_tabLabelTextStyle {
     return super.tabLabelTextStyle;
   }
 
   @override
-  api13.TextStyle get navTitleTextStyle {
+  api12.TextStyle get navTitleTextStyle {
     final _flaxResult = _flaxPeer.call(10, const [], const {});
     if (!_flaxResult.$1) return super.navTitleTextStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_navTitleTextStyle {
+  api12.TextStyle get _flaxSuperGet_navTitleTextStyle {
     return super.navTitleTextStyle;
   }
 
   @override
-  api13.TextStyle get navLargeTitleTextStyle {
+  api12.TextStyle get navLargeTitleTextStyle {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.navLargeTitleTextStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_navLargeTitleTextStyle {
+  api12.TextStyle get _flaxSuperGet_navLargeTitleTextStyle {
     return super.navLargeTitleTextStyle;
   }
 
   @override
-  api13.TextStyle get navActionTextStyle {
+  api12.TextStyle get navActionTextStyle {
     final _flaxResult = _flaxPeer.call(12, const [], const {});
     if (!_flaxResult.$1) return super.navActionTextStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_navActionTextStyle {
+  api12.TextStyle get _flaxSuperGet_navActionTextStyle {
     return super.navActionTextStyle;
   }
 
   @override
-  api13.TextStyle get pickerTextStyle {
+  api12.TextStyle get pickerTextStyle {
     final _flaxResult = _flaxPeer.call(13, const [], const {});
     if (!_flaxResult.$1) return super.pickerTextStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_pickerTextStyle {
+  api12.TextStyle get _flaxSuperGet_pickerTextStyle {
     return super.pickerTextStyle;
   }
 
   @override
-  api13.TextStyle get dateTimePickerTextStyle {
+  api12.TextStyle get dateTimePickerTextStyle {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.dateTimePickerTextStyle;
-    final _flaxConvertedResult = _flaxResult.$2 as api13.TextStyle;
+    final _flaxConvertedResult = _flaxResult.$2 as api12.TextStyle;
     return _flaxConvertedResult;
   }
 
-  api13.TextStyle get _flaxSuperGet_dateTimePickerTextStyle {
+  api12.TextStyle get _flaxSuperGet_dateTimePickerTextStyle {
     return super.dateTimePickerTextStyle;
   }
 }
@@ -26246,7 +25605,7 @@ final class _CupertinoTextThemeDataProxy extends api.CupertinoTextThemeData
 // Only bridge super-call bookkeeping is mutable.
 // ignore: must_be_immutable
 final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
-    implements _FlaxProxyDispatch2, _FlaxProxyDispatch7 {
+    implements _FlaxProxyDispatch2, _FlaxProxyDispatch6 {
   final FlaxProxyPeer _flaxPeer;
   String? _flaxActiveSuperMember;
   bool _flaxCalledSuper = false;
@@ -26274,7 +25633,7 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
   ) : super.raw();
   @override
   api.NoDefaultCupertinoThemeData noDefault() {
-    return _FlaxProxyDispatch7_call_noDefault(this, 0);
+    return _FlaxProxyDispatch6_call_noDefault(this, 0);
   }
 
   api.NoDefaultCupertinoThemeData _flaxSuper_noDefault() {
@@ -26282,7 +25641,7 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
   }
 
   @override
-  api.CupertinoThemeData resolveFrom(api11.BuildContext context) {
+  api.CupertinoThemeData resolveFrom(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(1, <Object?>[
       context,
     ], <String, Object?>{});
@@ -26293,7 +25652,7 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
     return _flaxConvertedResult;
   }
 
-  api.CupertinoThemeData _flaxSuper_resolveFrom(api11.BuildContext context) {
+  api.CupertinoThemeData _flaxSuper_resolveFrom(api10.BuildContext context) {
     return super.resolveFrom(context);
   }
 
@@ -26387,11 +25746,11 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
     if (identical(minLevel, _flaxOmitted)) {
       return super.toString();
     }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
   }
 
   @override
-  api4.DiagnosticsNode toDiagnosticsNode({
+  api3.DiagnosticsNode toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -26403,7 +25762,7 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
     );
   }
 
-  api4.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
+  api3.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -26412,7 +25771,7 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
         return super.toDiagnosticsNode();
       }
       return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
+        style: style as api3.DiagnosticsTreeStyle?,
       );
     }
     if (identical(style, _flaxOmitted)) {
@@ -26420,18 +25779,18 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
     }
     return super.toDiagnosticsNode(
       name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
+      style: style as api3.DiagnosticsTreeStyle?,
     );
   }
 
   @override
   // ignore: must_call_super
-  void debugFillProperties(api4.DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(api3.DiagnosticPropertiesBuilder properties) {
     return _FlaxProxyDispatch2_call_debugFillProperties(this, 6, properties);
   }
 
   void _flaxSuper_debugFillProperties(
-    api4.DiagnosticPropertiesBuilder properties,
+    api3.DiagnosticPropertiesBuilder properties,
   ) {
     if (_flaxActiveSuperMember == "debugFillProperties")
       _flaxCalledSuper = true;
@@ -26525,7 +25884,7 @@ final class _CupertinoThemeDataProxy extends api.CupertinoThemeData
 
   @override
   api1.Brightness? get brightness =>
-      _FlaxProxyDispatch7_get_brightness(this, 14);
+      _FlaxProxyDispatch6_get_brightness(this, 14);
   api1.Brightness? get _flaxSuperGet_brightness {
     return super.brightness;
   }
@@ -26537,12 +25896,12 @@ final class _CupertinoThumbPainterProxy extends api.CupertinoThumbPainter
   _CupertinoThumbPainterProxy(
     this._flaxPeer, {
     api1.Color super.color,
-    List<api13.BoxShadow> super.shadows,
+    List<api12.BoxShadow> super.shadows,
   });
   _CupertinoThumbPainterProxy.switchThumb(
     this._flaxPeer, {
     api1.Color super.color,
-    List<api13.BoxShadow> super.shadows,
+    List<api12.BoxShadow> super.shadows,
   }) : super.switchThumb();
   @override
   void paint(api1.Canvas canvas, api1.Rect rect) {
@@ -26569,26 +25928,33 @@ final class _CupertinoThumbPainterProxy extends api.CupertinoThumbPainter
   }
 
   @override
-  List<api13.BoxShadow> get shadows {
+  List<api12.BoxShadow> get shadows {
     final _flaxResult = _flaxPeer.call(2, const [], const {});
     if (!_flaxResult.$1) return super.shadows;
-    final _flaxConvertedResult = _flaxResult.$2 as List<api13.BoxShadow>;
+    final _flaxConvertedResult = _flaxResult.$2 as List<api12.BoxShadow>;
     return _flaxConvertedResult;
   }
 
-  List<api13.BoxShadow> get _flaxSuperGet_shadows {
+  List<api12.BoxShadow> get _flaxSuperGet_shadows {
     return super.shadows;
   }
 }
 
 final class _DefaultCupertinoLocalizationsProxy
     extends api.DefaultCupertinoLocalizations
-    implements _FlaxProxyDispatch8, _FlaxProxyDispatch5 {
+    implements _FlaxProxyDispatch4 {
   final FlaxProxyPeer _flaxPeer;
   _DefaultCupertinoLocalizationsProxy(this._flaxPeer);
   @override
   String datePickerYear(int yearIndex) {
-    return _FlaxProxyDispatch8_call_datePickerYear(this, 0, yearIndex);
+    final _flaxResult = _flaxPeer.call(0, <Object?>[
+      yearIndex,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_datePickerYear(yearIndex);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_datePickerYear(int yearIndex) {
@@ -26597,7 +25963,14 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String datePickerMonth(int monthIndex) {
-    return _FlaxProxyDispatch8_call_datePickerMonth(this, 1, monthIndex);
+    final _flaxResult = _flaxPeer.call(1, <Object?>[
+      monthIndex,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_datePickerMonth(monthIndex);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_datePickerMonth(int monthIndex) {
@@ -26606,11 +25979,14 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String datePickerStandaloneMonth(int monthIndex) {
-    return _FlaxProxyDispatch8_call_datePickerStandaloneMonth(
-      this,
-      2,
+    final _flaxResult = _flaxPeer.call(2, <Object?>[
       monthIndex,
-    );
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_datePickerStandaloneMonth(monthIndex);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_datePickerStandaloneMonth(int monthIndex) {
@@ -26619,12 +25995,15 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String datePickerDayOfMonth(int dayIndex, [Object? weekDay = _flaxOmitted]) {
-    return _FlaxProxyDispatch8_call_datePickerDayOfMonth(
-      this,
-      3,
+    final _flaxResult = _flaxPeer.call(3, <Object?>[
       dayIndex,
-      weekDay,
-    );
+      if (!identical(weekDay, _flaxOmitted)) weekDay,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_datePickerDayOfMonth(dayIndex, weekDay);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_datePickerDayOfMonth(
@@ -26638,17 +26017,27 @@ final class _DefaultCupertinoLocalizationsProxy
   }
 
   @override
-  String datePickerMediumDate(api3.DateTime date) {
-    return _FlaxProxyDispatch8_call_datePickerMediumDate(this, 4, date);
+  String datePickerMediumDate(api2.DateTime date) {
+    final _flaxResult = _flaxPeer.call(4, <Object?>[date], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_datePickerMediumDate(date);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
-  String _flaxSuper_datePickerMediumDate(api3.DateTime date) {
+  String _flaxSuper_datePickerMediumDate(api2.DateTime date) {
     return super.datePickerMediumDate(date);
   }
 
   @override
   String datePickerHour(int hour) {
-    return _FlaxProxyDispatch8_call_datePickerHour(this, 5, hour);
+    final _flaxResult = _flaxPeer.call(5, <Object?>[hour], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_datePickerHour(hour);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_datePickerHour(int hour) {
@@ -26671,7 +26060,14 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String datePickerMinute(int minute) {
-    return _FlaxProxyDispatch8_call_datePickerMinute(this, 7, minute);
+    final _flaxResult = _flaxPeer.call(7, <Object?>[
+      minute,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_datePickerMinute(minute);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_datePickerMinute(int minute) {
@@ -26696,12 +26092,18 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String tabSemanticsLabel({required int tabIndex, required int tabCount}) {
-    return _FlaxProxyDispatch8_call_tabSemanticsLabel(
-      this,
-      9,
-      tabIndex: tabIndex,
-      tabCount: tabCount,
-    );
+    final _flaxResult = _flaxPeer.call(9, <Object?>[], <String, Object?>{
+      "tabIndex": tabIndex,
+      "tabCount": tabCount,
+    });
+    if (!_flaxResult.$1) {
+      return _flaxSuper_tabSemanticsLabel(
+        tabIndex: tabIndex,
+        tabCount: tabCount,
+      );
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_tabSemanticsLabel({
@@ -26713,7 +26115,14 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String timerPickerHour(int hour) {
-    return _FlaxProxyDispatch8_call_timerPickerHour(this, 10, hour);
+    final _flaxResult = _flaxPeer.call(10, <Object?>[
+      hour,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_timerPickerHour(hour);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_timerPickerHour(int hour) {
@@ -26722,7 +26131,14 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String timerPickerMinute(int minute) {
-    return _FlaxProxyDispatch8_call_timerPickerMinute(this, 11, minute);
+    final _flaxResult = _flaxPeer.call(11, <Object?>[
+      minute,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_timerPickerMinute(minute);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_timerPickerMinute(int minute) {
@@ -26731,7 +26147,14 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String timerPickerSecond(int second) {
-    return _FlaxProxyDispatch8_call_timerPickerSecond(this, 12, second);
+    final _flaxResult = _flaxPeer.call(12, <Object?>[
+      second,
+    ], <String, Object?>{});
+    if (!_flaxResult.$1) {
+      return _flaxSuper_timerPickerSecond(second);
+    }
+    final _flaxConvertedResult = _flaxResult.$2 as String;
+    return _flaxConvertedResult;
   }
 
   String _flaxSuper_timerPickerSecond(int second) {
@@ -26787,15 +26210,25 @@ final class _DefaultCupertinoLocalizationsProxy
   }
 
   @override
-  api.DatePickerDateOrder get datePickerDateOrder =>
-      _FlaxProxyDispatch8_get_datePickerDateOrder(this, 16);
+  api.DatePickerDateOrder get datePickerDateOrder {
+    final _flaxResult = _flaxPeer.call(16, const [], const {});
+    if (!_flaxResult.$1) return super.datePickerDateOrder;
+    final _flaxConvertedResult = _flaxResult.$2 as api.DatePickerDateOrder;
+    return _flaxConvertedResult;
+  }
+
   api.DatePickerDateOrder get _flaxSuperGet_datePickerDateOrder {
     return super.datePickerDateOrder;
   }
 
   @override
-  api.DatePickerDateTimeOrder get datePickerDateTimeOrder =>
-      _FlaxProxyDispatch8_get_datePickerDateTimeOrder(this, 17);
+  api.DatePickerDateTimeOrder get datePickerDateTimeOrder {
+    final _flaxResult = _flaxPeer.call(17, const [], const {});
+    if (!_flaxResult.$1) return super.datePickerDateTimeOrder;
+    final _flaxConvertedResult = _flaxResult.$2 as api.DatePickerDateTimeOrder;
+    return _flaxConvertedResult;
+  }
+
   api.DatePickerDateTimeOrder get _flaxSuperGet_datePickerDateTimeOrder {
     return super.datePickerDateTimeOrder;
   }
@@ -26849,22 +26282,37 @@ final class _DefaultCupertinoLocalizationsProxy
   }
 
   @override
-  List<String> get timerPickerHourLabels =>
-      _FlaxProxyDispatch8_get_timerPickerHourLabels(this, 22);
+  List<String> get timerPickerHourLabels {
+    final _flaxResult = _flaxPeer.call(22, const [], const {});
+    if (!_flaxResult.$1) return super.timerPickerHourLabels;
+    final _flaxConvertedResult = _flaxResult.$2 as List<String>;
+    return _flaxConvertedResult;
+  }
+
   List<String> get _flaxSuperGet_timerPickerHourLabels {
     return super.timerPickerHourLabels;
   }
 
   @override
-  List<String> get timerPickerMinuteLabels =>
-      _FlaxProxyDispatch8_get_timerPickerMinuteLabels(this, 23);
+  List<String> get timerPickerMinuteLabels {
+    final _flaxResult = _flaxPeer.call(23, const [], const {});
+    if (!_flaxResult.$1) return super.timerPickerMinuteLabels;
+    final _flaxConvertedResult = _flaxResult.$2 as List<String>;
+    return _flaxConvertedResult;
+  }
+
   List<String> get _flaxSuperGet_timerPickerMinuteLabels {
     return super.timerPickerMinuteLabels;
   }
 
   @override
-  List<String> get timerPickerSecondLabels =>
-      _FlaxProxyDispatch8_get_timerPickerSecondLabels(this, 24);
+  List<String> get timerPickerSecondLabels {
+    final _flaxResult = _flaxPeer.call(24, const [], const {});
+    if (!_flaxResult.$1) return super.timerPickerSecondLabels;
+    final _flaxConvertedResult = _flaxResult.$2 as List<String>;
+    return _flaxConvertedResult;
+  }
+
   List<String> get _flaxSuperGet_timerPickerSecondLabels {
     return super.timerPickerSecondLabels;
   }
@@ -27039,751 +26487,48 @@ final class _DefaultCupertinoLocalizationsProxy
 
   @override
   String get expansionTileExpandedHint =>
-      _FlaxProxyDispatch5_get_expansionTileExpandedHint(this, 39);
+      _FlaxProxyDispatch4_get_expansionTileExpandedHint(this, 39);
   String get _flaxSuperGet_expansionTileExpandedHint {
     return super.expansionTileExpandedHint;
   }
 
   @override
   String get expansionTileCollapsedHint =>
-      _FlaxProxyDispatch5_get_expansionTileCollapsedHint(this, 40);
+      _FlaxProxyDispatch4_get_expansionTileCollapsedHint(this, 40);
   String get _flaxSuperGet_expansionTileCollapsedHint {
     return super.expansionTileCollapsedHint;
   }
 
   @override
   String get expansionTileExpandedTapHint =>
-      _FlaxProxyDispatch5_get_expansionTileExpandedTapHint(this, 41);
+      _FlaxProxyDispatch4_get_expansionTileExpandedTapHint(this, 41);
   String get _flaxSuperGet_expansionTileExpandedTapHint {
     return super.expansionTileExpandedTapHint;
   }
 
   @override
   String get expansionTileCollapsedTapHint =>
-      _FlaxProxyDispatch5_get_expansionTileCollapsedTapHint(this, 42);
+      _FlaxProxyDispatch4_get_expansionTileCollapsedTapHint(this, 42);
   String get _flaxSuperGet_expansionTileCollapsedTapHint {
     return super.expansionTileCollapsedTapHint;
   }
 
   @override
-  String get expandedHint => _FlaxProxyDispatch5_get_expandedHint(this, 43);
+  String get expandedHint => _FlaxProxyDispatch4_get_expandedHint(this, 43);
   String get _flaxSuperGet_expandedHint {
     return super.expandedHint;
   }
 
   @override
-  String get collapsedHint => _FlaxProxyDispatch5_get_collapsedHint(this, 44);
+  String get collapsedHint => _FlaxProxyDispatch4_get_collapsedHint(this, 44);
   String get _flaxSuperGet_collapsedHint {
     return super.collapsedHint;
   }
 }
 
-final class _GlobalCupertinoLocalizationsProxy
-    extends api.GlobalCupertinoLocalizations
-    implements _FlaxProxyDispatch4, _FlaxProxyDispatch8 {
-  final FlaxProxyPeer _flaxPeer;
-  _GlobalCupertinoLocalizationsProxy(
-    this._flaxPeer, {
-    required String super.localeName,
-    required api2.DateFormat super.fullYearFormat,
-    required api2.DateFormat super.dayFormat,
-    required api2.DateFormat super.weekdayFormat,
-    required api2.DateFormat super.mediumDateFormat,
-    required api2.DateFormat super.singleDigitHourFormat,
-    required api2.DateFormat super.singleDigitMinuteFormat,
-    required api2.DateFormat super.doubleDigitMinuteFormat,
-    required api2.DateFormat super.singleDigitSecondFormat,
-    required api2.NumberFormat super.decimalFormat,
-  });
-  @override
-  String datePickerYear(int yearIndex) {
-    return _FlaxProxyDispatch8_call_datePickerYear(this, 0, yearIndex);
-  }
-
-  String _flaxSuper_datePickerYear(int yearIndex) {
-    return super.datePickerYear(yearIndex);
-  }
-
-  @override
-  String datePickerMonth(int monthIndex) {
-    return _FlaxProxyDispatch8_call_datePickerMonth(this, 1, monthIndex);
-  }
-
-  String _flaxSuper_datePickerMonth(int monthIndex) {
-    return super.datePickerMonth(monthIndex);
-  }
-
-  @override
-  String datePickerStandaloneMonth(int monthIndex) {
-    return _FlaxProxyDispatch8_call_datePickerStandaloneMonth(
-      this,
-      2,
-      monthIndex,
-    );
-  }
-
-  String _flaxSuper_datePickerStandaloneMonth(int monthIndex) {
-    return super.datePickerStandaloneMonth(monthIndex);
-  }
-
-  @override
-  String datePickerDayOfMonth(int dayIndex, [Object? weekDay = _flaxOmitted]) {
-    return _FlaxProxyDispatch8_call_datePickerDayOfMonth(
-      this,
-      3,
-      dayIndex,
-      weekDay,
-    );
-  }
-
-  String _flaxSuper_datePickerDayOfMonth(
-    int dayIndex, [
-    Object? weekDay = _flaxOmitted,
-  ]) {
-    if (identical(weekDay, _flaxOmitted)) {
-      return super.datePickerDayOfMonth(dayIndex);
-    }
-    return super.datePickerDayOfMonth(dayIndex, weekDay as int?);
-  }
-
-  @override
-  String datePickerMediumDate(api3.DateTime date) {
-    return _FlaxProxyDispatch8_call_datePickerMediumDate(this, 4, date);
-  }
-
-  String _flaxSuper_datePickerMediumDate(api3.DateTime date) {
-    return super.datePickerMediumDate(date);
-  }
-
-  @override
-  String datePickerHour(int hour) {
-    return _FlaxProxyDispatch8_call_datePickerHour(this, 5, hour);
-  }
-
-  String _flaxSuper_datePickerHour(int hour) {
-    return super.datePickerHour(hour);
-  }
-
-  @override
-  String? datePickerHourSemanticsLabel(int hour) {
-    final _flaxResult = _flaxPeer.call(6, <Object?>[hour], <String, Object?>{});
-    if (!_flaxResult.$1) {
-      return _flaxSuper_datePickerHourSemanticsLabel(hour);
-    }
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? _flaxSuper_datePickerHourSemanticsLabel(int hour) {
-    return super.datePickerHourSemanticsLabel(hour);
-  }
-
-  @override
-  String datePickerMinute(int minute) {
-    return _FlaxProxyDispatch8_call_datePickerMinute(this, 7, minute);
-  }
-
-  String _flaxSuper_datePickerMinute(int minute) {
-    return super.datePickerMinute(minute);
-  }
-
-  @override
-  String? datePickerMinuteSemanticsLabel(int minute) {
-    final _flaxResult = _flaxPeer.call(8, <Object?>[
-      minute,
-    ], <String, Object?>{});
-    if (!_flaxResult.$1) {
-      return _flaxSuper_datePickerMinuteSemanticsLabel(minute);
-    }
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? _flaxSuper_datePickerMinuteSemanticsLabel(int minute) {
-    return super.datePickerMinuteSemanticsLabel(minute);
-  }
-
-  @override
-  String tabSemanticsLabel({required int tabIndex, required int tabCount}) {
-    return _FlaxProxyDispatch8_call_tabSemanticsLabel(
-      this,
-      9,
-      tabIndex: tabIndex,
-      tabCount: tabCount,
-    );
-  }
-
-  String _flaxSuper_tabSemanticsLabel({
-    required int tabIndex,
-    required int tabCount,
-  }) {
-    return super.tabSemanticsLabel(tabIndex: tabIndex, tabCount: tabCount);
-  }
-
-  @override
-  String timerPickerHour(int hour) {
-    return _FlaxProxyDispatch8_call_timerPickerHour(this, 10, hour);
-  }
-
-  String _flaxSuper_timerPickerHour(int hour) {
-    return super.timerPickerHour(hour);
-  }
-
-  @override
-  String timerPickerMinute(int minute) {
-    return _FlaxProxyDispatch8_call_timerPickerMinute(this, 11, minute);
-  }
-
-  String _flaxSuper_timerPickerMinute(int minute) {
-    return super.timerPickerMinute(minute);
-  }
-
-  @override
-  String timerPickerSecond(int second) {
-    return _FlaxProxyDispatch8_call_timerPickerSecond(this, 12, second);
-  }
-
-  String _flaxSuper_timerPickerSecond(int second) {
-    return super.timerPickerSecond(second);
-  }
-
-  @override
-  String? timerPickerHourLabel(int hour) {
-    final _flaxResult = _flaxPeer.call(13, <Object?>[
-      hour,
-    ], <String, Object?>{});
-    if (!_flaxResult.$1) {
-      return _flaxSuper_timerPickerHourLabel(hour);
-    }
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? _flaxSuper_timerPickerHourLabel(int hour) {
-    return super.timerPickerHourLabel(hour);
-  }
-
-  @override
-  String? timerPickerMinuteLabel(int minute) {
-    final _flaxResult = _flaxPeer.call(14, <Object?>[
-      minute,
-    ], <String, Object?>{});
-    if (!_flaxResult.$1) {
-      return _flaxSuper_timerPickerMinuteLabel(minute);
-    }
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? _flaxSuper_timerPickerMinuteLabel(int minute) {
-    return super.timerPickerMinuteLabel(minute);
-  }
-
-  @override
-  String? timerPickerSecondLabel(int second) {
-    final _flaxResult = _flaxPeer.call(15, <Object?>[
-      second,
-    ], <String, Object?>{});
-    if (!_flaxResult.$1) {
-      return _flaxSuper_timerPickerSecondLabel(second);
-    }
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? _flaxSuper_timerPickerSecondLabel(int second) {
-    return super.timerPickerSecondLabel(second);
-  }
-
-  @override
-  String? get datePickerHourSemanticsLabelZero {
-    final _flaxResult = _flaxPeer.call(16, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerHourSemanticsLabelZero;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerHourSemanticsLabelZero {
-    return super.datePickerHourSemanticsLabelZero;
-  }
-
-  @override
-  String? get datePickerHourSemanticsLabelOne {
-    final _flaxResult = _flaxPeer.call(17, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerHourSemanticsLabelOne;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerHourSemanticsLabelOne {
-    return super.datePickerHourSemanticsLabelOne;
-  }
-
-  @override
-  String? get datePickerHourSemanticsLabelTwo {
-    final _flaxResult = _flaxPeer.call(18, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerHourSemanticsLabelTwo;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerHourSemanticsLabelTwo {
-    return super.datePickerHourSemanticsLabelTwo;
-  }
-
-  @override
-  String? get datePickerHourSemanticsLabelFew {
-    final _flaxResult = _flaxPeer.call(19, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerHourSemanticsLabelFew;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerHourSemanticsLabelFew {
-    return super.datePickerHourSemanticsLabelFew;
-  }
-
-  @override
-  String? get datePickerHourSemanticsLabelMany {
-    final _flaxResult = _flaxPeer.call(20, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerHourSemanticsLabelMany;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerHourSemanticsLabelMany {
-    return super.datePickerHourSemanticsLabelMany;
-  }
-
-  @override
-  String? get datePickerHourSemanticsLabelOther {
-    final _flaxResult = _flaxPeer.call(21, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  String? get datePickerMinuteSemanticsLabelZero {
-    final _flaxResult = _flaxPeer.call(22, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerMinuteSemanticsLabelZero;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerMinuteSemanticsLabelZero {
-    return super.datePickerMinuteSemanticsLabelZero;
-  }
-
-  @override
-  String? get datePickerMinuteSemanticsLabelOne {
-    final _flaxResult = _flaxPeer.call(23, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerMinuteSemanticsLabelOne;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerMinuteSemanticsLabelOne {
-    return super.datePickerMinuteSemanticsLabelOne;
-  }
-
-  @override
-  String? get datePickerMinuteSemanticsLabelTwo {
-    final _flaxResult = _flaxPeer.call(24, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerMinuteSemanticsLabelTwo;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerMinuteSemanticsLabelTwo {
-    return super.datePickerMinuteSemanticsLabelTwo;
-  }
-
-  @override
-  String? get datePickerMinuteSemanticsLabelFew {
-    final _flaxResult = _flaxPeer.call(25, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerMinuteSemanticsLabelFew;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerMinuteSemanticsLabelFew {
-    return super.datePickerMinuteSemanticsLabelFew;
-  }
-
-  @override
-  String? get datePickerMinuteSemanticsLabelMany {
-    final _flaxResult = _flaxPeer.call(26, const [], const {});
-    if (!_flaxResult.$1) return super.datePickerMinuteSemanticsLabelMany;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_datePickerMinuteSemanticsLabelMany {
-    return super.datePickerMinuteSemanticsLabelMany;
-  }
-
-  @override
-  String? get datePickerMinuteSemanticsLabelOther {
-    final _flaxResult = _flaxPeer.call(27, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  String get datePickerDateOrderString {
-    final _flaxResult = _flaxPeer.call(28, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  api.DatePickerDateOrder get datePickerDateOrder =>
-      _FlaxProxyDispatch8_get_datePickerDateOrder(this, 29);
-  api.DatePickerDateOrder get _flaxSuperGet_datePickerDateOrder {
-    return super.datePickerDateOrder;
-  }
-
-  @override
-  String get datePickerDateTimeOrderString {
-    final _flaxResult = _flaxPeer.call(30, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  api.DatePickerDateTimeOrder get datePickerDateTimeOrder =>
-      _FlaxProxyDispatch8_get_datePickerDateTimeOrder(this, 31);
-  api.DatePickerDateTimeOrder get _flaxSuperGet_datePickerDateTimeOrder {
-    return super.datePickerDateTimeOrder;
-  }
-
-  @override
-  String get tabSemanticsLabelRaw {
-    final _flaxResult = _flaxPeer.call(32, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  String? get timerPickerHourLabelZero {
-    final _flaxResult = _flaxPeer.call(33, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerHourLabelZero;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerHourLabelZero {
-    return super.timerPickerHourLabelZero;
-  }
-
-  @override
-  String? get timerPickerHourLabelOne {
-    final _flaxResult = _flaxPeer.call(34, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerHourLabelOne;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerHourLabelOne {
-    return super.timerPickerHourLabelOne;
-  }
-
-  @override
-  String? get timerPickerHourLabelTwo {
-    final _flaxResult = _flaxPeer.call(35, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerHourLabelTwo;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerHourLabelTwo {
-    return super.timerPickerHourLabelTwo;
-  }
-
-  @override
-  String? get timerPickerHourLabelFew {
-    final _flaxResult = _flaxPeer.call(36, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerHourLabelFew;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerHourLabelFew {
-    return super.timerPickerHourLabelFew;
-  }
-
-  @override
-  String? get timerPickerHourLabelMany {
-    final _flaxResult = _flaxPeer.call(37, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerHourLabelMany;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerHourLabelMany {
-    return super.timerPickerHourLabelMany;
-  }
-
-  @override
-  String? get timerPickerHourLabelOther {
-    final _flaxResult = _flaxPeer.call(38, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  List<String> get timerPickerHourLabels =>
-      _FlaxProxyDispatch8_get_timerPickerHourLabels(this, 39);
-  List<String> get _flaxSuperGet_timerPickerHourLabels {
-    return super.timerPickerHourLabels;
-  }
-
-  @override
-  String? get timerPickerMinuteLabelZero {
-    final _flaxResult = _flaxPeer.call(40, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerMinuteLabelZero;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerMinuteLabelZero {
-    return super.timerPickerMinuteLabelZero;
-  }
-
-  @override
-  String? get timerPickerMinuteLabelOne {
-    final _flaxResult = _flaxPeer.call(41, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerMinuteLabelOne;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerMinuteLabelOne {
-    return super.timerPickerMinuteLabelOne;
-  }
-
-  @override
-  String? get timerPickerMinuteLabelTwo {
-    final _flaxResult = _flaxPeer.call(42, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerMinuteLabelTwo;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerMinuteLabelTwo {
-    return super.timerPickerMinuteLabelTwo;
-  }
-
-  @override
-  String? get timerPickerMinuteLabelFew {
-    final _flaxResult = _flaxPeer.call(43, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerMinuteLabelFew;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerMinuteLabelFew {
-    return super.timerPickerMinuteLabelFew;
-  }
-
-  @override
-  String? get timerPickerMinuteLabelMany {
-    final _flaxResult = _flaxPeer.call(44, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerMinuteLabelMany;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerMinuteLabelMany {
-    return super.timerPickerMinuteLabelMany;
-  }
-
-  @override
-  String? get timerPickerMinuteLabelOther {
-    final _flaxResult = _flaxPeer.call(45, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  List<String> get timerPickerMinuteLabels =>
-      _FlaxProxyDispatch8_get_timerPickerMinuteLabels(this, 46);
-  List<String> get _flaxSuperGet_timerPickerMinuteLabels {
-    return super.timerPickerMinuteLabels;
-  }
-
-  @override
-  String? get timerPickerSecondLabelZero {
-    final _flaxResult = _flaxPeer.call(47, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerSecondLabelZero;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerSecondLabelZero {
-    return super.timerPickerSecondLabelZero;
-  }
-
-  @override
-  String? get timerPickerSecondLabelOne {
-    final _flaxResult = _flaxPeer.call(48, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerSecondLabelOne;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerSecondLabelOne {
-    return super.timerPickerSecondLabelOne;
-  }
-
-  @override
-  String? get timerPickerSecondLabelTwo {
-    final _flaxResult = _flaxPeer.call(49, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerSecondLabelTwo;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerSecondLabelTwo {
-    return super.timerPickerSecondLabelTwo;
-  }
-
-  @override
-  String? get timerPickerSecondLabelFew {
-    final _flaxResult = _flaxPeer.call(50, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerSecondLabelFew;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerSecondLabelFew {
-    return super.timerPickerSecondLabelFew;
-  }
-
-  @override
-  String? get timerPickerSecondLabelMany {
-    final _flaxResult = _flaxPeer.call(51, const [], const {});
-    if (!_flaxResult.$1) return super.timerPickerSecondLabelMany;
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  String? get _flaxSuperGet_timerPickerSecondLabelMany {
-    return super.timerPickerSecondLabelMany;
-  }
-
-  @override
-  String? get timerPickerSecondLabelOther {
-    final _flaxResult = _flaxPeer.call(52, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String?;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  List<String> get timerPickerSecondLabels =>
-      _FlaxProxyDispatch8_get_timerPickerSecondLabels(this, 53);
-  List<String> get _flaxSuperGet_timerPickerSecondLabels {
-    return super.timerPickerSecondLabels;
-  }
-
-  @override
-  String get anteMeridiemAbbreviation =>
-      _FlaxProxyDispatch4_get_anteMeridiemAbbreviation(this, 54);
-  @override
-  String get postMeridiemAbbreviation =>
-      _FlaxProxyDispatch4_get_postMeridiemAbbreviation(this, 55);
-  @override
-  String get todayLabel => _FlaxProxyDispatch4_get_todayLabel(this, 56);
-  @override
-  String get alertDialogLabel =>
-      _FlaxProxyDispatch4_get_alertDialogLabel(this, 57);
-  @override
-  String get cutButtonLabel => _FlaxProxyDispatch4_get_cutButtonLabel(this, 58);
-  @override
-  String get copyButtonLabel =>
-      _FlaxProxyDispatch4_get_copyButtonLabel(this, 59);
-  @override
-  String get pasteButtonLabel =>
-      _FlaxProxyDispatch4_get_pasteButtonLabel(this, 60);
-  @override
-  String get clearButtonLabel =>
-      _FlaxProxyDispatch4_get_clearButtonLabel(this, 61);
-  @override
-  String get noSpellCheckReplacementsLabel =>
-      _FlaxProxyDispatch4_get_noSpellCheckReplacementsLabel(this, 62);
-  @override
-  String get selectAllButtonLabel =>
-      _FlaxProxyDispatch4_get_selectAllButtonLabel(this, 63);
-  @override
-  String get lookUpButtonLabel =>
-      _FlaxProxyDispatch4_get_lookUpButtonLabel(this, 64);
-  @override
-  String get searchWebButtonLabel =>
-      _FlaxProxyDispatch4_get_searchWebButtonLabel(this, 65);
-  @override
-  String get shareButtonLabel =>
-      _FlaxProxyDispatch4_get_shareButtonLabel(this, 66);
-  @override
-  String get searchTextFieldPlaceholderLabel =>
-      _FlaxProxyDispatch4_get_searchTextFieldPlaceholderLabel(this, 67);
-  @override
-  String get modalBarrierDismissLabel =>
-      _FlaxProxyDispatch4_get_modalBarrierDismissLabel(this, 68);
-  @override
-  String get menuDismissLabel =>
-      _FlaxProxyDispatch4_get_menuDismissLabel(this, 69);
-  @override
-  String get cancelButtonLabel =>
-      _FlaxProxyDispatch4_get_cancelButtonLabel(this, 70);
-  @override
-  String get backButtonLabel =>
-      _FlaxProxyDispatch4_get_backButtonLabel(this, 71);
-  @override
-  String get expansionTileExpandedHint {
-    final _flaxResult = _flaxPeer.call(72, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  String get expansionTileCollapsedHint {
-    final _flaxResult = _flaxPeer.call(73, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  String get expansionTileExpandedTapHint {
-    final _flaxResult = _flaxPeer.call(74, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  String get expansionTileCollapsedTapHint {
-    final _flaxResult = _flaxPeer.call(75, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  String get expandedHint {
-    final _flaxResult = _flaxPeer.call(76, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-
-  @override
-  String get collapsedHint {
-    final _flaxResult = _flaxPeer.call(77, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as String;
-    return _flaxConvertedResult;
-  }
-}
-
 final class _NoDefaultCupertinoThemeDataProxy
     extends api.NoDefaultCupertinoThemeData
-    implements _FlaxProxyDispatch7 {
+    implements _FlaxProxyDispatch6 {
   final FlaxProxyPeer _flaxPeer;
   _NoDefaultCupertinoThemeDataProxy(
     this._flaxPeer, {
@@ -27798,7 +26543,7 @@ final class _NoDefaultCupertinoThemeDataProxy
   });
   @override
   api.NoDefaultCupertinoThemeData noDefault() {
-    return _FlaxProxyDispatch7_call_noDefault(this, 0);
+    return _FlaxProxyDispatch6_call_noDefault(this, 0);
   }
 
   api.NoDefaultCupertinoThemeData _flaxSuper_noDefault() {
@@ -27806,7 +26551,7 @@ final class _NoDefaultCupertinoThemeDataProxy
   }
 
   @override
-  api.NoDefaultCupertinoThemeData resolveFrom(api11.BuildContext context) {
+  api.NoDefaultCupertinoThemeData resolveFrom(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(1, <Object?>[
       context,
     ], <String, Object?>{});
@@ -27819,7 +26564,7 @@ final class _NoDefaultCupertinoThemeDataProxy
   }
 
   api.NoDefaultCupertinoThemeData _flaxSuper_resolveFrom(
-    api11.BuildContext context,
+    api10.BuildContext context,
   ) {
     return super.resolveFrom(context);
   }
@@ -27899,7 +26644,7 @@ final class _NoDefaultCupertinoThemeDataProxy
 
   @override
   api1.Brightness? get brightness =>
-      _FlaxProxyDispatch7_get_brightness(this, 3);
+      _FlaxProxyDispatch6_get_brightness(this, 3);
   api1.Brightness? get _flaxSuperGet_brightness {
     return super.brightness;
   }
@@ -27997,7 +26742,7 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
   final FlaxProxyPeer _flaxPeer;
   String? _flaxActiveSuperMember;
   bool _flaxCalledSuper = false;
-  _ObstructingPreferredSizeWidgetProxy(this._flaxPeer, {api4.Key? super.key});
+  _ObstructingPreferredSizeWidgetProxy(this._flaxPeer, {api3.Key? super.key});
   @override
   String toStringShallow({
     Object? joiner = _flaxOmitted,
@@ -28022,14 +26767,14 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
       if (identical(minLevel, _flaxOmitted)) {
         return super.toStringShallow();
       }
-      return super.toStringShallow(minLevel: minLevel as api4.DiagnosticLevel);
+      return super.toStringShallow(minLevel: minLevel as api3.DiagnosticLevel);
     }
     if (identical(minLevel, _flaxOmitted)) {
       return super.toStringShallow(joiner: joiner as String);
     }
     return super.toStringShallow(
       joiner: joiner as String,
-      minLevel: minLevel as api4.DiagnosticLevel,
+      minLevel: minLevel as api3.DiagnosticLevel,
     );
   }
 
@@ -28075,10 +26820,10 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
           return super.toStringDeep(wrapWidth: wrapWidth as int);
         }
         if (identical(wrapWidth, _flaxOmitted)) {
-          return super.toStringDeep(minLevel: minLevel as api4.DiagnosticLevel);
+          return super.toStringDeep(minLevel: minLevel as api3.DiagnosticLevel);
         }
         return super.toStringDeep(
-          minLevel: minLevel as api4.DiagnosticLevel,
+          minLevel: minLevel as api3.DiagnosticLevel,
           wrapWidth: wrapWidth as int,
         );
       }
@@ -28096,12 +26841,12 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
       if (identical(wrapWidth, _flaxOmitted)) {
         return super.toStringDeep(
           prefixOtherLines: prefixOtherLines as String?,
-          minLevel: minLevel as api4.DiagnosticLevel,
+          minLevel: minLevel as api3.DiagnosticLevel,
         );
       }
       return super.toStringDeep(
         prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
+        minLevel: minLevel as api3.DiagnosticLevel,
         wrapWidth: wrapWidth as int,
       );
     }
@@ -28118,12 +26863,12 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
       if (identical(wrapWidth, _flaxOmitted)) {
         return super.toStringDeep(
           prefixLineOne: prefixLineOne as String,
-          minLevel: minLevel as api4.DiagnosticLevel,
+          minLevel: minLevel as api3.DiagnosticLevel,
         );
       }
       return super.toStringDeep(
         prefixLineOne: prefixLineOne as String,
-        minLevel: minLevel as api4.DiagnosticLevel,
+        minLevel: minLevel as api3.DiagnosticLevel,
         wrapWidth: wrapWidth as int,
       );
     }
@@ -28144,13 +26889,13 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
       return super.toStringDeep(
         prefixLineOne: prefixLineOne as String,
         prefixOtherLines: prefixOtherLines as String?,
-        minLevel: minLevel as api4.DiagnosticLevel,
+        minLevel: minLevel as api3.DiagnosticLevel,
       );
     }
     return super.toStringDeep(
       prefixLineOne: prefixLineOne as String,
       prefixOtherLines: prefixOtherLines as String?,
-      minLevel: minLevel as api4.DiagnosticLevel,
+      minLevel: minLevel as api3.DiagnosticLevel,
       wrapWidth: wrapWidth as int,
     );
   }
@@ -28170,7 +26915,7 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
   }
 
   @override
-  api4.DiagnosticsNode toDiagnosticsNode({
+  api3.DiagnosticsNode toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -28181,11 +26926,11 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
     if (!_flaxResult.$1) {
       return _flaxSuper_toDiagnosticsNode(name: name, style: style);
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api4.DiagnosticsNode;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.DiagnosticsNode;
     return _flaxConvertedResult;
   }
 
-  api4.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
+  api3.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -28194,7 +26939,7 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
         return super.toDiagnosticsNode();
       }
       return super.toDiagnosticsNode(
-        style: style as api4.DiagnosticsTreeStyle?,
+        style: style as api3.DiagnosticsTreeStyle?,
       );
     }
     if (identical(style, _flaxOmitted)) {
@@ -28202,27 +26947,27 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
     }
     return super.toDiagnosticsNode(
       name: name as String?,
-      style: style as api4.DiagnosticsTreeStyle?,
+      style: style as api3.DiagnosticsTreeStyle?,
     );
   }
 
   @override
-  List<api4.DiagnosticsNode> debugDescribeChildren() {
+  List<api3.DiagnosticsNode> debugDescribeChildren() {
     final _flaxResult = _flaxPeer.call(4, <Object?>[], <String, Object?>{});
     if (!_flaxResult.$1) {
       return _flaxSuper_debugDescribeChildren();
     }
-    final _flaxConvertedResult = _flaxResult.$2 as List<api4.DiagnosticsNode>;
+    final _flaxConvertedResult = _flaxResult.$2 as List<api3.DiagnosticsNode>;
     return _flaxConvertedResult;
   }
 
-  List<api4.DiagnosticsNode> _flaxSuper_debugDescribeChildren() {
+  List<api3.DiagnosticsNode> _flaxSuper_debugDescribeChildren() {
     return super.debugDescribeChildren();
   }
 
   @override
   // ignore: must_call_super
-  void debugFillProperties(api4.DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(api3.DiagnosticPropertiesBuilder properties) {
     if (!_flaxPeer.active) return;
     final _flaxPreviousSuperMember = _flaxActiveSuperMember;
     final _flaxPreviousCalledSuper = _flaxCalledSuper;
@@ -28248,7 +26993,7 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
   }
 
   void _flaxSuper_debugFillProperties(
-    api4.DiagnosticPropertiesBuilder properties,
+    api3.DiagnosticPropertiesBuilder properties,
   ) {
     if (_flaxActiveSuperMember == "debugFillProperties")
       _flaxCalledSuper = true;
@@ -28272,11 +27017,11 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
     if (identical(minLevel, _flaxOmitted)) {
       return super.toString();
     }
-    return super.toString(minLevel: minLevel as api4.DiagnosticLevel);
+    return super.toString(minLevel: minLevel as api3.DiagnosticLevel);
   }
 
   @override
-  bool shouldFullyObstruct(api11.BuildContext context) {
+  bool shouldFullyObstruct(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(7, <Object?>[
       context,
     ], <String, Object?>{});
@@ -28288,7 +27033,7 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
   }
 
   @override
-  api.Widget build(api11.BuildContext context) {
+  api.Widget build(api10.BuildContext context) {
     final _flaxResult = _flaxPeer.call(8, <Object?>[
       context,
     ], <String, Object?>{});
@@ -28311,7 +27056,7 @@ final class _ObstructingPreferredSizeWidgetProxy extends api.StatelessWidget
 // ignore: must_be_immutable
 final class _RestorableCupertinoTabControllerProxy
     extends api.RestorableCupertinoTabController
-    implements _FlaxProxyDispatch6 {
+    implements _FlaxProxyDispatch5 {
   final FlaxProxyPeer _flaxPeer;
   String? _flaxActiveSuperMember;
   bool _flaxCalledSuper = false;
@@ -28339,7 +27084,7 @@ final class _RestorableCupertinoTabControllerProxy
   @override
   // ignore: must_call_super
   void dispose() {
-    return _FlaxProxyDispatch6_call_dispose(this, 1);
+    return _FlaxProxyDispatch5_call_dispose(this, 1);
   }
 
   void _flaxSuper_dispose() {
@@ -28392,7 +27137,7 @@ final class _RestorableCupertinoTabControllerProxy
 
   @override
   void addListener(void Function() listener) {
-    return _FlaxProxyDispatch6_call_addListener(this, 5, listener);
+    return _FlaxProxyDispatch5_call_addListener(this, 5, listener);
   }
 
   void _flaxSuper_addListener(void Function() listener) {
@@ -28402,7 +27147,7 @@ final class _RestorableCupertinoTabControllerProxy
 
   @override
   void removeListener(void Function() listener) {
-    return _FlaxProxyDispatch6_call_removeListener(this, 6, listener);
+    return _FlaxProxyDispatch5_call_removeListener(this, 6, listener);
   }
 
   void _flaxSuper_removeListener(void Function() listener) {
@@ -28435,15 +27180,15 @@ final class _RestorableCupertinoTabControllerProxy
   }
 
   @override
-  api11.State<api11.StatefulWidget> get state {
+  api10.State<api10.StatefulWidget> get state {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.state;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api11.State<api11.StatefulWidget>;
+        _flaxResult.$2 as api10.State<api10.StatefulWidget>;
     return _flaxConvertedResult;
   }
 
-  api11.State<api11.StatefulWidget> get _flaxSuperGet_state {
+  api10.State<api10.StatefulWidget> get _flaxSuperGet_state {
     return super.state;
   }
 
@@ -28460,7 +27205,7 @@ final class _RestorableCupertinoTabControllerProxy
   }
 
   @override
-  bool get hasListeners => _FlaxProxyDispatch6_get_hasListeners(this, 11);
+  bool get hasListeners => _FlaxProxyDispatch5_get_hasListeners(this, 11);
   bool get _flaxSuperGet_hasListeners {
     return super.hasListeners;
   }
@@ -28468,33 +27213,33 @@ final class _RestorableCupertinoTabControllerProxy
 
 Object _deferred0(Map<String, Object?> values) {
   return api.WidgetStateProperty.resolveWith<api1.Color?>(
-    values["callback"] as api1.Color? Function(Set<api11.WidgetState> states),
+    values["callback"] as api1.Color? Function(Set<api10.WidgetState> states),
   );
 }
 
 Object _deferred1(Map<String, Object?> values) {
-  return api.WidgetStateProperty.resolveWith<api13.BoxDecoration>(
+  return api.WidgetStateProperty.resolveWith<api12.BoxDecoration>(
     values["callback"]
-        as api13.BoxDecoration Function(Set<api11.WidgetState> states),
+        as api12.BoxDecoration Function(Set<api10.WidgetState> states),
   );
 }
 
 Object _deferred2(Map<String, Object?> values) {
-  return api.WidgetStateProperty.resolveWith<api8.MouseCursor>(
+  return api.WidgetStateProperty.resolveWith<api7.MouseCursor>(
     values["callback"]
-        as api8.MouseCursor Function(Set<api11.WidgetState> states),
+        as api7.MouseCursor Function(Set<api10.WidgetState> states),
   );
 }
 
 Object _deferred3(Map<String, Object?> values) {
   return api.WidgetStateProperty.resolveWith<double?>(
-    values["callback"] as double? Function(Set<api11.WidgetState> states),
+    values["callback"] as double? Function(Set<api10.WidgetState> states),
   );
 }
 
 Object _deferred4(Map<String, Object?> values) {
-  return api.WidgetStateProperty.resolveWith<api11.Icon?>(
-    values["callback"] as api11.Icon? Function(Set<api11.WidgetState> states),
+  return api.WidgetStateProperty.resolveWith<api10.Icon?>(
+    values["callback"] as api10.Icon? Function(Set<api10.WidgetState> states),
   );
 }
 
@@ -28507,10 +27252,10 @@ _flaxGenericFunction2<_Method0 extends Object?>() => (FlaxDartTypes types) {
       barrierDismissible: values["barrierDismissible"] as bool,
       barrierLabel: values["barrierLabel"] as String?,
       builder:
-          values["builder"] as api.Widget Function(api11.BuildContext context),
-      context: values["context"] as api11.BuildContext,
+          values["builder"] as api.Widget Function(api10.BuildContext context),
+      context: values["context"] as api10.BuildContext,
       requestFocus: values["requestFocus"] as bool?,
-      routeSettings: values["routeSettings"] as api11.RouteSettings?,
+      routeSettings: values["routeSettings"] as api10.RouteSettings?,
       useRootNavigator: values["useRootNavigator"] as bool,
     );
   }
@@ -28534,12 +27279,12 @@ _flaxGenericFunction2<_Method0 extends Object?>() => (FlaxDartTypes types) {
           callback: FlaxCallbackBinding(
             [FlaxCallbackParameter.plain("context", _flaxBinding2)],
             flaxWidgetType,
-            FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
-            id: types.key<api.Widget Function(api11.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+            FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
+            id: types.key<api.Widget Function(api10.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
-                FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
             matches:
-                FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
           ),
         ),
       ),
@@ -28566,11 +27311,11 @@ _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
         barrierDismissible: values["barrierDismissible"] as bool,
         builder:
             values["builder"]
-                as api.Widget Function(api11.BuildContext context),
-        context: values["context"] as api11.BuildContext,
+                as api.Widget Function(api10.BuildContext context),
+        context: values["context"] as api10.BuildContext,
         filter: values["filter"] as api1.ImageFilter?,
         requestFocus: values["requestFocus"] as bool?,
-        routeSettings: values["routeSettings"] as api11.RouteSettings?,
+        routeSettings: values["routeSettings"] as api10.RouteSettings?,
         semanticsDismissible: values["semanticsDismissible"] as bool,
         useRootNavigator: values["useRootNavigator"] as bool,
       );
@@ -28580,11 +27325,11 @@ _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
       barrierColor: values["barrierColor"] as api1.Color,
       barrierDismissible: values["barrierDismissible"] as bool,
       builder:
-          values["builder"] as api.Widget Function(api11.BuildContext context),
-      context: values["context"] as api11.BuildContext,
+          values["builder"] as api.Widget Function(api10.BuildContext context),
+      context: values["context"] as api10.BuildContext,
       filter: values["filter"] as api1.ImageFilter?,
       requestFocus: values["requestFocus"] as bool?,
-      routeSettings: values["routeSettings"] as api11.RouteSettings?,
+      routeSettings: values["routeSettings"] as api10.RouteSettings?,
       semanticsDismissible: values["semanticsDismissible"] as bool,
       useRootNavigator: values["useRootNavigator"] as bool,
     );
@@ -28613,12 +27358,12 @@ _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
           callback: FlaxCallbackBinding(
             [FlaxCallbackParameter.plain("context", _flaxBinding2)],
             flaxWidgetType,
-            FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
-            id: types.key<api.Widget Function(api11.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+            FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
+            id: types.key<api.Widget Function(api10.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
-                FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
             matches:
-                FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
           ),
         ),
       ),
@@ -28648,19 +27393,19 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
   Object? invoke(Map<String, Object?> values) {
     return api.showCupertinoSheet<_Method0>(
       builder:
-          values["builder"] as api.Widget Function(api11.BuildContext context)?,
-      context: values["context"] as api11.BuildContext,
+          values["builder"] as api.Widget Function(api10.BuildContext context)?,
+      context: values["context"] as api10.BuildContext,
       enableDrag: values["enableDrag"] as bool,
       pageBuilder:
           values["pageBuilder"]
-              as api.Widget Function(api11.BuildContext context)?,
+              as api.Widget Function(api10.BuildContext context)?,
       scrollableBuilder:
           values["scrollableBuilder"]
               as api.Widget Function(
-                api11.BuildContext context,
-                api11.ScrollController scrollController,
+                api10.BuildContext context,
+                api10.ScrollController scrollController,
               )?,
-      settings: values["settings"] as api11.RouteSettings?,
+      settings: values["settings"] as api10.RouteSettings?,
       showDragHandle: values["showDragHandle"] as bool,
       topGap: values["topGap"] as double?,
       useNestedNavigation: values["useNestedNavigation"] as bool,
@@ -28678,12 +27423,12 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
           callback: FlaxCallbackBinding(
             [FlaxCallbackParameter.plain("context", _flaxBinding2)],
             flaxWidgetType,
-            FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
-            id: types.key<api.Widget Function(api11.BuildContext context)?>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+            FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
+            id: types.key<api.Widget Function(api10.BuildContext context)?>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
-                FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
             matches:
-                FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
           ),
         ),
         required: false,
@@ -28703,12 +27448,12 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
           callback: FlaxCallbackBinding(
             [FlaxCallbackParameter.plain("context", _flaxBinding2)],
             flaxWidgetType,
-            FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
-            id: types.key<api.Widget Function(api11.BuildContext context)?>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+            FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
+            id: types.key<api.Widget Function(api10.BuildContext context)?>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
             invoke:
-                FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
             matches:
-                FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
           ),
         ),
         required: false,
@@ -28725,26 +27470,26 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
             ],
             flaxWidgetType,
             FlaxCallbackAdapters
-                .wrap2<api11.BuildContext, api11.ScrollController, api.Widget>,
+                .wrap2<api10.BuildContext, api10.ScrollController, api.Widget>,
             id:
                 types
                     .key<
                       api.Widget Function(
-                        api11.BuildContext context,
-                        api11.ScrollController scrollController,
+                        api10.BuildContext context,
+                        api10.ScrollController scrollController,
                       )?
                     >() +
                 ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:scrollController:object:flax.core/flutter#type:ScrollController)->widget:",
             invoke:
                 FlaxCallbackAdapters.invoke2<
-                  api11.BuildContext,
-                  api11.ScrollController,
+                  api10.BuildContext,
+                  api10.ScrollController,
                   api.Widget
                 >,
             matches:
                 FlaxCallbackAdapters.matches2<
-                  api11.BuildContext,
-                  api11.ScrollController,
+                  api10.BuildContext,
+                  api10.ScrollController,
                   api.Widget
                 >,
           ),
@@ -28774,10 +27519,10 @@ Function _flaxGenericFunction1395<_Method0 extends Object?>() =>
     (FlaxDartTypes types) {
       Object? invoke(Map<String, Object?> values) {
         return api.CupertinoRouteTransitionMixin.buildPageTransitions<_Method0>(
-          values["route"] as api11.PageRoute<_Method0>,
-          values["context"] as api11.BuildContext,
-          values["animation"] as api12.Animation<double>,
-          values["secondaryAnimation"] as api12.Animation<double>,
+          values["route"] as api10.PageRoute<_Method0>,
+          values["context"] as api10.BuildContext,
+          values["animation"] as api11.Animation<double>,
+          values["secondaryAnimation"] as api11.Animation<double>,
           values["child"] as api.Widget,
         );
       }
@@ -28787,7 +27532,7 @@ Function _flaxGenericFunction1395<_Method0 extends Object?>() =>
         <FlaxParameter>[
           FlaxParameter.required(
             "route",
-            types.ref<api11.PageRoute<_Method0>>(),
+            types.ref<api10.PageRoute<_Method0>>(),
           ),
           FlaxParameter.required("context", _flaxBinding2),
           FlaxParameter.required("animation", _flaxBinding56),
@@ -28951,9 +27696,9 @@ Function _flaxClass_CupertinoDialogRoute<
     (value as api.CupertinoDialogRoute<_Owner0>).receivedTransition =
         input
             as api.Widget? Function(
-              api11.BuildContext context,
-              api12.Animation<double> animation,
-              api12.Animation<double> secondaryAnimation,
+              api10.BuildContext context,
+              api11.Animation<double> animation,
+              api11.Animation<double> secondaryAnimation,
               bool allowSnapshotting,
               api.Widget? child,
             )?;
@@ -28979,9 +27724,9 @@ Function _flaxClass_CupertinoDialogRoute<
     (value as api.CupertinoDialogRoute<_Owner0>).transitionBuilder =
         input
             as api.Widget Function(
-              api11.BuildContext context,
-              api12.Animation<double> animation,
-              api12.Animation<double> secondaryAnimation,
+              api10.BuildContext context,
+              api11.Animation<double> animation,
+              api11.Animation<double> secondaryAnimation,
               api.Widget child,
             )?;
   }
@@ -29001,9 +27746,9 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoDialogRoute<_Owner0>).buildPage(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
     );
   }
 
@@ -29012,9 +27757,9 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoDialogRoute<_Owner0>).buildTransitions(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
       values["child"] as api.Widget,
     );
   }
@@ -29085,7 +27830,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoDialogRoute<_Owner0>).registerPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -29095,7 +27840,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoDialogRoute<_Owner0>).unregisterPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -29105,7 +27850,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoDialogRoute<_Owner0>).didChangePrevious(
-      values["previousRoute"] as api11.Route<Object?>?,
+      values["previousRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -29115,7 +27860,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoDialogRoute<_Owner0>).didChangeNext(
-      values["nextRoute"] as api11.Route<Object?>?,
+      values["nextRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -29125,7 +27870,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoDialogRoute<_Owner0>).didPopNext(
-      values["nextRoute"] as api11.Route<Object?>,
+      values["nextRoute"] as api10.Route<Object?>,
     );
     return null;
   }
@@ -29198,7 +27943,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoDialogRoute<_Owner0>).didReplace(
-      values["oldRoute"] as api11.Route<Object?>?,
+      values["oldRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -29217,7 +27962,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoDialogRoute<_Owner0>).canTransitionTo(
-      values["nextRoute"] as api11.TransitionRoute<Object?>,
+      values["nextRoute"] as api10.TransitionRoute<Object?>,
     );
   }
 
@@ -29226,7 +27971,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoDialogRoute<_Owner0>).canTransitionFrom(
-      values["previousRoute"] as api11.TransitionRoute<Object?>,
+      values["previousRoute"] as api10.TransitionRoute<Object?>,
     );
   }
 
@@ -29300,7 +28045,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoDialogRoute<_Owner0>).addLocalHistoryEntry(
-      values["entry"] as api11.LocalHistoryEntry,
+      values["entry"] as api10.LocalHistoryEntry,
     );
     return null;
   }
@@ -29310,7 +28055,7 @@ Function _flaxClass_CupertinoDialogRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoDialogRoute<_Owner0>).removeLocalHistoryEntry(
-      values["entry"] as api11.LocalHistoryEntry,
+      values["entry"] as api10.LocalHistoryEntry,
     );
     return null;
   }
@@ -29330,20 +28075,20 @@ Function _flaxClass_CupertinoDialogRoute<
           return api.CupertinoDialogRoute<_Owner0>(
             builder:
                 values["builder"]
-                    as api.Widget Function(api11.BuildContext context),
-            context: values["context"] as api11.BuildContext,
+                    as api.Widget Function(api10.BuildContext context),
+            context: values["context"] as api10.BuildContext,
             barrierDismissible: values["barrierDismissible"] as bool,
             barrierColor: values["barrierColor"] as api1.Color?,
             barrierLabel: values["barrierLabel"] as String?,
             transitionBuilder:
                 values["transitionBuilder"]
                     as api.Widget Function(
-                      api11.BuildContext context,
-                      api12.Animation<double> animation,
-                      api12.Animation<double> secondaryAnimation,
+                      api10.BuildContext context,
+                      api11.Animation<double> animation,
+                      api11.Animation<double> secondaryAnimation,
                       api.Widget child,
                     )?,
-            settings: values["settings"] as api11.RouteSettings?,
+            settings: values["settings"] as api10.RouteSettings?,
             requestFocus: values["requestFocus"] as bool?,
             anchorPoint: values["anchorPoint"] as api1.Offset?,
           );
@@ -29351,21 +28096,21 @@ Function _flaxClass_CupertinoDialogRoute<
         return api.CupertinoDialogRoute<_Owner0>(
           builder:
               values["builder"]
-                  as api.Widget Function(api11.BuildContext context),
-          context: values["context"] as api11.BuildContext,
+                  as api.Widget Function(api10.BuildContext context),
+          context: values["context"] as api10.BuildContext,
           barrierDismissible: values["barrierDismissible"] as bool,
           barrierColor: values["barrierColor"] as api1.Color?,
           barrierLabel: values["barrierLabel"] as String?,
-          transitionDuration: values["transitionDuration"] as api3.Duration,
+          transitionDuration: values["transitionDuration"] as api2.Duration,
           transitionBuilder:
               values["transitionBuilder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
-                    api12.Animation<double> animation,
-                    api12.Animation<double> secondaryAnimation,
+                    api10.BuildContext context,
+                    api11.Animation<double> animation,
+                    api11.Animation<double> secondaryAnimation,
                     api.Widget child,
                   )?,
-          settings: values["settings"] as api11.RouteSettings?,
+          settings: values["settings"] as api10.RouteSettings?,
           requestFocus: values["requestFocus"] as bool?,
           anchorPoint: values["anchorPoint"] as api1.Offset?,
         );
@@ -29376,9 +28121,9 @@ Function _flaxClass_CupertinoDialogRoute<
 
   Object _callback0(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -29394,9 +28139,9 @@ Function _flaxClass_CupertinoDialogRoute<
   bool _callback0Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -29407,15 +28152,15 @@ Function _flaxClass_CupertinoDialogRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -29423,9 +28168,9 @@ Function _flaxClass_CupertinoDialogRoute<
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -29441,9 +28186,9 @@ Function _flaxClass_CupertinoDialogRoute<
   bool _callback1Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -29454,15 +28199,15 @@ Function _flaxClass_CupertinoDialogRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -29470,9 +28215,9 @@ Function _flaxClass_CupertinoDialogRoute<
 
   Object _callback2(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         api.Widget p3,
       ) {
         final positional = <Object?>[];
@@ -29486,9 +28231,9 @@ Function _flaxClass_CupertinoDialogRoute<
   bool _callback2Matches(Object value) =>
       value
           is api.Widget Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             api.Widget child,
           );
   Object? _callback2Invoke(
@@ -29498,23 +28243,23 @@ Function _flaxClass_CupertinoDialogRoute<
   ) {
     return (function
         as api.Widget Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           api.Widget child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as api.Widget,
     );
   }
 
   Object _callback3(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -29530,9 +28275,9 @@ Function _flaxClass_CupertinoDialogRoute<
   bool _callback3Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -29543,15 +28288,15 @@ Function _flaxClass_CupertinoDialogRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -29559,9 +28304,9 @@ Function _flaxClass_CupertinoDialogRoute<
 
   Object _callback4(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         api.Widget p3,
       ) {
         final positional = <Object?>[];
@@ -29575,9 +28320,9 @@ Function _flaxClass_CupertinoDialogRoute<
   bool _callback4Matches(Object value) =>
       value
           is api.Widget Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             api.Widget child,
           );
   Object? _callback4Invoke(
@@ -29587,14 +28332,14 @@ Function _flaxClass_CupertinoDialogRoute<
   ) {
     return (function
         as api.Widget Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           api.Widget child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as api.Widget,
     );
   }
@@ -29631,9 +28376,9 @@ Function _flaxClass_CupertinoDialogRoute<
 
   Object _callback7(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         api.Widget p3,
       ) {
         final positional = <Object?>[];
@@ -29647,9 +28392,9 @@ Function _flaxClass_CupertinoDialogRoute<
   bool _callback7Matches(Object value) =>
       value
           is api.Widget Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             api.Widget child,
           );
   Object? _callback7Invoke(
@@ -29659,14 +28404,14 @@ Function _flaxClass_CupertinoDialogRoute<
   ) {
     return (function
         as api.Widget Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           api.Widget child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as api.Widget,
     );
   }
@@ -29724,9 +28469,9 @@ Function _flaxClass_CupertinoDialogRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -29760,9 +28505,9 @@ Function _flaxClass_CupertinoDialogRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -29971,9 +28716,9 @@ Function _flaxClass_CupertinoDialogRoute<
                   types
                       .key<
                         api.Widget Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           api.Widget child,
                         )?
                       >() +
@@ -30237,17 +28982,17 @@ Function _flaxClass_CupertinoDialogRoute<
               callback: FlaxCallbackBinding(
                 [FlaxCallbackParameter.plain("context", _flaxBinding2)],
                 flaxWidgetType,
-                FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
                 id:
                     types
                         .key<
-                          api.Widget Function(api11.BuildContext context)
+                          api.Widget Function(api10.BuildContext context)
                         >() +
                     ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
                 invoke: FlaxCallbackAdapters
-                    .invoke1<api11.BuildContext, api.Widget>,
+                    .invoke1<api10.BuildContext, api.Widget>,
                 matches: FlaxCallbackAdapters
-                    .matches1<api11.BuildContext, api.Widget>,
+                    .matches1<api10.BuildContext, api.Widget>,
               ),
             ),
           ),
@@ -30291,9 +29036,9 @@ Function _flaxClass_CupertinoDialogRoute<
                     types
                         .key<
                           api.Widget Function(
-                            api11.BuildContext context,
-                            api12.Animation<double> animation,
-                            api12.Animation<double> secondaryAnimation,
+                            api10.BuildContext context,
+                            api11.Animation<double> animation,
+                            api11.Animation<double> secondaryAnimation,
                             api.Widget child,
                           )?
                         >() +
@@ -30334,9 +29079,9 @@ Function _flaxClass_CupertinoDialogRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -30379,9 +29124,9 @@ Function _flaxClass_CupertinoDialogRoute<
                   types
                       .key<
                         api.Widget Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           api.Widget child,
                         )?
                       >() +
@@ -30568,9 +29313,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
     (value as api.CupertinoModalPopupRoute<_Owner0>).receivedTransition =
         input
             as api.Widget? Function(
-              api11.BuildContext context,
-              api12.Animation<double> animation,
-              api12.Animation<double> secondaryAnimation,
+              api10.BuildContext context,
+              api11.Animation<double> animation,
+              api11.Animation<double> secondaryAnimation,
               bool allowSnapshotting,
               api.Widget? child,
             )?;
@@ -30604,9 +29349,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoModalPopupRoute<_Owner0>).buildPage(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
     );
   }
 
@@ -30615,9 +29360,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoModalPopupRoute<_Owner0>).buildTransitions(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
       values["child"] as api.Widget,
     );
   }
@@ -30690,7 +29435,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoModalPopupRoute<_Owner0>).registerPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -30700,7 +29445,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoModalPopupRoute<_Owner0>).unregisterPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -30710,7 +29455,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoModalPopupRoute<_Owner0>).didChangePrevious(
-      values["previousRoute"] as api11.Route<Object?>?,
+      values["previousRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -30720,7 +29465,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoModalPopupRoute<_Owner0>).didChangeNext(
-      values["nextRoute"] as api11.Route<Object?>?,
+      values["nextRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -30730,7 +29475,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoModalPopupRoute<_Owner0>).didPopNext(
-      values["nextRoute"] as api11.Route<Object?>,
+      values["nextRoute"] as api10.Route<Object?>,
     );
     return null;
   }
@@ -30812,7 +29557,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoModalPopupRoute<_Owner0>).didReplace(
-      values["oldRoute"] as api11.Route<Object?>?,
+      values["oldRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -30831,7 +29576,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoModalPopupRoute<_Owner0>).canTransitionTo(
-      values["nextRoute"] as api11.TransitionRoute<Object?>,
+      values["nextRoute"] as api10.TransitionRoute<Object?>,
     );
   }
 
@@ -30841,7 +29586,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
   ) {
     return (receiver as api.CupertinoModalPopupRoute<_Owner0>)
         .canTransitionFrom(
-          values["previousRoute"] as api11.TransitionRoute<Object?>,
+          values["previousRoute"] as api10.TransitionRoute<Object?>,
         );
   }
 
@@ -30917,7 +29662,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoModalPopupRoute<_Owner0>).addLocalHistoryEntry(
-      values["entry"] as api11.LocalHistoryEntry,
+      values["entry"] as api10.LocalHistoryEntry,
     );
     return null;
   }
@@ -30927,7 +29672,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoModalPopupRoute<_Owner0>).removeLocalHistoryEntry(
-      values["entry"] as api11.LocalHistoryEntry,
+      values["entry"] as api10.LocalHistoryEntry,
     );
     return null;
   }
@@ -30943,12 +29688,12 @@ Function _flaxClass_CupertinoModalPopupRoute<
           return api.CupertinoModalPopupRoute<_Owner0>(
             builder:
                 values["builder"]
-                    as api.Widget Function(api11.BuildContext context),
+                    as api.Widget Function(api10.BuildContext context),
             barrierLabel: values["barrierLabel"] as String,
             barrierDismissible: values["barrierDismissible"] as bool,
             semanticsDismissible: values["semanticsDismissible"] as bool,
             filter: values["filter"] as api1.ImageFilter?,
-            settings: values["settings"] as api11.RouteSettings?,
+            settings: values["settings"] as api10.RouteSettings?,
             requestFocus: values["requestFocus"] as bool?,
             anchorPoint: values["anchorPoint"] as api1.Offset?,
           );
@@ -30956,13 +29701,13 @@ Function _flaxClass_CupertinoModalPopupRoute<
         return api.CupertinoModalPopupRoute<_Owner0>(
           builder:
               values["builder"]
-                  as api.Widget Function(api11.BuildContext context),
+                  as api.Widget Function(api10.BuildContext context),
           barrierLabel: values["barrierLabel"] as String,
           barrierColor: values["barrierColor"] as api1.Color?,
           barrierDismissible: values["barrierDismissible"] as bool,
           semanticsDismissible: values["semanticsDismissible"] as bool,
           filter: values["filter"] as api1.ImageFilter?,
-          settings: values["settings"] as api11.RouteSettings?,
+          settings: values["settings"] as api10.RouteSettings?,
           requestFocus: values["requestFocus"] as bool?,
           anchorPoint: values["anchorPoint"] as api1.Offset?,
         );
@@ -30973,9 +29718,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
 
   Object _callback0(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -30991,9 +29736,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
   bool _callback0Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -31004,15 +29749,15 @@ Function _flaxClass_CupertinoModalPopupRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -31020,9 +29765,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -31038,9 +29783,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
   bool _callback1Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -31051,15 +29796,15 @@ Function _flaxClass_CupertinoModalPopupRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -31067,9 +29812,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
 
   Object _callback2(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -31085,9 +29830,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
   bool _callback2Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -31098,15 +29843,15 @@ Function _flaxClass_CupertinoModalPopupRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -31184,9 +29929,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -31220,9 +29965,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -31431,12 +30176,12 @@ Function _flaxClass_CupertinoModalPopupRoute<
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("context", _flaxBinding2)],
               flaxWidgetType,
-              FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
-              id: types.key<api.Widget Function(api11.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+              FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
+              id: types.key<api.Widget Function(api10.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
               invoke:
-                  FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
+                  FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
               matches:
-                  FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+                  FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
             ),
           ),
           _CupertinoModalPopupRoute_builder,
@@ -31699,17 +30444,17 @@ Function _flaxClass_CupertinoModalPopupRoute<
               callback: FlaxCallbackBinding(
                 [FlaxCallbackParameter.plain("context", _flaxBinding2)],
                 flaxWidgetType,
-                FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
                 id:
                     types
                         .key<
-                          api.Widget Function(api11.BuildContext context)
+                          api.Widget Function(api10.BuildContext context)
                         >() +
                     ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
                 invoke: FlaxCallbackAdapters
-                    .invoke1<api11.BuildContext, api.Widget>,
+                    .invoke1<api10.BuildContext, api.Widget>,
                 matches: FlaxCallbackAdapters
-                    .matches1<api11.BuildContext, api.Widget>,
+                    .matches1<api10.BuildContext, api.Widget>,
               ),
             ),
           ),
@@ -31768,9 +30513,9 @@ Function _flaxClass_CupertinoModalPopupRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -31864,7 +30609,7 @@ Function _flaxClass_CupertinoPage<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoPage<_Owner0>).canUpdate(
-      values["other"] as api11.Page<Object?>,
+      values["other"] as api10.Page<Object?>,
     );
   }
 
@@ -31873,7 +30618,7 @@ Function _flaxClass_CupertinoPage<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoPage<_Owner0>).createRoute(
-      values["context"] as api11.BuildContext,
+      values["context"] as api10.BuildContext,
     );
   }
 
@@ -31889,7 +30634,7 @@ Function _flaxClass_CupertinoPage<
             fullscreenDialog: values["fullscreenDialog"] as bool,
             allowSnapshotting: values["allowSnapshotting"] as bool,
             canPop: values["canPop"] as bool,
-            key: values["key"] as api4.LocalKey?,
+            key: values["key"] as api3.LocalKey?,
             name: values["name"] as String?,
             arguments: values["arguments"],
             restorationId: values["restorationId"] as String?,
@@ -31905,7 +30650,7 @@ Function _flaxClass_CupertinoPage<
           onPopInvoked:
               values["onPopInvoked"]
                   as void Function(bool didPop, _Owner0? result),
-          key: values["key"] as api4.LocalKey?,
+          key: values["key"] as api3.LocalKey?,
           name: values["name"] as String?,
           arguments: values["arguments"],
           restorationId: values["restorationId"] as String?,
@@ -31988,7 +30733,7 @@ Function _flaxClass_CupertinoPage<
         ),
         "createRoute": FlaxInstanceMethod.plain(
           _flaxBinding1181,
-          types.ref<api11.Route<_Owner0>>(),
+          types.ref<api10.Route<_Owner0>>(),
           _CupertinoPage_createRoute,
         ),
       },
@@ -32222,9 +30967,9 @@ Function _flaxClass_CupertinoPageRoute<
     (value as api.CupertinoPageRoute<_Owner0>).receivedTransition =
         input
             as api.Widget? Function(
-              api11.BuildContext context,
-              api12.Animation<double> animation,
-              api12.Animation<double> secondaryAnimation,
+              api10.BuildContext context,
+              api11.Animation<double> animation,
+              api11.Animation<double> secondaryAnimation,
               bool allowSnapshotting,
               api.Widget? child,
             )?;
@@ -32257,9 +31002,9 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoPageRoute<_Owner0>).buildPage(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
     );
   }
 
@@ -32268,9 +31013,9 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoPageRoute<_Owner0>).buildTransitions(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
       values["child"] as api.Widget,
     );
   }
@@ -32341,7 +31086,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoPageRoute<_Owner0>).registerPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -32351,7 +31096,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoPageRoute<_Owner0>).unregisterPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -32361,7 +31106,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoPageRoute<_Owner0>).didChangePrevious(
-      values["previousRoute"] as api11.Route<Object?>?,
+      values["previousRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -32371,7 +31116,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoPageRoute<_Owner0>).didChangeNext(
-      values["nextRoute"] as api11.Route<Object?>?,
+      values["nextRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -32381,7 +31126,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoPageRoute<_Owner0>).didPopNext(
-      values["nextRoute"] as api11.Route<Object?>,
+      values["nextRoute"] as api10.Route<Object?>,
     );
     return null;
   }
@@ -32460,7 +31205,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoPageRoute<_Owner0>).didReplace(
-      values["oldRoute"] as api11.Route<Object?>?,
+      values["oldRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -32479,7 +31224,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoPageRoute<_Owner0>).canTransitionTo(
-      values["nextRoute"] as api11.TransitionRoute<Object?>,
+      values["nextRoute"] as api10.TransitionRoute<Object?>,
     );
   }
 
@@ -32488,7 +31233,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoPageRoute<_Owner0>).canTransitionFrom(
-      values["previousRoute"] as api11.TransitionRoute<Object?>,
+      values["previousRoute"] as api10.TransitionRoute<Object?>,
     );
   }
 
@@ -32562,7 +31307,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoPageRoute<_Owner0>).addLocalHistoryEntry(
-      values["entry"] as api11.LocalHistoryEntry,
+      values["entry"] as api10.LocalHistoryEntry,
     );
     return null;
   }
@@ -32572,7 +31317,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoPageRoute<_Owner0>).removeLocalHistoryEntry(
-      values["entry"] as api11.LocalHistoryEntry,
+      values["entry"] as api10.LocalHistoryEntry,
     );
     return null;
   }
@@ -32582,7 +31327,7 @@ Function _flaxClass_CupertinoPageRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoPageRoute<_Owner0>).buildContent(
-      values["context"] as api11.BuildContext,
+      values["context"] as api10.BuildContext,
     );
   }
 
@@ -32593,9 +31338,9 @@ Function _flaxClass_CupertinoPageRoute<
         return api.CupertinoPageRoute<_Owner0>(
           builder:
               values["builder"]
-                  as api.Widget Function(api11.BuildContext context),
+                  as api.Widget Function(api10.BuildContext context),
           title: values["title"] as String?,
-          settings: values["settings"] as api11.RouteSettings?,
+          settings: values["settings"] as api10.RouteSettings?,
           requestFocus: values["requestFocus"] as bool?,
           maintainState: values["maintainState"] as bool,
           fullscreenDialog: values["fullscreenDialog"] as bool,
@@ -32609,9 +31354,9 @@ Function _flaxClass_CupertinoPageRoute<
 
   Object _callback0(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -32627,9 +31372,9 @@ Function _flaxClass_CupertinoPageRoute<
   bool _callback0Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -32640,15 +31385,15 @@ Function _flaxClass_CupertinoPageRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -32656,9 +31401,9 @@ Function _flaxClass_CupertinoPageRoute<
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -32674,9 +31419,9 @@ Function _flaxClass_CupertinoPageRoute<
   bool _callback1Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -32687,15 +31432,15 @@ Function _flaxClass_CupertinoPageRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -32703,9 +31448,9 @@ Function _flaxClass_CupertinoPageRoute<
 
   Object _callback2(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -32721,9 +31466,9 @@ Function _flaxClass_CupertinoPageRoute<
   bool _callback2Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -32734,15 +31479,15 @@ Function _flaxClass_CupertinoPageRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -32816,9 +31561,9 @@ Function _flaxClass_CupertinoPageRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -32852,9 +31597,9 @@ Function _flaxClass_CupertinoPageRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -33061,12 +31806,12 @@ Function _flaxClass_CupertinoPageRoute<
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("context", _flaxBinding2)],
               flaxWidgetType,
-              FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
-              id: types.key<api.Widget Function(api11.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+              FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
+              id: types.key<api.Widget Function(api10.BuildContext context)>() + ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
               invoke:
-                  FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
+                  FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
               matches:
-                  FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+                  FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
             ),
           ),
           _CupertinoPageRoute_builder,
@@ -33329,17 +32074,17 @@ Function _flaxClass_CupertinoPageRoute<
               callback: FlaxCallbackBinding(
                 [FlaxCallbackParameter.plain("context", _flaxBinding2)],
                 flaxWidgetType,
-                FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
                 id:
                     types
                         .key<
-                          api.Widget Function(api11.BuildContext context)
+                          api.Widget Function(api10.BuildContext context)
                         >() +
                     ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
                 invoke: FlaxCallbackAdapters
-                    .invoke1<api11.BuildContext, api.Widget>,
+                    .invoke1<api10.BuildContext, api.Widget>,
                 matches: FlaxCallbackAdapters
-                    .matches1<api11.BuildContext, api.Widget>,
+                    .matches1<api10.BuildContext, api.Widget>,
               ),
             ),
           ),
@@ -33397,9 +32142,9 @@ Function _flaxClass_CupertinoPageRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -33443,17 +32188,17 @@ Function _flaxGeneric_CupertinoPageTransitionsBuilder_buildTransitions<
   Object? invoke(Object receiver, Map<String, Object?> values) {
     return (receiver as api.CupertinoPageTransitionsBuilder)
         .buildTransitions<_Method0>(
-          values["route"] as api11.PageRoute<_Method0>,
-          values["context"] as api11.BuildContext,
-          values["animation"] as api12.Animation<double>,
-          values["secondaryAnimation"] as api12.Animation<double>,
+          values["route"] as api10.PageRoute<_Method0>,
+          values["context"] as api10.BuildContext,
+          values["animation"] as api11.Animation<double>,
+          values["secondaryAnimation"] as api11.Animation<double>,
           values["child"] as api.Widget,
         );
   }
 
   return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter.required("route", types.ref<api11.PageRoute<_Method0>>()),
+      FlaxParameter.required("route", types.ref<api10.PageRoute<_Method0>>()),
       FlaxParameter.required("context", _flaxBinding2),
       FlaxParameter.required("animation", _flaxBinding56),
       FlaxParameter.required("secondaryAnimation", _flaxBinding56),
@@ -33469,17 +32214,17 @@ Function _flaxGeneric_CupertinoPageTransitionsBuilder_super_buildTransitions<
   Object? invoke(Object receiver, Map<String, Object?> values) {
     return (receiver as _CupertinoPageTransitionsBuilderProxy)
         ._flaxSuper_buildTransitions<_Method0>(
-          values["route"] as api11.PageRoute<_Method0>,
-          values["context"] as api11.BuildContext,
-          values["animation"] as api12.Animation<double>,
-          values["secondaryAnimation"] as api12.Animation<double>,
+          values["route"] as api10.PageRoute<_Method0>,
+          values["context"] as api10.BuildContext,
+          values["animation"] as api11.Animation<double>,
+          values["secondaryAnimation"] as api11.Animation<double>,
           values["child"] as api.Widget,
         );
   }
 
   return FlaxInstanceMethod.plain(
     <FlaxParameter>[
-      FlaxParameter.required("route", types.ref<api11.PageRoute<_Method0>>()),
+      FlaxParameter.required("route", types.ref<api10.PageRoute<_Method0>>()),
       FlaxParameter.required("context", _flaxBinding2),
       FlaxParameter.required("animation", _flaxBinding56),
       FlaxParameter.required("secondaryAnimation", _flaxBinding56),
@@ -33567,7 +32312,7 @@ Function _flaxClass_CupertinoRadio<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRadio<_Owner0>).debugFillProperties(
-      values["properties"] as api4.DiagnosticPropertiesBuilder,
+      values["properties"] as api3.DiagnosticPropertiesBuilder,
     );
     return null;
   }
@@ -33578,7 +32323,7 @@ Function _flaxClass_CupertinoRadio<
   ) {
     return (receiver as api.CupertinoRadio<_Owner0>).toStringShallow(
       joiner: values["joiner"] as String,
-      minLevel: values["minLevel"] as api4.DiagnosticLevel,
+      minLevel: values["minLevel"] as api3.DiagnosticLevel,
     );
   }
 
@@ -33587,7 +32332,7 @@ Function _flaxClass_CupertinoRadio<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoRadio<_Owner0>).toStringDeep(
-      minLevel: values["minLevel"] as api4.DiagnosticLevel,
+      minLevel: values["minLevel"] as api3.DiagnosticLevel,
       prefixLineOne: values["prefixLineOne"] as String,
       prefixOtherLines: values["prefixOtherLines"] as String?,
       wrapWidth: values["wrapWidth"] as int,
@@ -33600,7 +32345,7 @@ Function _flaxClass_CupertinoRadio<
   ) {
     return (receiver as api.CupertinoRadio<_Owner0>).toDiagnosticsNode(
       name: values["name"] as String?,
-      style: values["style"] as api4.DiagnosticsTreeStyle?,
+      style: values["style"] as api3.DiagnosticsTreeStyle?,
     );
   }
 
@@ -33616,22 +32361,22 @@ Function _flaxClass_CupertinoRadio<
     switch (ctor) {
       case "":
         return api.CupertinoRadio<_Owner0>(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           value: values["value"] as _Owner0,
           groupValue: values["groupValue"] as _Owner0?,
           onChanged: values["onChanged"] as void Function(_Owner0? value)?,
-          mouseCursor: values["mouseCursor"] as api8.MouseCursor?,
+          mouseCursor: values["mouseCursor"] as api7.MouseCursor?,
           toggleable: values["toggleable"] as bool,
           activeColor: values["activeColor"] as api1.Color?,
           inactiveColor: values["inactiveColor"] as api1.Color?,
           fillColor: values["fillColor"] as api1.Color?,
           focusColor: values["focusColor"] as api1.Color?,
-          focusNode: values["focusNode"] as api11.FocusNode?,
+          focusNode: values["focusNode"] as api10.FocusNode?,
           autofocus: values["autofocus"] as bool,
           useCheckmarkStyle: values["useCheckmarkStyle"] as bool,
           enabled: values["enabled"] as bool?,
           groupRegistry:
-              values["groupRegistry"] as api11.RadioGroupRegistry<_Owner0>?,
+              values["groupRegistry"] as api10.RadioGroupRegistry<_Owner0>?,
         );
       default:
         throw ArgumentError("Unknown constructor");
@@ -33717,7 +32462,7 @@ Function _flaxClass_CupertinoRadio<
         FlaxGetter.plain("autofocus", flaxBoolType, _CupertinoRadio_autofocus),
         FlaxGetter.plain(
           "groupRegistry",
-          types.ref<api11.RadioGroupRegistry<_Owner0>?>(),
+          types.ref<api10.RadioGroupRegistry<_Owner0>?>(),
           _CupertinoRadio_groupRegistry,
         ),
         FlaxGetter.plain(
@@ -33730,7 +32475,7 @@ Function _flaxClass_CupertinoRadio<
       {
         "createState": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          types.ref<api11.State<api.CupertinoRadio<_Owner0>>>(),
+          types.ref<api10.State<api.CupertinoRadio<_Owner0>>>(),
           _CupertinoRadio_createState,
         ),
         "createElement": FlaxInstanceMethod.plain(
@@ -33744,7 +32489,7 @@ Function _flaxClass_CupertinoRadio<
           _CupertinoRadio_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod.plain(
-          _flaxBinding2411,
+          _flaxBinding2348,
           flaxVoidType,
           _CupertinoRadio_debugFillProperties,
         ),
@@ -33826,7 +32571,7 @@ Function _flaxClass_CupertinoRadio<
           FlaxParameter("enabled", flaxNullableBoolType, required: false),
           FlaxParameter(
             "groupRegistry",
-            types.ref<api11.RadioGroupRegistry<_Owner0>?>(),
+            types.ref<api10.RadioGroupRegistry<_Owner0>?>(),
             required: false,
           ),
         ],
@@ -34013,9 +32758,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     (value as api.CupertinoRouteTransitionMixin<_Owner0>).receivedTransition =
         input
             as api.Widget? Function(
-              api11.BuildContext context,
-              api12.Animation<double> animation,
-              api12.Animation<double> secondaryAnimation,
+              api10.BuildContext context,
+              api11.Animation<double> animation,
+              api11.Animation<double> secondaryAnimation,
               bool allowSnapshotting,
               api.Widget? child,
             )?;
@@ -34053,9 +32798,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoRouteTransitionMixin<_Owner0>).buildPage(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
     );
   }
 
@@ -34065,9 +32810,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
   ) {
     return (receiver as api.CupertinoRouteTransitionMixin<_Owner0>)
         .buildTransitions(
-          values["context"] as api11.BuildContext,
-          values["animation"] as api12.Animation<double>,
-          values["secondaryAnimation"] as api12.Animation<double>,
+          values["context"] as api10.BuildContext,
+          values["animation"] as api11.Animation<double>,
+          values["secondaryAnimation"] as api11.Animation<double>,
           values["child"] as api.Widget,
         );
   }
@@ -34141,7 +32886,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRouteTransitionMixin<_Owner0>).registerPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -34151,7 +32896,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRouteTransitionMixin<_Owner0>).unregisterPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -34161,7 +32906,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRouteTransitionMixin<_Owner0>).didChangePrevious(
-      values["previousRoute"] as api11.Route<Object?>?,
+      values["previousRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -34171,7 +32916,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRouteTransitionMixin<_Owner0>).didChangeNext(
-      values["nextRoute"] as api11.Route<Object?>?,
+      values["nextRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -34181,7 +32926,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRouteTransitionMixin<_Owner0>).didPopNext(
-      values["nextRoute"] as api11.Route<Object?>,
+      values["nextRoute"] as api10.Route<Object?>,
     );
     return null;
   }
@@ -34264,7 +33009,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRouteTransitionMixin<_Owner0>).didReplace(
-      values["oldRoute"] as api11.Route<Object?>?,
+      values["oldRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -34283,7 +33028,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoRouteTransitionMixin<_Owner0>)
-        .canTransitionTo(values["nextRoute"] as api11.TransitionRoute<Object?>);
+        .canTransitionTo(values["nextRoute"] as api10.TransitionRoute<Object?>);
   }
 
   Object? _CupertinoRouteTransitionMixin_canTransitionFrom(
@@ -34292,7 +33037,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
   ) {
     return (receiver as api.CupertinoRouteTransitionMixin<_Owner0>)
         .canTransitionFrom(
-          values["previousRoute"] as api11.TransitionRoute<Object?>,
+          values["previousRoute"] as api10.TransitionRoute<Object?>,
         );
   }
 
@@ -34367,7 +33112,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRouteTransitionMixin<_Owner0>)
-        .addLocalHistoryEntry(values["entry"] as api11.LocalHistoryEntry);
+        .addLocalHistoryEntry(values["entry"] as api10.LocalHistoryEntry);
     return null;
   }
 
@@ -34376,7 +33121,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoRouteTransitionMixin<_Owner0>)
-        .removeLocalHistoryEntry(values["entry"] as api11.LocalHistoryEntry);
+        .removeLocalHistoryEntry(values["entry"] as api10.LocalHistoryEntry);
     return null;
   }
 
@@ -34385,7 +33130,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoRouteTransitionMixin<_Owner0>)
-        .buildContent(values["context"] as api11.BuildContext);
+        .buildContent(values["context"] as api10.BuildContext);
   }
 
   // ignore: unused_element
@@ -34401,9 +33146,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
 
   Object _callback0(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -34419,9 +33164,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
   bool _callback0Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -34432,15 +33177,15 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -34448,9 +33193,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -34466,9 +33211,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
   bool _callback1Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -34479,15 +33224,15 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -34495,9 +33240,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
 
   Object _callback2(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -34513,9 +33258,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
   bool _callback2Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -34526,15 +33271,15 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -34612,9 +33357,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -34648,9 +33393,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -35137,9 +33882,9 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -35250,7 +33995,7 @@ Function _flaxClass_CupertinoSegmentedControl<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSegmentedControl<_Owner0>).debugFillProperties(
-      values["properties"] as api4.DiagnosticPropertiesBuilder,
+      values["properties"] as api3.DiagnosticPropertiesBuilder,
     );
     return null;
   }
@@ -35261,7 +34006,7 @@ Function _flaxClass_CupertinoSegmentedControl<
   ) {
     return (receiver as api.CupertinoSegmentedControl<_Owner0>).toStringShallow(
       joiner: values["joiner"] as String,
-      minLevel: values["minLevel"] as api4.DiagnosticLevel,
+      minLevel: values["minLevel"] as api3.DiagnosticLevel,
     );
   }
 
@@ -35270,7 +34015,7 @@ Function _flaxClass_CupertinoSegmentedControl<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoSegmentedControl<_Owner0>).toStringDeep(
-      minLevel: values["minLevel"] as api4.DiagnosticLevel,
+      minLevel: values["minLevel"] as api3.DiagnosticLevel,
       prefixLineOne: values["prefixLineOne"] as String,
       prefixOtherLines: values["prefixOtherLines"] as String?,
       wrapWidth: values["wrapWidth"] as int,
@@ -35284,7 +34029,7 @@ Function _flaxClass_CupertinoSegmentedControl<
     return (receiver as api.CupertinoSegmentedControl<_Owner0>)
         .toDiagnosticsNode(
           name: values["name"] as String?,
-          style: values["style"] as api4.DiagnosticsTreeStyle?,
+          style: values["style"] as api3.DiagnosticsTreeStyle?,
         );
   }
 
@@ -35305,7 +34050,7 @@ Function _flaxClass_CupertinoSegmentedControl<
       case "":
         if (!values.containsKey("disabledChildren")) {
           return api.CupertinoSegmentedControl<_Owner0>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<_Owner0, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(_Owner0 value),
@@ -35316,11 +34061,11 @@ Function _flaxClass_CupertinoSegmentedControl<
             pressedColor: values["pressedColor"] as api1.Color?,
             disabledColor: values["disabledColor"] as api1.Color?,
             disabledTextColor: values["disabledTextColor"] as api1.Color?,
-            padding: values["padding"] as api13.EdgeInsetsGeometry?,
+            padding: values["padding"] as api12.EdgeInsetsGeometry?,
           );
         }
         return api.CupertinoSegmentedControl<_Owner0>(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as Map<_Owner0, api.Widget>,
           onValueChanged:
               values["onValueChanged"] as void Function(_Owner0 value),
@@ -35331,7 +34076,7 @@ Function _flaxClass_CupertinoSegmentedControl<
           pressedColor: values["pressedColor"] as api1.Color?,
           disabledColor: values["disabledColor"] as api1.Color?,
           disabledTextColor: values["disabledTextColor"] as api1.Color?,
-          padding: values["padding"] as api13.EdgeInsetsGeometry?,
+          padding: values["padding"] as api12.EdgeInsetsGeometry?,
           disabledChildren: values["disabledChildren"] as Set<_Owner0>,
         );
       default:
@@ -35428,7 +34173,7 @@ Function _flaxClass_CupertinoSegmentedControl<
       {
         "createState": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          types.ref<api11.State<api.CupertinoSegmentedControl<_Owner0>>>(),
+          types.ref<api10.State<api.CupertinoSegmentedControl<_Owner0>>>(),
           _CupertinoSegmentedControl_createState,
         ),
         "createElement": FlaxInstanceMethod.plain(
@@ -35442,7 +34187,7 @@ Function _flaxClass_CupertinoSegmentedControl<
           _CupertinoSegmentedControl_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod.plain(
-          _flaxBinding2411,
+          _flaxBinding2348,
           flaxVoidType,
           _CupertinoSegmentedControl_debugFillProperties,
         ),
@@ -35693,9 +34438,9 @@ Function _flaxClass_CupertinoSheetRoute<
     (value as api.CupertinoSheetRoute<_Owner0>).receivedTransition =
         input
             as api.Widget? Function(
-              api11.BuildContext context,
-              api12.Animation<double> animation,
-              api12.Animation<double> secondaryAnimation,
+              api10.BuildContext context,
+              api11.Animation<double> animation,
+              api11.Animation<double> secondaryAnimation,
               bool allowSnapshotting,
               api.Widget? child,
             )?;
@@ -35728,9 +34473,9 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoSheetRoute<_Owner0>).buildPage(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
     );
   }
 
@@ -35739,9 +34484,9 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoSheetRoute<_Owner0>).buildTransitions(
-      values["context"] as api11.BuildContext,
-      values["animation"] as api12.Animation<double>,
-      values["secondaryAnimation"] as api12.Animation<double>,
+      values["context"] as api10.BuildContext,
+      values["animation"] as api11.Animation<double>,
+      values["secondaryAnimation"] as api11.Animation<double>,
       values["child"] as api.Widget,
     );
   }
@@ -35812,7 +34557,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSheetRoute<_Owner0>).registerPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -35822,7 +34567,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSheetRoute<_Owner0>).unregisterPopEntry(
-      values["popEntry"] as api11.PopEntry<Object?>,
+      values["popEntry"] as api10.PopEntry<Object?>,
     );
     return null;
   }
@@ -35832,7 +34577,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSheetRoute<_Owner0>).didChangePrevious(
-      values["previousRoute"] as api11.Route<Object?>?,
+      values["previousRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -35842,7 +34587,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSheetRoute<_Owner0>).didChangeNext(
-      values["nextRoute"] as api11.Route<Object?>?,
+      values["nextRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -35852,7 +34597,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSheetRoute<_Owner0>).didPopNext(
-      values["nextRoute"] as api11.Route<Object?>,
+      values["nextRoute"] as api10.Route<Object?>,
     );
     return null;
   }
@@ -35932,7 +34677,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSheetRoute<_Owner0>).didReplace(
-      values["oldRoute"] as api11.Route<Object?>?,
+      values["oldRoute"] as api10.Route<Object?>?,
     );
     return null;
   }
@@ -35951,7 +34696,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoSheetRoute<_Owner0>).canTransitionTo(
-      values["nextRoute"] as api11.TransitionRoute<Object?>,
+      values["nextRoute"] as api10.TransitionRoute<Object?>,
     );
   }
 
@@ -35960,7 +34705,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoSheetRoute<_Owner0>).canTransitionFrom(
-      values["previousRoute"] as api11.TransitionRoute<Object?>,
+      values["previousRoute"] as api10.TransitionRoute<Object?>,
     );
   }
 
@@ -36034,7 +34779,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSheetRoute<_Owner0>).addLocalHistoryEntry(
-      values["entry"] as api11.LocalHistoryEntry,
+      values["entry"] as api10.LocalHistoryEntry,
     );
     return null;
   }
@@ -36044,7 +34789,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     (receiver as api.CupertinoSheetRoute<_Owner0>).removeLocalHistoryEntry(
-      values["entry"] as api11.LocalHistoryEntry,
+      values["entry"] as api10.LocalHistoryEntry,
     );
     return null;
   }
@@ -36054,7 +34799,7 @@ Function _flaxClass_CupertinoSheetRoute<
     Map<String, Object?> values,
   ) {
     return (receiver as api.CupertinoSheetRoute<_Owner0>).buildContent(
-      values["context"] as api11.BuildContext,
+      values["context"] as api10.BuildContext,
     );
   }
 
@@ -36063,15 +34808,15 @@ Function _flaxClass_CupertinoSheetRoute<
     switch (ctor) {
       case "":
         return api.CupertinoSheetRoute<_Owner0>(
-          settings: values["settings"] as api11.RouteSettings?,
+          settings: values["settings"] as api10.RouteSettings?,
           builder:
               values["builder"]
-                  as api.Widget Function(api11.BuildContext context)?,
+                  as api.Widget Function(api10.BuildContext context)?,
           scrollableBuilder:
               values["scrollableBuilder"]
                   as api.Widget Function(
-                    api11.BuildContext context,
-                    api11.ScrollController scrollController,
+                    api10.BuildContext context,
+                    api10.ScrollController scrollController,
                   )?,
           enableDrag: values["enableDrag"] as bool,
           showDragHandle: values["showDragHandle"] as bool,
@@ -36084,9 +34829,9 @@ Function _flaxClass_CupertinoSheetRoute<
 
   Object _callback0(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -36102,9 +34847,9 @@ Function _flaxClass_CupertinoSheetRoute<
   bool _callback0Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -36115,15 +34860,15 @@ Function _flaxClass_CupertinoSheetRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -36131,9 +34876,9 @@ Function _flaxClass_CupertinoSheetRoute<
 
   Object _callback1(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -36149,9 +34894,9 @@ Function _flaxClass_CupertinoSheetRoute<
   bool _callback1Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -36162,15 +34907,15 @@ Function _flaxClass_CupertinoSheetRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -36178,9 +34923,9 @@ Function _flaxClass_CupertinoSheetRoute<
 
   Object _callback2(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.BuildContext p0,
-        api12.Animation<double> p1,
-        api12.Animation<double> p2,
+        api10.BuildContext p0,
+        api11.Animation<double> p1,
+        api11.Animation<double> p2,
         bool p3,
         api.Widget? p4,
       ) {
@@ -36196,9 +34941,9 @@ Function _flaxClass_CupertinoSheetRoute<
   bool _callback2Matches(Object value) =>
       value
           is api.Widget? Function(
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             bool allowSnapshotting,
             api.Widget? child,
           );
@@ -36209,15 +34954,15 @@ Function _flaxClass_CupertinoSheetRoute<
   ) {
     return (function
         as api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         ))(
-      positional[0] as api11.BuildContext,
-      positional[1] as api12.Animation<double>,
-      positional[2] as api12.Animation<double>,
+      positional[0] as api10.BuildContext,
+      positional[1] as api11.Animation<double>,
+      positional[2] as api11.Animation<double>,
       positional[3] as bool,
       positional[4] as api.Widget?,
     );
@@ -36295,9 +35040,9 @@ Function _flaxClass_CupertinoSheetRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -36331,9 +35076,9 @@ Function _flaxClass_CupertinoSheetRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -36531,15 +35276,15 @@ Function _flaxClass_CupertinoSheetRoute<
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("context", _flaxBinding2)],
               flaxWidgetType,
-              FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
+              FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
               id:
                   types
-                      .key<api.Widget Function(api11.BuildContext context)?>() +
+                      .key<api.Widget Function(api10.BuildContext context)?>() +
                   ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
               invoke:
-                  FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
+                  FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
               matches:
-                  FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+                  FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
             ),
           ),
           _CupertinoSheetRoute_builder,
@@ -36559,29 +35304,29 @@ Function _flaxClass_CupertinoSheetRoute<
               ],
               flaxWidgetType,
               FlaxCallbackAdapters.wrap2<
-                api11.BuildContext,
-                api11.ScrollController,
+                api10.BuildContext,
+                api10.ScrollController,
                 api.Widget
               >,
               id:
                   types
                       .key<
                         api.Widget Function(
-                          api11.BuildContext context,
-                          api11.ScrollController scrollController,
+                          api10.BuildContext context,
+                          api10.ScrollController scrollController,
                         )?
                       >() +
                   ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:scrollController:object:flax.core/flutter#type:ScrollController)->widget:",
               invoke:
                   FlaxCallbackAdapters.invoke2<
-                    api11.BuildContext,
-                    api11.ScrollController,
+                    api10.BuildContext,
+                    api10.ScrollController,
                     api.Widget
                   >,
               matches:
                   FlaxCallbackAdapters.matches2<
-                    api11.BuildContext,
-                    api11.ScrollController,
+                    api10.BuildContext,
+                    api10.ScrollController,
                     api.Widget
                   >,
             ),
@@ -36859,17 +35604,17 @@ Function _flaxClass_CupertinoSheetRoute<
               callback: FlaxCallbackBinding(
                 [FlaxCallbackParameter.plain("context", _flaxBinding2)],
                 flaxWidgetType,
-                FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
+                FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
                 id:
                     types
                         .key<
-                          api.Widget Function(api11.BuildContext context)?
+                          api.Widget Function(api10.BuildContext context)?
                         >() +
                     ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
                 invoke: FlaxCallbackAdapters
-                    .invoke1<api11.BuildContext, api.Widget>,
+                    .invoke1<api10.BuildContext, api.Widget>,
                 matches: FlaxCallbackAdapters
-                    .matches1<api11.BuildContext, api.Widget>,
+                    .matches1<api10.BuildContext, api.Widget>,
               ),
             ),
             required: false,
@@ -36889,29 +35634,29 @@ Function _flaxClass_CupertinoSheetRoute<
                 ],
                 flaxWidgetType,
                 FlaxCallbackAdapters.wrap2<
-                  api11.BuildContext,
-                  api11.ScrollController,
+                  api10.BuildContext,
+                  api10.ScrollController,
                   api.Widget
                 >,
                 id:
                     types
                         .key<
                           api.Widget Function(
-                            api11.BuildContext context,
-                            api11.ScrollController scrollController,
+                            api10.BuildContext context,
+                            api10.ScrollController scrollController,
                           )?
                         >() +
                     ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:scrollController:object:flax.core/flutter#type:ScrollController)->widget:",
                 invoke:
                     FlaxCallbackAdapters.invoke2<
-                      api11.BuildContext,
-                      api11.ScrollController,
+                      api10.BuildContext,
+                      api10.ScrollController,
                       api.Widget
                     >,
                 matches:
                     FlaxCallbackAdapters.matches2<
-                      api11.BuildContext,
-                      api11.ScrollController,
+                      api10.BuildContext,
+                      api10.ScrollController,
                       api.Widget
                     >,
               ),
@@ -36958,9 +35703,9 @@ Function _flaxClass_CupertinoSheetRoute<
                   types
                       .key<
                         api.Widget? Function(
-                          api11.BuildContext context,
-                          api12.Animation<double> animation,
-                          api12.Animation<double> secondaryAnimation,
+                          api10.BuildContext context,
+                          api11.Animation<double> animation,
+                          api11.Animation<double> secondaryAnimation,
                           bool allowSnapshotting,
                           api.Widget? child,
                         )?
@@ -37067,7 +35812,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
   ) {
     (receiver as api.CupertinoSlidingSegmentedControl<_Owner0>)
         .debugFillProperties(
-          values["properties"] as api4.DiagnosticPropertiesBuilder,
+          values["properties"] as api3.DiagnosticPropertiesBuilder,
         );
     return null;
   }
@@ -37079,7 +35824,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
     return (receiver as api.CupertinoSlidingSegmentedControl<_Owner0>)
         .toStringShallow(
           joiner: values["joiner"] as String,
-          minLevel: values["minLevel"] as api4.DiagnosticLevel,
+          minLevel: values["minLevel"] as api3.DiagnosticLevel,
         );
   }
 
@@ -37089,7 +35834,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
   ) {
     return (receiver as api.CupertinoSlidingSegmentedControl<_Owner0>)
         .toStringDeep(
-          minLevel: values["minLevel"] as api4.DiagnosticLevel,
+          minLevel: values["minLevel"] as api3.DiagnosticLevel,
           prefixLineOne: values["prefixLineOne"] as String,
           prefixOtherLines: values["prefixOtherLines"] as String?,
           wrapWidth: values["wrapWidth"] as int,
@@ -37103,7 +35848,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
     return (receiver as api.CupertinoSlidingSegmentedControl<_Owner0>)
         .toDiagnosticsNode(
           name: values["name"] as String?,
-          style: values["style"] as api4.DiagnosticsTreeStyle?,
+          style: values["style"] as api3.DiagnosticsTreeStyle?,
         );
   }
 
@@ -37127,7 +35872,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
             if (!values.containsKey("padding")) {
               if (!values.containsKey("backgroundColor")) {
                 return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                  key: values["key"] as api4.Key?,
+                  key: values["key"] as api3.Key?,
                   children: values["children"] as Map<_Owner0, api.Widget>,
                   onValueChanged:
                       values["onValueChanged"] as void Function(_Owner0? value),
@@ -37137,7 +35882,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
                 );
               }
               return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                key: values["key"] as api4.Key?,
+                key: values["key"] as api3.Key?,
                 children: values["children"] as Map<_Owner0, api.Widget>,
                 onValueChanged:
                     values["onValueChanged"] as void Function(_Owner0? value),
@@ -37149,23 +35894,23 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
             }
             if (!values.containsKey("backgroundColor")) {
               return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                key: values["key"] as api4.Key?,
+                key: values["key"] as api3.Key?,
                 children: values["children"] as Map<_Owner0, api.Widget>,
                 onValueChanged:
                     values["onValueChanged"] as void Function(_Owner0? value),
                 groupValue: values["groupValue"] as _Owner0?,
-                padding: values["padding"] as api13.EdgeInsetsGeometry,
+                padding: values["padding"] as api12.EdgeInsetsGeometry,
                 proportionalWidth: values["proportionalWidth"] as bool,
                 isMomentary: values["isMomentary"] as bool,
               );
             }
             return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<_Owner0, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(_Owner0? value),
               groupValue: values["groupValue"] as _Owner0?,
-              padding: values["padding"] as api13.EdgeInsetsGeometry,
+              padding: values["padding"] as api12.EdgeInsetsGeometry,
               backgroundColor: values["backgroundColor"] as api1.Color,
               proportionalWidth: values["proportionalWidth"] as bool,
               isMomentary: values["isMomentary"] as bool,
@@ -37174,7 +35919,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           if (!values.containsKey("padding")) {
             if (!values.containsKey("backgroundColor")) {
               return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                key: values["key"] as api4.Key?,
+                key: values["key"] as api3.Key?,
                 children: values["children"] as Map<_Owner0, api.Widget>,
                 onValueChanged:
                     values["onValueChanged"] as void Function(_Owner0? value),
@@ -37185,7 +35930,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
               );
             }
             return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<_Owner0, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(_Owner0? value),
@@ -37198,25 +35943,25 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           }
           if (!values.containsKey("backgroundColor")) {
             return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<_Owner0, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(_Owner0? value),
               groupValue: values["groupValue"] as _Owner0?,
               thumbColor: values["thumbColor"] as api1.Color,
-              padding: values["padding"] as api13.EdgeInsetsGeometry,
+              padding: values["padding"] as api12.EdgeInsetsGeometry,
               proportionalWidth: values["proportionalWidth"] as bool,
               isMomentary: values["isMomentary"] as bool,
             );
           }
           return api.CupertinoSlidingSegmentedControl<_Owner0>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<_Owner0, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(_Owner0? value),
             groupValue: values["groupValue"] as _Owner0?,
             thumbColor: values["thumbColor"] as api1.Color,
-            padding: values["padding"] as api13.EdgeInsetsGeometry,
+            padding: values["padding"] as api12.EdgeInsetsGeometry,
             backgroundColor: values["backgroundColor"] as api1.Color,
             proportionalWidth: values["proportionalWidth"] as bool,
             isMomentary: values["isMomentary"] as bool,
@@ -37226,7 +35971,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           if (!values.containsKey("padding")) {
             if (!values.containsKey("backgroundColor")) {
               return api.CupertinoSlidingSegmentedControl<_Owner0>(
-                key: values["key"] as api4.Key?,
+                key: values["key"] as api3.Key?,
                 children: values["children"] as Map<_Owner0, api.Widget>,
                 onValueChanged:
                     values["onValueChanged"] as void Function(_Owner0? value),
@@ -37237,7 +35982,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
               );
             }
             return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<_Owner0, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(_Owner0? value),
@@ -37250,25 +35995,25 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           }
           if (!values.containsKey("backgroundColor")) {
             return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<_Owner0, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(_Owner0? value),
               disabledChildren: values["disabledChildren"] as Set<_Owner0>,
               groupValue: values["groupValue"] as _Owner0?,
-              padding: values["padding"] as api13.EdgeInsetsGeometry,
+              padding: values["padding"] as api12.EdgeInsetsGeometry,
               proportionalWidth: values["proportionalWidth"] as bool,
               isMomentary: values["isMomentary"] as bool,
             );
           }
           return api.CupertinoSlidingSegmentedControl<_Owner0>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<_Owner0, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(_Owner0? value),
             disabledChildren: values["disabledChildren"] as Set<_Owner0>,
             groupValue: values["groupValue"] as _Owner0?,
-            padding: values["padding"] as api13.EdgeInsetsGeometry,
+            padding: values["padding"] as api12.EdgeInsetsGeometry,
             backgroundColor: values["backgroundColor"] as api1.Color,
             proportionalWidth: values["proportionalWidth"] as bool,
             isMomentary: values["isMomentary"] as bool,
@@ -37277,7 +36022,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
         if (!values.containsKey("padding")) {
           if (!values.containsKey("backgroundColor")) {
             return api.CupertinoSlidingSegmentedControl<_Owner0>(
-              key: values["key"] as api4.Key?,
+              key: values["key"] as api3.Key?,
               children: values["children"] as Map<_Owner0, api.Widget>,
               onValueChanged:
                   values["onValueChanged"] as void Function(_Owner0? value),
@@ -37289,7 +36034,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
             );
           }
           return api.CupertinoSlidingSegmentedControl<_Owner0>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<_Owner0, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(_Owner0? value),
@@ -37303,27 +36048,27 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
         }
         if (!values.containsKey("backgroundColor")) {
           return api.CupertinoSlidingSegmentedControl<_Owner0>(
-            key: values["key"] as api4.Key?,
+            key: values["key"] as api3.Key?,
             children: values["children"] as Map<_Owner0, api.Widget>,
             onValueChanged:
                 values["onValueChanged"] as void Function(_Owner0? value),
             disabledChildren: values["disabledChildren"] as Set<_Owner0>,
             groupValue: values["groupValue"] as _Owner0?,
             thumbColor: values["thumbColor"] as api1.Color,
-            padding: values["padding"] as api13.EdgeInsetsGeometry,
+            padding: values["padding"] as api12.EdgeInsetsGeometry,
             proportionalWidth: values["proportionalWidth"] as bool,
             isMomentary: values["isMomentary"] as bool,
           );
         }
         return api.CupertinoSlidingSegmentedControl<_Owner0>(
-          key: values["key"] as api4.Key?,
+          key: values["key"] as api3.Key?,
           children: values["children"] as Map<_Owner0, api.Widget>,
           onValueChanged:
               values["onValueChanged"] as void Function(_Owner0? value),
           disabledChildren: values["disabledChildren"] as Set<_Owner0>,
           groupValue: values["groupValue"] as _Owner0?,
           thumbColor: values["thumbColor"] as api1.Color,
-          padding: values["padding"] as api13.EdgeInsetsGeometry,
+          padding: values["padding"] as api12.EdgeInsetsGeometry,
           backgroundColor: values["backgroundColor"] as api1.Color,
           proportionalWidth: values["proportionalWidth"] as bool,
           isMomentary: values["isMomentary"] as bool,
@@ -37414,7 +36159,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           _flaxBinding132,
           types
               .ref<
-                api11.State<api.CupertinoSlidingSegmentedControl<_Owner0>>
+                api10.State<api.CupertinoSlidingSegmentedControl<_Owner0>>
               >(),
           _CupertinoSlidingSegmentedControl_createState,
         ),
@@ -37429,7 +36174,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           _CupertinoSlidingSegmentedControl_toStringShort,
         ),
         "debugFillProperties": FlaxInstanceMethod.plain(
-          _flaxBinding2411,
+          _flaxBinding2348,
           flaxVoidType,
           _CupertinoSlidingSegmentedControl_debugFillProperties,
         ),
@@ -37973,9 +36718,9 @@ Function _flaxShape6<_Shape0, _Shape1, _Shape2, _Shape3>() =>
     };
 Object _callback0(FlaxCallback _flaxBridgeCallback) =>
     (
-      api11.BuildContext p0,
-      api12.Animation<double> p1,
-      api12.Animation<double> p2,
+      api10.BuildContext p0,
+      api11.Animation<double> p1,
+      api11.Animation<double> p2,
       bool p3,
       api.Widget? p4,
     ) {
@@ -37991,9 +36736,9 @@ Object _callback0(FlaxCallback _flaxBridgeCallback) =>
 bool _callback0Matches(Object value) =>
     value
         is api.Widget? Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           bool allowSnapshotting,
           api.Widget? child,
         );
@@ -38004,15 +36749,15 @@ Object? _callback0Invoke(
 ) {
   return (function
       as api.Widget? Function(
-        api11.BuildContext context,
-        api12.Animation<double> animation,
-        api12.Animation<double> secondaryAnimation,
+        api10.BuildContext context,
+        api11.Animation<double> animation,
+        api11.Animation<double> secondaryAnimation,
         bool allowSnapshotting,
         api.Widget? child,
       ))(
-    positional[0] as api11.BuildContext,
-    positional[1] as api12.Animation<double>,
-    positional[2] as api12.Animation<double>,
+    positional[0] as api10.BuildContext,
+    positional[1] as api11.Animation<double>,
+    positional[2] as api11.Animation<double>,
     positional[3] as bool,
     positional[4] as api.Widget?,
   );
@@ -38020,7 +36765,7 @@ Object? _callback0Invoke(
 
 Object _callback1(FlaxCallback _flaxBridgeCallback) =>
     (
-      api11.BuildContext p0, {
+      api10.BuildContext p0, {
       required int columnCount,
       required int selectedIndex,
     }) {
@@ -38034,7 +36779,7 @@ Object _callback1(FlaxCallback _flaxBridgeCallback) =>
 bool _callback1Matches(Object value) =>
     value
         is api.Widget? Function(
-          api11.BuildContext context, {
+          api10.BuildContext context, {
           required int columnCount,
           required int selectedIndex,
         });
@@ -38045,11 +36790,11 @@ Object? _callback1Invoke(
 ) {
   return (function
       as api.Widget? Function(
-        api11.BuildContext context, {
+        api10.BuildContext context, {
         required int columnCount,
         required int selectedIndex,
       }))(
-    positional[0] as api11.BuildContext,
+    positional[0] as api10.BuildContext,
     columnCount: named["columnCount"] as int,
     selectedIndex: named["selectedIndex"] as int,
   );
@@ -38057,9 +36802,9 @@ Object? _callback1Invoke(
 
 Object _callback2(FlaxCallback _flaxBridgeCallback) =>
     (
-      api11.BuildContext p0,
-      api12.Animation<double> p1,
-      api12.Animation<double> p2,
+      api10.BuildContext p0,
+      api11.Animation<double> p1,
+      api11.Animation<double> p2,
       api.Widget p3,
     ) {
       final positional = <Object?>[];
@@ -38073,9 +36818,9 @@ Object _callback2(FlaxCallback _flaxBridgeCallback) =>
 bool _callback2Matches(Object value) =>
     value
         is api.Widget Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           api.Widget child,
         );
 Object? _callback2Invoke(
@@ -38085,14 +36830,14 @@ Object? _callback2Invoke(
 ) {
   return (function
       as api.Widget Function(
-        api11.BuildContext context,
-        api12.Animation<double> animation,
-        api12.Animation<double> secondaryAnimation,
+        api10.BuildContext context,
+        api11.Animation<double> animation,
+        api11.Animation<double> secondaryAnimation,
         api.Widget child,
       ))(
-    positional[0] as api11.BuildContext,
-    positional[1] as api12.Animation<double>,
-    positional[2] as api12.Animation<double>,
+    positional[0] as api10.BuildContext,
+    positional[1] as api11.Animation<double>,
+    positional[2] as api11.Animation<double>,
     positional[3] as api.Widget,
   );
 }
@@ -38114,9 +36859,9 @@ Object? _callback3Invoke(
 
 Object _callback4(FlaxCallback _flaxBridgeCallback) =>
     (
-      api11.BuildContext p0,
-      api12.Animation<double> p1,
-      api12.Animation<double> p2,
+      api10.BuildContext p0,
+      api11.Animation<double> p1,
+      api11.Animation<double> p2,
       api.Widget p3,
     ) {
       final positional = <Object?>[];
@@ -38130,9 +36875,9 @@ Object _callback4(FlaxCallback _flaxBridgeCallback) =>
 bool _callback4Matches(Object value) =>
     value
         is api.Widget Function(
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           api.Widget child,
         );
 Object? _callback4Invoke(
@@ -38142,14 +36887,14 @@ Object? _callback4Invoke(
 ) {
   return (function
       as api.Widget Function(
-        api11.BuildContext context,
-        api12.Animation<double> animation,
-        api12.Animation<double> secondaryAnimation,
+        api10.BuildContext context,
+        api11.Animation<double> animation,
+        api11.Animation<double> secondaryAnimation,
         api.Widget child,
       ))(
-    positional[0] as api11.BuildContext,
-    positional[1] as api12.Animation<double>,
-    positional[2] as api12.Animation<double>,
+    positional[0] as api10.BuildContext,
+    positional[1] as api11.Animation<double>,
+    positional[2] as api11.Animation<double>,
     positional[3] as api.Widget,
   );
 }
@@ -38157,19 +36902,19 @@ Object? _callback4Invoke(
 Object _callback5(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api6.FutureOr<void>;
+  return _flaxBridgeCallback.call(positional, named) as api5.FutureOr<void>;
 };
-bool _callback5Matches(Object value) => value is api6.FutureOr<void> Function();
+bool _callback5Matches(Object value) => value is api5.FutureOr<void> Function();
 Object? _callback5Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
 ) {
-  return (function as api6.FutureOr<void> Function())();
+  return (function as api5.FutureOr<void> Function())();
 }
 
 Object _callback6(FlaxCallback _flaxBridgeCallback) =>
-    (api11.BuildContext p0, api11.MenuController p1, api.Widget? p2) {
+    (api10.BuildContext p0, api10.MenuController p1, api.Widget? p2) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
@@ -38180,8 +36925,8 @@ Object _callback6(FlaxCallback _flaxBridgeCallback) =>
 bool _callback6Matches(Object value) =>
     value
         is api.Widget Function(
-          api11.BuildContext context,
-          api11.MenuController controller,
+          api10.BuildContext context,
+          api10.MenuController controller,
           api.Widget? child,
         );
 Object? _callback6Invoke(
@@ -38191,12 +36936,12 @@ Object? _callback6Invoke(
 ) {
   return (function
       as api.Widget Function(
-        api11.BuildContext context,
-        api11.MenuController controller,
+        api10.BuildContext context,
+        api10.MenuController controller,
         api.Widget? child,
       ))(
-    positional[0] as api11.BuildContext,
-    positional[1] as api11.MenuController,
+    positional[0] as api10.BuildContext,
+    positional[1] as api10.MenuController,
     positional[2] as api.Widget?,
   );
 }
@@ -38227,10 +36972,10 @@ FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
 ) {
   Object _callback0(FlaxCallback _flaxBridgeCallback) =>
       (
-        api11.PageRoute<_Callback0> p0,
-        api11.BuildContext p1,
-        api12.Animation<double> p2,
-        api12.Animation<double> p3,
+        api10.PageRoute<_Callback0> p0,
+        api10.BuildContext p1,
+        api11.Animation<double> p2,
+        api11.Animation<double> p3,
         api.Widget p4,
       ) {
         final positional = <Object?>[];
@@ -38245,10 +36990,10 @@ FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
   bool _callback0Matches(Object value) =>
       value
           is api.Widget Function(
-            api11.PageRoute<_Callback0> route,
-            api11.BuildContext context,
-            api12.Animation<double> animation,
-            api12.Animation<double> secondaryAnimation,
+            api10.PageRoute<_Callback0> route,
+            api10.BuildContext context,
+            api11.Animation<double> animation,
+            api11.Animation<double> secondaryAnimation,
             api.Widget child,
           );
   Object? _callback0Invoke(
@@ -38258,16 +37003,16 @@ FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
   ) {
     return (function
         as api.Widget Function(
-          api11.PageRoute<_Callback0> route,
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.PageRoute<_Callback0> route,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           api.Widget child,
         ))(
-      positional[0] as api11.PageRoute<_Callback0>,
-      positional[1] as api11.BuildContext,
-      positional[2] as api12.Animation<double>,
-      positional[3] as api12.Animation<double>,
+      positional[0] as api10.PageRoute<_Callback0>,
+      positional[1] as api10.BuildContext,
+      positional[2] as api11.Animation<double>,
+      positional[3] as api11.Animation<double>,
       positional[4] as api.Widget,
     );
   }
@@ -38276,7 +37021,7 @@ FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
     [
       FlaxCallbackParameter.plain(
         "route",
-        types.ref<api11.PageRoute<_Callback0>>(withinCallback: true),
+        types.ref<api10.PageRoute<_Callback0>>(withinCallback: true),
       ),
       FlaxCallbackParameter.plain("context", _flaxBinding2),
       FlaxCallbackParameter.plain("animation", _flaxBinding56),
@@ -38289,10 +37034,10 @@ FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
         types
             .key<
               api.Widget Function(
-                api11.PageRoute<_Callback0> route,
-                api11.BuildContext context,
-                api12.Animation<double> animation,
-                api12.Animation<double> secondaryAnimation,
+                api10.PageRoute<_Callback0> route,
+                api10.BuildContext context,
+                api11.Animation<double> animation,
+                api11.Animation<double> secondaryAnimation,
                 api.Widget child,
               )
             >() +
@@ -38304,10 +37049,10 @@ FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
 
 Object _callback8(FlaxCallback _flaxBridgeCallback) =>
     <T extends Object?>(
-      api11.PageRoute<T> p0,
-      api11.BuildContext p1,
-      api12.Animation<double> p2,
-      api12.Animation<double> p3,
+      api10.PageRoute<T> p0,
+      api10.BuildContext p1,
+      api11.Animation<double> p2,
+      api11.Animation<double> p3,
       api.Widget p4,
     ) {
       final positional = <Object?>[];
@@ -38324,10 +37069,10 @@ Object _callback8(FlaxCallback _flaxBridgeCallback) =>
 bool _callback8Matches(Object value) =>
     value
         is api.Widget Function<T extends Object?>(
-          api11.PageRoute<T> route,
-          api11.BuildContext context,
-          api12.Animation<double> animation,
-          api12.Animation<double> secondaryAnimation,
+          api10.PageRoute<T> route,
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
           api.Widget child,
         );
 Object? _callback8Invoke(
@@ -38337,16 +37082,16 @@ Object? _callback8Invoke(
 ) {
   return (function
       as api.Widget Function<T extends Object?>(
-        api11.PageRoute<T> route,
-        api11.BuildContext context,
-        api12.Animation<double> animation,
-        api12.Animation<double> secondaryAnimation,
+        api10.PageRoute<T> route,
+        api10.BuildContext context,
+        api11.Animation<double> animation,
+        api11.Animation<double> secondaryAnimation,
         api.Widget child,
       ))<Object?>(
-    positional[0] as api11.PageRoute<Object?>,
-    positional[1] as api11.BuildContext,
-    positional[2] as api12.Animation<double>,
-    positional[3] as api12.Animation<double>,
+    positional[0] as api10.PageRoute<Object?>,
+    positional[1] as api10.BuildContext,
+    positional[2] as api11.Animation<double>,
+    positional[3] as api11.Animation<double>,
     positional[4] as api.Widget,
   );
 }
@@ -38401,7 +37146,7 @@ Object? _callback11Invoke(
 
 Object _callback12(FlaxCallback _flaxBridgeCallback) =>
     (
-      api11.BuildContext p0,
+      api10.BuildContext p0,
       api.RefreshIndicatorMode p1,
       double p2,
       double p3,
@@ -38419,7 +37164,7 @@ Object _callback12(FlaxCallback _flaxBridgeCallback) =>
 bool _callback12Matches(Object value) =>
     value
         is api.Widget Function(
-          api11.BuildContext context,
+          api10.BuildContext context,
           api.RefreshIndicatorMode refreshState,
           double pulledExtent,
           double refreshTriggerPullDistance,
@@ -38432,13 +37177,13 @@ Object? _callback12Invoke(
 ) {
   return (function
       as api.Widget Function(
-        api11.BuildContext context,
+        api10.BuildContext context,
         api.RefreshIndicatorMode refreshState,
         double pulledExtent,
         double refreshTriggerPullDistance,
         double refreshIndicatorExtent,
       ))(
-    positional[0] as api11.BuildContext,
+    positional[0] as api10.BuildContext,
     positional[1] as api.RefreshIndicatorMode,
     positional[2] as double,
     positional[3] as double,
@@ -38462,7 +37207,7 @@ Object? _callback13Invoke(
 }
 
 Object _callback14(FlaxCallback _flaxBridgeCallback) =>
-    (api11.BuildContext p0, api1.Offset p1, api1.Offset p2, api.Widget p3) {
+    (api10.BuildContext p0, api1.Offset p1, api1.Offset p2, api.Widget p3) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
@@ -38474,7 +37219,7 @@ Object _callback14(FlaxCallback _flaxBridgeCallback) =>
 bool _callback14Matches(Object value) =>
     value
         is api.Widget Function(
-          api11.BuildContext context,
+          api10.BuildContext context,
           api1.Offset anchorAbove,
           api1.Offset anchorBelow,
           api.Widget child,
@@ -38486,26 +37231,26 @@ Object? _callback14Invoke(
 ) {
   return (function
       as api.Widget Function(
-        api11.BuildContext context,
+        api10.BuildContext context,
         api1.Offset anchorAbove,
         api1.Offset anchorBelow,
         api.Widget child,
       ))(
-    positional[0] as api11.BuildContext,
+    positional[0] as api10.BuildContext,
     positional[1] as api1.Offset,
     positional[2] as api1.Offset,
     positional[3] as api.Widget,
   );
 }
 
-Object _collection0Create() => <api10.TextSelectionPoint>[];
+Object _collection0Create() => <api9.TextSelectionPoint>[];
 bool _collection0Matches(Object value) =>
-    value is List<api10.TextSelectionPoint>;
-Object _collection1Create() => <api10.TextSelectionPoint>[];
+    value is List<api9.TextSelectionPoint>;
+Object _collection1Create() => <api9.TextSelectionPoint>[];
 Object _collection1Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api10.TextSelectionPoint>();
+    (value as Iterable<Object?>).cast<api9.TextSelectionPoint>();
 bool _collection1Matches(Object value) =>
-    value is Iterable<api10.TextSelectionPoint>;
+    value is Iterable<api9.TextSelectionPoint>;
 Object _collection2Create() => <api1.Shadow>[];
 bool _collection2Matches(Object value) => value is List<api1.Shadow>;
 Object _collection3Create() => <api1.Shadow>[];
@@ -38525,26 +37270,26 @@ Object _collection7Restore(Object value) =>
     (value as Iterable<Object?>).cast<api1.PointerDeviceKind>();
 bool _collection7Matches(Object value) =>
     value is Iterable<api1.PointerDeviceKind>;
-Object _collection8Create() => <api8.LogicalKeyboardKey>{};
-bool _collection8Matches(Object value) => value is Set<api8.LogicalKeyboardKey>;
-Object _collection9Create() => <api8.LogicalKeyboardKey>[];
+Object _collection8Create() => <api7.LogicalKeyboardKey>{};
+bool _collection8Matches(Object value) => value is Set<api7.LogicalKeyboardKey>;
+Object _collection9Create() => <api7.LogicalKeyboardKey>[];
 Object _collection9Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api8.LogicalKeyboardKey>();
+    (value as Iterable<Object?>).cast<api7.LogicalKeyboardKey>();
 bool _collection9Matches(Object value) =>
-    value is Iterable<api8.LogicalKeyboardKey>;
-Object _collection10Create() => <api13.BoxShadow>[];
-bool _collection10Matches(Object value) => value is List<api13.BoxShadow>;
-Object _collection11Create() => <api13.BoxShadow>[];
+    value is Iterable<api7.LogicalKeyboardKey>;
+Object _collection10Create() => <api12.BoxShadow>[];
+bool _collection10Matches(Object value) => value is List<api12.BoxShadow>;
+Object _collection11Create() => <api12.BoxShadow>[];
 Object _collection11Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api13.BoxShadow>();
-bool _collection11Matches(Object value) => value is Iterable<api13.BoxShadow>;
-Object _collection12Create() => <api4.DiagnosticsNode>[];
-bool _collection12Matches(Object value) => value is List<api4.DiagnosticsNode>;
-Object _collection13Create() => <api4.DiagnosticsNode>[];
+    (value as Iterable<Object?>).cast<api12.BoxShadow>();
+bool _collection11Matches(Object value) => value is Iterable<api12.BoxShadow>;
+Object _collection12Create() => <api3.DiagnosticsNode>[];
+bool _collection12Matches(Object value) => value is List<api3.DiagnosticsNode>;
+Object _collection13Create() => <api3.DiagnosticsNode>[];
 Object _collection13Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api4.DiagnosticsNode>();
+    (value as Iterable<Object?>).cast<api3.DiagnosticsNode>();
 bool _collection13Matches(Object value) =>
-    value is Iterable<api4.DiagnosticsNode>;
+    value is Iterable<api3.DiagnosticsNode>;
 Object _collection14Create() => <api.Widget>[];
 bool _collection14Matches(Object value) => value is List<api.Widget>;
 List<api.Widget> _collection14Snapshot(Iterable<Object?> items) =>
@@ -38553,63 +37298,63 @@ Object _collection15Create() => <api.Widget>[];
 Object _collection15Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.Widget>();
 bool _collection15Matches(Object value) => value is Iterable<api.Widget>;
-Object _collection16Create() => <api11.ContextMenuButtonItem>[];
+Object _collection16Create() => <api10.ContextMenuButtonItem>[];
 bool _collection16Matches(Object value) =>
-    value is List<api11.ContextMenuButtonItem>;
-Object _collection17Create() => <api11.ContextMenuButtonItem>[];
+    value is List<api10.ContextMenuButtonItem>;
+Object _collection17Create() => <api10.ContextMenuButtonItem>[];
 Object _collection17Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api11.ContextMenuButtonItem>();
+    (value as Iterable<Object?>).cast<api10.ContextMenuButtonItem>();
 bool _collection17Matches(Object value) =>
-    value is Iterable<api11.ContextMenuButtonItem>;
+    value is Iterable<api10.ContextMenuButtonItem>;
 Object _collection18Create() =>
-    <String, api.Widget Function(api11.BuildContext p0)>{};
+    <String, api.Widget Function(api10.BuildContext p0)>{};
 bool _collection18Matches(Object value) =>
-    value is Map<String, api.Widget Function(api11.BuildContext p0)>;
-Object _collection19Create() => <api11.Route<Object?>>[];
-bool _collection19Matches(Object value) => value is List<api11.Route<Object?>>;
-Object _collection20Create() => <api11.Route<Object?>>[];
+    value is Map<String, api.Widget Function(api10.BuildContext p0)>;
+Object _collection19Create() => <api10.Route<Object?>>[];
+bool _collection19Matches(Object value) => value is List<api10.Route<Object?>>;
+Object _collection20Create() => <api10.Route<Object?>>[];
 Object _collection20Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api11.Route<Object?>>();
+    (value as Iterable<Object?>).cast<api10.Route<Object?>>();
 bool _collection20Matches(Object value) =>
-    value is Iterable<api11.Route<Object?>>;
-Object _collection21Create() => <api11.NavigatorObserver>[];
+    value is Iterable<api10.Route<Object?>>;
+Object _collection21Create() => <api10.NavigatorObserver>[];
 bool _collection21Matches(Object value) =>
-    value is List<api11.NavigatorObserver>;
-Object _collection22Create() => <api11.NavigatorObserver>[];
+    value is List<api10.NavigatorObserver>;
+Object _collection22Create() => <api10.NavigatorObserver>[];
 Object _collection22Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api11.NavigatorObserver>();
+    (value as Iterable<Object?>).cast<api10.NavigatorObserver>();
 bool _collection22Matches(Object value) =>
-    value is Iterable<api11.NavigatorObserver>;
-Object _collection23Create() => <api11.LocalizationsDelegate<Object?>>[];
+    value is Iterable<api10.NavigatorObserver>;
+Object _collection23Create() => <api10.LocalizationsDelegate<Object?>>[];
 Object _collection23Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api11.LocalizationsDelegate<Object?>>();
+    (value as Iterable<Object?>).cast<api10.LocalizationsDelegate<Object?>>();
 bool _collection23Matches(Object value) =>
-    value is Iterable<api11.LocalizationsDelegate<Object?>>;
+    value is Iterable<api10.LocalizationsDelegate<Object?>>;
 Object _collection24Create() => <api1.Locale>[];
 bool _collection24Matches(Object value) => value is List<api1.Locale>;
 Object _collection25Create() => <api1.Locale>[];
 Object _collection25Restore(Object value) =>
     (value as Iterable<Object?>).cast<api1.Locale>();
 bool _collection25Matches(Object value) => value is Iterable<api1.Locale>;
-Object _collection26Create() => <api11.ShortcutActivator, api11.Intent>{};
+Object _collection26Create() => <api10.ShortcutActivator, api10.Intent>{};
 bool _collection26Matches(Object value) =>
-    value is Map<api11.ShortcutActivator, api11.Intent>;
-Object _collection27Create() => <api3.Type, api11.Action<api11.Intent>>{};
+    value is Map<api10.ShortcutActivator, api10.Intent>;
+Object _collection27Create() => <api2.Type, api10.Action<api10.Intent>>{};
 bool _collection27Matches(Object value) =>
-    value is Map<api3.Type, api11.Action<api11.Intent>>;
-Object _collection28Create() => <api11.WidgetState>{};
-bool _collection28Matches(Object value) => value is Set<api11.WidgetState>;
-Object _collection29Create() => <api11.WidgetState>[];
+    value is Map<api2.Type, api10.Action<api10.Intent>>;
+Object _collection28Create() => <api10.WidgetState>{};
+bool _collection28Matches(Object value) => value is Set<api10.WidgetState>;
+Object _collection29Create() => <api10.WidgetState>[];
 Object _collection29Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api11.WidgetState>();
-bool _collection29Matches(Object value) => value is Iterable<api11.WidgetState>;
-Object _collection30Create() => <api11.OverlayEntry>[];
-bool _collection30Matches(Object value) => value is List<api11.OverlayEntry>;
-Object _collection31Create() => <api11.OverlayEntry>[];
+    (value as Iterable<Object?>).cast<api10.WidgetState>();
+bool _collection29Matches(Object value) => value is Iterable<api10.WidgetState>;
+Object _collection30Create() => <api10.OverlayEntry>[];
+bool _collection30Matches(Object value) => value is List<api10.OverlayEntry>;
+Object _collection31Create() => <api10.OverlayEntry>[];
 Object _collection31Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api11.OverlayEntry>();
+    (value as Iterable<Object?>).cast<api10.OverlayEntry>();
 bool _collection31Matches(Object value) =>
-    value is Iterable<api11.OverlayEntry>;
+    value is Iterable<api10.OverlayEntry>;
 Object _collection32Create() => <Object, api.Widget>{};
 bool _collection32Matches(Object value) => value is Map<Object, api.Widget>;
 Object _collection33Create() => <Object>{};
@@ -38618,45 +37363,45 @@ Object _collection34Create() => <Object>[];
 Object _collection34Restore(Object value) =>
     (value as Iterable<Object?>).cast<Object>();
 bool _collection34Matches(Object value) => value is Iterable<Object>;
-Object _collection35Create() => <api11.BottomNavigationBarItem>[];
+Object _collection35Create() => <api10.BottomNavigationBarItem>[];
 bool _collection35Matches(Object value) =>
-    value is List<api11.BottomNavigationBarItem>;
-Object _collection36Create() => <api11.BottomNavigationBarItem>[];
+    value is List<api10.BottomNavigationBarItem>;
+Object _collection36Create() => <api10.BottomNavigationBarItem>[];
 Object _collection36Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api11.BottomNavigationBarItem>();
+    (value as Iterable<Object?>).cast<api10.BottomNavigationBarItem>();
 bool _collection36Matches(Object value) =>
-    value is Iterable<api11.BottomNavigationBarItem>;
+    value is Iterable<api10.BottomNavigationBarItem>;
 Object _collection37Create() =>
-    <String, api.Widget Function(api11.BuildContext context)>{};
+    <String, api.Widget Function(api10.BuildContext context)>{};
 bool _collection37Matches(Object value) =>
-    value is Map<String, api.Widget Function(api11.BuildContext context)>;
-Object _collection38Create() => <api8.TextInputFormatter>[];
+    value is Map<String, api.Widget Function(api10.BuildContext context)>;
+Object _collection38Create() => <api7.TextInputFormatter>[];
 bool _collection38Matches(Object value) =>
-    value is List<api8.TextInputFormatter>;
-Object _collection39Create() => <api8.TextInputFormatter>[];
+    value is List<api7.TextInputFormatter>;
+Object _collection39Create() => <api7.TextInputFormatter>[];
 Object _collection39Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api8.TextInputFormatter>();
+    (value as Iterable<Object?>).cast<api7.TextInputFormatter>();
 bool _collection39Matches(Object value) =>
-    value is Iterable<api8.TextInputFormatter>;
-Object _collection40Create() => <api11.LocalizationsDelegate<Object?>>[];
+    value is Iterable<api7.TextInputFormatter>;
+Object _collection40Create() => <api10.LocalizationsDelegate<Object?>>[];
 bool _collection40Matches(Object value) =>
-    value is List<api11.LocalizationsDelegate<Object?>>;
+    value is List<api10.LocalizationsDelegate<Object?>>;
 Object _collection41Create() => <api.CupertinoButtonSize, double>{};
 bool _collection41Matches(Object value) =>
     value is Map<api.CupertinoButtonSize, double>;
 Object _collection42Create() =>
-    <api.CupertinoButtonSize, api13.EdgeInsetsGeometry>{};
+    <api.CupertinoButtonSize, api12.EdgeInsetsGeometry>{};
 bool _collection42Matches(Object value) =>
-    value is Map<api.CupertinoButtonSize, api13.EdgeInsetsGeometry>;
-Object _collection43Create() => <api.CupertinoButtonSize, api13.BorderRadius>{};
+    value is Map<api.CupertinoButtonSize, api12.EdgeInsetsGeometry>;
+Object _collection43Create() => <api.CupertinoButtonSize, api12.BorderRadius>{};
 bool _collection43Matches(Object value) =>
-    value is Map<api.CupertinoButtonSize, api13.BorderRadius>;
+    value is Map<api.CupertinoButtonSize, api12.BorderRadius>;
 Future<Object?> _future0Adapt(Future<Object?> value) =>
     value.then<void>((_) {});
 Future<Object?> _future1Adapt(Future<Object?> value) => value;
 Future<Object?> _future2Adapt(Future<Object?> value) =>
-    value.then<api11.RoutePopDisposition>(
-      (value) => value as api11.RoutePopDisposition,
+    value.then<api10.RoutePopDisposition>(
+      (value) => value as api10.RoutePopDisposition,
     );
 Future<Object?> _future3Adapt(Future<Object?> value) =>
     value.then<bool>((value) => value as bool);
@@ -38729,7 +37474,7 @@ const _flaxBinding6 = FlaxTypeRef(
 const _flaxBinding7 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:ValueListenable",
-  dartType: FlaxDartTypes.typeOf<api4.ValueListenable<api11.ClipboardStatus>?>,
+  dartType: FlaxDartTypes.typeOf<api3.ValueListenable<api10.ClipboardStatus>?>,
   nullable: true,
 );
 const _flaxBinding8 = FlaxTypeRef(
@@ -39001,7 +37746,7 @@ const _flaxBinding55 = FlaxCallbackBinding.signature(
 const _flaxBinding56 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Animation",
-  dartType: FlaxDartTypes.typeOf<api12.Animation<double>>,
+  dartType: FlaxDartTypes.typeOf<api11.Animation<double>>,
 );
 const _flaxBinding57 = FlaxTypeRef("widget", nullable: true);
 const _flaxBinding58 = FlaxCallbackBinding(
@@ -39070,11 +37815,11 @@ const _flaxBinding68 = FlaxTypeRef(
 const _flaxBinding69 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("event", _flaxBinding67)],
   _flaxBinding68,
-  FlaxCallbackAdapters.wrap1<api5.PointerEvent, api5.VelocityTracker>,
+  FlaxCallbackAdapters.wrap1<api4.PointerEvent, api4.VelocityTracker>,
   id: "callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->object:flax.core/sdk_gestures#type:VelocityTracker",
-  invoke: FlaxCallbackAdapters.invoke1<api5.PointerEvent, api5.VelocityTracker>,
+  invoke: FlaxCallbackAdapters.invoke1<api4.PointerEvent, api4.VelocityTracker>,
   matches:
-      FlaxCallbackAdapters.matches1<api5.PointerEvent, api5.VelocityTracker>,
+      FlaxCallbackAdapters.matches1<api4.PointerEvent, api4.VelocityTracker>,
 );
 const _flaxBinding70 = FlaxTypeRef("callback", callback: _flaxBinding69);
 const _flaxBinding71 = FlaxCallbackBinding.signature(
@@ -39345,7 +38090,7 @@ const _flaxBinding117 = FlaxCallbackBinding.signature(
 const _flaxBinding118 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api11.StatefulWidget>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api10.StatefulWidget>>,
 );
 const _flaxBinding119 = FlaxCallbackBinding.signature(
   [],
@@ -39422,7 +38167,7 @@ const _flaxBinding130 = FlaxGetter.plain(
 const _flaxBinding131 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoActionSheet>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoActionSheet>>,
 );
 const _flaxBinding132 = <FlaxParameter>[];
 const _flaxBinding133 = FlaxInstanceMethod.plain(
@@ -39599,7 +38344,7 @@ const _flaxBinding158 = FlaxGetter.plain(
 const _flaxBinding159 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoActionSheetAction>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoActionSheetAction>>,
 );
 const _flaxBinding160 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -39720,7 +38465,7 @@ const _flaxBinding174 = FlaxGetter.plain(
 const _flaxBinding175 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoActivityIndicator>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoActivityIndicator>>,
 );
 const _flaxBinding176 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -40022,7 +38767,7 @@ const _flaxBinding221 = FlaxGetter.plain(
 const _flaxBinding222 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoAlertDialog>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoAlertDialog>>,
 );
 const _flaxBinding223 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -40123,7 +38868,7 @@ const _flaxBinding232 = FlaxObjectBinding(
 const _flaxBinding233 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:GlobalKey",
-  dartType: FlaxDartTypes.typeOf<api11.GlobalKey<api11.NavigatorState>?>,
+  dartType: FlaxDartTypes.typeOf<api10.GlobalKey<api10.NavigatorState>?>,
   nullable: true,
 );
 const _flaxBinding234 = FlaxTypeRef(
@@ -40134,10 +38879,10 @@ const _flaxBinding234 = FlaxTypeRef(
 const _flaxBinding235 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("p0", _flaxBinding2)],
   flaxWidgetType,
-  FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
+  FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
   id: "callback:<>(p:r:p0:context:flax.core/flutter#type:BuildContext)->widget:",
-  invoke: FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
-  matches: FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+  invoke: FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
+  matches: FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
 );
 const _flaxBinding236 = FlaxTypeRef("callback", callback: _flaxBinding235);
 const _flaxBinding237 = FlaxTypeRef(
@@ -40157,18 +38902,18 @@ const _flaxBinding238 = FlaxTypeRef(
 const _flaxBinding239 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Route",
-  dartType: FlaxDartTypes.typeOf<api11.Route<Object?>?>,
+  dartType: FlaxDartTypes.typeOf<api10.Route<Object?>?>,
   nullable: true,
 );
 const _flaxBinding240 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("settings", _flaxBinding238)],
   _flaxBinding239,
-  FlaxCallbackAdapters.wrap1<api11.RouteSettings, api11.Route<Object?>?>,
+  FlaxCallbackAdapters.wrap1<api10.RouteSettings, api10.Route<Object?>?>,
   id: "callback:<>(p:r:settings:object:flax.core/flutter#type:RouteSettings)->object?:flax.core/flutter#type:Route<Object?><any?:>",
   invoke:
-      FlaxCallbackAdapters.invoke1<api11.RouteSettings, api11.Route<Object?>?>,
+      FlaxCallbackAdapters.invoke1<api10.RouteSettings, api10.Route<Object?>?>,
   matches:
-      FlaxCallbackAdapters.matches1<api11.RouteSettings, api11.Route<Object?>?>,
+      FlaxCallbackAdapters.matches1<api10.RouteSettings, api10.Route<Object?>?>,
 );
 const _flaxBinding241 = FlaxTypeRef(
   "callback",
@@ -40178,7 +38923,7 @@ const _flaxBinding241 = FlaxTypeRef(
 const _flaxBinding242 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Route",
-  dartType: FlaxDartTypes.typeOf<api11.Route<Object?>>,
+  dartType: FlaxDartTypes.typeOf<api10.Route<Object?>>,
 );
 const _flaxBinding243 = FlaxTypeRef(
   "iterable",
@@ -40203,10 +38948,10 @@ const _flaxBinding244 = FlaxTypeRef(
 const _flaxBinding245 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("initialRoute", flaxStringType)],
   _flaxBinding244,
-  FlaxCallbackAdapters.wrap1<String, List<api11.Route<Object?>>>,
+  FlaxCallbackAdapters.wrap1<String, List<api10.Route<Object?>>>,
   id: "callback:<>(p:r:initialRoute:String:)->list:[object:flax.core/flutter#type:Route<Object?><any?:>]",
-  invoke: FlaxCallbackAdapters.invoke1<String, List<api11.Route<Object?>>>,
-  matches: FlaxCallbackAdapters.matches1<String, List<api11.Route<Object?>>>,
+  invoke: FlaxCallbackAdapters.invoke1<String, List<api10.Route<Object?>>>,
+  matches: FlaxCallbackAdapters.matches1<String, List<api10.Route<Object?>>>,
 );
 const _flaxBinding246 = FlaxTypeRef(
   "callback",
@@ -40220,10 +38965,10 @@ const _flaxBinding247 = FlaxTypeRef(
 const _flaxBinding248 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("notification", _flaxBinding247)],
   flaxBoolType,
-  FlaxCallbackAdapters.wrap1<api11.NavigationNotification, bool>,
+  FlaxCallbackAdapters.wrap1<api10.NavigationNotification, bool>,
   id: "callback:<>(p:r:notification:object:flax.core/sdk_widgets#type:NavigationNotification)->bool:",
-  invoke: FlaxCallbackAdapters.invoke1<api11.NavigationNotification, bool>,
-  matches: FlaxCallbackAdapters.matches1<api11.NavigationNotification, bool>,
+  invoke: FlaxCallbackAdapters.invoke1<api10.NavigationNotification, bool>,
+  matches: FlaxCallbackAdapters.matches1<api10.NavigationNotification, bool>,
 );
 const _flaxBinding249 = FlaxTypeRef(
   "callback",
@@ -40260,12 +39005,12 @@ const _flaxBinding253 = FlaxCallbackBinding(
     FlaxCallbackParameter.plain("child", _flaxBinding57),
   ],
   flaxWidgetType,
-  FlaxCallbackAdapters.wrap2<api11.BuildContext, api.Widget?, api.Widget>,
+  FlaxCallbackAdapters.wrap2<api10.BuildContext, api.Widget?, api.Widget>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:child:widget?:)->widget:",
   invoke:
-      FlaxCallbackAdapters.invoke2<api11.BuildContext, api.Widget?, api.Widget>,
+      FlaxCallbackAdapters.invoke2<api10.BuildContext, api.Widget?, api.Widget>,
   matches: FlaxCallbackAdapters
-      .matches2<api11.BuildContext, api.Widget?, api.Widget>,
+      .matches2<api10.BuildContext, api.Widget?, api.Widget>,
   independentWidgetResult: true,
 );
 const _flaxBinding254 = FlaxTypeRef(
@@ -40276,10 +39021,10 @@ const _flaxBinding254 = FlaxTypeRef(
 const _flaxBinding255 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("context", _flaxBinding2)],
   flaxStringType,
-  FlaxCallbackAdapters.wrap1<api11.BuildContext, String>,
+  FlaxCallbackAdapters.wrap1<api10.BuildContext, String>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->String:",
-  invoke: FlaxCallbackAdapters.invoke1<api11.BuildContext, String>,
-  matches: FlaxCallbackAdapters.matches1<api11.BuildContext, String>,
+  invoke: FlaxCallbackAdapters.invoke1<api10.BuildContext, String>,
+  matches: FlaxCallbackAdapters.matches1<api10.BuildContext, String>,
 );
 const _flaxBinding256 = FlaxTypeRef(
   "callback",
@@ -40294,7 +39039,7 @@ const _flaxBinding257 = FlaxTypeRef(
 const _flaxBinding258 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:LocalizationsDelegate",
-  dartType: FlaxDartTypes.typeOf<api11.LocalizationsDelegate<Object?>>,
+  dartType: FlaxDartTypes.typeOf<api10.LocalizationsDelegate<Object?>>,
 );
 const _flaxBinding259 = FlaxTypeRef(
   "iterable",
@@ -40391,7 +39136,7 @@ const _flaxBinding269 = FlaxTypeRef(
 const _flaxBinding270 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:Action",
-  dartType: FlaxDartTypes.typeOf<api11.Action<api11.Intent>>,
+  dartType: FlaxDartTypes.typeOf<api10.Action<api10.Intent>>,
 );
 const _flaxBinding271 = FlaxTypeRef(
   "map",
@@ -40417,13 +39162,13 @@ const _flaxBinding273 = FlaxTypeRef(
 const _flaxBinding274 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RouteInformationParser",
-  dartType: FlaxDartTypes.typeOf<api11.RouteInformationParser<Object>?>,
+  dartType: FlaxDartTypes.typeOf<api10.RouteInformationParser<Object>?>,
   nullable: true,
 );
 const _flaxBinding275 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RouterDelegate",
-  dartType: FlaxDartTypes.typeOf<api11.RouterDelegate<Object>?>,
+  dartType: FlaxDartTypes.typeOf<api10.RouterDelegate<Object>?>,
   nullable: true,
 );
 const _flaxBinding276 = FlaxTypeRef(
@@ -40434,7 +39179,7 @@ const _flaxBinding276 = FlaxTypeRef(
 const _flaxBinding277 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RouterConfig",
-  dartType: FlaxDartTypes.typeOf<api11.RouterConfig<Object>?>,
+  dartType: FlaxDartTypes.typeOf<api10.RouterConfig<Object>?>,
   nullable: true,
 );
 const _flaxBinding278 = FlaxTypeRef(
@@ -40502,16 +39247,16 @@ const _flaxBinding288 = FlaxTypeRef(
 const _flaxBinding289 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding288)],
   _flaxBinding31,
-  FlaxCallbackAdapters.wrap1<Set<api11.WidgetState>, api1.Color?>,
+  FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, api1.Color?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:Color",
-  invoke: FlaxCallbackAdapters.invoke1<Set<api11.WidgetState>, api1.Color?>,
-  matches: FlaxCallbackAdapters.matches1<Set<api11.WidgetState>, api1.Color?>,
+  invoke: FlaxCallbackAdapters.invoke1<Set<api10.WidgetState>, api1.Color?>,
+  matches: FlaxCallbackAdapters.matches1<Set<api10.WidgetState>, api1.Color?>,
 );
 const _flaxBinding290 = FlaxTypeRef("callback", callback: _flaxBinding289);
 const _flaxBinding291 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
-  dartType: FlaxDartTypes.typeOf<api11.WidgetStateProperty<api1.Color?>?>,
+  dartType: FlaxDartTypes.typeOf<api10.WidgetStateProperty<api1.Color?>?>,
   nullable: true,
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
@@ -40594,7 +39339,7 @@ const _flaxBinding305 = FlaxGetter.plain(
 const _flaxBinding306 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoCheckbox>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoCheckbox>>,
 );
 const _flaxBinding307 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -40715,12 +39460,12 @@ const _flaxBinding318 = FlaxCallbackBinding(
   ],
   flaxWidgetType,
   FlaxCallbackAdapters
-      .wrap2<api11.BuildContext, api12.Animation<double>, api.Widget>,
+      .wrap2<api10.BuildContext, api11.Animation<double>, api.Widget>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>)->widget:",
   invoke: FlaxCallbackAdapters
-      .invoke2<api11.BuildContext, api12.Animation<double>, api.Widget>,
+      .invoke2<api10.BuildContext, api11.Animation<double>, api.Widget>,
   matches: FlaxCallbackAdapters
-      .matches2<api11.BuildContext, api12.Animation<double>, api.Widget>,
+      .matches2<api10.BuildContext, api11.Animation<double>, api.Widget>,
 );
 const _flaxBinding319 = FlaxTypeRef("callback", callback: _flaxBinding318);
 const _flaxBinding320 = FlaxGetter.plain(
@@ -40751,7 +39496,7 @@ const _flaxBinding324 = FlaxGetter.plain(
 const _flaxBinding325 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoContextMenu>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoContextMenu>>,
 );
 const _flaxBinding326 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -40881,7 +39626,7 @@ const _flaxBinding343 = FlaxGetter.plain(
 const _flaxBinding344 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoContextMenuAction>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoContextMenuAction>>,
 );
 const _flaxBinding345 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -41032,10 +39777,10 @@ const _flaxBinding366 = FlaxGetter.plain(
 const _flaxBinding367 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxDateTimeType)],
   flaxVoidType,
-  FlaxCallbackAdapters.wrapVoid1<api3.DateTime>,
+  FlaxCallbackAdapters.wrapVoid1<api2.DateTime>,
   id: "callback:<>(p:r:value:object:flax.core/flutter#type:DateTime)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid1<api3.DateTime>,
-  matches: FlaxCallbackAdapters.matchesVoid1<api3.DateTime>,
+  invoke: FlaxCallbackAdapters.invokeVoid1<api2.DateTime>,
+  matches: FlaxCallbackAdapters.matchesVoid1<api2.DateTime>,
 );
 const _flaxBinding368 = FlaxTypeRef("callback", callback: _flaxBinding367);
 const _flaxBinding369 = FlaxGetter.plain(
@@ -41061,10 +39806,10 @@ const _flaxBinding372 = FlaxGetter.plain(
 const _flaxBinding373 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("day", flaxDateTimeType)],
   flaxBoolType,
-  FlaxCallbackAdapters.wrap1<api3.DateTime, bool>,
+  FlaxCallbackAdapters.wrap1<api2.DateTime, bool>,
   id: "callback:<>(p:r:day:object:flax.core/flutter#type:DateTime)->bool:",
-  invoke: FlaxCallbackAdapters.invoke1<api3.DateTime, bool>,
-  matches: FlaxCallbackAdapters.matches1<api3.DateTime, bool>,
+  invoke: FlaxCallbackAdapters.invoke1<api2.DateTime, bool>,
+  matches: FlaxCallbackAdapters.matches1<api2.DateTime, bool>,
 );
 const _flaxBinding374 = FlaxTypeRef(
   "callback",
@@ -41613,7 +40358,7 @@ const _flaxBinding451 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes
-      .typeOf<api11.State<api.CupertinoDesktopTextSelectionToolbarButton>>,
+      .typeOf<api10.State<api.CupertinoDesktopTextSelectionToolbarButton>>,
 );
 const _flaxBinding452 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -41744,7 +40489,7 @@ const _flaxBinding471 = FlaxGetter.plain(
 const _flaxBinding472 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoDialogAction>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoDialogAction>>,
 );
 const _flaxBinding473 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -41938,7 +40683,7 @@ const _flaxBinding502 = FlaxGetter.plain(
 const _flaxBinding503 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_animation#type:Animation",
-  dartType: FlaxDartTypes.typeOf<api12.Animation<double>?>,
+  dartType: FlaxDartTypes.typeOf<api11.Animation<double>?>,
   nullable: true,
 );
 const _flaxBinding504 = FlaxGetter.plain(
@@ -42067,7 +40812,7 @@ const _flaxBinding526 = FlaxGetter.plain(
 const _flaxBinding527 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:ValueListenable",
-  dartType: FlaxDartTypes.typeOf<api4.ValueListenable<String?>>,
+  dartType: FlaxDartTypes.typeOf<api3.ValueListenable<String?>>,
 );
 const _flaxBinding528 = FlaxGetter.plain(
   "restorationScopeId",
@@ -42169,7 +40914,7 @@ const _flaxBinding545 = <FlaxParameter>[
 const _flaxBinding546 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:PopEntry",
-  dartType: FlaxDartTypes.typeOf<api11.PopEntry<Object?>>,
+  dartType: FlaxDartTypes.typeOf<api10.PopEntry<Object?>>,
 );
 const _flaxBinding547 = <FlaxParameter>[
   FlaxParameter.required("popEntry", _flaxBinding546),
@@ -42200,7 +40945,7 @@ const _flaxBinding554 = <FlaxParameter>[
 const _flaxBinding555 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:TransitionRoute",
-  dartType: FlaxDartTypes.typeOf<api11.TransitionRoute<Object?>>,
+  dartType: FlaxDartTypes.typeOf<api10.TransitionRoute<Object?>>,
 );
 const _flaxBinding556 = <FlaxParameter>[
   FlaxParameter.required("nextRoute", _flaxBinding555),
@@ -42227,10 +40972,10 @@ const _flaxBinding562 = <FlaxParameter>[
 const _flaxBinding563 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("context", _flaxBinding2)],
   flaxWidgetType,
-  FlaxCallbackAdapters.wrap1<api11.BuildContext, api.Widget>,
+  FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
-  invoke: FlaxCallbackAdapters.invoke1<api11.BuildContext, api.Widget>,
-  matches: FlaxCallbackAdapters.matches1<api11.BuildContext, api.Widget>,
+  invoke: FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
+  matches: FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
 );
 const _flaxBinding564 = FlaxTypeRef("callback", callback: _flaxBinding563);
 const _flaxBinding565 = FlaxCallbackBinding(
@@ -42981,7 +41726,7 @@ const _flaxBinding658 = FlaxGetter.plain(
 const _flaxBinding659 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoExpansionTile>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoExpansionTile>>,
 );
 const _flaxBinding660 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -43076,7 +41821,7 @@ const _flaxBinding671 = FlaxGetter.plain(
 const _flaxBinding672 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoFocusHalo>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoFocusHalo>>,
 );
 const _flaxBinding673 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -43436,7 +42181,7 @@ const _flaxBinding726 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes
-      .typeOf<api11.State<api.CupertinoFullscreenDialogTransition>>,
+      .typeOf<api10.State<api.CupertinoFullscreenDialogTransition>>,
 );
 const _flaxBinding727 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -44277,7 +43022,7 @@ const _flaxBinding826 = FlaxGetter.plain(
 const _flaxBinding827 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoListTile>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoListTile>>,
 );
 const _flaxBinding828 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -44692,27 +43437,27 @@ const _flaxBinding896 = FlaxInstanceMethod.shared(
 );
 const _flaxBinding897 = FlaxInstanceMethod.shared(
   flaxStringCall,
-  _FlaxProxyDispatch5_super_get_expansionTileExpandedHint,
+  _FlaxProxyDispatch4_super_get_expansionTileExpandedHint,
 );
 const _flaxBinding898 = FlaxInstanceMethod.shared(
   flaxStringCall,
-  _FlaxProxyDispatch5_super_get_expansionTileCollapsedHint,
+  _FlaxProxyDispatch4_super_get_expansionTileCollapsedHint,
 );
 const _flaxBinding899 = FlaxInstanceMethod.shared(
   flaxStringCall,
-  _FlaxProxyDispatch5_super_get_expansionTileExpandedTapHint,
+  _FlaxProxyDispatch4_super_get_expansionTileExpandedTapHint,
 );
 const _flaxBinding900 = FlaxInstanceMethod.shared(
   flaxStringCall,
-  _FlaxProxyDispatch5_super_get_expansionTileCollapsedTapHint,
+  _FlaxProxyDispatch4_super_get_expansionTileCollapsedTapHint,
 );
 const _flaxBinding901 = FlaxInstanceMethod.shared(
   flaxStringCall,
-  _FlaxProxyDispatch5_super_get_expandedHint,
+  _FlaxProxyDispatch4_super_get_expandedHint,
 );
 const _flaxBinding902 = FlaxInstanceMethod.shared(
   flaxStringCall,
-  _FlaxProxyDispatch5_super_get_collapsedHint,
+  _FlaxProxyDispatch4_super_get_collapsedHint,
 );
 const _flaxBinding903 = FlaxProxyMember("datePickerYear", 0, _flaxBinding37);
 const _flaxBinding904 = FlaxProxyMember("datePickerMonth", 0, _flaxBinding38);
@@ -45179,10 +43924,10 @@ const _flaxBinding974 = FlaxTypeRef(
 const _flaxBinding975 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("status", _flaxBinding974)],
   flaxVoidType,
-  FlaxCallbackAdapters.wrapVoid1<api12.AnimationStatus>,
+  FlaxCallbackAdapters.wrapVoid1<api11.AnimationStatus>,
   id: "callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid1<api12.AnimationStatus>,
-  matches: FlaxCallbackAdapters.matchesVoid1<api12.AnimationStatus>,
+  invoke: FlaxCallbackAdapters.invokeVoid1<api11.AnimationStatus>,
+  matches: FlaxCallbackAdapters.matchesVoid1<api11.AnimationStatus>,
 );
 const _flaxBinding976 = FlaxTypeRef(
   "callback",
@@ -45283,7 +44028,7 @@ const _flaxBinding993 = FlaxGetter.plain(
 const _flaxBinding994 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoMenuAnchor>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoMenuAnchor>>,
 );
 const _flaxBinding995 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -45573,19 +44318,19 @@ const _flaxBinding1033 = FlaxTypeRef(
 const _flaxBinding1034 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding288)],
   _flaxBinding1033,
-  FlaxCallbackAdapters.wrap1<Set<api11.WidgetState>, api13.BoxDecoration>,
+  FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, api12.BoxDecoration>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object:flax.core/flutter#type:BoxDecoration",
   invoke:
-      FlaxCallbackAdapters.invoke1<Set<api11.WidgetState>, api13.BoxDecoration>,
+      FlaxCallbackAdapters.invoke1<Set<api10.WidgetState>, api12.BoxDecoration>,
   matches: FlaxCallbackAdapters
-      .matches1<Set<api11.WidgetState>, api13.BoxDecoration>,
+      .matches1<Set<api10.WidgetState>, api12.BoxDecoration>,
 );
 const _flaxBinding1035 = FlaxTypeRef("callback", callback: _flaxBinding1034);
 const _flaxBinding1036 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType:
-      FlaxDartTypes.typeOf<api11.WidgetStateProperty<api13.BoxDecoration>?>,
+      FlaxDartTypes.typeOf<api10.WidgetStateProperty<api12.BoxDecoration>?>,
   nullable: true,
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
@@ -45607,18 +44352,18 @@ const _flaxBinding1038 = FlaxTypeRef(
 const _flaxBinding1039 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding288)],
   _flaxBinding1038,
-  FlaxCallbackAdapters.wrap1<Set<api11.WidgetState>, api8.MouseCursor>,
+  FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, api7.MouseCursor>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object:flax.core/flutter#type:MouseCursor",
   invoke:
-      FlaxCallbackAdapters.invoke1<Set<api11.WidgetState>, api8.MouseCursor>,
+      FlaxCallbackAdapters.invoke1<Set<api10.WidgetState>, api7.MouseCursor>,
   matches:
-      FlaxCallbackAdapters.matches1<Set<api11.WidgetState>, api8.MouseCursor>,
+      FlaxCallbackAdapters.matches1<Set<api10.WidgetState>, api7.MouseCursor>,
 );
 const _flaxBinding1040 = FlaxTypeRef("callback", callback: _flaxBinding1039);
 const _flaxBinding1041 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
-  dartType: FlaxDartTypes.typeOf<api11.WidgetStateProperty<api8.MouseCursor>?>,
+  dartType: FlaxDartTypes.typeOf<api10.WidgetStateProperty<api7.MouseCursor>?>,
   nullable: true,
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
@@ -46365,7 +45110,7 @@ const _flaxBinding1147 = FlaxGetter.plain(
 const _flaxBinding1148 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoNavigationBar>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoNavigationBar>>,
 );
 const _flaxBinding1149 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -46655,7 +45400,7 @@ const _flaxBinding1178 = FlaxGetter.plain(
 const _flaxBinding1179 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Page",
-  dartType: FlaxDartTypes.typeOf<api11.Page<Object?>>,
+  dartType: FlaxDartTypes.typeOf<api10.Page<Object?>>,
 );
 const _flaxBinding1180 = <FlaxParameter>[
   FlaxParameter.required("other", _flaxBinding1179),
@@ -47100,7 +45845,7 @@ const _flaxBinding1254 = FlaxGetter.plain(
 const _flaxBinding1255 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoPageTransition>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoPageTransition>>,
 );
 const _flaxBinding1256 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -47188,7 +45933,7 @@ const _flaxBinding1267 = FlaxGetter.plain(
 const _flaxBinding1268 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:PageRoute",
-  dartType: FlaxDartTypes.typeOf<api11.PageRoute<Object?>>,
+  dartType: FlaxDartTypes.typeOf<api10.PageRoute<Object?>>,
 );
 const _flaxBinding1269 = FlaxProxyMember(
   "transitionDuration",
@@ -47456,10 +46201,10 @@ const _flaxBinding1297 = FlaxCallbackBinding(
     FlaxCallbackParameter.plain("index", flaxIntType),
   ],
   _flaxBinding57,
-  FlaxCallbackAdapters.wrap2<api11.BuildContext, int, api.Widget?>,
+  FlaxCallbackAdapters.wrap2<api10.BuildContext, int, api.Widget?>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:index:int:)->widget?:",
-  invoke: FlaxCallbackAdapters.invoke2<api11.BuildContext, int, api.Widget?>,
-  matches: FlaxCallbackAdapters.matches2<api11.BuildContext, int, api.Widget?>,
+  invoke: FlaxCallbackAdapters.invoke2<api10.BuildContext, int, api.Widget?>,
+  matches: FlaxCallbackAdapters.matches2<api10.BuildContext, int, api.Widget?>,
 );
 const _flaxBinding1298 = FlaxTypeRef("callback", callback: _flaxBinding1297);
 const _flaxBinding1299 = <FlaxParameter>[
@@ -47804,7 +46549,7 @@ const _flaxBinding1339 = FlaxGetter.plain(
 const _flaxBinding1340 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RadioGroupRegistry",
-  dartType: FlaxDartTypes.typeOf<api11.RadioGroupRegistry<Object?>?>,
+  dartType: FlaxDartTypes.typeOf<api10.RadioGroupRegistry<Object?>?>,
   nullable: true,
 );
 const _flaxBinding1341 = <FlaxParameter>[
@@ -48486,10 +47231,10 @@ const _flaxBinding1439 = FlaxTypeRef(
 const _flaxBinding1440 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("notification", _flaxBinding1439)],
   flaxBoolType,
-  FlaxCallbackAdapters.wrap1<api11.ScrollNotification, bool>,
+  FlaxCallbackAdapters.wrap1<api10.ScrollNotification, bool>,
   id: "callback:<>(p:r:notification:object:flax.core/sdk_widgets#type:ScrollNotification)->bool:",
-  invoke: FlaxCallbackAdapters.invoke1<api11.ScrollNotification, bool>,
-  matches: FlaxCallbackAdapters.matches1<api11.ScrollNotification, bool>,
+  invoke: FlaxCallbackAdapters.invoke1<api10.ScrollNotification, bool>,
+  matches: FlaxCallbackAdapters.matches1<api10.ScrollNotification, bool>,
 );
 const _flaxBinding1441 = FlaxTypeRef("callback", callback: _flaxBinding1440);
 const _flaxBinding1442 = FlaxGetter.plain(
@@ -48536,7 +47281,7 @@ const _flaxBinding1450 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RawScrollbarState",
   dartType:
-      FlaxDartTypes.typeOf<api11.RawScrollbarState<api.CupertinoScrollbar>>,
+      FlaxDartTypes.typeOf<api10.RawScrollbarState<api.CupertinoScrollbar>>,
 );
 const _flaxBinding1451 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -49394,12 +48139,12 @@ const _flaxBinding1569 = FlaxCallbackBinding(
   ],
   flaxWidgetType,
   FlaxCallbackAdapters
-      .wrap2<api11.BuildContext, api11.ScrollController, api.Widget>,
+      .wrap2<api10.BuildContext, api10.ScrollController, api.Widget>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:scrollController:object:flax.core/flutter#type:ScrollController)->widget:",
   invoke: FlaxCallbackAdapters
-      .invoke2<api11.BuildContext, api11.ScrollController, api.Widget>,
+      .invoke2<api10.BuildContext, api10.ScrollController, api.Widget>,
   matches: FlaxCallbackAdapters
-      .matches2<api11.BuildContext, api11.ScrollController, api.Widget>,
+      .matches2<api10.BuildContext, api10.ScrollController, api.Widget>,
 );
 const _flaxBinding1570 = FlaxTypeRef(
   "callback",
@@ -49492,7 +48237,7 @@ const _flaxBinding1584 = FlaxGetter.plain(
 const _flaxBinding1585 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoSheetTransition>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoSheetTransition>>,
 );
 const _flaxBinding1586 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -49624,7 +48369,7 @@ const _flaxBinding1605 = FlaxGetter.plain(
 const _flaxBinding1606 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoSlider>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoSlider>>,
 );
 const _flaxBinding1607 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -49915,7 +48660,7 @@ const _flaxBinding1647 = FlaxGetter.plain(
 const _flaxBinding1648 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoSliverNavigationBar>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoSliverNavigationBar>>,
 );
 const _flaxBinding1649 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -50192,7 +48937,7 @@ const _flaxBinding1670 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType:
-      FlaxDartTypes.typeOf<api11.State<api.CupertinoSliverRefreshControl>>,
+      FlaxDartTypes.typeOf<api10.State<api.CupertinoSliverRefreshControl>>,
 );
 const _flaxBinding1671 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -50433,7 +49178,7 @@ const _flaxBinding1705 = FlaxGetter.plain(
 const _flaxBinding1706 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:ImageProvider",
-  dartType: FlaxDartTypes.typeOf<api13.ImageProvider<Object>?>,
+  dartType: FlaxDartTypes.typeOf<api12.ImageProvider<Object>?>,
   nullable: true,
 );
 const _flaxBinding1707 = FlaxGetter.plain(
@@ -50452,10 +49197,10 @@ const _flaxBinding1709 = FlaxCallbackBinding(
     FlaxCallbackParameter.plain("stackTrace", _flaxBinding1708),
   ],
   flaxVoidType,
-  FlaxCallbackAdapters.wrapVoid2<Object, api3.StackTrace?>,
+  FlaxCallbackAdapters.wrapVoid2<Object, api2.StackTrace?>,
   id: "callback:<>(p:r:exception:any:,p:r:stackTrace:object?:flax.core/flutter#type:StackTrace)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid2<Object, api3.StackTrace?>,
-  matches: FlaxCallbackAdapters.matchesVoid2<Object, api3.StackTrace?>,
+  invoke: FlaxCallbackAdapters.invokeVoid2<Object, api2.StackTrace?>,
+  matches: FlaxCallbackAdapters.matchesVoid2<Object, api2.StackTrace?>,
 );
 const _flaxBinding1710 = FlaxTypeRef(
   "callback",
@@ -50485,16 +49230,16 @@ const _flaxBinding1714 = FlaxGetter.plain(
 const _flaxBinding1715 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding288)],
   flaxNullableDoubleType,
-  FlaxCallbackAdapters.wrap1<Set<api11.WidgetState>, double?>,
+  FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, double?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->double?:",
-  invoke: FlaxCallbackAdapters.invoke1<Set<api11.WidgetState>, double?>,
-  matches: FlaxCallbackAdapters.matches1<Set<api11.WidgetState>, double?>,
+  invoke: FlaxCallbackAdapters.invoke1<Set<api10.WidgetState>, double?>,
+  matches: FlaxCallbackAdapters.matches1<Set<api10.WidgetState>, double?>,
 );
 const _flaxBinding1716 = FlaxTypeRef("callback", callback: _flaxBinding1715);
 const _flaxBinding1717 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
-  dartType: FlaxDartTypes.typeOf<api11.WidgetStateProperty<double?>?>,
+  dartType: FlaxDartTypes.typeOf<api10.WidgetStateProperty<double?>?>,
   nullable: true,
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
@@ -50517,16 +49262,16 @@ const _flaxBinding1719 = FlaxTypeRef(
 const _flaxBinding1720 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding288)],
   _flaxBinding1719,
-  FlaxCallbackAdapters.wrap1<Set<api11.WidgetState>, api11.Icon?>,
+  FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, api10.Icon?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->widget?:flax.core/sdk_widgets#type:Icon",
-  invoke: FlaxCallbackAdapters.invoke1<Set<api11.WidgetState>, api11.Icon?>,
-  matches: FlaxCallbackAdapters.matches1<Set<api11.WidgetState>, api11.Icon?>,
+  invoke: FlaxCallbackAdapters.invoke1<Set<api10.WidgetState>, api10.Icon?>,
+  matches: FlaxCallbackAdapters.matches1<Set<api10.WidgetState>, api10.Icon?>,
 );
 const _flaxBinding1721 = FlaxTypeRef("callback", callback: _flaxBinding1720);
 const _flaxBinding1722 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
-  dartType: FlaxDartTypes.typeOf<api11.WidgetStateProperty<api11.Icon?>?>,
+  dartType: FlaxDartTypes.typeOf<api10.WidgetStateProperty<api10.Icon?>?>,
   nullable: true,
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
@@ -50583,7 +49328,7 @@ const _flaxBinding1731 = FlaxGetter.plain(
 const _flaxBinding1732 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoSwitch>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoSwitch>>,
 );
 const _flaxBinding1733 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -50656,7 +49401,7 @@ const _flaxBinding1741 = <FlaxParameter>[
     "dragStartBehavior",
     _flaxBinding1729,
     required: false,
-    defaultValue: api5.DragStartBehavior.start,
+    defaultValue: api4.DragStartBehavior.start,
   ),
 ];
 const _flaxBinding1742 = FlaxObjectBinding(
@@ -50963,19 +49708,19 @@ const _flaxBinding1778 = FlaxInstanceMethod.shared(
 );
 const _flaxBinding1779 = FlaxInstanceMethod.shared(
   _flaxBinding86,
-  _FlaxProxyDispatch6_super_call_addListener,
+  _FlaxProxyDispatch5_super_call_addListener,
 );
 const _flaxBinding1780 = FlaxInstanceMethod.shared(
   _flaxBinding86,
-  _FlaxProxyDispatch6_super_call_removeListener,
+  _FlaxProxyDispatch5_super_call_removeListener,
 );
 const _flaxBinding1781 = FlaxInstanceMethod.shared(
   flaxVoidCall,
-  _FlaxProxyDispatch6_super_call_dispose,
+  _FlaxProxyDispatch5_super_call_dispose,
 );
 const _flaxBinding1782 = FlaxInstanceMethod.shared(
   flaxBoolCall,
-  _FlaxProxyDispatch6_super_get_hasListeners,
+  _FlaxProxyDispatch5_super_get_hasListeners,
 );
 const _flaxBinding1783 = <FlaxParameter>[
   FlaxParameter("initialIndex", flaxIntType, required: false, defaultValue: 0),
@@ -51078,10 +49823,10 @@ const _flaxBinding1794 = FlaxCallbackBinding(
     FlaxCallbackParameter.plain("index", flaxIntType),
   ],
   flaxWidgetType,
-  FlaxCallbackAdapters.wrap2<api11.BuildContext, int, api.Widget>,
+  FlaxCallbackAdapters.wrap2<api10.BuildContext, int, api.Widget>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:index:int:)->widget:",
-  invoke: FlaxCallbackAdapters.invoke2<api11.BuildContext, int, api.Widget>,
-  matches: FlaxCallbackAdapters.matches2<api11.BuildContext, int, api.Widget>,
+  invoke: FlaxCallbackAdapters.invoke2<api10.BuildContext, int, api.Widget>,
+  matches: FlaxCallbackAdapters.matches2<api10.BuildContext, int, api.Widget>,
 );
 const _flaxBinding1795 = FlaxTypeRef("callback", callback: _flaxBinding1794);
 const _flaxBinding1796 = FlaxGetter.plain(
@@ -51112,7 +49857,7 @@ const _flaxBinding1800 = FlaxGetter.plain(
 const _flaxBinding1801 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoTabScaffold>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoTabScaffold>>,
 );
 const _flaxBinding1802 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -51257,7 +50002,7 @@ const _flaxBinding1821 = FlaxGetter.plain(
 const _flaxBinding1822 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoTabView>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoTabView>>,
 );
 const _flaxBinding1823 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -51608,10 +50353,10 @@ const _flaxBinding1885 = FlaxTypeRef(
 const _flaxBinding1886 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("event", _flaxBinding1885)],
   flaxVoidType,
-  FlaxCallbackAdapters.wrapVoid1<api5.PointerDownEvent>,
+  FlaxCallbackAdapters.wrapVoid1<api4.PointerDownEvent>,
   id: "callback:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerDownEvent)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid1<api5.PointerDownEvent>,
-  matches: FlaxCallbackAdapters.matchesVoid1<api5.PointerDownEvent>,
+  invoke: FlaxCallbackAdapters.invokeVoid1<api4.PointerDownEvent>,
+  matches: FlaxCallbackAdapters.matchesVoid1<api4.PointerDownEvent>,
 );
 const _flaxBinding1887 = FlaxTypeRef(
   "callback",
@@ -51826,12 +50571,12 @@ const _flaxBinding1925 = FlaxCallbackBinding(
   ],
   flaxWidgetType,
   FlaxCallbackAdapters
-      .wrap2<api11.BuildContext, api11.EditableTextState, api.Widget>,
+      .wrap2<api10.BuildContext, api10.EditableTextState, api.Widget>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:editableTextState:object:flax.core/sdk_widgets#type:EditableTextState)->widget:",
   invoke: FlaxCallbackAdapters
-      .invoke2<api11.BuildContext, api11.EditableTextState, api.Widget>,
+      .invoke2<api10.BuildContext, api10.EditableTextState, api.Widget>,
   matches: FlaxCallbackAdapters
-      .matches2<api11.BuildContext, api11.EditableTextState, api.Widget>,
+      .matches2<api10.BuildContext, api10.EditableTextState, api.Widget>,
 );
 const _flaxBinding1926 = FlaxTypeRef(
   "callback",
@@ -51881,7 +50626,7 @@ const _flaxBinding1934 = FlaxGetter.plain(
 const _flaxBinding1935 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoTextField>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoTextField>>,
 );
 const _flaxBinding1936 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -52083,7 +50828,7 @@ const _flaxBinding1944 = <FlaxParameter>[
     "dragStartBehavior",
     _flaxBinding1729,
     required: false,
-    defaultValue: api5.DragStartBehavior.start,
+    defaultValue: api4.DragStartBehavior.start,
   ),
   FlaxParameter(
     "enableInteractiveSelection",
@@ -52298,7 +51043,7 @@ const _flaxBinding1945 = <FlaxParameter>[
     "dragStartBehavior",
     _flaxBinding1729,
     required: false,
-    defaultValue: api5.DragStartBehavior.start,
+    defaultValue: api4.DragStartBehavior.start,
   ),
   FlaxParameter(
     "enableInteractiveSelection",
@@ -52483,17 +51228,17 @@ const _flaxBinding1950 = FlaxGetter.plain(
 const _flaxBinding1951 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:FormFieldState",
-  dartType: FlaxDartTypes.typeOf<api11.FormFieldState<String>>,
+  dartType: FlaxDartTypes.typeOf<api10.FormFieldState<String>>,
 );
 const _flaxBinding1952 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("field", _flaxBinding1951)],
   flaxWidgetType,
-  FlaxCallbackAdapters.wrap1<api11.FormFieldState<String>, api.Widget>,
+  FlaxCallbackAdapters.wrap1<api10.FormFieldState<String>, api.Widget>,
   id: "callback:<>(p:r:field:object:flax.core/sdk_widgets#type:FormFieldState<Object?><String:>)->widget:",
   invoke:
-      FlaxCallbackAdapters.invoke1<api11.FormFieldState<String>, api.Widget>,
+      FlaxCallbackAdapters.invoke1<api10.FormFieldState<String>, api.Widget>,
   matches:
-      FlaxCallbackAdapters.matches1<api11.FormFieldState<String>, api.Widget>,
+      FlaxCallbackAdapters.matches1<api10.FormFieldState<String>, api.Widget>,
 );
 const _flaxBinding1953 = FlaxTypeRef("callback", callback: _flaxBinding1952);
 const _flaxBinding1954 = FlaxGetter.plain(
@@ -52553,11 +51298,11 @@ const _flaxBinding1963 = FlaxCallbackBinding(
     FlaxCallbackParameter.plain("errorText", flaxStringType),
   ],
   flaxWidgetType,
-  FlaxCallbackAdapters.wrap2<api11.BuildContext, String, api.Widget>,
+  FlaxCallbackAdapters.wrap2<api10.BuildContext, String, api.Widget>,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:errorText:String:)->widget:",
-  invoke: FlaxCallbackAdapters.invoke2<api11.BuildContext, String, api.Widget>,
+  invoke: FlaxCallbackAdapters.invoke2<api10.BuildContext, String, api.Widget>,
   matches:
-      FlaxCallbackAdapters.matches2<api11.BuildContext, String, api.Widget>,
+      FlaxCallbackAdapters.matches2<api10.BuildContext, String, api.Widget>,
 );
 const _flaxBinding1964 = FlaxTypeRef(
   "callback",
@@ -52843,7 +51588,7 @@ const _flaxBinding1987 = FlaxGetter.plain(
 const _flaxBinding1988 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:ValueNotifier",
-  dartType: FlaxDartTypes.typeOf<api4.ValueNotifier<api11.MagnifierInfo>>,
+  dartType: FlaxDartTypes.typeOf<api3.ValueNotifier<api10.MagnifierInfo>>,
 );
 const _flaxBinding1989 = FlaxGetter.plain(
   "magnifierInfo",
@@ -52858,7 +51603,7 @@ const _flaxBinding1990 = FlaxGetter.plain(
 const _flaxBinding1991 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
-  dartType: FlaxDartTypes.typeOf<api11.State<api.CupertinoTextMagnifier>>,
+  dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoTextMagnifier>>,
 );
 const _flaxBinding1992 = FlaxInstanceMethod.plain(
   _flaxBinding132,
@@ -53882,11 +52627,11 @@ const _flaxBinding2114 = FlaxInstanceMethod.shared(
 );
 const _flaxBinding2115 = FlaxInstanceMethod.shared(
   _flaxBinding93,
-  _FlaxProxyDispatch7_super_call_noDefault,
+  _FlaxProxyDispatch6_super_call_noDefault,
 );
 const _flaxBinding2116 = FlaxInstanceMethod.shared(
   _flaxBinding98,
-  _FlaxProxyDispatch7_super_get_brightness,
+  _FlaxProxyDispatch6_super_get_brightness,
 );
 const _flaxBinding2117 = <FlaxParameter>[
   FlaxParameter("brightness", _flaxBinding97, required: false),
@@ -54217,10 +52962,10 @@ const _flaxBinding2143 = FlaxGetter.plain(
 const _flaxBinding2144 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxDurationType)],
   flaxVoidType,
-  FlaxCallbackAdapters.wrapVoid1<api3.Duration>,
+  FlaxCallbackAdapters.wrapVoid1<api2.Duration>,
   id: "callback:<>(p:r:value:object:flax.core/flutter#type:Duration)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid1<api3.Duration>,
-  matches: FlaxCallbackAdapters.matchesVoid1<api3.Duration>,
+  invoke: FlaxCallbackAdapters.invokeVoid1<api2.Duration>,
+  matches: FlaxCallbackAdapters.matchesVoid1<api2.Duration>,
 );
 const _flaxBinding2145 = FlaxTypeRef("callback", callback: _flaxBinding2144);
 const _flaxBinding2146 = FlaxGetter.plain(
@@ -54590,307 +53335,241 @@ const _flaxBinding2197 = FlaxInstanceMethod.shared(
   _flaxBinding45,
   _DefaultCupertinoLocalizations_timerPickerSecondLabel,
 );
-const _flaxBinding2198 = FlaxInstanceMethod.shared(
-  _flaxBinding37,
-  _FlaxProxyDispatch8_super_call_datePickerYear,
-);
-const _flaxBinding2199 = FlaxInstanceMethod.shared(
-  _flaxBinding38,
-  _FlaxProxyDispatch8_super_call_datePickerMonth,
-);
-const _flaxBinding2200 = FlaxInstanceMethod.shared(
-  _flaxBinding38,
-  _FlaxProxyDispatch8_super_call_datePickerStandaloneMonth,
-);
-const _flaxBinding2201 = FlaxInstanceMethod.plain(
-  _flaxBinding882,
-  flaxStringType,
-  _FlaxProxyDispatch8_super_call_datePickerDayOfMonth,
-);
-const _flaxBinding2202 = FlaxInstanceMethod.shared(
-  _flaxBinding39,
-  _FlaxProxyDispatch8_super_call_datePickerMediumDate,
-);
-const _flaxBinding2203 = FlaxInstanceMethod.shared(
-  _flaxBinding40,
-  _FlaxProxyDispatch8_super_call_datePickerHour,
-);
-const _flaxBinding2204 = FlaxInstanceMethod.shared(
-  _flaxBinding42,
-  _FlaxProxyDispatch8_super_call_datePickerMinute,
-);
-const _flaxBinding2205 = FlaxInstanceMethod.plain(
-  _flaxBinding889,
-  flaxStringType,
-  _FlaxProxyDispatch8_super_call_tabSemanticsLabel,
-);
-const _flaxBinding2206 = FlaxInstanceMethod.shared(
-  _flaxBinding40,
-  _FlaxProxyDispatch8_super_call_timerPickerHour,
-);
-const _flaxBinding2207 = FlaxInstanceMethod.shared(
-  _flaxBinding42,
-  _FlaxProxyDispatch8_super_call_timerPickerMinute,
-);
-const _flaxBinding2208 = FlaxInstanceMethod.shared(
-  _flaxBinding45,
-  _FlaxProxyDispatch8_super_call_timerPickerSecond,
-);
-const _flaxBinding2209 = FlaxInstanceMethod.shared(
-  _flaxBinding48,
-  _FlaxProxyDispatch8_super_get_datePickerDateOrder,
-);
-const _flaxBinding2210 = FlaxInstanceMethod.shared(
-  _flaxBinding50,
-  _FlaxProxyDispatch8_super_get_datePickerDateTimeOrder,
-);
-const _flaxBinding2211 = FlaxInstanceMethod.shared(
-  _flaxBinding53,
-  _FlaxProxyDispatch8_super_get_timerPickerHourLabels,
-);
-const _flaxBinding2212 = FlaxInstanceMethod.shared(
-  _flaxBinding53,
-  _FlaxProxyDispatch8_super_get_timerPickerMinuteLabels,
-);
-const _flaxBinding2213 = FlaxInstanceMethod.shared(
-  _flaxBinding53,
-  _FlaxProxyDispatch8_super_get_timerPickerSecondLabels,
-);
-const _flaxBinding2214 = FlaxProxyMember(
+const _flaxBinding2198 = FlaxProxyMember(
   "datePickerYear",
   0,
   _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding2215 = FlaxProxyMember(
+const _flaxBinding2199 = FlaxProxyMember(
   "datePickerMonth",
   0,
   _flaxBinding38,
   hasSuper: true,
 );
-const _flaxBinding2216 = FlaxProxyMember(
+const _flaxBinding2200 = FlaxProxyMember(
   "datePickerStandaloneMonth",
   0,
   _flaxBinding38,
   hasSuper: true,
 );
-const _flaxBinding2217 = FlaxProxyMember(
+const _flaxBinding2201 = FlaxProxyMember(
   "datePickerDayOfMonth",
   0,
   _flaxBinding906,
   hasSuper: true,
 );
-const _flaxBinding2218 = FlaxProxyMember(
+const _flaxBinding2202 = FlaxProxyMember(
   "datePickerMediumDate",
   0,
   _flaxBinding39,
   hasSuper: true,
 );
-const _flaxBinding2219 = FlaxProxyMember(
+const _flaxBinding2203 = FlaxProxyMember(
   "datePickerHour",
   0,
   _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding2220 = FlaxProxyMember(
+const _flaxBinding2204 = FlaxProxyMember(
   "datePickerHourSemanticsLabel",
   0,
   _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding2221 = FlaxProxyMember(
+const _flaxBinding2205 = FlaxProxyMember(
   "datePickerMinute",
   0,
   _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding2222 = FlaxProxyMember(
+const _flaxBinding2206 = FlaxProxyMember(
   "datePickerMinuteSemanticsLabel",
   0,
   _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding2223 = FlaxProxyMember(
+const _flaxBinding2207 = FlaxProxyMember(
   "tabSemanticsLabel",
   0,
   _flaxBinding44,
   hasSuper: true,
 );
-const _flaxBinding2224 = FlaxProxyMember(
+const _flaxBinding2208 = FlaxProxyMember(
   "timerPickerHour",
   0,
   _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding2225 = FlaxProxyMember(
+const _flaxBinding2209 = FlaxProxyMember(
   "timerPickerMinute",
   0,
   _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding2226 = FlaxProxyMember(
+const _flaxBinding2210 = FlaxProxyMember(
   "timerPickerSecond",
   0,
   _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding2227 = FlaxProxyMember(
+const _flaxBinding2211 = FlaxProxyMember(
   "timerPickerHourLabel",
   0,
   _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding2228 = FlaxProxyMember(
+const _flaxBinding2212 = FlaxProxyMember(
   "timerPickerMinuteLabel",
   0,
   _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding2229 = FlaxProxyMember(
+const _flaxBinding2213 = FlaxProxyMember(
   "timerPickerSecondLabel",
   0,
   _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding2230 = FlaxProxyMember(
+const _flaxBinding2214 = FlaxProxyMember(
   "datePickerDateOrder",
   1,
   _flaxBinding48,
   hasSuper: true,
 );
-const _flaxBinding2231 = FlaxProxyMember(
+const _flaxBinding2215 = FlaxProxyMember(
   "datePickerDateTimeOrder",
   1,
   _flaxBinding50,
   hasSuper: true,
 );
-const _flaxBinding2232 = FlaxProxyMember(
+const _flaxBinding2216 = FlaxProxyMember(
   "anteMeridiemAbbreviation",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2233 = FlaxProxyMember(
+const _flaxBinding2217 = FlaxProxyMember(
   "postMeridiemAbbreviation",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2234 = FlaxProxyMember(
+const _flaxBinding2218 = FlaxProxyMember(
   "todayLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2235 = FlaxProxyMember(
+const _flaxBinding2219 = FlaxProxyMember(
   "alertDialogLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2236 = FlaxProxyMember(
+const _flaxBinding2220 = FlaxProxyMember(
   "timerPickerHourLabels",
   1,
   _flaxBinding53,
   hasSuper: true,
 );
-const _flaxBinding2237 = FlaxProxyMember(
+const _flaxBinding2221 = FlaxProxyMember(
   "timerPickerMinuteLabels",
   1,
   _flaxBinding53,
   hasSuper: true,
 );
-const _flaxBinding2238 = FlaxProxyMember(
+const _flaxBinding2222 = FlaxProxyMember(
   "timerPickerSecondLabels",
   1,
   _flaxBinding53,
   hasSuper: true,
 );
-const _flaxBinding2239 = FlaxProxyMember(
+const _flaxBinding2223 = FlaxProxyMember(
   "cutButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2240 = FlaxProxyMember(
+const _flaxBinding2224 = FlaxProxyMember(
   "copyButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2241 = FlaxProxyMember(
+const _flaxBinding2225 = FlaxProxyMember(
   "pasteButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2242 = FlaxProxyMember(
+const _flaxBinding2226 = FlaxProxyMember(
   "clearButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2243 = FlaxProxyMember(
+const _flaxBinding2227 = FlaxProxyMember(
   "noSpellCheckReplacementsLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2244 = FlaxProxyMember(
+const _flaxBinding2228 = FlaxProxyMember(
   "selectAllButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2245 = FlaxProxyMember(
+const _flaxBinding2229 = FlaxProxyMember(
   "lookUpButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2246 = FlaxProxyMember(
+const _flaxBinding2230 = FlaxProxyMember(
   "searchWebButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2247 = FlaxProxyMember(
+const _flaxBinding2231 = FlaxProxyMember(
   "shareButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2248 = FlaxProxyMember(
+const _flaxBinding2232 = FlaxProxyMember(
   "searchTextFieldPlaceholderLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2249 = FlaxProxyMember(
+const _flaxBinding2233 = FlaxProxyMember(
   "modalBarrierDismissLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2250 = FlaxProxyMember(
+const _flaxBinding2234 = FlaxProxyMember(
   "menuDismissLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2251 = FlaxProxyMember(
+const _flaxBinding2235 = FlaxProxyMember(
   "cancelButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2252 = FlaxProxyMember(
+const _flaxBinding2236 = FlaxProxyMember(
   "backButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2253 = FlaxObjectBinding(
+const _flaxBinding2237 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:DefaultCupertinoLocalizations",
   [],
   {
@@ -54899,25 +53578,60 @@ const _flaxBinding2253 = FlaxObjectBinding(
     "timerPickerHourLabel": _flaxBinding2195,
     "timerPickerMinuteLabel": _flaxBinding2196,
     "timerPickerSecondLabel": _flaxBinding2197,
-    "@super:datePickerYear": _flaxBinding2198,
-    "@super:datePickerMonth": _flaxBinding2199,
-    "@super:datePickerStandaloneMonth": _flaxBinding2200,
-    "@super:datePickerDayOfMonth": _flaxBinding2201,
-    "@super:datePickerMediumDate": _flaxBinding2202,
-    "@super:datePickerHour": _flaxBinding2203,
+    "@super:datePickerYear": FlaxInstanceMethod.shared(
+      _flaxBinding37,
+      _DefaultCupertinoLocalizations_super_datePickerYear,
+    ),
+    "@super:datePickerMonth": FlaxInstanceMethod.shared(
+      _flaxBinding38,
+      _DefaultCupertinoLocalizations_super_datePickerMonth,
+    ),
+    "@super:datePickerStandaloneMonth": FlaxInstanceMethod.shared(
+      _flaxBinding38,
+      _DefaultCupertinoLocalizations_super_datePickerStandaloneMonth,
+    ),
+    "@super:datePickerDayOfMonth": FlaxInstanceMethod.plain(
+      _flaxBinding882,
+      flaxStringType,
+      _DefaultCupertinoLocalizations_super_datePickerDayOfMonth,
+    ),
+    "@super:datePickerMediumDate": FlaxInstanceMethod.shared(
+      _flaxBinding39,
+      _DefaultCupertinoLocalizations_super_datePickerMediumDate,
+    ),
+    "@super:datePickerHour": FlaxInstanceMethod.shared(
+      _flaxBinding40,
+      _DefaultCupertinoLocalizations_super_datePickerHour,
+    ),
     "@super:datePickerHourSemanticsLabel": FlaxInstanceMethod.shared(
       _flaxBinding40,
       _DefaultCupertinoLocalizations_super_datePickerHourSemanticsLabel,
     ),
-    "@super:datePickerMinute": _flaxBinding2204,
+    "@super:datePickerMinute": FlaxInstanceMethod.shared(
+      _flaxBinding42,
+      _DefaultCupertinoLocalizations_super_datePickerMinute,
+    ),
     "@super:datePickerMinuteSemanticsLabel": FlaxInstanceMethod.shared(
       _flaxBinding42,
       _DefaultCupertinoLocalizations_super_datePickerMinuteSemanticsLabel,
     ),
-    "@super:tabSemanticsLabel": _flaxBinding2205,
-    "@super:timerPickerHour": _flaxBinding2206,
-    "@super:timerPickerMinute": _flaxBinding2207,
-    "@super:timerPickerSecond": _flaxBinding2208,
+    "@super:tabSemanticsLabel": FlaxInstanceMethod.plain(
+      _flaxBinding889,
+      flaxStringType,
+      _DefaultCupertinoLocalizations_super_tabSemanticsLabel,
+    ),
+    "@super:timerPickerHour": FlaxInstanceMethod.shared(
+      _flaxBinding40,
+      _DefaultCupertinoLocalizations_super_timerPickerHour,
+    ),
+    "@super:timerPickerMinute": FlaxInstanceMethod.shared(
+      _flaxBinding42,
+      _DefaultCupertinoLocalizations_super_timerPickerMinute,
+    ),
+    "@super:timerPickerSecond": FlaxInstanceMethod.shared(
+      _flaxBinding45,
+      _DefaultCupertinoLocalizations_super_timerPickerSecond,
+    ),
     "@super:timerPickerHourLabel": FlaxInstanceMethod.shared(
       _flaxBinding40,
       _DefaultCupertinoLocalizations_super_timerPickerHourLabel,
@@ -54930,8 +53644,14 @@ const _flaxBinding2253 = FlaxObjectBinding(
       _flaxBinding45,
       _DefaultCupertinoLocalizations_super_timerPickerSecondLabel,
     ),
-    "@super:get:datePickerDateOrder": _flaxBinding2209,
-    "@super:get:datePickerDateTimeOrder": _flaxBinding2210,
+    "@super:get:datePickerDateOrder": FlaxInstanceMethod.shared(
+      _flaxBinding48,
+      _DefaultCupertinoLocalizations_super_get_datePickerDateOrder,
+    ),
+    "@super:get:datePickerDateTimeOrder": FlaxInstanceMethod.shared(
+      _flaxBinding50,
+      _DefaultCupertinoLocalizations_super_get_datePickerDateTimeOrder,
+    ),
     "@super:get:anteMeridiemAbbreviation": FlaxInstanceMethod.shared(
       flaxStringCall,
       _DefaultCupertinoLocalizations_super_get_anteMeridiemAbbreviation,
@@ -54948,9 +53668,18 @@ const _flaxBinding2253 = FlaxObjectBinding(
       flaxStringCall,
       _DefaultCupertinoLocalizations_super_get_alertDialogLabel,
     ),
-    "@super:get:timerPickerHourLabels": _flaxBinding2211,
-    "@super:get:timerPickerMinuteLabels": _flaxBinding2212,
-    "@super:get:timerPickerSecondLabels": _flaxBinding2213,
+    "@super:get:timerPickerHourLabels": FlaxInstanceMethod.shared(
+      _flaxBinding53,
+      _DefaultCupertinoLocalizations_super_get_timerPickerHourLabels,
+    ),
+    "@super:get:timerPickerMinuteLabels": FlaxInstanceMethod.shared(
+      _flaxBinding53,
+      _DefaultCupertinoLocalizations_super_get_timerPickerMinuteLabels,
+    ),
+    "@super:get:timerPickerSecondLabels": FlaxInstanceMethod.shared(
+      _flaxBinding53,
+      _DefaultCupertinoLocalizations_super_get_timerPickerSecondLabels,
+    ),
     "@super:get:cutButtonLabel": FlaxInstanceMethod.shared(
       flaxStringCall,
       _DefaultCupertinoLocalizations_super_get_cutButtonLabel,
@@ -55024,6 +53753,22 @@ const _flaxBinding2253 = FlaxObjectBinding(
   ],
   parent: _flaxBinding949,
   proxy: FlaxProxyBinding([
+    _flaxBinding2198,
+    _flaxBinding2199,
+    _flaxBinding2200,
+    _flaxBinding2201,
+    _flaxBinding2202,
+    _flaxBinding2203,
+    _flaxBinding2204,
+    _flaxBinding2205,
+    _flaxBinding2206,
+    _flaxBinding2207,
+    _flaxBinding2208,
+    _flaxBinding2209,
+    _flaxBinding2210,
+    _flaxBinding2211,
+    _flaxBinding2212,
+    _flaxBinding2213,
     _flaxBinding2214,
     _flaxBinding2215,
     _flaxBinding2216,
@@ -55047,7 +53792,182 @@ const _flaxBinding2253 = FlaxObjectBinding(
     _flaxBinding2234,
     _flaxBinding2235,
     _flaxBinding2236,
-    _flaxBinding2237,
+    _flaxBinding943,
+    _flaxBinding944,
+    _flaxBinding945,
+    _flaxBinding946,
+    _flaxBinding947,
+    _flaxBinding948,
+  ]),
+);
+const _flaxBinding2238 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelZero,
+);
+const _flaxBinding2239 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelOne,
+);
+const _flaxBinding2240 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelTwo,
+);
+const _flaxBinding2241 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelFew,
+);
+const _flaxBinding2242 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelMany,
+);
+const _flaxBinding2243 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelOther,
+);
+const _flaxBinding2244 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelZero,
+);
+const _flaxBinding2245 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelOne,
+);
+const _flaxBinding2246 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelTwo,
+);
+const _flaxBinding2247 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelFew,
+);
+const _flaxBinding2248 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelMany,
+);
+const _flaxBinding2249 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelOther,
+);
+const _flaxBinding2250 = FlaxGetter.plain(
+  "datePickerDateOrderString",
+  flaxStringType,
+  _GlobalCupertinoLocalizations_datePickerDateOrderString,
+);
+const _flaxBinding2251 = FlaxGetter.plain(
+  "datePickerDateTimeOrderString",
+  flaxStringType,
+  _GlobalCupertinoLocalizations_datePickerDateTimeOrderString,
+);
+const _flaxBinding2252 = FlaxGetter.plain(
+  "tabSemanticsLabelRaw",
+  flaxStringType,
+  _GlobalCupertinoLocalizations_tabSemanticsLabelRaw,
+);
+const _flaxBinding2253 = FlaxGetter.plain(
+  "timerPickerHourLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelZero,
+);
+const _flaxBinding2254 = FlaxGetter.plain(
+  "timerPickerHourLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelOne,
+);
+const _flaxBinding2255 = FlaxGetter.plain(
+  "timerPickerHourLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelTwo,
+);
+const _flaxBinding2256 = FlaxGetter.plain(
+  "timerPickerHourLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelFew,
+);
+const _flaxBinding2257 = FlaxGetter.plain(
+  "timerPickerHourLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelMany,
+);
+const _flaxBinding2258 = FlaxGetter.plain(
+  "timerPickerHourLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelOther,
+);
+const _flaxBinding2259 = FlaxGetter.plain(
+  "timerPickerMinuteLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelZero,
+);
+const _flaxBinding2260 = FlaxGetter.plain(
+  "timerPickerMinuteLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelOne,
+);
+const _flaxBinding2261 = FlaxGetter.plain(
+  "timerPickerMinuteLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelTwo,
+);
+const _flaxBinding2262 = FlaxGetter.plain(
+  "timerPickerMinuteLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelFew,
+);
+const _flaxBinding2263 = FlaxGetter.plain(
+  "timerPickerMinuteLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelMany,
+);
+const _flaxBinding2264 = FlaxGetter.plain(
+  "timerPickerMinuteLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelOther,
+);
+const _flaxBinding2265 = FlaxGetter.plain(
+  "timerPickerSecondLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelZero,
+);
+const _flaxBinding2266 = FlaxGetter.plain(
+  "timerPickerSecondLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelOne,
+);
+const _flaxBinding2267 = FlaxGetter.plain(
+  "timerPickerSecondLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelTwo,
+);
+const _flaxBinding2268 = FlaxGetter.plain(
+  "timerPickerSecondLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelFew,
+);
+const _flaxBinding2269 = FlaxGetter.plain(
+  "timerPickerSecondLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelMany,
+);
+const _flaxBinding2270 = FlaxGetter.plain(
+  "timerPickerSecondLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelOther,
+);
+const _flaxBinding2271 = FlaxObjectBinding(
+  "flax.cupertino/cupertino#type:GlobalCupertinoLocalizations",
+  [
     _flaxBinding2238,
     _flaxBinding2239,
     _flaxBinding2240,
@@ -55063,444 +53983,7 @@ const _flaxBinding2253 = FlaxObjectBinding(
     _flaxBinding2250,
     _flaxBinding2251,
     _flaxBinding2252,
-    _flaxBinding943,
-    _flaxBinding944,
-    _flaxBinding945,
-    _flaxBinding946,
-    _flaxBinding947,
-    _flaxBinding948,
-  ]),
-);
-const _flaxBinding2254 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelZero,
-);
-const _flaxBinding2255 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelOne,
-);
-const _flaxBinding2256 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelTwo,
-);
-const _flaxBinding2257 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelFew,
-);
-const _flaxBinding2258 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelMany,
-);
-const _flaxBinding2259 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelOther,
-);
-const _flaxBinding2260 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelZero,
-);
-const _flaxBinding2261 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelOne,
-);
-const _flaxBinding2262 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelTwo,
-);
-const _flaxBinding2263 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelFew,
-);
-const _flaxBinding2264 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelMany,
-);
-const _flaxBinding2265 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelOther,
-);
-const _flaxBinding2266 = FlaxGetter.plain(
-  "datePickerDateOrderString",
-  flaxStringType,
-  _GlobalCupertinoLocalizations_datePickerDateOrderString,
-);
-const _flaxBinding2267 = FlaxGetter.plain(
-  "datePickerDateTimeOrderString",
-  flaxStringType,
-  _GlobalCupertinoLocalizations_datePickerDateTimeOrderString,
-);
-const _flaxBinding2268 = FlaxGetter.plain(
-  "tabSemanticsLabelRaw",
-  flaxStringType,
-  _GlobalCupertinoLocalizations_tabSemanticsLabelRaw,
-);
-const _flaxBinding2269 = FlaxGetter.plain(
-  "timerPickerHourLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelZero,
-);
-const _flaxBinding2270 = FlaxGetter.plain(
-  "timerPickerHourLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelOne,
-);
-const _flaxBinding2271 = FlaxGetter.plain(
-  "timerPickerHourLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelTwo,
-);
-const _flaxBinding2272 = FlaxGetter.plain(
-  "timerPickerHourLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelFew,
-);
-const _flaxBinding2273 = FlaxGetter.plain(
-  "timerPickerHourLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelMany,
-);
-const _flaxBinding2274 = FlaxGetter.plain(
-  "timerPickerHourLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelOther,
-);
-const _flaxBinding2275 = FlaxGetter.plain(
-  "timerPickerMinuteLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelZero,
-);
-const _flaxBinding2276 = FlaxGetter.plain(
-  "timerPickerMinuteLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelOne,
-);
-const _flaxBinding2277 = FlaxGetter.plain(
-  "timerPickerMinuteLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelTwo,
-);
-const _flaxBinding2278 = FlaxGetter.plain(
-  "timerPickerMinuteLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelFew,
-);
-const _flaxBinding2279 = FlaxGetter.plain(
-  "timerPickerMinuteLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelMany,
-);
-const _flaxBinding2280 = FlaxGetter.plain(
-  "timerPickerMinuteLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelOther,
-);
-const _flaxBinding2281 = FlaxGetter.plain(
-  "timerPickerSecondLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelZero,
-);
-const _flaxBinding2282 = FlaxGetter.plain(
-  "timerPickerSecondLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelOne,
-);
-const _flaxBinding2283 = FlaxGetter.plain(
-  "timerPickerSecondLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelTwo,
-);
-const _flaxBinding2284 = FlaxGetter.plain(
-  "timerPickerSecondLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelFew,
-);
-const _flaxBinding2285 = FlaxGetter.plain(
-  "timerPickerSecondLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelMany,
-);
-const _flaxBinding2286 = FlaxGetter.plain(
-  "timerPickerSecondLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelOther,
-);
-const _flaxBinding2287 = FlaxTypeRef(
-  "object",
-  id: "flax.cupertino/dependency_intl#type:DateFormat",
-);
-const _flaxBinding2288 = FlaxTypeRef(
-  "object",
-  id: "flax.cupertino/dependency_intl#type:NumberFormat",
-);
-const _flaxBinding2289 = <FlaxParameter>[
-  FlaxParameter.required("localeName", flaxStringType),
-  FlaxParameter.required("fullYearFormat", _flaxBinding2287),
-  FlaxParameter.required("dayFormat", _flaxBinding2287),
-  FlaxParameter.required("weekdayFormat", _flaxBinding2287),
-  FlaxParameter.required("mediumDateFormat", _flaxBinding2287),
-  FlaxParameter.required("singleDigitHourFormat", _flaxBinding2287),
-  FlaxParameter.required("singleDigitMinuteFormat", _flaxBinding2287),
-  FlaxParameter.required("doubleDigitMinuteFormat", _flaxBinding2287),
-  FlaxParameter.required("singleDigitSecondFormat", _flaxBinding2287),
-  FlaxParameter.required("decimalFormat", _flaxBinding2288),
-];
-const _flaxBinding2290 = FlaxProxyMember(
-  "datePickerHourSemanticsLabel",
-  0,
-  _flaxBinding41,
-  hasSuper: true,
-);
-const _flaxBinding2291 = FlaxProxyMember(
-  "datePickerMinuteSemanticsLabel",
-  0,
-  _flaxBinding43,
-  hasSuper: true,
-);
-const _flaxBinding2292 = FlaxProxyMember(
-  "timerPickerHourLabel",
-  0,
-  _flaxBinding41,
-  hasSuper: true,
-);
-const _flaxBinding2293 = FlaxProxyMember(
-  "timerPickerMinuteLabel",
-  0,
-  _flaxBinding43,
-  hasSuper: true,
-);
-const _flaxBinding2294 = FlaxProxyMember(
-  "timerPickerSecondLabel",
-  0,
-  _flaxBinding46,
-  hasSuper: true,
-);
-const _flaxBinding2295 = FlaxProxyMember(
-  "datePickerHourSemanticsLabelZero",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2296 = FlaxProxyMember(
-  "datePickerHourSemanticsLabelOne",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2297 = FlaxProxyMember(
-  "datePickerHourSemanticsLabelTwo",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2298 = FlaxProxyMember(
-  "datePickerHourSemanticsLabelFew",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2299 = FlaxProxyMember(
-  "datePickerHourSemanticsLabelMany",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2300 = FlaxProxyMember(
-  "datePickerHourSemanticsLabelOther",
-  1,
-  flaxNullableStringCall,
-);
-const _flaxBinding2301 = FlaxProxyMember(
-  "datePickerMinuteSemanticsLabelZero",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2302 = FlaxProxyMember(
-  "datePickerMinuteSemanticsLabelOne",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2303 = FlaxProxyMember(
-  "datePickerMinuteSemanticsLabelTwo",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2304 = FlaxProxyMember(
-  "datePickerMinuteSemanticsLabelFew",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2305 = FlaxProxyMember(
-  "datePickerMinuteSemanticsLabelMany",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2306 = FlaxProxyMember(
-  "datePickerMinuteSemanticsLabelOther",
-  1,
-  flaxNullableStringCall,
-);
-const _flaxBinding2307 = FlaxProxyMember(
-  "datePickerDateOrderString",
-  1,
-  flaxStringCall,
-);
-const _flaxBinding2308 = FlaxProxyMember(
-  "datePickerDateTimeOrderString",
-  1,
-  flaxStringCall,
-);
-const _flaxBinding2309 = FlaxProxyMember(
-  "tabSemanticsLabelRaw",
-  1,
-  flaxStringCall,
-);
-const _flaxBinding2310 = FlaxProxyMember(
-  "timerPickerHourLabelZero",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2311 = FlaxProxyMember(
-  "timerPickerHourLabelOne",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2312 = FlaxProxyMember(
-  "timerPickerHourLabelTwo",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2313 = FlaxProxyMember(
-  "timerPickerHourLabelFew",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2314 = FlaxProxyMember(
-  "timerPickerHourLabelMany",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2315 = FlaxProxyMember(
-  "timerPickerHourLabelOther",
-  1,
-  flaxNullableStringCall,
-);
-const _flaxBinding2316 = FlaxProxyMember(
-  "timerPickerMinuteLabelZero",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2317 = FlaxProxyMember(
-  "timerPickerMinuteLabelOne",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2318 = FlaxProxyMember(
-  "timerPickerMinuteLabelTwo",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2319 = FlaxProxyMember(
-  "timerPickerMinuteLabelFew",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2320 = FlaxProxyMember(
-  "timerPickerMinuteLabelMany",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2321 = FlaxProxyMember(
-  "timerPickerMinuteLabelOther",
-  1,
-  flaxNullableStringCall,
-);
-const _flaxBinding2322 = FlaxProxyMember(
-  "timerPickerSecondLabelZero",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2323 = FlaxProxyMember(
-  "timerPickerSecondLabelOne",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2324 = FlaxProxyMember(
-  "timerPickerSecondLabelTwo",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2325 = FlaxProxyMember(
-  "timerPickerSecondLabelFew",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2326 = FlaxProxyMember(
-  "timerPickerSecondLabelMany",
-  1,
-  flaxNullableStringCall,
-  hasSuper: true,
-);
-const _flaxBinding2327 = FlaxProxyMember(
-  "timerPickerSecondLabelOther",
-  1,
-  flaxNullableStringCall,
-);
-const _flaxBinding2328 = FlaxProxyMember(
-  "expansionTileExpandedHint",
-  1,
-  flaxStringCall,
-);
-const _flaxBinding2329 = FlaxProxyMember(
-  "expansionTileCollapsedHint",
-  1,
-  flaxStringCall,
-);
-const _flaxBinding2330 = FlaxProxyMember(
-  "expansionTileExpandedTapHint",
-  1,
-  flaxStringCall,
-);
-const _flaxBinding2331 = FlaxProxyMember(
-  "expansionTileCollapsedTapHint",
-  1,
-  flaxStringCall,
-);
-const _flaxBinding2332 = FlaxProxyMember("expandedHint", 1, flaxStringCall);
-const _flaxBinding2333 = FlaxProxyMember("collapsedHint", 1, flaxStringCall);
-const _flaxBinding2334 = FlaxObjectBinding(
-  "flax.cupertino/cupertino#type:GlobalCupertinoLocalizations",
-  [
+    _flaxBinding2253,
     _flaxBinding2254,
     _flaxBinding2255,
     _flaxBinding2256,
@@ -55518,162 +54001,9 @@ const _flaxBinding2334 = FlaxObjectBinding(
     _flaxBinding2268,
     _flaxBinding2269,
     _flaxBinding2270,
-    _flaxBinding2271,
-    _flaxBinding2272,
-    _flaxBinding2273,
-    _flaxBinding2274,
-    _flaxBinding2275,
-    _flaxBinding2276,
-    _flaxBinding2277,
-    _flaxBinding2278,
-    _flaxBinding2279,
-    _flaxBinding2280,
-    _flaxBinding2281,
-    _flaxBinding2282,
-    _flaxBinding2283,
-    _flaxBinding2284,
-    _flaxBinding2285,
-    _flaxBinding2286,
   ],
-  {
-    "@super:datePickerYear": _flaxBinding2198,
-    "@super:datePickerMonth": _flaxBinding2199,
-    "@super:datePickerStandaloneMonth": _flaxBinding2200,
-    "@super:datePickerDayOfMonth": _flaxBinding2201,
-    "@super:datePickerMediumDate": _flaxBinding2202,
-    "@super:datePickerHour": _flaxBinding2203,
-    "@super:datePickerHourSemanticsLabel": FlaxInstanceMethod.shared(
-      _flaxBinding41,
-      _GlobalCupertinoLocalizations_super_datePickerHourSemanticsLabel,
-    ),
-    "@super:datePickerMinute": _flaxBinding2204,
-    "@super:datePickerMinuteSemanticsLabel": FlaxInstanceMethod.shared(
-      _flaxBinding43,
-      _GlobalCupertinoLocalizations_super_datePickerMinuteSemanticsLabel,
-    ),
-    "@super:tabSemanticsLabel": _flaxBinding2205,
-    "@super:timerPickerHour": _flaxBinding2206,
-    "@super:timerPickerMinute": _flaxBinding2207,
-    "@super:timerPickerSecond": _flaxBinding2208,
-    "@super:timerPickerHourLabel": FlaxInstanceMethod.shared(
-      _flaxBinding41,
-      _GlobalCupertinoLocalizations_super_timerPickerHourLabel,
-    ),
-    "@super:timerPickerMinuteLabel": FlaxInstanceMethod.shared(
-      _flaxBinding43,
-      _GlobalCupertinoLocalizations_super_timerPickerMinuteLabel,
-    ),
-    "@super:timerPickerSecondLabel": FlaxInstanceMethod.shared(
-      _flaxBinding46,
-      _GlobalCupertinoLocalizations_super_timerPickerSecondLabel,
-    ),
-    "@super:get:datePickerHourSemanticsLabelZero": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelZero,
-    ),
-    "@super:get:datePickerHourSemanticsLabelOne": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelOne,
-    ),
-    "@super:get:datePickerHourSemanticsLabelTwo": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelTwo,
-    ),
-    "@super:get:datePickerHourSemanticsLabelFew": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelFew,
-    ),
-    "@super:get:datePickerHourSemanticsLabelMany": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerHourSemanticsLabelMany,
-    ),
-    "@super:get:datePickerMinuteSemanticsLabelZero": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelZero,
-    ),
-    "@super:get:datePickerMinuteSemanticsLabelOne": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelOne,
-    ),
-    "@super:get:datePickerMinuteSemanticsLabelTwo": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelTwo,
-    ),
-    "@super:get:datePickerMinuteSemanticsLabelFew": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelFew,
-    ),
-    "@super:get:datePickerMinuteSemanticsLabelMany": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_datePickerMinuteSemanticsLabelMany,
-    ),
-    "@super:get:datePickerDateOrder": _flaxBinding2209,
-    "@super:get:datePickerDateTimeOrder": _flaxBinding2210,
-    "@super:get:timerPickerHourLabelZero": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelZero,
-    ),
-    "@super:get:timerPickerHourLabelOne": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelOne,
-    ),
-    "@super:get:timerPickerHourLabelTwo": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelTwo,
-    ),
-    "@super:get:timerPickerHourLabelFew": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelFew,
-    ),
-    "@super:get:timerPickerHourLabelMany": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerHourLabelMany,
-    ),
-    "@super:get:timerPickerHourLabels": _flaxBinding2211,
-    "@super:get:timerPickerMinuteLabelZero": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelZero,
-    ),
-    "@super:get:timerPickerMinuteLabelOne": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelOne,
-    ),
-    "@super:get:timerPickerMinuteLabelTwo": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelTwo,
-    ),
-    "@super:get:timerPickerMinuteLabelFew": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelFew,
-    ),
-    "@super:get:timerPickerMinuteLabelMany": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerMinuteLabelMany,
-    ),
-    "@super:get:timerPickerMinuteLabels": _flaxBinding2212,
-    "@super:get:timerPickerSecondLabelZero": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelZero,
-    ),
-    "@super:get:timerPickerSecondLabelOne": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelOne,
-    ),
-    "@super:get:timerPickerSecondLabelTwo": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelTwo,
-    ),
-    "@super:get:timerPickerSecondLabelFew": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelFew,
-    ),
-    "@super:get:timerPickerSecondLabelMany": FlaxInstanceMethod.shared(
-      flaxNullableStringCall,
-      _GlobalCupertinoLocalizations_super_get_timerPickerSecondLabelMany,
-    ),
-    "@super:get:timerPickerSecondLabels": _flaxBinding2213,
-  },
-  constructors: {"@implementation": _flaxBinding2289},
+  {},
+  constructors: {},
   create: _createGlobalCupertinoLocalizations,
   matches: _isGlobalCupertinoLocalizations,
   setters: [],
@@ -55682,179 +54012,99 @@ const _flaxBinding2334 = FlaxObjectBinding(
     "flax.cupertino/cupertino#type:CupertinoLocalizations",
   ],
   parent: _flaxBinding949,
-  proxy: FlaxProxyBinding([
-    _flaxBinding2214,
-    _flaxBinding2215,
-    _flaxBinding2216,
-    _flaxBinding2217,
-    _flaxBinding2218,
-    _flaxBinding2219,
-    _flaxBinding2290,
-    _flaxBinding2221,
-    _flaxBinding2291,
-    _flaxBinding2223,
-    _flaxBinding2224,
-    _flaxBinding2225,
-    _flaxBinding2226,
-    _flaxBinding2292,
-    _flaxBinding2293,
-    _flaxBinding2294,
-    _flaxBinding2295,
-    _flaxBinding2296,
-    _flaxBinding2297,
-    _flaxBinding2298,
-    _flaxBinding2299,
-    _flaxBinding2300,
-    _flaxBinding2301,
-    _flaxBinding2302,
-    _flaxBinding2303,
-    _flaxBinding2304,
-    _flaxBinding2305,
-    _flaxBinding2306,
-    _flaxBinding2307,
-    _flaxBinding2230,
-    _flaxBinding2308,
-    _flaxBinding2231,
-    _flaxBinding2309,
-    _flaxBinding2310,
-    _flaxBinding2311,
-    _flaxBinding2312,
-    _flaxBinding2313,
-    _flaxBinding2314,
-    _flaxBinding2315,
-    _flaxBinding2236,
-    _flaxBinding2316,
-    _flaxBinding2317,
-    _flaxBinding2318,
-    _flaxBinding2319,
-    _flaxBinding2320,
-    _flaxBinding2321,
-    _flaxBinding2237,
-    _flaxBinding2322,
-    _flaxBinding2323,
-    _flaxBinding2324,
-    _flaxBinding2325,
-    _flaxBinding2326,
-    _flaxBinding2327,
-    _flaxBinding2238,
-    _flaxBinding922,
-    _flaxBinding923,
-    _flaxBinding924,
-    _flaxBinding925,
-    _flaxBinding929,
-    _flaxBinding930,
-    _flaxBinding931,
-    _flaxBinding932,
-    _flaxBinding933,
-    _flaxBinding934,
-    _flaxBinding935,
-    _flaxBinding936,
-    _flaxBinding937,
-    _flaxBinding938,
-    _flaxBinding939,
-    _flaxBinding940,
-    _flaxBinding941,
-    _flaxBinding942,
-    _flaxBinding2328,
-    _flaxBinding2329,
-    _flaxBinding2330,
-    _flaxBinding2331,
-    _flaxBinding2332,
-    _flaxBinding2333,
-  ]),
 );
-const _flaxBinding2335 = FlaxTypeRef(
+const _flaxBinding2272 = FlaxTypeRef(
   "widget",
   id: "flax.cupertino/cupertino#type:CupertinoTheme",
 );
-const _flaxBinding2336 = FlaxGetter.plain(
+const _flaxBinding2273 = FlaxGetter.plain(
   "theme",
-  _flaxBinding2335,
+  _flaxBinding2272,
   _InheritedCupertinoTheme_theme,
 );
-const _flaxBinding2337 = FlaxGetter.plain(
+const _flaxBinding2274 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _InheritedCupertinoTheme_child,
 );
-const _flaxBinding2338 = FlaxGetter.plain(
+const _flaxBinding2275 = FlaxGetter.plain(
   "key",
   _flaxBinding129,
   _InheritedCupertinoTheme_key,
 );
-const _flaxBinding2339 = <FlaxParameter>[
+const _flaxBinding2276 = <FlaxParameter>[
   FlaxParameter.required("context", _flaxBinding2),
   FlaxParameter.required("child", flaxWidgetType),
 ];
-const _flaxBinding2340 = FlaxInstanceMethod.plain(
-  _flaxBinding2339,
+const _flaxBinding2277 = FlaxInstanceMethod.plain(
+  _flaxBinding2276,
   flaxWidgetType,
   _InheritedCupertinoTheme_wrap,
 );
-const _flaxBinding2341 = FlaxTypeRef(
+const _flaxBinding2278 = FlaxTypeRef(
   "widget",
   id: "flax.cupertino/cupertino#type:InheritedCupertinoTheme",
 );
-const _flaxBinding2342 = <FlaxParameter>[
-  FlaxParameter.required("oldWidget", _flaxBinding2341),
+const _flaxBinding2279 = <FlaxParameter>[
+  FlaxParameter.required("oldWidget", _flaxBinding2278),
 ];
-const _flaxBinding2343 = FlaxInstanceMethod.plain(
-  _flaxBinding2342,
+const _flaxBinding2280 = FlaxInstanceMethod.plain(
+  _flaxBinding2279,
   flaxBoolType,
   _InheritedCupertinoTheme_updateShouldNotify,
 );
-const _flaxBinding2344 = FlaxInstanceMethod.plain(
+const _flaxBinding2281 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding1241,
   _InheritedCupertinoTheme_createElement,
 );
-const _flaxBinding2345 = FlaxInstanceMethod.shared(
+const _flaxBinding2282 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _InheritedCupertinoTheme_toStringShort,
 );
-const _flaxBinding2346 = FlaxInstanceMethod.shared(
+const _flaxBinding2283 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _InheritedCupertinoTheme_debugFillProperties,
 );
-const _flaxBinding2347 = FlaxInstanceMethod.plain(
+const _flaxBinding2284 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _InheritedCupertinoTheme_toStringShallow,
 );
-const _flaxBinding2348 = FlaxInstanceMethod.plain(
+const _flaxBinding2285 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _InheritedCupertinoTheme_toStringDeep,
 );
-const _flaxBinding2349 = FlaxInstanceMethod.plain(
+const _flaxBinding2286 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _InheritedCupertinoTheme_toDiagnosticsNode,
 );
-const _flaxBinding2350 = FlaxInstanceMethod.shared(
+const _flaxBinding2287 = FlaxInstanceMethod.shared(
   _flaxBinding111,
   _InheritedCupertinoTheme_debugDescribeChildren,
 );
-const _flaxBinding2351 = <FlaxParameter>[
+const _flaxBinding2288 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter.required("theme", _flaxBinding2335),
+  FlaxParameter.required("theme", _flaxBinding2272),
   FlaxParameter.required("child", flaxWidgetType),
 ];
-const _flaxBinding2352 = FlaxObjectBinding(
+const _flaxBinding2289 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:InheritedCupertinoTheme",
-  [_flaxBinding2336, _flaxBinding2337, _flaxBinding2338],
+  [_flaxBinding2273, _flaxBinding2274, _flaxBinding2275],
   {
-    "wrap": _flaxBinding2340,
-    "updateShouldNotify": _flaxBinding2343,
-    "createElement": _flaxBinding2344,
-    "toStringShort": _flaxBinding2345,
-    "debugFillProperties": _flaxBinding2346,
-    "toStringShallow": _flaxBinding2347,
-    "toStringDeep": _flaxBinding2348,
-    "toDiagnosticsNode": _flaxBinding2349,
-    "debugDescribeChildren": _flaxBinding2350,
+    "wrap": _flaxBinding2277,
+    "updateShouldNotify": _flaxBinding2280,
+    "createElement": _flaxBinding2281,
+    "toStringShort": _flaxBinding2282,
+    "debugFillProperties": _flaxBinding2283,
+    "toStringShallow": _flaxBinding2284,
+    "toStringDeep": _flaxBinding2285,
+    "toDiagnosticsNode": _flaxBinding2286,
+    "debugDescribeChildren": _flaxBinding2287,
   },
-  constructors: {"": _flaxBinding2351},
+  constructors: {"": _flaxBinding2288},
   create: _createInheritedCupertinoTheme,
   matches: _isInheritedCupertinoTheme,
   setters: [],
@@ -55868,57 +54118,57 @@ const _flaxBinding2352 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2353 = FlaxGetter.plain(
+const _flaxBinding2290 = FlaxGetter.plain(
   "primaryColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_primaryColor,
 );
-const _flaxBinding2354 = FlaxGetter.plain(
+const _flaxBinding2291 = FlaxGetter.plain(
   "primaryContrastingColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_primaryContrastingColor,
 );
-const _flaxBinding2355 = FlaxGetter.plain(
+const _flaxBinding2292 = FlaxGetter.plain(
   "textTheme",
   _flaxBinding106,
   _NoDefaultCupertinoThemeData_textTheme,
 );
-const _flaxBinding2356 = FlaxGetter.plain(
+const _flaxBinding2293 = FlaxGetter.plain(
   "barBackgroundColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_barBackgroundColor,
 );
-const _flaxBinding2357 = FlaxGetter.plain(
+const _flaxBinding2294 = FlaxGetter.plain(
   "scaffoldBackgroundColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_scaffoldBackgroundColor,
 );
-const _flaxBinding2358 = FlaxGetter.plain(
+const _flaxBinding2295 = FlaxGetter.plain(
   "selectionHandleColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_selectionHandleColor,
 );
-const _flaxBinding2359 = FlaxGetter.plain(
+const _flaxBinding2296 = FlaxGetter.plain(
   "applyThemeToAll",
   flaxNullableBoolType,
   _NoDefaultCupertinoThemeData_applyThemeToAll,
 );
-const _flaxBinding2360 = FlaxInstanceMethod.shared(
+const _flaxBinding2297 = FlaxInstanceMethod.shared(
   _flaxBinding105,
   _NoDefaultCupertinoThemeData_resolveFrom,
 );
-const _flaxBinding2361 = FlaxInstanceMethod.plain(
+const _flaxBinding2298 = FlaxInstanceMethod.plain(
   _flaxBinding2109,
   _flaxBinding92,
   _NoDefaultCupertinoThemeData_copyWith,
 );
-const _flaxBinding2362 = FlaxProxyMember(
+const _flaxBinding2299 = FlaxProxyMember(
   "resolveFrom",
   0,
   _flaxBinding105,
   hasSuper: true,
 );
-const _flaxBinding2363 = FlaxCallbackBinding.signature(
+const _flaxBinding2300 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "brightness",
@@ -55972,70 +54222,70 @@ const _flaxBinding2363 = FlaxCallbackBinding.signature(
   _flaxBinding92,
   id: "callback:<>(n:o:brightness:enum?:flax.core/sdk_dart_ui#type:Brightness,n:o:primaryColor:object?:flax.core/flutter#type:Color,n:o:primaryContrastingColor:object?:flax.core/flutter#type:Color,n:o:textTheme:object?:flax.cupertino/cupertino#type:CupertinoTextThemeData,n:o:barBackgroundColor:object?:flax.core/flutter#type:Color,n:o:scaffoldBackgroundColor:object?:flax.core/flutter#type:Color,n:o:selectionHandleColor:object?:flax.core/flutter#type:Color,n:o:applyThemeToAll:bool?:)->object:flax.cupertino/cupertino#type:NoDefaultCupertinoThemeData",
 );
-const _flaxBinding2364 = FlaxProxyMember(
+const _flaxBinding2301 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding2363,
+  _flaxBinding2300,
   hasSuper: true,
 );
-const _flaxBinding2365 = FlaxProxyMember(
+const _flaxBinding2302 = FlaxProxyMember(
   "primaryColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2366 = FlaxProxyMember(
+const _flaxBinding2303 = FlaxProxyMember(
   "primaryContrastingColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2367 = FlaxProxyMember(
+const _flaxBinding2304 = FlaxProxyMember(
   "textTheme",
   1,
   _flaxBinding107,
   hasSuper: true,
 );
-const _flaxBinding2368 = FlaxProxyMember(
+const _flaxBinding2305 = FlaxProxyMember(
   "barBackgroundColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2369 = FlaxProxyMember(
+const _flaxBinding2306 = FlaxProxyMember(
   "scaffoldBackgroundColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2370 = FlaxProxyMember(
+const _flaxBinding2307 = FlaxProxyMember(
   "selectionHandleColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2371 = FlaxProxyMember(
+const _flaxBinding2308 = FlaxProxyMember(
   "applyThemeToAll",
   1,
   flaxNullableBoolCall,
   hasSuper: true,
 );
-const _flaxBinding2372 = FlaxObjectBinding(
+const _flaxBinding2309 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:NoDefaultCupertinoThemeData",
   [
     _flaxBinding2099,
-    _flaxBinding2353,
-    _flaxBinding2354,
-    _flaxBinding2355,
-    _flaxBinding2356,
-    _flaxBinding2357,
-    _flaxBinding2358,
-    _flaxBinding2359,
+    _flaxBinding2290,
+    _flaxBinding2291,
+    _flaxBinding2292,
+    _flaxBinding2293,
+    _flaxBinding2294,
+    _flaxBinding2295,
+    _flaxBinding2296,
   ],
   {
     "noDefault": _flaxBinding2107,
-    "resolveFrom": _flaxBinding2360,
-    "copyWith": _flaxBinding2361,
+    "resolveFrom": _flaxBinding2297,
+    "copyWith": _flaxBinding2298,
     "@super:noDefault": _flaxBinding2115,
     "@super:resolveFrom": FlaxInstanceMethod.shared(
       _flaxBinding105,
@@ -56083,136 +54333,136 @@ const _flaxBinding2372 = FlaxObjectBinding(
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
     _flaxBinding2119,
-    _flaxBinding2362,
-    _flaxBinding2364,
+    _flaxBinding2299,
+    _flaxBinding2301,
     _flaxBinding2130,
-    _flaxBinding2365,
-    _flaxBinding2366,
-    _flaxBinding2367,
-    _flaxBinding2368,
-    _flaxBinding2369,
-    _flaxBinding2370,
-    _flaxBinding2371,
+    _flaxBinding2302,
+    _flaxBinding2303,
+    _flaxBinding2304,
+    _flaxBinding2305,
+    _flaxBinding2306,
+    _flaxBinding2307,
+    _flaxBinding2308,
   ]),
 );
-const _flaxBinding2373 = FlaxGetter.plain(
+const _flaxBinding2310 = FlaxGetter.plain(
   "value",
   _flaxBinding114,
   _RestorableCupertinoTabController_value,
 );
-const _flaxBinding2374 = FlaxGetter.plain(
+const _flaxBinding2311 = FlaxGetter.plain(
   "enabled",
   flaxBoolType,
   _RestorableCupertinoTabController_enabled,
 );
-const _flaxBinding2375 = FlaxGetter.plain(
+const _flaxBinding2312 = FlaxGetter.plain(
   "state",
   _flaxBinding118,
   _RestorableCupertinoTabController_state,
 );
-const _flaxBinding2376 = FlaxGetter.plain(
+const _flaxBinding2313 = FlaxGetter.plain(
   "isRegistered",
   flaxBoolType,
   _RestorableCupertinoTabController_isRegistered,
 );
-const _flaxBinding2377 = FlaxGetter.plain(
+const _flaxBinding2314 = FlaxGetter.plain(
   "hasListeners",
   flaxBoolType,
   _RestorableCupertinoTabController_hasListeners,
 );
-const _flaxBinding2378 = FlaxInstanceMethod.shared(
+const _flaxBinding2315 = FlaxInstanceMethod.shared(
   _flaxBinding115,
   _RestorableCupertinoTabController_initWithValue,
 );
-const _flaxBinding2379 = FlaxInstanceMethod.shared(
+const _flaxBinding2316 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _RestorableCupertinoTabController_dispose,
 );
-const _flaxBinding2380 = FlaxInstanceMethod.shared(
+const _flaxBinding2317 = FlaxInstanceMethod.shared(
   _flaxBinding116,
   _RestorableCupertinoTabController_createDefaultValue,
 );
-const _flaxBinding2381 = FlaxInstanceMethod.shared(
+const _flaxBinding2318 = FlaxInstanceMethod.shared(
   _flaxBinding117,
   _RestorableCupertinoTabController_fromPrimitives,
 );
-const _flaxBinding2382 = FlaxInstanceMethod.shared(
+const _flaxBinding2319 = FlaxInstanceMethod.shared(
   flaxNullableAnyCall,
   _RestorableCupertinoTabController_toPrimitives,
 );
-const _flaxBinding2383 = FlaxInstanceMethod.shared(
+const _flaxBinding2320 = FlaxInstanceMethod.shared(
   _flaxBinding86,
   _RestorableCupertinoTabController_addListener,
 );
-const _flaxBinding2384 = FlaxInstanceMethod.shared(
+const _flaxBinding2321 = FlaxInstanceMethod.shared(
   _flaxBinding86,
   _RestorableCupertinoTabController_removeListener,
 );
-const _flaxBinding2385 = FlaxProxyMember(
+const _flaxBinding2322 = FlaxProxyMember(
   "initWithValue",
   0,
   _flaxBinding115,
   hasSuper: true,
 );
-const _flaxBinding2386 = FlaxProxyMember(
+const _flaxBinding2323 = FlaxProxyMember(
   "createDefaultValue",
   0,
   _flaxBinding116,
   hasSuper: true,
 );
-const _flaxBinding2387 = FlaxProxyMember(
+const _flaxBinding2324 = FlaxProxyMember(
   "fromPrimitives",
   0,
   _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding2388 = FlaxProxyMember(
+const _flaxBinding2325 = FlaxProxyMember(
   "toPrimitives",
   0,
   flaxNullableAnyCall,
   hasSuper: true,
 );
-const _flaxBinding2389 = FlaxProxyMember(
+const _flaxBinding2326 = FlaxProxyMember(
   "value",
   1,
   _flaxBinding116,
   hasSuper: true,
 );
-const _flaxBinding2390 = FlaxProxyMember(
+const _flaxBinding2327 = FlaxProxyMember(
   "enabled",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding2391 = FlaxProxyMember(
+const _flaxBinding2328 = FlaxProxyMember(
   "state",
   1,
   _flaxBinding119,
   hasSuper: true,
 );
-const _flaxBinding2392 = FlaxProxyMember(
+const _flaxBinding2329 = FlaxProxyMember(
   "isRegistered",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding2393 = FlaxObjectBinding(
+const _flaxBinding2330 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:RestorableCupertinoTabController",
   [
-    _flaxBinding2373,
-    _flaxBinding2374,
-    _flaxBinding2375,
-    _flaxBinding2376,
-    _flaxBinding2377,
+    _flaxBinding2310,
+    _flaxBinding2311,
+    _flaxBinding2312,
+    _flaxBinding2313,
+    _flaxBinding2314,
   ],
   {
-    "initWithValue": _flaxBinding2378,
-    "dispose": _flaxBinding2379,
-    "createDefaultValue": _flaxBinding2380,
-    "fromPrimitives": _flaxBinding2381,
-    "toPrimitives": _flaxBinding2382,
-    "addListener": _flaxBinding2383,
-    "removeListener": _flaxBinding2384,
+    "initWithValue": _flaxBinding2315,
+    "dispose": _flaxBinding2316,
+    "createDefaultValue": _flaxBinding2317,
+    "fromPrimitives": _flaxBinding2318,
+    "toPrimitives": _flaxBinding2319,
+    "addListener": _flaxBinding2320,
+    "removeListener": _flaxBinding2321,
     "@super:initWithValue": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _RestorableCupertinoTabController_super_initWithValue,
@@ -56265,25 +54515,25 @@ const _flaxBinding2393 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding2385,
+    _flaxBinding2322,
     _flaxBinding1786,
-    _flaxBinding2386,
-    _flaxBinding2387,
-    _flaxBinding2388,
+    _flaxBinding2323,
+    _flaxBinding2324,
+    _flaxBinding2325,
     _flaxBinding1784,
     _flaxBinding1785,
-    _flaxBinding2389,
-    _flaxBinding2390,
-    _flaxBinding2391,
-    _flaxBinding2392,
+    _flaxBinding2326,
+    _flaxBinding2327,
+    _flaxBinding2328,
+    _flaxBinding2329,
     _flaxBinding1788,
   ]),
 );
-const _flaxBinding2394 = FlaxTypeRef(
+const _flaxBinding2331 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:TextSelectionControls",
 );
-const _flaxBinding2395 = FlaxTypeRef(
+const _flaxBinding2332 = FlaxTypeRef(
   "map",
   item: flaxDoubleType,
   key: _flaxBinding278,
@@ -56293,7 +54543,7 @@ const _flaxBinding2395 = FlaxTypeRef(
     _collection41Matches,
   ),
 );
-const _flaxBinding2396 = FlaxTypeRef(
+const _flaxBinding2333 = FlaxTypeRef(
   "map",
   item: _flaxBinding703,
   key: _flaxBinding278,
@@ -56303,7 +54553,7 @@ const _flaxBinding2396 = FlaxTypeRef(
     _collection42Matches,
   ),
 );
-const _flaxBinding2397 = FlaxTypeRef(
+const _flaxBinding2334 = FlaxTypeRef(
   "map",
   item: _flaxBinding954,
   key: _flaxBinding278,
@@ -56313,37 +54563,37 @@ const _flaxBinding2397 = FlaxTypeRef(
     _collection43Matches,
   ),
 );
-const _flaxBinding2398 = FlaxTypeRef(
+const _flaxBinding2335 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
 );
-const _flaxBinding2399 = FlaxTypeRef(
+const _flaxBinding2336 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticsProperty",
-  dartType: FlaxDartTypes.typeOf<api4.DiagnosticsProperty<api1.Color>>,
+  dartType: FlaxDartTypes.typeOf<api3.DiagnosticsProperty<api1.Color>>,
 );
-const _flaxBinding2400 = FlaxTypeRef(
+const _flaxBinding2337 = FlaxTypeRef(
   "future",
   item: flaxNullableAnyType,
   future: FlaxFutureBinding("any?:", _future1Adapt),
 );
-const _flaxBinding2401 = FlaxTypeRef(
+const _flaxBinding2338 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:HeroController",
 );
-const _flaxBinding2402 = FlaxTypeRef(
+const _flaxBinding2339 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:IconData",
 );
-const _flaxBinding2403 = FlaxTypeRef(
+const _flaxBinding2340 = FlaxTypeRef(
   "object",
   id: "flax.cupertino/cupertino#type:CupertinoLocalizations",
 );
-const _flaxBinding2404 = FlaxTypeRef(
+const _flaxBinding2341 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType:
-      FlaxDartTypes.typeOf<api11.WidgetStateProperty<api13.BoxDecoration>>,
+      FlaxDartTypes.typeOf<api10.WidgetStateProperty<api12.BoxDecoration>>,
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object:flax.core/flutter#type:BoxDecoration>",
@@ -56352,34 +54602,34 @@ const _flaxBinding2404 = FlaxTypeRef(
     ),
   },
 );
-const _flaxBinding2405 = FlaxTypeRef(
+const _flaxBinding2342 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:SpellCheckConfiguration",
 );
-const _flaxBinding2406 = FlaxTypeRef(
+const _flaxBinding2343 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:Brightness",
 );
-const _flaxBinding2407 = FlaxTypeRef(
+const _flaxBinding2344 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevelData",
   nullable: true,
 );
-const _flaxBinding2408 = FlaxTypeRef(
+const _flaxBinding2345 = FlaxTypeRef(
   "future",
-  item: _flaxBinding2403,
+  item: _flaxBinding2340,
   future: FlaxFutureBinding(
     "object:flax.cupertino/cupertino#type:CupertinoLocalizations",
     _future4Adapt,
   ),
 );
-const _flaxBinding2409 = FlaxTypeRef(
+const _flaxBinding2346 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:LocalizationsDelegate",
   dartType: FlaxDartTypes
-      .typeOf<api11.LocalizationsDelegate<api.CupertinoLocalizations>>,
+      .typeOf<api10.LocalizationsDelegate<api.CupertinoLocalizations>>,
 );
-const _flaxBinding2410 = FlaxTypeRef(
+const _flaxBinding2347 = FlaxTypeRef(
   "list",
   item: _flaxBinding258,
   collection: FlaxCollectionBinding(
@@ -56389,6 +54639,6 @@ const _flaxBinding2410 = FlaxTypeRef(
   ),
   iterable: _flaxBinding2164,
 );
-const _flaxBinding2411 = <FlaxParameter>[
+const _flaxBinding2348 = <FlaxParameter>[
   FlaxParameter.required("properties", _flaxBinding20),
 ];

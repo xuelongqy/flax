@@ -54,29 +54,14 @@ provider's main Dart entry point need not export that module. JS delivery follow
 declared runtime dependency without inlining its implementation. Binding wiring does not
 activate host-capability plugins.
 
-For an external type without a provider, an owner-local opt-in such as
-`bindingDependencies: {generate: [intl]}` in `flax_package.yaml` also requires a direct
-`intl` entry in the Dart `pubspec.yaml` dependencies. It generates only needed types,
-not all of `intl`. Without a binding or opt-in, even an optional unbound parameter skips
-the whole signature rather than silently disappearing from it. The metadata allows
-`intl`, and full discovery generates its required owner-local types. These retain
-separate identities from Cupertino's local `intl` views; use shared `asDart` for checked
-view conversion without copying the Dart value.
-
-When generated, these local views are exposed through
-`@flax/material-ui/dependencies/intl`. Their runtime source is
-`dist/generated/dependencies/intl/index.js`, with the same directory as `subpathRoot`.
-The specific types-only `./dependencies/*` export tries
-`types/generated/dependencies/*.d.ts` before
-`types/generated/dependencies/*/index.d.ts`; the runtime package uses the corresponding
-`dist/generated/dependencies/` targets. The first candidate supports nested generated
-type helpers, while the second resolves the dependency root. Both take precedence over
-the general library wildcard and preserve the same public API without aliases. Manifest
-28 marks their owning identities with the sparse `localDependency: true` field so other
-packages do not automatically reuse them as providers; format 27 is rejected. For
-independently generated views of the same Dart object, existing `asDart(value, Target)`
-requests the exact target view with normal type and generic checks, retaining existing
-joint-GC ownership. Core remains implicit and cannot be duplicated. See the
+Intl formatters are not exposed by this binding package. Applications use
+`GlobalMaterialLocalizations.delegate` or `.delegates`; Dart loads concrete translations
+and constructs their formatters internally. The public localization queries and base
+interfaces remain bound. The formatter-taking `GlobalMaterialLocalizations` constructor
+and JS subclass construction through it are skipped by the normal dependency rules.
+Upstream Material still depends on `intl` inside Dart. A separately declared Intl
+binding provider could support these constructor signatures in a future selection; no
+such package is currently provided. See the
 [binding dependency policy](../../docs/architecture/packaging.md#binding-dependency-policy).
 
 Navigation now includes explicit sessions, shared or nested Flutter Navigators, native

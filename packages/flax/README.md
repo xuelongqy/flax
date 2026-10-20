@@ -23,6 +23,10 @@ Dart, generated bindings, the base host bootstrap, and the public native ABI hea
 npm runtime package contains signals, binding transport, Core implementation modules,
 navigation, and host declarations.
 
+Flutter Widget Preview annotations and configuration types are excluded from binding
+generation; `@flax/flutter/widget_previews` is not exposed. This does not remove native
+Flutter development tools. Widget Inspector bindings remain available.
+
 ```yaml
 dependencies:
   flax: <version>

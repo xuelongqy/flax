@@ -29,7 +29,6 @@ final _defaultBindingModules = <FlaxBindingModule>[
   sdk_schedulerBindings,
   sdk_semanticsBindings,
   sdk_servicesBindings,
-  sdk_widget_previewsBindings,
   sdk_widgetsBindings,
 ];
 

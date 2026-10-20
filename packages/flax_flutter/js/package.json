@@ -65,12 +65,6 @@
     "./rendering/*": {
       "types": "./types/generated/libraries/rendering/*.d.ts"
     },
-    "./widget_previews": {
-      "types": "./types/generated/libraries/widget_previews/index.d.ts"
-    },
-    "./widget_previews/*": {
-      "types": "./types/generated/libraries/widget_previews/*.d.ts"
-    },
     "./vector_math": {
       "types": "./types/generated/libraries/vector_math/index.d.ts"
     },
