@@ -28,10 +28,11 @@ Future<void> flaxTestCollectDartGarbage({bool compact = false}) async {
       jsonEncode({
         'jsonrpc': '2.0',
         'id': 'gc',
-        'method': compact ? '_getHeapMap' : 'getAllocationProfile',
+        // Avoid serializing every class's allocation statistics for a GC request.
+        'method': compact ? '_getHeapMap' : '_collectAllGarbage',
         'params': {
           'isolateId': developer.Service.getIsolateId(Isolate.current),
-          'gc': compact ? 'mark-compact' : true,
+          if (compact) 'gc': 'mark-compact',
         },
       }),
     );

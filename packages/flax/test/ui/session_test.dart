@@ -84,7 +84,9 @@ void main() {
       ],
     );
     await tester.pumpWidget(
-      MaterialApp(home: FlaxView.session(session: session)),
+      MaterialApp(
+        home: Scaffold(body: FlaxView.session(session: session)),
+      ),
     );
     await flaxTestUnmount(tester);
     await tester.pumpAndSettle();
